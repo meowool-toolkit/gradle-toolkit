@@ -14,8 +14,10 @@ gradlePlugin {
 }
 
 dependencies {
-  implementation(gradleKotlinDsl())
-  implementation(Libs.Kotlin.Stdlib)
+  implementationOf(
+    gradleKotlinDsl(),
+    Libs.Kotlin.Stdlib
+  )
   compileOnlyApi(Libs.Kotlin.Gradle.Plugin)
   testImplementation(Libs.Kotlin.Test.Junit)
 }

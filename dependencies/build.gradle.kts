@@ -1,7 +1,7 @@
 plugins { kotlin }
 
-dependencies {
-  api(project(":dependencies:builtin"))
-  api(project(":dependencies:generator"))
-  api(project(":dependencies:updater"))
-}
+dependencies.apiProjects(
+  ":dependencies:builtin",
+  ":dependencies:generator",
+  ":dependencies:updater"
+)

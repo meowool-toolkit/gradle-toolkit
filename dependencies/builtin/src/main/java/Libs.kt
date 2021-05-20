@@ -1,3 +1,21 @@
+/*
+ * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ */
 @file:Suppress("RedundantVisibilityModifier", "ClassName", "unused")
 
 import kotlin.CharSequence
@@ -599,7 +617,7 @@ public class Libs {
       }
 
       public object EspressoIdlingConcurrent :
-          _D("androidx.test.espresso.idling:idling-concurrent:_")
+        _D("androidx.test.espresso.idling:idling-concurrent:_")
 
       public object EspressoIdlingNet : _D("androidx.test.espresso.idling:idling-net:_")
 
@@ -745,7 +763,7 @@ public class Libs {
     public object Loader : _D("androidx.loader:loader:_")
 
     public object Localbroadcastmanager :
-        _D("androidx.localbroadcastmanager:localbroadcastmanager:_")
+      _D("androidx.localbroadcastmanager:localbroadcastmanager:_")
 
     public object Percentlayout : _D("androidx.percentlayout:percentlayout:_")
 
@@ -785,7 +803,7 @@ public class Libs {
       public object Hls : _D("com.google.android.exoplayer:exoplayer-hls:_")
 
       public object Robolectricutils :
-          _D("com.google.android.exoplayer:exoplayer-robolectricutils:_")
+        _D("com.google.android.exoplayer:exoplayer-robolectricutils:_")
 
       public object Smoothstreaming : _D("com.google.android.exoplayer:exoplayer-smoothstreaming:_")
 
@@ -858,7 +876,7 @@ public class Libs {
           public object Analytics : _D("com.google.android.gms:play-services-analytics:_") {
             public object Impl : _D("com.google.android.gms:play-services-analytics-impl:_") {
               public object License :
-                  _D("com.google.android.gms:play-services-analytics-impl-license:_")
+                _D("com.google.android.gms:play-services-analytics-impl-license:_")
             }
 
             public object License : _D("com.google.android.gms:play-services-analytics-license:_")
@@ -878,7 +896,7 @@ public class Libs {
             public class Api {
               public object Phone : _D("com.google.android.gms:play-services-auth-api-phone:_") {
                 public object License :
-                    _D("com.google.android.gms:play-services-auth-api-phone-license:_")
+                  _D("com.google.android.gms:play-services-auth-api-phone-license:_")
               }
             }
 
@@ -904,7 +922,7 @@ public class Libs {
           public object Cast : _D("com.google.android.gms:play-services-cast:_") {
             public object Framework : _D("com.google.android.gms:play-services-cast-framework:_") {
               public object License :
-                  _D("com.google.android.gms:play-services-cast-framework-license:_")
+                _D("com.google.android.gms:play-services-cast-framework-license:_")
             }
 
             public object License : _D("com.google.android.gms:play-services-cast-license:_")
@@ -983,22 +1001,22 @@ public class Libs {
           public class Mlkit {
             public class Barcode {
               public object Scanning :
-                  _D("com.google.android.gms:play-services-mlkit-barcode-scanning:_")
+                _D("com.google.android.gms:play-services-mlkit-barcode-scanning:_")
             }
 
             public class Face {
               public object Detection :
-                  _D("com.google.android.gms:play-services-mlkit-face-detection:_")
+                _D("com.google.android.gms:play-services-mlkit-face-detection:_")
             }
 
             public class Image {
               public object Labeling :
-                  _D("com.google.android.gms:play-services-mlkit-image-labeling:_")
+                _D("com.google.android.gms:play-services-mlkit-image-labeling:_")
             }
 
             public class Text {
               public object Recognition :
-                  _D("com.google.android.gms:play-services-mlkit-text-recognition:_")
+                _D("com.google.android.gms:play-services-mlkit-text-recognition:_")
             }
           }
 
@@ -1009,7 +1027,7 @@ public class Libs {
           public class Oss {
             public object Licenses : _D("com.google.android.gms:play-services-oss-licenses:_") {
               public object License :
-                  _D("com.google.android.gms:play-services-oss-licenses-license:_")
+                _D("com.google.android.gms:play-services-oss-licenses-license:_")
             }
           }
 
@@ -1019,7 +1037,7 @@ public class Libs {
 
           public class Password {
             public object Complexity :
-                _D("com.google.android.gms:play-services-password-complexity:_")
+              _D("com.google.android.gms:play-services-password-complexity:_")
           }
 
           public object Phenotype : _D("com.google.android.gms:play-services-phenotype:_")
@@ -1028,7 +1046,7 @@ public class Libs {
             public object License : _D("com.google.android.gms:play-services-places-license:_")
 
             public object Placereport :
-                _D("com.google.android.gms:play-services-places-placereport:_")
+              _D("com.google.android.gms:play-services-places-placereport:_")
           }
 
           public object Plus : _D("com.google.android.gms:play-services-plus:_") {
@@ -1046,7 +1064,7 @@ public class Libs {
           public object Tagmanager : _D("com.google.android.gms:play-services-tagmanager:_") {
             public object Api : _D("com.google.android.gms:play-services-tagmanager-api:_") {
               public object License :
-                  _D("com.google.android.gms:play-services-tagmanager-api-license:_")
+                _D("com.google.android.gms:play-services-tagmanager-api-license:_")
             }
 
             public object License : _D("com.google.android.gms:play-services-tagmanager-license:_")
@@ -1054,7 +1072,7 @@ public class Libs {
             public class V4 {
               public object Impl : _D("com.google.android.gms:play-services-tagmanager-v4-impl:_") {
                 public object License :
-                    _D("com.google.android.gms:play-services-tagmanager-v4-impl-license:_")
+                  _D("com.google.android.gms:play-services-tagmanager-v4-impl-license:_")
               }
             }
           }
@@ -1066,13 +1084,13 @@ public class Libs {
           public object Vision : _D("com.google.android.gms:play-services-vision:_") {
             public object Common : _D("com.google.android.gms:play-services-vision-common:_") {
               public object License :
-                  _D("com.google.android.gms:play-services-vision-common-license:_")
+                _D("com.google.android.gms:play-services-vision-common-license:_")
             }
 
             public class Face {
               public class Contour {
                 public object Internal :
-                    _D("com.google.android.gms:play-services-vision-face-contour-internal:_")
+                  _D("com.google.android.gms:play-services-vision-face-contour-internal:_")
               }
             }
 
@@ -1081,7 +1099,7 @@ public class Libs {
 
               public class Labeling {
                 public object Internal :
-                    _D("com.google.android.gms:play-services-vision-image-labeling-internal:_")
+                  _D("com.google.android.gms:play-services-vision-image-labeling-internal:_")
               }
             }
 
@@ -1372,22 +1390,22 @@ public class Libs {
             public class Language {
               public class Id {
                 public object Model :
-                    _D("com.google.firebase:firebase-ml-natural-language-language-id-model:_")
+                  _D("com.google.firebase:firebase-ml-natural-language-language-id-model:_")
               }
             }
 
             public class Smart {
               public object Reply :
-                  _D("com.google.firebase:firebase-ml-natural-language-smart-reply:_") {
+                _D("com.google.firebase:firebase-ml-natural-language-smart-reply:_") {
                 public object Model :
-                    _D("com.google.firebase:firebase-ml-natural-language-smart-reply-model:_")
+                  _D("com.google.firebase:firebase-ml-natural-language-smart-reply-model:_")
               }
             }
 
             public object Translate :
-                _D("com.google.firebase:firebase-ml-natural-language-translate:_") {
+              _D("com.google.firebase:firebase-ml-natural-language-translate:_") {
               public object Model :
-                  _D("com.google.firebase:firebase-ml-natural-language-translate-model:_")
+                _D("com.google.firebase:firebase-ml-natural-language-translate-model:_")
             }
           }
         }
@@ -1416,7 +1434,7 @@ public class Libs {
           public class Object {
             public class Detection {
               public object Model :
-                  _D("com.google.firebase:firebase-ml-vision-object-detection-model:_")
+                _D("com.google.firebase:firebase-ml-vision-object-detection-model:_")
             }
           }
         }
@@ -1475,7 +1493,7 @@ public class Libs {
       public object Picasso : _D("com.google.accompanist:accompanist-picasso:_")
 
       public object Systemuicontroller :
-          _D("com.google.accompanist:accompanist-systemuicontroller:_")
+        _D("com.google.accompanist:accompanist-systemuicontroller:_")
 
       public object Insets : _D("com.google.accompanist:accompanist-insets:_")
 
@@ -1522,17 +1540,17 @@ public class Libs {
 
     public class Enterprise {
       public object Connectedapps :
-          _D("com.google.android.enterprise.connectedapps:connectedapps:_") {
+        _D("com.google.android.enterprise.connectedapps:connectedapps:_") {
         public object Annotations :
-            _D("com.google.android.enterprise.connectedapps:connectedapps-annotations:_")
+          _D("com.google.android.enterprise.connectedapps:connectedapps-annotations:_")
 
         public object Processor :
-            _D("com.google.android.enterprise.connectedapps:connectedapps-processor:_")
+          _D("com.google.android.enterprise.connectedapps:connectedapps-processor:_")
 
         public object Testing :
-            _D("com.google.android.enterprise.connectedapps:connectedapps-testing:_") {
+          _D("com.google.android.enterprise.connectedapps:connectedapps-testing:_") {
           public object Annotations :
-              _D("com.google.android.enterprise.connectedapps:connectedapps-testing-annotations:_")
+            _D("com.google.android.enterprise.connectedapps:connectedapps-testing-annotations:_")
         }
       }
     }
@@ -1548,7 +1566,7 @@ public class Libs {
     public object Instantapps : _D("com.google.android.instantapps:instantapps:_") {
       public class Thirdpartycompat {
         public object Volleycompat :
-            _D("com.google.android.instantapps.thirdpartycompat:volleycompat:_")
+          _D("com.google.android.instantapps.thirdpartycompat:volleycompat:_")
       }
     }
 
@@ -1567,7 +1585,7 @@ public class Libs {
     }
 
     public object Androidbrowserhelper :
-        _D("com.google.androidbrowserhelper:androidbrowserhelper:_") {
+      _D("com.google.androidbrowserhelper:androidbrowserhelper:_") {
       public object Billing : _D("com.google.androidbrowserhelper:billing:_")
 
       public object Locationdelegation : _D("com.google.androidbrowserhelper:locationdelegation:_")
@@ -1614,14 +1632,14 @@ public class Libs {
 
           public class Driver {
             public object Instrumentation :
-                _D("com.google.test.platform:android-driver-instrumentation:_")
+              _D("com.google.test.platform:android-driver-instrumentation:_")
           }
 
           public class Test {
             public object Plugin : _D("com.google.test.platform:android-test-plugin:_") {
               public class Host {
                 public object Retention :
-                    _D("com.google.test.platform:android-test-plugin-host-retention:_")
+                  _D("com.google.test.platform:android-test-plugin-host-retention:_")
               }
             }
           }
@@ -1645,19 +1663,19 @@ public class Libs {
 
             public class Provider {
               public object Gradle :
-                  _D("com.google.testing.platform:android-device-provider-gradle:_")
+                _D("com.google.testing.platform:android-device-provider-gradle:_")
 
               public object Local :
-                  _D("com.google.testing.platform:android-device-provider-local:_")
+                _D("com.google.testing.platform:android-device-provider-local:_")
 
               public object Virtual :
-                  _D("com.google.testing.platform:android-device-provider-virtual:_")
+                _D("com.google.testing.platform:android-device-provider-virtual:_")
             }
           }
 
           public class Driver {
             public object Instrumentation :
-                _D("com.google.testing.platform:android-driver-instrumentation:_")
+              _D("com.google.testing.platform:android-driver-instrumentation:_")
           }
 
           public class Test {
@@ -1665,11 +1683,11 @@ public class Libs {
               public class Host {
                 public class Device {
                   public object Info :
-                      _D("com.google.testing.platform:android-test-plugin-host-device-info:_")
+                    _D("com.google.testing.platform:android-test-plugin-host-device-info:_")
                 }
 
                 public object Retention :
-                    _D("com.google.testing.platform:android-test-plugin-host-retention:_")
+                  _D("com.google.testing.platform:android-test-plugin-host-retention:_")
               }
             }
           }
@@ -1965,10 +1983,10 @@ public class Libs {
       public class Geolocation {
         public class TencentLocationSdk {
           public object Meituandispatch :
-              _D("com.tencent.map.geolocation:TencentLocationSdk-meituandispatch:_")
+            _D("com.tencent.map.geolocation:TencentLocationSdk-meituandispatch:_")
 
           public object Openplatform :
-              _D("com.tencent.map.geolocation:TencentLocationSdk-openplatform:_")
+            _D("com.tencent.map.geolocation:TencentLocationSdk-openplatform:_")
         }
       }
     }
@@ -2159,7 +2177,7 @@ public class Libs {
               public class Publish {
                 public class Gradle {
                   public object Plugin :
-                      _D("com.tencent.devops.publish:com.tencent.devops.publish.gradle.plugin:_")
+                    _D("com.tencent.devops.publish:com.tencent.devops.publish.gradle.plugin:_")
                 }
               }
             }
@@ -2178,7 +2196,7 @@ public class Libs {
               public class Boot {
                 public class Gradle {
                   public object Plugin :
-                      _D("com.tencent.devops.boot:com.tencent.devops.boot.gradle.plugin:_")
+                    _D("com.tencent.devops.boot:com.tencent.devops.boot.gradle.plugin:_")
                 }
               }
             }
@@ -2301,7 +2319,7 @@ public class Libs {
               public class Api {
                 public class Dispatch {
                   public object Docker :
-                      _D("com.tencent.bk.devops.ci.dispatch.docker:api-dispatch-docker:_")
+                    _D("com.tencent.bk.devops.ci.dispatch.docker:api-dispatch-docker:_")
                 }
               }
             }
@@ -2314,7 +2332,7 @@ public class Libs {
 
             public object Pipeline : _D("com.tencent.bk.devops.ci.common:common-pipeline:_") {
               public object Tencent :
-                  _D("com.tencent.bk.devops.ci.common:common-pipeline-tencent:_")
+                _D("com.tencent.bk.devops.ci.common:common-pipeline-tencent:_")
             }
 
             public object Es : _D("com.tencent.bk.devops.ci.common:common-es:_")
@@ -2353,7 +2371,7 @@ public class Libs {
 
             public class Environment {
               public object Thirdpartyagent :
-                  _D("com.tencent.bk.devops.ci.common:common-environment-thirdpartyagent:_")
+                _D("com.tencent.bk.devops.ci.common:common-environment-thirdpartyagent:_")
             }
 
             public class Dispatch {
@@ -2440,7 +2458,7 @@ public class Libs {
 
                 public object Image : _D("com.tencent.bk.devops.ci.store:api-store-image:_") {
                   public object Sample :
-                      _D("com.tencent.bk.devops.ci.store:api-store-image-sample:_")
+                    _D("com.tencent.bk.devops.ci.store:api-store-image-sample:_")
                 }
               }
             }
@@ -2505,7 +2523,7 @@ public class Libs {
           public class Environment {
             public class Api {
               public object Environment :
-                  _D("com.tencent.bk.devops.ci.environment:api-environment:_")
+                _D("com.tencent.bk.devops.ci.environment:api-environment:_")
             }
           }
 
@@ -2513,7 +2531,7 @@ public class Libs {
             public class Plugin {
               public class Dockerhost {
                 public object Codecc :
-                    _D("com.tencent.bk.devops.ci.dockerhost:plugin-dockerhost-codecc:_")
+                  _D("com.tencent.bk.devops.ci.dockerhost:plugin-dockerhost-codecc:_")
               }
             }
 
@@ -2525,15 +2543,15 @@ public class Libs {
           public class Artifactory {
             public class Api {
               public object Artifactory :
-                  _D("com.tencent.bk.devops.ci.artifactory:api-artifactory:_") {
+                _D("com.tencent.bk.devops.ci.artifactory:api-artifactory:_") {
                 public object Store :
-                    _D("com.tencent.bk.devops.ci.artifactory:api-artifactory-store:_")
+                  _D("com.tencent.bk.devops.ci.artifactory:api-artifactory-store:_")
 
                 public object Sample :
-                    _D("com.tencent.bk.devops.ci.artifactory:api-artifactory-sample:_")
+                  _D("com.tencent.bk.devops.ci.artifactory:api-artifactory-sample:_")
 
                 public object Push :
-                    _D("com.tencent.bk.devops.ci.artifactory:api-artifactory-push:_")
+                  _D("com.tencent.bk.devops.ci.artifactory:api-artifactory-push:_")
               }
             }
           }
@@ -3054,7 +3072,7 @@ public class Libs {
         public object Gradle : _D("org.jetbrains.kotlin:kotlin-annotation-processing-gradle:_")
 
         public object Embeddable :
-            _D("org.jetbrains.kotlin:kotlin-annotation-processing-embeddable:_")
+          _D("org.jetbrains.kotlin:kotlin-annotation-processing-embeddable:_")
       }
     }
 
@@ -3078,7 +3096,7 @@ public class Libs {
       public class Internal {
         public class Test {
           public object Framework :
-              _D("org.jetbrains.kotlin:kotlin-compiler-internal-test-framework:_")
+            _D("org.jetbrains.kotlin:kotlin-compiler-internal-test-framework:_")
         }
       }
 
@@ -3131,7 +3149,7 @@ public class Libs {
           public object Unshaded : _D("org.jetbrains.kotlin:kotlin-scripting-jvm-host-unshaded:_")
 
           public object Embeddable :
-              _D("org.jetbrains.kotlin:kotlin-scripting-jvm-host-embeddable:_")
+            _D("org.jetbrains.kotlin:kotlin-scripting-jvm-host-embeddable:_")
         }
       }
 
@@ -3148,7 +3166,7 @@ public class Libs {
       public class Ide {
         public object Services : _D("org.jetbrains.kotlin:kotlin-scripting-ide-services:_") {
           public object Unshaded :
-              _D("org.jetbrains.kotlin:kotlin-scripting-ide-services-unshaded:_")
+            _D("org.jetbrains.kotlin:kotlin-scripting-ide-services-unshaded:_")
         }
       }
 
@@ -3159,7 +3177,7 @@ public class Libs {
       public object Compiler : _D("org.jetbrains.kotlin:kotlin-scripting-compiler:_") {
         public object Impl : _D("org.jetbrains.kotlin:kotlin-scripting-compiler-impl:_") {
           public object Embeddable :
-              _D("org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable:_")
+            _D("org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable:_")
         }
 
         public object Embeddable : _D("org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable:_")
@@ -3185,7 +3203,7 @@ public class Libs {
         public object Receiver : _D("org.jetbrains.kotlin:kotlin-sam-with-receiver:_") {
           public class Compiler {
             public object Plugin :
-                _D("org.jetbrains.kotlin:kotlin-sam-with-receiver-compiler-plugin:_")
+              _D("org.jetbrains.kotlin:kotlin-sam-with-receiver-compiler-plugin:_")
           }
         }
       }
@@ -3326,10 +3344,10 @@ public class Libs {
             public object Parent : _D("org.jetbrains.kotlinx.spark:kotlin-spark-api-parent:_") {
               public class `2` {
                 public object `12` :
-                    _D("org.jetbrains.kotlinx.spark:kotlin-spark-api-parent_2.12:_")
+                  _D("org.jetbrains.kotlinx.spark:kotlin-spark-api-parent_2.12:_")
 
                 public object `11` :
-                    _D("org.jetbrains.kotlinx.spark:kotlin-spark-api-parent_2.11:_")
+                  _D("org.jetbrains.kotlinx.spark:kotlin-spark-api-parent_2.11:_")
               }
             }
 
@@ -3350,7 +3368,7 @@ public class Libs {
                 public class `0` {
                   public class `2` {
                     public object `12` :
-                        _D("org.jetbrains.kotlinx.spark:kotlin-spark-api-3.0.0_2.12:_")
+                      _D("org.jetbrains.kotlinx.spark:kotlin-spark-api-3.0.0_2.12:_")
                   }
                 }
               }
@@ -3500,56 +3518,56 @@ public class Libs {
           public class Debug {
             public class Macos {
               public object X64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_debug_macos_x64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_debug_macos_x64:_")
             }
 
             public class ios {
               public object X64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_debug_ios_x64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_debug_ios_x64:_")
 
               public object Arm64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_debug_ios_arm64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_debug_ios_arm64:_")
 
               public object Arm32 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_debug_ios_arm32:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_debug_ios_arm32:_")
             }
 
             public class Mingw {
               public object X64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_debug_mingw_x64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_debug_mingw_x64:_")
             }
 
             public class Linux {
               public object X64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_debug_linux_x64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_debug_linux_x64:_")
             }
           }
 
           public class Release {
             public class Macos {
               public object X64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_release_macos_x64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_release_macos_x64:_")
             }
 
             public class ios {
               public object X64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_release_ios_x64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_release_ios_x64:_")
 
               public object Arm64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_release_ios_arm64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_release_ios_arm64:_")
 
               public object Arm32 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_release_ios_arm32:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_release_ios_arm32:_")
             }
 
             public class Linux {
               public object X64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_release_linux_x64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_release_linux_x64:_")
             }
 
             public class Mingw {
               public object X64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_release_mingw_x64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-core-native_release_mingw_x64:_")
             }
           }
         }
@@ -3626,28 +3644,28 @@ public class Libs {
           public class Debug {
             public class ios {
               public object Arm64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-io-native_debug_ios_arm64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-io-native_debug_ios_arm64:_")
 
               public object X64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-io-native_debug_ios_x64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-io-native_debug_ios_x64:_")
 
               public object Arm32 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-io-native_debug_ios_arm32:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-io-native_debug_ios_arm32:_")
             }
 
             public class Macos {
               public object X64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-io-native_debug_macos_x64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-io-native_debug_macos_x64:_")
             }
 
             public class Mingw {
               public object X64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-io-native_debug_mingw_x64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-io-native_debug_mingw_x64:_")
             }
 
             public class Linux {
               public object X64 :
-                  _D("org.jetbrains.kotlinx:kotlinx-coroutines-io-native_debug_linux_x64:_")
+                _D("org.jetbrains.kotlinx:kotlinx-coroutines-io-native_debug_linux_x64:_")
             }
           }
         }
@@ -3701,7 +3719,7 @@ public class Libs {
             public class Knit {
               public class Gradle {
                 public object Plugin :
-                    _D("org.jetbrains.kotlinx.knit:org.jetbrains.kotlinx.knit.gradle.plugin:_")
+                  _D("org.jetbrains.kotlinx.knit:org.jetbrains.kotlinx.knit.gradle.plugin:_")
               }
             }
           }
@@ -3732,7 +3750,7 @@ public class Libs {
                     public class Validator {
                       public class Gradle {
                         public object Plugin :
-                            _D("org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin:_")
+                          _D("org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin:_")
                       }
                     }
                   }
@@ -3771,7 +3789,7 @@ public class Libs {
     public class Collections {
       public object Immutable : _D("org.jetbrains.kotlinx:kotlinx-collections-immutable:_") {
         public object Metadata :
-            _D("org.jetbrains.kotlinx:kotlinx-collections-immutable-metadata:_")
+          _D("org.jetbrains.kotlinx:kotlinx-collections-immutable-metadata:_")
 
         public class Mingw {
           public object X64 : _D("org.jetbrains.kotlinx:kotlinx-collections-immutable-mingwx64:_")
@@ -3844,7 +3862,7 @@ public class Libs {
     public class Serialization {
       public object Protobuf : _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:_") {
         public object Metadata :
-            _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-metadata:_")
+          _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-metadata:_")
 
         public object WArm32 : _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-wasm32:_")
 
@@ -3860,10 +3878,10 @@ public class Libs {
           public object X64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-linuxx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-linuxarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-linuxarm64:_")
 
           public object Arm32hfp :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-linuxarm32hfp:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-linuxarm32hfp:_")
         }
 
         public class Mingw {
@@ -3874,23 +3892,23 @@ public class Libs {
 
         public class WatchOS {
           public object X86 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-watchosx86:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-watchosx86:_")
 
           public object X64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-watchosx64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-watchosx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-watchosarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-watchosarm64:_")
 
           public object Arm32 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-watchosarm32:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-watchosarm32:_")
         }
 
         public class TvOS {
           public object X64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-tvosx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-tvosarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-tvosarm64:_")
         }
 
         public class MacOS {
@@ -3901,10 +3919,10 @@ public class Libs {
           public object X64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-iosx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-iosarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-iosarm64:_")
 
           public object Arm32 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-iosarm32:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-protobuf-iosarm32:_")
         }
       }
 
@@ -3921,7 +3939,7 @@ public class Libs {
           public object Arm64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-json-linuxarm64:_")
 
           public object Arm32hfp :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-json-linuxarm32hfp:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-json-linuxarm32hfp:_")
         }
 
         public class Mingw {
@@ -3936,10 +3954,10 @@ public class Libs {
           public object X64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-json-watchosx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-json-watchosarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-json-watchosarm64:_")
 
           public object Arm32 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-json-watchosarm32:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-json-watchosarm32:_")
         }
 
         public class TvOS {
@@ -3980,7 +3998,7 @@ public class Libs {
           public object Arm64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-cbor-linuxarm64:_")
 
           public object Arm32hfp :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-cbor-linuxarm32hfp:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-cbor-linuxarm32hfp:_")
         }
 
         public class Mingw {
@@ -3995,10 +4013,10 @@ public class Libs {
           public object X64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-cbor-watchosx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-cbor-watchosarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-cbor-watchosarm64:_")
 
           public object Arm32 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-cbor-watchosarm32:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-cbor-watchosarm32:_")
         }
 
         public class TvOS {
@@ -4022,7 +4040,7 @@ public class Libs {
 
       public object Properties : _D("org.jetbrains.kotlinx:kotlinx-serialization-properties:_") {
         public object Metadata :
-            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-metadata:_")
+          _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-metadata:_")
 
         public object WArm32 : _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-wasm32:_")
 
@@ -4036,57 +4054,57 @@ public class Libs {
 
         public class Linux {
           public object X64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-linuxx64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-linuxx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-linuxarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-linuxarm64:_")
 
           public object Arm32hfp :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-linuxarm32hfp:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-linuxarm32hfp:_")
         }
 
         public class Mingw {
           public object X86 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-mingwx86:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-mingwx86:_")
 
           public object X64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-mingwx64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-mingwx64:_")
         }
 
         public class WatchOS {
           public object X86 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-watchosx86:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-watchosx86:_")
 
           public object X64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-watchosx64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-watchosx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-watchosarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-watchosarm64:_")
 
           public object Arm32 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-watchosarm32:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-watchosarm32:_")
         }
 
         public class TvOS {
           public object X64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-tvosx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-tvosarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-tvosarm64:_")
         }
 
         public class MacOS {
           public object X64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-macosx64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-macosx64:_")
         }
 
         public class iOS {
           public object X64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-iosx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-iosarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-iosarm64:_")
 
           public object Arm32 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-iosarm32:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-properties-iosarm32:_")
         }
       }
 
@@ -4103,7 +4121,7 @@ public class Libs {
           public object Arm64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-core-linuxarm64:_")
 
           public object Arm32hfp :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-core-linuxarm32hfp:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-core-linuxarm32hfp:_")
         }
 
         public class Mingw {
@@ -4118,10 +4136,10 @@ public class Libs {
           public object X64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-core-watchosx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-core-watchosarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-core-watchosarm64:_")
 
           public object Arm32 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-core-watchosarm32:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-core-watchosarm32:_")
         }
 
         public class TvOS {
@@ -4156,33 +4174,33 @@ public class Libs {
 
         public class WatchOS {
           public object Arm32 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-watchosarm32:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-watchosarm32:_")
 
           public object X86 : _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-watchosx86:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-watchosarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-watchosarm64:_")
         }
 
         public class TvOS {
           public object X64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-tvosx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-tvosarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-tvosarm64:_")
         }
 
         public class Linux {
           public object X64 : _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-linuxx64:_")
 
           public object Arm64 :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-linuxarm64:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-linuxarm64:_")
 
           public object Arm32hfp :
-              _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-linuxarm32hfp:_")
+            _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-linuxarm32hfp:_")
         }
 
         public object Metadata :
-            _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-metadata:_")
+          _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-metadata:_")
 
         public object Js : _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:_")
 
@@ -4199,7 +4217,7 @@ public class Libs {
         }
 
         public object Configparser :
-            _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-configparser:_")
+          _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-configparser:_")
 
         public object Native : _D("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:_")
 
@@ -4293,7 +4311,7 @@ public class Libs {
 
         public class Common {
           public object Dependencies :
-              _D("org.jetbrains.kotlinx:kotlin-jupyter-common-dependencies:_")
+            _D("org.jetbrains.kotlinx:kotlin-jupyter-common-dependencies:_")
         }
 
         public object Api : _D("org.jetbrains.kotlinx:kotlin-jupyter-api:_") {
@@ -4336,7 +4354,7 @@ public class Libs {
           public class Sqldelight {
             public class Gradle {
               public object Plugin :
-                  _D("com.squareup.sqldelight:com.squareup.sqldelight.gradle.plugin:_")
+                _D("com.squareup.sqldelight:com.squareup.sqldelight.gradle.plugin:_")
             }
           }
         }
@@ -4665,7 +4683,7 @@ public class Libs {
           }
 
           public object Multiplatform :
-              _D("com.squareup.wire:wire-kotlin-serialization-multiplatform:_")
+            _D("com.squareup.wire:wire-kotlin-serialization-multiplatform:_")
 
           public object Js : _D("com.squareup.wire:wire-kotlin-serialization-js:_")
 
@@ -5080,7 +5098,7 @@ public class Libs {
       public object Android : _D("com.squareup.burst:burst-android:_") {
         public object Test : _D("com.squareup.burst:burst-android-test:_") {
           public object Instrumentation :
-              _D("com.squareup.burst:burst-android-test-instrumentation:_")
+            _D("com.squareup.burst:burst-android-test-instrumentation:_")
 
           public object App : _D("com.squareup.burst:burst-android-test-app:_")
         }
@@ -5286,15 +5304,14 @@ public class Libs {
 
       public class Object {
         public object Watcher : _D("com.squareup.leakcanary:leakcanary-object-watcher:_") {
-          public object Android : _D("com.squareup.leakcanary:leakcanary-object-watcher-android:_")
-              {
+          public object Android : _D("com.squareup.leakcanary:leakcanary-object-watcher-android:_") {
             public class Support {
               public object Fragments :
-                  _D("com.squareup.leakcanary:leakcanary-object-watcher-android-support-fragments:_")
+                _D("com.squareup.leakcanary:leakcanary-object-watcher-android-support-fragments:_")
             }
 
             public object AndroidX :
-                _D("com.squareup.leakcanary:leakcanary-object-watcher-android-androidx:_")
+              _D("com.squareup.leakcanary:leakcanary-object-watcher-android-androidx:_")
           }
         }
       }
@@ -5302,7 +5319,7 @@ public class Libs {
       public class Deobfuscation {
         public class Gradle {
           public object Plugin :
-              _D("com.squareup.leakcanary:leakcanary-deobfuscation-gradle-plugin:_")
+            _D("com.squareup.leakcanary:leakcanary-deobfuscation-gradle-plugin:_")
         }
       }
 
@@ -5314,7 +5331,7 @@ public class Libs {
         public object Process : _D("com.squareup.leakcanary:leakcanary-android-process:_")
 
         public object Instrumentation :
-            _D("com.squareup.leakcanary:leakcanary-android-instrumentation:_")
+          _D("com.squareup.leakcanary:leakcanary-android-instrumentation:_")
 
         public object Core : _D("com.squareup.leakcanary:leakcanary-android-core:_")
 
@@ -5414,7 +5431,7 @@ public class Libs {
           public class Hephaestus {
             public class Gradle {
               public object Plugin :
-                  _D("com.squareup.hephaestus:com.squareup.hephaestus.gradle.plugin:_")
+                _D("com.squareup.hephaestus:com.squareup.hephaestus.gradle.plugin:_")
             }
           }
         }
@@ -5737,7 +5754,7 @@ public class Libs {
           public class Squareup {
             public class OkHttp {
               public object Mockwebserver :
-                  _D("eu.the4thfloor.mockwebserver:com.squareup.okhttp.mockwebserver:_")
+                _D("eu.the4thfloor.mockwebserver:com.squareup.okhttp.mockwebserver:_")
             }
           }
         }
@@ -6088,7 +6105,7 @@ public class Libs {
           public class Org {
             public class Jetbrains {
               public object Annotations :
-                  _D("org.realityforge.org.jetbrains.annotations:org.jetbrains.annotations:_")
+                _D("org.realityforge.org.jetbrains.annotations:org.jetbrains.annotations:_")
             }
           }
         }
@@ -6572,7 +6589,7 @@ public class Libs {
             public object Samples : _D("org.apache.logging.log4j.samples:log4j-samples:_") {
               public class Flume {
                 public object Common :
-                    _D("org.apache.logging.log4j.samples:log4j-samples-flume-common:_")
+                  _D("org.apache.logging.log4j.samples:log4j-samples-flume-common:_")
               }
             }
           }
@@ -6593,20 +6610,20 @@ public class Libs {
             public class Core {
               public class Osgi {
                 public object Reduced :
-                    _D("org.apache.logging.log4j.osgi:log4j-core-osgi-reduced:_")
+                  _D("org.apache.logging.log4j.osgi:log4j-core-osgi-reduced:_")
 
                 public class Nosql {
                   public object Mongodb :
-                      _D("org.apache.logging.log4j.osgi:log4j-core-osgi-nosql-mongodb:_")
+                    _D("org.apache.logging.log4j.osgi:log4j-core-osgi-nosql-mongodb:_")
 
                   public object Couchdb :
-                      _D("org.apache.logging.log4j.osgi:log4j-core-osgi-nosql-couchdb:_")
+                    _D("org.apache.logging.log4j.osgi:log4j-core-osgi-nosql-couchdb:_")
 
                   public object Mongo :
-                      _D("org.apache.logging.log4j.osgi:log4j-core-osgi-nosql-mongo:_")
+                    _D("org.apache.logging.log4j.osgi:log4j-core-osgi-nosql-mongo:_")
 
                   public object Couch :
-                      _D("org.apache.logging.log4j.osgi:log4j-core-osgi-nosql-couch:_")
+                    _D("org.apache.logging.log4j.osgi:log4j-core-osgi-nosql-couch:_")
                 }
 
                 public object Net : _D("org.apache.logging.log4j.osgi:log4j-core-osgi-net:_")
@@ -6631,7 +6648,7 @@ public class Libs {
           public class Cloud {
             public object Config : _D("org.apache.logging.log4j:log4j-spring-cloud-config:_") {
               public object Client :
-                  _D("org.apache.logging.log4j:log4j-spring-cloud-config-client:_")
+                _D("org.apache.logging.log4j:log4j-spring-cloud-config-client:_")
             }
           }
 
@@ -7072,7 +7089,7 @@ public class Libs {
               public class Schema {
                 public class Gradle {
                   public object Plugin :
-                      _D("app.cash.treehouse.schema:app.cash.treehouse.schema.gradle.plugin:_")
+                    _D("app.cash.treehouse.schema:app.cash.treehouse.schema.gradle.plugin:_")
                 }
               }
             }
@@ -7087,7 +7104,7 @@ public class Libs {
                   public class Display {
                     public class Gradle {
                       public object Plugin :
-                          _D("app.cash.treehouse.schema.display:app.cash.treehouse.schema.display.gradle.plugin:_")
+                        _D("app.cash.treehouse.schema.display:app.cash.treehouse.schema.display.gradle.plugin:_")
                     }
                   }
                 }
@@ -7104,7 +7121,7 @@ public class Libs {
                   public class Compose {
                     public class Gradle {
                       public object Plugin :
-                          _D("app.cash.treehouse.schema.compose:app.cash.treehouse.schema.compose.gradle.plugin:_")
+                        _D("app.cash.treehouse.schema.compose:app.cash.treehouse.schema.compose.gradle.plugin:_")
                     }
                   }
                 }
@@ -7371,7 +7388,7 @@ public class Libs {
           public class Booster {
             public class Gradle {
               public object Plugin :
-                  _D("com.didiglobal.booster:com.didiglobal.booster.gradle.plugin:_")
+                _D("com.didiglobal.booster:com.didiglobal.booster.gradle.plugin:_")
             }
           }
         }
@@ -7390,7 +7407,7 @@ public class Libs {
 
         public class Shared {
           public object Preferences :
-              _D("com.didiglobal.booster:booster-transform-shared-preferences:_")
+            _D("com.didiglobal.booster:booster-transform-shared-preferences:_")
         }
 
         public object Spi : _D("com.didiglobal.booster:booster-transform-spi:_")
@@ -7414,7 +7431,7 @@ public class Libs {
         public class Finalizer {
           public class Watchdog {
             public object Daemon :
-                _D("com.didiglobal.booster:booster-transform-finalizer-watchdog-daemon:_")
+              _D("com.didiglobal.booster:booster-transform-finalizer-watchdog-daemon:_")
           }
         }
 
@@ -7444,7 +7461,7 @@ public class Libs {
       public class Task {
         public class Resource {
           public object Deredundancy :
-              _D("com.didiglobal.booster:booster-task-resource-deredundancy:_")
+            _D("com.didiglobal.booster:booster-task-resource-deredundancy:_")
         }
 
         public object Spi : _D("com.didiglobal.booster:booster-task-spi:_")
@@ -7462,7 +7479,7 @@ public class Libs {
         public object Compression : _D("com.didiglobal.booster:booster-task-compression:_") {
           public class Processed {
             public object Res :
-                _D("com.didiglobal.booster:booster-task-compression-processed-res:_")
+              _D("com.didiglobal.booster:booster-task-compression-processed-res:_")
           }
 
           public object Cwebp : _D("com.didiglobal.booster:booster-task-compression-cwebp:_")
@@ -7509,25 +7526,25 @@ public class Libs {
 
           public class Shared {
             public object Preferences :
-                _D("com.didiglobal.booster:booster-android-instrument-shared-preferences:_")
+              _D("com.didiglobal.booster:booster-android-instrument-shared-preferences:_")
           }
 
           public object Thread : _D("com.didiglobal.booster:booster-android-instrument-thread:_")
 
           public class Res {
             public object Check :
-                _D("com.didiglobal.booster:booster-android-instrument-res-check:_")
+              _D("com.didiglobal.booster:booster-android-instrument-res-check:_")
           }
 
           public class Media {
             public object Player :
-                _D("com.didiglobal.booster:booster-android-instrument-media-player:_")
+              _D("com.didiglobal.booster:booster-android-instrument-media-player:_")
           }
 
           public class Finalizer {
             public class Watchdog {
               public object Daemon :
-                  _D("com.didiglobal.booster:booster-android-instrument-finalizer-watchdog-daemon:_")
+                _D("com.didiglobal.booster:booster-android-instrument-finalizer-watchdog-daemon:_")
             }
           }
 
@@ -7535,7 +7552,7 @@ public class Libs {
 
           public class Activity {
             public object Thread :
-                _D("com.didiglobal.booster:booster-android-instrument-activity-thread:_")
+              _D("com.didiglobal.booster:booster-android-instrument-activity-thread:_")
           }
         }
 
@@ -7832,10 +7849,10 @@ public class Libs {
         public object Viewpager : _D("com.jakewharton.rxbinding4:rxbinding-viewpager:_")
 
         public object Slidingpanelayout :
-            _D("com.jakewharton.rxbinding4:rxbinding-slidingpanelayout:_")
+          _D("com.jakewharton.rxbinding4:rxbinding-slidingpanelayout:_")
 
         public object Swiperefreshlayout :
-            _D("com.jakewharton.rxbinding4:rxbinding-swiperefreshlayout:_")
+          _D("com.jakewharton.rxbinding4:rxbinding-swiperefreshlayout:_")
 
         public object Recyclerview : _D("com.jakewharton.rxbinding4:rxbinding-recyclerview:_")
 
@@ -7860,10 +7877,10 @@ public class Libs {
         public object Viewpager : _D("com.jakewharton.rxbinding3:rxbinding-viewpager:_")
 
         public object Swiperefreshlayout :
-            _D("com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:_")
+          _D("com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:_")
 
         public object Slidingpanelayout :
-            _D("com.jakewharton.rxbinding3:rxbinding-slidingpanelayout:_")
+          _D("com.jakewharton.rxbinding3:rxbinding-slidingpanelayout:_")
 
         public object Recyclerview : _D("com.jakewharton.rxbinding3:rxbinding-recyclerview:_")
 
@@ -7894,7 +7911,7 @@ public class Libs {
         public class Recyclerview {
           public object V7 : _D("com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:_") {
             public object Kotlin :
-                _D("com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:_")
+              _D("com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:_")
           }
         }
 
@@ -7999,18 +8016,18 @@ public class Libs {
         public class KotlinX {
           public class Serialization {
             public object Converter :
-                _D("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:_")
+              _D("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:_")
           }
         }
 
         public class Kotlin {
           public class Coroutines {
             public object Adapter :
-                _D("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:_")
+              _D("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:_")
 
             public class Experimental {
               public object Adapter :
-                  _D("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:_")
+                _D("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:_")
             }
           }
         }
@@ -8569,7 +8586,7 @@ public class Libs {
               public class Platform {
                 public class Surefire {
                   public object Provider :
-                      _D("com.github.jonasrutishauser.org.junit.platform:junit-platform-surefire-provider:_")
+                    _D("com.github.jonasrutishauser.org.junit.platform:junit-platform-surefire-provider:_")
                 }
               }
             }
@@ -8627,7 +8644,7 @@ public class Libs {
             public class Jabsorb {
               public class Endpoint {
                 public object Factory :
-                    _D("org.ow2.chameleon.rose.jsonrpc.endpoint:jabsorb-endpoint-factory:_")
+                  _D("org.ow2.chameleon.rose.jsonrpc.endpoint:jabsorb-endpoint-factory:_")
               }
             }
           }
@@ -8671,7 +8688,7 @@ public class Libs {
                   public class Jms {
                     public class Event {
                       public object Bridge :
-                          _D("org.ow2.chameleon.rose.jms:org.ow2.chameleon.rose.jms.event-bridge:_")
+                        _D("org.ow2.chameleon.rose.jms:org.ow2.chameleon.rose.jms.event-bridge:_")
                     }
                   }
                 }
@@ -8704,7 +8721,7 @@ public class Libs {
           public class Jaxrpc {
             public class Jersey {
               public object Importer :
-                  _D("org.ow2.chameleon.fuchsia.importer.jaxrpc:jersey-importer:_")
+                _D("org.ow2.chameleon.fuchsia.importer.jaxrpc:jersey-importer:_")
             }
           }
 
@@ -8722,35 +8739,34 @@ public class Libs {
                 public class Fuchsia {
                   public class Importer {
                     public object Raspberrypi :
-                        _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.raspberrypi:_")
+                      _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.raspberrypi:_")
 
                     public class Json {
                       public object Rpc :
-                          _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.json-rpc:_")
-                          {
+                        _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.json-rpc:_") {
                         public object It :
-                            _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.json-rpc-it:_")
+                          _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.json-rpc-it:_")
                       }
                     }
 
                     public object Knx :
-                        _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.knx:_")
+                      _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.knx:_")
 
                     public class Jax {
                       public object Ws :
-                          _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.jax-ws:_")
+                        _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.jax-ws:_")
                     }
 
                     public class Philips {
                       public object Hue :
-                          _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.philips-hue:_")
+                        _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.philips-hue:_")
                     }
 
                     public object Protobuffer :
-                        _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.protobuffer:_")
+                      _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.protobuffer:_")
 
                     public object Mqtt :
-                        _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.mqtt:_")
+                      _D("org.ow2.chameleon.fuchsia.importer:org.ow2.chameleon.fuchsia.importer.mqtt:_")
                   }
                 }
               }
@@ -8774,11 +8790,11 @@ public class Libs {
           public class Fuchsia {
             public class Fake {
               public object Discovery :
-                  _D("org.ow2.chameleon.fuchsia.discovery:fuchsia-fake-discovery:_")
+                _D("org.ow2.chameleon.fuchsia.discovery:fuchsia-fake-discovery:_")
             }
 
             public object Discoveries :
-                _D("org.ow2.chameleon.fuchsia.discovery:fuchsia-discoveries:_")
+              _D("org.ow2.chameleon.fuchsia.discovery:fuchsia-discoveries:_")
           }
 
           public class Org {
@@ -8788,24 +8804,23 @@ public class Libs {
                   public class Discovery {
                     public class Philips {
                       public object Hue :
-                          _D("org.ow2.chameleon.fuchsia.discovery:org.ow2.chameleon.fuchsia.discovery.philips-hue:_")
+                        _D("org.ow2.chameleon.fuchsia.discovery:org.ow2.chameleon.fuchsia.discovery.philips-hue:_")
                     }
 
                     public object Upnp :
-                        _D("org.ow2.chameleon.fuchsia.discovery:org.ow2.chameleon.fuchsia.discovery.upnp:_")
-                        {
+                      _D("org.ow2.chameleon.fuchsia.discovery:org.ow2.chameleon.fuchsia.discovery.upnp:_") {
                       public object It :
-                          _D("org.ow2.chameleon.fuchsia.discovery:org.ow2.chameleon.fuchsia.discovery.upnp-it:_")
+                        _D("org.ow2.chameleon.fuchsia.discovery:org.ow2.chameleon.fuchsia.discovery.upnp-it:_")
                     }
 
                     public object Mdns :
-                        _D("org.ow2.chameleon.fuchsia.discovery:org.ow2.chameleon.fuchsia.discovery.mdns:_")
+                      _D("org.ow2.chameleon.fuchsia.discovery:org.ow2.chameleon.fuchsia.discovery.mdns:_")
 
                     public object Knx :
-                        _D("org.ow2.chameleon.fuchsia.discovery:org.ow2.chameleon.fuchsia.discovery.knx:_")
+                      _D("org.ow2.chameleon.fuchsia.discovery:org.ow2.chameleon.fuchsia.discovery.knx:_")
 
                     public object Filebased :
-                        _D("org.ow2.chameleon.fuchsia.discovery:org.ow2.chameleon.fuchsia.discovery.filebased:_")
+                      _D("org.ow2.chameleon.fuchsia.discovery:org.ow2.chameleon.fuchsia.discovery.filebased:_")
                   }
                 }
               }
@@ -8822,16 +8837,16 @@ public class Libs {
                 public class Fuchsia {
                   public class Exporter {
                     public object Protobuffer :
-                        _D("org.ow2.chameleon.fuchsia.exporter:org.ow2.chameleon.fuchsia.exporter.protobuffer:_")
+                      _D("org.ow2.chameleon.fuchsia.exporter:org.ow2.chameleon.fuchsia.exporter.protobuffer:_")
 
                     public class Json {
                       public object Rpc :
-                          _D("org.ow2.chameleon.fuchsia.exporter:org.ow2.chameleon.fuchsia.exporter.json-rpc:_")
+                        _D("org.ow2.chameleon.fuchsia.exporter:org.ow2.chameleon.fuchsia.exporter.json-rpc:_")
                     }
 
                     public class Jax {
                       public object Ws :
-                          _D("org.ow2.chameleon.fuchsia.exporter:org.ow2.chameleon.fuchsia.exporter.jax-ws:_")
+                        _D("org.ow2.chameleon.fuchsia.exporter:org.ow2.chameleon.fuchsia.exporter.jax-ws:_")
                     }
                   }
                 }
@@ -8848,10 +8863,10 @@ public class Libs {
           public class Fuchsia {
             public object Push : _D("org.ow2.chameleon.fuchsia.push:fuchsia-push:_") {
               public object Subscriber :
-                  _D("org.ow2.chameleon.fuchsia.push:fuchsia-push-subscriber:_")
+                _D("org.ow2.chameleon.fuchsia.push:fuchsia-push-subscriber:_")
 
               public object Publisher :
-                  _D("org.ow2.chameleon.fuchsia.push:fuchsia-push-publisher:_")
+                _D("org.ow2.chameleon.fuchsia.push:fuchsia-push-publisher:_")
 
               public object Hub : _D("org.ow2.chameleon.fuchsia.push:fuchsia-push-hub:_")
             }
@@ -8876,30 +8891,30 @@ public class Libs {
                   public class Base {
                     public class Philips {
                       public object Hue :
-                          _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.philips-hue:_")
+                        _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.philips-hue:_")
                     }
 
                     public class Jax {
                       public object Ws :
-                          _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.jax-ws:_")
+                        _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.jax-ws:_")
                     }
 
                     public object Knx :
-                        _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.knx:_")
+                      _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.knx:_")
 
                     public object Mqtt :
-                        _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.mqtt:_")
+                      _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.mqtt:_")
 
                     public class Json {
                       public object Rpc :
-                          _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.json-rpc:_")
+                        _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.json-rpc:_")
                     }
 
                     public object Bluetooth :
-                        _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.bluetooth:_")
+                      _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.bluetooth:_")
 
                     public object Protobuffer :
-                        _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.protobuffer:_")
+                      _D("org.ow2.chameleon.fuchsia.base:org.ow2.chameleon.fuchsia.base.protobuffer:_")
                   }
                 }
               }
@@ -8917,7 +8932,7 @@ public class Libs {
                           public class Hue {
                             public class Huedsk {
                               public object Bundle :
-                                  _D("org.ow2.chameleon.fuchsia.base.philips-hue:org.ow2.chameleon.fuchsia.base.philips-hue.huedsk-bundle:_")
+                                _D("org.ow2.chameleon.fuchsia.base.philips-hue:org.ow2.chameleon.fuchsia.base.philips-hue.huedsk-bundle:_")
                             }
                           }
                         }
@@ -8931,10 +8946,10 @@ public class Libs {
                 public class Hue {
                   public class Sdk {
                     public object Resources :
-                        _D("org.ow2.chameleon.fuchsia.base.philips-hue:philips-hue-sdk-resources:_")
+                      _D("org.ow2.chameleon.fuchsia.base.philips-hue:philips-hue-sdk-resources:_")
 
                     public object Core :
-                        _D("org.ow2.chameleon.fuchsia.base.philips-hue:philips-hue-sdk-core:_")
+                      _D("org.ow2.chameleon.fuchsia.base.philips-hue:philips-hue-sdk-core:_")
                   }
                 }
               }
@@ -8949,7 +8964,7 @@ public class Libs {
                     public class Base {
                       public class Knx {
                         public object Calimero :
-                            _D("org.ow2.chameleon.fuchsia.base.knx:org.ow2.chameleon.fuchsia.base.knx.calimero:_")
+                          _D("org.ow2.chameleon.fuchsia.base.knx:org.ow2.chameleon.fuchsia.base.knx.calimero:_")
                       }
                     }
                   }
@@ -8970,7 +8985,7 @@ public class Libs {
                             public class Json {
                               public class Rpc {
                                 public object Bundle :
-                                    _D("org.ow2.chameleon.fuchsia.base.json-rpc:org.ow2.chameleon.fuchsia.base.json-rpc.json-rpc-bundle:_")
+                                  _D("org.ow2.chameleon.fuchsia.base.json-rpc:org.ow2.chameleon.fuchsia.base.json-rpc.json-rpc-bundle:_")
                               }
                             }
                           }
@@ -8993,13 +9008,13 @@ public class Libs {
                         public class Protobuffer {
                           public class Test {
                             public object Utils :
-                                _D("org.ow2.chameleon.fuchsia.base.protobuffer:org.ow2.chameleon.fuchsia.base.protobuffer.protobuffer-test-utils:_")
+                              _D("org.ow2.chameleon.fuchsia.base.protobuffer:org.ow2.chameleon.fuchsia.base.protobuffer.protobuffer-test-utils:_")
                           }
                         }
 
                         public class Cxf {
                           public object Protobuf :
-                              _D("org.ow2.chameleon.fuchsia.base.protobuffer:org.ow2.chameleon.fuchsia.base.protobuffer.cxf-protobuf:_")
+                            _D("org.ow2.chameleon.fuchsia.base.protobuffer:org.ow2.chameleon.fuchsia.base.protobuffer.cxf-protobuf:_")
                         }
                       }
                     }
@@ -9013,7 +9028,7 @@ public class Libs {
             public class Fuchsia {
               public class Push {
                 public object Publisher :
-                    _D("org.ow2.chameleon.fuchsia.base.push:fuchsia-push-publisher:_")
+                  _D("org.ow2.chameleon.fuchsia.base.push:fuchsia-push-publisher:_")
 
                 public object Hub : _D("org.ow2.chameleon.fuchsia.base.push:fuchsia-push-hub:_")
               }
@@ -9030,9 +9045,9 @@ public class Libs {
             public class Chameleon {
               public class Fuchsia {
                 public object Core :
-                    _D("org.ow2.chameleon.fuchsia:org.ow2.chameleon.fuchsia.core:_") {
+                  _D("org.ow2.chameleon.fuchsia:org.ow2.chameleon.fuchsia.core:_") {
                   public object It :
-                      _D("org.ow2.chameleon.fuchsia:org.ow2.chameleon.fuchsia.core-it:_")
+                    _D("org.ow2.chameleon.fuchsia:org.ow2.chameleon.fuchsia.core-it:_")
                 }
               }
             }
@@ -9103,7 +9118,7 @@ public class Libs {
           public class Jsonrpc {
             public class Exporter {
               public object Config :
-                  _D("org.ow2.chameleon.fuchsia.examples:jsonrpc-exporter-config:_")
+                _D("org.ow2.chameleon.fuchsia.examples:jsonrpc-exporter-config:_")
             }
           }
 
@@ -9591,27 +9606,27 @@ public class Libs {
         public class Easybeans {
           public object Console : _D("org.ow2.easybeans.console:easybeans-console:_") {
             public object Assemblies :
-                _D("org.ow2.easybeans.console:easybeans-console-assemblies:_") {
+              _D("org.ow2.easybeans.console:easybeans-console-assemblies:_") {
               public object War : _D("org.ow2.easybeans.console:easybeans-console-assemblies-war:_")
             }
 
             public object Modules : _D("org.ow2.easybeans.console:easybeans-console-modules:_") {
               public object Registry :
-                  _D("org.ow2.easybeans.console:easybeans-console-modules-registry:_") {
+                _D("org.ow2.easybeans.console:easybeans-console-modules-registry:_") {
                 public object Server :
-                    _D("org.ow2.easybeans.console:easybeans-console-modules-registry-server:_")
+                  _D("org.ow2.easybeans.console:easybeans-console-modules-registry-server:_")
 
                 public object Client :
-                    _D("org.ow2.easybeans.console:easybeans-console-modules-registry-client:_")
+                  _D("org.ow2.easybeans.console:easybeans-console-modules-registry-client:_")
               }
 
               public object Jmxbrowser :
-                  _D("org.ow2.easybeans.console:easybeans-console-modules-jmxbrowser:_") {
+                _D("org.ow2.easybeans.console:easybeans-console-modules-jmxbrowser:_") {
                 public object Server :
-                    _D("org.ow2.easybeans.console:easybeans-console-modules-jmxbrowser-server:_")
+                  _D("org.ow2.easybeans.console:easybeans-console-modules-jmxbrowser-server:_")
 
                 public object Client :
-                    _D("org.ow2.easybeans.console:easybeans-console-modules-jmxbrowser-client:_")
+                  _D("org.ow2.easybeans.console:easybeans-console-modules-jmxbrowser-client:_")
               }
             }
           }
@@ -9628,11 +9643,11 @@ public class Libs {
             public object Osgi : _D("org.ow2.easybeans.itests:easybeans-itests-osgi:_")
 
             public object Applications :
-                _D("org.ow2.easybeans.itests:easybeans-itests-applications:_") {
+              _D("org.ow2.easybeans.itests:easybeans-itests-applications:_") {
               public object Ejbjars :
-                  _D("org.ow2.easybeans.itests:easybeans-itests-applications-ejbjars:_") {
+                _D("org.ow2.easybeans.itests:easybeans-itests-applications-ejbjars:_") {
                 public object Enventry :
-                    _D("org.ow2.easybeans.itests:easybeans-itests-applications-ejbjars-enventry:_")
+                  _D("org.ow2.easybeans.itests:easybeans-itests-applications-ejbjars-enventry:_")
               }
             }
 
@@ -9648,64 +9663,63 @@ public class Libs {
           public object Components : _D("org.ow2.easybeans.osgi:easybeans-components:_")
 
           public object Modules : _D("org.ow2.easybeans.osgi:easybeans-modules:_") {
-            public object Persistence : _D("org.ow2.easybeans.osgi:easybeans-modules-persistence:_")
-                {
+            public object Persistence : _D("org.ow2.easybeans.osgi:easybeans-modules-persistence:_") {
               public object Openjpa :
-                  _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-openjpa:_") {
+                _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-openjpa:_") {
                 public class `2` {
                   public object X :
-                      _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-openjpa-2.x:_")
+                    _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-openjpa-2.x:_")
                 }
 
                 public class `1` {
                   public object X :
-                      _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-openjpa-1.x:_")
+                    _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-openjpa-1.x:_")
                 }
               }
 
               public object Hibernate :
-                  _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-hibernate:_") {
+                _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-hibernate:_") {
                 public class `3` {
                   public object `5` :
-                      _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-hibernate-3.5:_")
+                    _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-hibernate-3.5:_")
 
                   public object `4` :
-                      _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-hibernate-3.4:_")
+                    _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-hibernate-3.4:_")
                 }
               }
 
               public object Eclipselink :
-                  _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-eclipselink:_") {
+                _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-eclipselink:_") {
                 public class `2` {
                   public class `3` {
                     public object X :
-                        _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-eclipselink-2.3.x:_")
+                      _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-eclipselink-2.3.x:_")
                   }
 
                   public class `2` {
                     public object X :
-                        _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-eclipselink-2.2.x:_")
+                      _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-eclipselink-2.2.x:_")
                   }
 
                   public class `1` {
                     public object X :
-                        _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-eclipselink-2.1.x:_")
+                      _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-eclipselink-2.1.x:_")
                   }
 
                   public object X :
-                      _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-eclipselink-2.x:_")
+                    _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-eclipselink-2.x:_")
                 }
 
                 public class `1` {
                   public object X :
-                      _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-eclipselink-1.x:_")
+                    _D("org.ow2.easybeans.osgi:easybeans-modules-persistence-eclipselink-1.x:_")
                 }
               }
             }
 
             public class Rmi {
               public object Interceptors :
-                  _D("org.ow2.easybeans.osgi:easybeans-modules-rmi-interceptors:_")
+                _D("org.ow2.easybeans.osgi:easybeans-modules-rmi-interceptors:_")
             }
 
             public object Core : _D("org.ow2.easybeans.osgi:easybeans-modules-core:_")
@@ -9714,26 +9728,26 @@ public class Libs {
           public object Osgi : _D("org.ow2.easybeans.osgi:easybeans-osgi:_") {
             public object Itests : _D("org.ow2.easybeans.osgi:easybeans-osgi-itests:_") {
               public object Knopflerfish :
-                  _D("org.ow2.easybeans.osgi:easybeans-osgi-itests-knopflerfish:_")
+                _D("org.ow2.easybeans.osgi:easybeans-osgi-itests-knopflerfish:_")
 
               public object Equinox : _D("org.ow2.easybeans.osgi:easybeans-osgi-itests-equinox:_")
 
               public object Felix : _D("org.ow2.easybeans.osgi:easybeans-osgi-itests-felix:_")
 
               public object Applications :
-                  _D("org.ow2.easybeans.osgi:easybeans-osgi-itests-applications:_") {
+                _D("org.ow2.easybeans.osgi:easybeans-osgi-itests-applications:_") {
                 public class Ipojo {
                   public object Client :
-                      _D("org.ow2.easybeans.osgi:easybeans-osgi-itests-applications-ipojo-client:_")
+                    _D("org.ow2.easybeans.osgi:easybeans-osgi-itests-applications-ipojo-client:_")
                 }
 
                 public object Osgi :
-                    _D("org.ow2.easybeans.osgi:easybeans-osgi-itests-applications-osgi:_")
+                  _D("org.ow2.easybeans.osgi:easybeans-osgi-itests-applications-osgi:_")
 
                 public class Entitybean {
                   public class Client {
                     public object Example :
-                        _D("org.ow2.easybeans.osgi:easybeans-osgi-itests-applications-entitybean-client-example:_")
+                      _D("org.ow2.easybeans.osgi:easybeans-osgi-itests-applications-entitybean-client-example:_")
                   }
                 }
               }
@@ -9743,24 +9757,24 @@ public class Libs {
 
             public object Plugins : _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins:_") {
               public object Launcher :
-                  _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher:_") {
+                _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher:_") {
                 public object Framework :
-                    _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher-framework:_") {
+                  _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher-framework:_") {
                   public object Knopflerfish :
-                      _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher-framework-knopflerfish:_")
+                    _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher-framework-knopflerfish:_")
 
                   public object Felix :
-                      _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher-framework-felix:_")
+                    _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher-framework-felix:_")
 
                   public object Equinox :
-                      _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher-framework-equinox:_")
+                    _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher-framework-equinox:_")
                 }
 
                 public object Core :
-                    _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher-core:_")
+                  _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher-core:_")
 
                 public object Api :
-                    _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher-api:_")
+                  _D("org.ow2.easybeans.osgi:easybeans-osgi-plugins-launcher-api:_")
               }
             }
 
@@ -9769,18 +9783,18 @@ public class Libs {
 
           public object Examples : _D("org.ow2.easybeans.osgi:easybeans-examples:_") {
             public object Timerservice :
-                _D("org.ow2.easybeans.osgi:easybeans-examples-timerservice:_")
+              _D("org.ow2.easybeans.osgi:easybeans-examples-timerservice:_")
 
             public object Statelessbean :
-                _D("org.ow2.easybeans.osgi:easybeans-examples-statelessbean:_")
+              _D("org.ow2.easybeans.osgi:easybeans-examples-statelessbean:_")
 
             public object Statefulbean :
-                _D("org.ow2.easybeans.osgi:easybeans-examples-statefulbean:_")
+              _D("org.ow2.easybeans.osgi:easybeans-examples-statefulbean:_")
 
             public object Security : _D("org.ow2.easybeans.osgi:easybeans-examples-security:_")
 
             public object Migrationejb21 :
-                _D("org.ow2.easybeans.osgi:easybeans-examples-migrationejb21:_")
+              _D("org.ow2.easybeans.osgi:easybeans-examples-migrationejb21:_")
 
             public class Jpa20 {
               public object Bean : _D("org.ow2.easybeans.osgi:easybeans-examples-jpa20-bean:_")
@@ -9795,11 +9809,11 @@ public class Libs {
             public object Cmi : _D("org.ow2.easybeans.osgi:easybeans-component-cmi:_")
 
             public object Smartclient :
-                _D("org.ow2.easybeans.osgi:easybeans-component-smartclient:_")
+              _D("org.ow2.easybeans.osgi:easybeans-component-smartclient:_")
 
             public class Work {
               public object Manager :
-                  _D("org.ow2.easybeans.osgi:easybeans-component-work-manager:_")
+                _D("org.ow2.easybeans.osgi:easybeans-component-work-manager:_")
             }
 
             public object Statistic : _D("org.ow2.easybeans.osgi:easybeans-component-statistic:_")
@@ -9829,10 +9843,10 @@ public class Libs {
             public class For {
               public object Jonas : _D("org.ow2.easybeans.osgi:easybeans-core-for-jonas:_") {
                 public object Eclipselink :
-                    _D("org.ow2.easybeans.osgi:easybeans-core-for-jonas-eclipselink:_")
+                  _D("org.ow2.easybeans.osgi:easybeans-core-for-jonas-eclipselink:_")
 
                 public object Hibernate :
-                    _D("org.ow2.easybeans.osgi:easybeans-core-for-jonas-hibernate:_")
+                  _D("org.ow2.easybeans.osgi:easybeans-core-for-jonas-hibernate:_")
               }
             }
 
@@ -9877,30 +9891,30 @@ public class Libs {
         public class Easybeans {
           public object Persistence : _D("org.ow2.easybeans.persistence:easybeans-persistence:_") {
             public object Modules :
-                _D("org.ow2.easybeans.persistence:easybeans-persistence-modules:_")
+              _D("org.ow2.easybeans.persistence:easybeans-persistence-modules:_")
 
             public class Eclipselink {
               public class `2` {
                 public class `4` {
                   public object X :
-                      _D("org.ow2.easybeans.persistence:easybeans-persistence-eclipselink-2.4.x:_")
+                    _D("org.ow2.easybeans.persistence:easybeans-persistence-eclipselink-2.4.x:_")
                 }
 
                 public class `3` {
                   public object X :
-                      _D("org.ow2.easybeans.persistence:easybeans-persistence-eclipselink-2.3.x:_")
+                    _D("org.ow2.easybeans.persistence:easybeans-persistence-eclipselink-2.3.x:_")
                 }
 
                 public class `2` {
                   public object X :
-                      _D("org.ow2.easybeans.persistence:easybeans-persistence-eclipselink-2.2.x:_")
+                    _D("org.ow2.easybeans.persistence:easybeans-persistence-eclipselink-2.2.x:_")
                 }
               }
 
               public class `1` {
                 public class `1` {
                   public object X :
-                      _D("org.ow2.easybeans.persistence:easybeans-persistence-eclipselink-1.1.x:_")
+                    _D("org.ow2.easybeans.persistence:easybeans-persistence-eclipselink-1.1.x:_")
                 }
               }
             }
@@ -9908,12 +9922,12 @@ public class Libs {
             public class Hibernate {
               public class `4` {
                 public object `1` :
-                    _D("org.ow2.easybeans.persistence:easybeans-persistence-hibernate-4.1:_")
+                  _D("org.ow2.easybeans.persistence:easybeans-persistence-hibernate-4.1:_")
               }
 
               public class `3` {
                 public object `6` :
-                    _D("org.ow2.easybeans.persistence:easybeans-persistence-hibernate-3.6:_")
+                  _D("org.ow2.easybeans.persistence:easybeans-persistence-hibernate-3.6:_")
               }
             }
 
@@ -9930,7 +9944,7 @@ public class Libs {
         public class Easybeans {
           public object Classloader : _D("org.ow2.easybeans.classloader:easybeans-classloader:_") {
             public object Easybeans :
-                _D("org.ow2.easybeans.classloader:easybeans-classloader-easybeans:_")
+              _D("org.ow2.easybeans.classloader:easybeans-classloader-easybeans:_")
 
             public object Api : _D("org.ow2.easybeans.classloader:easybeans-classloader-api:_")
           }
@@ -9942,64 +9956,64 @@ public class Libs {
           public object Tests : _D("org.ow2.easybeans.tests:easybeans-tests:_") {
             public object Osgi : _D("org.ow2.easybeans.tests:easybeans-tests-osgi:_") {
               public object Applications :
-                  _D("org.ow2.easybeans.tests:easybeans-tests-osgi-applications:_") {
+                _D("org.ow2.easybeans.tests:easybeans-tests-osgi-applications:_") {
                 public object Dummyejb :
-                    _D("org.ow2.easybeans.tests:easybeans-tests-osgi-applications-dummyejb:_")
+                  _D("org.ow2.easybeans.tests:easybeans-tests-osgi-applications-dummyejb:_")
               }
 
               public object Simple : _D("org.ow2.easybeans.tests:easybeans-tests-osgi-simple:_")
             }
 
             public object Applications :
-                _D("org.ow2.easybeans.tests:easybeans-tests-applications:_") {
+              _D("org.ow2.easybeans.tests:easybeans-tests-applications:_") {
               public object Ejbjars :
-                  _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars:_") {
+                _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars:_") {
                 public class Managed {
                   public object Beans :
-                      _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-managed-beans:_")
+                    _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-managed-beans:_")
                 }
 
                 public class Stateful {
                   public object Timeout :
-                      _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-stateful-timeout:_")
+                    _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-stateful-timeout:_")
                 }
 
                 public object Timer :
-                    _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-timer:_")
+                  _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-timer:_")
 
                 public object Statefulsync :
-                    _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-statefulsync:_")
+                  _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-statefulsync:_")
 
                 public object Accesstimeout :
-                    _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-accesstimeout:_")
+                  _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-accesstimeout:_")
 
                 public class Bean {
                   public object Inheritance :
-                      _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-bean-inheritance:_")
+                    _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-bean-inheritance:_")
                 }
 
                 public object Lookup :
-                    _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-lookup:_")
+                  _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-lookup:_")
 
                 public object Lifecycle :
-                    _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-lifecycle:_")
+                  _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-lifecycle:_")
 
                 public object Aroundinvoke :
-                    _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-aroundinvoke:_")
+                  _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-aroundinvoke:_")
 
                 public object Exceptions :
-                    _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-exceptions:_")
+                  _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-exceptions:_")
 
                 public object Enventry :
-                    _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-enventry:_")
+                  _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-enventry:_")
 
                 public object Context :
-                    _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-context:_")
+                  _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-context:_")
 
                 public class Data {
                   public class Sources {
                     public object Definitions :
-                        _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-data-sources-definitions:_")
+                      _D("org.ow2.easybeans.tests:easybeans-tests-applications-ejbjars-data-sources-definitions:_")
                   }
                 }
               }
@@ -10069,7 +10083,7 @@ public class Libs {
               public object Webapp : _D("org.ow2.easybeans.examples.maven.ear:modules-webapp:_")
 
               public object Webapplib :
-                  _D("org.ow2.easybeans.examples.maven.ear:modules-webapplib:_")
+                _D("org.ow2.easybeans.examples.maven.ear:modules-webapplib:_")
 
               public object Beans : _D("org.ow2.easybeans.examples.maven.ear:modules-beans:_")
 
@@ -10101,7 +10115,7 @@ public class Libs {
         public class Toplink {
           public object Essentials : _D("org.ow2.easybeans:easybeans-jpa-toplink-essentials:_") {
             public object Dependency :
-                _D("org.ow2.easybeans:easybeans-jpa-toplink-essentials-dependency:_")
+              _D("org.ow2.easybeans:easybeans-jpa-toplink-essentials-dependency:_")
 
             public object Glue : _D("org.ow2.easybeans:easybeans-jpa-toplink-essentials-glue:_")
           }
@@ -10110,7 +10124,7 @@ public class Libs {
         public class Default {
           public class Toplink {
             public object Essentials :
-                _D("org.ow2.easybeans:easybeans-jpa-default-toplink-essentials:_")
+              _D("org.ow2.easybeans:easybeans-jpa-default-toplink-essentials:_")
           }
 
           public object Hibernate : _D("org.ow2.easybeans:easybeans-jpa-default-hibernate:_")
@@ -10169,7 +10183,7 @@ public class Libs {
         public object Migrationejb21 : _D("org.ow2.easybeans:easybeans-example-migrationejb21:_")
 
         public object Messagedrivenbean :
-            _D("org.ow2.easybeans:easybeans-example-messagedrivenbean:_")
+          _D("org.ow2.easybeans:easybeans-example-messagedrivenbean:_")
 
         public object Entitybean : _D("org.ow2.easybeans:easybeans-example-entitybean:_")
 
@@ -10230,7 +10244,7 @@ public class Libs {
         public object Statistic : _D("org.ow2.easybeans:easybeans-component-statistic:_")
 
         public object Remotejndiresolver :
-            _D("org.ow2.easybeans:easybeans-component-remotejndiresolver:_")
+          _D("org.ow2.easybeans:easybeans-component-remotejndiresolver:_")
 
         public object Quartz : _D("org.ow2.easybeans:easybeans-component-quartz:_")
 
@@ -10266,7 +10280,7 @@ public class Libs {
           public object Jonas : _D("org.ow2.easybeans:easybeans-rar_for_jonas:_") {
             public class Toplink {
               public object Essentials :
-                  _D("org.ow2.easybeans:easybeans-rar_for_jonas-toplink-essentials:_")
+                _D("org.ow2.easybeans:easybeans-rar_for_jonas-toplink-essentials:_")
             }
 
             public object Hibernate : _D("org.ow2.easybeans:easybeans-rar_for_jonas-hibernate:_")
@@ -10274,7 +10288,7 @@ public class Libs {
             public object Openjpa : _D("org.ow2.easybeans:easybeans-rar_for_jonas-openjpa:_")
 
             public object Eclipselink :
-                _D("org.ow2.easybeans:easybeans-rar_for_jonas-eclipselink:_")
+              _D("org.ow2.easybeans:easybeans-rar_for_jonas-eclipselink:_")
           }
         }
       }
@@ -10329,7 +10343,7 @@ public class Libs {
         public class Write {
           public class Artifact {
             public object Filename :
-                _D("org.ow2.easybeans:easybeans-plugin-write-artifact-filename:_")
+              _D("org.ow2.easybeans:easybeans-plugin-write-artifact-filename:_")
           }
         }
       }
@@ -10375,85 +10389,80 @@ public class Libs {
           public object Examples : _D("org.ow2.kerneos:kerneos-flex-examples-examples:_") {
             public class Extensible {
               public object Module :
-                  _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module:_") {
+                _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module:_") {
                 public object Extensions :
-                    _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions:_")
-                    {
+                  _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions:_") {
                   public class Home {
                     public object Insurance :
-                        _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions-home-insurance:_")
-                        {
+                      _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions-home-insurance:_") {
                       public object Server :
-                          _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions-home-insurance-server:_")
+                        _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions-home-insurance-server:_")
 
                       public object Client :
-                          _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions-home-insurance-client:_")
+                        _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions-home-insurance-client:_")
                     }
                   }
 
                   public class Auto {
                     public object Insurance :
-                        _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions-auto-insurance:_")
-                        {
+                      _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions-auto-insurance:_") {
                       public object Server :
-                          _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions-auto-insurance-server:_")
+                        _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions-auto-insurance-server:_")
 
                       public object Client :
-                          _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions-auto-insurance-client:_")
+                        _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-extensions-auto-insurance-client:_")
                     }
                   }
                 }
 
                 public class Main {
                   public object Module :
-                      _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-main-module:_")
-                      {
+                    _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-main-module:_") {
                     public object Client :
-                        _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-main-module-client:_")
+                      _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-main-module-client:_")
 
                     public object Api :
-                        _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-main-module-api:_")
+                      _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-main-module-api:_")
 
                     public object Server :
-                        _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-main-module-server:_")
+                      _D("org.ow2.kerneos:kerneos-flex-examples-examples-extensible-module-main-module-server:_")
                   }
                 }
               }
             }
 
-            public object Example1 : _D("org.ow2.kerneos:kerneos-flex-examples-examples-example1:_")
-                {
+            public object Example1 : _D("org.ow2.kerneos:kerneos-flex-examples-examples-example1:_") {
               public object War :
-                  _D("org.ow2.kerneos:kerneos-flex-examples-examples-example1-war:_")
+                _D("org.ow2.kerneos:kerneos-flex-examples-examples-example1-war:_")
 
               public object Jonas :
-                  _D("org.ow2.kerneos:kerneos-flex-examples-examples-example1-jonas:_")
+                _D("org.ow2.kerneos:kerneos-flex-examples-examples-example1-jonas:_")
 
               public object Felix :
-                  _D("org.ow2.kerneos:kerneos-flex-examples-examples-example1-felix:_")
+                _D("org.ow2.kerneos:kerneos-flex-examples-examples-example1-felix:_")
             }
           }
 
           public object Modules : _D("org.ow2.kerneos:kerneos-flex-examples-modules:_") {
             public object Module3 : _D("org.ow2.kerneos:kerneos-flex-examples-modules-module3:_") {
               public object Server :
-                  _D("org.ow2.kerneos:kerneos-flex-examples-modules-module3-server:_")
+                _D("org.ow2.kerneos:kerneos-flex-examples-modules-module3-server:_")
             }
 
             public object Module2 : _D("org.ow2.kerneos:kerneos-flex-examples-modules-module2:_") {
               public object Server :
-                  _D("org.ow2.kerneos:kerneos-flex-examples-modules-module2-server:_")
+                _D("org.ow2.kerneos:kerneos-flex-examples-modules-module2-server:_")
 
               public object Client :
-                  _D("org.ow2.kerneos:kerneos-flex-examples-modules-module2-client:_")
+                _D("org.ow2.kerneos:kerneos-flex-examples-modules-module2-client:_")
             }
 
             public object Module1 : _D("org.ow2.kerneos:kerneos-flex-examples-modules-module1:_") {
               public object Server :
-                  _D("org.ow2.kerneos:kerneos-flex-examples-modules-module1-server:_")
+                _D("org.ow2.kerneos:kerneos-flex-examples-modules-module1-server:_")
 
               public object Client :
-                  _D("org.ow2.kerneos:kerneos-flex-examples-modules-module1-client:_")
+                _D("org.ow2.kerneos:kerneos-flex-examples-modules-module1-client:_")
             }
           }
 
@@ -10463,13 +10472,13 @@ public class Libs {
 
           public object Applications : _D("org.ow2.kerneos:kerneos-flex-examples-applications:_") {
             public object Application3 :
-                _D("org.ow2.kerneos:kerneos-flex-examples-applications-application3:_")
+              _D("org.ow2.kerneos:kerneos-flex-examples-applications-application3:_")
 
             public object Application2 :
-                _D("org.ow2.kerneos:kerneos-flex-examples-applications-application2:_")
+              _D("org.ow2.kerneos:kerneos-flex-examples-applications-application2:_")
 
             public object Application1 :
-                _D("org.ow2.kerneos:kerneos-flex-examples-applications-application1:_")
+              _D("org.ow2.kerneos:kerneos-flex-examples-applications-application1:_")
           }
         }
 
@@ -10912,7 +10921,7 @@ public class Libs {
             public object Di : _D("org.ow2.jonas:jonas-itests-applications-osgi-di:_")
 
             public object Datasource :
-                _D("org.ow2.jonas:jonas-itests-applications-osgi-datasource:_")
+              _D("org.ow2.jonas:jonas-itests-applications-osgi-datasource:_")
           }
 
           public object Jsf : _D("org.ow2.jonas:jonas-itests-applications-jsf:_") {
@@ -11457,11 +11466,11 @@ public class Libs {
                 public class Addon {
                   public class With {
                     public object Bundles :
-                        _D("org.ow2.jonas:jonas-web-container-tomcat-7.0-addon-with-bundles:_")
+                      _D("org.ow2.jonas:jonas-web-container-tomcat-7.0-addon-with-bundles:_")
 
                     public class Deployment {
                       public object Plans :
-                          _D("org.ow2.jonas:jonas-web-container-tomcat-7.0-addon-with-deployment-plans:_")
+                        _D("org.ow2.jonas:jonas-web-container-tomcat-7.0-addon-with-deployment-plans:_")
                     }
                   }
                 }
@@ -11480,11 +11489,11 @@ public class Libs {
                   public class With {
                     public class Deployment {
                       public object Plans :
-                          _D("org.ow2.jonas:jonas-web-container-tomcat-6.0-addon-with-deployment-plans:_")
+                        _D("org.ow2.jonas:jonas-web-container-tomcat-6.0-addon-with-deployment-plans:_")
                     }
 
                     public object Bundles :
-                        _D("org.ow2.jonas:jonas-web-container-tomcat-6.0-addon-with-bundles:_")
+                      _D("org.ow2.jonas:jonas-web-container-tomcat-6.0-addon-with-bundles:_")
                   }
                 }
 
@@ -11495,7 +11504,7 @@ public class Libs {
                 public class With {
                   public class Http {
                     public object Service :
-                        _D("org.ow2.jonas:jonas-web-container-tomcat-6.0-with-http-service:_")
+                      _D("org.ow2.jonas:jonas-web-container-tomcat-6.0-with-http-service:_")
                   }
                 }
               }
@@ -11529,56 +11538,55 @@ public class Libs {
 
             public object Modules : _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules:_") {
               public object Webservices :
-                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-webservices:_") {
+                _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-webservices:_") {
                 public object Server :
-                    _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-webservices-server:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-webservices-server:_")
 
                 public object Client :
-                    _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-webservices-client:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-webservices-client:_")
               }
 
               public object Osgiconsole :
-                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-osgiconsole:_") {
+                _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-osgiconsole:_") {
                 public object Server :
-                    _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-osgiconsole-server:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-osgiconsole-server:_")
 
                 public object Client :
-                    _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-osgiconsole-client:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-osgiconsole-client:_")
               }
 
               public object Jdbcconnections :
-                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-jdbcconnections:_") {
+                _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-jdbcconnections:_") {
                 public object Server :
-                    _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-jdbcconnections-server:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-jdbcconnections-server:_")
 
                 public object Client :
-                    _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-jdbcconnections-client:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-jdbcconnections-client:_")
               }
 
               public object Classloader :
-                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-classloader:_") {
+                _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-classloader:_") {
                 public object Server :
-                    _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-classloader-server:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-classloader-server:_")
 
                 public object Client :
-                    _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-classloader-client:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-classloader-client:_")
               }
 
-              public object Builder : _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-builder:_")
-                  {
+              public object Builder : _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-builder:_") {
                 public object Server :
-                    _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-builder-server:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-builder-server:_")
 
                 public object Client :
-                    _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-builder-client:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-builder-client:_")
               }
 
               public object Audit : _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-audit:_") {
                 public object Server :
-                    _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-audit-server:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-audit-server:_")
 
                 public object Client :
-                    _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-audit-client:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-kerneos-modules-audit-client:_")
               }
             }
           }
@@ -11591,76 +11599,76 @@ public class Libs {
 
               public object Swf : _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf:_") {
                 public object Stackdump :
-                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-stackdump:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-stackdump:_")
 
                 public object Parametrizedchart :
-                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-parametrizedchart:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-parametrizedchart:_")
 
                 public class Rolledback {
                   public object Transactions :
-                      _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-rolledback-transactions:_")
+                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-rolledback-transactions:_")
                 }
 
                 public class Current {
                   public object Transactions :
-                      _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-current-transactions:_")
+                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-current-transactions:_")
                 }
 
                 public class Expired {
                   public object Transactions :
-                      _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-expired-transactions:_")
+                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-expired-transactions:_")
                 }
 
                 public class Committed {
                   public object Transactions :
-                      _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-committed-transactions:_")
+                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-committed-transactions:_")
                 }
 
                 public class Begun {
                   public object Transactions :
-                      _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-begun-transactions:_")
+                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-begun-transactions:_")
                 }
 
                 public object Threadcount :
-                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-threadcount:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-threadcount:_")
 
                 public class Used {
                   public object Memorychart :
-                      _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-used-memorychart:_")
+                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-used-memorychart:_")
                 }
 
                 public object Cluster :
-                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-cluster:_") {
+                  _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-cluster:_") {
                   public object Syntheticview :
-                      _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-cluster-syntheticview:_")
+                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-cluster-syntheticview:_")
                 }
 
                 public object Domain :
-                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-domain:_") {
+                  _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-domain:_") {
                   public object Syntheticview :
-                      _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-domain-syntheticview:_")
+                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-domain-syntheticview:_")
                 }
 
                 public object Graphcluster :
-                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-graphcluster:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-graphcluster:_")
 
                 public object Server :
-                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-server:_") {
+                  _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-server:_") {
                   public object Monitoring :
-                      _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-server-monitoring:_")
+                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-server-monitoring:_")
                 }
 
                 public object Graphdomain :
-                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-graphdomain:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-graphdomain:_")
 
                 public object Clusterdaemons :
-                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-clusterdaemons:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-clusterdaemons:_")
 
                 public object Clusters :
-                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-clusters:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-clusters:_")
 
                 public object Servers :
-                    _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-servers:_")
+                  _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-servers:_")
 
                 public object Tree : _D("org.ow2.jonas.admin:jonasadmin-flex-modules-swf-tree:_")
 
@@ -11747,12 +11755,12 @@ public class Libs {
             }
 
             public object Jdbcconnections :
-                _D("org.ow2.jonas.admin:console-module-jdbcconnections:_") {
+              _D("org.ow2.jonas.admin:console-module-jdbcconnections:_") {
               public object Server :
-                  _D("org.ow2.jonas.admin:console-module-jdbcconnections-server:_")
+                _D("org.ow2.jonas.admin:console-module-jdbcconnections-server:_")
 
               public object Client :
-                  _D("org.ow2.jonas.admin:console-module-jdbcconnections-client:_")
+                _D("org.ow2.jonas.admin:console-module-jdbcconnections-client:_")
             }
 
             public object Classloader : _D("org.ow2.jonas.admin:console-module-classloader:_") {
@@ -11833,7 +11841,7 @@ public class Libs {
           public class Shade {
             public class Jonas {
               public object Transformers :
-                  _D("org.ow2.jonas.tools.maven:maven-shade-jonas-transformers:_")
+                _D("org.ow2.jonas.tools.maven:maven-shade-jonas-transformers:_")
             }
           }
 
@@ -11961,32 +11969,31 @@ public class Libs {
             public class Desc {
               public class Environment {
                 public object Template :
-                    _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template:_") {
+                  _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template:_") {
                   public object Core :
-                      _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-core:_")
+                    _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-core:_")
 
                   public object Topology :
-                      _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-topology:_") {
+                    _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-topology:_") {
                     public object Datasource :
-                        _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-topology-datasource:_")
+                      _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-topology-datasource:_")
 
                     public object Connector :
-                        _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-topology-connector:_")
+                      _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-topology-connector:_")
                   }
 
                   public class Node {
                     public object Template :
-                        _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-node-template:_")
-                        {
+                      _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-node-template:_") {
                       public object Jonas :
-                          _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-node-template-jonas:_")
+                        _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-node-template-jonas:_")
 
                       public object Jk :
-                          _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-node-template-jk:_")
+                        _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-node-template-jk:_")
 
                       public class External {
                         public object Db :
-                            _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-node-template-external-db:_")
+                          _D("org.ow2.jonas.jpaas.util.cloud-desc:environment-template-node-template-external-db:_")
                       }
                     }
                   }
@@ -11999,22 +12006,22 @@ public class Libs {
 
               public class Cloud {
                 public object Application :
-                    _D("org.ow2.jonas.jpaas.util.cloud-desc:cloud-application:_") {
+                  _D("org.ow2.jonas.jpaas.util.cloud-desc:cloud-application:_") {
                   public object Core :
-                      _D("org.ow2.jonas.jpaas.util.cloud-desc:cloud-application-core:_")
+                    _D("org.ow2.jonas.jpaas.util.cloud-desc:cloud-application-core:_")
 
                   public object Deployable :
-                      _D("org.ow2.jonas.jpaas.util.cloud-desc:cloud-application-deployable:_") {
+                    _D("org.ow2.jonas.jpaas.util.cloud-desc:cloud-application-deployable:_") {
                     public object Xml :
-                        _D("org.ow2.jonas.jpaas.util.cloud-desc:cloud-application-deployable-xml:_")
+                      _D("org.ow2.jonas.jpaas.util.cloud-desc:cloud-application-deployable-xml:_")
 
                     public object Artefact :
-                        _D("org.ow2.jonas.jpaas.util.cloud-desc:cloud-application-deployable-artefact:_")
+                      _D("org.ow2.jonas.jpaas.util.cloud-desc:cloud-application-deployable-artefact:_")
                   }
                 }
 
                 public object Descriptors :
-                    _D("org.ow2.jonas.jpaas.util.cloud-desc:cloud-descriptors:_")
+                  _D("org.ow2.jonas.jpaas.util.cloud-desc:cloud-descriptors:_")
               }
 
               public object Common : _D("org.ow2.jonas.jpaas.util.cloud-desc:common:_")
@@ -12026,9 +12033,9 @@ public class Libs {
           public class Controller {
             public class Jpaas {
               public object Controller :
-                  _D("org.ow2.jonas.jpaas.jpaas-controller:jpaas-controller:_") {
+                _D("org.ow2.jonas.jpaas.jpaas-controller:jpaas-controller:_") {
                 public object Assembly :
-                    _D("org.ow2.jonas.jpaas.jpaas-controller:jpaas-controller-assembly:_")
+                  _D("org.ow2.jonas.jpaas.jpaas-controller:jpaas-controller-assembly:_")
               }
             }
           }
@@ -12044,7 +12051,7 @@ public class Libs {
               public class Application {
                 public class Manager {
                   public object Ejb :
-                      _D("org.ow2.jonas.jpaas.jpaas-application-manager:application-manager-ejb:_")
+                    _D("org.ow2.jonas.jpaas.jpaas-application-manager:application-manager-ejb:_")
                 }
               }
             }
@@ -12055,14 +12062,14 @@ public class Libs {
               public class Environment {
                 public class Manager {
                   public object Ejb :
-                      _D("org.ow2.jonas.jpaas.jpaas-environment-manager:environment-manager-ejb:_")
+                    _D("org.ow2.jonas.jpaas.jpaas-environment-manager:environment-manager-ejb:_")
                 }
               }
 
               public class Jpaas {
                 public class Environment {
                   public object Manager :
-                      _D("org.ow2.jonas.jpaas.jpaas-environment-manager:jpaas-environment-manager:_")
+                    _D("org.ow2.jonas.jpaas.jpaas-environment-manager:jpaas-environment-manager:_")
                 }
               }
             }
@@ -12073,7 +12080,7 @@ public class Libs {
               public class Jpaas {
                 public class Manager {
                   public object Api :
-                      _D("org.ow2.jonas.jpaas.jpaas-manager-api:jpaas-manager-api:_")
+                    _D("org.ow2.jonas.jpaas.jpaas-manager-api:jpaas-manager-api:_")
                 }
               }
             }
@@ -12101,31 +12108,31 @@ public class Libs {
             public class Providers {
               public class Chef {
                 public object Manager :
-                    _D("org.ow2.jonas.jpaas.vm-configurator.providers:chef-manager:_") {
+                  _D("org.ow2.jonas.jpaas.vm-configurator.providers:chef-manager:_") {
                   public object Rest :
-                      _D("org.ow2.jonas.jpaas.vm-configurator.providers:chef-manager-rest:_")
+                    _D("org.ow2.jonas.jpaas.vm-configurator.providers:chef-manager-rest:_")
 
                   public object Osgi :
-                      _D("org.ow2.jonas.jpaas.vm-configurator.providers:chef-manager-osgi:_")
+                    _D("org.ow2.jonas.jpaas.vm-configurator.providers:chef-manager-osgi:_")
 
                   public object Api :
-                      _D("org.ow2.jonas.jpaas.vm-configurator.providers:chef-manager-api:_")
+                    _D("org.ow2.jonas.jpaas.vm-configurator.providers:chef-manager-api:_")
                 }
               }
 
               public class Vm {
                 public class Configurator {
                   public object Providers :
-                      _D("org.ow2.jonas.jpaas.vm-configurator.providers:vm-configurator-providers:_")
+                    _D("org.ow2.jonas.jpaas.vm-configurator.providers:vm-configurator-providers:_")
                 }
               }
             }
 
             public class Vm {
               public object Configurator :
-                  _D("org.ow2.jonas.jpaas.vm-configurator:vm-configurator:_") {
+                _D("org.ow2.jonas.jpaas.vm-configurator:vm-configurator:_") {
                 public object Core :
-                    _D("org.ow2.jonas.jpaas.vm-configurator:vm-configurator-core:_")
+                  _D("org.ow2.jonas.jpaas.vm-configurator:vm-configurator-core:_")
               }
             }
           }
@@ -12163,7 +12170,7 @@ public class Libs {
 
                 public class Manager {
                   public object Providers :
-                      _D("org.ow2.jonas.jpaas.iaas-manager.providers:iaas-manager-providers:_")
+                    _D("org.ow2.jonas.jpaas.iaas-manager.providers:iaas-manager-providers:_")
                 }
               }
             }
@@ -12180,12 +12187,12 @@ public class Libs {
           public class Representation {
             public class System {
               public object Representation :
-                  _D("org.ow2.jonas.jpaas.system-representation:system-representation:_") {
+                _D("org.ow2.jonas.jpaas.system-representation:system-representation:_") {
                 public object Ejb :
-                    _D("org.ow2.jonas.jpaas.system-representation:system-representation-ejb:_")
+                  _D("org.ow2.jonas.jpaas.system-representation:system-representation-ejb:_")
 
                 public object Vo :
-                    _D("org.ow2.jonas.jpaas.system-representation:system-representation-vo:_")
+                  _D("org.ow2.jonas.jpaas.system-representation:system-representation-vo:_")
               }
             }
           }
@@ -12194,16 +12201,15 @@ public class Libs {
         public class Apache {
           public class Manager {
             public class Ajpbalancer {
-              public object Manager : _D("org.ow2.jonas.jpaas.apache-manager:ajpbalancer-manager:_")
-                  {
+              public object Manager : _D("org.ow2.jonas.jpaas.apache-manager:ajpbalancer-manager:_") {
                 public object Rest :
-                    _D("org.ow2.jonas.jpaas.apache-manager:ajpbalancer-manager-rest:_")
+                  _D("org.ow2.jonas.jpaas.apache-manager:ajpbalancer-manager-rest:_")
 
                 public object Osgi :
-                    _D("org.ow2.jonas.jpaas.apache-manager:ajpbalancer-manager-osgi:_")
+                  _D("org.ow2.jonas.jpaas.apache-manager:ajpbalancer-manager-osgi:_")
 
                 public object Api :
-                    _D("org.ow2.jonas.jpaas.apache-manager:ajpbalancer-manager-api:_")
+                  _D("org.ow2.jonas.jpaas.apache-manager:ajpbalancer-manager-api:_")
               }
             }
 
@@ -12266,7 +12272,7 @@ public class Libs {
             public class Jpaas {
               public class Naming {
                 public object Manager :
-                    _D("org.ow2.jonas.jpaas.naming-manager:jpaas-naming-manager:_")
+                  _D("org.ow2.jonas.jpaas.naming-manager:jpaas-naming-manager:_")
               }
             }
           }
@@ -12324,45 +12330,44 @@ public class Libs {
           public class Applications {
             public class Jaxb2 {
               public object Assemblies :
-                  _D("org.ow2.jonas.jonas-itests-applications-jaxb2:assemblies:_") {
+                _D("org.ow2.jonas.jonas-itests-applications-jaxb2:assemblies:_") {
                 public object Ear :
-                    _D("org.ow2.jonas.jonas-itests-applications-jaxb2:assemblies-ear:_")
+                  _D("org.ow2.jonas.jonas-itests-applications-jaxb2:assemblies-ear:_")
               }
 
-              public object Modules : _D("org.ow2.jonas.jonas-itests-applications-jaxb2:modules:_")
-                  {
+              public object Modules : _D("org.ow2.jonas.jonas-itests-applications-jaxb2:modules:_") {
                 public object Webapp :
-                    _D("org.ow2.jonas.jonas-itests-applications-jaxb2:modules-webapp:_")
+                  _D("org.ow2.jonas.jonas-itests-applications-jaxb2:modules-webapp:_")
 
                 public object Beans :
-                    _D("org.ow2.jonas.jonas-itests-applications-jaxb2:modules-beans:_")
+                  _D("org.ow2.jonas.jonas-itests-applications-jaxb2:modules-beans:_")
 
                 public object Api :
-                    _D("org.ow2.jonas.jonas-itests-applications-jaxb2:modules-api:_")
+                  _D("org.ow2.jonas.jonas-itests-applications-jaxb2:modules-api:_")
               }
             }
 
             public class Jaxws {
               public class Add {
                 public object Assemblies :
-                    _D("org.ow2.jonas.jonas-itests-applications-jaxws-add:assemblies:_") {
+                  _D("org.ow2.jonas.jonas-itests-applications-jaxws-add:assemblies:_") {
                   public object Wsadd :
-                      _D("org.ow2.jonas.jonas-itests-applications-jaxws-add.assemblies:wsadd:_")
+                    _D("org.ow2.jonas.jonas-itests-applications-jaxws-add.assemblies:wsadd:_")
                 }
 
                 public object Modules :
-                    _D("org.ow2.jonas.jonas-itests-applications-jaxws-add:modules:_")
+                  _D("org.ow2.jonas.jonas-itests-applications-jaxws-add:modules:_")
 
                 public class Module {
                   public object Addbean :
-                      _D("org.ow2.jonas.jonas-itests-applications-jaxws-add:module-addbean:_") {
+                    _D("org.ow2.jonas.jonas-itests-applications-jaxws-add:module-addbean:_") {
                     public object Api :
-                        _D("org.ow2.jonas.jonas-itests-applications-jaxws-add:module-addbean-api:_")
+                      _D("org.ow2.jonas.jonas-itests-applications-jaxws-add:module-addbean-api:_")
                   }
 
                   public class Wsadd {
                     public object Webapp :
-                        _D("org.ow2.jonas.jonas-itests-applications-jaxws-add:module-wsadd-webapp:_")
+                      _D("org.ow2.jonas.jonas-itests-applications-jaxws-add:module-wsadd-webapp:_")
                   }
                 }
               }
@@ -12401,7 +12406,7 @@ public class Libs {
 
               public class Deployment {
                 public object Plan :
-                    _D("org.ow2.jonas.documentation:jonas-doc-en-deployment-plan:_")
+                  _D("org.ow2.jonas.documentation:jonas-doc-en-deployment-plan:_")
               }
             }
 
@@ -12416,52 +12421,51 @@ public class Libs {
             public object Examples : _D("org.ow2.jonas.cxf.transport.reliablejms:examples:_") {
               public class Spring {
                 public object Mdp :
-                    _D("org.ow2.jonas.cxf.transport.reliablejms:examples-spring_mdp:_") {
+                  _D("org.ow2.jonas.cxf.transport.reliablejms:examples-spring_mdp:_") {
                   public object Modules :
-                      _D("org.ow2.jonas.cxf.transport.reliablejms:examples-spring_mdp-modules:_") {
+                    _D("org.ow2.jonas.cxf.transport.reliablejms:examples-spring_mdp-modules:_") {
                     public class Webapp {
                       public object Server :
-                          _D("org.ow2.jonas.cxf.transport.reliablejms:examples-spring_mdp-modules-webapp-server:_")
+                        _D("org.ow2.jonas.cxf.transport.reliablejms:examples-spring_mdp-modules-webapp-server:_")
 
                       public object Client :
-                          _D("org.ow2.jonas.cxf.transport.reliablejms:examples-spring_mdp-modules-webapp-client:_")
+                        _D("org.ow2.jonas.cxf.transport.reliablejms:examples-spring_mdp-modules-webapp-client:_")
                     }
 
                     public object Wsdl :
-                        _D("org.ow2.jonas.cxf.transport.reliablejms:examples-spring_mdp-modules-wsdl:_")
+                      _D("org.ow2.jonas.cxf.transport.reliablejms:examples-spring_mdp-modules-wsdl:_")
                   }
                 }
               }
 
               public class Ejb {
-                public object Mdb : _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb:_")
-                    {
+                public object Mdb : _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb:_") {
                   public object Assemblies :
-                      _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-assemblies:_") {
+                    _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-assemblies:_") {
                     public object Ear :
-                        _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-assemblies-ear:_")
+                      _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-assemblies-ear:_")
                   }
 
                   public object Modules :
-                      _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-modules:_") {
+                    _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-modules:_") {
                     public object Webapp :
-                        _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-modules-webapp:_")
+                      _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-modules-webapp:_")
 
                     public class Server {
                       public object Endpoint :
-                          _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-modules-server-endpoint:_")
+                        _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-modules-server-endpoint:_")
                     }
 
                     public class Client {
                       public object Sender :
-                          _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-modules-client-sender:_")
+                        _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-modules-client-sender:_")
 
                       public object Receiver :
-                          _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-modules-client-receiver:_")
+                        _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-modules-client-receiver:_")
                     }
 
                     public object Wsdl :
-                        _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-modules-wsdl:_")
+                      _D("org.ow2.jonas.cxf.transport.reliablejms:examples-ejb_mdb-modules-wsdl:_")
                   }
                 }
               }
@@ -12470,32 +12474,32 @@ public class Libs {
             public object Itests : _D("org.ow2.jonas.cxf.transport.reliablejms:itests:_") {
               public class Spring {
                 public object Mdp :
-                    _D("org.ow2.jonas.cxf.transport.reliablejms:itests-spring_mdp:_") {
+                  _D("org.ow2.jonas.cxf.transport.reliablejms:itests-spring_mdp:_") {
                   public object Cargo :
-                      _D("org.ow2.jonas.cxf.transport.reliablejms:itests-spring_mdp-cargo:_")
+                    _D("org.ow2.jonas.cxf.transport.reliablejms:itests-spring_mdp-cargo:_")
 
                   public object Application :
-                      _D("org.ow2.jonas.cxf.transport.reliablejms:itests-spring_mdp-application:_")
+                    _D("org.ow2.jonas.cxf.transport.reliablejms:itests-spring_mdp-application:_")
                 }
               }
 
               public class Ejb {
                 public object Mdb : _D("org.ow2.jonas.cxf.transport.reliablejms:itests-ejb_mdb:_") {
                   public object Cargo :
-                      _D("org.ow2.jonas.cxf.transport.reliablejms:itests-ejb_mdb-cargo:_")
+                    _D("org.ow2.jonas.cxf.transport.reliablejms:itests-ejb_mdb-cargo:_")
 
                   public object Ear :
-                      _D("org.ow2.jonas.cxf.transport.reliablejms:itests-ejb_mdb-ear:_")
+                    _D("org.ow2.jonas.cxf.transport.reliablejms:itests-ejb_mdb-ear:_")
 
                   public object Application :
-                      _D("org.ow2.jonas.cxf.transport.reliablejms:itests-ejb_mdb-application:_")
+                    _D("org.ow2.jonas.cxf.transport.reliablejms:itests-ejb_mdb-application:_")
                 }
               }
             }
 
             public object Modules : _D("org.ow2.jonas.cxf.transport.reliablejms:modules:_") {
               public object Transport :
-                  _D("org.ow2.jonas.cxf.transport.reliablejms:modules-transport:_")
+                _D("org.ow2.jonas.cxf.transport.reliablejms:modules-transport:_")
 
               public object Api : _D("org.ow2.jonas.cxf.transport.reliablejms:modules-api:_")
             }
@@ -12503,38 +12507,38 @@ public class Libs {
             public object Parent : _D("org.ow2.jonas.cxf.transport.reliablejms:parent:_")
 
             public object Documentation :
-                _D("org.ow2.jonas.cxf.transport.reliablejms:documentation:_")
+              _D("org.ow2.jonas.cxf.transport.reliablejms:documentation:_")
           }
 
           public class Mdb {
             public object Examples : _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples:_") {
               public object Basic : _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic:_") {
                 public object Assemblies :
-                    _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-assemblies:_") {
+                  _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-assemblies:_") {
                   public object Ear :
-                      _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-assemblies-ear:_")
+                    _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-assemblies-ear:_")
                 }
 
                 public object Modules :
-                    _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-modules:_") {
+                  _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-modules:_") {
                   public object Webapp :
-                      _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-modules-webapp:_")
+                    _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-modules-webapp:_")
 
                   public class Server {
                     public object Endpoint :
-                        _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-modules-server-endpoint:_")
+                      _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-modules-server-endpoint:_")
                   }
 
                   public class Client {
                     public object Sender :
-                        _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-modules-client-sender:_")
+                      _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-modules-client-sender:_")
 
                     public object Receiver :
-                        _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-modules-client-receiver:_")
+                      _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-modules-client-receiver:_")
                   }
 
                   public object Wsdl :
-                      _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-modules-wsdl:_")
+                    _D("org.ow2.jonas.cxf.transport.mdb:mdb-examples-basic-modules-wsdl:_")
                 }
               }
             }
@@ -12545,12 +12549,12 @@ public class Libs {
               public object Ear : _D("org.ow2.jonas.cxf.transport.mdb:mdb-itests-ear:_")
 
               public object Application :
-                  _D("org.ow2.jonas.cxf.transport.mdb:mdb-itests-application:_")
+                _D("org.ow2.jonas.cxf.transport.mdb:mdb-itests-application:_")
             }
 
             public object Modules : _D("org.ow2.jonas.cxf.transport.mdb:mdb-modules:_") {
               public object Transport :
-                  _D("org.ow2.jonas.cxf.transport.mdb:mdb-modules-transport:_")
+                _D("org.ow2.jonas.cxf.transport.mdb:mdb-modules-transport:_")
 
               public object Api : _D("org.ow2.jonas.cxf.transport.mdb:mdb-modules-api:_")
             }
@@ -12865,7 +12869,7 @@ public class Libs {
               public object Logging : _D("org.ow2.bundles:ow2-bundles-externals-commons-logging:_")
 
               public object Collections :
-                  _D("org.ow2.bundles:ow2-bundles-externals-commons-collections:_")
+                _D("org.ow2.bundles:ow2-bundles-externals-commons-collections:_")
             }
 
             public object Bouncycastle : _D("org.ow2.bundles:ow2-bundles-externals-bouncycastle:_")
@@ -13392,7 +13396,7 @@ public class Libs {
 
         public object Samples : _D("org.ow2.jasmine:jadort-samples:_") {
           public object OnlyAllowUsersWithSessionFilter :
-              _D("org.ow2.jasmine.jadort-samples:OnlyAllowUsersWithSessionFilter:_")
+            _D("org.ow2.jasmine.jadort-samples:OnlyAllowUsersWithSessionFilter:_")
         }
 
         public object Console : _D("org.ow2.jasmine:jadort-console:_")
@@ -13439,7 +13443,7 @@ public class Libs {
       public object Jmxconnectionpooladapter : _D("org.ow2.jasmine:jmxconnectionpooladapter:_") {
         public object Assembly : _D("org.ow2.jasmine:jmxconnectionpooladapter-assembly:_") {
           public object Jmxadapter :
-              _D("org.ow2.jasmine:jmxconnectionpooladapter-assembly-jmxadapter:_")
+            _D("org.ow2.jasmine:jmxconnectionpooladapter-assembly-jmxadapter:_")
         }
 
         public object Modules : _D("org.ow2.jasmine:jmxconnectionpooladapter-modules:_")
@@ -13461,7 +13465,7 @@ public class Libs {
         public class For {
           public class Jasmine {
             public object Monitoring :
-                _D("org.ow2.jasmine:jmxconnectionpooladapter-for-jasmine-monitoring:_")
+              _D("org.ow2.jasmine:jmxconnectionpooladapter-for-jasmine-monitoring:_")
           }
         }
 
@@ -13476,44 +13480,43 @@ public class Libs {
         public class Jasmine {
           public object Eos : _D("org.ow2.jasmine.monitoring:jasmine-eos:_") {
             public object Notificationeditor :
-                _D("org.ow2.jasmine.monitoring:jasmine-eos-notificationeditor:_") {
+              _D("org.ow2.jasmine.monitoring:jasmine-eos-notificationeditor:_") {
               public object Server :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-notificationeditor-server:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-notificationeditor-server:_")
 
               public object Client :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-notificationeditor-client:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-notificationeditor-client:_")
             }
 
-            public object Notification : _D("org.ow2.jasmine.monitoring:jasmine-eos-notification:_")
-                {
+            public object Notification : _D("org.ow2.jasmine.monitoring:jasmine-eos-notification:_") {
               public object Server :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-notification-server:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-notification-server:_")
 
               public object Client :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-notification-client:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-notification-client:_")
 
               public object Filters :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-notification-filters:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-notification-filters:_")
 
               public object Actions :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-notification-actions:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-notification-actions:_")
             }
 
             public object Datamanagement :
-                _D("org.ow2.jasmine.monitoring:jasmine-eos-datamanagement:_") {
+              _D("org.ow2.jasmine.monitoring:jasmine-eos-datamanagement:_") {
               public object Server :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-datamanagement-server:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-datamanagement-server:_")
 
               public object Client :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-datamanagement-client:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-datamanagement-client:_")
             }
 
             public object Monitoring : _D("org.ow2.jasmine.monitoring:jasmine-eos-monitoring:_") {
               public object Server :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-monitoring-server:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-monitoring-server:_")
 
               public object Client :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-monitoring-client:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-monitoring-client:_")
             }
 
             public object Quickvisu : _D("org.ow2.jasmine.monitoring:jasmine-eos-quickvisu:_") {
@@ -13542,70 +13545,70 @@ public class Libs {
 
             public object Autonomous : _D("org.ow2.jasmine.monitoring:jasmine-eos-autonomous:_") {
               public object Server :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-autonomous-server:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-autonomous-server:_")
 
               public object Client :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-autonomous-client:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-autonomous-client:_")
             }
 
             public object Confeditor : _D("org.ow2.jasmine.monitoring:jasmine-eos-confeditor:_") {
               public object Server :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-confeditor-server:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-confeditor-server:_")
 
               public object Client :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-confeditor-client:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-confeditor-client:_")
             }
 
             public object Rules : _D("org.ow2.jasmine.monitoring:jasmine-eos-rules:_") {
               public object Manager : _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-manager:_") {
                 public object Server :
-                    _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-manager-server:_")
+                  _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-manager-server:_")
 
                 public object Client :
-                    _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-manager-client:_")
+                  _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-manager-client:_")
               }
 
               public object Enginedashboard :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-enginedashboard:_") {
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-enginedashboard:_") {
                 public object Server :
-                    _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-enginedashboard-server:_")
+                  _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-enginedashboard-server:_")
 
                 public object Client :
-                    _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-enginedashboard-client:_")
+                  _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-enginedashboard-client:_")
               }
 
               public object Editor : _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-editor:_") {
                 public object Server :
-                    _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-editor-server:_")
+                  _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-editor-server:_")
 
                 public object Client :
-                    _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-editor-client:_")
+                  _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-editor-client:_")
               }
 
               public object Common : _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-common:_") {
                 public object Server :
-                    _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-common-server:_")
+                  _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-common-server:_")
 
                 public object Client :
-                    _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-common-client:_")
+                  _D("org.ow2.jasmine.monitoring:jasmine-eos-rules-common-client:_")
               }
             }
 
             public object Purgetimer : _D("org.ow2.jasmine.monitoring:jasmine-eos-purgetimer:_") {
               public object Server :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-purgetimer-server:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-purgetimer-server:_")
 
               public object Client :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-purgetimer-client:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-purgetimer-client:_")
             }
 
             public object MbeancmdManager :
-                _D("org.ow2.jasmine.monitoring:jasmine-eos-mbeancmdManager:_") {
+              _D("org.ow2.jasmine.monitoring:jasmine-eos-mbeancmdManager:_") {
               public object Server :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-mbeancmdManager-server:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-mbeancmdManager-server:_")
 
               public object Client :
-                  _D("org.ow2.jasmine.monitoring:jasmine-eos-mbeancmdManager-client:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-eos-mbeancmdManager-client:_")
             }
 
             public object Application : _D("org.ow2.jasmine.monitoring:jasmine-eos-application:_")
@@ -13633,43 +13636,42 @@ public class Libs {
             public class Integration {
               public class Tests {
                 public object Modules :
-                    _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-modules:_")
-                    {
+                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-modules:_") {
                   public object Rules :
-                      _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-modules-rules:_")
+                    _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-modules-rules:_")
 
                   public object Dummyservice :
-                      _D("org.ow2.jasmine.monitoring.jasmine-monitoring-integration-tests-modules:dummyservice:_")
+                    _D("org.ow2.jasmine.monitoring.jasmine-monitoring-integration-tests-modules:dummyservice:_")
 
                   public object Events :
-                      _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-modules-events:_")
+                    _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-modules-events:_")
 
                   public object Dbfill :
-                      _D("org.ow2.jasmine.monitoring.jasmine-monitoring-integration-tests-modules:dbfill:_")
+                    _D("org.ow2.jasmine.monitoring.jasmine-monitoring-integration-tests-modules:dbfill:_")
 
                   public object Timerchecker :
-                      _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-modules-timerchecker:_")
+                    _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-modules-timerchecker:_")
 
                   public object Dbchecker :
-                      _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-modules-dbchecker:_")
+                    _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-modules-dbchecker:_")
                 }
 
                 public object Itests :
-                    _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-itests:_") {
+                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-itests:_") {
                   public class Long {
                     public object Term :
-                        _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-itests-long-term:_")
+                      _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-itests-long-term:_")
                   }
 
                   public object Collects :
-                      _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-itests-collects:_")
+                    _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-itests-collects:_")
                 }
 
                 public class Archive {
                   public class Modules {
                     public class And {
                       public object Dependencies :
-                          _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-archive-modules-and-dependencies:_")
+                        _D("org.ow2.jasmine.monitoring:jasmine-monitoring-integration-tests-archive-modules-and-dependencies:_")
                     }
                   }
                 }
@@ -13679,61 +13681,60 @@ public class Libs {
             public object Tests : _D("org.ow2.jasmine.monitoring:jasmine-monitoring-tests:_")
 
             public object Installer :
-                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer:_") {
+              _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer:_") {
               public object Izpack :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-izpack:_") {
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-izpack:_") {
                 public object Full :
-                    _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-izpack-full:_")
+                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-izpack-full:_")
 
                 public object Online :
-                    _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-izpack-online:_")
+                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-izpack-online:_")
 
                 public object Embedded :
-                    _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-izpack-embedded:_")
+                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-izpack-embedded:_")
               }
 
               public object Assemblies :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-assemblies:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-assemblies:_")
 
               public object Modules :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-modules:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-modules:_")
 
               public object Assembly :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-assembly:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-assembly:_")
 
               public object Manual :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-manual:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-manual:_")
 
               public object Configurator :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-configurator:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-configurator:_")
 
               public object Online :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-online:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-online:_")
 
               public object Embedded :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-embedded:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-embedded:_")
 
               public object Geoclient :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-geoclient:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-installer-geoclient:_")
             }
 
-            public object Commands : _D("org.ow2.jasmine.monitoring:jasmine-monitoring-commands:_")
-                {
+            public object Commands : _D("org.ow2.jasmine.monitoring:jasmine-monitoring-commands:_") {
               public object Modules :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-commands-modules:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-commands-modules:_")
 
               public object Purge :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-commands-purge:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-commands-purge:_")
             }
 
             public object Util : _D("org.ow2.jasmine.monitoring:jasmine-monitoring-util:_") {
               public object Extractor :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-util-extractor:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-util-extractor:_")
             }
 
             public object Api : _D("org.ow2.jasmine.monitoring:jasmine-monitoring-api:_") {
               public object Extractor :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-api-extractor:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-api-extractor:_")
             }
 
             public object Common : _D("org.ow2.jasmine.monitoring:jasmine-monitoring-common:_")
@@ -13742,7 +13743,7 @@ public class Libs {
 
             public class Jonas {
               public object Configurator :
-                  _D("org.ow2.jasmine.monitoring:jasmine-monitoring-jonas-configurator:_")
+                _D("org.ow2.jasmine.monitoring:jasmine-monitoring-jonas-configurator:_")
             }
           }
 
@@ -13771,13 +13772,13 @@ public class Libs {
           public class Assembly {
             public class For {
               public object Jonas :
-                  _D("org.ow2.jasmine.monitoring:eventswitch-assembly-for-jonas:_")
+                _D("org.ow2.jasmine.monitoring:eventswitch-assembly-for-jonas:_")
 
               public object Jonas5 :
-                  _D("org.ow2.jasmine.monitoring:eventswitch-assembly-for-jonas5:_")
+                _D("org.ow2.jasmine.monitoring:eventswitch-assembly-for-jonas5:_")
 
               public object Jonas4 :
-                  _D("org.ow2.jasmine.monitoring:eventswitch-assembly-for-jonas4:_")
+                _D("org.ow2.jasmine.monitoring:eventswitch-assembly-for-jonas4:_")
             }
           }
 
@@ -13790,10 +13791,10 @@ public class Libs {
           public class Drools {
             public class Ejb {
               public object Jonas5 :
-                  _D("org.ow2.jasmine.monitoring:eventswitch-drools-ejb-jonas5:_")
+                _D("org.ow2.jasmine.monitoring:eventswitch-drools-ejb-jonas5:_")
 
               public object Jonas4 :
-                  _D("org.ow2.jasmine.monitoring:eventswitch-drools-ejb-jonas4:_")
+                _D("org.ow2.jasmine.monitoring:eventswitch-drools-ejb-jonas4:_")
             }
           }
 
@@ -13849,7 +13850,7 @@ public class Libs {
         public class Itests {
           public object Modules : _D("org.ow2.jasmine.probe:itests-modules:_") {
             public object Dummymbeanservice :
-                _D("org.ow2.jasmine.probe.itests-modules:dummymbeanservice:_")
+              _D("org.ow2.jasmine.probe.itests-modules:dummymbeanservice:_")
           }
         }
 
@@ -13864,7 +13865,7 @@ public class Libs {
 
               public class Config {
                 public object Felixsh :
-                    _D("org.ow2.jasmine.probe:jasmine-probe-itests-config-felixsh:_")
+                  _D("org.ow2.jasmine.probe:jasmine-probe-itests-config-felixsh:_")
 
                 public object Jmx : _D("org.ow2.jasmine.probe:jasmine-probe-itests-config-jmx:_")
 
@@ -13902,7 +13903,7 @@ public class Libs {
           public class Assemblies {
             public class `4caast` {
               public object Standalone :
-                  _D("org.ow2.jasmine.probe:jprobe-assemblies-4caast-standalone:_")
+                _D("org.ow2.jasmine.probe:jprobe-assemblies-4caast-standalone:_")
 
               public object Manual : _D("org.ow2.jasmine.probe:jprobe-assemblies-4caast-manual:_")
             }
@@ -13968,7 +13969,7 @@ public class Libs {
             public object Assembly : _D("org.ow2.jasmine.drools:jasmine-drools-assembly:_") {
               public class For {
                 public object Jonas :
-                    _D("org.ow2.jasmine.drools:jasmine-drools-assembly_for_jonas:_")
+                  _D("org.ow2.jasmine.drools:jasmine-drools-assembly_for_jonas:_")
               }
             }
 
@@ -14022,10 +14023,10 @@ public class Libs {
           public object Discovery : _D("org.ow2.jasmine:agent.remote.discovery:_") {
             public object Application : _D("org.ow2.jasmine:agent.remote.discovery.application:_") {
               public object Postgresql :
-                  _D("org.ow2.jasmine:agent.remote.discovery.application.postgresql:_")
+                _D("org.ow2.jasmine:agent.remote.discovery.application.postgresql:_")
 
               public object Apache2 :
-                  _D("org.ow2.jasmine:agent.remote.discovery.application.apache2:_")
+                _D("org.ow2.jasmine:agent.remote.discovery.application.apache2:_")
 
               public object Jonas : _D("org.ow2.jasmine:agent.remote.discovery.application.jonas:_")
             }
@@ -14100,7 +14101,7 @@ public class Libs {
           public class Monitoring {
             public class User {
               public object Guide :
-                  _D("org.ow2.jasmine.documentation:jasmine-monitoring-user-guide:_")
+                _D("org.ow2.jasmine.documentation:jasmine-monitoring-user-guide:_")
             }
           }
         }
@@ -14117,44 +14118,44 @@ public class Libs {
           public class Selfmanagement {
             public object Rules : _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules:_") {
               public object Examples :
-                  _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-examples:_")
+                _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-examples:_")
 
               public object Cluster :
-                  _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster:_") {
+                _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster:_") {
                 public object Jk :
-                    _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-jk:_") {
+                  _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-jk:_") {
                   public object Osgi :
-                      _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-jk-osgi:_")
+                    _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-jk-osgi:_")
 
                   public object Common :
-                      _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-jk-common:_")
+                    _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-jk-common:_")
 
                   public object Modules :
-                      _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-jk-modules:_")
+                    _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-jk-modules:_")
                 }
 
                 public object Cmi :
-                    _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-cmi:_") {
+                  _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-cmi:_") {
                   public object Osgi :
-                      _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-cmi-osgi:_")
+                    _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-cmi-osgi:_")
 
                   public object Ejb :
-                      _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-cmi-ejb:_")
+                    _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-cmi-ejb:_")
 
                   public object Common :
-                      _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-cmi-common:_")
+                    _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-cmi-common:_")
 
                   public object Modules :
-                      _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-cmi-modules:_")
+                    _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-cmi-modules:_")
                 }
 
                 public object Api :
-                    _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-api:_")
+                  _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-cluster-api:_")
               }
 
               public class Bundle {
                 public object Prototype :
-                    _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-bundle-prototype:_")
+                  _D("org.ow2.jasmine.rules:jasmine-selfmanagement-rules-bundle-prototype:_")
               }
             }
           }
@@ -14230,23 +14231,23 @@ public class Libs {
               public class Jade {
                 public class Wrapper {
                   public object Jonas4 :
-                      _D("org.ow2.jasmine.jade:org.ow2.jasmine.jade.wrapper.jonas4:_")
+                    _D("org.ow2.jasmine.jade:org.ow2.jasmine.jade.wrapper.jonas4:_")
 
                   public object Util :
-                      _D("org.ow2.jasmine.jade:org.ow2.jasmine.jade.wrapper.util:_")
+                    _D("org.ow2.jasmine.jade:org.ow2.jasmine.jade.wrapper.util:_")
                 }
 
                 public class Legacy {
                   public object Jonas4 :
-                      _D("org.ow2.jasmine.jade:org.ow2.jasmine.jade.legacy.jonas4:_")
+                    _D("org.ow2.jasmine.jade:org.ow2.jasmine.jade.legacy.jonas4:_")
 
                   public object Apache :
-                      _D("org.ow2.jasmine.jade:org.ow2.jasmine.jade.legacy.apache:_")
+                    _D("org.ow2.jasmine.jade:org.ow2.jasmine.jade.legacy.apache:_")
                 }
 
                 public class Resource {
                   public object J2ee :
-                      _D("org.ow2.jasmine.jade:org.ow2.jasmine.jade.resource.j2ee:_")
+                    _D("org.ow2.jasmine.jade:org.ow2.jasmine.jade.resource.j2ee:_")
                 }
               }
             }
@@ -14267,7 +14268,7 @@ public class Libs {
 
         public class Control {
           public object JoramOptimizationBundle :
-              _D("org.ow2.jasmine.jade.control:JoramOptimizationBundle:_")
+            _D("org.ow2.jasmine.jade.control:JoramOptimizationBundle:_")
         }
 
         public class Wrapper {
@@ -14279,7 +14280,7 @@ public class Libs {
                 public class Jade {
                   public class Wrapper {
                     public object Apache :
-                        _D("org.ow2.jasmine.jade.wrapper:org.ow2.jasmine.jade.wrapper.apache:_")
+                      _D("org.ow2.jasmine.jade.wrapper:org.ow2.jasmine.jade.wrapper.apache:_")
                   }
                 }
               }
@@ -14296,7 +14297,7 @@ public class Libs {
                 public class Deployment {
                   public class Local {
                     public object Api :
-                        _D("org.ow2.jasmine.jade.fractal.deployment.local:fractal-deployment-local-api:_")
+                      _D("org.ow2.jasmine.jade.fractal.deployment.local:fractal-deployment-local-api:_")
                   }
                 }
               }
@@ -14368,7 +14369,7 @@ public class Libs {
           public class Webdav {
             public class Content {
               public object Manager :
-                  _D("org.ow2.weblab.components.content.webdav:webdav-content-manager:_")
+                _D("org.ow2.weblab.components.content.webdav:webdav-content-manager:_")
             }
           }
         }
@@ -14388,10 +14389,10 @@ public class Libs {
             public class Helper {
               public object Jena : _D("org.ow2.weblab.core.helpers:rdf-helper-jena:_") {
                 public object Selection :
-                    _D("org.ow2.weblab.core.helpers:rdf-helper-jena-selection:_")
+                  _D("org.ow2.weblab.core.helpers:rdf-helper-jena-selection:_")
 
                 public object Structure :
-                    _D("org.ow2.weblab.core.helpers:rdf-helper-jena-structure:_")
+                  _D("org.ow2.weblab.core.helpers:rdf-helper-jena-structure:_")
               }
             }
           }
@@ -14443,29 +14444,29 @@ public class Libs {
               public object Plugin : _D("org.ow2.weblab.tools.maven:weblab-archetype-plugin:_")
 
               public object Resources :
-                  _D("org.ow2.weblab.tools.maven:weblab-archetype-resources:_")
+                _D("org.ow2.weblab.tools.maven:weblab-archetype-resources:_")
 
               public object Trainable :
-                  _D("org.ow2.weblab.tools.maven:weblab-archetype-trainable:_")
+                _D("org.ow2.weblab.tools.maven:weblab-archetype-trainable:_")
 
               public object Sourcereader :
-                  _D("org.ow2.weblab.tools.maven:weblab-archetype-sourcereader:_")
+                _D("org.ow2.weblab.tools.maven:weblab-archetype-sourcereader:_")
 
               public object Searcher : _D("org.ow2.weblab.tools.maven:weblab-archetype-searcher:_")
 
               public object Resourcecontainer :
-                  _D("org.ow2.weblab.tools.maven:weblab-archetype-resourcecontainer:_")
+                _D("org.ow2.weblab.tools.maven:weblab-archetype-resourcecontainer:_")
 
               public object Reportprovider :
-                  _D("org.ow2.weblab.tools.maven:weblab-archetype-reportprovider:_")
+                _D("org.ow2.weblab.tools.maven:weblab-archetype-reportprovider:_")
 
               public object Queuemanager :
-                  _D("org.ow2.weblab.tools.maven:weblab-archetype-queuemanager:_")
+                _D("org.ow2.weblab.tools.maven:weblab-archetype-queuemanager:_")
 
               public object Indexer : _D("org.ow2.weblab.tools.maven:weblab-archetype-indexer:_")
 
               public object Configurable :
-                  _D("org.ow2.weblab.tools.maven:weblab-archetype-configurable:_")
+                _D("org.ow2.weblab.tools.maven:weblab-archetype-configurable:_")
 
               public object Analyser : _D("org.ow2.weblab.tools.maven:weblab-archetype-analyser:_")
             }
@@ -14558,7 +14559,7 @@ public class Libs {
           public class Html {
             public class Purification {
               public object Service :
-                  _D("org.ow2.weblab.webservices:boilerpipe-html-purification-service:_")
+                _D("org.ow2.weblab.webservices:boilerpipe-html-purification-service:_")
             }
           }
         }
@@ -14942,13 +14943,13 @@ public class Libs {
             public class Explorer {
               public class Web {
                 public object Application :
-                    _D("org.ow2.frascati.examples:counter-server-explorer-web-application:_")
+                  _D("org.ow2.frascati.examples:counter-server-explorer-web-application:_")
               }
             }
 
             public class Web {
               public object Application :
-                  _D("org.ow2.frascati.examples:counter-server-web-application:_")
+                _D("org.ow2.frascati.examples:counter-server-web-application:_")
             }
           }
 
@@ -14996,7 +14997,7 @@ public class Libs {
 
           public class Osgi {
             public object Knopflerfish :
-                _D("org.ow2.frascati.examples:helloworld-osgi-knopflerfish:_")
+              _D("org.ow2.frascati.examples:helloworld-osgi-knopflerfish:_")
 
             public object Felix : _D("org.ow2.frascati.examples:helloworld-osgi-felix:_")
 
@@ -15004,12 +15005,12 @@ public class Libs {
 
             public class Runtime {
               public object Parent :
-                  _D("org.ow2.frascati.examples:helloworld-osgi-runtime-parent:_")
+                _D("org.ow2.frascati.examples:helloworld-osgi-runtime-parent:_")
             }
 
             public class Bundles {
               public object Parent :
-                  _D("org.ow2.frascati.examples:helloworld-osgi-bundles-parent:_")
+                _D("org.ow2.frascati.examples:helloworld-osgi-bundles-parent:_")
             }
 
             public object Parent : _D("org.ow2.frascati.examples:helloworld-osgi-parent:_")
@@ -15054,7 +15055,7 @@ public class Libs {
           public class Proxy {
             public object Web : _D("org.ow2.frascati.examples:ohloh-proxy-web:_") {
               public object Application :
-                  _D("org.ow2.frascati.examples:ohloh-proxy-web-application:_")
+                _D("org.ow2.frascati.examples:ohloh-proxy-web-application:_")
             }
 
             public object Parent : _D("org.ow2.frascati.examples:ohloh-proxy-parent:_")
@@ -15144,7 +15145,7 @@ public class Libs {
             public class Uml {
               public class Sequence {
                 public object Diagram :
-                    _D("org.ow2.frascati.intent:frascati-intent-uml-sequence-diagram:_")
+                  _D("org.ow2.frascati.intent:frascati-intent-uml-sequence-diagram:_")
               }
             }
           }
@@ -15205,10 +15206,10 @@ public class Libs {
             public class Ultra {
               public object Merge : _D("org.ow2.frascati.tinfi:frascati-tinfi-ultra-merge:_") {
                 public object Parent :
-                    _D("org.ow2.frascati.tinfi:frascati-tinfi-ultra-merge-parent:_")
+                  _D("org.ow2.frascati.tinfi:frascati-tinfi-ultra-merge-parent:_")
 
                 public object Service :
-                    _D("org.ow2.frascati.tinfi:frascati-tinfi-ultra-merge-service:_")
+                  _D("org.ow2.frascati.tinfi:frascati-tinfi-ultra-merge-service:_")
 
                 public object Core : _D("org.ow2.frascati.tinfi:frascati-tinfi-ultra-merge-core:_")
               }
@@ -15245,7 +15246,7 @@ public class Libs {
                 public object Parent : _D("org.ow2.frascati.tinfi:frascati-tinfi-oo-light-parent:_")
 
                 public object Service :
-                    _D("org.ow2.frascati.tinfi:frascati-tinfi-oo-light-service:_")
+                  _D("org.ow2.frascati.tinfi:frascati-tinfi-oo-light-service:_")
               }
 
               public object Parent : _D("org.ow2.frascati.tinfi:frascati-tinfi-oo-parent:_")
@@ -15262,7 +15263,7 @@ public class Libs {
 
               public class Membranes {
                 public object Oo :
-                    _D("org.ow2.frascati.tinfi:frascati-tinfi-runtime-membranes-oo:_")
+                  _D("org.ow2.frascati.tinfi:frascati-tinfi-runtime-membranes-oo:_")
               }
 
               public object Comp : _D("org.ow2.frascati.tinfi:frascati-tinfi-runtime-comp:_")
@@ -15315,40 +15316,39 @@ public class Libs {
             public class Tinfi {
               public class Osgi {
                 public object Membranes :
-                    _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-membranes:_") {
+                  _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-membranes:_") {
                   public object Oo :
-                      _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-membranes-oo:_")
+                    _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-membranes-oo:_")
                 }
 
                 public object Parent :
-                    _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-parent:_")
+                  _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-parent:_")
 
                 public object Scaadl :
-                    _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-scaadl:_")
+                  _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-scaadl:_")
 
                 public class Adlparser {
                   public object Parent :
-                      _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-adlparser-parent:_")
+                    _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-adlparser-parent:_")
                 }
 
                 public class Plugin {
                   public object Parent :
-                      _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-plugin-parent:_")
+                    _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-plugin-parent:_")
                 }
 
                 public class Opt {
-                  public object Oo : _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-opt-oo:_")
-                      {
+                  public object Oo : _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-opt-oo:_") {
                     public object Service :
-                        _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-opt-oo-service:_")
+                      _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-opt-oo-service:_")
                   }
 
                   public object Parent :
-                      _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-opt-parent:_")
+                    _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-opt-parent:_")
                 }
 
                 public object Mixins :
-                    _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-mixins:_")
+                  _D("org.ow2.frascati.tinfi.osgi:frascati-tinfi-osgi-mixins:_")
               }
             }
           }
@@ -15367,7 +15367,7 @@ public class Libs {
             public class Frascati {
               public class Tinfi {
                 public object Parent :
-                    _D("org.ow2.frascati.tinfi.tinfi-mixed:frascati-tinfi-parent:_")
+                  _D("org.ow2.frascati.tinfi.tinfi-mixed:frascati-tinfi-parent:_")
               }
             }
           }
@@ -15379,73 +15379,73 @@ public class Libs {
               public object Fractal : _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-fractal:_")
 
               public object Advanced :
-                  _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-advanced:_")
+                _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-advanced:_")
 
               public object Helloworld :
-                  _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld:_") {
+                _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld:_") {
                 public object Osgi :
-                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-osgi:_") {
+                  _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-osgi:_") {
                   public object Assembly :
-                      _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-osgi-assembly:_")
+                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-osgi-assembly:_")
 
                   public object Server :
-                      _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-osgi-server:_")
+                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-osgi-server:_")
 
                   public object Client :
-                      _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-osgi-client:_")
+                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-osgi-client:_")
 
                   public object Interfaces :
-                      _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-osgi-interfaces:_")
+                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-osgi-interfaces:_")
                 }
 
                 public object Bin :
-                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-bin:_") {
+                  _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-bin:_") {
                   public object Assembly :
-                      _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-bin-assembly:_")
+                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-bin-assembly:_")
 
                   public object Code :
-                      _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-bin-code:_")
+                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-bin-code:_")
                 }
 
                 public class With {
                   public object Intent :
-                      _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-with-intent:_")
+                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-with-intent:_")
                 }
 
                 public object Pojo :
-                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-pojo:_")
+                  _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-helloworld-pojo:_")
               }
 
               public class Foobar {
                 public object Cases :
-                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-foobar-cases:_")
+                  _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-foobar-cases:_")
               }
 
               public object Proxyparameters :
-                  _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-proxyparameters:_")
+                _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-proxyparameters:_")
 
               public object Sca : _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca:_") {
                 public object Advanced :
-                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca-advanced:_")
+                  _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca-advanced:_")
 
                 public object Helloworld :
-                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca-helloworld:_") {
+                  _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca-helloworld:_") {
                   public object Pojo :
-                      _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca-helloworld-pojo:_")
+                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca-helloworld-pojo:_")
 
                   public object Composite :
-                      _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca-helloworld-composite:_")
+                    _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca-helloworld-composite:_")
 
                   public class No {
                     public object Intent :
-                        _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca-helloworld-no-intent:_")
+                      _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca-helloworld-no-intent:_")
                   }
                 }
 
                 public class Ultra {
                   public class Merge {
                     public object Helloworld :
-                        _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca-ultra-merge-helloworld:_")
+                      _D("org.ow2.frascati.tinfi.examples:frascati-tinfi-sca-ultra-merge-helloworld:_")
                   }
                 }
               }
@@ -15479,17 +15479,17 @@ public class Libs {
           public object Jruby : _D("org.ow2.frascati:frascati-implementation-script-jruby:_")
 
           public object Javascript :
-              _D("org.ow2.frascati:frascati-implementation-script-javascript:_")
+            _D("org.ow2.frascati:frascati-implementation-script-javascript:_")
 
           public object Groovy : _D("org.ow2.frascati:frascati-implementation-script-groovy:_")
 
           public object Beanshell :
-              _D("org.ow2.frascati:frascati-implementation-script-beanshell:_")
+            _D("org.ow2.frascati:frascati-implementation-script-beanshell:_")
         }
 
         public object Osgi : _D("org.ow2.frascati:frascati-implementation-osgi:_") {
           public object Knopflerfish :
-              _D("org.ow2.frascati:frascati-implementation-osgi-knopflerfish:_")
+            _D("org.ow2.frascati:frascati-implementation-osgi-knopflerfish:_")
 
           public object Felix : _D("org.ow2.frascati:frascati-implementation-osgi-felix:_")
 
@@ -15812,7 +15812,7 @@ public class Libs {
               public class Spring {
                 public class Boot {
                   public object Server :
-                      _D("org.ow2.authzforce:authzforce-ce-restful-pdp-cxf-spring-boot-server:_")
+                    _D("org.ow2.authzforce:authzforce-ce-restful-pdp-cxf-spring-boot-server:_")
                 }
               }
             }
@@ -16268,7 +16268,7 @@ public class Libs {
             public class Gateway {
               public class Samples {
                 public object Parent :
-                    _D("org.ow2.petals.samples:petals-bc-gateway-samples-parent:_")
+                  _D("org.ow2.petals.samples:petals-bc-gateway-samples-parent:_")
               }
             }
           }
@@ -16285,19 +16285,19 @@ public class Libs {
             public class SOAP {
               public class FactureService {
                 public object Consume :
-                    _D("org.ow2.petals.samples.mapping:su-SOAP-factureService-consume:_")
+                  _D("org.ow2.petals.samples.mapping:su-SOAP-factureService-consume:_")
               }
 
               public class GedService {
                 public object Provide :
-                    _D("org.ow2.petals.samples.mapping:su-SOAP-gedService-provide:_")
+                  _D("org.ow2.petals.samples.mapping:su-SOAP-gedService-provide:_")
               }
             }
 
             public class Mapping {
               public class FactureService {
                 public object Provide :
-                    _D("org.ow2.petals.samples.mapping:su-Mapping-factureService-provide:_")
+                  _D("org.ow2.petals.samples.mapping:su-Mapping-factureService-provide:_")
               }
             }
           }
@@ -16336,13 +16336,13 @@ public class Libs {
             public class Soap {
               public class Datamapping {
                 public object Consume :
-                    _D("org.ow2.petals.samples.camel:su-soap-datamapping-consume:_")
+                  _D("org.ow2.petals.samples.camel:su-soap-datamapping-consume:_")
               }
 
               public class Hello {
                 public class Proxies {
                   public object Consume :
-                      _D("org.ow2.petals.samples.camel:su-soap-hello-proxies-consume:_")
+                    _D("org.ow2.petals.samples.camel:su-soap-hello-proxies-consume:_")
                 }
               }
             }
@@ -16355,7 +16355,7 @@ public class Libs {
                   public object Xml : _D("org.ow2.petals.samples.camel:su-camel-hello-proxy-xml:_")
 
                   public object Java :
-                      _D("org.ow2.petals.samples.camel:su-camel-hello-proxy-java:_")
+                    _D("org.ow2.petals.samples.camel:su-camel-hello-proxy-java:_")
                 }
               }
             }
@@ -16365,7 +16365,7 @@ public class Libs {
             public class Camel {
               public class Samples {
                 public object Parent :
-                    _D("org.ow2.petals.samples.camel:petals-camel-samples-parent:_")
+                  _D("org.ow2.petals.samples.camel:petals-camel-samples-parent:_")
               }
             }
           }
@@ -16382,7 +16382,7 @@ public class Libs {
             public class Xslt {
               public class Autogenerate {
                 public object Provide :
-                    _D("org.ow2.petals.samples.xslt:su-xslt-autogenerate-provide:_")
+                  _D("org.ow2.petals.samples.xslt:su-xslt-autogenerate-provide:_")
               }
 
               public object Provide : _D("org.ow2.petals.samples.xslt:su-xslt-provide:_")
@@ -16404,14 +16404,14 @@ public class Libs {
           public class Su {
             public class Validation {
               public object Provide :
-                  _D("org.ow2.petals.samples.validation:su-validation-provide:_")
+                _D("org.ow2.petals.samples.validation:su-validation-provide:_")
             }
           }
 
           public class Petals {
             public class Validation {
               public object Parent :
-                  _D("org.ow2.petals.samples.validation:petals-validation-parent:_")
+                _D("org.ow2.petals.samples.validation:petals-validation-parent:_")
             }
           }
         }
@@ -16423,7 +16423,7 @@ public class Libs {
 
               public class ArticleImporterJobService {
                 public object Provide :
-                    _D("org.ow2.petals.samples.talend:sa-talend-ArticleImporterJobService-provide:_")
+                  _D("org.ow2.petals.samples.talend:sa-talend-ArticleImporterJobService-provide:_")
               }
             }
           }
@@ -16432,41 +16432,41 @@ public class Libs {
             public class XSLT {
               public class ArticleImporterResultsGenerationService {
                 public object Provide :
-                    _D("org.ow2.petals.samples.talend:su-XSLT-ArticleImporterResultsGenerationService-provide:_")
+                  _D("org.ow2.petals.samples.talend:su-XSLT-ArticleImporterResultsGenerationService-provide:_")
               }
             }
 
             public class EIP {
               public class ArticleImporterService {
                 public object Consume :
-                    _D("org.ow2.petals.samples.talend:su-EIP-ArticleImporterService-consume:_")
+                  _D("org.ow2.petals.samples.talend:su-EIP-ArticleImporterService-consume:_")
               }
             }
 
             public class FileTransfer {
               public class ArticleImporterResultsService {
                 public object Provide :
-                    _D("org.ow2.petals.samples.talend:su-FileTransfer-ArticleImporterResultsService-provide:_")
+                  _D("org.ow2.petals.samples.talend:su-FileTransfer-ArticleImporterResultsService-provide:_")
               }
 
               public class ArticleImporterService {
                 public object Consume :
-                    _D("org.ow2.petals.samples.talend:su-FileTransfer-ArticleImporterService-consume:_")
+                  _D("org.ow2.petals.samples.talend:su-FileTransfer-ArticleImporterService-consume:_")
               }
             }
 
             public class SOAP {
               public class ArticleImporterService {
                 public object Consume :
-                    _D("org.ow2.petals.samples.talend:su-SOAP-ArticleImporterService-consume:_")
+                  _D("org.ow2.petals.samples.talend:su-SOAP-ArticleImporterService-consume:_")
               }
 
               public class ArticleService {
                 public object Provide :
-                    _D("org.ow2.petals.samples.talend:su-SOAP-ArticleService-provide:_")
+                  _D("org.ow2.petals.samples.talend:su-SOAP-ArticleService-provide:_")
 
                 public object Consume :
-                    _D("org.ow2.petals.samples.talend:su-SOAP-ArticleService-consume:_")
+                  _D("org.ow2.petals.samples.talend:su-SOAP-ArticleService-consume:_")
               }
             }
           }
@@ -16498,7 +16498,7 @@ public class Libs {
               public class Mysql {
                 public class Storedprocedure {
                   public object Provide :
-                      _D("org.ow2.petals.samples.sql:su-sql-mysql-storedprocedure-provide:_")
+                    _D("org.ow2.petals.samples.sql:su-sql-mysql-storedprocedure-provide:_")
                 }
               }
 
@@ -16553,10 +16553,10 @@ public class Libs {
               public class Rest {
                 public class Edm {
                   public object Consume :
-                      _D("org.ow2.petals.samples.rest.edm:su-rest-edm-consume:_")
+                    _D("org.ow2.petals.samples.rest.edm:su-rest-edm-consume:_")
 
                   public object Provide :
-                      _D("org.ow2.petals.samples.rest.edm:su-rest-edm-provide:_")
+                    _D("org.ow2.petals.samples.rest.edm:su-rest-edm-provide:_")
                 }
               }
             }
@@ -16580,10 +16580,10 @@ public class Libs {
                     public object Soap : _D("org.ow2.petals.samples.rest.woa-soa:sa-woa-soa-soap:_")
 
                     public object Backend2 :
-                        _D("org.ow2.petals.samples.rest.woa-soa:sa-woa-soa-backend2:_")
+                      _D("org.ow2.petals.samples.rest.woa-soa:sa-woa-soa-backend2:_")
 
                     public object Backend :
-                        _D("org.ow2.petals.samples.rest.woa-soa:sa-woa-soa-backend:_")
+                      _D("org.ow2.petals.samples.rest.woa-soa:sa-woa-soa-backend:_")
                   }
                 }
               }
@@ -16592,22 +16592,22 @@ public class Libs {
                 public class REST {
                   public class QuotientFamillialService {
                     public object Consume :
-                        _D("org.ow2.petals.samples.rest.woa-soa:su-REST-QuotientFamillialService-consume:_")
+                      _D("org.ow2.petals.samples.rest.woa-soa:su-REST-QuotientFamillialService-consume:_")
                   }
                 }
 
                 public class SOAP {
                   public class QuotientFamillialService {
                     public object Consume :
-                        _D("org.ow2.petals.samples.rest.woa-soa:su-SOAP-QuotientFamillialService-consume:_")
+                      _D("org.ow2.petals.samples.rest.woa-soa:su-SOAP-QuotientFamillialService-consume:_")
 
                     public object Provide :
-                        _D("org.ow2.petals.samples.rest.woa-soa:su-SOAP-QuotientFamillialService-provide:_")
+                      _D("org.ow2.petals.samples.rest.woa-soa:su-SOAP-QuotientFamillialService-provide:_")
                   }
 
                   public class QuotientFamillialService2 {
                     public object Provide :
-                        _D("org.ow2.petals.samples.rest.woa-soa:su-SOAP-QuotientFamillialService2-provide:_")
+                      _D("org.ow2.petals.samples.rest.woa-soa:su-SOAP-QuotientFamillialService2-provide:_")
                   }
                 }
               }
@@ -16616,7 +16616,7 @@ public class Libs {
                 public class Woa {
                   public class Soa {
                     public object Parent :
-                        _D("org.ow2.petals.samples.rest.woa-soa:petals-woa-soa-parent:_")
+                      _D("org.ow2.petals.samples.rest.woa-soa:petals-woa-soa-parent:_")
                   }
                 }
               }
@@ -16681,7 +16681,7 @@ public class Libs {
             public class Petals {
               public class Laposte {
                 public object Parent :
-                    _D("org.ow2.petals.samples.mail.laposte:petals-laposte-parent:_")
+                  _D("org.ow2.petals.samples.mail.laposte:petals-laposte-parent:_")
               }
             }
 
@@ -16689,13 +16689,13 @@ public class Libs {
               public class SOAP {
                 public class Laposte {
                   public object Consume :
-                      _D("org.ow2.petals.samples.mail.laposte:su-SOAP-laposte-consume:_")
+                    _D("org.ow2.petals.samples.mail.laposte:su-SOAP-laposte-consume:_")
                 }
               }
 
               public class Laposte {
                 public object Provide :
-                    _D("org.ow2.petals.samples.mail.laposte:su-laposte-provide:_")
+                  _D("org.ow2.petals.samples.mail.laposte:su-laposte-provide:_")
               }
             }
           }
@@ -16747,7 +16747,7 @@ public class Libs {
               public object Musicstore : _D("org.ow2.petals.samples.jsr181:su-jsr181-musicstore:_")
 
               public object Shoppingcart :
-                  _D("org.ow2.petals.samples.jsr181:su-jsr181-shoppingcart:_")
+                _D("org.ow2.petals.samples.jsr181:su-jsr181-shoppingcart:_")
 
               public object Converter : _D("org.ow2.petals.samples.jsr181:su-jsr181-converter:_")
 
@@ -16814,20 +16814,20 @@ public class Libs {
           public class Su {
             public class Filetransfer {
               public object Consume :
-                  _D("org.ow2.petals.samples.filetransfer:su-filetransfer-consume:_") {
+                _D("org.ow2.petals.samples.filetransfer:su-filetransfer-consume:_") {
                 public object Basemsg :
-                    _D("org.ow2.petals.samples.filetransfer:su-filetransfer-consume-basemsg:_")
+                  _D("org.ow2.petals.samples.filetransfer:su-filetransfer-consume-basemsg:_")
               }
 
               public object Provide :
-                  _D("org.ow2.petals.samples.filetransfer:su-filetransfer-provide:_")
+                _D("org.ow2.petals.samples.filetransfer:su-filetransfer-provide:_")
             }
           }
 
           public class Petals {
             public class Filetransfer {
               public object Parent :
-                  _D("org.ow2.petals.samples.filetransfer:petals-filetransfer-parent:_")
+                _D("org.ow2.petals.samples.filetransfer:petals-filetransfer-parent:_")
             }
           }
         }
@@ -16848,28 +16848,28 @@ public class Libs {
 
                 public class Scatter {
                   public object Gather :
-                      _D("org.ow2.petals.samples.eip:su-eip-provide-scatter-gather:_")
+                    _D("org.ow2.petals.samples.eip:su-eip-provide-scatter-gather:_")
                 }
 
                 public class Routing {
                   public object Slip :
-                      _D("org.ow2.petals.samples.eip:su-eip-provide-routing-slip:_")
+                    _D("org.ow2.petals.samples.eip:su-eip-provide-routing-slip:_")
                 }
 
                 public object Router : _D("org.ow2.petals.samples.eip:su-eip-provide-router:_")
 
                 public class Dynamic {
                   public object Router :
-                      _D("org.ow2.petals.samples.eip:su-eip-provide-dynamic-router:_")
+                    _D("org.ow2.petals.samples.eip:su-eip-provide-dynamic-router:_")
                 }
 
                 public object Dispatcher :
-                    _D("org.ow2.petals.samples.eip:su-eip-provide-dispatcher:_")
+                  _D("org.ow2.petals.samples.eip:su-eip-provide-dispatcher:_")
 
                 public object Bridge : _D("org.ow2.petals.samples.eip:su-eip-provide-bridge:_")
 
                 public object Aggregate :
-                    _D("org.ow2.petals.samples.eip:su-eip-provide-aggregate:_")
+                  _D("org.ow2.petals.samples.eip:su-eip-provide-aggregate:_")
               }
             }
           }
@@ -16917,7 +16917,7 @@ public class Libs {
 
             public class ArticleImporterJobService {
               public object Provide :
-                  _D("org.ow2.petals.samples:sa-talend-ArticleImporterJobService-provide:_")
+                _D("org.ow2.petals.samples:sa-talend-ArticleImporterJobService-provide:_")
             }
           }
 
@@ -16978,14 +16978,14 @@ public class Libs {
           public class Sa {
             public class Helloworld {
               public object Provides :
-                  _D("org.ow2.petals.samples.helloworld:sa-helloworld-provides:_")
+                _D("org.ow2.petals.samples.helloworld:sa-helloworld-provides:_")
             }
           }
 
           public class Su {
             public class Helloworld {
               public object Provides :
-                  _D("org.ow2.petals.samples.helloworld:su-helloworld-provides:_")
+                _D("org.ow2.petals.samples.helloworld:su-helloworld-provides:_")
             }
           }
         }
@@ -16998,7 +16998,7 @@ public class Libs {
           public class Sa {
             public class Orchestra {
               public object Provides :
-                  _D("org.ow2.petals.samples.orchestra:sa-orchestra-provides:_")
+                _D("org.ow2.petals.samples.orchestra:sa-orchestra-provides:_")
             }
           }
 
@@ -17006,18 +17006,18 @@ public class Libs {
             public class Orchestra {
               public class Helloworld {
                 public object Provides :
-                    _D("org.ow2.petals.samples.orchestra:su-orchestra-helloworld-provides:_")
+                  _D("org.ow2.petals.samples.orchestra:su-orchestra-helloworld-provides:_")
               }
 
               public class Factorial {
                 public class Rpc {
                   public object Provides :
-                      _D("org.ow2.petals.samples.orchestra:su-orchestra-factorial-rpc-provides:_")
+                    _D("org.ow2.petals.samples.orchestra:su-orchestra-factorial-rpc-provides:_")
                 }
 
                 public class Document {
                   public object Provides :
-                      _D("org.ow2.petals.samples.orchestra:su-orchestra-factorial-document-provides:_")
+                    _D("org.ow2.petals.samples.orchestra:su-orchestra-factorial-document-provides:_")
                 }
               }
             }
@@ -17029,10 +17029,10 @@ public class Libs {
             public class Gateway {
               public class Hello {
                 public object Domain1 :
-                    _D("org.ow2.petals.samples.gateway:sa-gateway-hello-domain1:_")
+                  _D("org.ow2.petals.samples.gateway:sa-gateway-hello-domain1:_")
 
                 public object Domain0 :
-                    _D("org.ow2.petals.samples.gateway:sa-gateway-hello-domain0:_")
+                  _D("org.ow2.petals.samples.gateway:sa-gateway-hello-domain0:_")
               }
             }
           }
@@ -17041,10 +17041,10 @@ public class Libs {
             public class Gateway {
               public class Hello {
                 public object Provides :
-                    _D("org.ow2.petals.samples.gateway:su-gateway-hello-provides:_")
+                  _D("org.ow2.petals.samples.gateway:su-gateway-hello-provides:_")
 
                 public object Consumes :
-                    _D("org.ow2.petals.samples.gateway:su-gateway-hello-consumes:_")
+                  _D("org.ow2.petals.samples.gateway:su-gateway-hello-consumes:_")
               }
             }
           }
@@ -17054,7 +17054,7 @@ public class Libs {
               public class Gateway {
                 public class Samples {
                   public object Parent :
-                      _D("org.ow2.petals.samples.gateway:petals-bc-gateway-samples-parent:_")
+                    _D("org.ow2.petals.samples.gateway:petals-bc-gateway-samples-parent:_")
                 }
               }
             }
@@ -17066,35 +17066,35 @@ public class Libs {
             public class SOAP {
               public class ArchiveService {
                 public object Consume :
-                    _D("org.ow2.petals.samples.activiti:su-SOAP-archiveService-consume:_")
+                  _D("org.ow2.petals.samples.activiti:su-SOAP-archiveService-consume:_")
 
                 public object Provide :
-                    _D("org.ow2.petals.samples.activiti:su-SOAP-archiveService-provide:_")
+                  _D("org.ow2.petals.samples.activiti:su-SOAP-archiveService-provide:_")
               }
 
               public class NotifyVacationService {
                 public object Consume :
-                    _D("org.ow2.petals.samples.activiti:su-SOAP-notifyVacationService-consume:_")
+                  _D("org.ow2.petals.samples.activiti:su-SOAP-notifyVacationService-consume:_")
 
                 public object Provide :
-                    _D("org.ow2.petals.samples.activiti:su-SOAP-notifyVacationService-provide:_")
+                  _D("org.ow2.petals.samples.activiti:su-SOAP-notifyVacationService-provide:_")
               }
 
               public class ActivitiIntegrationService {
                 public object Consume :
-                    _D("org.ow2.petals.samples.activiti:su-SOAP-activitiIntegrationService-consume:_")
+                  _D("org.ow2.petals.samples.activiti:su-SOAP-activitiIntegrationService-consume:_")
               }
 
               public class VacationService {
                 public object Consume :
-                    _D("org.ow2.petals.samples.activiti:su-SOAP-vacationService-consume:_")
+                  _D("org.ow2.petals.samples.activiti:su-SOAP-vacationService-consume:_")
               }
             }
 
             public class Activiti {
               public class VacationService {
                 public object Provide :
-                    _D("org.ow2.petals.samples.activiti:su-activiti-vacationService-provide:_")
+                  _D("org.ow2.petals.samples.activiti:su-activiti-vacationService-provide:_")
               }
             }
           }
@@ -17109,7 +17109,7 @@ public class Libs {
             public class Activiti {
               public class Vacation {
                 public object Sample :
-                    _D("org.ow2.petals.samples.activiti:sa-activiti-vacation-sample:_")
+                  _D("org.ow2.petals.samples.activiti:sa-activiti-vacation-sample:_")
               }
             }
           }
@@ -17132,35 +17132,35 @@ public class Libs {
             public class SOAP {
               public class ArchiveService {
                 public object Consume :
-                    _D("org.ow2.petals.samples.flowable:su-SOAP-archiveService-consume:_")
+                  _D("org.ow2.petals.samples.flowable:su-SOAP-archiveService-consume:_")
 
                 public object Provide :
-                    _D("org.ow2.petals.samples.flowable:su-SOAP-archiveService-provide:_")
+                  _D("org.ow2.petals.samples.flowable:su-SOAP-archiveService-provide:_")
               }
 
               public class NotifyVacationService {
                 public object Consume :
-                    _D("org.ow2.petals.samples.flowable:su-SOAP-notifyVacationService-consume:_")
+                  _D("org.ow2.petals.samples.flowable:su-SOAP-notifyVacationService-consume:_")
 
                 public object Provide :
-                    _D("org.ow2.petals.samples.flowable:su-SOAP-notifyVacationService-provide:_")
+                  _D("org.ow2.petals.samples.flowable:su-SOAP-notifyVacationService-provide:_")
               }
 
               public class FlowableIntegrationService {
                 public object Consume :
-                    _D("org.ow2.petals.samples.flowable:su-SOAP-flowableIntegrationService-consume:_")
+                  _D("org.ow2.petals.samples.flowable:su-SOAP-flowableIntegrationService-consume:_")
               }
 
               public class VacationService {
                 public object Consume :
-                    _D("org.ow2.petals.samples.flowable:su-SOAP-vacationService-consume:_")
+                  _D("org.ow2.petals.samples.flowable:su-SOAP-vacationService-consume:_")
               }
             }
 
             public class Flowable {
               public class VacationService {
                 public object Provide :
-                    _D("org.ow2.petals.samples.flowable:su-flowable-vacationService-provide:_")
+                  _D("org.ow2.petals.samples.flowable:su-flowable-vacationService-provide:_")
               }
             }
           }
@@ -17175,7 +17175,7 @@ public class Libs {
             public class Flowable {
               public class Vacation {
                 public object Sample :
-                    _D("org.ow2.petals.samples.flowable:sa-flowable-vacation-sample:_")
+                  _D("org.ow2.petals.samples.flowable:sa-flowable-vacation-sample:_")
               }
             }
           }
@@ -17229,33 +17229,33 @@ public class Libs {
           public class XSLT {
             public class ArticleImporterResultsGenerationService {
               public object Provide :
-                  _D("org.ow2.petals.samples:su-XSLT-ArticleImporterResultsGenerationService-provide:_")
+                _D("org.ow2.petals.samples:su-XSLT-ArticleImporterResultsGenerationService-provide:_")
             }
           }
 
           public class EIP {
             public class ArticleImporterService {
               public object Consume :
-                  _D("org.ow2.petals.samples:su-EIP-ArticleImporterService-consume:_")
+                _D("org.ow2.petals.samples:su-EIP-ArticleImporterService-consume:_")
             }
           }
 
           public class FileTransfer {
             public class ArticleImporterResultsService {
               public object Provide :
-                  _D("org.ow2.petals.samples:su-FileTransfer-ArticleImporterResultsService-provide:_")
+                _D("org.ow2.petals.samples:su-FileTransfer-ArticleImporterResultsService-provide:_")
             }
 
             public class ArticleImporterService {
               public object Consume :
-                  _D("org.ow2.petals.samples:su-FileTransfer-ArticleImporterService-consume:_")
+                _D("org.ow2.petals.samples:su-FileTransfer-ArticleImporterService-consume:_")
             }
           }
 
           public class SOAP {
             public class ArticleImporterService {
               public object Consume :
-                  _D("org.ow2.petals.samples:su-SOAP-ArticleImporterService-consume:_")
+                _D("org.ow2.petals.samples:su-SOAP-ArticleImporterService-consume:_")
             }
 
             public class ArticleService {
@@ -17266,15 +17266,15 @@ public class Libs {
 
             public class QuotientFamillialService {
               public object Consume :
-                  _D("org.ow2.petals.samples:su-SOAP-QuotientFamillialService-consume:_")
+                _D("org.ow2.petals.samples:su-SOAP-QuotientFamillialService-consume:_")
 
               public object Provide :
-                  _D("org.ow2.petals.samples:su-SOAP-QuotientFamillialService-provide:_")
+                _D("org.ow2.petals.samples:su-SOAP-QuotientFamillialService-provide:_")
             }
 
             public class QuotientFamillialService2 {
               public object Provide :
-                  _D("org.ow2.petals.samples:su-SOAP-QuotientFamillialService2-provide:_")
+                _D("org.ow2.petals.samples:su-SOAP-QuotientFamillialService2-provide:_")
             }
 
             public class ArchiveService {
@@ -17285,15 +17285,15 @@ public class Libs {
 
             public class NotifyVacationService {
               public object Consume :
-                  _D("org.ow2.petals.samples:su-SOAP-notifyVacationService-consume:_")
+                _D("org.ow2.petals.samples:su-SOAP-notifyVacationService-consume:_")
 
               public object Provide :
-                  _D("org.ow2.petals.samples:su-SOAP-notifyVacationService-provide:_")
+                _D("org.ow2.petals.samples:su-SOAP-notifyVacationService-provide:_")
             }
 
             public class ActivitiIntegrationService {
               public object Consume :
-                  _D("org.ow2.petals.samples:su-SOAP-activitiIntegrationService-consume:_")
+                _D("org.ow2.petals.samples:su-SOAP-activitiIntegrationService-consume:_")
             }
 
             public class VacationService {
@@ -17420,7 +17420,7 @@ public class Libs {
           public class REST {
             public class QuotientFamillialService {
               public object Consume :
-                  _D("org.ow2.petals.samples:su-REST-QuotientFamillialService-consume:_")
+                _D("org.ow2.petals.samples:su-REST-QuotientFamillialService-consume:_")
             }
           }
 
@@ -17431,7 +17431,7 @@ public class Libs {
           public class Activiti {
             public class VacationService {
               public object Provide :
-                  _D("org.ow2.petals.samples:su-activiti-vacationService-provide:_")
+                _D("org.ow2.petals.samples:su-activiti-vacationService-provide:_")
             }
           }
         }
@@ -17478,39 +17478,39 @@ public class Libs {
           public class Ws {
             public class Basenotifiction {
               public object Rootbuilder :
-                  _D("org.ow2.petals.wsstar:wsstar-oasis-ws-basenotifiction-rootbuilder:_")
+                _D("org.ow2.petals.wsstar:wsstar-oasis-ws-basenotifiction-rootbuilder:_")
             }
 
             public class Topics {
               public object Rootbuilder :
-                  _D("org.ow2.petals.wsstar:wsstar-oasis-ws-topics-rootbuilder:_")
+                _D("org.ow2.petals.wsstar:wsstar-oasis-ws-topics-rootbuilder:_")
 
               public class Wstop {
                 public class Datatypes {
                   public object Jaxbimpl :
-                      _D("org.ow2.petals.wsstar.oasis-ws-topics:wstop-datatypes-jaxbimpl:_")
+                    _D("org.ow2.petals.wsstar.oasis-ws-topics:wstop-datatypes-jaxbimpl:_")
 
                   public object Api :
-                      _D("org.ow2.petals.wsstar.oasis-ws-topics:wstop-datatypes-api:_")
+                    _D("org.ow2.petals.wsstar.oasis-ws-topics:wstop-datatypes-api:_")
                 }
               }
             }
 
             public class Resourceproperties {
               public object Rootbuilder :
-                  _D("org.ow2.petals.wsstar:wsstar-oasis-ws-resourceproperties-rootbuilder:_")
+                _D("org.ow2.petals.wsstar:wsstar-oasis-ws-resourceproperties-rootbuilder:_")
 
               public class Wsrf {
                 public class Rp {
                   public object Services :
-                      _D("org.ow2.petals.wsstar.oasis-ws-resourceproperties:wsrf-rp-services:_")
+                    _D("org.ow2.petals.wsstar.oasis-ws-resourceproperties:wsrf-rp-services:_")
 
                   public class Datatypes {
                     public object Jaxbimpl :
-                        _D("org.ow2.petals.wsstar.oasis-ws-resourceproperties:wsrf-rp-datatypes-jaxbimpl:_")
+                      _D("org.ow2.petals.wsstar.oasis-ws-resourceproperties:wsrf-rp-datatypes-jaxbimpl:_")
 
                     public object Api :
-                        _D("org.ow2.petals.wsstar.oasis-ws-resourceproperties:wsrf-rp-datatypes-api:_")
+                      _D("org.ow2.petals.wsstar.oasis-ws-resourceproperties:wsrf-rp-datatypes-api:_")
                   }
                 }
               }
@@ -17518,19 +17518,19 @@ public class Libs {
 
             public class Resourcelifetime {
               public object Rootbuilder :
-                  _D("org.ow2.petals.wsstar:wsstar-oasis-ws-resourcelifetime-rootbuilder:_")
+                _D("org.ow2.petals.wsstar:wsstar-oasis-ws-resourcelifetime-rootbuilder:_")
 
               public class Wsrf {
                 public class Rl {
                   public object Services :
-                      _D("org.ow2.petals.wsstar.oasis-ws-resourcelifetime:wsrf-rl-services:_")
+                    _D("org.ow2.petals.wsstar.oasis-ws-resourcelifetime:wsrf-rl-services:_")
 
                   public class Datatypes {
                     public object Jaxbimpl :
-                        _D("org.ow2.petals.wsstar.oasis-ws-resourcelifetime:wsrf-rl-datatypes-jaxbimpl:_")
+                      _D("org.ow2.petals.wsstar.oasis-ws-resourcelifetime:wsrf-rl-datatypes-jaxbimpl:_")
 
                     public object Api :
-                        _D("org.ow2.petals.wsstar.oasis-ws-resourcelifetime:wsrf-rl-datatypes-api:_")
+                      _D("org.ow2.petals.wsstar.oasis-ws-resourcelifetime:wsrf-rl-datatypes-api:_")
                   }
                 }
               }
@@ -17538,19 +17538,19 @@ public class Libs {
 
             public class Basefaults {
               public object Rootbuilder :
-                  _D("org.ow2.petals.wsstar:wsstar-oasis-ws-basefaults-rootbuilder:_")
+                _D("org.ow2.petals.wsstar:wsstar-oasis-ws-basefaults-rootbuilder:_")
 
               public class Wsrf {
                 public class Bf {
                   public object Services :
-                      _D("org.ow2.petals.wsstar.oasis-ws-basefaults:wsrf-bf-services:_")
+                    _D("org.ow2.petals.wsstar.oasis-ws-basefaults:wsrf-bf-services:_")
 
                   public class Datatypes {
                     public object Jaxbimpl :
-                        _D("org.ow2.petals.wsstar.oasis-ws-basefaults:wsrf-bf-datatypes-jaxbimpl:_")
+                      _D("org.ow2.petals.wsstar.oasis-ws-basefaults:wsrf-bf-datatypes-jaxbimpl:_")
 
                     public object Api :
-                        _D("org.ow2.petals.wsstar.oasis-ws-basefaults:wsrf-bf-datatypes-api:_")
+                      _D("org.ow2.petals.wsstar.oasis-ws-basefaults:wsrf-bf-datatypes-api:_")
                   }
                 }
               }
@@ -17562,7 +17562,7 @@ public class Libs {
                   public class Ws {
                     public class Resource {
                       public object Rootbuilder :
-                          _D("org.ow2.petals.wsstar.oasis-ws-resource:wsstar-oasis-ws-resource-rootbuilder:_")
+                        _D("org.ow2.petals.wsstar.oasis-ws-resource:wsstar-oasis-ws-resource-rootbuilder:_")
                     }
                   }
                 }
@@ -17571,14 +17571,14 @@ public class Libs {
               public class Wsrf {
                 public class R {
                   public object Services :
-                      _D("org.ow2.petals.wsstar.oasis-ws-resource:wsrf-r-services:_")
+                    _D("org.ow2.petals.wsstar.oasis-ws-resource:wsrf-r-services:_")
 
                   public class Datatypes {
                     public object Jaxbimpl :
-                        _D("org.ow2.petals.wsstar.oasis-ws-resource:wsrf-r-datatypes-jaxbimpl:_")
+                      _D("org.ow2.petals.wsstar.oasis-ws-resource:wsrf-r-datatypes-jaxbimpl:_")
 
                     public object Api :
-                        _D("org.ow2.petals.wsstar.oasis-ws-resource:wsrf-r-datatypes-api:_")
+                      _D("org.ow2.petals.wsstar.oasis-ws-resource:wsrf-r-datatypes-api:_")
                   }
                 }
               }
@@ -17588,17 +17588,17 @@ public class Libs {
               public class Wsn {
                 public class B {
                   public object Services :
-                      _D("org.ow2.petals.wsstar.oasis-ws-basenotification:wsn-b-services:_") {
+                    _D("org.ow2.petals.wsstar.oasis-ws-basenotification:wsn-b-services:_") {
                     public object Impl :
-                        _D("org.ow2.petals.wsstar.oasis-ws-basenotification:wsn-b-services-impl:_")
+                      _D("org.ow2.petals.wsstar.oasis-ws-basenotification:wsn-b-services-impl:_")
                   }
 
                   public class Datatypes {
                     public object Jaxbimpl :
-                        _D("org.ow2.petals.wsstar.oasis-ws-basenotification:wsn-b-datatypes-jaxbimpl:_")
+                      _D("org.ow2.petals.wsstar.oasis-ws-basenotification:wsn-b-datatypes-jaxbimpl:_")
 
                     public object Api :
-                        _D("org.ow2.petals.wsstar.oasis-ws-basenotification:wsn-b-datatypes-api:_")
+                      _D("org.ow2.petals.wsstar.oasis-ws-basenotification:wsn-b-datatypes-api:_")
                   }
                 }
               }
@@ -17644,12 +17644,12 @@ public class Libs {
           public object Wsnpoller : _D("org.ow2.petals.dsb:dsb-kernel-wsnpoller:_")
 
           public object Notificationservice :
-              _D("org.ow2.petals.dsb:dsb-kernel-notificationservice:_")
+            _D("org.ow2.petals.dsb:dsb-kernel-notificationservice:_")
 
           public object Easierbsmservice : _D("org.ow2.petals.dsb:dsb-kernel-easierbsmservice:_")
 
           public object Pubsubmonitoringservice :
-              _D("org.ow2.petals.dsb:dsb-kernel-pubsubmonitoringservice:_")
+            _D("org.ow2.petals.dsb:dsb-kernel-pubsubmonitoringservice:_")
 
           public object Pubsubservice : _D("org.ow2.petals.dsb:dsb-kernel-pubsubservice:_")
 
@@ -17750,7 +17750,7 @@ public class Libs {
           }
 
           public object Standaloneserver :
-              _D("org.ow2.petals.dsb:dsb-monitoring-standaloneserver:_")
+            _D("org.ow2.petals.dsb:dsb-monitoring-standaloneserver:_")
 
           public object Api : _D("org.ow2.petals.dsb:dsb-monitoring-api:_")
         }
@@ -17828,22 +17828,22 @@ public class Libs {
             public class Jbi {
               public class Shared {
                 public object Library :
-                    _D("org.ow2.petals:maven-archetype-petals-jbi-shared-library:_")
+                  _D("org.ow2.petals:maven-archetype-petals-jbi-shared-library:_")
               }
 
               public class Service {
                 public object Unit : _D("org.ow2.petals:maven-archetype-petals-jbi-service-unit:_")
 
                 public object Engine :
-                    _D("org.ow2.petals:maven-archetype-petals-jbi-service-engine:_")
+                  _D("org.ow2.petals:maven-archetype-petals-jbi-service-engine:_")
 
                 public object Assembly :
-                    _D("org.ow2.petals:maven-archetype-petals-jbi-service-assembly:_")
+                  _D("org.ow2.petals:maven-archetype-petals-jbi-service-assembly:_")
               }
 
               public class Binding {
                 public object Component :
-                    _D("org.ow2.petals:maven-archetype-petals-jbi-binding-component:_")
+                  _D("org.ow2.petals:maven-archetype-petals-jbi-binding-component:_")
               }
             }
           }
@@ -18695,30 +18695,30 @@ public class Libs {
 
                 public object Oo : _D("org.ow2.fractal.juliac.osgi:juliac-osgi-opt-oo:_") {
                   public object Service :
-                      _D("org.ow2.fractal.juliac.osgi:juliac-osgi-opt-oo-service:_")
+                    _D("org.ow2.fractal.juliac.osgi:juliac-osgi-opt-oo-service:_")
                 }
               }
 
               public class Runtime {
                 public object Parent :
-                    _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-parent:_")
+                  _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-parent:_")
 
                 public object Jboss : _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-jboss:_")
 
                 public object Knopflerfish :
-                    _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-knopflerfish:_")
+                  _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-knopflerfish:_")
 
                 public object Felix : _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-felix:_")
 
                 public object Equinox :
-                    _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-equinox:_")
+                  _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-equinox:_")
 
                 public object Core : _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-core:_")
 
                 public object Concierge :
-                    _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-concierge:_") {
+                  _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-concierge:_") {
                   public object Adapter :
-                      _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-concierge-adapter:_")
+                    _D("org.ow2.fractal.juliac.osgi:juliac-osgi-runtime-concierge-adapter:_")
                 }
               }
 
@@ -18728,7 +18728,7 @@ public class Libs {
 
               public object Adlparser : _D("org.ow2.fractal.juliac.osgi:juliac-osgi-adlparser:_") {
                 public object Service :
-                    _D("org.ow2.fractal.juliac.osgi:juliac-osgi-adlparser-service:_")
+                  _D("org.ow2.fractal.juliac.osgi:juliac-osgi-adlparser-service:_")
               }
 
               public object Mixins : _D("org.ow2.fractal.juliac.osgi:juliac-osgi-mixins:_")
@@ -18782,18 +18782,17 @@ public class Libs {
           public class Juliac {
             public class Fraclet {
               public object Membranes :
-                  _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-membranes:_") {
+                _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-membranes:_") {
                 public object Oo :
-                    _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-membranes-oo:_")
+                  _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-membranes-oo:_")
 
                 public object Comp :
-                    _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-membranes-comp:_")
+                  _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-membranes-comp:_")
               }
 
-              public object Runtime : _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-runtime:_")
-                  {
+              public object Runtime : _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-runtime:_") {
                 public object Comp :
-                    _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-runtime-comp:_")
+                  _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-runtime-comp:_")
               }
 
               public object Parent : _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-parent:_")
@@ -18801,25 +18800,24 @@ public class Libs {
               public class Opt {
                 public object Oo : _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-opt-oo:_") {
                   public object Service :
-                      _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-opt-oo-service:_")
+                    _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-opt-oo-service:_")
                 }
 
-                public object Comp : _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-opt-comp:_")
-                    {
+                public object Comp : _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-opt-comp:_") {
                   public object Service :
-                      _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-opt-comp-service:_")
+                    _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-opt-comp-service:_")
                 }
               }
 
               public object Core : _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-core:_") {
                 public object Service :
-                    _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-core-service:_")
+                  _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-core-service:_")
               }
 
               public object Fractaladl :
-                  _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-fractaladl:_") {
+                _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-fractaladl:_") {
                 public object Service :
-                    _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-fractaladl-service:_")
+                  _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-fractaladl-service:_")
               }
 
               public object Mixins : _D("org.ow2.fractal.juliac.fraclet:juliac-fraclet-mixins:_")
@@ -18836,8 +18834,7 @@ public class Libs {
         public class Dream {
           public class Juliac {
             public class Dream {
-              public object Membranes : _D("org.ow2.fractal.juliac.dream:juliac-dream-membranes:_")
-                  {
+              public object Membranes : _D("org.ow2.fractal.juliac.dream:juliac-dream-membranes:_") {
                 public object Oo : _D("org.ow2.fractal.juliac.dream:juliac-dream-membranes-oo:_")
               }
 
@@ -18851,8 +18848,7 @@ public class Libs {
         public class Adlet {
           public class Juliac {
             public class Adlet {
-              public object Membranes : _D("org.ow2.fractal.juliac.adlet:juliac-adlet-membranes:_")
-                  {
+              public object Membranes : _D("org.ow2.fractal.juliac.adlet:juliac-adlet-membranes:_") {
                 public object Oo : _D("org.ow2.fractal.juliac.adlet:juliac-adlet-membranes-oo:_")
               }
 
@@ -18863,7 +18859,7 @@ public class Libs {
               public class Opt {
                 public object Oo : _D("org.ow2.fractal.juliac.adlet:juliac-adlet-opt-oo:_") {
                   public object Service :
-                      _D("org.ow2.fractal.juliac.adlet:juliac-adlet-opt-oo-service:_")
+                    _D("org.ow2.fractal.juliac.adlet:juliac-adlet-opt-oo-service:_")
                 }
               }
 
@@ -18981,70 +18977,67 @@ public class Libs {
             public class Bf {
               public class Examples {
                 public object Parent :
-                    _D("org.ow2.fractal.bf.examples:fractal-bf-examples-parent:_")
+                  _D("org.ow2.fractal.bf.examples:fractal-bf-examples-parent:_")
 
                 public class Helloworld {
                   public object Osgi :
-                      _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi:_") {
+                    _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi:_") {
                     public object Client :
-                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-client:_")
-                        {
+                      _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-client:_") {
                       public object Osgi :
-                          _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-client-osgi:_")
+                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-client-osgi:_")
 
                       public object Fractal :
-                          _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-client-fractal:_")
+                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-client-fractal:_")
                     }
 
                     public object Server :
-                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-server:_")
-                        {
+                      _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-server:_") {
                       public object Fractal :
-                          _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-server-fractal:_")
+                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-server-fractal:_")
 
                       public object Osgi :
-                          _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-server-osgi:_")
+                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-server-osgi:_")
                     }
 
                     public object Modules :
-                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-modules:_")
+                      _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-modules:_")
 
                     public object Api :
-                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-api:_")
+                      _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-osgi-api:_")
                   }
 
                   public object Koch :
-                      _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-koch:_")
+                    _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-koch:_")
 
                   public class Client {
                     public object Parent :
-                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-client-parent:_")
+                      _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-client-parent:_")
 
                     public object App :
-                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-client-app:_")
-                        {
+                      _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-client-app:_") {
                       public object Rmi :
-                          _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-client-app-rmi:_")
+                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-client-app-rmi:_")
                     }
 
                     public object Model :
-                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-client-model:_")
+                      _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-client-model:_")
                   }
 
                   public object Server :
-                      _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-server:_")
+                    _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-server:_")
 
                   public object Parent :
-                      _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-parent:_")
+                    _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-parent:_")
 
                   public class Rmi {
                     public object Nonremote :
-                        _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-rmi-nonremote:_")
+                      _D("org.ow2.fractal.bf.examples:fractal-bf-examples-helloworld-rmi-nonremote:_")
                   }
                 }
 
                 public object Complex :
-                    _D("org.ow2.fractal.bf.examples:fractal-bf-examples-complex:_")
+                  _D("org.ow2.fractal.bf.examples:fractal-bf-examples-complex:_")
               }
             }
           }
@@ -19055,13 +19048,13 @@ public class Libs {
                 public class Examples {
                   public class Amazon {
                     public object Parent :
-                        _D("org.ow2.fractal.bf.examples.amazon:fractal-bf-examples-amazon-parent:_")
+                      _D("org.ow2.fractal.bf.examples.amazon:fractal-bf-examples-amazon-parent:_")
 
                     public object App :
-                        _D("org.ow2.fractal.bf.examples.amazon:fractal-bf-examples-amazon-app:_")
+                      _D("org.ow2.fractal.bf.examples.amazon:fractal-bf-examples-amazon-app:_")
 
                     public object Model :
-                        _D("org.ow2.fractal.bf.examples.amazon:fractal-bf-examples-amazon-model:_")
+                      _D("org.ow2.fractal.bf.examples.amazon:fractal-bf-examples-amazon-model:_")
                   }
                 }
               }
@@ -19074,13 +19067,13 @@ public class Libs {
                 public class Examples {
                   public class Meteo {
                     public object Parent :
-                        _D("org.ow2.fractal.bf.examples.meteo:fractal-bf-examples-meteo-parent:_")
+                      _D("org.ow2.fractal.bf.examples.meteo:fractal-bf-examples-meteo-parent:_")
 
                     public object App :
-                        _D("org.ow2.fractal.bf.examples.meteo:fractal-bf-examples-meteo-app:_")
+                      _D("org.ow2.fractal.bf.examples.meteo:fractal-bf-examples-meteo-app:_")
 
                     public object Model :
-                        _D("org.ow2.fractal.bf.examples.meteo:fractal-bf-examples-meteo-model:_")
+                      _D("org.ow2.fractal.bf.examples.meteo:fractal-bf-examples-meteo-model:_")
                   }
                 }
               }
@@ -19127,31 +19120,31 @@ public class Libs {
             public class Bf {
               public class Connectors {
                 public object Parent :
-                    _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-parent:_")
+                  _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-parent:_")
 
                 public object Upnp :
-                    _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-upnp:_")
+                  _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-upnp:_")
 
                 public object Osgi :
-                    _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-osgi:_")
+                  _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-osgi:_")
 
                 public class Json {
                   public object Rpc :
-                      _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-json-rpc:_")
+                    _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-json-rpc:_")
                 }
 
                 public class Rest {
                   public object Cxf :
-                      _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-rest-cxf:_")
+                    _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-rest-cxf:_")
                 }
 
                 public class Soap {
                   public object Cxf :
-                      _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-soap-cxf:_")
+                    _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-soap-cxf:_")
                 }
 
                 public object Common :
-                    _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-common:_")
+                  _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-common:_")
 
                 public object Rmi : _D("org.ow2.fractal.bf.connectors:fractal-bf-connectors-rmi:_")
               }
@@ -19166,16 +19159,16 @@ public class Libs {
                 public object Parent : _D("org.ow2.fractal.bf.testing:fractal-bf-testing-parent:_")
 
                 public object Fixtures :
-                    _D("org.ow2.fractal.bf.testing:fractal-bf-testing-fixtures:_") {
+                  _D("org.ow2.fractal.bf.testing:fractal-bf-testing-fixtures:_") {
                   public object Tinfi :
-                      _D("org.ow2.fractal.bf.testing:fractal-bf-testing-fixtures-tinfi:_")
+                    _D("org.ow2.fractal.bf.testing:fractal-bf-testing-fixtures-tinfi:_")
 
                   public object Juliac :
-                      _D("org.ow2.fractal.bf.testing:fractal-bf-testing-fixtures-juliac:_")
+                    _D("org.ow2.fractal.bf.testing:fractal-bf-testing-fixtures-juliac:_")
                 }
 
                 public object Harness :
-                    _D("org.ow2.fractal.bf.testing:fractal-bf-testing-harness:_")
+                  _D("org.ow2.fractal.bf.testing:fractal-bf-testing-harness:_")
               }
             }
           }
@@ -19431,15 +19424,15 @@ public class Libs {
               }
 
               public object Framework :
-                  _D("org.ow2.util.maven:maven-osgi-plugin-launcher-framework:_") {
+                _D("org.ow2.util.maven:maven-osgi-plugin-launcher-framework:_") {
                 public object Knopflerfish :
-                    _D("org.ow2.util.maven:maven-osgi-plugin-launcher-framework-knopflerfish:_")
+                  _D("org.ow2.util.maven:maven-osgi-plugin-launcher-framework-knopflerfish:_")
 
                 public object Felix :
-                    _D("org.ow2.util.maven:maven-osgi-plugin-launcher-framework-felix:_")
+                  _D("org.ow2.util.maven:maven-osgi-plugin-launcher-framework-felix:_")
 
                 public object Equinox :
-                    _D("org.ow2.util.maven:maven-osgi-plugin-launcher-framework-equinox:_")
+                  _D("org.ow2.util.maven:maven-osgi-plugin-launcher-framework-equinox:_")
               }
 
               public object Core : _D("org.ow2.util.maven:maven-osgi-plugin-launcher-core:_")
@@ -19597,7 +19590,7 @@ public class Libs {
           public class Reference {
             public object Builder : _D("org.ow2.util.ee.builders:reference-builder:_") {
               public object Webserviceref :
-                  _D("org.ow2.util.ee.builders:reference-builder-webserviceref:_")
+                _D("org.ow2.util.ee.builders:reference-builder-webserviceref:_")
             }
           }
         }
@@ -20204,70 +20197,68 @@ public class Libs {
           public object Cloudmanager : _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager:_") {
             public class Connector {
               public object Test :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-test:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-test:_")
 
               public object Util :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-util:_") {
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-util:_") {
                 public object Jobmanager :
-                    _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-util-jobmanager:_")
-                    {
+                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-util-jobmanager:_") {
                   public object Api :
-                      _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-util-jobmanager-api:_")
+                    _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-util-jobmanager-api:_")
                 }
               }
 
               public object Cloudstack :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-cloudstack:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-cloudstack:_")
 
               public object Amazon :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-amazon:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-amazon:_")
 
               public object Vcd :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-vcd:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-vcd:_")
 
               public object Mock :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-mock:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-mock:_")
 
               public object Api :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-api:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-api:_")
 
               public class Openstack {
                 public object Nova :
-                    _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-openstack-nova:_")
+                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-openstack-nova:_")
               }
 
               public object Finder :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-finder:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connector-finder:_")
             }
 
             public object Connectors :
-                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connectors:_")
+              _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-connectors:_")
 
             public object Core : _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-core:_") {
               public object Manager :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-core-manager:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-core-manager:_")
 
               public object Api : _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-core-api:_")
             }
 
             public object Model : _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-model:_") {
               public object Cimi :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-model-cimi:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-model-cimi:_")
             }
 
             public object Project :
-                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-project:_")
+              _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-project:_")
 
             public object Apis : _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-apis:_")
 
-            public object Itests : _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-itests:_")
-                {
+            public object Itests : _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-itests:_") {
               public object Ejb :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-itests-ejb:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-itests-ejb:_")
 
               public class Rest {
                 public object Cimi :
-                    _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-itests-rest-cimi:_")
+                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-itests-rest-cimi:_")
               }
             }
 
@@ -20276,7 +20267,7 @@ public class Libs {
             public object Ui : _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-ui:_") {
               public class Flex {
                 public object War :
-                    _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-ui-flex-war:_")
+                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-ui-flex-war:_")
               }
 
               public object Swf : _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-ui-swf:_")
@@ -20284,58 +20275,58 @@ public class Libs {
 
             public object Api : _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-api:_") {
               public object Spec :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-api-spec:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-api-spec:_")
 
               public object Tools :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-api-tools:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-api-tools:_")
             }
 
             public class Provider {
               public object Util :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-util:_") {
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-util:_") {
                 public object Jobmanager :
-                    _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-util-jobmanager:_")
+                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-util-jobmanager:_")
 
                 public object Vncproxy :
-                    _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-util-vncproxy:_")
+                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-util-vncproxy:_")
               }
 
               public object Vmm :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-vmm:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-vmm:_")
 
               public class Aws {
                 public object Ec2 :
-                    _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-aws-ec2:_")
+                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-aws-ec2:_")
               }
 
               public object Nova :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-nova:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-nova:_")
 
               public object Api :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-api:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-provider-api:_")
             }
 
             public object Providers :
-                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-providers:_")
+              _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-providers:_")
 
             public object Clustermanager :
-                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-clustermanager:_") {
+              _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-clustermanager:_") {
               public object Impl :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-clustermanager-impl:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-clustermanager-impl:_")
 
               public object Api :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-clustermanager-api:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-clustermanager-api:_")
             }
 
             public object Dashboard :
-                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-dashboard:_") {
+              _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-dashboard:_") {
               public class Flex {
                 public object War :
-                    _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-dashboard-flex-war:_")
+                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-dashboard-flex-war:_")
               }
 
               public object Swf :
-                  _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-dashboard-swf:_")
+                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-dashboard-swf:_")
             }
 
             public class Ejb {
@@ -20343,7 +20334,7 @@ public class Libs {
             }
 
             public object Remoteclient :
-                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-remoteclient:_")
+              _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-remoteclient:_")
 
             public class Vnc {
               public object War : _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-vnc-war:_")
@@ -20356,7 +20347,7 @@ public class Libs {
             public object Swf : _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-swf:_")
 
             public object Sshtunnel :
-                _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-sshtunnel:_")
+              _D("org.ow2.sirocco.cloudmanager:sirocco-cloudmanager-sshtunnel:_")
           }
 
           public class Api {
@@ -20369,7 +20360,7 @@ public class Libs {
             public class Command {
               public class Line {
                 public object Tools :
-                    _D("org.ow2.sirocco.cloudmanager:sirocco-api-command-line-tools:_")
+                  _D("org.ow2.sirocco.cloudmanager:sirocco-api-command-line-tools:_")
               }
             }
           }
@@ -20411,10 +20402,10 @@ public class Libs {
               public class Monitoring {
                 public class Driver {
                   public object Dummy :
-                      _D("org.ow2.sirocco.vmm:sirocco-vmm-agent-monitoring-driver-dummy:_")
+                    _D("org.ow2.sirocco.vmm:sirocco-vmm-agent-monitoring-driver-dummy:_")
 
                   public object Collectd :
-                      _D("org.ow2.sirocco.vmm:sirocco-vmm-agent-monitoring-driver-collectd:_")
+                    _D("org.ow2.sirocco.vmm:sirocco-vmm-agent-monitoring-driver-collectd:_")
                 }
               }
 
@@ -20561,7 +20552,7 @@ public class Libs {
 
             public object Components : _D("org.ow2.orchestra.console:admin-modules-components:_") {
               public object Services :
-                  _D("org.ow2.orchestra.console:admin-modules-components-services:_")
+                _D("org.ow2.orchestra.console:admin-modules-components-services:_")
             }
           }
         }
@@ -20572,22 +20563,22 @@ public class Libs {
               public class Console {
                 public class Commons {
                   public object Webui :
-                      _D("org.ow2.orchestra.console:org.ow2.orchestra.console.commons.webui:_")
+                    _D("org.ow2.orchestra.console:org.ow2.orchestra.console.commons.webui:_")
                 }
 
                 public class Service {
                   public object Orchestra :
-                      _D("org.ow2.orchestra.console:org.ow2.orchestra.console.service.orchestra:_")
+                    _D("org.ow2.orchestra.console:org.ow2.orchestra.console.service.orchestra:_")
 
                   public object Commons :
-                      _D("org.ow2.orchestra.console:org.ow2.orchestra.console.service.commons:_")
+                    _D("org.ow2.orchestra.console:org.ow2.orchestra.console.service.commons:_")
                 }
 
                 public object Security :
-                    _D("org.ow2.orchestra.console:org.ow2.orchestra.console.security:_")
+                  _D("org.ow2.orchestra.console:org.ow2.orchestra.console.security:_")
 
                 public object Navigation :
-                    _D("org.ow2.orchestra.console:org.ow2.orchestra.console.navigation:_")
+                  _D("org.ow2.orchestra.console:org.ow2.orchestra.console.navigation:_")
               }
             }
           }
@@ -20708,16 +20699,16 @@ public class Libs {
                 public class Eclipse {
                   public class Equinox {
                     public object Common :
-                        _D("org.ow2.orchestra.eclipse.equinox:org.ow2.orchestra.eclipse.equinox.common:_")
+                      _D("org.ow2.orchestra.eclipse.equinox:org.ow2.orchestra.eclipse.equinox.common:_")
 
                     public object Preferences :
-                        _D("org.ow2.orchestra.eclipse.equinox:org.ow2.orchestra.eclipse.equinox.preferences:_")
+                      _D("org.ow2.orchestra.eclipse.equinox:org.ow2.orchestra.eclipse.equinox.preferences:_")
 
                     public object Registry :
-                        _D("org.ow2.orchestra.eclipse.equinox:org.ow2.orchestra.eclipse.equinox.registry:_")
+                      _D("org.ow2.orchestra.eclipse.equinox:org.ow2.orchestra.eclipse.equinox.registry:_")
 
                     public object App :
-                        _D("org.ow2.orchestra.eclipse.equinox:org.ow2.orchestra.eclipse.equinox.app:_")
+                      _D("org.ow2.orchestra.eclipse.equinox:org.ow2.orchestra.eclipse.equinox.app:_")
                   }
                 }
               }
@@ -20732,28 +20723,27 @@ public class Libs {
                 public class Eclipse {
                   public class Core {
                     public object Jobs :
-                        _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.jobs:_")
+                      _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.jobs:_")
 
                     public object Resources :
-                        _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.resources:_")
+                      _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.resources:_")
 
                     public object Filesystem :
-                        _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.filesystem:_")
+                      _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.filesystem:_")
 
                     public object Expressions :
-                        _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.expressions:_")
+                      _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.expressions:_")
 
                     public object Runtime :
-                        _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.runtime:_")
-                        {
+                      _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.runtime:_") {
                       public class Compatibility {
                         public object Auth :
-                            _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.runtime.compatibility.auth:_")
+                          _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.runtime.compatibility.auth:_")
                       }
                     }
 
                     public object Contenttype :
-                        _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.contenttype:_")
+                      _D("org.ow2.orchestra.eclipse.core:org.ow2.orchestra.eclipse.core.contenttype:_")
                   }
                 }
               }
@@ -20768,12 +20758,12 @@ public class Libs {
                 public class Eclipse {
                   public class Emf {
                     public object Common :
-                        _D("org.ow2.orchestra.eclipse.emf:org.ow2.orchestra.eclipse.emf.common:_")
+                      _D("org.ow2.orchestra.eclipse.emf:org.ow2.orchestra.eclipse.emf.common:_")
 
                     public object Ecore :
-                        _D("org.ow2.orchestra.eclipse.emf:org.ow2.orchestra.eclipse.emf.ecore:_") {
+                      _D("org.ow2.orchestra.eclipse.emf:org.ow2.orchestra.eclipse.emf.ecore:_") {
                       public object Xmi :
-                          _D("org.ow2.orchestra.eclipse.emf:org.ow2.orchestra.eclipse.emf.ecore.xmi:_")
+                        _D("org.ow2.orchestra.eclipse.emf:org.ow2.orchestra.eclipse.emf.ecore.xmi:_")
                     }
                   }
                 }
@@ -20788,7 +20778,7 @@ public class Libs {
               public class Orchestra {
                 public class Eclipse {
                   public object Osgi :
-                      _D("org.ow2.orchestra.eclipse.osgi:org.ow2.orchestra.eclipse.osgi:_")
+                    _D("org.ow2.orchestra.eclipse.osgi:org.ow2.orchestra.eclipse.osgi:_")
                 }
               }
             }
@@ -20802,16 +20792,14 @@ public class Libs {
                 public class Eclipse {
                   public class Datatools {
                     public object Connectivity :
-                        _D("org.ow2.orchestra.eclipse.datatools:org.ow2.orchestra.eclipse.datatools.connectivity:_")
-                        {
+                      _D("org.ow2.orchestra.eclipse.datatools:org.ow2.orchestra.eclipse.datatools.connectivity:_") {
                       public object Oda :
-                          _D("org.ow2.orchestra.eclipse.datatools:org.ow2.orchestra.eclipse.datatools.connectivity.oda:_")
-                          {
+                        _D("org.ow2.orchestra.eclipse.datatools:org.ow2.orchestra.eclipse.datatools.connectivity.oda:_") {
                         public object Consumer :
-                            _D("org.ow2.orchestra.eclipse.datatools:org.ow2.orchestra.eclipse.datatools.connectivity.oda.consumer:_")
+                          _D("org.ow2.orchestra.eclipse.datatools:org.ow2.orchestra.eclipse.datatools.connectivity.oda.consumer:_")
 
                         public object Profile :
-                            _D("org.ow2.orchestra.eclipse.datatools:org.ow2.orchestra.eclipse.datatools.connectivity.oda.profile:_")
+                          _D("org.ow2.orchestra.eclipse.datatools:org.ow2.orchestra.eclipse.datatools.connectivity.oda.profile:_")
                       }
                     }
                   }
@@ -20829,34 +20817,33 @@ public class Libs {
                   public class Birt {
                     public class Report {
                       public object Model :
-                          _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.model:_")
+                        _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.model:_")
 
                       public object Engine :
-                          _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.engine:_")
-                          {
+                        _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.engine:_") {
                         public class Script {
                           public object Javascript :
-                              _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.engine.script.javascript:_")
+                            _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.engine.script.javascript:_")
                         }
 
                         public object Fonts :
-                            _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.engine.fonts:_")
+                          _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.engine.fonts:_")
 
                         public class Emitter {
                           public object Html :
-                              _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.engine.emitter.html:_")
+                            _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.engine.emitter.html:_")
                         }
                       }
 
                       public class Data {
                         public object Adapter :
-                            _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.data.adapter:_")
+                          _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.data.adapter:_")
                       }
 
                       public class Item {
                         public class Crosstab {
                           public object Core :
-                              _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.item.crosstab.core:_")
+                            _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.report.item.crosstab.core:_")
                         }
                       }
                     }
@@ -20864,31 +20851,30 @@ public class Libs {
                     public class Chart {
                       public class Device {
                         public object Extension :
-                            _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.chart.device.extension:_")
+                          _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.chart.device.extension:_")
 
                         public object Svg :
-                            _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.chart.device.svg:_")
+                          _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.chart.device.svg:_")
                       }
 
                       public object Engine :
-                          _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.chart.engine:_")
-                          {
+                        _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.chart.engine:_") {
                         public object Extension :
-                            _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.chart.engine.extension:_")
+                          _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.chart.engine.extension:_")
                       }
 
                       public object Reportitem :
-                          _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.chart.reportitem:_")
+                        _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.chart.reportitem:_")
                     }
 
                     public object Data :
-                        _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.data:_") {
+                      _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.data:_") {
                       public object Aggregation :
-                          _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.data.aggregation:_")
+                        _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.data.aggregation:_")
                     }
 
                     public object Core :
-                        _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.core:_")
+                      _D("org.ow2.orchestra.eclipse.birt:org.ow2.orchestra.eclipse.birt.core:_")
                   }
                 }
               }
@@ -20906,10 +20892,9 @@ public class Libs {
       public class Installer {
         public class Izpack {
           public class Orchestra {
-            public object Installer : _D("org.ow2.orchestra.installer.izpack:orchestra-installer:_")
-                {
+            public object Installer : _D("org.ow2.orchestra.installer.izpack:orchestra-installer:_") {
               public object Izpack :
-                  _D("org.ow2.orchestra.installer.izpack:orchestra-installer-izpack:_")
+                _D("org.ow2.orchestra.installer.izpack:orchestra-installer-izpack:_")
             }
           }
 
@@ -20917,7 +20902,7 @@ public class Libs {
 
           public class Geolocation {
             public object Notifier :
-                _D("org.ow2.orchestra.installer.izpack:izpack-geolocation-notifier:_")
+              _D("org.ow2.orchestra.installer.izpack:izpack-geolocation-notifier:_")
           }
         }
       }
@@ -21191,25 +21176,25 @@ public class Libs {
               public class Admin {
                 public class Commons {
                   public object Webui :
-                      _D("org.ow2.novabpm.admin:org.ow2.novabpm.admin.commons.webui:_")
+                    _D("org.ow2.novabpm.admin:org.ow2.novabpm.admin.commons.webui:_")
                 }
 
                 public class Service {
                   public object Orchestra :
-                      _D("org.ow2.novabpm.admin:org.ow2.novabpm.admin.service.orchestra:_")
+                    _D("org.ow2.novabpm.admin:org.ow2.novabpm.admin.service.orchestra:_")
 
                   public object Bonita :
-                      _D("org.ow2.novabpm.admin:org.ow2.novabpm.admin.service.bonita:_")
+                    _D("org.ow2.novabpm.admin:org.ow2.novabpm.admin.service.bonita:_")
 
                   public object Commons :
-                      _D("org.ow2.novabpm.admin:org.ow2.novabpm.admin.service.commons:_")
+                    _D("org.ow2.novabpm.admin:org.ow2.novabpm.admin.service.commons:_")
                 }
 
                 public object Security :
-                    _D("org.ow2.novabpm.admin:org.ow2.novabpm.admin.security:_")
+                  _D("org.ow2.novabpm.admin:org.ow2.novabpm.admin.security:_")
 
                 public object Navigation :
-                    _D("org.ow2.novabpm.admin:org.ow2.novabpm.admin.navigation:_")
+                  _D("org.ow2.novabpm.admin:org.ow2.novabpm.admin.navigation:_")
               }
             }
           }
@@ -21381,7 +21366,7 @@ public class Libs {
           public class Proxy {
             public class Composite {
               public object Generators :
-                  _D("org.ow2.scarbo.runtime:sca-proxy-composite-generators:_")
+                _D("org.ow2.scarbo.runtime:sca-proxy-composite-generators:_")
             }
           }
         }

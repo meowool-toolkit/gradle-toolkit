@@ -1,5 +1,5 @@
 plugins { kotlin }
 
 dependencies {
-  api(project(":android:4.2.1"))
+  apiProjects(":android:4.2.1")
 }

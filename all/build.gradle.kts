@@ -11,10 +11,10 @@ gradlePlugin {
   }
 }
 
-dependencies {
-  api(project(":core"))
-  api(project(":android"))
-  api(project(":dependencies"))
-  api(project(":meowool"))
-  api(project(":publish"))
-}
+dependencies.apiProjects(
+  ":core",
+  ":android",
+  ":dependencies",
+  ":meowool",
+  ":publish"
+)

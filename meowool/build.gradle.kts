@@ -3,9 +3,7 @@
 plugins { kotlin; `kotlin-dsl` }
 
 dependencies {
-  api(project(":core"))
-  api(project(":android"))
-  api(project(":publish"))
+  apiProjects(":core", ":android", ":publish")
   api("com.diffplug.spotless:spotless-plugin-gradle:_")
-  testImplementation(kotlin("test-junit"))
+  testImplementation(Libs.Kotlin.Test.Junit)
 }

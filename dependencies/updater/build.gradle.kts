@@ -7,22 +7,26 @@ plugins {
 }
 
 dependencies {
-  implementation(gradleKotlinDsl())
-  implementation(Libs.KotlinX.Coroutines.Core)
-  implementation(Libs.Square.OkHttp3.OkHttp)
-  implementation(Libs.Square.OkHttp3.Logging.Interceptor)
-  implementation(Libs.Square.Retrofit2.Retrofit.toString()) {
+  implementationOf(
+    gradleKotlinDsl(),
+    Libs.KotlinX.Coroutines.Core,
+    Libs.Square.OkHttp3.OkHttp,
+    Libs.Square.OkHttp3.Logging.Interceptor,
+    Libs.Square.Moshi.Kotlin,
+    "com.google.cloud:google-cloud-storage:_"
+  )
+  implementation(Libs.Square.Retrofit2.Retrofit) {
     because("It has ready to use HttpException class")
   }
-  implementation(Libs.Square.Moshi.Kotlin)
-  implementation("com.google.cloud:google-cloud-storage:_")
 
-  testImplementation(Libs.Square.OkHttp3.Logging.Interceptor)
-  testImplementation(platform(notation = "org.junit:junit-bom:_"))
-  testImplementation(Libs.Junit.Jupiter)
-  testImplementation(Libs.Kotest.Runner.Junit5)
-  testImplementation(Libs.Kotlin.Test.Annotations.Common)
-  testImplementation(Libs.Kotlin.Test.Junit5)
+  testImplementationOf(
+    Libs.Square.OkHttp3.Logging.Interceptor,
+    Libs.Junit.Jupiter,
+    Libs.Kotest.Runner.Junit5,
+    Libs.Kotlin.Test.Annotations.Common,
+    Libs.Kotlin.Test.Junit5,
+    platform(notation = "org.junit:junit-bom:_"),
+  )
 
   testFixturesApi(Libs.Square.OkHttp3.OkHttp)
   testFixturesApi(Libs.Square.OkHttp3.Logging.Interceptor)
