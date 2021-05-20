@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/all" />
+            <option value="$PROJECT_DIR$/android" />
+            <option value="$PROJECT_DIR$/android/4.2.1" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/dependencies" />
+            <option value="$PROJECT_DIR$/dependencies/builtin" />
+            <option value="$PROJECT_DIR$/dependencies/generator" />
+            <option value="$PROJECT_DIR$/dependencies/updater" />
+            <option value="$PROJECT_DIR$/meowool" />
+            <option value="$PROJECT_DIR$/publish" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

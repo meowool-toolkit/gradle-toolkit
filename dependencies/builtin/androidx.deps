@@ -1,0 +1,393 @@
+// Declare dependencies from AndroidX: https://developer.android.com/jetpack/androidx/
+
+
+// Activity
+androidx.activity:activity
+androidx.activity:activity-compose [parent=androidx.compose, name=activity]
+androidx.activity:activity-ktx
+
+// Ads
+androidx.ads:ads-identifier
+androidx.ads:ads-identifier-common
+androidx.ads:ads-identifier-provider
+
+// Annotation
+androidx.annotation:annotation
+androidx.annotation:annotation-experimental
+
+// Appcompat
+androidx.appcompat:appcompat
+androidx.appcompat:appcompat-resources
+
+// Benchmark
+androidx.benchmark:benchmark
+androidx.benchmark:benchmark-common
+androidx.benchmark:benchmark-gradle-plugin
+androidx.benchmark:benchmark-junit4
+
+// Biometric
+androidx.biometric:biometric
+androidx.biometric:biometric-ktx
+
+// Camera
+androidx.camera:camera-camera2
+androidx.camera:camera-core
+androidx.camera:camera-extensions
+androidx.camera:camera-lifecycle
+androidx.camera:camera-view
+
+// Car
+androidx.car:car
+androidx.car:car-cluster
+androidx.car.app:app [parent=androidx, name=CarApp]
+androidx.car.app:app-testing [parent=androidx, name=CarAppTesting]
+
+// Collection
+androidx.collection:collection
+androidx.collection:collection-ktx
+
+// Compose
+androidx.compose.animation:animation
+androidx.compose.animation:animation-core
+androidx.compose.compiler:compiler
+androidx.compose.foundation:foundation
+androidx.compose.foundation:foundation-layout
+androidx.compose.foundation:foundation-text
+androidx.compose.material:material
+androidx.compose.material:material-icons-core
+androidx.compose.material:material-icons-extended
+androidx.compose.material:material-ripple
+androidx.compose.runtime:runtime
+androidx.compose.runtime:runtime-dispatch
+androidx.compose.runtime:runtime-livedata
+androidx.compose.runtime:runtime-rxjava2
+androidx.compose.runtime:runtime-rxjava3
+androidx.compose.runtime:runtime-saveable
+androidx.compose.runtime:runtime-saved-instance-state
+androidx.compose.ui:ui
+androidx.compose.ui:ui-geometry
+androidx.compose.ui:ui-graphics
+androidx.compose.ui:ui-test
+androidx.compose.ui:ui-test-junit4
+androidx.compose.ui:ui-test-manifest
+androidx.compose.ui:ui-text
+androidx.compose.ui:ui-text-android
+androidx.compose.ui:ui-tooling
+androidx.compose.ui:ui-tooling-data
+androidx.compose.ui:ui-unit
+androidx.compose.ui:ui-util
+androidx.compose.ui:ui-viewbinding
+
+// Concurrent
+androidx.concurrent:concurrent-futures
+androidx.concurrent:concurrent-futures-ktx
+androidx.concurrent:concurrent-listenablefuture
+androidx.concurrent:concurrent-listenablefuture-callback
+androidx.concurrent:futures
+
+// Constraintlayout
+androidx.constraintlayout:constraintlayout
+androidx.constraintlayout:constraintlayout-compose [parent=androidx.compose, name=constraintlayout]
+androidx.constraintlayout:constraintlayout-core
+androidx.constraintlayout:constraintlayout-solver
+
+// Core
+androidx.core:core
+androidx.core:core-animation
+androidx.core:core-animation-testing
+androidx.core:core-google-shortcuts
+androidx.core:core-ktx
+androidx.core:core-role
+
+// DataBinding
+androidx.databinding:adapters
+androidx.databinding:baseLibrary
+androidx.databinding:compiler
+androidx.databinding:compilerCommon
+androidx.databinding:databinding-adapters
+androidx.databinding:databinding-common
+androidx.databinding:databinding-compiler
+androidx.databinding:databinding-compiler-common
+androidx.databinding:databinding-ktx
+androidx.databinding:databinding-runtime
+androidx.databinding:library
+androidx.databinding:viewbinding
+
+// DataStore
+androidx.datastore:datastore
+androidx.datastore:datastore-core
+androidx.datastore:datastore-preferences
+androidx.datastore:datastore-preferences-core
+androidx.datastore:datastore-preferences-rxjava2
+androidx.datastore:datastore-preferences-rxjava3
+androidx.datastore:datastore-rxjava2
+androidx.datastore:datastore-rxjava3
+
+// DynamicAnimation
+androidx.dynamicanimation:dynamicanimation
+androidx.dynamicanimation:dynamicanimation-ktx
+
+// Emoji
+androidx.emoji:emoji
+androidx.emoji:emoji-appcompat
+androidx.emoji:emoji-bundled
+
+// Enterprise
+androidx.enterprise:enterprise-feedback
+androidx.enterprise:enterprise-feedback-testing
+
+// Fragment
+androidx.fragment:fragment
+androidx.fragment:fragment-ktx
+androidx.fragment:fragment-testing
+
+// Games
+androidx.games:games-frame-pacing
+androidx.games:games-performance-tuner
+
+// Gaming
+androidx.gaming:gaming-frame-pacing
+androidx.gaming:gaming-performance-tuner
+
+// Hilt
+androidx.hilt:hilt-common
+androidx.hilt:hilt-compiler
+androidx.hilt:hilt-lifecycle-viewmodel
+androidx.hilt:hilt-navigation
+androidx.hilt:hilt-navigation-compose [parent=androidx.compose, name=HiltNavigation]
+androidx.hilt:hilt-navigation-fragment
+androidx.hilt:hilt-work
+
+// Leanback
+androidx.leanback:leanback
+androidx.leanback:leanback-paging
+androidx.leanback:leanback-preference
+androidx.leanback:leanback-tab
+
+// Lifecycle
+androidx.lifecycle:lifecycle-common
+androidx.lifecycle:lifecycle-common-java8
+androidx.lifecycle:lifecycle-compiler
+androidx.lifecycle:lifecycle-extensions
+androidx.lifecycle:lifecycle-livedata
+androidx.lifecycle:lifecycle-livedata-core
+androidx.lifecycle:lifecycle-livedata-core-ktx
+androidx.lifecycle:lifecycle-livedata-ktx
+androidx.lifecycle:lifecycle-process
+androidx.lifecycle:lifecycle-reactivestreams
+androidx.lifecycle:lifecycle-reactivestreams-ktx
+androidx.lifecycle:lifecycle-runtime
+androidx.lifecycle:lifecycle-runtime-ktx
+androidx.lifecycle:lifecycle-runtime-testing
+androidx.lifecycle:lifecycle-service
+androidx.lifecycle:lifecycle-viewmodel
+androidx.lifecycle:lifecycle-viewmodel-compose [parent=androidx.compose, name=LifecycleViewModel]
+androidx.lifecycle:lifecycle-viewmodel-ktx
+androidx.lifecycle:lifecycle-viewmodel-savedstate
+
+// Media
+androidx.media:media
+androidx.media:media-widget
+androidx.mediarouter:mediarouter
+
+// Media2
+androidx.media2:media2
+androidx.media2:media2-common
+androidx.media2:media2-exoplayer
+androidx.media2:media2-player
+androidx.media2:media2-session
+androidx.media2:media2-widget
+
+// Multidex
+androidx.multidex:multidex
+androidx.multidex:multidex-instrumentation
+
+// Navigation
+androidx.navigation:navigation-common
+androidx.navigation:navigation-common-ktx
+androidx.navigation:navigation-compose [parent=androidx.compose, name=navigation]
+androidx.navigation:navigation-dynamic-features-fragment
+androidx.navigation:navigation-dynamic-features-runtime
+androidx.navigation:navigation-fragment
+androidx.navigation:navigation-fragment-ktx
+androidx.navigation:navigation-runtime
+androidx.navigation:navigation-runtime-ktx
+androidx.navigation:navigation-safe-args-generator
+androidx.navigation:navigation-safe-args-gradle-plugin
+androidx.navigation:navigation-testing
+androidx.navigation:navigation-ui
+androidx.navigation:navigation-ui-ktx
+
+// Paging
+androidx.paging:paging-common
+androidx.paging:paging-common-ktx
+androidx.paging:paging-compose [parent=androidx.compose, name=paging]
+androidx.paging:paging-guava
+androidx.paging:paging-runtime
+androidx.paging:paging-runtime-ktx
+androidx.paging:paging-rxjava2
+androidx.paging:paging-rxjava2-ktx
+androidx.paging:paging-rxjava3
+
+// Palette
+androidx.palette:palette
+androidx.palette:palette-ktx
+
+// Preference
+androidx.preference:preference
+androidx.preference:preference-ktx
+
+// RecyclerView
+androidx.recyclerview:recyclerview
+androidx.recyclerview:recyclerview-selection
+
+// RemoteCallback
+androidx.remotecallback:remotecallback
+androidx.remotecallback:remotecallback-processor
+
+// ResourceInspection
+androidx.resourceinspection:resourceinspection-annotation
+androidx.resourceinspection:resourceinspection-processor
+
+// Room
+androidx.room:room-common
+androidx.room:room-compiler
+androidx.room:room-compiler-processing
+androidx.room:room-compiler-processing-testing
+androidx.room:room-coroutines
+androidx.room:room-guava
+androidx.room:room-ktx
+androidx.room:room-migration
+androidx.room:room-runtime
+androidx.room:room-rxjava2
+androidx.room:room-rxjava3
+androidx.room:room-testing
+
+// Savedstate
+androidx.savedstate:savedstate
+androidx.savedstate:savedstate-bundle
+androidx.savedstate:savedstate-common
+androidx.savedstate:savedstate-ktx
+
+// Security
+androidx.security:security-crypto
+androidx.security:security-crypto-ktx
+androidx.security:security-identity-credential
+
+// Slice
+androidx.slice:slice-builders
+androidx.slice:slice-builders-ktx
+androidx.slice:slice-core
+androidx.slice:slice-view
+
+// Sqlite
+androidx.sqlite:sqlite
+androidx.sqlite:sqlite-framework
+androidx.sqlite:sqlite-ktx
+
+// Test
+androidx.test:core
+androidx.test:core-ktx
+androidx.test:monitor
+androidx.test:orchestrator
+androidx.test:rules
+androidx.test:runner
+androidx.test.espresso:espresso-accessibility
+androidx.test.espresso:espresso-contrib
+androidx.test.espresso:espresso-core
+androidx.test.espresso:espresso-idling-resource
+androidx.test.espresso:espresso-intents
+androidx.test.espresso:espresso-remote
+androidx.test.espresso:espresso-web
+androidx.test.espresso.idling:idling-concurrent [parent=androidx.test, name=EspressoIdlingConcurrent]
+androidx.test.espresso.idling:idling-net [parent=androidx.test, name=EspressoIdlingNet]
+androidx.test.ext:junit
+androidx.test.ext:junit-ktx
+androidx.test.ext:truth
+androidx.test.janktesthelper:janktesthelper
+androidx.test.janktesthelper:janktesthelper-v23
+androidx.test.services:storage
+androidx.test.services:test-services
+androidx.test.uiautomator:uiautomator
+androidx.test.uiautomator:uiautomator-v18
+
+// Tracing
+androidx.tracing:tracing
+androidx.tracing:tracing-ktx
+
+// Transition
+androidx.transition:transition
+androidx.transition:transition-ktx
+
+// VectorDrawable
+androidx.vectordrawable:vectordrawable
+androidx.vectordrawable:vectordrawable-animated
+androidx.vectordrawable:vectordrawable-seekable
+
+// ViewPager
+androidx.viewpager:viewpager
+androidx.viewpager:viewpager2 [parent=androidx]
+
+// Wear
+androidx.wear:wear
+androidx.wear:wear-complications-data
+androidx.wear:wear-complications-provider
+androidx.wear:wear-input
+androidx.wear:wear-input-testing
+androidx.wear:wear-ongoing
+androidx.wear:wear-phone-interactions
+androidx.wear:wear-remote-interactions
+androidx.wear:wear-tiles
+androidx.wear:wear-tiles-proto
+androidx.wear:wear-tiles-renderer
+androidx.wear:wear-watchface
+androidx.wear:wear-watchface-client
+androidx.wear:wear-watchface-client-guava
+androidx.wear:wear-watchface-complications-rendering
+androidx.wear:wear-watchface-data
+androidx.wear:wear-watchface-editor
+androidx.wear:wear-watchface-editor-guava
+androidx.wear:wear-watchface-guava
+androidx.wear:wear-watchface-style
+
+// Window
+androidx.window:window
+androidx.window:window-extensions
+
+// Work
+androidx.work:work-gcm
+androidx.work:work-multiprocess
+androidx.work:work-runtime
+androidx.work:work-runtime-ktx
+androidx.work:work-rxjava2
+androidx.work:work-rxjava3
+androidx.work:work-testing
+
+// More
+androidx.asynclayoutinflater:asynclayoutinflater
+androidx.autofill:autofill
+androidx.browser:browser
+androidx.cardview:cardview
+androidx.contentpager:contentpager
+androidx.coordinatorlayout:coordinatorlayout
+androidx.cursoradapter:cursoradapter
+androidx.customview:customview
+androidx.documentfile:documentfile
+androidx.drawerlayout:drawerlayout
+androidx.exifinterface:exifinterface
+androidx.gridlayout:gridlayout
+androidx.heifwriter:heifwriter
+androidx.interpolator:interpolator
+androidx.loader:loader
+androidx.localbroadcastmanager:localbroadcastmanager
+androidx.percentlayout:percentlayout
+androidx.print:print
+androidx.recommendation:recommendation
+androidx.sharetarget:sharetarget
+androidx.slidingpanelayout:slidingpanelayout
+androidx.startup:startup-runtime
+androidx.swiperefreshlayout:swiperefreshlayout
+androidx.textclassifier:textclassifier
+androidx.tvprovider:tvprovider
+androidx.versionedparcelable:versionedparcelable
+androidx.webkit:webkit

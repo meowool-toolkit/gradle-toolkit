@@ -1,0 +1,7 @@
+#Tue Feb 16 00:23:07 CST 2021
+base.1=/Users/rin/Documents/Develop/MultiPlatform/Projects/Kami/dexpoet/sample/build/intermediates/dex/debug/mergeProjectDexDebug/6/classes.dex
+path.1=6/classes.dex
+base.0=/Users/rin/Documents/Develop/MultiPlatform/Projects/Kami/dexpoet/sample/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=0/classes.dex

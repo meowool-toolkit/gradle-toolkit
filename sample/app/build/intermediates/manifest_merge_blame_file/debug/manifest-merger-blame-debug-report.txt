@@ -1,0 +1,35 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<!--
+3  ~ Copyright (c) 2021. Rin Orz (凛)
+4  ~
+5  ~ Licensed under the Apache License, Version 2.0 (the "License");
+6  ~ you may not use this file except in compliance with the License.
+7  ~ You may obtain a copy of the License at
+8  ~
+9  ~    http://www.apache.org/licenses/LICENSE-2.0
+10  ~
+11  ~ Unless required by applicable law or agreed to in writing, software
+12  ~ distributed under the License is distributed on an "AS IS" BASIS,
+13  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+14  ~ See the License for the specific language governing permissions and limitations under the License.
+15  ~
+16  ~ Github home page: https://github.com/RinOrz
+17-->
+18<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+19    package="com.rin.dexpoet.sample" >
+20
+21    <uses-sdk
+22        android:minSdkVersion="21"
+22-->/Users/rin/Documents/Develop/MultiPlatform/Projects/Kami/dexpoet/sample/src/main/AndroidManifest.xml
+23        android:targetSdkVersion="30" />
+23-->/Users/rin/Documents/Develop/MultiPlatform/Projects/Kami/dexpoet/sample/src/main/AndroidManifest.xml
+24
+25    <application
+25-->/Users/rin/Documents/Develop/MultiPlatform/Projects/Kami/dexpoet/sample/src/main/AndroidManifest.xml:22:5-24:38
+26        android:allowBackup="true"
+26-->/Users/rin/Documents/Develop/MultiPlatform/Projects/Kami/dexpoet/sample/src/main/AndroidManifest.xml:23:9-35
+27        android:debuggable="true"
+28        android:supportsRtl="true" />
+28-->/Users/rin/Documents/Develop/MultiPlatform/Projects/Kami/dexpoet/sample/src/main/AndroidManifest.xml:24:9-35
+29
+30</manifest>
