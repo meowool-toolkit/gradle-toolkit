@@ -2,8 +2,8 @@
 
 buildscript {
   repositories {
+    maven("https://s01.oss.sonatype.org/content/repositories/public")
     maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
-    maven("https://oss.sonatype.org/content/repositories/snapshots")
     mavenCentral()
     gradlePluginPortal()
     google()
@@ -11,7 +11,7 @@ buildscript {
 
   arrayOf(
     "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0",
-    "com.meowool.toolkit:gradle-dsl-x:1.1-SNAPSHOT",
+    "com.meowool.toolkit:gradle-dsl-x:1.1",
   ).forEach { dependencies.classpath(it) }
 
   // Check for updates every build
