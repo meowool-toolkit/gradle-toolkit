@@ -98,19 +98,21 @@ interface RootGradleDslExtension : GradleDslExtension {
   )
 
   /** @see RepositoryHandler.mavenCentral */
-  fun addMavenSnapshots(
+  fun addSonatype(
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
     action: MavenArtifactRepository.() -> Unit = {},
   ) {
-    addMaven("https://oss.sonatype.org/content/repositories/snapshots", applyScope, action)
+    addMaven("https://s01.oss.sonatype.org/content/repositories/public", applyScope, action)
+    addMaven("https://oss.sonatype.org/content/repositories/public", applyScope, action)
   }
 
   /** @see RepositoryHandler.mavenCentral */
-  fun addMavenS01Snapshots(
+  fun addSonatypeSnapshots(
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
     action: MavenArtifactRepository.() -> Unit = {},
   ) {
     addMaven("https://s01.oss.sonatype.org/content/repositories/snapshots", applyScope, action)
+    addMaven("https://oss.sonatype.org/content/repositories/snapshots", applyScope, action)
   }
 
   /** @see RepositoryHandler.mavenLocal */
@@ -120,7 +122,7 @@ interface RootGradleDslExtension : GradleDslExtension {
   )
 
   /** @see RepositoryHandler.flatDir */
-  fun addFlatDirRepo(
+  fun addFlatDir(
     args: Map<String, Any?>,
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
   )
@@ -132,7 +134,7 @@ interface RootGradleDslExtension : GradleDslExtension {
   )
 
   /** @see RepositoryHandler.google */
-  fun addGoogleRepo(
+  fun addGoogle(
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
     action: MavenArtifactRepository.() -> Unit = {},
   )
@@ -146,13 +148,6 @@ interface RootGradleDslExtension : GradleDslExtension {
     action: MavenArtifactRepository.() -> Unit = {}
   ) {
     addMavenMirror(MavenMirrors.Aliyun.JCenter)
-  }
-
-  fun addKotlinEapRepo(
-    applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
-    action: MavenArtifactRepository.() -> Unit = {}
-  ) {
-    addMaven("https://dl.bintray.com/kotlin/kotlin-eap", applyScope, action)
   }
 
   fun addJitpack(

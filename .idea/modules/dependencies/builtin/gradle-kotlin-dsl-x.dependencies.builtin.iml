@@ -6,7 +6,6 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../../dependencies/builtin">
       <sourceFolder url="file://$MODULE_DIR$/../../../../dependencies/builtin/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../../dependencies/builtin/src/main/kotlin" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/../../../../dependencies/builtin/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../../dependencies/builtin/build" />
     </content>

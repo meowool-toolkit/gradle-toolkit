@@ -26,6 +26,7 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.initialization.Settings
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.kotlin.dsl.add
@@ -63,6 +64,11 @@ class GradleDslXCore : Plugin<Any> {
     extensions.findByType<SourceSetContainer>()?.apply {
       findByName("main")?.java?.srcDirs("src/main/kotlin")
       findByName("test")?.java?.srcDirs("src/test/kotlin")
+    }
+
+    extensions.findByType<JavaPluginExtension>()?.apply {
+      sourceCompatibility = JavaVersion.VERSION_1_8
+      targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     tasks.withType<JavaCompile> {

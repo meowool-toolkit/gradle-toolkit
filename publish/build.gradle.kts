@@ -2,13 +2,11 @@
 
 plugins { kotlin; `kotlin-dsl`; `kotlin-kapt` }
 
-repositories.gradlePluginPortal()
-
 dependencies {
   apiOf(
     project(":core"),
-    Libs.Jetbrains.Dokka.Gradle.Plugin,
     "com.vanniktech:gradle-maven-publish-plugin:_",
+    Libs.Jetbrains.Dokka.Gradle.Plugin,
   )
   testImplementation(Libs.Kotlin.Test.Junit)
 }

@@ -25,15 +25,13 @@ import org.gradle.kotlin.dsl.apply
 
 internal fun RootGradleDslExtension.presetRepositories(loadSnapshots: Boolean = false) {
   rootProject.rootDir.resolve(".repo").takeIf { it.exists() }?.let(::addMaven)
-  addGoogleRepo()
+  addGoogle()
   addMavenCentral()
   addJitpack()
   addMavenMirror(MavenMirrors.Aliyun.JCenter)
   addGradlePluginPortal()
-  if (loadSnapshots) {
-    addMavenSnapshots()
-    addMavenS01Snapshots()
-  }
+  addSonatype()
+  if (loadSnapshots) addSonatypeSnapshots()
 }
 
 internal fun RootGradleDslExtension.presetKotlinCompilerArgs() = configureAllKotlinCompile {
@@ -77,11 +75,16 @@ internal fun RootGradleDslExtension.presetSpotless(
 }
 
 internal fun RootGradleDslExtension.presetPublishing() {
-  // https://github.com/vanniktech/gradle-maven-publish-plugin#setting-properties
-  with(project.rootProject) {
-    setProperty("POM_LICENCE_NAME", "The Apache Software License, Version 2.0")
-    setProperty("POM_LICENCE_URL", "https://github.com/meowool/license/blob/main/LICENSE")
-  }
+//  // TODO Support
+//  // https://github.com/vanniktech/gradle-maven-publish-plugin#setting-properties
+//  data += PublishInfo(
+//    developerId = "meowool",
+//    developerName = "Meowool Organization",
+//    developerUrl = "https://github.com/meowool/",
+//    licenceName = "The Apache Software License, Version 2.0",
+//    licenceUrl = "https://github.com/meowool/license/blob/main/LICENSE"
+//  )
+
   project.publishSubprojects()
   project.allprojects {
     if (!buildFile.exists()) return@allprojects

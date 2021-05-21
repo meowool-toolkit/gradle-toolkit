@@ -54,17 +54,15 @@ internal fun BaseExtension.loadAndroidPresets() {
  */
 internal fun Project.loadSigningConfigPresets(signingConfig: SigningConfig) {
   signingConfig.apply {
-    val allProperties = allProperties
-
-    allProperties.getProperty("key.store.file")?.let(::File)?.also { file ->
+    findPropertyOrEnv("key.store.file")?.toString()?.let(::File)?.also { file ->
       require(file.exists()) {
         "The properties in the ${projectDir.absolutePath} project specify the `key.file`, " +
           "but the ${file.absolutePath} file does not exist."
       }
       storeFile = file
     }
-    allProperties.getProperty("key.alias")?.also { keyAlias = it }
-    allProperties.getProperty("key.password")?.also { keyPassword = it; storePassword = it }
-    allProperties.getProperty("key.store.password")?.also { storePassword = it }
+    findPropertyOrEnv("key.alias")?.toString()?.also { keyAlias = it }
+    findPropertyOrEnv("key.password")?.toString()?.also { keyPassword = it; storePassword = it }
+    findPropertyOrEnv("key.store.password")?.toString()?.also { storePassword = it }
   }
 }

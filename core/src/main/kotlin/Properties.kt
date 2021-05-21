@@ -41,28 +41,21 @@ fun Project.findLocalProperties(): Properties? =
  * Return the properties of the `local.properties` file in the project.
  */
 val Project.localProperties: Properties
-  get() = findLocalProperties() ?: error("There is no `local.properties` file in the project(${projectDir.absolutePath})")
-
-/**
- * Return all the properties that can be touched by this project.
- */
-val Project.allProperties: Properties
-  get() = Properties().apply {
-    findLocalProperties()?.toMap()?.let(::putAll)
-    rootProject.findLocalProperties()?.toMap()?.let(::putAll)
-    putAll(properties)
-  }
+  get() = findLocalProperties()
+    ?: error("There is no `local.properties` file in the project(${projectDir.absolutePath})")
 
 /**
  * Find the property from the touchable position (maybe system env) of the current project and
  * return it value, if it can't find it, return null.
  */
-fun Project.findPropertyOrEnv(key: String): Any? =
-  allProperties.getProperty(key) ?: System.getenv(key)
+fun Project.findPropertyOrEnv(key: String): Any? = findProperty(key)
+  ?: findLocalProperties()?.getProperty(key)
+  ?: rootProject.findLocalProperties()?.getProperty(key)
+  ?: System.getenv(key)
 
 /**
  * Returns the property value from the touchable position (maybe system env) of the current project,
  * if it can't find it, return [defaultValue].
  */
 fun Project.getPropertyOrEnv(key: String, defaultValue: Any): Any =
-  allProperties.getProperty(key) ?: System.getenv(key) ?: defaultValue
+  findPropertyOrEnv(key) ?: defaultValue

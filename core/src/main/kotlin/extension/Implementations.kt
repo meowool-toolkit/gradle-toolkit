@@ -112,7 +112,7 @@ internal class RootGradleDslExtensionImpl(override val rootProject: Project) :
     action: MavenArtifactRepository.() -> Unit
   ) = resolveApply(applyScope) { repositories.mavenLocal(action) }
 
-  override fun addFlatDirRepo(args: Map<String, Any?>, applyScope: ApplyProjectScope) {
+  override fun addFlatDir(args: Map<String, Any?>, applyScope: ApplyProjectScope) {
     resolveApply(applyScope) { repositories.flatDir(args) }
   }
 
@@ -121,7 +121,7 @@ internal class RootGradleDslExtensionImpl(override val rootProject: Project) :
     action: ArtifactRepository.() -> Unit
   ) = resolveApply(applyScope) { repositories.gradlePluginPortal(action) }
 
-  override fun addGoogleRepo(
+  override fun addGoogle(
     applyScope: ApplyProjectScope,
     action: MavenArtifactRepository.() -> Unit
   ) = resolveApply(applyScope) { repositories.google(action) }
