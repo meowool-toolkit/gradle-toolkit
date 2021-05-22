@@ -1,26 +1,17 @@
 @file:Suppress("SpellCheckingInspection")
 
+plugins {
+  id("com.meowool.toolkit.gradle-dsl-x") version "1.1"
+}
+
 buildscript {
   repositories {
-    maven("https://s01.oss.sonatype.org/content/repositories/public")
-    maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
     mavenCentral()
-    gradlePluginPortal()
     google()
   }
 
-  arrayOf(
-    "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0",
-    "com.meowool.toolkit:gradle-dsl-x:1.1",
-  ).forEach { dependencies.classpath(it) }
-
-  // Check for updates every build
-  configurations.all {
-    resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
-  }
+  dependencies.classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0")
 }
-
-apply<GradleDslX>()
 
 gradleDslX {
   useMeowoolSpec()
