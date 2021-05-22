@@ -29,17 +29,17 @@ import java.nio.file.Path
  * which will skip import.
  *
  * @param includeDir the directory of project included.
- * @param excludeDirs the directories of project excluded.
+ * @param excludeCondition exclude files if the given condition is true.
  *
  * @see Settings.include
  */
 fun Settings.importProjects(
   includeDir: File,
-  vararg excludeDirs: File
+  excludeCondition: (File) -> Boolean
 ) = includeDir.walkTopDown()
   .asSequence()
   .filterNot { it == rootDir }
-  .filterNot { excludeDirs.any { exclude -> it.absolutePath.startsWith(exclude.absolutePath) } }
+  .filterNot { excludeCondition(it) }
   .filterNot { it.resolve(".skipimport").exists() }
   .filter { it.resolve("build.gradle.kts").exists() || it.resolve("build.gradle").exists() }
   .forEach {
@@ -49,6 +49,56 @@ fun Settings.importProjects(
         .replace(File.separatorChar, ':')
     )
   }
+
+/**
+ * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDirPath].
+ *
+ * NOTE: For directories that do not need to be imported, you can add a file named `.skipimport`,
+ * which will skip import.
+ *
+ * @param includeDirPath the directory of project included.
+ * @param excludeCondition exclude files if the given condition is true.
+ *
+ * @see Settings.include
+ */
+fun Settings.importProjects(
+  includeDirPath: String,
+  excludeCondition: (File) -> Boolean
+) = this.importProjects(File(includeDirPath), excludeCondition)
+
+/**
+ * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDirPath].
+ *
+ * NOTE: For directories that do not need to be imported, you can add a file named `.skipimport`,
+ * which will skip import.
+ *
+ * @param includeDirPath the directory of project included.
+ * @param excludeCondition exclude files if the given condition is true.
+ *
+ * @see Settings.include
+ */
+fun Settings.importProjects(
+  includeDirPath: Path,
+  excludeCondition: (File) -> Boolean
+) = this.importProjects(includeDirPath.toFile(), excludeCondition)
+
+/**
+ * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDir].
+ *
+ * NOTE: For directories that do not need to be imported, you can add a file named `.skipimport`,
+ * which will skip import.
+ *
+ * @param includeDir the directory of project included.
+ * @param excludeDirs the directories of project excluded.
+ *
+ * @see Settings.include
+ */
+fun Settings.importProjects(
+  includeDir: File,
+  vararg excludeDirs: File
+) = importProjects(includeDir) { file ->
+  excludeDirs.any { it == file }
+}
 
 /**
  * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDirPath].

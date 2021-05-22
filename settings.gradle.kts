@@ -1,7 +1,7 @@
 @file:Suppress("SpellCheckingInspection")
 
 plugins {
-  id("com.meowool.toolkit.gradle-dsl-x") version "1.1"
+  id("com.meowool.toolkit.gradle-dsl-x") version "1.2"
 }
 
 buildscript {
