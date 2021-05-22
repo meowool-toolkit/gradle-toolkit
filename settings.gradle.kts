@@ -1,7 +1,5 @@
-@file:Suppress("SpellCheckingInspection")
-
 plugins {
-  id("com.meowool.toolkit.gradle-dsl-x") version "1.2"
+  id("com.meowool.toolkit.gradle-dsl-x") version "1.4"
 }
 
 buildscript {
@@ -9,8 +7,6 @@ buildscript {
     mavenCentral()
     google()
   }
-
-  dependencies.classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0")
 }
 
 gradleDslX {

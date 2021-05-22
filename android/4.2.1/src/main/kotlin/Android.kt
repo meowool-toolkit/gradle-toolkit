@@ -22,9 +22,6 @@ import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.Project
 
 private fun Project.init(scope: String? = null) {
-  // Either app or lib should import kotlin-android
-  ensureApplyPlugin("kotlin-android")
-
   android {
     loadAndroidPresets()
 
