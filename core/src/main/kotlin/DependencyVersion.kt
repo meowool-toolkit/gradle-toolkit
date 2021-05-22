@@ -29,6 +29,13 @@ infix fun CharSequence.version(ver: String): String = split(":").toMutableList()
 }.joinToString(":")
 
 /**
+ * Remove the dependency version.
+ */
+fun CharSequence.withoutVersion(): String = split(":").toMutableList().apply {
+  removeLast()
+}.joinToString(":")
+
+/**
  * Returns the group id from dependency.
  */
 fun CharSequence.getGroupId(): String = split(":")[0]

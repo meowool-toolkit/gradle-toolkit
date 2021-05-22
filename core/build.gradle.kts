@@ -18,6 +18,6 @@ dependencies {
     gradleKotlinDsl(),
     Libs.Kotlin.Stdlib
   )
-  compileOnlyApi(Libs.Kotlin.Gradle.Plugin)
+  api(Libs.Kotlin.Gradle.Plugin)
   testImplementation(Libs.Kotlin.Test.Junit)
 }
