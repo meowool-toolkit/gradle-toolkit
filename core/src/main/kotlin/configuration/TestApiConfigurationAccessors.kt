@@ -39,7 +39,7 @@ fun DependencyHandler.testApi(
   dependencyNotation: CharSequence,
   dependencyConfiguration: Action<ExternalModuleDependency>
 ): ExternalModuleDependency = addDependencyTo(
-  this, "testApi", dependencyNotation, dependencyConfiguration
+  this, "testApi", dependencyNotation.toString(), dependencyConfiguration
 )
 
 /**
@@ -61,10 +61,10 @@ fun DependencyHandler.testApiOf(vararg dependenciesNotation: Any): List<Dependen
  * @see [DependencyHandler.add]
  */
 fun DependencyHandler.testApiOf(
-  vararg dependenciesNotation: String,
+  vararg dependenciesNotation: CharSequence,
   allDependenciesConfiguration: Action<ExternalModuleDependency>
 ): List<ExternalModuleDependency> = dependenciesNotation.map {
-  addDependencyTo(this, "testApi", it, allDependenciesConfiguration)
+  addDependencyTo(this, "testApi", it.toString(), allDependenciesConfiguration)
 }
 
 /**

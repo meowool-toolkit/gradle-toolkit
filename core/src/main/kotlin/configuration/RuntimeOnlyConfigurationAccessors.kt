@@ -25,6 +25,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 import org.gradle.kotlin.dsl.add
 import org.gradle.kotlin.dsl.project
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 /**
  * Adds a dependency to the 'runtimeOnly' configuration.
@@ -39,7 +40,7 @@ fun DependencyHandler.runtimeOnly(
   dependencyNotation: CharSequence,
   dependencyConfiguration: Action<ExternalModuleDependency>
 ): ExternalModuleDependency = addDependencyTo(
-  this, "runtimeOnly", dependencyNotation, dependencyConfiguration
+  this, "runtimeOnly", dependencyNotation.toString(), dependencyConfiguration
 )
 
 /**
@@ -61,10 +62,10 @@ fun DependencyHandler.runtimeOnlyOf(vararg dependenciesNotation: Any): List<Depe
  * @see [DependencyHandler.add]
  */
 fun DependencyHandler.runtimeOnlyOf(
-  vararg dependenciesNotation: String,
+  vararg dependenciesNotation: CharSequence,
   allDependenciesConfiguration: Action<ExternalModuleDependency>
 ): List<ExternalModuleDependency> = dependenciesNotation.map {
-  addDependencyTo(this, "runtimeOnly", it, allDependenciesConfiguration)
+  addDependencyTo(this, "runtimeOnly", it.toString(), allDependenciesConfiguration)
 }
 
 /**
@@ -122,3 +123,60 @@ fun Project.runtimeOnlyFiles(
  */
 fun Project.runtimeOnlyJars(vararg jarDirectory: String = arrayOf("libs")): List<Dependency?> =
   jarDirectory.map { runtimeOnlyFiles(it, "*.jar").first() }
+
+
+//// kotlin-multiplatform
+
+/**
+ * Adds a dependency to the 'runtimeOnly' configuration.
+ *
+ * @param dependencyNotation notation for the dependency to be added.
+ * @param dependencyConfiguration expression to use to configure the dependency.
+ * @return The dependency.
+ */
+fun KotlinDependencyHandler.runtimeOnly(
+  dependencyNotation: CharSequence,
+  dependencyConfiguration: ExternalModuleDependency.() -> Unit
+): ExternalModuleDependency = runtimeOnly(dependencyNotation.toString(), dependencyConfiguration)
+
+/**
+ * Adds a dependencies to the 'runtimeOnly' configuration.
+ *
+ * @param dependenciesNotation notation for the dependencies to be added.
+ */
+fun KotlinDependencyHandler.runtimeOnlyOf(vararg dependenciesNotation: Any): List<Dependency?> =
+  dependenciesNotation.map { runtimeOnly(it) }
+
+/**
+ * Adds a dependencies to the 'runtimeOnly' configuration.
+ *
+ * @param dependenciesNotation notation for the dependencies to be added.
+ * @param allDependenciesConfiguration expression to use to configure the all dependencies.
+ */
+fun KotlinDependencyHandler.runtimeOnlyOf(
+  vararg dependenciesNotation: CharSequence,
+  allDependenciesConfiguration: ExternalModuleDependency.() -> Unit
+): List<ExternalModuleDependency> = dependenciesNotation.map {
+  runtimeOnly(it.toString(), allDependenciesConfiguration)
+}
+
+/**
+ * Adds some project dependencies to the 'runtimeOnly' configuration.
+ *
+ * @param projectPaths project paths for the dependencies to be added.
+ */
+fun KotlinDependencyHandler.runtimeOnlyProjects(vararg projectPaths: String): List<Dependency?> =
+  projectPaths.map { runtimeOnly(project(it)) }
+
+/**
+ * Adds some project dependencies to the 'runtimeOnly' configuration.
+ *
+ * @param projectPaths project paths for the dependencies to be added.
+ * @param allDependenciesConfiguration expression to use to configure the all dependencies.
+ */
+fun KotlinDependencyHandler.runtimeOnlyProjects(
+  vararg projectPaths: String,
+  allDependenciesConfiguration: ModuleDependency.() -> Unit
+): List<Dependency> = projectPaths.map {
+  runtimeOnly(project(it), allDependenciesConfiguration)
+}

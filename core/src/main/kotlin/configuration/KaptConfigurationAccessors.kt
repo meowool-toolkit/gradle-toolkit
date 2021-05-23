@@ -25,6 +25,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 import org.gradle.kotlin.dsl.add
 import org.gradle.kotlin.dsl.project
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 /**
  * Adds a dependency to the 'kapt' configuration.
@@ -39,7 +40,7 @@ fun DependencyHandler.kapt(
   dependencyNotation: CharSequence,
   dependencyConfiguration: Action<ExternalModuleDependency>
 ): ExternalModuleDependency = addDependencyTo(
-  this, "kapt", dependencyNotation, dependencyConfiguration
+  this, "kapt", dependencyNotation.toString(), dependencyConfiguration
 )
 
 /**
@@ -61,10 +62,10 @@ fun DependencyHandler.kaptOf(vararg dependenciesNotation: Any): List<Dependency?
  * @see [DependencyHandler.add]
  */
 fun DependencyHandler.kaptOf(
-  vararg dependenciesNotation: String,
+  vararg dependenciesNotation: CharSequence,
   allDependenciesConfiguration: Action<ExternalModuleDependency>
 ): List<ExternalModuleDependency> = dependenciesNotation.map {
-  addDependencyTo(this, "kapt", it, allDependenciesConfiguration)
+  addDependencyTo(this, "kapt", it.toString(), allDependenciesConfiguration)
 }
 
 /**

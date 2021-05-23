@@ -39,7 +39,7 @@ fun DependencyHandler.testCompileOnly(
   dependencyNotation: CharSequence,
   dependencyConfiguration: Action<ExternalModuleDependency>
 ): ExternalModuleDependency = addDependencyTo(
-  this, "testCompileOnly", dependencyNotation, dependencyConfiguration
+  this, "testCompileOnly", dependencyNotation.toString(), dependencyConfiguration
 )
 
 /**
@@ -61,10 +61,10 @@ fun DependencyHandler.testCompileOnlyOf(vararg dependenciesNotation: Any): List<
  * @see [DependencyHandler.add]
  */
 fun DependencyHandler.testCompileOnlyOf(
-  vararg dependenciesNotation: String,
+  vararg dependenciesNotation: CharSequence,
   allDependenciesConfiguration: Action<ExternalModuleDependency>
 ): List<ExternalModuleDependency> = dependenciesNotation.map {
-  addDependencyTo(this, "testCompileOnly", it, allDependenciesConfiguration)
+  addDependencyTo(this, "testCompileOnly", it.toString(), allDependenciesConfiguration)
 }
 
 /**

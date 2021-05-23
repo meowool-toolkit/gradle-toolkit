@@ -25,6 +25,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 import org.gradle.kotlin.dsl.add
 import org.gradle.kotlin.dsl.project
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 /**
  * Adds a dependency to the 'implementation' configuration.
@@ -39,7 +40,7 @@ fun DependencyHandler.implementation(
   dependencyNotation: CharSequence,
   dependencyConfiguration: Action<ExternalModuleDependency>
 ): ExternalModuleDependency = addDependencyTo(
-  this, "implementation", dependencyNotation, dependencyConfiguration
+  this, "implementation", dependencyNotation.toString(), dependencyConfiguration
 )
 
 /**
@@ -61,10 +62,10 @@ fun DependencyHandler.implementationOf(vararg dependenciesNotation: Any): List<D
  * @see [DependencyHandler.add]
  */
 fun DependencyHandler.implementationOf(
-  vararg dependenciesNotation: String,
+  vararg dependenciesNotation: CharSequence,
   allDependenciesConfiguration: Action<ExternalModuleDependency>
 ): List<ExternalModuleDependency> = dependenciesNotation.map {
-  addDependencyTo(this, "implementation", it, allDependenciesConfiguration)
+  addDependencyTo(this, "implementation", it.toString(), allDependenciesConfiguration)
 }
 
 /**
@@ -122,3 +123,60 @@ fun Project.implementationFiles(
  */
 fun Project.implementationJars(vararg jarDirectory: String = arrayOf("libs")): List<Dependency?> =
   jarDirectory.map { implementationFiles(it, "*.jar").first() }
+
+
+//// kotlin-multiplatform
+
+/**
+ * Adds a dependency to the 'implementation' configuration.
+ *
+ * @param dependencyNotation notation for the dependency to be added.
+ * @param dependencyConfiguration expression to use to configure the dependency.
+ * @return The dependency.
+ */
+fun KotlinDependencyHandler.implementation(
+  dependencyNotation: CharSequence,
+  dependencyConfiguration: ExternalModuleDependency.() -> Unit
+): ExternalModuleDependency = implementation(dependencyNotation.toString(), dependencyConfiguration)
+
+/**
+ * Adds a dependencies to the 'implementation' configuration.
+ *
+ * @param dependenciesNotation notation for the dependencies to be added.
+ */
+fun KotlinDependencyHandler.implementationOf(vararg dependenciesNotation: Any): List<Dependency?> =
+  dependenciesNotation.map { implementation(it) }
+
+/**
+ * Adds a dependencies to the 'implementation' configuration.
+ *
+ * @param dependenciesNotation notation for the dependencies to be added.
+ * @param allDependenciesConfiguration expression to use to configure the all dependencies.
+ */
+fun KotlinDependencyHandler.implementationOf(
+  vararg dependenciesNotation: CharSequence,
+  allDependenciesConfiguration: ExternalModuleDependency.() -> Unit
+): List<ExternalModuleDependency> = dependenciesNotation.map {
+  implementation(it.toString(), allDependenciesConfiguration)
+}
+
+/**
+ * Adds some project dependencies to the 'implementation' configuration.
+ *
+ * @param projectPaths project paths for the dependencies to be added.
+ */
+fun KotlinDependencyHandler.implementationProjects(vararg projectPaths: String): List<Dependency?> =
+  projectPaths.map { implementation(project(it)) }
+
+/**
+ * Adds some project dependencies to the 'implementation' configuration.
+ *
+ * @param projectPaths project paths for the dependencies to be added.
+ * @param allDependenciesConfiguration expression to use to configure the all dependencies.
+ */
+fun KotlinDependencyHandler.implementationProjects(
+  vararg projectPaths: String,
+  allDependenciesConfiguration: ModuleDependency.() -> Unit
+): List<Dependency> = projectPaths.map {
+  implementation(project(it), allDependenciesConfiguration)
+}

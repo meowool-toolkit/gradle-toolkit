@@ -25,6 +25,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 import org.gradle.kotlin.dsl.add
 import org.gradle.kotlin.dsl.project
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 /**
  * Adds a dependency to the 'testImplementation' configuration.
@@ -39,7 +40,7 @@ fun DependencyHandler.testImplementation(
   dependencyNotation: CharSequence,
   dependencyConfiguration: Action<ExternalModuleDependency>
 ): ExternalModuleDependency = addDependencyTo(
-  this, "testImplementation", dependencyNotation, dependencyConfiguration
+  this, "testImplementation", dependencyNotation.toString(), dependencyConfiguration
 )
 
 /**
@@ -61,10 +62,10 @@ fun DependencyHandler.testImplementationOf(vararg dependenciesNotation: Any): Li
  * @see [DependencyHandler.add]
  */
 fun DependencyHandler.testImplementationOf(
-  vararg dependenciesNotation: String,
+  vararg dependenciesNotation: CharSequence,
   allDependenciesConfiguration: Action<ExternalModuleDependency>
 ): List<ExternalModuleDependency> = dependenciesNotation.map {
-  addDependencyTo(this, "testImplementation", it, allDependenciesConfiguration)
+  addDependencyTo(this, "testImplementation", it.toString(), allDependenciesConfiguration)
 }
 
 /**

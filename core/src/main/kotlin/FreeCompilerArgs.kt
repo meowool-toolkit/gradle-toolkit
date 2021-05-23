@@ -16,6 +16,8 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -33,4 +35,20 @@ fun KotlinCompile.addFreeCompilerArgs(vararg args: String) {
 
 fun KotlinCompile.addFreeCompilerArgs(args: Iterable<String>) {
   kotlinOptions.freeCompilerArgs += args
+}
+
+fun Project.addFreeCompilerArgs(vararg args: String) {
+  project.allprojects {
+    tasks.withType<KotlinCompile> {
+      addFreeCompilerArgs(*args)
+    }
+  }
+}
+
+fun Project.addFreeCompilerArgs(args: Iterable<String>) {
+  project.allprojects {
+    tasks.withType<KotlinCompile> {
+      addFreeCompilerArgs(args)
+    }
+  }
 }

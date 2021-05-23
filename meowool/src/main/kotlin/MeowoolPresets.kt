@@ -34,19 +34,17 @@ internal fun RootGradleDslExtension.presetRepositories(loadSnapshots: Boolean = 
   if (loadSnapshots) addSonatypeSnapshots()
 }
 
-internal fun RootGradleDslExtension.presetKotlinCompilerArgs() = configureAllKotlinCompile {
-  addFreeCompilerArgs(
-    "-Xskip-prerelease-check",
-    "-Xopt-in=kotlin.RequiresOptIn",
-    "-Xopt-in=kotlin.time.ExperimentalTime",
-    "-Xopt-in=kotlin.Experimental",
-    "-Xopt-in=kotlin.ExperimentalStdlibApi",
-    "-Xopt-in=kotlin.ExperimentalUnsignedTypes",
-    "-Xopt-in=kotlin.contracts.ExperimentalContracts",
-    "-Xopt-in=kotlin.experimental.ExperimentalTypeInference",
-    "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+internal fun RootGradleDslExtension.presetKotlinCompilerArgs() =
+  rootProject.useExperimentalAnnotations(
+    "kotlin.RequiresOptIn",
+    "kotlin.time.ExperimentalTime",
+    "kotlin.Experimental",
+    "kotlin.ExperimentalStdlibApi",
+    "kotlin.ExperimentalUnsignedTypes",
+    "kotlin.contracts.ExperimentalContracts",
+    "kotlin.experimental.ExperimentalTypeInference",
+    "kotlinx.coroutines.ExperimentalCoroutinesApi"
   )
-}
 
 internal fun RootGradleDslExtension.presetSpotless(
   isOpenSourceProject: Boolean

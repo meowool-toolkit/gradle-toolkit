@@ -91,6 +91,22 @@ class GradleDslXCore : Plugin<Any> {
           ?.get(scope)
           ?.invoke(dependencies)
       }
+
+      extensions.findByType<org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension>()?.sourceSets?.all {
+        languageSettings {
+          arrayOf(
+            "kotlin.RequiresOptIn",
+            "kotlin.time.ExperimentalTime",
+            "kotlin.Experimental",
+            "kotlin.ExperimentalStdlibApi",
+            "kotlin.ExperimentalUnsignedTypes",
+            "kotlin.contracts.ExperimentalContracts",
+            "kotlin.experimental.ExperimentalTypeInference",
+            "kotlinx.coroutines.ExperimentalCoroutinesApi"
+          ).forEach(::useExperimentalAnnotation)
+          progressiveMode = true // false by default
+        }
+      }
     }
   }
 }
