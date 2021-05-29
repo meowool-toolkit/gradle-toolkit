@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
-import java.util.*
+import java.util.Locale
 
 internal fun String.removeBlanks() = filterNot { it.isWhitespace() }
 
-internal fun String.capitalize(uppercase: Boolean): String =
-  if (uppercase) capitalize(Locale.getDefault()) else this
+internal fun String.firstCharUppercase(uppercase: Boolean): String =
+  if (uppercase) replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } else this

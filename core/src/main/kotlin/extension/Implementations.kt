@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
+@file:Suppress("SpellCheckingInspection")
+
 package extension
 
 import ApplyProjectScope
@@ -27,13 +29,10 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.artifacts.repositories.ArtifactRepository
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
-import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.maven
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.util.*
 
 internal open class GradleDslExtensionImpl(override val project: Project) : GradleDslExtension {
 
@@ -100,30 +99,30 @@ internal class RootGradleDslExtensionImpl(override val rootProject: Project) :
   override fun allprojects(action: Project.() -> Unit) = rootProject.allprojects(action)
   override fun subprojects(action: Project.() -> Unit) = rootProject.subprojects(action)
 
-  override fun addMaven(
+  override fun repoMaven(
     url: Any,
     applyScope: ApplyProjectScope,
     action: MavenArtifactRepository.() -> Unit
   ) = resolveApply(applyScope) { repositories.maven(url, action) }
 
-  override fun addMavenCentral(args: Map<String, Any?>?, applyScope: ApplyProjectScope) =
+  override fun repoMavenCentral(args: Map<String, Any?>?, applyScope: ApplyProjectScope) =
     resolveApply(applyScope) { args?.let(repositories::mavenCentral) ?: repositories.mavenCentral() }
 
-  override fun addMavenLocal(
+  override fun repoMavenLocal(
     applyScope: ApplyProjectScope,
     action: MavenArtifactRepository.() -> Unit
   ) = resolveApply(applyScope) { repositories.mavenLocal(action) }
 
-  override fun addFlatDir(args: Map<String, Any?>, applyScope: ApplyProjectScope) {
+  override fun repoFlatDir(args: Map<String, Any?>, applyScope: ApplyProjectScope) {
     resolveApply(applyScope) { repositories.flatDir(args) }
   }
 
-  override fun addGradlePluginPortal(
+  override fun repoGradlePluginPortal(
     applyScope: ApplyProjectScope,
     action: ArtifactRepository.() -> Unit
   ) = resolveApply(applyScope) { repositories.gradlePluginPortal(action) }
 
-  override fun addGoogle(
+  override fun repoGoogle(
     applyScope: ApplyProjectScope,
     action: MavenArtifactRepository.() -> Unit
   ) = resolveApply(applyScope) { repositories.google(action) }

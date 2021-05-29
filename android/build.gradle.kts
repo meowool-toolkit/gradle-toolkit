@@ -1,5 +1,7 @@
-plugins { kotlin }
+plugins { kotlin; `kotlin-dsl` }
 
 dependencies {
-  apiProjects(":android:4.2.1")
+  apiProjects(":core")
+  api(Libs.Android.Tools.Build.Gradle version "4.2.1")
+  testImplementation(Libs.Kotlin.Test.Junit)
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,88 +74,83 @@ interface RootGradleDslExtension : GradleDslExtension {
    *
    * @see RepositoryHandler.maven
    */
-  fun addMaven(
+  fun repoMaven(
     url: Any,
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
-    action: MavenArtifactRepository.() -> Unit = {}
+    action: MavenArtifactRepository.() -> Unit = {},
   )
 
   /**
    * Set up dependencies [mirror] repository for [applyScope] projects.
    */
-  fun addMavenMirror(
+  fun repoMavenMirror(
     mirror: MavenMirrors,
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
     action: MavenArtifactRepository.() -> Unit = {},
   ) {
-    addMaven(mirror.url, applyScope, action)
+    repoMaven(mirror.url, applyScope, action)
   }
 
   /** @see RepositoryHandler.mavenCentral */
-  fun addMavenCentral(
+  fun repoMavenCentral(
     args: Map<String, Any?>? = null,
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
   )
 
-  /** @see RepositoryHandler.mavenCentral */
-  fun addSonatype(
+  fun repoSonatype(
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
     action: MavenArtifactRepository.() -> Unit = {},
   ) {
-    addMaven("https://s01.oss.sonatype.org/content/repositories/public", applyScope, action)
-    addMaven("https://oss.sonatype.org/content/repositories/public", applyScope, action)
+    repoMaven("https://s01.oss.sonatype.org/content/repositories/public", applyScope, action)
+    repoMaven("https://oss.sonatype.org/content/repositories/public", applyScope, action)
   }
 
-  /** @see RepositoryHandler.mavenCentral */
-  fun addSonatypeSnapshots(
+  fun repoSonatypeSnapshots(
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
     action: MavenArtifactRepository.() -> Unit = {},
   ) {
-    addMaven("https://s01.oss.sonatype.org/content/repositories/snapshots", applyScope, action)
-    addMaven("https://oss.sonatype.org/content/repositories/snapshots", applyScope, action)
+    repoMaven("https://s01.oss.sonatype.org/content/repositories/snapshots", applyScope, action)
+    repoMaven("https://oss.sonatype.org/content/repositories/snapshots", applyScope, action)
   }
 
   /** @see RepositoryHandler.mavenLocal */
-  fun addMavenLocal(
+  fun repoMavenLocal(
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
     action: MavenArtifactRepository.() -> Unit = {},
   )
 
   /** @see RepositoryHandler.flatDir */
-  fun addFlatDir(
+  fun repoFlatDir(
     args: Map<String, Any?>,
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
   )
 
   /** @see RepositoryHandler.gradlePluginPortal */
-  fun addGradlePluginPortal(
+  fun repoGradlePluginPortal(
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
-    action: ArtifactRepository.() -> Unit = {}
+    action: ArtifactRepository.() -> Unit = {},
   )
 
   /** @see RepositoryHandler.google */
-  fun addGoogle(
+  fun repoGoogle(
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
     action: MavenArtifactRepository.() -> Unit = {},
   )
 
+  fun repoJitpack(
+    applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
+    action: MavenArtifactRepository.() -> Unit = {},
+  ) = repoMaven("https://jitpack.io", applyScope, action)
+
   /** @see RepositoryHandler.jcenter */
   @Deprecated(
-    message = "JCenter sunset on 2020-05-01, it is recommended to mavenCentral, but you can also use mirrors.",
-    replaceWith = ReplaceWith("addMavenMirror(MavenMirrors.Aliyun.JCenter)")
-  ) fun addJCenter(
+    message = "JCenter sunset on 2020-05-01, it is recommended to use mavenCentral, but you can also use mirrors.",
+    replaceWith = ReplaceWith("repoMavenMirror(MavenMirrors.Aliyun.JCenter)")
+  )
+  fun repoJCenter(
     applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
-    action: MavenArtifactRepository.() -> Unit = {}
-  ) {
-    addMavenMirror(MavenMirrors.Aliyun.JCenter)
-  }
-
-  fun addJitpack(
-    applyScope: ApplyProjectScope = ApplyProjectScope.AllProjects,
-    action: MavenArtifactRepository.() -> Unit = {}
-  ) {
-    addMaven("https://jitpack.io", applyScope, action)
-  }
+    action: MavenArtifactRepository.() -> Unit = {},
+  ) = repoMavenMirror(MavenMirrors.Aliyun.JCenter)
 
   /**
    * Share a reusable dependencies code [block].
@@ -189,7 +184,7 @@ interface RootGradleDslExtension : GradleDslExtension {
    */
   fun shareDependencies(
     scope: String? = null,
-    block: DependencyHandler.() -> Unit
+    block: DependencyHandler.() -> Unit,
   )
 
   /**
@@ -224,7 +219,7 @@ interface RootGradleDslExtension : GradleDslExtension {
    */
   fun shareLazyDependencies(
     scope: String? = null,
-    block: DependencyHandler.() -> Unit
+    block: DependencyHandler.() -> Unit,
   )
 
   @Deprecated("unsupported", level = DeprecationLevel.HIDDEN)

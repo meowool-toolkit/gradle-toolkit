@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,21 +19,26 @@
 @file:Suppress("SpellCheckingInspection")
 
 /**
+ * Represents a dependency data.
+ *
+ * @param originParent the unprocessed string of origin parent
+ * @param originName the unprocessed string of origin name
+ *
  * @author 凛 (https://github.com/RinOrz)
  */
 internal data class Dependency(
-  private var oldParent: String,
-  private var oldName: String,
+  private var originParent: String,
+  private var originName: String,
   val full: String,
 ) {
   private val excludeSymbols = arrayOf('-', '_')
 
   val path by lazy {
     buildString {
-      append(oldParent)
-      if (oldName.isNotEmpty()) {
+      append(originParent)
+      if (originName.isNotEmpty()) {
         append('.')
-        append(oldName)
+        append(originName)
       }
     }.removeSuffix(".").removePrefix(".")
   }
@@ -49,24 +54,25 @@ internal data class Dependency(
     simplifyClassName: Boolean,
     upperCamelCaseWhen: (String) -> Boolean,
     classNameTransformer: (String) -> String,
-    classParentTransformer: (String) -> String
+    classParentTransformer: (String) -> String,
   ) {
-    fun String.upperCamelCase() = capitalize(upperCamelCaseWhen(this))
+    fun String.firstCharUppercase() = firstCharUppercase(upperCamelCaseWhen(this))
 
     fun String.standardCase() =
       // 转换所有非法符号为 .
       excludeSymbols.fold(this) { acc, symbol -> acc.replace(symbol, '.') }
         .split('.')
-        .joinToString(".") { classNameTransformer(it).upperCamelCase() }
+        .joinToString(".") { classNameTransformer(it).firstCharUppercase() }
 
-    oldName = oldName.standardCase()
-    oldParent = classParentTransformer(oldParent).standardCase()
+    originName = originName.standardCase()
+    originParent = classParentTransformer(originParent).standardCase()
 
     if (simplifyClassName) {
       // 工件名开头如果和组结尾相同则简化
-      val nameList = oldName.split('.').toMutableList()
-      if (oldParent.endsWith(nameList[0])) nameList.removeAt(0)
-      oldName = nameList.joinToString(".")
+      // com.a.b:b -> com.a.b
+      val nameList = originName.split('.').toMutableList()
+      if (originParent.endsWith(nameList[0])) nameList.removeAt(0)
+      originName = nameList.joinToString(".")
     }
   }
 }

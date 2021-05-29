@@ -4,7 +4,7 @@ plugins { id("com.gradle.plugin-publish") }
 
 allprojects {
   group = "com.meowool.toolkit"
-  version = "1.5-SNAPSHOT"
+  version = "1.9-SNAPSHOT"
 }
 
 subprojects {

@@ -26,11 +26,11 @@
     <orderEntry type="library" name="Gradle: com.squareup.retrofit2:retrofit:2.9.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:4.9.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.cloud:google-cloud-storage:1.114.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:guava:30.1.1-jre" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.moshi:moshi:1.12.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio-jvm:2.10.0" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.0" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.5.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.guava:guava:30.1.1-android" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:failureaccess:1.0.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" level="project" />
@@ -66,6 +66,7 @@
     <orderEntry type="library" name="Gradle: org.threeten:threetenbp:1.5.1" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.5.0" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.checkerframework:checker-qual:3.8.0" level="project" />
     <orderEntry type="library" name="Gradle: gradle-api-7.0" level="project" />
     <orderEntry type="library" name="Gradle: groovy-3.0.7" level="project" />
     <orderEntry type="library" name="Gradle: groovy-ant-3.0.7" level="project" />

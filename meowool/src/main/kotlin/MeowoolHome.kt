@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,10 @@ internal const val HomePropertyKey = "meowool.home"
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-val Project.meowoolHomeDir: File get() =
-  findPropertyOrEnv(HomePropertyKey)?.toString()?.let(::File)?.takeIf { it.exists() }
-    ?: error("Please declare `meowool.home` in system environment variables or project properties first.")
+val Project.meowoolHomeDir: File?
+  get() = findPropertyOrEnv(HomePropertyKey)?.toString()?.let(::File)?.takeIf { it.exists() }.also {
+    if (it == null) println(
+      "You are currently developing a project belonging to the 'Meowool-Organization', in order " +
+        "to standardize you should define `meowool.home` in the system environment variables first."
+    )
+  }

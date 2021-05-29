@@ -1,15 +1,26 @@
-plugins {
-  id("com.meowool.toolkit.gradle-dsl-x") version "1.4"
-}
+@file:Suppress("SpellCheckingInspection")
 
-buildscript {
+pluginManagement {
   repositories {
+    maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
     mavenCentral()
     google()
+    gradlePluginPortal()
   }
 }
 
-gradleDslX {
+plugins {
+  id("com.meowool.toolkit.gradle-dsl-x") version "1.9-SNAPSHOT"
+}
+
+buildscript {
+  configurations.all {
+    // Check for updates every build
+    resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
+  }
+}
+
+rootGradleDslX {
   useMeowoolSpec()
   configureAllKotlinCompile {
     addFreeCompilerArgs("-Xopt-in=annotation.InternalGradleDslXApi")

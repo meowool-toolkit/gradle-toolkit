@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,10 @@
  * organization URL in your code file: https://github.com/meowool
  */
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun KotlinCommonOptions.addFreeCompilerArgs(vararg args: String) {
@@ -38,17 +40,14 @@ fun KotlinCompile.addFreeCompilerArgs(args: Iterable<String>) {
 }
 
 fun Project.addFreeCompilerArgs(vararg args: String) {
-  project.allprojects {
-    tasks.withType<KotlinCompile> {
-      addFreeCompilerArgs(*args)
+  extensions.findByType<KotlinMultiplatformExtension>()?.targets?.all {
+    compilations.all {
+      kotlinOptions.addFreeCompilerArgs(*args)
     }
+  }
+  tasks.withType<KotlinCompile> {
+    addFreeCompilerArgs(*args)
   }
 }
 
-fun Project.addFreeCompilerArgs(args: Iterable<String>) {
-  project.allprojects {
-    tasks.withType<KotlinCompile> {
-      addFreeCompilerArgs(args)
-    }
-  }
-}
+fun Project.addFreeCompilerArgs(args: Iterable<String>) = addFreeCompilerArgs(*args.toList().toTypedArray())

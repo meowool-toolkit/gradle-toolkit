@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,8 +66,8 @@ internal fun String.resolveDependencies(groupReplacer: GroupReplacer): List<Depe
     val (group, artifact) = row.split(':')
 
     Dependency(
-      oldParent = customization?.parent ?: groupReplacer[group] ?: group,
-      oldName = customization?.name ?: groupReplacer[artifact] ?: artifact,
+      originParent = customization?.parent ?: groupReplacer[group] ?: group,
+      originName = customization?.name ?: groupReplacer[artifact] ?: artifact,
       full = row,
     )
   }

@@ -47,9 +47,9 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.squareup.retrofit2:retrofit:2.9.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.squareup.okhttp3:okhttp:4.9.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.cloud:google-cloud-storage:1.114.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.guava:guava:30.1.1-jre" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.squareup.okio:okio-jvm:2.10.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.4.31" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.guava:guava:30.1.1-android" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.guava:failureaccess:1.0.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" level="project" />
@@ -83,6 +83,7 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.protobuf:protobuf-java:3.16.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.protobuf:protobuf-java-util:3.16.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.threeten:threetenbp:1.5.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.checkerframework:checker-qual:3.8.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: gradle-kotlin-dsl-extensions-7.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: gradle-kotlin-dsl-7.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: gradle-kotlin-dsl-tooling-models-7.0" level="project" />
@@ -94,9 +95,9 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.retrofit2:retrofit:2.9.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.okhttp3:okhttp:4.9.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.cloud:google-cloud-storage:1.114.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:guava:30.1.1-jre" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.okio:okio-jvm:2.10.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.4.31" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:guava:30.1.1-android" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:failureaccess:1.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" level="project" />
@@ -130,6 +131,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.protobuf:protobuf-java:3.16.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.protobuf:protobuf-java-util:3.16.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.threeten:threetenbp:1.5.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.checkerframework:checker-qual:3.8.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: gradle-kotlin-dsl-extensions-7.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: gradle-kotlin-dsl-7.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: gradle-kotlin-dsl-tooling-models-7.0" level="project" />

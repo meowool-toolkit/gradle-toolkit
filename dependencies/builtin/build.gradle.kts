@@ -81,7 +81,7 @@ generateDependencies {
       com.google.code.gson
       com.google.auto [all]
       com.umeng [all]
-      org.koin
+      io.insert-koin [group]
       org.jetbrains.kotlin [all]
       org.jetbrains.kotlinx [all]
       com.squareup [all]

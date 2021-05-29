@@ -4,9 +4,6 @@ junit:junit
 org.junit.jupiter:junit-jupiter(-*)
     ^^^^^
 
-io.kotest:*
-   ^^^^^^
-
 org.spekframework.spek2:spek-*
                         ^^^^
 

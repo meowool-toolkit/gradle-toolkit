@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -2140,13 +2140,13 @@ public class Libs {
     public class Edu {
       public object TYICSDK : _D("com.tencent.edu:TYICSDK:_")
 
+      public object TEduBoardSdk : _D("com.tencent.edu:TEduBoardSdk:_")
+
       public object TAISDK : _D("com.tencent.edu:TAISDK:_")
 
       public object TCICSDK : _D("com.tencent.edu:TCICSDK:_")
 
       public object TIWCache : _D("com.tencent.edu:TIWCache:_")
-
-      public object TEduBoardSdk : _D("com.tencent.edu:TEduBoardSdk:_")
 
       public object TIWLogger : _D("com.tencent.edu:TIWLogger:_")
     }
@@ -2245,6 +2245,16 @@ public class Libs {
       public object Api : _D("com.tencent.devops:devops-api:_")
 
       public object Demo : _D("com.tencent.devops:devops-demo:_")
+    }
+
+    public class Ads {
+      public class Marketing {
+        public class Api {
+          public class Java {
+            public object Sdk : _D("com.tencent.ads:marketing-api-java-sdk:_")
+          }
+        }
+      }
     }
 
     public class IOt {
@@ -2573,16 +2583,6 @@ public class Libs {
       }
     }
 
-    public class Ads {
-      public class Marketing {
-        public class Api {
-          public class Java {
-            public object Sdk : _D("com.tencent.ads:marketing-api-java-sdk:_")
-          }
-        }
-      }
-    }
-
     public class Wcdb {
       public object Android : _D("com.tencent.wcdb:wcdb-android:_")
 
@@ -2657,8 +2657,18 @@ public class Libs {
       }
     }
 
-    public class Homeworkkun {
-      public object SDKCore : _D("com.tencent.homeworkkun:SDKCore:_")
+    public class Liteavsdk {
+      public class LiteAVSDK {
+        public object Smart : _D("com.tencent.liteavsdk:LiteAVSDK_Smart:_")
+
+        public object UGC : _D("com.tencent.liteavsdk:LiteAVSDK_UGC:_")
+
+        public object TRTC : _D("com.tencent.liteavsdk:LiteAVSDK_TRTC:_")
+
+        public object Professional : _D("com.tencent.liteavsdk:LiteAVSDK_Professional:_")
+
+        public object Player : _D("com.tencent.liteavsdk:LiteAVSDK_Player:_")
+      }
     }
 
     public class Liteav {
@@ -2675,30 +2685,26 @@ public class Libs {
       }
     }
 
-    public class Liteavsdk {
-      public class LiteAVSDK {
-        public object Smart : _D("com.tencent.liteavsdk:LiteAVSDK_Smart:_")
-
-        public object UGC : _D("com.tencent.liteavsdk:LiteAVSDK_UGC:_")
-
-        public object TRTC : _D("com.tencent.liteavsdk:LiteAVSDK_TRTC:_")
-
-        public object Professional : _D("com.tencent.liteavsdk:LiteAVSDK_Professional:_")
-
-        public object Player : _D("com.tencent.liteavsdk:LiteAVSDK_Player:_")
-      }
+    public class Homeworkkun {
+      public object SDKCore : _D("com.tencent.homeworkkun:SDKCore:_")
     }
 
     public class Hippy {
       public object Common : _D("com.tencent.hippy:hippy-common:_")
     }
 
+    public class Android {
+      public class Tpns {
+        public object Tpnsplugin : _D("com.tencent.android.tpns:tpnsplugin:_")
+      }
+    }
+
     public object Imsdk : _D("com.tencent.imsdk:imsdk:_") {
+      public object Smart : _D("com.tencent.imsdk:imsdk-smart:_")
+
       public object Tuikit : _D("com.tencent.imsdk:tuikit:_") {
         public object Live : _D("com.tencent.imsdk:tuikit-live:_")
       }
-
-      public object Smart : _D("com.tencent.imsdk:imsdk-smart:_")
     }
 
     public class Tcic {
@@ -2803,6 +2809,71 @@ public class Libs {
   public object TransitionsEverywhere : _D("com.andkulikov:transitionseverywhere:_")
 
   public object TransitionX : _D("in.arunkumarsampath:transition-x:_")
+
+  public class Owool {
+    public class Toolkit {
+      public class Gradle {
+        public class Dsl {
+          public object X : _D("com.meowool.toolkit:gradle-dsl-x:_") {
+            public object Core : _D("com.meowool.toolkit:gradle-dsl-x-core:_") {
+              public class Com {
+                public class Meowool {
+                  public class Toolkit {
+                    public class Gradle {
+                      public class Dsl {
+                        public class X {
+                          public class Core {
+                            public class Gradle {
+                              public object Plugin :
+                                _D("com.meowool.toolkit.gradle-dsl-x-core:com.meowool.toolkit.gradle-dsl-x-core.gradle.plugin:_")
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            public class Com {
+              public class Meowool {
+                public class Toolkit {
+                  public class Gradle {
+                    public class Dsl {
+                      public class X {
+                        public class Gradle {
+                          public object Plugin :
+                            _D("com.meowool.toolkit.gradle-dsl-x:com.meowool.toolkit.gradle-dsl-x.gradle.plugin:_")
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            public object Meowool : _D("com.meowool.toolkit:gradle-dsl-x-meowool:_")
+
+            public object Android : _D("com.meowool.toolkit:gradle-dsl-x-android:_") {
+              public object V421 : _D("com.meowool.toolkit:gradle-dsl-x-android-v421:_")
+            }
+
+            public object Publish : _D("com.meowool.toolkit:gradle-dsl-x-publish:_")
+
+            public object Dependencies : _D("com.meowool.toolkit:gradle-dsl-x-dependencies:_") {
+              public object Updater : _D("com.meowool.toolkit:gradle-dsl-x-dependencies-updater:_")
+
+              public object Generator :
+                _D("com.meowool.toolkit:gradle-dsl-x-dependencies-generator:_")
+
+              public object Builtin : _D("com.meowool.toolkit:gradle-dsl-x-dependencies-builtin:_")
+            }
+          }
+        }
+      }
+    }
+  }
 
   public class Umeng {
     public class Sdk {
@@ -2914,6 +2985,8 @@ public class Libs {
 
       public object Asms : _D("com.umeng.umsdk:asms:_")
 
+      public object Analytics : _D("com.umeng.umsdk:analytics:_")
+
       public class Oaid {
         public object Vivo : _D("com.umeng.umsdk:oaid_vivo:_")
 
@@ -2923,8 +2996,6 @@ public class Libs {
 
         public object Lenovo : _D("com.umeng.umsdk:oaid_lenovo:_")
       }
-
-      public object Analytics : _D("com.umeng.umsdk:analytics:_")
 
       public class Agoo {
         public object Tlog : _D("com.umeng.umsdk:agoo_tlog:_")
@@ -2963,6 +3034,134 @@ public class Libs {
       public object Utdid : _D("com.umeng.umsdk:utdid:_")
 
       public object Push : _D("com.umeng.umsdk:push:_")
+    }
+  }
+
+  public class Insert {
+    public class Koin {
+      public class Gradle {
+        public object Plugin : _D("io.insert-koin:koin-gradle-plugin:_")
+      }
+
+      public object Ktor : _D("io.insert-koin:koin-ktor:_")
+
+      public class Logger {
+        public object Slf4j : _D("io.insert-koin:koin-logger-slf4j:_")
+      }
+
+      public class AndroidX {
+        public object Workmanager : _D("io.insert-koin:koin-androidx-workmanager:_")
+
+        public object Ext : _D("io.insert-koin:koin-androidx-ext:_")
+
+        public object ViewModel : _D("io.insert-koin:koin-androidx-viewmodel:_")
+
+        public object Fragment : _D("io.insert-koin:koin-androidx-fragment:_")
+
+        public object Scope : _D("io.insert-koin:koin-androidx-scope:_")
+
+        public object Compose : _D("io.insert-koin:koin-androidx-compose:_")
+      }
+
+      public object Android : _D("io.insert-koin:koin-android:_") {
+        public object Compat : _D("io.insert-koin:koin-android-compat:_")
+
+        public object Ext : _D("io.insert-koin:koin-android-ext:_")
+
+        public object ViewModel : _D("io.insert-koin:koin-android-viewmodel:_")
+
+        public object Scope : _D("io.insert-koin:koin-android-scope:_")
+      }
+
+      public object Test : _D("io.insert-koin:koin-test:_") {
+        public class WatchOS {
+          public object X86 : _D("io.insert-koin:koin-test-watchosx86:_")
+
+          public object X64 : _D("io.insert-koin:koin-test-watchosx64:_")
+
+          public object Arm64 : _D("io.insert-koin:koin-test-watchosarm64:_")
+
+          public object Arm32 : _D("io.insert-koin:koin-test-watchosarm32:_")
+        }
+
+        public class TvOS {
+          public object X64 : _D("io.insert-koin:koin-test-tvosx64:_")
+
+          public object Arm64 : _D("io.insert-koin:koin-test-tvosarm64:_")
+        }
+
+        public class MacOS {
+          public object X64 : _D("io.insert-koin:koin-test-macosx64:_")
+        }
+
+        public class Linux {
+          public object X64 : _D("io.insert-koin:koin-test-linuxx64:_")
+
+          public object Arm32hfp : _D("io.insert-koin:koin-test-linuxarm32hfp:_")
+        }
+
+        public object Jvm : _D("io.insert-koin:koin-test-jvm:_")
+
+        public object Js : _D("io.insert-koin:koin-test-js:_")
+
+        public class iOS {
+          public object X64 : _D("io.insert-koin:koin-test-iosx64:_")
+
+          public object Arm64 : _D("io.insert-koin:koin-test-iosarm64:_")
+
+          public object Arm32 : _D("io.insert-koin:koin-test-iosarm32:_")
+        }
+
+        public object Junit4 : _D("io.insert-koin:koin-test-junit4:_")
+
+        public object Junit5 : _D("io.insert-koin:koin-test-junit5:_")
+
+        public object Core : _D("io.insert-koin:koin-test-core:_")
+      }
+
+      public object Core : _D("io.insert-koin:koin-core:_") {
+        public class WatchOS {
+          public object X86 : _D("io.insert-koin:koin-core-watchosx86:_")
+
+          public object X64 : _D("io.insert-koin:koin-core-watchosx64:_")
+
+          public object Arm64 : _D("io.insert-koin:koin-core-watchosarm64:_")
+
+          public object Arm32 : _D("io.insert-koin:koin-core-watchosarm32:_")
+        }
+
+        public class TvOS {
+          public object X64 : _D("io.insert-koin:koin-core-tvosx64:_")
+
+          public object Arm64 : _D("io.insert-koin:koin-core-tvosarm64:_")
+        }
+
+        public class MacOS {
+          public object X64 : _D("io.insert-koin:koin-core-macosx64:_")
+        }
+
+        public class Linux {
+          public object X64 : _D("io.insert-koin:koin-core-linuxx64:_")
+
+          public object Arm32hfp : _D("io.insert-koin:koin-core-linuxarm32hfp:_")
+        }
+
+        public object Ext : _D("io.insert-koin:koin-core-ext:_")
+
+        public object Jvm : _D("io.insert-koin:koin-core-jvm:_")
+
+        public object Js : _D("io.insert-koin:koin-core-js:_")
+
+        public class iOS {
+          public object X64 : _D("io.insert-koin:koin-core-iosx64:_")
+
+          public object Arm64 : _D("io.insert-koin:koin-core-iosarm64:_")
+
+          public object Arm32 : _D("io.insert-koin:koin-core-iosarm32:_")
+        }
+      }
+
+      public object Java : _D("io.insert-koin:koin-java:_")
     }
   }
 
@@ -3218,6 +3417,8 @@ public class Libs {
     }
 
     public class Gradle {
+      public object Statistics : _D("org.jetbrains.kotlin:kotlin-gradle-statistics:_")
+
       public object Plugin : _D("org.jetbrains.kotlin:kotlin-gradle-plugin:_") {
         public object Model : _D("org.jetbrains.kotlin:kotlin-gradle-plugin-model:_")
 
@@ -3300,6 +3501,22 @@ public class Libs {
     public object Swing : _D("org.jetbrains.kotlin:kotlin-swing:_")
 
     public object Jdbc : _D("org.jetbrains.kotlin:kotlin-jdbc:_")
+
+    public class Wrappers {
+      public class Kotlin {
+        public object Css : _D("org.jetbrains.kotlin-wrappers:kotlin-css:_") {
+          public object Jvm : _D("org.jetbrains.kotlin-wrappers:kotlin-css-jvm:_")
+
+          public object Js : _D("org.jetbrains.kotlin-wrappers:kotlin-css-js:_")
+        }
+
+        public object Styled : _D("org.jetbrains.kotlin-wrappers:kotlin-styled:_")
+
+        public object Redux : _D("org.jetbrains.kotlin-wrappers:kotlin-redux:_")
+
+        public object React : _D("org.jetbrains.kotlin-wrappers:kotlin-react:_")
+      }
+    }
   }
 
   public class KotlinX {
@@ -4301,12 +4518,12 @@ public class Libs {
 
     public class Kotlin {
       public class Jupyter {
-        public object Lib : _D("org.jetbrains.kotlinx:kotlin-jupyter-lib:_") {
-          public object Ext : _D("org.jetbrains.kotlinx:kotlin-jupyter-lib-ext:_")
-        }
-
         public class Shared {
           public object Compiler : _D("org.jetbrains.kotlinx:kotlin-jupyter-shared-compiler:_")
+        }
+
+        public object Lib : _D("org.jetbrains.kotlinx:kotlin-jupyter-lib:_") {
+          public object Ext : _D("org.jetbrains.kotlinx:kotlin-jupyter-lib-ext:_")
         }
 
         public class Common {
@@ -5165,6 +5382,8 @@ public class Libs {
       public object Sample : _D("com.squareup.flow:flow-sample:_")
     }
 
+    public object Cycler : _D("com.squareup.cycler:cycler:_")
+
     public object Misk : _D("com.squareup.misk:misk:_") {
       public class Wisp {
         public object Ssl : _D("com.squareup.misk:wisp-ssl:_")
@@ -5280,8 +5499,6 @@ public class Libs {
 
       public object Embedded : _D("com.squareup.misk:misk-embedded:_")
     }
-
-    public object Cycler : _D("com.squareup.cycler:cycler:_")
 
     public class Leakcanary {
       public object Shark : _D("com.squareup.leakcanary:shark:_") {
@@ -5803,6 +6020,10 @@ public class Libs {
       }
     }
 
+    public object Annotations : _D("org.jetbrains:annotations:_") {
+      public object Java5 : _D("org.jetbrains:annotations-java5:_")
+    }
+
     public object Dummy : _D("org.jetbrains:dummy:_")
 
     public class Marketplace {
@@ -5819,10 +6040,6 @@ public class Libs {
 
         public object `10` : _D("org.jetbrains:sbtideaplugin_2.10:_")
       }
-    }
-
-    public object Annotations : _D("org.jetbrains:annotations:_") {
-      public object Java5 : _D("org.jetbrains:annotations-java5:_")
     }
 
     public class Scala {
@@ -6022,6 +6239,12 @@ public class Libs {
 
       public class Mathjax {
         public object Plugin : _D("org.jetbrains.dokka:mathjax-plugin:_")
+      }
+    }
+
+    public class Bsp {
+      public class Bazel {
+        public object Bsp : _D("org.jetbrains.bsp:bazel-bsp:_")
       }
     }
 
@@ -7070,6 +7293,22 @@ public class Libs {
     public object Contour : _D("app.cash.contour:contour:_")
 
     public object Barber : _D("app.cash.barber:barber:_")
+
+    public class Licensee {
+      public class App {
+        public class Cash {
+          public class Licensee {
+            public class Gradle {
+              public object Plugin : _D("app.cash.licensee:app.cash.licensee.gradle.plugin:_")
+            }
+          }
+        }
+      }
+
+      public class Gradle {
+        public object Plugin : _D("app.cash.licensee:licensee-gradle-plugin:_")
+      }
+    }
 
     public class Treehouse {
       public class App {
@@ -8217,10 +8456,8 @@ public class Libs {
         }
       }
 
-      public object Showkase : _D("com.airbnb.android:showkase:_") {
-        public object Processor : _D("com.airbnb.android:showkase-processor:_")
-
-        public object Annotation : _D("com.airbnb.android:showkase-annotation:_")
+      public object Lottie : _D("com.airbnb.android:lottie:_") {
+        public object Compose : _D("com.airbnb.android:lottie-compose:_")
       }
 
       public object Mavericks : _D("com.airbnb.android:mavericks:_") {
@@ -8232,19 +8469,21 @@ public class Libs {
 
         public object Mocking : _D("com.airbnb.android:mavericks-mocking:_")
 
-        public object Launcher : _D("com.airbnb.android:mavericks-launcher:_")
-
         public object Compose : _D("com.airbnb.android:mavericks-compose:_")
+
+        public object Launcher : _D("com.airbnb.android:mavericks-launcher:_")
+      }
+
+      public object Showkase : _D("com.airbnb.android:showkase:_") {
+        public object Processor : _D("com.airbnb.android:showkase-processor:_")
+
+        public object Annotation : _D("com.airbnb.android:showkase-annotation:_")
       }
 
       public object Paris : _D("com.airbnb.android:paris:_") {
         public object Processor : _D("com.airbnb.android:paris-processor:_")
 
         public object Annotations : _D("com.airbnb.android:paris-annotations:_")
-      }
-
-      public object Lottie : _D("com.airbnb.android:lottie:_") {
-        public object Compose : _D("com.airbnb.android:lottie-compose:_")
       }
 
       public object Happo : _D("com.airbnb.android:happo:_")
@@ -22031,6 +22270,8 @@ public class Libs {
   }
 
   public class Mockito {
+    public object Testng : _D("org.mockito:mockito-testng:_")
+
     public class Junit {
       public object Jupiter : _D("org.mockito:junit-jupiter:_")
     }
@@ -22134,8 +22375,6 @@ public class Libs {
         }
       }
     }
-
-    public object Testng : _D("org.mockito:mockito-testng:_")
 
     public object All : _D("org.mockito:mockito-all:_")
   }

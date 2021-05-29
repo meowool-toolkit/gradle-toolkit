@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -124,8 +124,7 @@ fun Project.implementationFiles(
 fun Project.implementationJars(vararg jarDirectory: String = arrayOf("libs")): List<Dependency?> =
   jarDirectory.map { implementationFiles(it, "*.jar").first() }
 
-
-//// kotlin-multiplatform
+// // kotlin-multiplatform
 
 /**
  * Adds a dependency to the 'implementation' configuration.

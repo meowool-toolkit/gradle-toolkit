@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,35 +22,44 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import extension.RootGradleDslExtension
 import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.named
 
 internal fun RootGradleDslExtension.presetRepositories(loadSnapshots: Boolean = false) {
-  rootProject.rootDir.resolve(".repo").takeIf { it.exists() }?.let(::addMaven)
-  addGoogle()
-  addMavenCentral()
-  addJitpack()
-  addMavenMirror(MavenMirrors.Aliyun.JCenter)
-  addGradlePluginPortal()
-  addSonatype()
-  if (loadSnapshots) addSonatypeSnapshots()
+  rootProject.rootDir.resolve(".repo").takeIf { it.exists() }?.let(::repoMaven)
+  repoGoogle()
+  repoMavenCentral()
+  repoJitpack()
+  repoMavenMirror(MavenMirrors.Aliyun.JCenter)
+  repoGradlePluginPortal()
+  repoSonatype()
+  if (loadSnapshots) repoSonatypeSnapshots()
 }
 
-internal fun RootGradleDslExtension.presetKotlinCompilerArgs() =
-  rootProject.useExperimentalAnnotations(
+internal fun RootGradleDslExtension.presetKotlinCompilerArgs() = allprojects {
+  useExperimentalAnnotations(
     "kotlin.RequiresOptIn",
-    "kotlin.time.ExperimentalTime",
     "kotlin.Experimental",
     "kotlin.ExperimentalStdlibApi",
     "kotlin.ExperimentalUnsignedTypes",
+    "kotlin.time.ExperimentalTime",
     "kotlin.contracts.ExperimentalContracts",
+    "kotlinx.coroutines.ExperimentalCoroutinesApi",
     "kotlin.experimental.ExperimentalTypeInference",
-    "kotlinx.coroutines.ExperimentalCoroutinesApi"
   )
+}
 
-internal fun RootGradleDslExtension.presetSpotless(
-  isOpenSourceProject: Boolean
-) {
+internal fun RootGradleDslExtension.presetSpotless(isOpenSourceProject: Boolean) {
   project.allprojects {
     if (!buildFile.exists()) return@allprojects
+
+    // We only need to make kotlin spotless for now
+    // TODO: Support more language
+    if (!(
+        plugins.hasPlugin("org.jetbrains.kotlin.multiplatform") ||
+          plugins.hasPlugin("org.jetbrains.kotlin.jvm") ||
+          plugins.hasPlugin("org.jetbrains.kotlin.js")
+        )
+    ) return@allprojects
 
     apply<SpotlessPlugin>()
 
@@ -61,7 +70,6 @@ internal fun RootGradleDslExtension.presetSpotless(
           mapOf(
             "indent_size" to "2",
             "no-unused-imports" to "true",
-            "disabled_rules" to "no-wildcard-imports"
           )
         )
         endWithNewline()
@@ -72,47 +80,44 @@ internal fun RootGradleDslExtension.presetSpotless(
   }
 }
 
-internal fun RootGradleDslExtension.presetPublishing() {
-//  // TODO Support
-//  // https://github.com/vanniktech/gradle-maven-publish-plugin#setting-properties
-//  data += PublishInfo(
-//    developerId = "meowool",
-//    developerName = "Meowool Organization",
-//    developerUrl = "https://github.com/meowool/",
-//    licenceName = "The Apache Software License, Version 2.0",
-//    licenceUrl = "https://github.com/meowool/license/blob/main/LICENSE"
-//  )
+internal fun RootGradleDslExtension.presetPublishing(
+  enabledPublish: Boolean,
+  publishPom: PublishPom,
+  publishRepo: Array<RepoUrl>,
+) = project.allprojects {
+  if (!buildFile.exists()) return@allprojects
+  afterEvaluate {
+    if (enabledPublish) mavenPublish(pom = publishPom, repo = publishRepo)
 
-  project.publishSubprojects()
-  project.allprojects {
-    if (!buildFile.exists()) return@allprojects
-
-    mavenPublish()
+    tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
+      dokkaSourceSets.configureEach {
+        skipDeprecated.set(true)
+        skipEmptyPackages.set(false)
+      }
+    }
 
     // Keep spotless before publish.
-    afterEvaluate {
-      val spotlessApply = tasks.findByName("spotlessApply") ?: return@afterEvaluate
-      tasks.findByName("publish")?.dependsOn(spotlessApply)
-    }
+    val spotlessApply = tasks.findByName("spotlessApply") ?: return@afterEvaluate
+    tasks.findByName("publish")?.dependsOn(spotlessApply)
   }
 }
 
 internal fun RootGradleDslExtension.presetAndroid(
-  isOpenSourceProject: Boolean
+  isOpenSourceProject: Boolean,
 ) = shareAndroid { project ->
   with(project) {
     releaseSigning {
       if (isOpenSourceProject) {
-        meowoolHomeDir.resolve(".key/key.properties")
-          .takeIf { it.exists() }
+        meowoolHomeDir?.resolve(".key/key.properties")
+          ?.takeIf { it.exists() }
           ?.let(::loadKeyProperties)
           ?: println(
-            "There is a key common to open source projects in 'Meowool-Organization', " +
+            "There is a key of signing common to open source projects in 'Meowool-Organization', " +
               "for normalization, it should be used."
           )
       } else {
-        meowoolHomeDir.resolve(".key/key-internal.properties")
-          .takeIf { it.exists() }
+        meowoolHomeDir?.resolve(".key/key-internal.properties")
+          ?.takeIf { it.exists() }
           ?.let(::loadKeyProperties)
       }
     }

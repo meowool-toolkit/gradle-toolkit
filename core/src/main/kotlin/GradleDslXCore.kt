@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,9 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.hasPlugin
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.util.*
 
@@ -71,6 +74,16 @@ class GradleDslXCore : Plugin<Any> {
       targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    extensions.findByType<KotlinMultiplatformExtension>()?.apply {
+      sourceSets.findByName("jvmMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
+      sourceSets.findByName("androidMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
+
+      sourceSets.findByName("jvmTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
+      sourceSets.findByName("androidTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
+
+      afterEvaluate { targets.filterIsInstance<KotlinAndroidTarget>().firstOrNull()?.publishAllLibraryVariants() }
+    }
+
     tasks.withType<JavaCompile> {
       sourceCompatibility = JavaVersion.VERSION_1_8.toString()
       targetCompatibility = JavaVersion.VERSION_1_8.toString()
@@ -79,7 +92,11 @@ class GradleDslXCore : Plugin<Any> {
     tasks.withType<KotlinCompile> {
       sourceCompatibility = JavaVersion.VERSION_1_8.toString()
       targetCompatibility = JavaVersion.VERSION_1_8.toString()
-      kotlinOptions.addFreeCompilerArgs("-Xopt-in=kotlin.RequiresOptIn")
+    }
+
+    kotlinCommonOptions {
+      (this as? KotlinJvmOptions)?.jvmTarget = "1.8"
+      addFreeCompilerArgs("-Xopt-in=kotlin.RequiresOptIn")
     }
 
     afterEvaluate {
@@ -91,22 +108,6 @@ class GradleDslXCore : Plugin<Any> {
           ?.get(scope)
           ?.invoke(dependencies)
       }
-
-      extensions.findByType<org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension>()?.sourceSets?.all {
-        languageSettings {
-          arrayOf(
-            "kotlin.RequiresOptIn",
-            "kotlin.time.ExperimentalTime",
-            "kotlin.Experimental",
-            "kotlin.ExperimentalStdlibApi",
-            "kotlin.ExperimentalUnsignedTypes",
-            "kotlin.contracts.ExperimentalContracts",
-            "kotlin.experimental.ExperimentalTypeInference",
-            "kotlinx.coroutines.ExperimentalCoroutinesApi"
-          ).forEach(::useExperimentalAnnotation)
-          progressiveMode = true // false by default
-        }
-      }
     }
   }
 }
@@ -114,7 +115,7 @@ class GradleDslXCore : Plugin<Any> {
 /**
  * Use given [configuration] to configure extension of gradle settings.
  */
-fun Settings.gradleDslX(configuration: RootGradleDslExtension.() -> Unit) {
+fun Settings.rootGradleDslX(configuration: RootGradleDslExtension.() -> Unit) {
   require(plugins.hasPlugin(GradleDslXCore::class)) {
     "Please apply the plugin first: `apply<GradleDslXCore>()` or `apply<GradleDslX>()`"
   }
@@ -126,5 +127,21 @@ fun Settings.gradleDslX(configuration: RootGradleDslExtension.() -> Unit) {
       )
       configuration()
     }
+  }
+}
+
+/**
+ * Use given [configuration] to configure extension of root project gradle settings.
+ */
+fun Project.rootGradleDslX(configuration: RootGradleDslExtension.() -> Unit) {
+  require(plugins.hasPlugin(GradleDslXCore::class)) {
+    "Please apply the plugin first: `apply<GradleDslXCore>()` or `apply<GradleDslX>()`"
+  }
+
+  rootProject.extensions.configure<GradleDslExtension> {
+    this as? RootGradleDslExtension ?: error(
+      "Unexpected instance, the extension instance of the root project needs to be 'RootGradleDslExtension'."
+    )
+    configuration()
   }
 }

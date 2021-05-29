@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,12 @@ class GenerateTaskTest {
     val output = StringWriter()
     ProjectBuilder.builder().build().generateDependencies {
       classNameTransform {
-        it.replace("androidx", "AndroidX")
-          .replace("vectordrawable", "vectorDrawable")
-          .replace("systemuicontroller", "SystemUiController")
+        when (it) {
+          "io" -> "IO"
+          else -> it.replace("androidx", "AndroidX")
+            .replace("vectordrawable", "vectorDrawable")
+            .replace("systemuicontroller", "SystemUiController")
+        }
       }
       classParentTransform {
         it.removePrefix("com.")
@@ -49,6 +52,7 @@ class GenerateTaskTest {
           androidx.appcompat:appcompat
           androidx.vectordrawable:vectordrawable
           androidx.vectordrawable:vectordrawable-animated [name=Animation]
+          com.google.guava:guava-io
           com.google.accompanist:accompanist-systemuicontroller
         """.trimIndent()
       )
@@ -87,6 +91,9 @@ class GenerateTaskTest {
           }
           public object Appcompat : _D("androidx.appcompat:appcompat:_")
           public class Google {
+            public class Guava {
+              public object IO : _D("com.google.google.guava:guava-io:_")
+            }
             public class Accompanist {
               public object SystemUiController :
                   _D("com.google.accompanist:accompanist-systemuicontroller:_")

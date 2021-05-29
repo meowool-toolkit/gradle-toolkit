@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 import org.gradle.kotlin.dsl.add
 import org.gradle.kotlin.dsl.project
-import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 /**
  * Adds a dependency to the 'kapt' configuration.

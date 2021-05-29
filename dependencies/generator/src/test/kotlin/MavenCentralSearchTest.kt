@@ -1,5 +1,5 @@
 /*
- * Copyright (c) $\YEAR. The Meowool Organization Open Source Project
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
  * organization URL in your code file: https://github.com/meowool
  */
 import org.junit.Test
-import kotlin.test.assertEquals
+import kotlin.test.assertContains
 
 /**
  * @author 凛 (https://github.com/RinOrz)
@@ -25,7 +25,8 @@ import kotlin.test.assertEquals
 class MavenCentralSearchTest {
   @Test fun search() {
     val group = "com.google.accompanist"
-    assertEquals(
+    assertContains(
+      DependenciesSearcher.search(group),
       """
         com.google.accompanist:accompanist-systemuicontroller
         com.google.accompanist:accompanist-pager-indicators
@@ -38,7 +39,6 @@ class MavenCentralSearchTest {
         com.google.accompanist:accompanist-appcompat-theme
         com.google.accompanist:accompanist-picasso
       """.trimIndent(),
-      DependenciesSearcher.search(group)
     )
   }
 }
