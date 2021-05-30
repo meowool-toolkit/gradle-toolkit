@@ -10,7 +10,7 @@ pluginManagement {
 }
 
 plugins {
-  id("com.meowool.toolkit.gradle-dsl-x") version "1.9-SNAPSHOT"
+  id("com.meowool.toolkit.gradle-dsl-x") version "1.8"
 }
 
 buildscript {

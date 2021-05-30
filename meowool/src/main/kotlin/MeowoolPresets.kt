@@ -116,12 +116,14 @@ internal fun RootGradleDslExtension.presetAndroid(
 }
 
 private val Project.isRegular: Boolean
-  get() = buildFile.exists() && (convention.findPlugin<JavaPluginConvention>() == null
-    || extensions.findByName("kotlin") != null
-    || extensions.findByName("android") != null
-    || plugins.hasPlugin("kotlin")
-    || plugins.hasPlugin("org.gradle.kotlin.kotlin-dsl")
-    || plugins.hasPlugin("org.gradle.kotlin.kotlin-dsl.base")
-    || plugins.hasPlugin("java-gradle-plugin")
-    || plugins.hasPlugin("java-library")
-    || plugins.hasPlugin("java"))
+  get() = buildFile.exists() && (
+    convention.findPlugin<JavaPluginConvention>() == null ||
+      extensions.findByName("kotlin") != null ||
+      extensions.findByName("android") != null ||
+      plugins.hasPlugin("kotlin") ||
+      plugins.hasPlugin("org.gradle.kotlin.kotlin-dsl") ||
+      plugins.hasPlugin("org.gradle.kotlin.kotlin-dsl.base") ||
+      plugins.hasPlugin("java-gradle-plugin") ||
+      plugins.hasPlugin("java-library") ||
+      plugins.hasPlugin("java")
+    )
