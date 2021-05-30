@@ -52,28 +52,30 @@ internal fun RootGradleDslExtension.presetKotlinCompilerArgs() = allprojects {
 
 internal fun RootGradleDslExtension.presetSpotless(isOpenSourceProject: Boolean) {
   project.allprojects {
-    if (this.isRegular.not()) return@allprojects
+    afterEvaluate {
+      if (this.isRegular.not()) return@afterEvaluate
 
-    apply<SpotlessPlugin>()
+      apply<SpotlessPlugin>()
 
-    extensions.configure<SpotlessExtension>("spotless") {
-      java {
-        targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
-        endWithNewline()
-        trimTrailingWhitespace()
-        if (isOpenSourceProject) licenseHeader(OpenSourceLicense, "(package |import |@file)")
-      }
-      kotlin {
-        targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
-        ktlint("0.41.0").userData(
-          mapOf(
-            "indent_size" to "2",
-            "no-unused-imports" to "true",
+      extensions.configure<SpotlessExtension>("spotless") {
+        java {
+          targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
+          endWithNewline()
+          trimTrailingWhitespace()
+          if (isOpenSourceProject) licenseHeader(OpenSourceLicense, "(package |import |@file)")
+        }
+        kotlin {
+          targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
+          ktlint("0.41.0").userData(
+            mapOf(
+              "indent_size" to "2",
+              "no-unused-imports" to "true",
+            )
           )
-        )
-        endWithNewline()
-        trimTrailingWhitespace()
-        if (isOpenSourceProject) licenseHeader(OpenSourceLicense, "(package |import |@file)")
+          endWithNewline()
+          trimTrailingWhitespace()
+          if (isOpenSourceProject) licenseHeader(OpenSourceLicense, "(package |import |@file)")
+        }
       }
     }
   }
@@ -85,10 +87,11 @@ internal fun RootGradleDslExtension.presetPublishing(
   publishRepo: Array<RepoUrl>,
   publishPom: PublishPom,
 ) = project.allprojects {
-  if (this.isRegular.not()) return@allprojects
-  if (!publishRootProject && this == rootProject) return@allprojects
-
-  meowoolMavenPublish(publishRepo, publishPom, enabledPublish)
+  afterEvaluate {
+    if (this.isRegular.not()) return@afterEvaluate
+    if (!publishRootProject && this == rootProject) return@afterEvaluate
+    meowoolMavenPublish(publishRepo, publishPom, enabledPublish)
+  }
 }
 
 internal fun RootGradleDslExtension.presetAndroid(

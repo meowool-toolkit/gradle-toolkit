@@ -1,5 +1,7 @@
 @file:Suppress("SpellCheckingInspection")
 
+plugins { id("com.gradle.plugin-publish") }
+
 allprojects {
   group = "com.meowool.toolkit"
   version = "1.8-SNAPSHOT"
@@ -7,6 +9,15 @@ allprojects {
 
 subprojects {
   if (!buildFile.exists()) return@subprojects
+
+  apply(plugin = "com.gradle.plugin-publish")
+  mavenPublishSO1()
+
+  pluginBundle {
+    website = findProperty("POM_URL")!!.toString()
+    vcsUrl = findProperty("POM_SCM_URL")!!.toString()
+    tags = listOf("gradle-dsl", "gradle-utils", "gradle-toolkit", "kotlin", "kotlin-dsl", "ktx")
+  }
 
   afterEvaluate {
     // Don't let the fork of 'refreshVersion' spotless.
