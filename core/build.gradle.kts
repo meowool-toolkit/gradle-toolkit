@@ -7,8 +7,8 @@ gradlePlugin {
     create("gradleDslXCorePlugin") {
       id = "$group.gradle-dsl-x-core"
       implementationClass = "GradleDslXCore"
-      displayName = findProperty("POM_NAME")!!.toString()
-      description = findProperty("POM_DESCRIPTION")!!.toString()
+      displayName = findProperty("pom.name")!!.toString()
+      description = findProperty("pom.description")!!.toString()
     }
   }
 }

@@ -5,8 +5,8 @@ gradlePlugin {
     create("gradleDslXPlugin") {
       id = "$group.gradle-dsl-x"
       implementationClass = "GradleDslX"
-      displayName = findProperty("POM_NAME")!!.toString()
-      description = findProperty("POM_DESCRIPTION")!!.toString()
+      displayName = findProperty("pom.name")!!.toString()
+      description = findProperty("pom.description")!!.toString()
     }
   }
 }
