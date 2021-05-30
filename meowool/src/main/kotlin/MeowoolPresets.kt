@@ -21,8 +21,10 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import extension.RootGradleDslExtension
+import org.gradle.api.Project
+import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.named
+import org.gradle.kotlin.dsl.findPlugin
 
 internal fun RootGradleDslExtension.presetRepositories(loadSnapshots: Boolean = false) {
   rootProject.rootDir.resolve(".repo").takeIf { it.exists() }?.let(::repoMaven)
@@ -50,20 +52,17 @@ internal fun RootGradleDslExtension.presetKotlinCompilerArgs() = allprojects {
 
 internal fun RootGradleDslExtension.presetSpotless(isOpenSourceProject: Boolean) {
   project.allprojects {
-    if (!buildFile.exists()) return@allprojects
-
-    // We only need to make kotlin spotless for now
-    // TODO: Support more language
-    if (!(
-        plugins.hasPlugin("org.jetbrains.kotlin.multiplatform") ||
-          plugins.hasPlugin("org.jetbrains.kotlin.jvm") ||
-          plugins.hasPlugin("org.jetbrains.kotlin.js")
-        )
-    ) return@allprojects
+    if (this.isRegular.not()) return@allprojects
 
     apply<SpotlessPlugin>()
 
     extensions.configure<SpotlessExtension>("spotless") {
+      java {
+        targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
+        endWithNewline()
+        trimTrailingWhitespace()
+        if (isOpenSourceProject) licenseHeader(OpenSourceLicense, "(package |import |@file)")
+      }
       kotlin {
         targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
         ktlint("0.41.0").userData(
@@ -82,24 +81,14 @@ internal fun RootGradleDslExtension.presetSpotless(isOpenSourceProject: Boolean)
 
 internal fun RootGradleDslExtension.presetPublishing(
   enabledPublish: Boolean,
-  publishPom: PublishPom,
+  publishRootProject: Boolean,
   publishRepo: Array<RepoUrl>,
+  publishPom: PublishPom,
 ) = project.allprojects {
-  if (!buildFile.exists()) return@allprojects
-  afterEvaluate {
-    if (enabledPublish) mavenPublish(pom = publishPom, repo = publishRepo)
+  if (this.isRegular.not()) return@allprojects
+  if (!publishRootProject && this == rootProject) return@allprojects
 
-    tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
-      dokkaSourceSets.configureEach {
-        skipDeprecated.set(true)
-        skipEmptyPackages.set(false)
-      }
-    }
-
-    // Keep spotless before publish.
-    val spotlessApply = tasks.findByName("spotlessApply") ?: return@afterEvaluate
-    tasks.findByName("publish")?.dependsOn(spotlessApply)
-  }
+  meowoolMavenPublish(publishRepo, publishPom, enabledPublish)
 }
 
 internal fun RootGradleDslExtension.presetAndroid(
@@ -125,3 +114,14 @@ internal fun RootGradleDslExtension.presetAndroid(
     abiFilters(NdkAbi.Armeabi_v7a, NdkAbi.Arm64_v8a)
   }
 }
+
+private val Project.isRegular: Boolean
+  get() = buildFile.exists() && (convention.findPlugin<JavaPluginConvention>() == null
+    || extensions.findByName("kotlin") != null
+    || extensions.findByName("android") != null
+    || plugins.hasPlugin("kotlin")
+    || plugins.hasPlugin("org.gradle.kotlin.kotlin-dsl")
+    || plugins.hasPlugin("org.gradle.kotlin.kotlin-dsl.base")
+    || plugins.hasPlugin("java-gradle-plugin")
+    || plugins.hasPlugin("java-library")
+    || plugins.hasPlugin("java"))

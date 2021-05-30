@@ -81,7 +81,12 @@ class GradleDslXCore : Plugin<Any> {
       sourceSets.findByName("jvmTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
       sourceSets.findByName("androidTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
 
-      afterEvaluate { targets.filterIsInstance<KotlinAndroidTarget>().firstOrNull()?.publishAllLibraryVariants() }
+      afterEvaluate {
+        targets.filterIsInstance<KotlinAndroidTarget>().firstOrNull()?.apply {
+          // Overwrite can be avoided in this case
+          if (publishLibraryVariants.isNullOrEmpty()) publishAllLibraryVariants()
+        }
+      }
     }
 
     tasks.withType<JavaCompile> {
@@ -96,8 +101,9 @@ class GradleDslXCore : Plugin<Any> {
 
     kotlinCommonOptions {
       (this as? KotlinJvmOptions)?.jvmTarget = "1.8"
-      addFreeCompilerArgs("-Xopt-in=kotlin.RequiresOptIn")
     }
+
+    useExperimentalAnnotations("kotlin.RequiresOptIn")
 
     afterEvaluate {
       extensions.configure<GradleDslExtension> {

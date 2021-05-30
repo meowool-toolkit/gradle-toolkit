@@ -18,9 +18,23 @@
  */
 import extension.RootGradleDslExtension
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.hasPlugin
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.dokka.gradle.DokkaPlugin
+import org.jetbrains.dokka.gradle.DokkaTask
 
 /**
  * Use the preset configuration that conforms to the 'Meowool-Organization' specification.
+ *
+ * @param isOpenSourceProject Set the value to `true` if you are developing an open source project.
+ * @param loadSnapshotsRepository Load the snapshots repository for each project.
+ * @param enabledPublish Enabled the publish feature for each project. (root project whether the enabled depending
+ * on [publishRootProject])
+ * @param publishRootProject Whether rootProject also enabled the publishing feature, if `false`, rootProject will not
+ * apply the `maven-publish` plugin.
+ * @param publishPom The pom data to be published.
+ * @param publishRepo The repository(s) to publish to.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
@@ -28,14 +42,47 @@ fun RootGradleDslExtension.useMeowoolSpec(
   isOpenSourceProject: Boolean = true,
   loadSnapshotsRepository: Boolean = false,
   enabledPublish: Boolean = true,
+  publishRootProject: Boolean = true,
+  publishRepo: Array<RepoUrl> = arrayOf(SonatypeRepo()),
   publishPom: PublishPom = meowoolPublishPom(),
-  publishRepo: Array<RepoUrl> = arrayOf(LocalRepo, SonatypeRepo()),
 ) {
   presetRepositories(loadSnapshotsRepository)
   presetKotlinCompilerArgs()
-  presetPublishing(enabledPublish, publishPom, publishRepo)
+  presetPublishing(enabledPublish, publishRootProject, publishRepo, publishPom)
   presetSpotless(isOpenSourceProject)
   presetAndroid(isOpenSourceProject)
+}
+
+/**
+ * Use 'Meowool-Organization' preset publish configuration.
+ *
+ * @see Project.mavenPublish For more details
+ */
+fun Project.meowoolMavenPublish(
+  repo: Array<RepoUrl> = arrayOf(SonatypeRepo()),
+  pom: PublishPom = publishPom(),
+  releaseSigning: Boolean = true,
+  snapshotSigning: Boolean = false,
+  enabledPublish: Boolean = true,
+) {
+  afterEvaluate {
+    if (enabledPublish) {
+      mavenPublish(repo, pom, releaseSigning, snapshotSigning)
+
+      if (!plugins.hasPlugin(DokkaPlugin::class)) apply<DokkaPlugin>()
+
+      tasks.withType<DokkaTask> {
+        dokkaSourceSets.configureEach {
+          skipDeprecated.set(true)
+          skipEmptyPackages.set(false)
+        }
+      }
+    }
+
+    // Keep spotless before publish.
+    val spotlessApply = tasks.findByName("spotlessApply") ?: return@afterEvaluate
+    tasks.findByName("publish")?.dependsOn(spotlessApply)
+  }
 }
 
 /**
@@ -53,7 +100,8 @@ fun Project.meowoolPublishPom(
   developerUrl: String? = findPropertyOrEnv("pom.developer.url")?.toString(),
   scmConnection: String? = findPropertyOrEnv("pom.scm.connection")?.toString(),
   scmUrl: String? = findPropertyOrEnv("pom.scm.url")?.toString(),
-) = publishPom(group,
+) = publishPom(
+  group,
   artifact,
   version,
   name,
@@ -85,7 +133,8 @@ fun RootGradleDslExtension.meowoolPublishPom(
   developerUrl: String? = project.findPropertyOrEnv("pom.developer.url")?.toString(),
   scmConnection: String? = project.findPropertyOrEnv("pom.scm.connection")?.toString(),
   scmUrl: String? = project.findPropertyOrEnv("pom.scm.url")?.toString(),
-) = project.meowoolPublishPom(group,
+) = project.meowoolPublishPom(
+  group,
   artifact,
   version,
   name,
@@ -95,4 +144,5 @@ fun RootGradleDslExtension.meowoolPublishPom(
   developerName,
   developerUrl,
   scmConnection,
-  scmUrl)
+  scmUrl
+)
