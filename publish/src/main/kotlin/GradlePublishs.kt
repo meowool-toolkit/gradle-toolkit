@@ -21,6 +21,7 @@ import com.gradle.publish.PublishPlugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.hasPlugin
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugin.devel.PluginDeclaration
@@ -83,13 +84,13 @@ fun Project.configureGradlePlugin(
 ) {
   version?.let(::setVersion)
 
-  extensions.configure<PluginBundleExtension> {
+  extensions.findByType<PluginBundleExtension>()?.apply {
     website?.let(::setWebsite)
     vcsUrl?.let(::setVcsUrl)
     tags?.let(::setTags)
   }
 
-  extensions.configure<GradlePluginDevelopmentExtension> {
+  extensions.findByType<GradlePluginDevelopmentExtension>()?.apply {
     plugins {
       findByName(name)?.apply {
         this.id = id
@@ -98,7 +99,6 @@ fun Project.configureGradlePlugin(
         this.description = description
         configuration()
       }
-        ?: error("I want to set the $name plugin, but this plugin has not been created yet, please call `createGradlePlugin`.")
     }
   }
 }

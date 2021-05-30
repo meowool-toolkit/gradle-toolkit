@@ -2,16 +2,7 @@
 
 plugins { kotlin; `kotlin-dsl` }
 
-gradlePlugin {
-  plugins {
-    create("gradleDslXCorePlugin") {
-      id = "$group.gradle-dsl-x-core"
-      implementationClass = "GradleDslXCore"
-      displayName = findProperty("pom.name")!!.toString()
-      description = findProperty("pom.description")!!.toString()
-    }
-  }
-}
+createGradlePlugin(implementationClass = "GradleDslXCore")
 
 dependencies {
   apiOf(
