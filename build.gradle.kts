@@ -2,7 +2,7 @@
 
 allprojects {
   group = "com.meowool.toolkit"
-  version = "1.9-SNAPSHOT"
+  version = "1.8-SNAPSHOT"
 }
 
 subprojects {
