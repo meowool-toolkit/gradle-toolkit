@@ -105,8 +105,8 @@ fun Project.mavenPublish(
             }
           }
           else -> publications.create<MavenPublication>("maven") {
-            components.findByName("kotlin")?.let(::from)
             components.findByName("java")?.let(::from)
+              ?: components.findByName("kotlin")?.let(::from)
             artifact(sourcesJar)
           }
         }

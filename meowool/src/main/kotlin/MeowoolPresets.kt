@@ -117,7 +117,7 @@ internal fun RootGradleDslExtension.presetAndroid(
 
 private val Project.isRegular: Boolean
   get() = buildFile.exists() && (
-    convention.findPlugin<JavaPluginConvention>() == null ||
+    convention.findPlugin<JavaPluginConvention>() != null ||
       extensions.findByName("kotlin") != null ||
       extensions.findByName("android") != null ||
       plugins.hasPlugin("kotlin") ||
