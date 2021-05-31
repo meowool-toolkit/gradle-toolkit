@@ -5,6 +5,14 @@ plugins { id("com.gradle.plugin-publish") }
 allprojects {
   group = "com.meowool.toolkit"
   version = "1.8-SNAPSHOT"
+
+
+  afterEvaluate {
+    configurations.configureEach {
+      println("======== $projectDir")
+      println(this.dependencies.joinToString())
+    }
+  }
 }
 
 subprojects {

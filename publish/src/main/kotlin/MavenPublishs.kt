@@ -97,6 +97,7 @@ fun Project.mavenPublish(
           }
         }
 
+        // Configure the artifact of sources jar.
         when {
           isAndroid -> androidExtension?.variants {
             publications.create<MavenPublication>(this.name) {
@@ -125,10 +126,12 @@ fun Project.mavenPublish(
       publications.withType<MavenPublication> {
         artifact(dokkaJar)
         pom { pom.configuration(this) }
-        version = pom.version
-        groupId = pom.group
-        // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
-        artifactId = pom.artifact + artifactId.removePrefix(project.name)
+        afterEvaluate {
+          version = pom.version
+          groupId = pom.group
+          // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
+          artifactId = pom.artifact + artifactId.removePrefix(project.name)
+        }
       }
 
       // Target repository to publish to.
@@ -173,6 +176,7 @@ inline fun Project.mavenPublish(
   snapshotSigning: Boolean = false,
 ) = mavenPublish(arrayOf(repo), pom, releaseSigning, snapshotSigning)
 
+
 private fun Project.publishReleaseVersion() {
   tasks.register("publishReleaseVersion") {
     var bakVersion: Any? = null
@@ -215,19 +219,3 @@ private fun BaseExtension.variants(configuration: BaseVariant.() -> Unit) {
     ?: (this as? LibraryExtension)?.libraryVariants?.configureEach(configuration)
     ?: (this as? TestedExtension)?.testVariants?.configureEach(configuration)
 }
-
-// /**
-// * Add a task to publish all subprojects.
-// */
-// fun Project.publishSubprojects() {
-//  rootProject.allprojects {
-//    tasks.register("publishSubprojects") {
-//      val publishTasks = subprojects
-//        .mapNotNull { it.tasks.findByName("publish") }
-//        .toTypedArray()
-//      dependsOn(*publishTasks)
-//      mustRunAfter(*publishTasks)
-//      group = "publishing"
-//    }
-//  }
-// }
