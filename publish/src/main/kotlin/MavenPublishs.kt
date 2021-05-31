@@ -35,7 +35,6 @@ import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.getCredentials
@@ -148,7 +147,7 @@ fun Project.mavenPublish(
     publishReleaseVersion()
 
     // Signing the artifact.
-    extensions.configure<SigningExtension> {
+    extensions.findByType<SigningExtension>()?.apply {
       val isSigning = when {
         releaseSigning && !snapshotSigning -> pom.isSnapshot.not()
         !releaseSigning && snapshotSigning -> pom.isSnapshot
@@ -175,7 +174,6 @@ inline fun Project.mavenPublish(
   releaseSigning: Boolean = true,
   snapshotSigning: Boolean = false,
 ) = mavenPublish(arrayOf(repo), pom, releaseSigning, snapshotSigning)
-
 
 private fun Project.publishReleaseVersion() {
   tasks.register("publishReleaseVersion") {
