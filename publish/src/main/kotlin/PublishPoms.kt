@@ -22,6 +22,8 @@ import org.gradle.api.publish.maven.MavenPom
 /**
  * A lazy pom store, use [configuration] when publishing.
  *
+ * [For more details](https://docs.gradle.org/current/userguide/publishing_maven.html#sec:modifying_the_generated_pom)
+ *
  * @author 凛 (https://github.com/RinOrz)
  */
 class PublishPom internal constructor(
@@ -40,6 +42,7 @@ class PublishPom internal constructor(
 
 /**
  * Creates a pom to maven publish.
+ * [For more details](https://docs.gradle.org/current/userguide/publishing_maven.html#sec:modifying_the_generated_pom)
  */
 fun publishPom(
   group: String,
@@ -51,6 +54,7 @@ fun publishPom(
 
 /**
  * Creates a basic pom to maven publish.
+ * [For more details](https://docs.gradle.org/current/userguide/publishing_maven.html#sec:modifying_the_generated_pom)
  *
  * @param configuration the extra configuration of pom.
  *

@@ -41,16 +41,21 @@ object LocalRepo : RepoUrl(releases = LocalRepo::class, requiredCertificate = fa
 /**
  * Represents the url of the Sonatype OSS repository.
  *
+ * @param stagingRepositoryId Optionally specified the staging repository to publish to.
  * @param s01 Publish to new url of Sonatype OSS, [see](https://central.sonatype.org/news/20210223_new-users-on-s01/)
  */
-class SonatypeRepo(s01: Boolean = true) : RepoUrl(
-  releases = host(s01) + "/service/local/staging/deploy/maven2/",
-  snapshots = host(s01) + "/content/repositories/snapshots/"
+class SonatypeRepo(
+  stagingRepositoryId: String? = null,
+  s01: Boolean = true,
+) : RepoUrl(
+  releases = host(s01) + if (stagingRepositoryId == null) "/service/local/staging/deploy/maven2/" else staging(stagingRepositoryId),
+  snapshots = host(s01) + if (stagingRepositoryId == null) "/content/repositories/snapshots/" else staging(stagingRepositoryId),
 ) {
   private companion object {
     fun host(s01: Boolean) = when {
       s01 -> "https://s01.oss.sonatype.org"
       else -> "https://oss.sonatype.org"
     }
+    fun staging(stagingRepositoryId: String) = "/service/local/staging/deployByRepositoryId/$stagingRepositoryId/"
   }
 }

@@ -33,8 +33,8 @@ import org.jetbrains.dokka.gradle.DokkaTask
  * on [publishRootProject])
  * @param publishRootProject Whether rootProject also enabled the publishing feature, if `false`, rootProject will not
  * apply the `maven-publish` plugin.
- * @param publishPom The pom data to be published.
  * @param publishRepo The repository(s) to publish to.
+ * @param publishPom The pom data of each project to be published.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
@@ -44,7 +44,7 @@ fun RootGradleDslExtension.useMeowoolSpec(
   enabledPublish: Boolean = true,
   publishRootProject: Boolean = true,
   publishRepo: Array<RepoUrl> = arrayOf(SonatypeRepo()),
-  publishPom: PublishPom = meowoolPublishPom(),
+  publishPom: Project.() -> PublishPom = { meowoolPublishPom() },
 ) {
   presetRepositories(loadSnapshotsRepository)
   presetKotlinCompilerArgs()
@@ -60,29 +60,27 @@ fun RootGradleDslExtension.useMeowoolSpec(
  */
 fun Project.meowoolMavenPublish(
   repo: Array<RepoUrl> = arrayOf(SonatypeRepo()),
-  pom: PublishPom = publishPom(),
+  pom: PublishPom = meowoolPublishPom(),
   releaseSigning: Boolean = true,
   snapshotSigning: Boolean = false,
   enabledPublish: Boolean = true,
-) {
-  afterEvaluate {
-    if (enabledPublish) {
-      mavenPublish(repo, pom, releaseSigning, snapshotSigning)
+) = afterEvaluate {
+  if (enabledPublish) {
+    mavenPublish(repo, pom, releaseSigning, snapshotSigning)
 
-      if (!plugins.hasPlugin(DokkaPlugin::class)) apply<DokkaPlugin>()
+    if (!plugins.hasPlugin(DokkaPlugin::class)) apply<DokkaPlugin>()
 
-      tasks.withType<DokkaTask> {
-        dokkaSourceSets.configureEach {
-          skipDeprecated.set(true)
-          skipEmptyPackages.set(false)
-        }
+    tasks.withType<DokkaTask> {
+      dokkaSourceSets.configureEach {
+        skipDeprecated.set(true)
+        skipEmptyPackages.set(false)
       }
     }
-
-    // Keep spotless before publish.
-    val spotlessApply = tasks.findByName("spotlessApply") ?: return@afterEvaluate
-    tasks.findByName("publish")?.dependsOn(spotlessApply)
   }
+
+  // Keep spotless before publish.
+  val spotlessApply = tasks.findByName("spotlessApply") ?: return@afterEvaluate
+  tasks.findByName("publish")?.dependsOn(spotlessApply)
 }
 
 /**
@@ -114,35 +112,6 @@ fun Project.meowoolPublishPom(
   developerUrl ?: "https://github.com/meowool/",
   organizationName = "Meowool",
   organizationUrl = "https://github.com/meowool/",
-  scmConnection,
-  scmUrl
-)
-
-/**
- * Belongs to the basic publish pom of the meowool organization specification.
- */
-fun RootGradleDslExtension.meowoolPublishPom(
-  group: String = project.findPropertyOrEnv("pom.group")?.toString() ?: project.group.toString(),
-  artifact: String = project.findPropertyOrEnv("pom.artifact")?.toString() ?: project.name,
-  version: String = project.findPropertyOrEnv("pom.version")?.toString() ?: project.version.toString(),
-  name: String = project.findPropertyOrEnv("pom.name")?.toString() ?: artifact,
-  description: String? = project.findPropertyOrEnv("pom.description")?.toString(),
-  url: String? = project.findPropertyOrEnv("pom.url")?.toString(),
-  developerId: String? = project.findPropertyOrEnv("pom.developer.id")?.toString(),
-  developerName: String? = project.findPropertyOrEnv("pom.developer.name")?.toString(),
-  developerUrl: String? = project.findPropertyOrEnv("pom.developer.url")?.toString(),
-  scmConnection: String? = project.findPropertyOrEnv("pom.scm.connection")?.toString(),
-  scmUrl: String? = project.findPropertyOrEnv("pom.scm.url")?.toString(),
-) = project.meowoolPublishPom(
-  group,
-  artifact,
-  version,
-  name,
-  description,
-  url,
-  developerId,
-  developerName,
-  developerUrl,
   scmConnection,
   scmUrl
 )

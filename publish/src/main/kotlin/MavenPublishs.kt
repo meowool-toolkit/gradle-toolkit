@@ -35,7 +35,6 @@ import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.getCredentials
@@ -78,7 +77,6 @@ fun Project.mavenPublish(
     if (!plugins.hasPlugin(DokkaPlugin::class)) apply<DokkaPlugin>()
     if (!plugins.hasPlugin(SigningPlugin::class) && (releaseSigning || snapshotSigning)) apply<SigningPlugin>()
 
-    val javaConvention = convention.getPlugin(JavaPluginConvention::class.java)
     val isKotlinMultiplatform = extensions.findByType<KotlinMultiplatformExtension>() != null
     val androidExtension = extensions.findByName("android") as? BaseExtension
     val isAndroid = androidExtension != null
@@ -93,10 +91,11 @@ fun Project.mavenPublish(
             isAndroid -> from(androidExtension!!.sourceSets.getByName("main").java.srcDirs)
             // Hand it over to kotlin
             kotlinSourcesJar != null -> dependsOn(kotlinSourcesJar)
-            else -> from(javaConvention.sourceSets.getByName("main").allSource)
+            else -> from(project.convention.getPlugin(JavaPluginConvention::class.java).sourceSets.getByName("main").allSource)
           }
         }
 
+        // Configure the artifact of sources jar.
         when {
           isAndroid -> androidExtension?.variants {
             publications.create<MavenPublication>(this.name) {
@@ -125,10 +124,16 @@ fun Project.mavenPublish(
       publications.withType<MavenPublication> {
         artifact(dokkaJar)
         pom { pom.configuration(this) }
-        version = pom.version
-        groupId = pom.group
-        // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
-        artifactId = pom.artifact + artifactId.removePrefix(project.name)
+        afterEvaluate {
+          version = pom.version
+          groupId = pom.group
+
+          // Ref: https://github.com/vanniktech/gradle-maven-publish-plugin/blob/master/src/main/kotlin/com/vanniktech/maven/publish/legacy/Coordinates.kt#L25
+          if (this@withType.name.endsWith("PluginMarkerMaven").not()) {
+            // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
+            artifactId = pom.artifact + artifactId.removePrefix(project.name)
+          }
+        }
       }
 
       // Target repository to publish to.
@@ -145,15 +150,14 @@ fun Project.mavenPublish(
     publishReleaseVersion()
 
     // Signing the artifact.
-    extensions.configure<SigningExtension> {
-      val isSigning = when {
+    extensions.findByType<SigningExtension>()?.apply {
+      isRequired = when {
         releaseSigning && !snapshotSigning -> pom.isSnapshot.not()
         !releaseSigning && snapshotSigning -> pom.isSnapshot
         releaseSigning && snapshotSigning -> true
         else -> false
       }
-      setRequired { isSigning && gradle.taskGraph.hasTask("uploadArchives") }
-      if (isSigning) sign(publishing.publications)
+      if (isRequired) sign(publishing.publications)
     }
   }
 }
@@ -215,19 +219,3 @@ private fun BaseExtension.variants(configuration: BaseVariant.() -> Unit) {
     ?: (this as? LibraryExtension)?.libraryVariants?.configureEach(configuration)
     ?: (this as? TestedExtension)?.testVariants?.configureEach(configuration)
 }
-
-// /**
-// * Add a task to publish all subprojects.
-// */
-// fun Project.publishSubprojects() {
-//  rootProject.allprojects {
-//    tasks.register("publishSubprojects") {
-//      val publishTasks = subprojects
-//        .mapNotNull { it.tasks.findByName("publish") }
-//        .toTypedArray()
-//      dependsOn(*publishTasks)
-//      mustRunAfter(*publishTasks)
-//      group = "publishing"
-//    }
-//  }
-// }
