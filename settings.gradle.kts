@@ -21,7 +21,7 @@ buildscript {
 }
 
 rootGradleDslX {
-  useMeowoolSpec()
+  useMeowoolSpec(enabledPublish = false)
   configureAllKotlinCompile {
     addFreeCompilerArgs("-Xopt-in=annotation.InternalGradleDslXApi")
   }
