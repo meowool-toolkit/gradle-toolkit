@@ -35,13 +35,7 @@ package org.gradle.kotlin.dsl
 
 
 import org.gradle.api.Action
-import org.gradle.api.Incubating
-import org.gradle.api.NamedDomainObjectProvider
-import org.gradle.api.Project
-import org.gradle.api.Task
-import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.ConfigurablePublishArtifact
-import org.gradle.api.artifacts.ConfigurationContainer
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.DependencyConstraint
 import org.gradle.api.artifacts.ExternalModuleDependency
@@ -51,11 +45,9 @@ import org.gradle.api.artifacts.dsl.ArtifactHandler
 import org.gradle.api.artifacts.dsl.DependencyConstraintHandler
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.provider.Provider
-import org.gradle.api.tasks.TaskContainer
-import org.gradle.api.tasks.TaskProvider
-
-import org.gradle.kotlin.dsl.*
-import org.gradle.kotlin.dsl.accessors.runtime.*
+import org.gradle.kotlin.dsl.accessors.runtime.addConfiguredDependencyTo
+import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
+import org.gradle.kotlin.dsl.accessors.runtime.addExternalModuleDependencyTo
 
 
 /**

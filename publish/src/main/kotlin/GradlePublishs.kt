@@ -44,7 +44,8 @@ fun Project.createGradlePlugin(
   website: String? = findProperty("pom.url")?.toString(),
   vcsUrl: String? = findProperty("pom.scm.url")?.toString(),
   tags: List<String> = emptyList(),
-  configuration: PluginDeclaration.() -> Unit = {},
+  configureBundle: PluginBundleExtension.() -> Unit = {},
+  configureDeclaration: PluginDeclaration.() -> Unit = {},
 ) {
   if (!plugins.hasPlugin(PublishPlugin::class)) apply<PublishPlugin>()
 
@@ -60,7 +61,8 @@ fun Project.createGradlePlugin(
       website,
       vcsUrl,
       tags,
-      configuration
+      configureBundle,
+      configureDeclaration
     )
   }
 }
@@ -80,7 +82,8 @@ fun Project.configureGradlePlugin(
   website: String? = null,
   vcsUrl: String? = null,
   tags: List<String>? = null,
-  configuration: PluginDeclaration.() -> Unit = {},
+  configureBundle: PluginBundleExtension.() -> Unit = {},
+  configureDeclaration: PluginDeclaration.() -> Unit = {},
 ) {
   version?.let(::setVersion)
 
@@ -88,17 +91,16 @@ fun Project.configureGradlePlugin(
     website?.let(::setWebsite)
     vcsUrl?.let(::setVcsUrl)
     tags?.let(::setTags)
+    configureBundle()
   }
 
   extensions.findByType<GradlePluginDevelopmentExtension>()?.apply {
-    plugins {
-      findByName(name)?.apply {
-        this.id = id
-        this.implementationClass = implementationClass
-        this.displayName = displayName
-        this.description = description
-        configuration()
-      }
+    plugins.findByName(name)?.apply {
+      id?.let(::setId)
+      implementationClass?.let(::setImplementationClass)
+      displayName?.let(::setDisplayName)
+      description?.let(::setDescription)
+      configureDeclaration()
     }
   }
 }

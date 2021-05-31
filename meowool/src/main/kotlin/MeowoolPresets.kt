@@ -97,9 +97,7 @@ internal fun RootGradleDslExtension.presetPublishing(
   }
 }
 
-internal fun RootGradleDslExtension.presetAndroid(
-  isOpenSourceProject: Boolean,
-) = shareAndroid { project ->
+internal fun RootGradleDslExtension.presetAndroid(isOpenSourceProject: Boolean) = shareAndroid { project ->
   with(project) {
     releaseSigning {
       if (isOpenSourceProject) {
@@ -131,5 +129,4 @@ private val Project.isRegular: Boolean
       plugins.hasPlugin("org.gradle.kotlin.kotlin-dsl.base") ||
       plugins.hasPlugin("java-gradle-plugin") ||
       plugins.hasPlugin("java-library") ||
-      plugins.hasPlugin("java")
-    )
+      plugins.hasPlugin("java"))

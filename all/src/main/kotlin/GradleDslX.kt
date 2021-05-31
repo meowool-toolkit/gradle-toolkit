@@ -20,7 +20,6 @@ import de.fayard.refreshVersions.RefreshVersionsPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.kotlin.dsl.apply
-import java.util.*
 
 /**
  * Enhanced plugin for gradle kotlin dsl.

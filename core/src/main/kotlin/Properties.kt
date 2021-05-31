@@ -19,7 +19,7 @@
 import annotation.InternalGradleDslXApi
 import org.gradle.api.Project
 import java.io.File
-import java.util.*
+import java.util.Properties
 
 @InternalGradleDslXApi
 fun File.toPropertiesOrNull(): Properties? = when {

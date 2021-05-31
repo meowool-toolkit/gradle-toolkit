@@ -38,7 +38,6 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.util.*
 
 /**
  * Enhanced plugin core for gradle kotlin dsl.

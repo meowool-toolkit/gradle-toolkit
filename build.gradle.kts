@@ -9,6 +9,10 @@ subprojects {
       tags = listOf("gradle-dsl", "gradle-utils", "gradle-toolkit", "kotlin", "kotlin-dsl", "ktx")
     }
 
+//    configureGradlePlugin(
+//      tags = listOf("gradle-dsl", "gradle-utils", "gradle-toolkit", "kotlin", "kotlin-dsl", "ktx")
+//    )
+
     // Don't let the fork of 'refreshVersion' spotless.
     if (projectDir.absolutePath.endsWith("dependencies/updater")) {
       tasks.findByName("spotlessApply")?.enabled = false

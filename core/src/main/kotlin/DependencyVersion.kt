@@ -16,7 +16,7 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
-import kotlin.*
+@file:Suppress("unused")
 
 /**
  * Change the dependency version.
