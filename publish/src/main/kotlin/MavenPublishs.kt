@@ -77,7 +77,6 @@ fun Project.mavenPublish(
     if (!plugins.hasPlugin(DokkaPlugin::class)) apply<DokkaPlugin>()
     if (!plugins.hasPlugin(SigningPlugin::class) && (releaseSigning || snapshotSigning)) apply<SigningPlugin>()
 
-    val javaConvention = convention.getPlugin(JavaPluginConvention::class.java)
     val isKotlinMultiplatform = extensions.findByType<KotlinMultiplatformExtension>() != null
     val androidExtension = extensions.findByName("android") as? BaseExtension
     val isAndroid = androidExtension != null
@@ -92,7 +91,7 @@ fun Project.mavenPublish(
             isAndroid -> from(androidExtension!!.sourceSets.getByName("main").java.srcDirs)
             // Hand it over to kotlin
             kotlinSourcesJar != null -> dependsOn(kotlinSourcesJar)
-            else -> from(javaConvention.sourceSets.getByName("main").allSource)
+            else -> from(project.convention.getPlugin(JavaPluginConvention::class.java).sourceSets.getByName("main").allSource)
           }
         }
 
@@ -128,8 +127,12 @@ fun Project.mavenPublish(
         afterEvaluate {
           version = pom.version
           groupId = pom.group
-          // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
-          artifactId = pom.artifact + artifactId.removePrefix(project.name)
+
+          // Ref: https://github.com/vanniktech/gradle-maven-publish-plugin/blob/master/src/main/kotlin/com/vanniktech/maven/publish/legacy/Coordinates.kt#L25
+          if (this@withType.name.endsWith("PluginMarkerMaven").not()) {
+            // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
+            artifactId = pom.artifact + artifactId.removePrefix(project.name)
+          }
         }
       }
 
@@ -148,14 +151,13 @@ fun Project.mavenPublish(
 
     // Signing the artifact.
     extensions.findByType<SigningExtension>()?.apply {
-      val isSigning = when {
+      isRequired = when {
         releaseSigning && !snapshotSigning -> pom.isSnapshot.not()
         !releaseSigning && snapshotSigning -> pom.isSnapshot
         releaseSigning && snapshotSigning -> true
         else -> false
       }
-      setRequired { isSigning && gradle.taskGraph.hasTask("uploadArchives") }
-      if (isSigning) sign(publishing.publications)
+      if (isRequired) sign(publishing.publications)
     }
   }
 }

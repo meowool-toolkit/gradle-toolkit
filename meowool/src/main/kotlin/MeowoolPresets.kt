@@ -50,32 +50,30 @@ internal fun RootGradleDslExtension.presetKotlinCompilerArgs() = allprojects {
   )
 }
 
-internal fun RootGradleDslExtension.presetSpotless(isOpenSourceProject: Boolean) {
-  project.allprojects {
-    afterEvaluate {
-      if (this.isRegular.not()) return@afterEvaluate
+internal fun RootGradleDslExtension.presetSpotless(isOpenSourceProject: Boolean) = allprojects {
+  afterEvaluate {
+    if (this.isRegular.not()) return@afterEvaluate
 
-      apply<SpotlessPlugin>()
+    apply<SpotlessPlugin>()
 
-      extensions.configure<SpotlessExtension>("spotless") {
-        java {
-          targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
-          endWithNewline()
-          trimTrailingWhitespace()
-          if (isOpenSourceProject) licenseHeader(OpenSourceLicense, "(package |import |@file)")
-        }
-        kotlin {
-          targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
-          ktlint("0.41.0").userData(
-            mapOf(
-              "indent_size" to "2",
-              "no-unused-imports" to "true",
-            )
+    extensions.configure<SpotlessExtension>("spotless") {
+      java {
+        targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
+        endWithNewline()
+        trimTrailingWhitespace()
+        if (isOpenSourceProject) licenseHeader(OpenSourceLicense, "(package |import |@file)")
+      }
+      kotlin {
+        targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
+        ktlint("0.41.0").userData(
+          mapOf(
+            "indent_size" to "2",
+            "no-unused-imports" to "true",
           )
-          endWithNewline()
-          trimTrailingWhitespace()
-          if (isOpenSourceProject) licenseHeader(OpenSourceLicense, "(package |import |@file)")
-        }
+        )
+        endWithNewline()
+        trimTrailingWhitespace()
+        if (isOpenSourceProject) licenseHeader(OpenSourceLicense, "(package |import |@file)")
       }
     }
   }
@@ -86,7 +84,7 @@ internal fun RootGradleDslExtension.presetPublishing(
   publishRootProject: Boolean,
   publishRepo: Array<RepoUrl>,
   publishPom: PublishPom,
-) = project.allprojects {
+) = allprojects {
   afterEvaluate {
     if (this.isRegular.not()) return@afterEvaluate
     if (!publishRootProject && this == rootProject) return@afterEvaluate

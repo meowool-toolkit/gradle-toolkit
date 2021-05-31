@@ -60,29 +60,27 @@ fun RootGradleDslExtension.useMeowoolSpec(
  */
 fun Project.meowoolMavenPublish(
   repo: Array<RepoUrl> = arrayOf(SonatypeRepo()),
-  pom: PublishPom = publishPom(),
+  pom: PublishPom = meowoolPublishPom(),
   releaseSigning: Boolean = true,
   snapshotSigning: Boolean = false,
   enabledPublish: Boolean = true,
-) {
-  afterEvaluate {
-    if (enabledPublish) {
-      mavenPublish(repo, pom, releaseSigning, snapshotSigning)
+) = afterEvaluate {
+  if (enabledPublish) {
+    mavenPublish(repo, pom, releaseSigning, snapshotSigning)
 
-      if (!plugins.hasPlugin(DokkaPlugin::class)) apply<DokkaPlugin>()
+    if (!plugins.hasPlugin(DokkaPlugin::class)) apply<DokkaPlugin>()
 
-      tasks.withType<DokkaTask> {
-        dokkaSourceSets.configureEach {
-          skipDeprecated.set(true)
-          skipEmptyPackages.set(false)
-        }
+    tasks.withType<DokkaTask> {
+      dokkaSourceSets.configureEach {
+        skipDeprecated.set(true)
+        skipEmptyPackages.set(false)
       }
     }
-
-    // Keep spotless before publish.
-    val spotlessApply = tasks.findByName("spotlessApply") ?: return@afterEvaluate
-    tasks.findByName("publish")?.dependsOn(spotlessApply)
   }
+
+  // Keep spotless before publish.
+  val spotlessApply = tasks.findByName("spotlessApply") ?: return@afterEvaluate
+  tasks.findByName("publish")?.dependsOn(spotlessApply)
 }
 
 /**
