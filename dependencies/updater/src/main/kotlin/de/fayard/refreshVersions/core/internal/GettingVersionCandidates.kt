@@ -20,8 +20,11 @@ package de.fayard.refreshVersions.core.internal
 
 import de.fayard.refreshVersions.core.DependencyVersionsFetcher
 import de.fayard.refreshVersions.core.Version
-import de.fayard.refreshVersions.core.internal.VersionCandidatesResultMode.FilterMode.*
-import de.fayard.refreshVersions.core.internal.VersionCandidatesResultMode.SortingMode.*
+import de.fayard.refreshVersions.core.internal.VersionCandidatesResultMode.FilterMode.AllIntermediateVersions
+import de.fayard.refreshVersions.core.internal.VersionCandidatesResultMode.FilterMode.Latest
+import de.fayard.refreshVersions.core.internal.VersionCandidatesResultMode.FilterMode.LatestByStabilityLevel
+import de.fayard.refreshVersions.core.internal.VersionCandidatesResultMode.SortingMode.ByRepo
+import de.fayard.refreshVersions.core.internal.VersionCandidatesResultMode.SortingMode.ByVersion
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope

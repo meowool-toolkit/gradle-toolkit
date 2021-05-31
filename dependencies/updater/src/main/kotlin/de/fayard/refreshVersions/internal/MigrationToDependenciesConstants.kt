@@ -18,10 +18,13 @@
  */
 package de.fayard.refreshVersions.internal
 
-import de.fayard.refreshVersions.core.internal.*
+import de.fayard.refreshVersions.core.internal.ArtifactVersionKeyReader
+import de.fayard.refreshVersions.core.internal.InternalRefreshVersionsApi
+import de.fayard.refreshVersions.core.internal.RefreshVersionsConfigHolder
 import de.fayard.refreshVersions.core.internal.cli.AnsiColor
 import de.fayard.refreshVersions.core.internal.cli.CliGenericUi
-import kotlinx.coroutines.*
+import de.fayard.refreshVersions.core.internal.hasHardcodedVersion
+import kotlinx.coroutines.isActive
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.ExternalDependency

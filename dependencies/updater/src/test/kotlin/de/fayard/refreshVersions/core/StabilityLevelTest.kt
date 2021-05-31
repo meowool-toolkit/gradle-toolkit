@@ -1,6 +1,15 @@
 package de.fayard.refreshVersions.core
 
-import de.fayard.refreshVersions.core.StabilityLevel.*
+import de.fayard.refreshVersions.core.StabilityLevel.Alpha
+import de.fayard.refreshVersions.core.StabilityLevel.Beta
+import de.fayard.refreshVersions.core.StabilityLevel.Development
+import de.fayard.refreshVersions.core.StabilityLevel.EarlyAccessProgram
+import de.fayard.refreshVersions.core.StabilityLevel.Milestone
+import de.fayard.refreshVersions.core.StabilityLevel.Preview
+import de.fayard.refreshVersions.core.StabilityLevel.ReleaseCandidate
+import de.fayard.refreshVersions.core.StabilityLevel.Snapshot
+import de.fayard.refreshVersions.core.StabilityLevel.Stable
+import de.fayard.refreshVersions.core.StabilityLevel.Unknown
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test

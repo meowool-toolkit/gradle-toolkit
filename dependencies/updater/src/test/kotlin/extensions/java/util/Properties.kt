@@ -1,7 +1,7 @@
 package extensions.java.util
 
 import java.io.File
-import java.util.*
+import java.util.Properties
 
 fun Properties.loadAndGetAsMap(file: File): Map<String, String> {
     load(file.inputStream())

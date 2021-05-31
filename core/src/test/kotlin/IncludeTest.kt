@@ -18,7 +18,6 @@
  */
 import org.junit.Test
 import java.io.File
-import java.util.*
 import kotlin.test.assertTrue
 
 /**

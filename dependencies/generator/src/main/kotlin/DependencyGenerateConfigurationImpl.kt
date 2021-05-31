@@ -20,7 +20,7 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginConvention
 import java.io.File
 import java.io.OutputStream
-import java.util.*
+import java.util.Properties
 
 internal class DependencyGenerateConfigurationImpl(
   private val project: Project

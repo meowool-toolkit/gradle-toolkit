@@ -28,7 +28,10 @@ import de.fayard.refreshVersions.core.internal.versions.VersionsPropertiesModel
 import de.fayard.refreshVersions.core.internal.versions.writeWithNewEntry
 import kotlinx.coroutines.runBlocking
 import org.gradle.api.Project
-import org.gradle.api.artifacts.*
+import org.gradle.api.artifacts.ArtifactRepositoryContainer
+import org.gradle.api.artifacts.Configuration
+import org.gradle.api.artifacts.ExternalDependency
+import org.gradle.api.artifacts.ModuleIdentifier
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.invocation.Gradle
 

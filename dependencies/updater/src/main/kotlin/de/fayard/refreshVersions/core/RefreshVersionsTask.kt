@@ -24,7 +24,7 @@ import de.fayard.refreshVersions.core.internal.legacy.LegacyBootstrapUpdater
 import de.fayard.refreshVersions.core.internal.lookupVersionCandidates
 import de.fayard.refreshVersions.core.internal.versions.VersionsPropertiesModel
 import de.fayard.refreshVersions.core.internal.versions.writeWithNewVersions
-import kotlinx.coroutines.*
+import kotlinx.coroutines.runBlocking
 import org.gradle.api.DefaultTask
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.tasks.Input

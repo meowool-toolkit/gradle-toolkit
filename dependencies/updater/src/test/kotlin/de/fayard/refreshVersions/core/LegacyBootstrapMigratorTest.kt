@@ -1,9 +1,9 @@
 package de.fayard.refreshVersions.core
 
 import de.fayard.refreshVersions.core.internal.legacy.LegacyBootstrapMigrator
-import testutils.junit.mapDynamicTest
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
+import testutils.junit.mapDynamicTest
 import java.io.File
 import kotlin.test.assertEquals
 

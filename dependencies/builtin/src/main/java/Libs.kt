@@ -18,10 +18,6 @@
  */
 @file:Suppress("RedundantVisibilityModifier", "ClassName", "unused")
 
-import kotlin.CharSequence
-import kotlin.String
-import kotlin.Suppress
-
 /**
  * Some automatically generated dependency references.
  *

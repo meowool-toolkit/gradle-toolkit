@@ -18,9 +18,12 @@
  */
 package de.fayard.refreshVersions.internal
 
-import de.fayard.refreshVersions.core.internal.*
+import de.fayard.refreshVersions.core.internal.RefreshVersionsConfigHolder
 import de.fayard.refreshVersions.core.internal.cli.AnsiColor
 import de.fayard.refreshVersions.core.internal.cli.CliGenericUi
+import de.fayard.refreshVersions.core.internal.getVersionPropertyName
+import de.fayard.refreshVersions.core.internal.hasHardcodedVersion
+import de.fayard.refreshVersions.core.internal.writeCurrentVersionInProperties
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.ExternalDependency

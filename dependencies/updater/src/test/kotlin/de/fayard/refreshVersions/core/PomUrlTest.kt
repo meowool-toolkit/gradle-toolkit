@@ -1,13 +1,13 @@
 package de.fayard.refreshVersions.core
 
-import testutils.MavenRepoUrl
-import testutils.disabledBecauseIsAnExperiment
 import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+import testutils.MavenRepoUrl
+import testutils.disabledBecauseIsAnExperiment
 
 class PomUrlTest {
 

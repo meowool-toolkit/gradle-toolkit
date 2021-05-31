@@ -2,18 +2,18 @@ package de.fayard.refreshVersions.core
 
 import de.fayard.refreshVersions.core.internal.PluginWithVersionCandidates
 import de.fayard.refreshVersions.core.internal.SettingsPluginsUpdater
-import de.fayard.refreshVersions.core.internal.codeparsing.gradle.findPluginBlocksRanges
 import de.fayard.refreshVersions.core.internal.codeparsing.ProgrammingLanguage
 import de.fayard.refreshVersions.core.internal.codeparsing.SourceCodeSection
-import de.fayard.refreshVersions.core.internal.codeparsing.gradle.extractGradleScriptSections
 import de.fayard.refreshVersions.core.internal.codeparsing.findRanges
+import de.fayard.refreshVersions.core.internal.codeparsing.gradle.extractGradleScriptSections
+import de.fayard.refreshVersions.core.internal.codeparsing.gradle.findPluginBlocksRanges
 import extensions.java.util.loadAndGetAsMap
-import testutils.junit.mapDynamicTest
 import extensions.kotlin.collections.subListAfter
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.file.shouldExist
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
+import testutils.junit.mapDynamicTest
 import java.io.File
 import java.util.Properties
 import kotlin.test.assertEquals

@@ -18,12 +18,17 @@
  */
 package de.fayard.refreshVersions.core.internal
 
-import de.fayard.refreshVersions.core.*
+import de.fayard.refreshVersions.core.DependencyVersionsFetcher
 import de.fayard.refreshVersions.core.FeatureFlag.GRADLE_UPDATES
+import de.fayard.refreshVersions.core.ModuleId
+import de.fayard.refreshVersions.core.Version
 import de.fayard.refreshVersions.core.extensions.gradle.hasDynamicVersion
 import de.fayard.refreshVersions.core.extensions.gradle.isRootProject
 import de.fayard.refreshVersions.core.internal.legacy.LegacyBoostrapUpdatesFinder
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import okhttp3.OkHttpClient
 import org.gradle.api.Project
 import org.gradle.api.artifacts.ConfigurationContainer

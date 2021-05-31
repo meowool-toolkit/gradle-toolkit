@@ -18,6 +18,7 @@
  */
 @file:Suppress("PackageDirectoryMismatch", "SpellCheckingInspection", "unused", "MemberVisibilityCanBePrivate")
 
+import Ktor.server
 import org.gradle.api.Incubating
 import org.gradle.kotlin.dsl.IsNotADependency
 

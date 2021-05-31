@@ -21,7 +21,7 @@ package de.fayard.refreshVersions
 import de.fayard.refreshVersions.core.internal.cli.AnsiColor
 import de.fayard.refreshVersions.internal.promptProjectSelection
 import de.fayard.refreshVersions.internal.runInteractiveMigrationToDependenciesConstants
-import kotlinx.coroutines.*
+import kotlinx.coroutines.runBlocking
 import org.gradle.api.DefaultTask
 import org.gradle.api.logging.configuration.ConsoleOutput
 import org.gradle.api.tasks.TaskAction

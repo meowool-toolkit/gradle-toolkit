@@ -1,7 +1,5 @@
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.extra
-import org.gradle.kotlin.dsl.maven
-import org.gradle.kotlin.dsl.repositories
 
 plugins {
     id("com.gradle.enterprise").version("3.1.1")

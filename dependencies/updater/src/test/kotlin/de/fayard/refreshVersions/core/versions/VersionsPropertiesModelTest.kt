@@ -5,8 +5,8 @@ import de.fayard.refreshVersions.core.internal.versions.readFromText
 import de.fayard.refreshVersions.core.internal.versions.toText
 import de.fayard.refreshVersions.core.internal.versions.withEntriesLineBreaksIfMissing
 import de.fayard.refreshVersions.core.testResources
-import testutils.junit.mapDynamicTest
 import org.junit.jupiter.api.TestFactory
+import testutils.junit.mapDynamicTest
 import java.io.File
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith

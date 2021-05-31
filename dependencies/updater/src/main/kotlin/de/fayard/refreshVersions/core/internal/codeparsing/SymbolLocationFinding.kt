@@ -20,7 +20,9 @@ package de.fayard.refreshVersions.core.internal.codeparsing
 
 import de.fayard.refreshVersions.core.extensions.collections.removeLast
 import de.fayard.refreshVersions.core.internal.TaggedRange
-import de.fayard.refreshVersions.core.internal.codeparsing.SourceCodeSection.*
+import de.fayard.refreshVersions.core.internal.codeparsing.SourceCodeSection.CodeChunk
+import de.fayard.refreshVersions.core.internal.codeparsing.SourceCodeSection.Comment
+import de.fayard.refreshVersions.core.internal.codeparsing.SourceCodeSection.StringLiteral
 
 internal sealed class SymbolLocationFindingRule {
 

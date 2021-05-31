@@ -21,7 +21,8 @@
 package de.fayard.refreshVersions.core
 
 import de.fayard.refreshVersions.core.extensions.gradle.isBuildSrc
-import de.fayard.refreshVersions.core.internal.*
+import de.fayard.refreshVersions.core.internal.RefreshVersionsConfigHolder
+import de.fayard.refreshVersions.core.internal.UsedPluginsHolder
 import de.fayard.refreshVersions.core.internal.resolveVersion
 import de.fayard.refreshVersions.core.internal.setupVersionPlaceholdersResolving
 import org.gradle.api.initialization.Settings

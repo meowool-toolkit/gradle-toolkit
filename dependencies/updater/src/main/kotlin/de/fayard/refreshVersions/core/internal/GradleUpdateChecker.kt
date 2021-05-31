@@ -22,7 +22,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import de.fayard.refreshVersions.core.extensions.okhttp.await
-import de.fayard.refreshVersions.core.internal.GradleUpdateChecker.VersionType.*
+import de.fayard.refreshVersions.core.internal.GradleUpdateChecker.VersionType.All
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.HttpException

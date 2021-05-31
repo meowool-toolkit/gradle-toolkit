@@ -2,6 +2,7 @@ package de.fayard.refreshVersions.rules
 
 import AndroidX
 import COIL
+import Google
 import KotlinX
 import Ktor
 import Orchid

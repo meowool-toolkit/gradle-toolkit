@@ -22,7 +22,8 @@ import de.fayard.refreshVersions.core.DependencyVersionsFetcher
 import de.fayard.refreshVersions.core.ModuleId
 import de.fayard.refreshVersions.core.Version
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
+import java.util.TimeZone
 
 internal abstract class MavenDependencyVersionsFetcher(
   moduleId: ModuleId,
