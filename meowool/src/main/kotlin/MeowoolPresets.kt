@@ -83,12 +83,17 @@ internal fun RootGradleDslExtension.presetPublishing(
   enabledPublish: Boolean,
   publishRootProject: Boolean,
   publishRepo: Array<RepoUrl>,
-  publishPom: PublishPom,
+  publishPom: Project.() -> PublishPom,
 ) = allprojects {
   afterEvaluate {
     if (this.isRegular.not()) return@afterEvaluate
     if (!publishRootProject && this == rootProject) return@afterEvaluate
-    meowoolMavenPublish(publishRepo, publishPom, enabledPublish = enabledPublish)
+
+    meowoolMavenPublish(
+      repo = publishRepo,
+      pom = publishPom(),
+      enabledPublish = enabledPublish
+    )
   }
 }
 
