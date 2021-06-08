@@ -20,3 +20,4 @@
 
 internal const val GradleDslXName = "gradleDslX"
 internal const val MainScope = "#_main__"
+internal const val KotlinVersion = "1.5"

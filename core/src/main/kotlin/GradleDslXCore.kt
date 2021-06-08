@@ -37,6 +37,7 @@ import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
+import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 /**
@@ -58,53 +59,39 @@ class GradleDslXCore : Plugin<Any> {
     if (this == rootProject) {
       extensions.add(GradleDslExtension::class, GradleDslXName, RootGradleDslExtensionImpl(this))
       subprojects { bootstrap() }
+    } else {
+      extensions.add(GradleDslExtension::class, GradleDslXName, GradleDslExtensionImpl(this))
     }
-
-    extensions.findByType<GradleDslExtension>()
-      ?: extensions.add(GradleDslExtension::class, GradleDslXName, GradleDslExtensionImpl(this))
-
-    extensions.findByType<SourceSetContainer>()?.apply {
-      findByName("main")?.java?.srcDirs("src/main/kotlin")
-      findByName("test")?.java?.srcDirs("src/test/kotlin")
-    }
-
-    extensions.findByType<JavaPluginExtension>()?.apply {
-      sourceCompatibility = JavaVersion.VERSION_1_8
-      targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    extensions.findByType<KotlinMultiplatformExtension>()?.apply {
-      sourceSets.findByName("jvmMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
-      sourceSets.findByName("androidMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
-
-      sourceSets.findByName("jvmTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
-      sourceSets.findByName("androidTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
-
-      afterEvaluate {
-        targets.filterIsInstance<KotlinAndroidTarget>().firstOrNull()?.apply {
-          // Overwrite can be avoided in this case
-          if (publishLibraryVariants.isNullOrEmpty()) publishAllLibraryVariants()
-        }
-      }
-    }
-
-    tasks.withType<JavaCompile> {
-      sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-      targetCompatibility = JavaVersion.VERSION_1_8.toString()
-    }
-
-    tasks.withType<KotlinCompile> {
-      sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-      targetCompatibility = JavaVersion.VERSION_1_8.toString()
-    }
-
-    kotlinCommonOptions {
-      (this as? KotlinJvmOptions)?.jvmTarget = "1.8"
-    }
-
-    useExperimentalAnnotations("kotlin.RequiresOptIn")
 
     afterEvaluate {
+      kotlinCommonOptions {
+        apiVersion = KotlinVersion
+        languageVersion = KotlinVersion
+        (this as? KotlinJvmOptions)?.jvmTarget = "1.8"
+      }
+
+      useExperimentalAnnotations("kotlin.RequiresOptIn")
+
+      extensions.findByType<SourceSetContainer>()?.apply {
+        findByName("main")?.java?.srcDirs("src/main/kotlin")
+        findByName("test")?.java?.srcDirs("src/test/kotlin")
+      }
+
+      extensions.findByType<JavaPluginExtension>()?.apply {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+      }
+
+      tasks.withType<JavaCompile> {
+        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+        targetCompatibility = JavaVersion.VERSION_1_8.toString()
+      }
+
+      tasks.withType<KotlinCompile> {
+        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+        targetCompatibility = JavaVersion.VERSION_1_8.toString()
+      }
+
       extensions.configure<GradleDslExtension> {
         this as GradleDslExtensionImpl
         // Import declared dependencies directly
@@ -112,6 +99,21 @@ class GradleDslXCore : Plugin<Any> {
           ?.sharedDependencies
           ?.get(scope)
           ?.invoke(dependencies)
+      }
+
+      extensions.findByType<KotlinMultiplatformExtension>()?.apply {
+        sourceSets.findByName("jvmMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
+        sourceSets.findByName("androidMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
+
+        sourceSets.findByName("jvmTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
+        sourceSets.findByName("androidTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
+
+        targets.all {
+          if (this is KotlinAndroidTarget) {
+            // Overwrite can be avoided in this case
+            if (publishLibraryVariants.isNullOrEmpty()) publishAllLibraryVariants()
+          }
+        }
       }
     }
   }

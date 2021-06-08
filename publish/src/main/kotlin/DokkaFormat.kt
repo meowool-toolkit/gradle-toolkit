@@ -18,6 +18,13 @@
  */
 @file:Suppress("unused")
 
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.hasPlugin
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.dokka.gradle.DokkaPlugin
+import org.jetbrains.dokka.gradle.DokkaTask
+
 /**
  * Represents the output format of [Dokka](https://github.com/Kotlin/dokka#output-formats)
  *
@@ -43,4 +50,24 @@ enum class DokkaFormat(val taskName: String) {
    * Jekyll compatible markdown.
    */
   Jekyll("dokkaJekyll"),
+}
+
+/**
+ * Configures all dokka task.
+ */
+fun Project.dokka(configuration: DokkaTask.() -> Unit) {
+  afterEvaluate {
+    if (!plugins.hasPlugin(DokkaPlugin::class)) apply<DokkaPlugin>()
+    tasks.withType(configuration)
+  }
+}
+
+/**
+ * Configures the dokka task of given outputs [format].
+ */
+fun Project.dokka(format: DokkaFormat = DokkaFormat.Html, configuration: DokkaTask.() -> Unit) {
+  afterEvaluate {
+    if (!plugins.hasPlugin(DokkaPlugin::class)) apply<DokkaPlugin>()
+    (tasks.findByName(format.taskName) as? DokkaTask)?.configuration()
+  }
 }

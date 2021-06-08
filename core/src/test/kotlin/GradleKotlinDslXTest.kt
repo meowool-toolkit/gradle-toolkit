@@ -16,12 +16,14 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
+import org.gradle.api.Project
+import org.gradle.api.initialization.Settings
 import org.gradle.testfixtures.ProjectBuilder
 
 /**
  * @author 凛 (https://github.com/RinOrz)
  */
 abstract class GradleKotlinDslXTest {
-  internal val project = ProjectBuilder.builder().build()
-  internal val settings = FakeSettings(FakeGradle(project))
+  val project: Project = ProjectBuilder.builder().build()
+  val settings: Settings = FakeSettings(FakeGradle(project))
 }

@@ -10,7 +10,7 @@ pluginManagement {
 }
 
 plugins {
-  id("com.meowool.toolkit.gradle-dsl-x") version "1.8-SNAPSHOT"
+  id("com.meowool.toolkit.gradle-dsl-x") version "1.9-SNAPSHOT"
 }
 
 buildscript {
@@ -21,7 +21,7 @@ buildscript {
 }
 
 rootGradleDslX {
-  useMeowoolSpec(enabledPublish = false)
+  useMeowoolSpec(publishRootProject = false)
   configureAllKotlinCompile {
     addFreeCompilerArgs("-Xopt-in=annotation.InternalGradleDslXApi")
   }

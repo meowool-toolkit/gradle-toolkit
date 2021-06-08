@@ -16,46 +16,75 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
+import org.gradle.api.Project
 import org.gradle.api.artifacts.repositories.PasswordCredentials
 
 /**
  * The url of the target repository to publish to.
  *
- * @param releases The publish url of the release version of the artifact.
- * @param snapshots The publish url of the snapshot version of the artifact.
- * @param requiredCertificate Whether this repo requires a certificate [PasswordCredentials].
- *
  * @author 凛 (https://github.com/RinOrz)
  */
-open class RepoUrl(
-  val releases: Any,
-  val snapshots: Any = releases,
-  val requiredCertificate: Boolean = true,
-)
+abstract class RepoUrl {
+
+  /**
+   * The publish url of the artifact.
+   */
+  abstract val url: Any
+
+  /**
+   * Whether this repo requires a certificate [PasswordCredentials].
+   */
+  abstract val requiredCertificate: Boolean
+
+  /**
+   * Represents the artifacts to publish is snapshot version.
+   */
+  var isSnapshot: Boolean = false
+    internal set
+
+  /**
+   * The project to uses this repo url.
+   */
+  lateinit var project: Project
+}
+
+/**
+ * The defaults implementation to [RepoUrl].
+ */
+open class DefaultRepoUrl(
+  private val releases: Any,
+  override val requiredCertificate: Boolean,
+  private val snapshots: Any = releases,
+) : RepoUrl() {
+  override val url: Any
+    get() = if (isSnapshot) snapshots else releases
+}
+
 
 /**
  * Represents the url of the Maven Local repository.
  */
-object LocalRepo : RepoUrl(releases = LocalRepo::class, requiredCertificate = false)
+object LocalRepo : DefaultRepoUrl(releases = LocalRepo::class, requiredCertificate = false)
 
 /**
  * Represents the url of the Sonatype OSS repository.
  *
- * @param stagingRepositoryId Optionally specified the staging repository to publish to.
  * @param s01 Publish to new url of Sonatype OSS, [see](https://central.sonatype.org/news/20210223_new-users-on-s01/)
  */
-class SonatypeRepo(
-  stagingRepositoryId: String? = null,
-  s01: Boolean = true,
-) : RepoUrl(
-  releases = host(s01) + if (stagingRepositoryId == null) "/service/local/staging/deploy/maven2/" else staging(stagingRepositoryId),
-  snapshots = host(s01) + if (stagingRepositoryId == null) "/content/repositories/snapshots/" else staging(stagingRepositoryId),
-) {
-  private companion object {
-    fun host(s01: Boolean) = when {
-      s01 -> "https://s01.oss.sonatype.org"
-      else -> "https://oss.sonatype.org"
-    }
-    fun staging(stagingRepositoryId: String) = "/service/local/staging/deployByRepositoryId/$stagingRepositoryId/"
+class SonatypeRepo(private val s01: Boolean = true) : RepoUrl() {
+  val baseUrl = when {
+    s01 -> "https://s01.oss.sonatype.org"
+    else -> "https://oss.sonatype.org"
   }
+
+  override val url: Any
+    get() = when {
+      isSnapshot -> "$baseUrl/content/repositories/snapshots/"
+      stagingId.isNullOrEmpty() -> "$baseUrl/service/local/staging/deploy/maven2/"
+      else -> "$baseUrl/service/local/staging/deployByRepositoryId/$stagingId/"
+    }
+
+  override val requiredCertificate: Boolean = true
+
+  internal var stagingId: String? = null
 }

@@ -82,7 +82,7 @@ fun Project.publishPom(
   getUrl().set(url)
   description?.let(getDescription()::set)
   licenses {
-    licenses {
+    license {
       licenseName?.let(getName()::set)
       licenseUrl?.let(getUrl()::set)
     }

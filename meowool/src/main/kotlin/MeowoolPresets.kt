@@ -18,6 +18,7 @@
  */
 @file:Suppress("SpellCheckingInspection")
 
+import com.android.build.gradle.AppExtension
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import extension.RootGradleDslExtension
@@ -38,16 +39,18 @@ internal fun RootGradleDslExtension.presetRepositories(loadSnapshots: Boolean = 
 }
 
 internal fun RootGradleDslExtension.presetKotlinCompilerArgs() = allprojects {
-  useExperimentalAnnotations(
-    "kotlin.RequiresOptIn",
-    "kotlin.Experimental",
-    "kotlin.ExperimentalStdlibApi",
-    "kotlin.ExperimentalUnsignedTypes",
-    "kotlin.time.ExperimentalTime",
-    "kotlin.contracts.ExperimentalContracts",
-    "kotlinx.coroutines.ExperimentalCoroutinesApi",
-    "kotlin.experimental.ExperimentalTypeInference",
-  )
+  afterEvaluate {
+    useExperimentalAnnotations(
+      "kotlin.RequiresOptIn",
+      "kotlin.Experimental",
+      "kotlin.ExperimentalStdlibApi",
+      "kotlin.ExperimentalUnsignedTypes",
+      "kotlin.time.ExperimentalTime",
+      "kotlin.contracts.ExperimentalContracts",
+      "kotlinx.coroutines.ExperimentalCoroutinesApi",
+      "kotlin.experimental.ExperimentalTypeInference",
+    )
+  }
 }
 
 internal fun RootGradleDslExtension.presetSpotless(isOpenSourceProject: Boolean) = allprojects {
@@ -82,12 +85,14 @@ internal fun RootGradleDslExtension.presetSpotless(isOpenSourceProject: Boolean)
 internal fun RootGradleDslExtension.presetPublishing(
   enabledPublish: Boolean,
   publishRootProject: Boolean,
+  publishAndroidAppProject: Boolean,
   publishRepo: Array<RepoUrl>,
   publishPom: Project.() -> PublishPom,
 ) = allprojects {
   afterEvaluate {
     if (this.isRegular.not()) return@afterEvaluate
     if (!publishRootProject && this == rootProject) return@afterEvaluate
+    if (!publishAndroidAppProject && extensions.findByName("android") is AppExtension) return@afterEvaluate
 
     meowoolMavenPublish(
       repo = publishRepo,

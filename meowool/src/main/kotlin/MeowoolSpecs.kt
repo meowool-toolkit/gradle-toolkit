@@ -43,12 +43,13 @@ fun RootGradleDslExtension.useMeowoolSpec(
   loadSnapshotsRepository: Boolean = false,
   enabledPublish: Boolean = true,
   publishRootProject: Boolean = true,
+  publishAndroidAppProject: Boolean = false,
   publishRepo: Array<RepoUrl> = arrayOf(SonatypeRepo()),
   publishPom: Project.() -> PublishPom = { meowoolPublishPom() },
 ) {
   presetRepositories(loadSnapshotsRepository)
   presetKotlinCompilerArgs()
-  presetPublishing(enabledPublish, publishRootProject, publishRepo, publishPom)
+  presetPublishing(enabledPublish, publishRootProject, publishAndroidAppProject, publishRepo, publishPom)
   presetSpotless(isOpenSourceProject)
   presetAndroid(isOpenSourceProject)
 }
