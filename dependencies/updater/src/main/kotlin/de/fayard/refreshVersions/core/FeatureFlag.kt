@@ -1,21 +1,3 @@
-/*
- * Copyright (c) 2021. The Meowool Organization Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * In addition, if you modified the project, you must include the Meowool
- * organization URL in your code file: https://github.com/meowool
- */
 package de.fayard.refreshVersions.core
 
 import de.fayard.refreshVersions.core.internal.InternalRefreshVersionsApi
@@ -50,30 +32,30 @@ import de.fayard.refreshVersions.core.internal.InternalRefreshVersionsApi
  */
 enum class FeatureFlag(private val enabledByDefault: Boolean?) {
 
-  // NEVER REMOVE A FLAG HERE since it would break projects using it on upgrade.
-  // Instead, mark it as deprecated, like this: @Deprecated("your message here")
+    // NEVER REMOVE A FLAG HERE since it would break projects using it on upgrade.
+    // Instead, mark it as deprecated, like this: @Deprecated("your message here")
 
-  GRADLE_UPDATES(enabledByDefault = true),
-  LIBS(enabledByDefault = false)
-  ;
+    GRADLE_UPDATES(enabledByDefault = true),
+    LIBS(enabledByDefault = false)
+    ;
 
-  companion object {
-    /**
-     * Where we store the settings coming from the command-line or the Settings file
-     */
-    @InternalRefreshVersionsApi
-    val userSettings: MutableMap<FeatureFlag, Boolean> = mutableMapOf()
-  }
-
-  /**
-   * Whether the flag is enabled once the user settings are set
-   * Intended usage:
-   * `if (GRADLE_UPDATES.isEnabled) lookupAvailableGradleVersions() else emptyList()`
-   */
-  internal val isEnabled: Boolean
-    get() = when (enabledByDefault) {
-      false -> userSettings[this] == true
-      true -> userSettings[this] != false
-      null -> false
+    companion object {
+        /**
+         * Where we store the settings coming from the command-line or the Settings file
+         */
+        @InternalRefreshVersionsApi
+        val userSettings: MutableMap<FeatureFlag, Boolean> = mutableMapOf()
     }
+
+    /**
+     * Whether the flag is enabled once the user settings are set
+     * Intended usage:
+     * `if (GRADLE_UPDATES.isEnabled) lookupAvailableGradleVersions() else emptyList()`
+     */
+    internal val isEnabled: Boolean
+        get() = when (enabledByDefault) {
+            false -> userSettings[this] == true
+            true -> userSettings[this] != false
+            null -> false
+        }
 }

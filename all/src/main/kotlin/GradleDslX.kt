@@ -30,5 +30,6 @@ class GradleDslX : Plugin<Settings> {
   override fun apply(target: Settings) {
     target.apply<RefreshVersionsPlugin>()
     target.apply<GradleDslXCore>()
+    target.dependencyMapperPrebuilt()
   }
 }

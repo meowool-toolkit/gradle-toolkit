@@ -27,6 +27,10 @@ import com.github.michaelbull.retry.policy.constantDelay
 import com.github.michaelbull.retry.policy.limitAttempts
 import com.github.michaelbull.retry.policy.plus
 import com.github.michaelbull.retry.retry
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.retry
 import kotlinx.coroutines.runBlocking
 import net.mbonnin.vespene.lib.NexusStagingClient
 import org.gradle.BuildAdapter
@@ -40,8 +44,6 @@ import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
 import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
 import org.gradle.api.publish.plugins.PublishingPlugin
-import org.gradle.api.services.BuildService
-import org.gradle.api.services.BuildServiceParameters
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.create
@@ -94,6 +96,7 @@ fun Project.mavenPublish(
   snapshotSigning: Boolean = false,
   dokkaFormat: DokkaFormat = DokkaFormat.Html,
 ) {
+  if (buildFile.exists().not()) return
   repo.forEach { it.isSnapshot = pom.isSnapshot }
   configurePom(pom)
   publishComponentsAndSourcesJar()
@@ -259,8 +262,7 @@ private fun Project.createNexusStagingClient(baseUrl: String): NexusStagingClien
 }
 
 private fun Project.initSonatypeBuild() {
-  // Listening to build finished to close repositories,
-  // only need to add to root project once
+  // Listening to build finished and to close repositories, only need to add to root project once
   if (buildListener.not()) {
     buildListener = true
     rootProject.gradle.addBuildListener(object : BuildAdapter() {
@@ -270,15 +272,19 @@ private fun Project.initSonatypeBuild() {
           @Suppress("UNCHECKED_CAST")
           repositoriesToClose.forEach { (baseUrl, repositoryIds) ->
             val client = rootProject.createNexusStagingClient(baseUrl)
-            val ids = repositoryIds.toList()
-            println("Closing and releasing $ids")
-            retry(limitAttempts(5) + constantDelay(1000L)) {
-              client.closeRepositories(ids)
-            }
-            retry(limitAttempts(5) + constantDelay(1000L)) {
-              client.releaseRepositories(ids, dropAfterRelease = true)
+            repositoryIds.asFlow().map {
+              val id = listOf(it)
+              println("Closing $it")
+              client.closeRepositories(id)
+              println("Releasing $it")
+              client.releaseRepositories(id, dropAfterRelease = true)
+            }.retry(retries = 5) {
+              // Retry after 1000 ms
+              delay(1000)
+              true
             }
           }
+          repositoriesToClose.clear()
         }
       }
     })
@@ -286,7 +292,7 @@ private fun Project.initSonatypeBuild() {
 }
 
 /**
- * The task used to initializes the sonatype staging repository.
+ * The task used to initialize the sonatype staging repository.
  */
 private fun Project.initializeSonatypeStaging(pom: PublishPom, repo: SonatypeRepo) = afterEvaluate {
   tasks.withType<PublishToMavenRepository>().all {
@@ -297,7 +303,8 @@ private fun Project.initializeSonatypeStaging(pom: PublishPom, repo: SonatypeRep
           val client = project.createNexusStagingClient(repo.baseUrl)
           val description = publication.stagingDescription
           val profiles = client.getProfiles()
-          val profile = profiles.firstOrNull { group == it.name || pom.group.startsWith(it.name) }
+          val profile = profiles.firstOrNull { group == it.name || pom.group == it.name }
+            ?: profiles.firstOrNull { group?.startsWith(it.name) == true || pom.group.startsWith(it.name) }
             ?: profiles.firstOrNull()
             ?: return@retry
 
@@ -322,7 +329,7 @@ private fun Project.initializeSonatypeStaging(pom: PublishPom, repo: SonatypeRep
 }
 
 /**
- * The task used to closes and releases sonatype staging repository.
+ * The task used to close and release sonatype staging repository.
  */
 private fun Project.closeAndReleaseSonatypeRepository(repo: SonatypeRepo) = afterEvaluate {
   tasks.create("closeAndReleaseSonatypeRepository") {
@@ -332,7 +339,6 @@ private fun Project.closeAndReleaseSonatypeRepository(repo: SonatypeRepo) = afte
       runBlocking {
         val client = project.createNexusStagingClient(repo.baseUrl)
         val repositoryIds = tasks.withType<PublishToMavenRepository>().mapNotNull {
-          // Don't redirect the publish of snapshot artifacts
           retry(limitAttempts(5) + constantDelay(1000L)) {
             val description = it.publication.stagingDescription
             client.getRepositories()
@@ -340,6 +346,7 @@ private fun Project.closeAndReleaseSonatypeRepository(repo: SonatypeRepo) = afte
               ?.repositoryId
           }
         }
+        // Collect the repository ids to close
         repositoriesToClose
           .getOrPut(repo.baseUrl) { mutableSetOf() }
           .addAll(repositoryIds)
@@ -348,12 +355,15 @@ private fun Project.closeAndReleaseSonatypeRepository(repo: SonatypeRepo) = afte
   }
 }
 
+private const val BUILD_LISTENER = "mavenPublish-buildListener"
+private const val REPOSITORIES_TO_CLOSE = "mavenPublish-waitForCloseRepositories"
+
 /**
  * Represents the build listener for the root project.
  */
 private var Project.buildListener: Boolean
-  set(value) = rootProject.extra.set("mavenPublish-buildListenerKey", value)
-  get() = rootProject.extra.properties["mavenPublish-buildListenerKey"] == true
+  set(value) = rootProject.extra.set(BUILD_LISTENER, value)
+  get() = rootProject.extra.properties[BUILD_LISTENER] == true
 
 
 /**
@@ -361,10 +371,11 @@ private var Project.buildListener: Boolean
  */
 private val Project.repositoriesToClose: MutableMap<String, MutableSet<String>>
   get() {
-    val key = "mavenPublish-waitForCloseRepositoriesKey"
-    if (rootProject.extra.has(key).not()) rootProject.extra[key] = mutableMapOf<String, MutableSet<String>>()
+    if (rootProject.extra.has(REPOSITORIES_TO_CLOSE).not()) {
+      rootProject.extra[REPOSITORIES_TO_CLOSE] = mutableMapOf<String, MutableSet<String>>()
+    }
     @Suppress("UNCHECKED_CAST")
-    return rootProject.extra[key] as MutableMap<String, MutableSet<String>>
+    return rootProject.extra[REPOSITORIES_TO_CLOSE] as MutableMap<String, MutableSet<String>>
   }
 
 /**

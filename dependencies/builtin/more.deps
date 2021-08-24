@@ -1,6 +1,0 @@
-com.github.promeg:tinypinyin [parent=, name=TinyPinyin]
-de.fayard.refreshVersions:refreshVersions [parent=]
-com.github.donkingliang:ConsecutiveScroller [parent=]
-org.zeroturnaround:zt-zip [parent=, name=ZtZip]
-com.andkulikov:transitionseverywhere [parent=, name=TransitionsEverywhere]
-in.arunkumarsampath:transition-x [parent=, name=TransitionX]

@@ -1,0 +1,152 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowool.toolkit",
+    "module": "gradle-dsl-x-dependencies-mapping",
+    "version": "2.2-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.5.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gradle-dsl-x-dependencies-mapping-2.2-SNAPSHOT.jar",
+          "url": "gradle-dsl-x-dependencies-mapping-2.2-SNAPSHOT.jar",
+          "size": 74093,
+          "sha512": "8b0ec63695ea0ca812ae4dd78bbbdec763997df319aa75ba9758205addee33d211fce523703fa4c78a5ce0377574d471741d121670a58b3ca54f484dba7fc2c9",
+          "sha256": "182bc36a5b3361a8274df15cf96d485f39944895fc961f9f33a80a8b8f5f9d96",
+          "sha1": "f6cab2cf46600f6c743368ec880cd50ed035e1b6",
+          "md5": "f3ff2a086956ee3eaa29b1b440caa33a"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "4.9.1",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "net.bytebuddy",
+          "module": "byte-buddy",
+          "version": {
+            "requires": "1.11.5",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "net.andreinc",
+          "module": "mockneat",
+          "version": {
+            "requires": "0.4.7",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.tfowl.ktor",
+          "module": "ktor-jsoup",
+          "version": {
+            "requires": "1.5.4",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-okhttp",
+          "version": {
+            "requires": "1.6.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-logging",
+          "version": {
+            "requires": "1.6.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "1.24-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.5.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gradle-dsl-x-dependencies-mapping-2.2-SNAPSHOT.jar",
+          "url": "gradle-dsl-x-dependencies-mapping-2.2-SNAPSHOT.jar",
+          "size": 74093,
+          "sha512": "8b0ec63695ea0ca812ae4dd78bbbdec763997df319aa75ba9758205addee33d211fce523703fa4c78a5ce0377574d471741d121670a58b3ca54f484dba7fc2c9",
+          "sha256": "182bc36a5b3361a8274df15cf96d485f39944895fc961f9f33a80a8b8f5f9d96",
+          "sha1": "f6cab2cf46600f6c743368ec880cd50ed035e1b6",
+          "md5": "f3ff2a086956ee3eaa29b1b440caa33a"
+        }
+      ]
+    }
+  ]
+}

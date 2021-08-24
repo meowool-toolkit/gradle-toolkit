@@ -23,6 +23,7 @@ import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.internal.dsl.DefaultConfig
 import com.android.build.gradle.internal.scope.GlobalScope
 import kotlin.reflect.full.declaredMemberProperties
+import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
 import kotlin.reflect.typeOf
 
@@ -91,7 +92,7 @@ inline fun BaseExtension.buildConfigField(type: String, name: String, value: Str
   defaultConfig.buildConfigField(type, name, value)
 }
 
-internal fun BaseExtension.getGlobalScope() = javaClass.kotlin.declaredMemberProperties
+internal fun BaseExtension.getGlobalScope() = javaClass.kotlin.memberProperties
   .find { it.name == "globalScope" || it.returnType == typeOf<GlobalScope>() }
   ?.apply { isAccessible = true }
   ?.get(this) as? GlobalScope ?: error("Unable to get the global scope in BaseExtension!")

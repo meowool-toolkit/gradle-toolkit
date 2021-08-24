@@ -16,6 +16,7 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
+import com.diffplug.gradle.spotless.SpotlessExtension
 import extension.RootGradleDslExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -28,11 +29,14 @@ import org.jetbrains.dokka.gradle.DokkaTask
  * Use the preset configuration that conforms to the 'Meowool-Organization' specification.
  *
  * @param isOpenSourceProject Set the value to `true` if you are developing an open source project.
- * @param loadSnapshotsRepository Load the snapshots repository for each project.
+ * @param loadSnapshotsRepository Load the snapshots-repository for each project.
  * @param enabledPublish Enabled the publish feature for each project. (root project whether the enabled depending
- * on [publishRootProject])
+ *   on [publishRootProject])
  * @param publishRootProject Whether rootProject also enabled the publishing feature, if `false`, rootProject will not
- * apply the `maven-publish` plugin.
+ *   apply the `maven-publish` plugin.
+ * @param publishRootProject Whether the project with the android plugin applied need to be publishing.
+ * @param publishReleaseSigning Whether to signing the artifact of release version before publishing.
+ * @param publishSnapshotSigning Whether to signing the artifact of snapshot version before publishing.
  * @param publishRepo The repository(s) to publish to.
  * @param publishPom The pom data of each project to be published.
  *
@@ -44,15 +48,38 @@ fun RootGradleDslExtension.useMeowoolSpec(
   enabledPublish: Boolean = true,
   publishRootProject: Boolean = true,
   publishAndroidAppProject: Boolean = false,
+  publishReleaseSigning: Boolean = true,
+  publishSnapshotSigning: Boolean = false,
   publishRepo: Array<RepoUrl> = arrayOf(SonatypeRepo()),
   publishPom: Project.() -> PublishPom = { meowoolPublishPom() },
 ) {
+  dependencyMapperPrebuilt()
   presetRepositories(loadSnapshotsRepository)
   presetKotlinCompilerArgs()
-  presetPublishing(enabledPublish, publishRootProject, publishAndroidAppProject, publishRepo, publishPom)
-  presetSpotless(isOpenSourceProject)
+  presetPublishing(
+    enabledPublish,
+    publishRootProject,
+    publishAndroidAppProject,
+    publishReleaseSigning,
+    publishSnapshotSigning,
+    publishRepo,
+    publishPom
+  )
+  presetSpotless(if (isOpenSourceProject) OpenSourceLicense else null)
   presetAndroid(isOpenSourceProject)
 }
+
+/**
+ * Use the spotless configuration preset by 'Meowool-Organization'.
+ *
+ * @param licenseHeader The license header of the source code, if it is `null`, it will not be imported during
+ *   spotless running.
+ * @param configuration The extra configuration.
+ */
+fun RootGradleDslExtension.useMeowoolSpotlessSpec(
+  licenseHeader: String? = OpenSourceLicense,
+  configuration: SpotlessExtension.() -> Unit = {}
+) = presetSpotless(licenseHeader, configuration)
 
 /**
  * Use 'Meowool-Organization' preset publish configuration.

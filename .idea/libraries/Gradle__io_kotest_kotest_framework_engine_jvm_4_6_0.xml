@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.kotest:kotest-framework-engine-jvm:4.6.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-framework-engine-jvm/4.6.0/fe10b79a64d0543987c5d57d66d4d40234f57ec4/kotest-framework-engine-jvm-4.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-framework-engine-jvm/4.6.0/72d5d56ad15c32504572325ebc393d962f0f46bb/kotest-framework-engine-jvm-4.6.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

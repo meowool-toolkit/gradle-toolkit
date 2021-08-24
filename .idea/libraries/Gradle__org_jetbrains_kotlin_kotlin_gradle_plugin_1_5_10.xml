@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin/1.5.10/bea59a5c657c35cd2c555a750d58a403b78b1e91/kotlin-gradle-plugin-1.5.10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin/1.5.10/ec6fde1136d1a58119c84170bdd842e36eb6100/kotlin-gradle-plugin-1.5.10-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

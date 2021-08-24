@@ -15,7 +15,7 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/dependencies" />
             <option value="$PROJECT_DIR$/dependencies/builtin" />
-            <option value="$PROJECT_DIR$/dependencies/generator" />
+            <option value="$PROJECT_DIR$/dependencies/mapper" />
             <option value="$PROJECT_DIR$/dependencies/updater" />
             <option value="$PROJECT_DIR$/meowool" />
             <option value="$PROJECT_DIR$/publish" />

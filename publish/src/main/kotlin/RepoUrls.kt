@@ -18,6 +18,10 @@
  */
 import org.gradle.api.Project
 import org.gradle.api.artifacts.repositories.PasswordCredentials
+import java.io.File
+import java.nio.file.Path
+import kotlin.io.path.ExperimentalPathApi
+import kotlin.io.path.absolutePathString
 
 /**
  * The url of the target repository to publish to.
@@ -60,11 +64,45 @@ open class DefaultRepoUrl(
     get() = if (isSnapshot) snapshots else releases
 }
 
-
 /**
  * Represents the url of the Maven Local repository.
  */
 object LocalRepo : DefaultRepoUrl(releases = LocalRepo::class, requiredCertificate = false)
+
+/**
+ * Represents the url of the repository of specified path.
+ *
+ * @param releasesPath The path to releases repository
+ * @param snapshotsPath The path to snapshots repository
+ */
+class PathRepo constructor(
+  private val releasesPath: String,
+  private val snapshotsPath: String = releasesPath,
+) : DefaultRepoUrl(releasesPath, requiredCertificate = false, snapshotsPath) {
+
+  /**
+   * Represents the url of the repository of specified file (directory).
+   *
+   * @param releases The file (directory) to releases repository
+   * @param snapshots The file (directory) to snapshots repository
+   */
+  @OptIn(ExperimentalPathApi::class)
+  constructor(releases: Path, snapshots: Path = releases): this(
+    releases.normalize().absolutePathString(),
+    snapshots.normalize().absolutePathString()
+  )
+
+  /**
+   * Represents the url of the repository of specified file (directory).
+   *
+   * @param releases The file (directory) to releases repository
+   * @param snapshots The file (directory) to snapshots repository
+   */
+  constructor(releases: File, snapshots: File = releases): this(
+    releases.normalize().absolutePath,
+    snapshots.normalize().absolutePath
+  )
+}
 
 /**
  * Represents the url of the Sonatype OSS repository.

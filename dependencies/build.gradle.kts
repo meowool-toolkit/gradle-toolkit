@@ -1,7 +1,7 @@
 plugins { kotlin }
 
 dependencies.apiProjects(
-  ":dependencies:builtin",
-  ":dependencies:generator",
+  ":dependencies:mapper",
+  ":dependencies:prebuilt",
   ":dependencies:updater"
 )

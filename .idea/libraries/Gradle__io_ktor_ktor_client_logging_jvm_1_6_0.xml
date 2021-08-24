@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.ktor:ktor-client-logging-jvm:1.6.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-client-logging-jvm/1.6.0/7fee70f8881f74f5e397d6e3f644258878a6a8e/ktor-client-logging-jvm-1.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-client-logging-jvm/1.6.0/c9e0f71cf4640a46c1dd0eddff8ab40a92e96c14/ktor-client-logging-jvm-1.6.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

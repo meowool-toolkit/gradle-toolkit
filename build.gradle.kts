@@ -5,13 +5,13 @@ subprojects {
 
   afterEvaluate {
 
-    extensions.findByType<com.gradle.publish.PluginBundleExtension>()?.apply {
-      tags = listOf("gradle-dsl", "gradle-utils", "gradle-toolkit", "kotlin", "kotlin-dsl", "ktx")
-    }
-//
-//    configureGradlePlugin(
+//    extensions.findByType<com.gradle.publish.PluginBundleExtension>()?.apply {
 //      tags = listOf("gradle-dsl", "gradle-utils", "gradle-toolkit", "kotlin", "kotlin-dsl", "ktx")
-//    )
+//    }
+
+    configureGradlePlugin(
+      tags = listOf("gradle-dsl", "gradle-utils", "gradle-toolkit", "kotlin", "kotlin-dsl", "ktx")
+    )
 
     // Don't let the fork of 'refreshVersion' spotless.
     if (projectDir.absolutePath.endsWith("dependencies/updater")) {

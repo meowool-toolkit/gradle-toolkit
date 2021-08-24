@@ -53,7 +53,10 @@ internal fun RootGradleDslExtension.presetKotlinCompilerArgs() = allprojects {
   }
 }
 
-internal fun RootGradleDslExtension.presetSpotless(isOpenSourceProject: Boolean) = allprojects {
+internal fun RootGradleDslExtension.presetSpotless(
+  licenseHeader: String?,
+  configuration: SpotlessExtension.() -> Unit = {}
+) = allprojects {
   afterEvaluate {
     if (this.isRegular.not()) return@afterEvaluate
 
@@ -64,11 +67,11 @@ internal fun RootGradleDslExtension.presetSpotless(isOpenSourceProject: Boolean)
         targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
         endWithNewline()
         trimTrailingWhitespace()
-        if (isOpenSourceProject) licenseHeader(OpenSourceLicense, "(package |import |@file)")
+        licenseHeader?.let { licenseHeader(it, "(package |import |public |private)") }
       }
       kotlin {
         targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
-        ktlint("0.41.0").userData(
+        ktlint("0.42.1").userData(
           mapOf(
             "indent_size" to "2",
             "no-unused-imports" to "true",
@@ -76,8 +79,9 @@ internal fun RootGradleDslExtension.presetSpotless(isOpenSourceProject: Boolean)
         )
         endWithNewline()
         trimTrailingWhitespace()
-        if (isOpenSourceProject) licenseHeader(OpenSourceLicense, "(package |import |@file)")
+        licenseHeader?.let { licenseHeader(it, "(package |import |@ |class |fun |val |public |private |internal)") }
       }
+      configuration()
     }
   }
 }
@@ -86,6 +90,8 @@ internal fun RootGradleDslExtension.presetPublishing(
   enabledPublish: Boolean,
   publishRootProject: Boolean,
   publishAndroidAppProject: Boolean,
+  publishReleaseSigning: Boolean,
+  publishSnapshotSigning: Boolean,
   publishRepo: Array<RepoUrl>,
   publishPom: Project.() -> PublishPom,
 ) = allprojects {
@@ -97,7 +103,9 @@ internal fun RootGradleDslExtension.presetPublishing(
     meowoolMavenPublish(
       repo = publishRepo,
       pom = publishPom(),
-      enabledPublish = enabledPublish
+      enabledPublish = enabledPublish,
+      releaseSigning = publishReleaseSigning,
+      snapshotSigning = publishSnapshotSigning
     )
   }
 }

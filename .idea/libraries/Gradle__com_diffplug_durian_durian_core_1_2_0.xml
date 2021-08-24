@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.diffplug.durian:durian-core:1.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.diffplug.durian/durian-core/1.2.0/ddf0b08f6dccae07bcb993645a7634cbe8f9b2f8/durian-core-1.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.diffplug.durian/durian-core/1.2.0/3ae79e2f6cf32a7b3e64cd6d91e3fa8e95865d37/durian-core-1.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

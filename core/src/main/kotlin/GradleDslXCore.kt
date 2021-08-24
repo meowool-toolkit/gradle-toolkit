@@ -97,7 +97,7 @@ class GradleDslXCore : Plugin<Any> {
         // Import declared dependencies directly
         (rootProject.extensions.findByType<GradleDslExtension>() as? RootGradleDslExtensionImpl)
           ?.sharedDependencies
-          ?.get(scope)
+          ?.get(scope ?: MainScope)
           ?.invoke(dependencies)
       }
 

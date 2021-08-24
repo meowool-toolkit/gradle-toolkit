@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.meowool.toolkit:sweekt-jvm:1.24-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.meowool.toolkit/sweekt-jvm/1.24-SNAPSHOT/56d387d010b1ce89f927ce22dfda59a5cf574a7f/sweekt-jvm-1.24-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.meowool.toolkit/sweekt-jvm/1.24-SNAPSHOT/fe94c6fc32a2feb7eeb314ae2e89865f6dbf7a02/sweekt-jvm-1.24-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

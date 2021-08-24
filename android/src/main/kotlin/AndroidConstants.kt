@@ -18,4 +18,4 @@
  */
 @file:Suppress("-")
 
-internal const val MainScope = "#_main__"
+internal const val MainConfigurationScope = "#_conf_main__"

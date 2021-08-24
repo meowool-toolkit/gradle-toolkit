@@ -20,6 +20,7 @@ import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.TestedExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
 
 private fun Project.init(scope: String? = null) {
   android {
@@ -46,8 +47,8 @@ internal fun Project.android(configuration: TestedExtension.() -> Unit) {
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-fun Project.androidApp(scope: String? = null, configuration: BaseAppModuleExtension.() -> Unit) {
-  ensureApplyPlugin("android")
+fun Project.androidApp(scope: String? = null, configuration: BaseAppModuleExtension.() -> Unit = {}) {
+  if (extensions.findByName("android") !is BaseAppModuleExtension) apply(plugin = "android")
   init(scope)
   android {
     this as BaseAppModuleExtension
@@ -64,9 +65,18 @@ fun Project.androidApp(scope: String? = null, configuration: BaseAppModuleExtens
 
 /**
  * The extension [configuration] of the Android-Library project.
+ * If the `kotlin-android` plugin is not enabled for this android app project, it will be automatically enabled.
  */
-fun Project.androidLib(scope: String? = null, configuration: LibraryExtension.() -> Unit) {
-  ensureApplyPlugin("android-library")
+fun Project.androidKotlinApp(scope: String? = null, configuration: BaseAppModuleExtension.() -> Unit = {}) {
+  if (plugins.hasPlugin("kotlin-android").not()) apply(plugin = "kotlin-android")
+  androidApp(scope, configuration)
+}
+
+/**
+ * The extension [configuration] of the Android-Library project.
+ */
+fun Project.androidLib(scope: String? = null, configuration: LibraryExtension.() -> Unit = {}) {
+  if (extensions.findByName("android") !is LibraryExtension) apply(plugin = "android-library")
   init(scope)
   android {
     this as LibraryExtension
@@ -79,4 +89,13 @@ fun Project.androidLib(scope: String? = null, configuration: LibraryExtension.()
 
     configuration()
   }
+}
+
+/**
+ * The extension [configuration] of the Android-Library project.
+ * If the `kotlin-android` plugin is not enabled for this android library project, it will be automatically enabled.
+ */
+fun Project.androidKotlinLib(scope: String? = null, configuration: LibraryExtension.() -> Unit = {}) {
+  if (plugins.hasPlugin("kotlin-android").not()) apply(plugin = "kotlin-android")
+  androidLib(scope, configuration)
 }

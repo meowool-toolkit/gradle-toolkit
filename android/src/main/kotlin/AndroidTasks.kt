@@ -18,6 +18,7 @@
  */
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.LibraryExtension
+import com.android.build.gradle.api.BaseVariant
 import org.gradle.api.Project
 import org.gradle.api.Task
 
@@ -34,20 +35,13 @@ import org.gradle.api.Task
  * @param ignoreCase ignore the case of task names
  */
 fun Project.findAndroidTask(name: String, ignoreCase: Boolean = false): Task? {
+  fun Task.matches(variant: BaseVariant) =
+    this.name.equals(name.replace("*", variant.buildType.name.capitalize()), ignoreCase)
+
   extensions.getByName("android").apply {
     return when (this) {
-      is AppExtension -> tasks.find {
-        it.name.equals(
-          name.replace("*", applicationVariants.first().buildType.name.capitalize()),
-          ignoreCase
-        )
-      }
-      is LibraryExtension -> tasks.find {
-        it.name.equals(
-          name.replace("*", libraryVariants.first().buildType.name.capitalize()),
-          ignoreCase
-        )
-      }
+      is AppExtension -> tasks.find { it.matches(applicationVariants.first()) }
+      is LibraryExtension -> tasks.find {it.matches(libraryVariants.first()) }
       else -> {
         require(!name.contains("*")) {
           "Unexpected variant, can't find task, please submit this issue to https://github.com/meowool-toolkit/gradle-dsl-x/issues"

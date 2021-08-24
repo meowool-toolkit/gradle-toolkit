@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MarkdownEnhProjectSettings">
+    <AnnotatorSettings targetHasSpaces="$BUILD_DOKKA$" linkCaseMismatch="$BUILD_DOKKA$" wikiCaseMismatch="$BUILD_DOKKA$" wikiLinkHasDashes="$BUILD_DOKKA$" notUnderWikiHome="$BUILD_DOKKA$" targetNotWikiPageExt="$BUILD_DOKKA$" notUnderSourceWikiHome="$BUILD_DOKKA$" targetNameHasAnchor="$BUILD_DOKKA$" targetPathHasAnchor="$BUILD_DOKKA$" wikiLinkHasSlash="$BUILD_DOKKA$" wikiLinkHasSubdir="$BUILD_DOKKA$" wikiLinkHasOnlyAnchor="$BUILD_DOKKA$" linkTargetsWikiHasExt="$BUILD_DOKKA$" linkTargetsWikiHasBadExt="$BUILD_DOKKA$" notUnderSameRepo="$BUILD_DOKKA$" targetNotUnderVcs="false" linkNeedsExt="$BUILD_DOKKA$" linkHasBadExt="$BUILD_DOKKA$" linkTargetNeedsExt="$BUILD_DOKKA$" linkTargetHasBadExt="$BUILD_DOKKA$" wikiLinkNotInWiki="$BUILD_DOKKA$" imageTargetNotInRaw="$BUILD_DOKKA$" repoRelativeAcrossVcsRoots="$BUILD_DOKKA$" multipleWikiTargetsMatch="$BUILD_DOKKA$" unresolvedLinkReference="$BUILD_DOKKA$" linkIsIgnored="$BUILD_DOKKA$" anchorIsIgnored="$BUILD_DOKKA$" anchorIsUnresolved="$BUILD_DOKKA$" anchorLineReferenceIsUnresolved="$BUILD_DOKKA$" anchorLineReferenceFormat="$BUILD_DOKKA$" anchorHasDuplicates="$BUILD_DOKKA$" abbreviationDuplicates="$BUILD_DOKKA$" abbreviationNotUsed="$BUILD_DOKKA$" attributeIdDuplicateDefinition="$BUILD_DOKKA$" attributeIdNotUsed="$BUILD_DOKKA$" footnoteDuplicateDefinition="$BUILD_DOKKA$" footnoteUnresolved="$BUILD_DOKKA$" footnoteDuplicates="$BUILD_DOKKA$" footnoteNotUsed="$BUILD_DOKKA$" macroDuplicateDefinition="$BUILD_DOKKA$" macroUnresolved="$BUILD_DOKKA$" macroDuplicates="$BUILD_DOKKA$" macroNotUsed="$BUILD_DOKKA$" referenceDuplicateDefinition="$BUILD_DOKKA$" referenceUnresolved="$BUILD_DOKKA$" referenceDuplicates="$BUILD_DOKKA$" referenceNotUsed="$BUILD_DOKKA$" referenceUnresolvedNumericId="$BUILD_DOKKA$" enumRefDuplicateDefinition="$BUILD_DOKKA$" enumRefUnresolved="$BUILD_DOKKA$" enumRefDuplicates="$BUILD_DOKKA$" enumRefNotUsed="$BUILD_DOKKA$" enumRefLinkUnresolved="$BUILD_DOKKA$" enumRefLinkDuplicates="$BUILD_DOKKA$" simTocUpdateNeeded="$BUILD_DOKKA$" simTocTitleSpaceNeeded="$BUILD_DOKKA$" />
+    <HtmlExportSettings updateOnSave="false" parentDir="" targetDir="" cssDir="css" scriptDir="js" plainHtml="false" imageDir="" copyLinkedImages="false" imagePathType="0" targetPathType="2" targetExt="" useTargetExt="false" noCssNoScripts="false" useElementStyleAttribute="false" linkToExportedHtml="$BUILD_DOKKA$" exportOnSettingsChange="$BUILD_DOKKA$" regenerateOnProjectOpen="false" linkFormatType="HTTP_ABSOLUTE" />
+    <LinkMapSettings>
+      <textMaps />
+    </LinkMapSettings>
+  </component>
+  <component name="MarkdownNavigatorHistory">
+    <PasteImageHistory checkeredTransparentBackground="false" filename="image" directory="" onPasteImageTargetRef="3" onPasteLinkText="0" onPasteImageElement="1" onPasteLinkElement="1" onPasteReferenceElement="2" cornerRadius="20" borderColor="0" transparentColor="16777215" borderWidth="1" trimTop="0" trimBottom="0" trimLeft="0" trimRight="0" transparent="false" roundCorners="false" showPreview="$BUILD_DOKKA$" bordered="false" scaled="false" cropped="false" hideInapplicableOperations="false" preserveLinkFormat="false" scale="50" scalingInterpolation="1" transparentTolerance="0" saveAsDefaultOnOK="false" linkFormat="0" addHighlights="false" showHighlightCoordinates="$BUILD_DOKKA$" showHighlights="false" mouseSelectionAddsHighlight="false" outerFilled="false" outerFillColor="0" outerFillTransparent="$BUILD_DOKKA$" outerFillAlpha="30">
+      <highlightList />
+      <directories />
+      <filenames />
+    </PasteImageHistory>
+    <CopyImageHistory checkeredTransparentBackground="false" filename="image" directory="" onPasteImageTargetRef="3" onPasteLinkText="0" onPasteImageElement="1" onPasteLinkElement="1" onPasteReferenceElement="2" cornerRadius="20" borderColor="0" transparentColor="16777215" borderWidth="1" trimTop="0" trimBottom="0" trimLeft="0" trimRight="0" transparent="false" roundCorners="false" showPreview="$BUILD_DOKKA$" bordered="false" scaled="false" cropped="false" hideInapplicableOperations="false" preserveLinkFormat="false" scale="50" scalingInterpolation="1" transparentTolerance="0" saveAsDefaultOnOK="false" linkFormat="0" addHighlights="false" showHighlightCoordinates="$BUILD_DOKKA$" showHighlights="false" mouseSelectionAddsHighlight="false" outerFilled="false" outerFillColor="0" outerFillTransparent="$BUILD_DOKKA$" outerFillAlpha="30">
+      <highlightList />
+      <directories />
+      <filenames />
+    </CopyImageHistory>
+    <PasteLinkHistory onPasteImageTargetRef="3" onPasteTargetRef="1" onPasteLinkText="0" onPasteImageElement="1" onPasteLinkElement="1" onPasteWikiElement="2" onPasteReferenceElement="2" hideInapplicableOperations="false" preserveLinkFormat="false" useHeadingForLinkText="false" linkFormat="0" saveAsDefaultOnOK="false" />
+    <TableToJsonHistory>
+      <entries />
+    </TableToJsonHistory>
+    <TableSortHistory>
+      <entries />
+    </TableSortHistory>
+  </component>
+</project>

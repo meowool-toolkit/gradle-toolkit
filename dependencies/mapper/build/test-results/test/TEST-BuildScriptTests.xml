@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="BuildScriptTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-08-20T07:09:15" hostname="Mac-Pro.local" time="0.03">
+  <properties/>
+  <testcase name="find" classname="BuildScriptTests" time="0.019"/>
+  <testcase name="check classpath exists" classname="BuildScriptTests" time="0.01"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

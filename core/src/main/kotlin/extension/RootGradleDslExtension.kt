@@ -180,7 +180,7 @@ interface RootGradleDslExtension : GradleDslExtension {
    * ```
    * @see Project.dependencies
    * @see GradleDslExtension.scope
-   * @param scope representative the effect scope of this dependencies shared block.
+   * @param scope representative the effect scope of the dependencies shared block.
    */
   fun shareDependencies(
     scope: String? = null,
@@ -215,7 +215,7 @@ interface RootGradleDslExtension : GradleDslExtension {
    * ```
    * @see Project.dependencies
    * @see GradleDslExtension.scope
-   * @param scope representative the effect scope of this dependencies shared block.
+   * @param scope representative the effect scope of the dependencies shared block.
    */
   fun shareLazyDependencies(
     scope: String? = null,

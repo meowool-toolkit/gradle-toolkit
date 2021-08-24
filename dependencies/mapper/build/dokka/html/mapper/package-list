@@ -1,0 +1,26 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:////PointingToDeclaration/mapper/[root]/index.html
+$dokka.location://dependencyMapper/org.gradle.api.Project#kotlin.Function1[DependencyMapperConfiguration,kotlin.Unit]/PointingToDeclaration/mapper/[root]/dependency-mapper.html
+$dokka.location://dependencyMapper/org.gradle.api.initialization.Settings#kotlin.Function1[DependencyMapperConfiguration,kotlin.Unit]/PointingToDeclaration/mapper/[root]/dependency-mapper.html
+$dokka.location:/DependencyMapperConfiguration///PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/index.html
+$dokka.location:/DependencyMapperConfiguration/DependencyMapperConfiguration/#org.gradle.api.Project/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/-dependency-mapper-configuration.html
+$dokka.location:/DependencyMapperConfiguration/addDependencies/#kotlin.Array[kotlin.String]/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/add-dependencies.html
+$dokka.location:/DependencyMapperConfiguration/addDependenciesMapping/#kotlin.Array[kotlin.Pair[kotlin.String,kotlin.String]]/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/add-dependencies-mapping.html
+$dokka.location:/DependencyMapperConfiguration/addMvnDependencies/#kotlin.Array[kotlin.String]/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/add-mvn-dependencies.html
+$dokka.location:/DependencyMapperConfiguration/alwaysUpdate/#/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/always-update.html
+$dokka.location:/DependencyMapperConfiguration/capitalizeFirstLetter/#kotlin.Function1[kotlin.String,kotlin.Boolean]/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/capitalize-first-letter.html
+$dokka.location:/DependencyMapperConfiguration/jarName/#/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/jar-name.html
+$dokka.location:/DependencyMapperConfiguration/outputTo/#java.io.File/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/output-to.html
+$dokka.location:/DependencyMapperConfiguration/outputTo/#java.nio.file.Path/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/output-to.html
+$dokka.location:/DependencyMapperConfiguration/rootClassName/#/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/root-class-name.html
+$dokka.location:/DependencyMapperConfiguration/transformName/#kotlin.Function1[kotlin.String,kotlin.String]/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/transform-name.html
+$dokka.location:/DependencyMapperConfiguration/transformNotation/#kotlin.Function1[kotlin.String,kotlin.String]/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/transform-notation.html
+$dokka.location:/DependencyMapperConfiguration/updateWhen/#kotlin.Function1[org.gradle.api.Project,kotlin.Boolean]/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/update-when.html
+$dokka.location:/MvnRepositoryClient.Companion///PointingToDeclaration/mapper/[root]/-mvn-repository-client/-companion/index.html
+$dokka.location:/MvnRepositoryClient///PointingToDeclaration/mapper/[root]/-mvn-repository-client/index.html
+$dokka.location:/MvnRepositoryClient/MvnRepositoryClient/#io.ktor.client.features.logging.LogLevel/PointingToDeclaration/mapper/[root]/-mvn-repository-client/-mvn-repository-client.html
+$dokka.location:/MvnRepositoryClient/close/#/PointingToDeclaration/mapper/[root]/-mvn-repository-client/close.html
+$dokka.location:/MvnRepositoryClient/fetchArtifacts/#kotlin.String#kotlin.Boolean/PointingToDeclaration/mapper/[root]/-mvn-repository-client/fetch-artifacts.html
+
+

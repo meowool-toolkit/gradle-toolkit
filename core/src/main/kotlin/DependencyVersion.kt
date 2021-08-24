@@ -21,6 +21,11 @@
 /**
  * Change the dependency version.
  *
+ * For example, change to `1.2` version:
+ * ```
+ * "com.google:xyz:1.0" version "1.2"
+ * ```
+ *
  * @author 凛 (https://github.com/RinOrz)
  */
 infix fun CharSequence.version(ver: String): String = split(":").toMutableList().apply {

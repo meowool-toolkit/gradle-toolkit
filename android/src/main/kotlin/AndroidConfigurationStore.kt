@@ -35,7 +35,7 @@ internal class AndroidConfigurationStore {
     scope: String?,
     configuration: BaseAppModuleExtension.(Project) -> Unit
   ) {
-    val key = scope ?: MainScope
+    val key = scope ?: MainConfigurationScope
     appConfigurations[key] = configuration
   }
 
@@ -43,7 +43,7 @@ internal class AndroidConfigurationStore {
     scope: String?,
     configuration: LibraryExtension.(Project) -> Unit
   ) {
-    val key = scope ?: MainScope
+    val key = scope ?: MainConfigurationScope
     libConfigurations[key] = configuration
   }
 
@@ -51,11 +51,11 @@ internal class AndroidConfigurationStore {
     scope: String?,
     configuration: TestedExtension.(Project) -> Unit
   ) {
-    val key = scope ?: MainScope
+    val key = scope ?: MainConfigurationScope
     commonConfigurations[key] = configuration
   }
 
-  fun getAppConfiguration(scope: String?) = appConfigurations[scope ?: MainScope]
-  fun getLibConfiguration(scope: String?) = libConfigurations[scope ?: MainScope]
-  fun getCommonConfiguration(scope: String?) = commonConfigurations[scope ?: MainScope]
+  fun getAppConfiguration(scope: String?) = appConfigurations[scope ?: MainConfigurationScope]
+  fun getLibConfiguration(scope: String?) = libConfigurations[scope ?: MainConfigurationScope]
+  fun getCommonConfiguration(scope: String?) = commonConfigurations[scope ?: MainConfigurationScope]
 }

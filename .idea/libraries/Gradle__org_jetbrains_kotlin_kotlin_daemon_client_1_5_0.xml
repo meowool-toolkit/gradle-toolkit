@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jetbrains.kotlin:kotlin-daemon-client:1.5.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-daemon-client/1.5.0/373d55b6113e6be520d84bfb738bd40520004bfa/kotlin-daemon-client-1.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-daemon-client/1.5.0/29b7962ff8261422916f9ff895a61ebf17e33579/kotlin-daemon-client-1.5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
