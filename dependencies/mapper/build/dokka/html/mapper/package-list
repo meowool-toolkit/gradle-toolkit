@@ -3,6 +3,9 @@ $dokka.linkExtension:html
 $dokka.location:////PointingToDeclaration/mapper/[root]/index.html
 $dokka.location://dependencyMapper/org.gradle.api.Project#kotlin.Function1[DependencyMapperConfiguration,kotlin.Unit]/PointingToDeclaration/mapper/[root]/dependency-mapper.html
 $dokka.location://dependencyMapper/org.gradle.api.initialization.Settings#kotlin.Function1[DependencyMapperConfiguration,kotlin.Unit]/PointingToDeclaration/mapper/[root]/dependency-mapper.html
+$dokka.location:/DependencyMapper///PointingToDeclaration/mapper/[root]/-dependency-mapper/index.html
+$dokka.location:/DependencyMapper/DependencyMapper/#org.gradle.api.Project/PointingToDeclaration/mapper/[root]/-dependency-mapper/-dependency-mapper.html
+$dokka.location:/DependencyMapper/mapping/#/PointingToDeclaration/mapper/[root]/-dependency-mapper/mapping.html
 $dokka.location:/DependencyMapperConfiguration///PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/index.html
 $dokka.location:/DependencyMapperConfiguration/DependencyMapperConfiguration/#org.gradle.api.Project/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/-dependency-mapper-configuration.html
 $dokka.location:/DependencyMapperConfiguration/addDependencies/#kotlin.Array[kotlin.String]/PointingToDeclaration/mapper/[root]/-dependency-mapper-configuration/add-dependencies.html

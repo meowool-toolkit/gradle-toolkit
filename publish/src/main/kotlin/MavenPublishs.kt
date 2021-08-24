@@ -27,6 +27,7 @@ import com.github.michaelbull.retry.policy.constantDelay
 import com.github.michaelbull.retry.policy.limitAttempts
 import com.github.michaelbull.retry.policy.plus
 import com.github.michaelbull.retry.retry
+import groovy.util.Node
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.map
@@ -37,6 +38,7 @@ import org.gradle.BuildAdapter
 import org.gradle.BuildResult
 import org.gradle.api.Project
 import org.gradle.api.artifacts.repositories.AuthenticationSupported
+import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.artifacts.repositories.PasswordCredentials
 import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.api.publish.PublishingExtension
@@ -75,7 +77,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
  */
 inline fun Project.mavenPublish(
   repo: RepoUrl,
-  pom: PublishPom = publishPom(),
+  pom: PublishPom = PublishPom(),
   releaseSigning: Boolean = true,
   snapshotSigning: Boolean = false,
 ) = mavenPublish(arrayOf(repo), pom, releaseSigning, snapshotSigning)
@@ -91,7 +93,7 @@ inline fun Project.mavenPublish(
  */
 fun Project.mavenPublish(
   repo: Array<RepoUrl> = arrayOf(SonatypeRepo()),
-  pom: PublishPom = publishPom(),
+  pom: PublishPom = PublishPom(),
   releaseSigning: Boolean = true,
   snapshotSigning: Boolean = false,
   dokkaFormat: DokkaFormat = DokkaFormat.Html,
@@ -129,11 +131,36 @@ internal fun Project.configurePom(pom: PublishPom) {
     if (!plugins.hasPlugin(MavenPublishPlugin::class)) apply<MavenPublishPlugin>()
 
     publishing.publications.withType<MavenPublication> {
-      pom { pom.configuration(this) }
+      pom {
+        pom.configuration(this)
+        // Collect all the repositories used in the project to add to the POM
+        // See https://maven.apache.org/pom.html#Repositories)
+        withXml {
+          project.repositories
+            .filterIsInstance<MavenArtifactRepository>()
+            .filterNot { it.url.host.contains("repo.maven.apache.org") }
+            .takeIf { it.isNotEmpty() }
+            ?.also { repositories ->
+              val xml = this.asNode()
+              // Find or create `repositories` node
+              val repositoriesNode = xml.children()
+                .filterIsInstance<Node>()
+                .firstOrNull { it.name() == "repositories" }
+                ?: xml.appendNode("repositories")
+
+              repositories.forEach { repo ->
+                repositoriesNode?.appendNode("repository")?.apply {
+                  appendNode("id", repo.name)
+                  appendNode("url", repo.url.toString())
+                }
+              }
+            }
+        }
+      }
 
       version = pom.version
       groupId = pom.group
-      // Ref: https://github.com/vanniktech/gradle-maven-publish-plugin/blob/master/src/main/kotlin/com/vanniktech/maven/publish/legacy/Coordinates.kt#L25
+      // Ref: https://github.com/vanniktech/gradle-maven-publish-plugin/blob/a824079592fd0e1895aa0b293b798f593949fadb/plugin/src/main/kotlin/com/vanniktech/maven/publish/legacy/Coordinates.kt#L25
       if (this@withType.name.endsWith("PluginMarkerMaven").not()) {
         // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
         artifactId = pom.artifact + artifactId.removePrefix(project.name)

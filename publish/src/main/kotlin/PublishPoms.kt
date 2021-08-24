@@ -16,17 +16,25 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
+
+import groovy.util.Node
+import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.api.XmlProvider
+import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.publish.maven.MavenPom
+
 
 /**
  * A lazy pom store, use [configuration] when publishing.
  *
- * [For more details](https://docs.gradle.org/current/userguide/publishing_maven.html#sec:modifying_the_generated_pom)
+ * For more details, see:
+ * [Gradle Document](https://docs.gradle.org/current/userguide/publishing_maven.html#sec:modifying_the_generated_pom)
+ * [Maven Document](https://maven.apache.org/pom.html)
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-class PublishPom internal constructor(
+class PublishPom(
   val group: String,
   val artifact: String,
   val version: String,
@@ -41,26 +49,17 @@ class PublishPom internal constructor(
 }
 
 /**
- * Creates a pom to maven publish.
- * [For more details](https://docs.gradle.org/current/userguide/publishing_maven.html#sec:modifying_the_generated_pom)
- */
-fun publishPom(
-  group: String,
-  artifact: String,
-  version: String,
-  description: String? = null,
-  configuration: MavenPom.() -> Unit,
-): PublishPom = PublishPom(group, artifact, version, description, configuration)
-
-/**
  * Creates a basic pom to maven publish.
- * [For more details](https://docs.gradle.org/current/userguide/publishing_maven.html#sec:modifying_the_generated_pom)
+ *
+ * For more details, see:
+ * [Gradle Document](https://docs.gradle.org/current/userguide/publishing_maven.html#sec:modifying_the_generated_pom)
+ * [Maven Document](https://maven.apache.org/pom.html)
  *
  * @param configuration the extra configuration of pom.
  *
  * @see MavenPom for more details.
  */
-fun Project.publishPom(
+fun Project.PublishPom(
   group: String = findPropertyOrEnv("pom.group")?.toString() ?: this.group.toString(),
   artifact: String = findPropertyOrEnv("pom.artifact")?.toString() ?: this.name,
   version: String = findPropertyOrEnv("pom.version")?.toString() ?: this.version.toString(),

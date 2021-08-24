@@ -4,11 +4,6 @@ subprojects {
   if (!buildFile.exists()) return@subprojects
 
   afterEvaluate {
-
-//    extensions.findByType<com.gradle.publish.PluginBundleExtension>()?.apply {
-//      tags = listOf("gradle-dsl", "gradle-utils", "gradle-toolkit", "kotlin", "kotlin-dsl", "ktx")
-//    }
-
     configureGradlePlugin(
       tags = listOf("gradle-dsl", "gradle-utils", "gradle-toolkit", "kotlin", "kotlin-dsl", "ktx")
     )

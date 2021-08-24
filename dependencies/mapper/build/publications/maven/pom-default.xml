@@ -7,9 +7,9 @@
   <!-- do_not_remove: published-with-gradle-metadata -->
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.meowool.toolkit</groupId>
-  <artifactId>gradle-dsl-x-dependencies-mapping</artifactId>
+  <artifactId>gradle-dsl-x-deps-mapper</artifactId>
   <version>2.2-SNAPSHOT</version>
-  <name>Dependency Classes Mapping for Gradle DSL X</name>
+  <name>Dependency Mapper for Gradle DSL X</name>
   <description>Map all dependencies to classes and fields for easy calling in gradle scripts</description>
   <url>https://github.com/meowool-toolkit/gradle-dsl-x/</url>
   <organization>

@@ -25,7 +25,7 @@ fun Settings.dependencyMapperPrebuilt() = dependencyMapper { builtIn() }
  */
 fun RootGradleDslExtension.dependencyMapperPrebuilt() = rootProject.dependencyMapper { builtIn() }
 
-private fun DependencyMapperConfiguration.builtIn() {
+internal fun <T: DependencyMapperConfiguration> T.builtIn() = apply {
   capitalizeFirstLetter {
     (it.contains("ios", ignoreCase = true)
       || it.contains("wasm32", ignoreCase = true)

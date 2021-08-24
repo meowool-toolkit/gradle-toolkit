@@ -26,7 +26,7 @@ import com.android.build.gradle.BaseExtension
  */
 fun BaseExtension.enableCompose(configuration: ComposeOptions.() -> Unit = {}) {
   buildFeatures.compose = true
-  getGlobalScope().project.configurations.configureEach {
+  getGlobalProject().configurations.configureEach {
     val kotlinDependency = allDependencies.find {
       it.group?.startsWith("org.jetbrains.kotlin") == true && it.version != null
     }

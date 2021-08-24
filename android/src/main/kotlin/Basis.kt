@@ -22,6 +22,7 @@ import com.android.build.api.dsl.BaseFlavor
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.internal.dsl.DefaultConfig
 import com.android.build.gradle.internal.scope.GlobalScope
+import org.gradle.api.Project
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
@@ -92,7 +93,13 @@ inline fun BaseExtension.buildConfigField(type: String, name: String, value: Str
   defaultConfig.buildConfigField(type, name, value)
 }
 
-internal fun BaseExtension.getGlobalScope() = javaClass.kotlin.memberProperties
-  .find { it.name == "globalScope" || it.returnType == typeOf<GlobalScope>() }
-  ?.apply { isAccessible = true }
-  ?.get(this) as? GlobalScope ?: error("Unable to get the global scope in BaseExtension!")
+internal fun BaseExtension.getGlobalProject(): Project {
+  val globalScope = javaClass.kotlin.memberProperties
+    .find { it.name == "globalScope" || it.returnType == typeOf<GlobalScope>() }
+    ?.apply { isAccessible = true }
+    ?.get(this)
+  return globalScope?.javaClass?.declaredFields
+    ?.first { it.type == Project::class.java }
+    ?.get(globalScope) as? Project
+    ?: error("Unable to get the global scope in BaseExtension!")
+}

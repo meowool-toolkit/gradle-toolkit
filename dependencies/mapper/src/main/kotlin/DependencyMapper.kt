@@ -8,15 +8,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flatMapConcat
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.runBlocking
 import org.gradle.api.Project
 import org.gradle.api.initialization.Settings
-import org.gradle.kotlin.dsl.add
 import org.gradle.kotlin.dsl.extra
-import org.gradle.kotlin.dsl.findByType
 import java.io.File
 
 /**
@@ -24,13 +21,14 @@ import java.io.File
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-internal class DependencyMapper(project: Project) : DependencyMapperConfiguration(project) {
-  private val isUpdate get() = needUpdate?.invoke(project) ?: (cacheFile.readText() == newCache)
+class DependencyMapper(project: Project) : DependencyMapperConfiguration(project) {
+  private val isUpdate get() = needUpdate?.invoke(project) ?: (cacheFile.readText() != newCache)
   private val newCache get() = dependencies.joinToString() + mvnGroups.joinToString(prefix = ", ")
-  private val cacheFile get() = project.buildDir.resolve("tmp/deps-mapping-cache").apply {
-    parentFile.mkdirs()
-    if (exists().not()) createNewFile()
-  }
+  private val cacheFile
+    get() = project.buildDir.resolve("tmp/deps-mapping-cache").apply {
+      parentFile.mkdirs()
+      if (exists().not()) createNewFile()
+    }
 
   private val output get() = outputFile ?: project.file(jarName)
   private val outputRelative
@@ -48,13 +46,28 @@ internal class DependencyMapper(project: Project) : DependencyMapperConfiguratio
 
   private val classpath get() = "classpath(files(\"$outputRelative\"))"
 
-  internal fun mapping() = runBlocking {
+  private fun fetchMvnDependencies(): Flow<String> = when {
+    mvnGroups.isEmpty() -> emptyFlow()
+    else -> {
+      val client = MvnRepositoryClient()
+      mvnGroups
+        .asFlow()
+        .flatMapConcat {
+          println("Fetch dependencies of `$it` group...")
+          client.fetchArtifactDeps(it)
+        }
+        .onCompletion { client.close() }
+        .flowOnIO()
+    }
+  }
+
+  fun mapping() = runBlocking {
     if (isUpdate) {
+      println("Mapping dependencies...")
       writeJar(rootClassName, output) { writer ->
         // Dynamic
         merge(dependencies.asFlow(), fetchMvnDependencies())
-          .map(formatter::format)
-          .flattenToDepTree()
+          .flattenToDepTree(formatter)
           .forEach(writer::add)
 
         // Specified
@@ -62,7 +75,7 @@ internal class DependencyMapper(project: Project) : DependencyMapperConfiguratio
           val path = mapped.split('.')
           var innerWriter = writer
           path.forEachIndexed { index, name ->
-            when(index) {
+            when (index) {
               path.lastIndex -> innerWriter.field(name, "$notation:_")
               else -> innerWriter = innerWriter.innerClass(name)
             }
@@ -83,23 +96,11 @@ internal class DependencyMapper(project: Project) : DependencyMapperConfiguratio
       // Select or create gradle script file
       rootBuild?.readText()?.hasBuildscriptBlock() == false ||
         rootSettings?.readText()?.hasBuildscriptBlock() == false -> rootSettings?.addBuildscript()
-          ?: rootBuild?.addBuildscript()
-          ?: rootProject.file("settings.gradle.kts").addBuildscript()
+        ?: rootBuild?.addBuildscript()
+        ?: rootProject.file("settings.gradle.kts").addBuildscript()
 
       rootBuild?.readText()?.contains(classpath).let { it != null && it.not() } -> rootBuild!!.insertClasspath()
       rootSettings?.readText()?.contains(classpath).let { it != null && it.not() } -> rootSettings!!.insertClasspath()
-    }
-  }
-
-  private fun fetchMvnDependencies(): Flow<String> = when {
-    mvnGroups.isEmpty() -> emptyFlow()
-    else -> {
-      val client = MvnRepositoryClient()
-      mvnGroups
-        .asFlow()
-        .flatMapConcat(client::fetchArtifacts)
-        .flowOnIO()
-        .onCompletion { client.close() }
     }
   }
 }
@@ -109,12 +110,11 @@ private const val KEY = "_dependencyMapper"
 /**
  * Configures the dependency mapper based on the given [configuration].
  */
-fun Project.dependencyMapper(configuration: DependencyMapperConfiguration.() -> Unit) {
-  val mapper = when {
+fun Project.dependencyMapper(configuration: DependencyMapperConfiguration.() -> Unit) = beforeEvaluate {
+  when {
     extra.has(KEY) -> extra.get(KEY) as DependencyMapper
     else -> DependencyMapper(this).also { extra.set(KEY, it) }
-  }.apply(configuration)
-  gradle.projectsEvaluated { mapper.mapping() }
+  }.apply(configuration).mapping()
 }
 
 /**

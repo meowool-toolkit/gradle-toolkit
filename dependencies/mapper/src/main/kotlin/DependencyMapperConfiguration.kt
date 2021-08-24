@@ -32,7 +32,7 @@ private typealias DependencyMapped = String
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-open class DependencyMapperConfiguration(internal val project: Project) {
+abstract class DependencyMapperConfiguration(internal val project: Project) {
 
   /**
    * The name of the generated source file (without extension).

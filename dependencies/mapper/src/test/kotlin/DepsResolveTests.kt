@@ -9,6 +9,7 @@ import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOf
 
 /**
  * @author 凛 (https://github.com/RinOrz)
@@ -17,7 +18,7 @@ class DepsResolveTests : FreeSpec({
   val client = createClient()
 
   "valid dependencies" {
-    client.fetchArtifacts("com.squareup.okhttp3", recursively = false).collect { dep ->
+    client.fetchArtifactDeps("com.squareup.okhttp3", recursively = false).collect { dep ->
       dep.count { it == ':' } shouldBe 1
     }
   }
@@ -57,17 +58,17 @@ class DepsResolveTests : FreeSpec({
     shouldThrowMessage(
       "`com.squareup.okhttp3:okhttp:_` can only has one `:` symbol used to separate `group` and `artifact`, in other words, " +
         "the notation cannot contain the `artifact` version."
-    ) { listOf("com.squareup.okhttp3:okhttp:_").flattenToDepTree() }
+    ) { flowOf("com.squareup.okhttp3:okhttp:_").flattenToDepTree() }
 
     shouldThrowMessage(
       "`com.squareup.okhttp3: okhttp` cannot be has spaces."
-    ) { listOf("com.squareup.okhttp3: okhttp").flattenToDepTree() }
+    ) { flowOf("com.squareup.okhttp3: okhttp").flattenToDepTree() }
 
-    shouldNotThrowAny { listOf(" com.squareup.okhttp3:okhttp ").flattenToDepTree() }
+    shouldNotThrowAny { flowOf(" com.squareup.okhttp3:okhttp ").flattenToDepTree() }
   }
 
   "flatten dep-tree" {
-    val tree = listOf(
+    val tree = flowOf(
       "com.compose.ui:ui ",
       "com.compose.material:material",
       "com.compose.material:material-core",
@@ -118,7 +119,7 @@ class DepsResolveTests : FreeSpec({
       },
     )
 
-    val tree = listOf(
+    val tree = flowOf(
       "tt.ui:ui",
       "tt.add:add-wwb",
       "faa.bar:bar-tt",

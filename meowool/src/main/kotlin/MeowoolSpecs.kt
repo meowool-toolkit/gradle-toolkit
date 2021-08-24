@@ -16,6 +16,8 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
+@file:Suppress("FunctionName")
+
 import com.diffplug.gradle.spotless.SpotlessExtension
 import extension.RootGradleDslExtension
 import org.gradle.api.Project
@@ -51,7 +53,7 @@ fun RootGradleDslExtension.useMeowoolSpec(
   publishReleaseSigning: Boolean = true,
   publishSnapshotSigning: Boolean = false,
   publishRepo: Array<RepoUrl> = arrayOf(SonatypeRepo()),
-  publishPom: Project.() -> PublishPom = { meowoolPublishPom() },
+  publishPom: Project.() -> PublishPom = { MeowoolPublishPom() },
 ) {
   dependencyMapperPrebuilt()
   presetRepositories(loadSnapshotsRepository)
@@ -88,7 +90,7 @@ fun RootGradleDslExtension.useMeowoolSpotlessSpec(
  */
 fun Project.meowoolMavenPublish(
   repo: Array<RepoUrl> = arrayOf(SonatypeRepo()),
-  pom: PublishPom = meowoolPublishPom(),
+  pom: PublishPom = MeowoolPublishPom(),
   releaseSigning: Boolean = true,
   snapshotSigning: Boolean = false,
   enabledPublish: Boolean = true,
@@ -114,7 +116,7 @@ fun Project.meowoolMavenPublish(
 /**
  * Belongs to the basic publish pom of the meowool organization specification.
  */
-fun Project.meowoolPublishPom(
+fun Project.MeowoolPublishPom(
   group: String = findPropertyOrEnv("pom.group")?.toString() ?: this.group.toString(),
   artifact: String = findPropertyOrEnv("pom.artifact")?.toString() ?: this.name,
   version: String = findPropertyOrEnv("pom.version")?.toString() ?: this.version.toString(),
@@ -126,7 +128,7 @@ fun Project.meowoolPublishPom(
   developerUrl: String? = findPropertyOrEnv("pom.developer.url")?.toString(),
   scmConnection: String? = findPropertyOrEnv("pom.scm.connection")?.toString(),
   scmUrl: String? = findPropertyOrEnv("pom.scm.url")?.toString(),
-) = publishPom(
+) = PublishPom(
   group,
   artifact,
   version,

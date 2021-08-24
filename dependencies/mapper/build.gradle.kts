@@ -1,6 +1,6 @@
 @file:Suppress("SpellCheckingInspection")
 
-plugins { kotlin; `kotlin-kapt` }
+plugins { kotlin }
 
 @Suppress("GradleDependency")
 dependencies {
@@ -14,7 +14,6 @@ dependencies {
     "io.ktor:ktor-client-logging:_",
     "com.meowool.toolkit:sweekt:_",
   )
-  kapt(Libs.Square.Moshi.Kotlin.Codegen)
   testImplementation(Libs.Kotest.Runner.Junit5)
 }
 

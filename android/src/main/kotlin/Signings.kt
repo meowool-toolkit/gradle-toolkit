@@ -50,7 +50,7 @@ fun BaseExtension.signing(configuration: SigningConfig.() -> Unit) {
 
   signingConfigs {
     create(config) {
-      getGlobalScope().project.loadSigningConfigPresets(this)
+      getGlobalProject().loadSigningConfigPresets(this)
       configuration()
     }
   }

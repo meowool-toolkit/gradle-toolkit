@@ -2,7 +2,7 @@
   "formatVersion": "1.1",
   "component": {
     "group": "com.meowool.toolkit",
-    "module": "gradle-dsl-x-dependencies-mapping",
+    "module": "gradle-dsl-x-deps-mapper",
     "version": "2.2-SNAPSHOT",
     "attributes": {
       "org.gradle.status": "integration"
@@ -36,13 +36,13 @@
       ],
       "files": [
         {
-          "name": "gradle-dsl-x-dependencies-mapping-2.2-SNAPSHOT.jar",
-          "url": "gradle-dsl-x-dependencies-mapping-2.2-SNAPSHOT.jar",
-          "size": 74093,
-          "sha512": "8b0ec63695ea0ca812ae4dd78bbbdec763997df319aa75ba9758205addee33d211fce523703fa4c78a5ce0377574d471741d121670a58b3ca54f484dba7fc2c9",
-          "sha256": "182bc36a5b3361a8274df15cf96d485f39944895fc961f9f33a80a8b8f5f9d96",
-          "sha1": "f6cab2cf46600f6c743368ec880cd50ed035e1b6",
-          "md5": "f3ff2a086956ee3eaa29b1b440caa33a"
+          "name": "gradle-dsl-x-deps-mapper-2.2-SNAPSHOT.jar",
+          "url": "gradle-dsl-x-deps-mapper-2.2-SNAPSHOT.jar",
+          "size": 74139,
+          "sha512": "a7c2571c759bc0888889cf5de1eebc6072344163a2b58cfc04f06e309dabf99b875a36d027970c937f5b62ee249cbf27e4e409dfc41547d0e79f065e4b7a0959",
+          "sha256": "54b837e168b1a01fad0770786790b3448e9e42c62f85798d58f4c2fc40fc0212",
+          "sha1": "17efcabea2f2ac8131201123eff4af4073a1aea0",
+          "md5": "d15595eb00be7ef052c12148e6e1073b"
         }
       ]
     },
@@ -138,13 +138,13 @@
       ],
       "files": [
         {
-          "name": "gradle-dsl-x-dependencies-mapping-2.2-SNAPSHOT.jar",
-          "url": "gradle-dsl-x-dependencies-mapping-2.2-SNAPSHOT.jar",
-          "size": 74093,
-          "sha512": "8b0ec63695ea0ca812ae4dd78bbbdec763997df319aa75ba9758205addee33d211fce523703fa4c78a5ce0377574d471741d121670a58b3ca54f484dba7fc2c9",
-          "sha256": "182bc36a5b3361a8274df15cf96d485f39944895fc961f9f33a80a8b8f5f9d96",
-          "sha1": "f6cab2cf46600f6c743368ec880cd50ed035e1b6",
-          "md5": "f3ff2a086956ee3eaa29b1b440caa33a"
+          "name": "gradle-dsl-x-deps-mapper-2.2-SNAPSHOT.jar",
+          "url": "gradle-dsl-x-deps-mapper-2.2-SNAPSHOT.jar",
+          "size": 74139,
+          "sha512": "a7c2571c759bc0888889cf5de1eebc6072344163a2b58cfc04f06e309dabf99b875a36d027970c937f5b62ee249cbf27e4e409dfc41547d0e79f065e4b7a0959",
+          "sha256": "54b837e168b1a01fad0770786790b3448e9e42c62f85798d58f4c2fc40fc0212",
+          "sha1": "17efcabea2f2ac8131201123eff4af4073a1aea0",
+          "md5": "d15595eb00be7ef052c12148e6e1073b"
         }
       ]
     }

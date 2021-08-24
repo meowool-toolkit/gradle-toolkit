@@ -67,6 +67,6 @@ internal class DepFormatter(
     splitToSequence('.').joinToString(".") { replaceName(it).mayUpperCase() }
 
   companion object {
-    val Default = DepFormatter()
+    val Default get() = DepFormatter()
   }
 }
