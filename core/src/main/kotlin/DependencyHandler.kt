@@ -16,26 +16,27 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
-import extension.GradleDslExtension
-import extension.RootGradleDslExtension
-import extension.RootGradleDslExtensionImpl
+import extension.GradleToolkitExtension
+import extension.RootGradleToolkitExtension
+import extension.RootGradleToolkitExtensionImpl
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
 
 /**
- * Import shared lazy dependencies block by [scope] name.
+ * Imports shared lazy dependencies block by [scope] name.
+ *
  * Note that this will use the scope name specified by the current project as much as possible.
  *
- * @see RootGradleDslExtension.shareLazyDependencies
- * @see GradleDslExtension.scope
+ * @see GradleToolkitExtension.scope
+ * @see RootGradleToolkitExtension.shareLazyDependencies
  */
 fun Project.importLazyDependencies(scope: String? = null) = dependencies {
   val key = scope
-    ?: extensions.findByType<GradleDslExtension>()?.scope
+    ?: extensions.findByType<GradleToolkitExtension>()?.scope
     ?: MainScope
 
-  (rootExtension as? RootGradleDslExtensionImpl)
+  (rootExtension as? RootGradleToolkitExtensionImpl)
     ?.sharedLazyDependencies
     ?.get(key)
     ?.invoke(this)

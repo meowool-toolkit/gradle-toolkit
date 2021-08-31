@@ -16,12 +16,12 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
-import annotation.InternalGradleDslXApi
+import annotation.InternalGradleToolkitApi
 import org.gradle.api.Project
 import java.io.File
 import java.util.Properties
 
-@InternalGradleDslXApi
+@InternalGradleToolkitApi
 fun File.toPropertiesOrNull(): Properties? = when {
   exists() -> Properties().also {
     it.load(bufferedReader())

@@ -21,26 +21,29 @@
 import com.android.build.gradle.AppExtension
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
-import extension.RootGradleDslExtension
+import extension.RootGradleToolkitExtension
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaPluginConvention
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.findPlugin
+import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.maven
 
-internal fun RootGradleDslExtension.presetRepositories(loadSnapshots: Boolean = false) {
-  rootProject.rootDir.resolve(".repo").takeIf { it.exists() }?.let(::repoMaven)
-  repoGoogle()
-  repoMavenCentral()
-  repoJitpack()
-  repoMavenMirror(MavenMirrors.Aliyun.JCenter)
-  repoGradlePluginPortal()
-  repoSonatype()
-  if (loadSnapshots) repoSonatypeSnapshots()
+internal fun RootGradleToolkitExtension.presetRepositories(loadSnapshots: Boolean = false) {
+  allrepositories {
+    rootProject.rootDir.resolve(".repo").takeIf { it.exists() }?.let(::maven)
+    google()
+    mavenCentral()
+    sonatype()
+    mavenMirror(MavenMirrors.Aliyun.JCenter)
+    gradlePluginPortal()
+    jitpack()
+    if (loadSnapshots) sonatypeSnapshots()
+  }
 }
 
-internal fun RootGradleDslExtension.presetKotlinCompilerArgs() = allprojects {
+internal fun RootGradleToolkitExtension.presetKotlinCompilerArgs() = allprojects {
   afterEvaluate {
-    useExperimentalAnnotations(
+    optIn(
       "kotlin.RequiresOptIn",
       "kotlin.Experimental",
       "kotlin.ExperimentalStdlibApi",
@@ -53,7 +56,7 @@ internal fun RootGradleDslExtension.presetKotlinCompilerArgs() = allprojects {
   }
 }
 
-internal fun RootGradleDslExtension.presetSpotless(
+internal fun RootGradleToolkitExtension.presetSpotless(
   licenseHeader: String?,
   configuration: SpotlessExtension.() -> Unit = {}
 ) = allprojects {
@@ -86,7 +89,7 @@ internal fun RootGradleDslExtension.presetSpotless(
   }
 }
 
-internal fun RootGradleDslExtension.presetPublishing(
+internal fun RootGradleToolkitExtension.presetPublishing(
   enabledPublish: Boolean,
   publishRootProject: Boolean,
   publishAndroidAppProject: Boolean,
@@ -110,7 +113,7 @@ internal fun RootGradleDslExtension.presetPublishing(
   }
 }
 
-internal fun RootGradleDslExtension.presetAndroid(isOpenSourceProject: Boolean) = shareAndroid { project ->
+internal fun RootGradleToolkitExtension.presetAndroid(isOpenSourceProject: Boolean) = shareAndroid { project ->
   with(project) {
     releaseSigning {
       if (isOpenSourceProject) {
@@ -134,7 +137,7 @@ internal fun RootGradleDslExtension.presetAndroid(isOpenSourceProject: Boolean) 
 
 private val Project.isRegular: Boolean
   get() = buildFile.exists() && (
-    convention.findPlugin<JavaPluginConvention>() != null ||
+    extensions.findByType<JavaPluginExtension>() != null ||
       extensions.findByName("kotlin") != null ||
       extensions.findByName("android") != null ||
       plugins.hasPlugin("kotlin") ||

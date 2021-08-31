@@ -4,9 +4,15 @@ subprojects {
   if (!buildFile.exists()) return@subprojects
 
   afterEvaluate {
-    configureGradlePlugin(
-      tags = listOf("gradle-dsl", "gradle-utils", "gradle-toolkit", "kotlin", "kotlin-dsl", "ktx")
-    )
+    configureGradlePlugin(tags = listOf(
+      "kotlin",
+      "kotlin-dsl",
+      "gradle-dsl",
+      "gradle-utils",
+      "gradle-toolkit",
+      "dependency",
+      "dependency-updater",
+    ))
 
     // Don't let the fork of 'refreshVersion' spotless.
     if (projectDir.absolutePath.endsWith("dependencies/updater")) {
@@ -16,5 +22,8 @@ subprojects {
   }
 
   tasks.findByName("dokkaHtml")?.enabled = false
-  tasks.withType<Test> { useJUnit() }
+  tasks.withType<Test> {
+    useJUnit()
+    useJUnitPlatform()
+  }
 }

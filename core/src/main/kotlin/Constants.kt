@@ -18,6 +18,9 @@
  */
 @file:Suppress("-")
 
-internal const val GradleDslXName = "gradleDslX"
+internal const val GradleToolkitName = "gradleToolkit"
 internal const val MainScope = "#_main__"
-internal const val KotlinVersion = "1.5"
+// TODO: Change to next Kotlin release version
+internal const val KotlinApiVersion = "1.5"
+internal const val KotlinLanguageVersion = "1.6"
+

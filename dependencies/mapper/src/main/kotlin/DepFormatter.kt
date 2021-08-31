@@ -7,11 +7,10 @@ import com.meowool.sweekt.firstCharUppercase
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-internal class DepFormatter(
-  var replaceNotation: (String) -> String = { it },
-  var replaceName: (String) -> String = { it },
-  var capitalizeFirstLetter: (String) -> Boolean = { true }
-) {
+internal class DepFormatter {
+  val notationReplacers = mutableListOf<(String) -> String>()
+  val nameReplacers = mutableListOf<(String) -> String>()
+  val capitalizeFirstLetters = mutableListOf<(String) -> Boolean>()
 
   /**
    * Return the notation of dependency after formatting [rawNotation].
@@ -28,9 +27,11 @@ internal class DepFormatter(
    * One.Dep.User.Core.Ext
    * ```
    */
-  fun format(rawNotation: String): String {
+  fun format(rawNotation: CharSequence): CharSequence {
     // foo.bar:core-ext -> foo.bar:core.ext
-    val normalized = replaceNotation(rawNotation).replace('-', '.').replace('_', '.')
+    val normalized = notationReplacers.fold(rawNotation.toString()) { acc, replacer -> replacer(acc) }
+      .replace('-', '.')
+      .replace('_', '.')
 
     var group = normalized.substringBefore(':').joinPath()
     val name = normalized.substringAfter(':').joinPath()
@@ -60,11 +61,27 @@ internal class DepFormatter(
   }
 
   private fun String.mayUpperCase(): String =
-    if (capitalizeFirstLetter(this)) this.firstCharUppercase() else this
+    if (capitalizeFirstLetters.all { it(this) }) this.firstCharUppercase() else this
 
-  /** Each part of the path is a name, and replaced it via [replaceName] */
-  private fun String.joinPath(): String =
-    splitToSequence('.').joinToString(".") { replaceName(it).mayUpperCase() }
+  /** Each part of the path is a name, and replaced it via [nameReplacers] */
+  private fun String.joinPath(): String {
+    val path = this.splitToSequence('.').map {
+      val replacedName = nameReplacers.fold(it) { acc, replacer -> replacer(acc) }
+      replacedName.mayUpperCase()
+    }
+    // Foo.10.20 -> Foo_10_20
+    return buildString {
+      path.filter { it.isNotEmpty() }.forEachIndexed { index, name ->
+        // Previous separator
+        when (index) {
+          // The beginning of a Java class cannot be a digit
+          0 -> if (name.first().isDigit()) append('_')
+          else -> append(if (name.first().isDigit()) '_' else '.')
+        }
+        append(name)
+      }
+    }
+  }
 
   companion object {
     val Default get() = DepFormatter()

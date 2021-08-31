@@ -26,8 +26,7 @@
 sealed class MavenMirrors(val url: String) {
 
   /* More see https://maven.aliyun.com/repository */
-  sealed class Aliyun(type: String) :
-    MavenMirrors("https://maven.aliyun.com/repository/$type") {
+  sealed class Aliyun(type: String) : MavenMirrors("https://maven.aliyun.com/repository/$type") {
     object Google : Aliyun("google")
     object Public : Aliyun("public")
     object Spring : Aliyun("spring")
@@ -39,10 +38,9 @@ sealed class MavenMirrors(val url: String) {
     object ApacheSnapshots : Aliyun("apache-snapshots")
   }
 
-  /* More see https://mirrors.cloud.tencent.com/ */
-  object TencentCloud :
-    MavenMirrors("http://mirrors.cloud.tencent.com/nexus/repository/maven-public/")
-
   /* More see https://mirrors.huaweicloud.com/ */
-  object HuaweiCloud : MavenMirrors("https://repo.huaweicloud.com/repository/maven/")
+  object Huawei : MavenMirrors("https://repo.huaweicloud.com/repository/maven/")
+
+  /* More see https://mirrors.cloud.tencent.com/ */
+  object Tencent : MavenMirrors("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/")
 }

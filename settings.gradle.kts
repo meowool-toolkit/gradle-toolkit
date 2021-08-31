@@ -14,6 +14,8 @@ plugins {
 }
 
 buildscript {
+//  dependencies.classpath("com.meowool.toolkit:gradle-dsl-x-dependencies-builtin:2.1")
+
   configurations.all {
     // Check for updates every build
     resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
@@ -23,7 +25,7 @@ buildscript {
 rootGradleDslX {
   useMeowoolSpec(publishRootProject = false)
   configureAllKotlinCompile {
-    addFreeCompilerArgs("-Xopt-in=annotation.InternalGradleDslXApi")
+    addFreeCompilerArgs("-Xopt-in=annotation.InternalGradleToolkitApi")
   }
 }
 

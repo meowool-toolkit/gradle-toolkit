@@ -16,21 +16,22 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
-import annotation.InternalGradleDslXApi
-import extension.GradleDslExtension
-import extension.RootGradleDslExtension
+import annotation.InternalGradleToolkitApi
+import extension.GradleToolkitExtension
+import extension.RootGradleToolkitExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
 
-@InternalGradleDslXApi
-inline val Project.rootExtension get() = checkRootBootstrap()
+@InternalGradleToolkitApi
+val Project.rootExtension: RootGradleToolkitExtension
+  get() = checkRootBootstrap()
 
-@InternalGradleDslXApi
-fun Project.checkRootBootstrap(): GradleDslExtension {
-  val extension = rootProject.extensions.findByType<GradleDslExtension>()
+private fun Project.checkRootBootstrap(): RootGradleToolkitExtension {
+  val extension = rootProject.extensions.findByType<GradleToolkitExtension>()
   check(extension != null) {
-    "gradle dsl x bootstrap has not started, please apply the GradleDslX plugin in root settings.gradle(.kts) or build.gradle(.kts) first."
+    // GradleToolkitCore.bootstrap
+    "'gradle-toolkit' bootstrap has not started, please apply the GradleToolkit plugin in root settings.gradle(.kts) or build.gradle(.kts) first."
   }
-  check(extension is RootGradleDslExtension) { "Illegal root extension!" }
+  check(extension is RootGradleToolkitExtension) { "Illegal root extension!" }
   return extension
 }

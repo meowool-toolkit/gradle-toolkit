@@ -19,7 +19,7 @@
 @file:Suppress("FunctionName")
 
 import com.diffplug.gradle.spotless.SpotlessExtension
-import extension.RootGradleDslExtension
+import extension.RootGradleToolkitExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.hasPlugin
@@ -44,7 +44,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-fun RootGradleDslExtension.useMeowoolSpec(
+fun RootGradleToolkitExtension.useMeowoolSpec(
   isOpenSourceProject: Boolean = true,
   loadSnapshotsRepository: Boolean = false,
   enabledPublish: Boolean = true,
@@ -78,7 +78,7 @@ fun RootGradleDslExtension.useMeowoolSpec(
  *   spotless running.
  * @param configuration The extra configuration.
  */
-fun RootGradleDslExtension.useMeowoolSpotlessSpec(
+fun RootGradleToolkitExtension.useMeowoolSpotlessSpec(
   licenseHeader: String? = OpenSourceLicense,
   configuration: SpotlessExtension.() -> Unit = {}
 ) = presetSpotless(licenseHeader, configuration)

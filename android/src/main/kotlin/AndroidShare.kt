@@ -19,8 +19,8 @@
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.TestedExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import extension.GradleDslExtension
-import extension.RootGradleDslExtension
+import extension.GradleToolkitExtension
+import extension.RootGradleToolkitExtension
 import org.gradle.api.Project
 
 /**
@@ -42,12 +42,12 @@ import org.gradle.api.Project
  * }
  * ```
  *
- * @see GradleDslExtension.scope
+ * @see GradleToolkitExtension.scope
  * @param scope representative the effect scope of this dependencies shared block.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-fun RootGradleDslExtension.shareAndroid(
+fun RootGradleToolkitExtension.shareAndroid(
   scope: String? = null,
   configuration: TestedExtension.(project: Project) -> Unit
 ) {
@@ -75,10 +75,10 @@ fun RootGradleDslExtension.shareAndroid(
  * }
  * ```
  *
- * @see GradleDslExtension.scope
+ * @see GradleToolkitExtension.scope
  * @param scope representative the effect scope of this dependencies shared block.
  */
-fun RootGradleDslExtension.shareAndroidApp(
+fun RootGradleToolkitExtension.shareAndroidApp(
   scope: String? = null,
   configuration: BaseAppModuleExtension.(project: Project) -> Unit
 ) {
@@ -106,10 +106,10 @@ fun RootGradleDslExtension.shareAndroidApp(
  * }
  * ```
  *
- * @see GradleDslExtension.scope
+ * @see GradleToolkitExtension.scope
  * @param scope representative the effect scope of this dependencies shared block.
  */
-fun RootGradleDslExtension.shareAndroidLib(
+fun RootGradleToolkitExtension.shareAndroidLib(
   scope: String? = null,
   configuration: LibraryExtension.(project: Project) -> Unit
 ) {

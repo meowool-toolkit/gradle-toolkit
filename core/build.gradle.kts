@@ -2,7 +2,7 @@
 
 plugins { kotlin; `kotlin-dsl` }
 
-createGradlePlugin(implementationClass = "GradleDslXCore")
+createGradlePlugin(implementationClass = "GradleToolkitCore")
 
 dependencies {
   apiOf(
@@ -10,6 +10,5 @@ dependencies {
     Libs.Kotlin.Stdlib,
     Libs.Kotlin.Gradle.Plugin,
   )
-  implementation(Libs.Kotlin.Stdlib)
   testImplementation(Libs.Kotlin.Test.Junit)
 }

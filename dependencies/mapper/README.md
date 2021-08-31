@@ -39,7 +39,7 @@ implementation(Libs.Apache.Commons.Lang3)
 implementation(Libs.Square.OkHttp3)
 ```
 
-以调用方式来导入依赖无疑更具有可读性。
+以调用方式来导入依赖无疑更具有可读、可编辑性。
 
 #### 依赖转换细节
 
@@ -57,17 +57,14 @@ implementation(Libs.Square.OkHttp3)
 >
 > `vim.test-abc:test-abc` -> `vim.test.abc`
 >
-> `vim.test-abc:test.abc` -> `vim.test.abc`
->
-> `vim.test.abc:test-abc` -> `vim.test.abc`
+> `a.b:a.b` -> `a.b`
 
-3. 路径上的每个名称都视为一个类，最后的名称即为工件并视为一个字段。
+3. 路径上的每个名称都视为一个类，最后的名称则视为一个字段（即工件）。
    依赖路径的概念和文件路径的概念相似，上一个路径名称即为下一个路径名称的父亲。
    所有依赖都会合并成一棵树后添加到 `Libs` 类中:
 
 > `foo.bar:egg` `foo.bar:ham` `foo.bar.gav:pizza`
-> `meat.beef:steak`
-> `meat.beef.steak:all`
+> `meat.beef:steak` `meat.beef.steak:all`
 >
 > ```java
 > // 默认大写所有成员名
@@ -94,9 +91,8 @@ implementation(Libs.Square.OkHttp3)
 
 -------
 
-* 生成了一个 `BuiltIns.jar`, 包含了所有
-  [builtin/build.gradle.kts](../builtin/build.gradle.kts)
-  内预先声明的依赖所转换的类，此文件内置了所有常见的依赖（不同的
-  **gradle-dsl-x** 版本可能会有所改动）
+* 生成了一个 `deps-mapping.jar`, 包含了所有
+  [Pre-Built](../prebuilt/src/main/kotlin/PreBuiltDependencyMappers.kt)
+  `fun prebuilt()` 方法中预先声明的依赖
 * 
 

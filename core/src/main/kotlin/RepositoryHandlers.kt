@@ -16,6 +16,9 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
+@file:Suppress("SpellCheckingInspection")
+
+import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.kotlin.dsl.maven
@@ -45,6 +48,17 @@ fun RepositoryHandler.sonatypeSnapshots(action: MavenArtifactRepository.() -> Un
 }
 
 /**
- * Adds and configures a Jitpack repository.
+ * Adds a repository which looks in Bintray's JCenter repository for [Project.dependencies].
  */
-fun RepositoryHandler.jitpack(action: MavenArtifactRepository.() -> Unit = {}) = maven("https://jitpack.io", action)
+@Deprecated(
+  message = "JCenter sunset in February 2021, it is recommended to use mavenCentral, but you can also use mirrors.",
+  replaceWith = ReplaceWith("mavenMirror(MavenMirrors.Aliyun.JCenter)")
+)
+fun RepositoryHandler.jCenter(action: MavenArtifactRepository.() -> Unit = {}) =
+  mavenMirror(MavenMirrors.Aliyun.JCenter)
+
+/**
+ * Adds a repository which looks in Jitpack repository for [Project.dependencies].
+ */
+fun RepositoryHandler.jitpack(action: MavenArtifactRepository.() -> Unit = {}) =
+  maven("https://jitpack.io", action)

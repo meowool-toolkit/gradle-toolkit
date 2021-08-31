@@ -39,7 +39,6 @@ import java.io.File
 @JvmOverloads
 @JvmName("bootstrap")
 fun Settings.bootstrapRefreshVersions(
-    extraArtifactVersionKeyRules: List<String> = emptyList(),
     versionsPropertiesFile: File = rootDir.resolve("versions.properties")
 ) {
     require(settings.isBuildSrc.not()) {
@@ -49,7 +48,6 @@ fun Settings.bootstrapRefreshVersions(
     }
     extensions.create<RefreshVersionsExtension>("refreshVersions")
     refreshVersions {
-        this.extraArtifactVersionKeyRules = extraArtifactVersionKeyRules
         this.versionsPropertiesFile = versionsPropertiesFile
     }
     apply(plugin = "de.fayard.refreshVersions")

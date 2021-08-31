@@ -41,6 +41,7 @@ import org.gradle.api.artifacts.repositories.AuthenticationSupported
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.artifacts.repositories.PasswordCredentials
 import org.gradle.api.plugins.JavaPluginConvention
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
@@ -51,6 +52,7 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.getCredentials
 import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.hasPlugin
@@ -187,7 +189,7 @@ internal fun Project.publishComponentsAndSourcesJar() = afterEvaluate {
         isAndroid -> from(androidExtension!!.sourceSets.getByName("main").java.srcDirs)
         // Hand it over to kotlin
         kotlinSourcesJar != null -> dependsOn(kotlinSourcesJar)
-        else -> from(project.convention.getPlugin(JavaPluginConvention::class.java).sourceSets.getByName("main").allSource)
+        else -> from(project.extensions.getByType<JavaPluginExtension>().sourceSets.getByName("main").allSource)
       }
     }
 

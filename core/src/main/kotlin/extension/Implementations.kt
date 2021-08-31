@@ -20,75 +20,18 @@
 
 package extension
 
-import ApplyProjectScope
-import ApplySourceScope
 import MainScope
-import addFreeCompilerArgs
-import annotation.InternalGradleDslXApi
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.DependencyHandler
-import org.gradle.api.artifacts.repositories.ArtifactRepository
-import org.gradle.api.artifacts.repositories.MavenArtifactRepository
-import org.gradle.kotlin.dsl.maven
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-internal open class GradleDslExtensionImpl(override val project: Project) : GradleDslExtension {
-
-  @InternalGradleDslXApi
+internal open class GradleToolkitExtensionImpl(override val project: Project) : GradleToolkitExtension {
   override val data: MutableList<Any> = mutableListOf()
 
   override var scope: String? = null
-
-  override fun configureKotlinCompile(configuration: KotlinCompile.() -> Unit) {
-    project.allprojects {
-      tasks.withType<KotlinCompile> {
-        if (name == "compileKotlin") configuration()
-      }
-    }
-  }
-
-  override fun configureKotlinTestCompile(configuration: KotlinCompile.() -> Unit) {
-    project.allprojects {
-      tasks.withType<KotlinCompile> {
-        if (name == "compileTestKotlin") configuration()
-      }
-    }
-  }
-
-  override fun configureAllKotlinCompile(configuration: KotlinCompile.() -> Unit) {
-    configureKotlinCompile(configuration)
-    configureKotlinTestCompile(configuration)
-  }
-
-  override fun kotlinExplicitApi(mode: ExplicitApiMode, applyScope: ApplySourceScope) {
-    when (applyScope) {
-      ApplySourceScope.All -> configureAllKotlinCompile {
-        kotlinOptions {
-          addFreeCompilerArgs("-Xexplicit-api=${mode.name}")
-        }
-      }
-      else -> {
-        configureKotlinCompile {
-          kotlinOptions {
-            val name = if (applyScope == ApplySourceScope.Default) mode.name else ExplicitApiMode.Disabled.name
-            addFreeCompilerArgs("-Xexplicit-api=$name")
-          }
-        }
-        configureKotlinTestCompile {
-          kotlinOptions {
-            val name = if (applyScope == ApplySourceScope.Test) mode.name else ExplicitApiMode.Disabled.name
-            addFreeCompilerArgs("-Xexplicit-api=$name")
-          }
-        }
-      }
-    }
-  }
 }
 
-internal class RootGradleDslExtensionImpl(override val rootProject: Project) :
-  GradleDslExtensionImpl(rootProject), RootGradleDslExtension {
+internal class RootGradleToolkitExtensionImpl(override val rootProject: Project) :
+  GradleToolkitExtensionImpl(rootProject), RootGradleToolkitExtension {
   val sharedDependencies = hashMapOf<String, DependencyHandler.() -> Unit>()
   val sharedLazyDependencies = hashMapOf<String, DependencyHandler.() -> Unit>()
   override val allprojects: Set<Project>
@@ -99,47 +42,11 @@ internal class RootGradleDslExtensionImpl(override val rootProject: Project) :
   override fun allprojects(action: Project.() -> Unit) = rootProject.allprojects(action)
   override fun subprojects(action: Project.() -> Unit) = rootProject.subprojects(action)
 
-  override fun repoMaven(
-    url: Any,
-    applyScope: ApplyProjectScope,
-    action: MavenArtifactRepository.() -> Unit
-  ) = resolveApply(applyScope) { repositories.maven(url, action) }
-
-  override fun repoMavenCentral(args: Map<String, Any?>?, applyScope: ApplyProjectScope) =
-    resolveApply(applyScope) { args?.let(repositories::mavenCentral) ?: repositories.mavenCentral() }
-
-  override fun repoMavenLocal(
-    applyScope: ApplyProjectScope,
-    action: MavenArtifactRepository.() -> Unit
-  ) = resolveApply(applyScope) { repositories.mavenLocal(action) }
-
-  override fun repoFlatDir(args: Map<String, Any?>, applyScope: ApplyProjectScope) {
-    resolveApply(applyScope) { repositories.flatDir(args) }
-  }
-
-  override fun repoGradlePluginPortal(
-    applyScope: ApplyProjectScope,
-    action: ArtifactRepository.() -> Unit
-  ) = resolveApply(applyScope) { repositories.gradlePluginPortal(action) }
-
-  override fun repoGoogle(
-    applyScope: ApplyProjectScope,
-    action: MavenArtifactRepository.() -> Unit
-  ) = resolveApply(applyScope) { repositories.google(action) }
-
   override fun shareDependencies(scope: String?, block: DependencyHandler.() -> Unit) {
     sharedDependencies[scope ?: MainScope] = block
   }
 
   override fun shareLazyDependencies(scope: String?, block: DependencyHandler.() -> Unit) {
     sharedLazyDependencies[scope ?: MainScope] = block
-  }
-
-  private fun resolveApply(applyScope: ApplyProjectScope, block: Project.() -> Unit) {
-    when (applyScope) {
-      ApplyProjectScope.CurrentProject -> rootProject.block()
-      ApplyProjectScope.SubProjects -> rootProject.subprojects { block() }
-      ApplyProjectScope.AllProjects -> rootProject.allprojects { block() }
-    }
   }
 }

@@ -40,14 +40,11 @@ fun KotlinCompile.addFreeCompilerArgs(args: Iterable<String>) {
 }
 
 fun Project.addFreeCompilerArgs(vararg args: String) {
-  extensions.findByType<KotlinMultiplatformExtension>()?.targets?.all {
-    compilations.all {
-      kotlinOptions.addFreeCompilerArgs(*args)
-    }
-  }
-  tasks.withType<KotlinCompile> {
-    addFreeCompilerArgs(*args)
-  }
+  kotlinOptions { addFreeCompilerArgs(*args) }
+  kotlinJvmOptions { addFreeCompilerArgs(*args) }
 }
 
-fun Project.addFreeCompilerArgs(args: Iterable<String>) = addFreeCompilerArgs(*args.toList().toTypedArray())
+fun Project.addFreeCompilerArgs(args: Iterable<String>) {
+  kotlinOptions { addFreeCompilerArgs(args) }
+  kotlinJvmOptions { addFreeCompilerArgs(args) }
+}

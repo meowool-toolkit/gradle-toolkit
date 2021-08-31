@@ -44,7 +44,7 @@ fun Project.findAndroidTask(name: String, ignoreCase: Boolean = false): Task? {
       is LibraryExtension -> tasks.find {it.matches(libraryVariants.first()) }
       else -> {
         require(!name.contains("*")) {
-          "Unexpected variant, can't find task, please submit this issue to https://github.com/meowool-toolkit/gradle-dsl-x/issues"
+          "Unexpected variant, can't find task, please submit this issue to https://github.com/meowool-toolkit/gradle-toolkit/issues"
         }
         tasks.find { it.name.equals(name, ignoreCase) }
       }
