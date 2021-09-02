@@ -1,12 +1,9 @@
-@file:Suppress("SpellCheckingInspection")
-
 plugins { kotlin }
 
-dependencies{
-  apiProjects(":core", ":dependencies:mapper")
-  implementation(gradleKotlinDsl())
-  testImplementationOf(
-    gradleTestKit(),
-    Libs.Kotest.Runner.Junit5
-  )
+publishingData {
+  artifact = "gradle-deps-prebuilt"
+  name = "Dependency Pre-Built for Gradle Toolkit"
+  description = "Pre-Built commonly used dependencies."
 }
+
+dependencies.apiProjects(":dependencies:mapper")

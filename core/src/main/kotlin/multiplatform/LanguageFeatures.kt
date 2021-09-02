@@ -38,9 +38,7 @@ fun Project.enableLanguageFeatures(names: List<String>) =
  * Enable all language features by given [names].
  */
 fun KotlinMultiplatformExtension.enableLanguageFeatures(vararg names: String) = sourceSets.all {
-  languageSettings {
-    names.forEach(::enableLanguageFeature)
-  }
+  languageSettings { names.forEach(::enableLanguageFeature) }
 }
 
 /**

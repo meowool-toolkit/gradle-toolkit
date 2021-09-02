@@ -18,13 +18,10 @@
  */
 @file:Suppress("FunctionName")
 
+import PublishingData.Companion.publishingDataExtensions
 import com.diffplug.gradle.spotless.SpotlessExtension
-import extension.RootGradleToolkitExtension
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.hasPlugin
 import org.gradle.kotlin.dsl.withType
-import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.dokka.gradle.DokkaTask
 
 /**
@@ -40,11 +37,10 @@ import org.jetbrains.dokka.gradle.DokkaTask
  * @param publishReleaseSigning Whether to signing the artifact of release version before publishing.
  * @param publishSnapshotSigning Whether to signing the artifact of snapshot version before publishing.
  * @param publishRepo The repository(s) to publish to.
- * @param publishPom The pom data of each project to be published.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-fun RootGradleToolkitExtension.useMeowoolSpec(
+fun GradleToolkitExtension.useMeowoolSpec(
   isOpenSourceProject: Boolean = true,
   loadSnapshotsRepository: Boolean = false,
   enabledPublish: Boolean = true,
@@ -53,7 +49,6 @@ fun RootGradleToolkitExtension.useMeowoolSpec(
   publishReleaseSigning: Boolean = true,
   publishSnapshotSigning: Boolean = false,
   publishRepo: Array<RepoUrl> = arrayOf(SonatypeRepo()),
-  publishPom: Project.() -> PublishPom = { MeowoolPublishPom() },
 ) {
   dependencyMapperPrebuilt()
   presetRepositories(loadSnapshotsRepository)
@@ -65,7 +60,6 @@ fun RootGradleToolkitExtension.useMeowoolSpec(
     publishReleaseSigning,
     publishSnapshotSigning,
     publishRepo,
-    publishPom
   )
   presetSpotless(if (isOpenSourceProject) OpenSourceLicense else null)
   presetAndroid(isOpenSourceProject)
@@ -78,9 +72,9 @@ fun RootGradleToolkitExtension.useMeowoolSpec(
  *   spotless running.
  * @param configuration The extra configuration.
  */
-fun RootGradleToolkitExtension.useMeowoolSpotlessSpec(
+fun GradleToolkitExtension.useMeowoolSpotlessSpec(
   licenseHeader: String? = OpenSourceLicense,
-  configuration: SpotlessExtension.() -> Unit = {}
+  configuration: SpotlessExtension.() -> Unit = {},
 ) = presetSpotless(licenseHeader, configuration)
 
 /**
@@ -90,16 +84,13 @@ fun RootGradleToolkitExtension.useMeowoolSpotlessSpec(
  */
 fun Project.meowoolMavenPublish(
   repo: Array<RepoUrl> = arrayOf(SonatypeRepo()),
-  pom: PublishPom = MeowoolPublishPom(),
   releaseSigning: Boolean = true,
   snapshotSigning: Boolean = false,
   enabledPublish: Boolean = true,
 ) = afterEvaluate {
   if (enabledPublish) {
-    mavenPublish(repo, pom, releaseSigning, snapshotSigning)
-
-    if (!plugins.hasPlugin(DokkaPlugin::class)) apply<DokkaPlugin>()
-
+    meowoolPublishingData()
+    mavenPublish(repo, releaseSigning, snapshotSigning)
     tasks.withType<DokkaTask> {
       dokkaSourceSets.configureEach {
         skipDeprecated.set(true)
@@ -114,34 +105,19 @@ fun Project.meowoolMavenPublish(
 }
 
 /**
- * Belongs to the basic publish pom of the meowool organization specification.
+ * Configures the publishing data belongs to the 'Meowool-Organization' specification to this project.
  */
-fun Project.MeowoolPublishPom(
-  group: String = findPropertyOrEnv("pom.group")?.toString() ?: this.group.toString(),
-  artifact: String = findPropertyOrEnv("pom.artifact")?.toString() ?: this.name,
-  version: String = findPropertyOrEnv("pom.version")?.toString() ?: this.version.toString(),
-  name: String = findPropertyOrEnv("pom.name")?.toString() ?: artifact,
-  description: String? = findPropertyOrEnv("pom.description")?.toString(),
-  url: String? = findPropertyOrEnv("pom.url")?.toString(),
-  developerId: String? = findPropertyOrEnv("pom.developer.id")?.toString(),
-  developerName: String? = findPropertyOrEnv("pom.developer.name")?.toString(),
-  developerUrl: String? = findPropertyOrEnv("pom.developer.url")?.toString(),
-  scmConnection: String? = findPropertyOrEnv("pom.scm.connection")?.toString(),
-  scmUrl: String? = findPropertyOrEnv("pom.scm.url")?.toString(),
-) = PublishPom(
-  group,
-  artifact,
-  version,
-  name,
-  description,
-  url,
-  licenseName = "The Apache Software License, Version 2.0",
-  licenseUrl = "https://github.com/meowool/license/blob/main/LICENSE",
-  developerId ?: "meowool",
-  developerName ?: "Meowool Organization",
-  developerUrl ?: "https://github.com/meowool/",
-  organizationName = "Meowool",
-  organizationUrl = "https://github.com/meowool/",
-  scmConnection,
-  scmUrl
-)
+fun Project.meowoolPublishingData(configuration: PublishingData.() -> Unit = {}) = publishingDataExtensions.apply {
+  license {
+    name = "The Apache Software License, Version 2.0"
+    url = "https://github.com/meowool/license/blob/main/LICENSE"
+  }
+  developer {
+    id = "meowool"
+    name = "Meowool Organization"
+    url = "https://github.com/meowool/"
+  }
+  organizationName = "Meowool"
+  organizationUrl = "https://github.com/meowool/"
+  configuration()
+}

@@ -20,7 +20,6 @@
 
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.hasPlugin
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.dokka.gradle.DokkaTask
@@ -57,7 +56,7 @@ enum class DokkaFormat(val taskName: String) {
  */
 fun Project.dokka(configuration: DokkaTask.() -> Unit) {
   afterEvaluate {
-    if (!plugins.hasPlugin(DokkaPlugin::class)) apply<DokkaPlugin>()
+    apply<DokkaPlugin>()
     tasks.withType(configuration)
   }
 }
@@ -67,7 +66,7 @@ fun Project.dokka(configuration: DokkaTask.() -> Unit) {
  */
 fun Project.dokka(format: DokkaFormat = DokkaFormat.Html, configuration: DokkaTask.() -> Unit) {
   afterEvaluate {
-    if (!plugins.hasPlugin(DokkaPlugin::class)) apply<DokkaPlugin>()
+    apply<DokkaPlugin>()
     (tasks.findByName(format.taskName) as? DokkaTask)?.configuration()
   }
 }

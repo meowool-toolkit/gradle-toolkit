@@ -16,38 +16,55 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
+@file:Suppress("NAME_SHADOWING")
+
+import PublishingData.Companion.publishingDataExtensions
 import com.gradle.publish.PluginBundleExtension
 import com.gradle.publish.PublishPlugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.hasPlugin
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugin.devel.PluginDeclaration
 
 /**
  * Creates the maven publishing.
  *
- * @param name The name of gradle plugin to be created.
- * @param id The id of gradle plugin to be created, the project group + project name by default.
+ * @param name The name of gradle plugin to be created, the default is [PublishingData.artifact].
+ * @param id The id of gradle plugin to be created, the default is [PublishingData.group] + [name].
+ * @param displayName The display name of gradle plugin to be created, the default is capitalized [name].
+ * @param description The description of gradle plugin to be created, the default is [PublishingData.description].
+ * @param version The version of gradle plugin to be created, the default is [PublishingData.version].
+ * @param website The website URL of gradle plugin to be created, the default is [PublishingData.url].
+ * @param vcsUrl The vcs URL of gradle plugin to be created, the default is [PublishingData.scmUrl].
+ *
+ * @see configureGradlePlugin
  *
  * @author 凛 (https://github.com/RinOrz)
  */
 fun Project.createGradlePlugin(
   implementationClass: String,
-  name: String = findPropertyOrEnv("pom.artifact")?.toString() ?: this.name,
-  id: String = (findPropertyOrEnv("pom.group")?.toString() ?: this.group.toString()) + "." + name.decapitalize(),
-  displayName: String = findPropertyOrEnv("pom.name")?.toString() ?: name.capitalize(),
-  description: String? = findPropertyOrEnv("pom.description")?.toString() ?: this.description.toString(),
-  version: String = findPropertyOrEnv("pom.version")?.toString() ?: this.version.toString(),
-  website: String? = findProperty("pom.url")?.toString(),
-  vcsUrl: String? = findProperty("pom.scm.url")?.toString(),
+  name: String? = null,
+  id: String? = null,
+  displayName: String? = null,
+  description: String? = null,
+  version: String? = null,
+  website: String? = null,
+  vcsUrl: String? = null,
   tags: List<String> = emptyList(),
   configureBundle: PluginBundleExtension.() -> Unit = {},
   configureDeclaration: PluginDeclaration.() -> Unit = {},
-) {
-  if (!plugins.hasPlugin(PublishPlugin::class)) apply<PublishPlugin>()
+) = afterEvaluate {
+  apply<PublishPlugin>()
+
+  val name = name ?: publishingDataExtensions.artifact
+  val id = id ?: (publishingDataExtensions.group + "." + name.decapitalize())
+  val displayName = displayName ?: publishingDataExtensions.name
+  val description = description ?: publishingDataExtensions.description
+  val version = version ?: publishingDataExtensions.version
+  val website = website ?: publishingDataExtensions.url
+  val vcsUrl = vcsUrl ?: publishingDataExtensions.scmUrl
 
   extensions.configure<GradlePluginDevelopmentExtension> {
     plugins.create(name)
@@ -70,10 +87,11 @@ fun Project.createGradlePlugin(
 /**
  * Configures the maven publishing. (Won't create)
  *
- * @param name The name of gradle plugin to be configured.
+ * @param name The name of gradle plugin to be configured, the default is [PublishingData.artifact].
+ * @see createGradlePlugin
  */
 fun Project.configureGradlePlugin(
-  name: String = findPropertyOrEnv("pom.artifact")?.toString() ?: this.name,
+  name: String? = null,
   implementationClass: String? = null,
   id: String? = null,
   displayName: String? = null,
@@ -84,7 +102,7 @@ fun Project.configureGradlePlugin(
   tags: List<String>? = null,
   configureBundle: PluginBundleExtension.() -> Unit = {},
   configureDeclaration: PluginDeclaration.() -> Unit = {},
-) {
+) = afterEvaluate {
   version?.let(::setVersion)
 
   extensions.findByType<PluginBundleExtension>()?.apply {
@@ -95,7 +113,7 @@ fun Project.configureGradlePlugin(
   }
 
   extensions.findByType<GradlePluginDevelopmentExtension>()?.apply {
-    plugins.findByName(name)?.apply {
+    plugins.findByName(name ?: publishingDataExtensions.artifact)?.apply {
       id?.let(::setId)
       implementationClass?.let(::setImplementationClass)
       displayName?.let(::setDisplayName)

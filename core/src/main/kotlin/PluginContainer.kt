@@ -18,6 +18,13 @@ inline fun <reified T : Plugin<*>> PluginContainer.applyIfNotExists() {
 }
 
 /**
+ * If [id] plugin is not applied, apply it.
+ */
+fun PluginContainer.applyIfNotExists(id: String) {
+  if (hasPlugin(id).not()) apply(id)
+}
+
+/**
  * @see org.gradle.kotlin.dsl.hasPlugin
  */
 inline fun <reified T: Plugin<*>> PluginContainer.hasPlugin(): Boolean = hasPlugin(T::class)

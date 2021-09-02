@@ -1,10 +1,8 @@
-@file:Suppress("SpellCheckingInspection")
+@file:Suppress("SpellCheckingInspection", "NAME_SHADOWING")
 
-import extension.RootGradleToolkitExtension
 import org.gradle.api.Project
 import org.gradle.api.initialization.Settings
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.getByType
 
 /**
  * Use the pre-built dependency mapper configuration.
@@ -25,18 +23,23 @@ fun Settings.dependencyMapperPrebuilt() = dependencyMapper { prebuilt() }
  *
  * @see dependencyMapper
  */
-fun RootGradleToolkitExtension.dependencyMapperPrebuilt() = rootProject.dependencyMapperPrebuilt()
+fun GradleToolkitExtension.dependencyMapperPrebuilt() = dependencyMapper { prebuilt() }
 
 internal fun <T: DependencyMapperExtension> T.prebuilt() = apply {
   mapDependencies(
+    "com.tfowl.ktor:ktor-jsoup" to "Ktor.Jsoup",
+    "com.github.ben-manes.caffeine:caffeine" to "Caffeine",
     "com.github.promeg:tinypinyin" to "TinyPinyin",
     "de.fayard.refreshVersions:refreshVersions" to "RefreshVersions",
     "com.github.donkingliang:ConsecutiveScroller" to "ConsecutiveScroller",
     "org.zeroturnaround:zt-zip" to "ZtZip",
     "com.andkulikov:transitionseverywhere" to "TransitionsEverywhere",
     "in.arunkumarsampath:transition-x" to "TransitionX",
+    "com.diffplug.spotless:spotless-plugin-gradle" to "Gradle.Spotless",
+    "com.gradle.publish:plugin-publish-plugin" to "Gradle.Publish.Plugin"
   )
   remoteDependencies {
+    kotlin()
     groups(
       "mysql",
       "org.yaml",
@@ -73,7 +76,6 @@ internal fun <T: DependencyMapperExtension> T.prebuilt() = apply {
       "org.smali",
       "org.jsoup",
       "org.mockito",
-      "org.jetbrains",
       "org.javassist",
       "org.conscrypt",
       "org.robolectric",
@@ -95,7 +97,9 @@ internal fun <T: DependencyMapperExtension> T.prebuilt() = apply {
       "io.insert-koin",
       "io.github.reactivecircus",
       "io.github.javaeden.orchid",
-      repositories = { mavenCentral() }
+      repositories = { mavenCentral() },
+      // Skip deprecated dependencies
+      filter = { it.startsWith("com.meowool.toolkit:gradle-dsl-x").not() }
     )
     startsWith(
       "android",
@@ -148,13 +152,11 @@ internal fun <T: DependencyMapperExtension> T.prebuilt() = apply {
     }
   }
   transformNotation {
-    it
+    val it = it
       .replace("org.jetbrains.kotlin", "kotlin")
-      .replace("org.jetbrains.ktor", "ktor")
       .replace("org.jetbrains.intellij", "intellij")
       .replace("com.google.android", "google")
       .replace("org.chromium.net", "chromium")
-      .replace("com.google.auto.service", "google")
       .replace("com.squareup", "square")
       .replace("app.cash", "CashApp")
       .replace("io.coil-kt", "Coil")
@@ -163,11 +165,23 @@ internal fun <T: DependencyMapperExtension> T.prebuilt() = apply {
       .removePrefix("com.linkedin.")
       .removePrefix("com.afollestad.")
       .removePrefix("me.liuwj.")
-      .removePrefix("com.")
-      .removePrefix("cn.")
-      .removePrefix("org.")
       .removePrefix("io.github.")
-      .removePrefix("io.")
-      .removePrefix("me.")
+    when {
+      it.startsWith("com.", ignoreCase = true) -> it.removePrefixGreedy("com.")
+      it.startsWith("net.", ignoreCase = true) -> it.removePrefixGreedy("net.")
+      it.startsWith("cn.", ignoreCase = true) -> it.removePrefixGreedy("cn.")
+      it.startsWith("org.", ignoreCase = true) -> it.removePrefixGreedy("org.")
+      it.startsWith("top.", ignoreCase = true) -> it.removePrefixGreedy("top.")
+      it.startsWith("edu.", ignoreCase = true) -> it.removePrefixGreedy("edu.")
+      it.startsWith("ink.", ignoreCase = true) -> it.removePrefixGreedy("ink.")
+      it.startsWith("info.", ignoreCase = true) -> it.removePrefixGreedy("info.")
+      it.startsWith("pro.", ignoreCase = true) -> it.removePrefixGreedy("pro.")
+      it.startsWith("io.", ignoreCase = true) -> it.removePrefixGreedy("io.")
+      it.startsWith("me.", ignoreCase = true) -> it.removePrefixGreedy("me.")
+      else -> it
+    }
   }
 }
+
+private fun String.removePrefixGreedy(prefix: String) =
+  removePrefix(prefix).removePrefix(prefix.capitalize()).removePrefix(prefix.toUpperCase())

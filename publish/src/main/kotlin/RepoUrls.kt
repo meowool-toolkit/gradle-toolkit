@@ -31,7 +31,7 @@ import kotlin.io.path.absolutePathString
 abstract class RepoUrl {
 
   /**
-   * The publish url of the artifact.
+   * The publishing url of the artifact.
    */
   abstract val url: Any
 
@@ -53,7 +53,7 @@ abstract class RepoUrl {
 }
 
 /**
- * The defaults implementation to [RepoUrl].
+ * The default implementation to [RepoUrl].
  */
 open class DefaultRepoUrl(
   private val releases: Any,

@@ -1,4 +1,0 @@
-#Tue Feb 16 00:23:07 CST 2021
-base.0=/Users/rin/Documents/Develop/MultiPlatform/Projects/Kami/dexpoet/sample/build/intermediates/dex/release/mergeDexRelease/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

@@ -31,23 +31,30 @@ import java.util.concurrent.ConcurrentHashMap
  */
 internal class MappedClassesFactory private constructor(private val rootClassName: String) {
 
+  private val addedDependencies = mutableListOf<CharSequence>()
   private val classPool = ConcurrentHashMap<String, DynamicType.Builder<*>>().apply {
     put(rootClassName, createClass(rootClassName, isStatic = false))
   }
 
-  fun map(dependency: CharSequence, mappedClass: CharSequence) = mappedClass.split('.').also { mappedPath ->
+  fun map(dependency: CharSequence, mappedClass: CharSequence) {
+    val validDep = validDependency(dependency)
+    val mappedPath = mappedClass.split('.')
     mappedPath.foldIndexed(rootClassName) { index, parentName, name ->
       val parent = classPool[parentName]!!
       when (index) {
         // Add a field as a dependency
         mappedPath.lastIndex -> {
-          fun fieldExists(name: String) = parent.toTypeDescription().declaredFields.any { it.name == name }
-          var alias = name
-          var duplicate = 0
-          while (fieldExists(alias)) {
-            alias = name + ++duplicate
+          // Avoid adding duplicate dependencies
+          if (addedDependencies.contains(validDep).not()) {
+            var alias = name
+            var extra = 0
+            while (parent.toTypeDescription().declaredFields.any { it.name == alias }) {
+              // If the field name already exists, use the alias
+              alias = name + ++extra
+            }
+            classPool[parentName] = parent.addField(alias, "$validDep:_")
+            addedDependencies.add(validDep)
           }
-          classPool[parentName] = parent.addField(alias, "${validDependency(dependency)}:_")
           parentName
         }
         // Add inner class

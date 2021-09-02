@@ -21,14 +21,13 @@
 import com.android.build.gradle.AppExtension
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
-import extension.RootGradleToolkitExtension
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.maven
 
-internal fun RootGradleToolkitExtension.presetRepositories(loadSnapshots: Boolean = false) {
+internal fun GradleToolkitExtension.presetRepositories(loadSnapshots: Boolean = false) {
   allrepositories {
     rootProject.rootDir.resolve(".repo").takeIf { it.exists() }?.let(::maven)
     google()
@@ -41,7 +40,7 @@ internal fun RootGradleToolkitExtension.presetRepositories(loadSnapshots: Boolea
   }
 }
 
-internal fun RootGradleToolkitExtension.presetKotlinCompilerArgs() = allprojects {
+internal fun GradleToolkitExtension.presetKotlinCompilerArgs() = allprojects {
   afterEvaluate {
     optIn(
       "kotlin.RequiresOptIn",
@@ -56,7 +55,7 @@ internal fun RootGradleToolkitExtension.presetKotlinCompilerArgs() = allprojects
   }
 }
 
-internal fun RootGradleToolkitExtension.presetSpotless(
+internal fun GradleToolkitExtension.presetSpotless(
   licenseHeader: String?,
   configuration: SpotlessExtension.() -> Unit = {}
 ) = allprojects {
@@ -89,14 +88,13 @@ internal fun RootGradleToolkitExtension.presetSpotless(
   }
 }
 
-internal fun RootGradleToolkitExtension.presetPublishing(
+internal fun GradleToolkitExtension.presetPublishing(
   enabledPublish: Boolean,
   publishRootProject: Boolean,
   publishAndroidAppProject: Boolean,
   publishReleaseSigning: Boolean,
   publishSnapshotSigning: Boolean,
   publishRepo: Array<RepoUrl>,
-  publishPom: Project.() -> PublishPom,
 ) = allprojects {
   afterEvaluate {
     if (this.isRegular.not()) return@afterEvaluate
@@ -105,7 +103,6 @@ internal fun RootGradleToolkitExtension.presetPublishing(
 
     meowoolMavenPublish(
       repo = publishRepo,
-      pom = publishPom(),
       enabledPublish = enabledPublish,
       releaseSigning = publishReleaseSigning,
       snapshotSigning = publishSnapshotSigning
@@ -113,25 +110,27 @@ internal fun RootGradleToolkitExtension.presetPublishing(
   }
 }
 
-internal fun RootGradleToolkitExtension.presetAndroid(isOpenSourceProject: Boolean) = shareAndroid { project ->
-  with(project) {
-    releaseSigning {
-      if (isOpenSourceProject) {
-        meowoolHomeDir?.resolve(".key/key.properties")
-          ?.takeIf { it.exists() }
-          ?.let(::loadKeyProperties)
-          ?: println(
-            "There is a key of signing common to open source projects in 'Meowool-Organization', " +
-              "for normalization, it should be used."
-          )
-      } else {
-        meowoolHomeDir?.resolve(".key/key-internal.properties")
-          ?.takeIf { it.exists() }
-          ?.let(::loadKeyProperties)
+internal fun GradleToolkitExtension.presetAndroid(isOpenSourceProject: Boolean) = registerLogic {
+  android(DefaultInternalAndroidKey) { project ->
+    with(project) {
+      releaseSigning {
+        if (isOpenSourceProject) {
+          meowoolHomeDir?.resolve(".key/key.properties")
+            ?.takeIf { it.exists() }
+            ?.let(::loadKeyProperties)
+            ?: println(
+              "There is a key of signing common to open source projects in 'Meowool-Organization', " +
+                "for normalization, it should be used."
+            )
+        } else {
+          meowoolHomeDir?.resolve(".key/key-internal.properties")
+            ?.takeIf { it.exists() }
+            ?.let(::loadKeyProperties)
+        }
       }
-    }
 
-    abiFilters(NdkAbi.Armeabi_v7a, NdkAbi.Arm64_v8a)
+      abiFilters(NdkAbi.Armeabi_v7a, NdkAbi.Arm64_v8a)
+    }
   }
 }
 

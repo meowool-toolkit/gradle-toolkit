@@ -21,18 +21,15 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-internal val Project.mppExtension: KotlinMultiplatformExtension
-  get() = extensions.findByType() ?: error("Please apply the `kotlin-multiplatform` plugin first.")
-
 /**
  * Configure the [KotlinMultiplatformExtension] of this project.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
 fun Project.kotlinMultiplatform(configuration: KotlinMultiplatformExtension.() -> Unit) {
-  if (!plugins.hasPlugin("kotlin-multiplatform")) {
-    plugins.apply("kotlin-multiplatform")
-  }
-
+  plugins.applyIfNotExists("kotlin-multiplatform")
   extensions.configure(configuration)
 }
+
+internal val Project.mppExtension: KotlinMultiplatformExtension
+  get() = extensions.findByType() ?: error("Please apply the `kotlin-multiplatform` plugin first.")

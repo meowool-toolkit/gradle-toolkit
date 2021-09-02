@@ -20,8 +20,6 @@
 
 import MappedClassesFactory.Companion.validDependency
 import org.gradle.api.Project
-import java.io.File
-import java.nio.file.Path
 
 private typealias DependencyNotation = String
 private typealias DependencyMapped = String
@@ -39,11 +37,6 @@ abstract class DependencyMapperExtension(internal val project: Project) {
    * At the same time it will affect the root class name.
    */
   var rootClassName: String = "Libs"
-
-  /**
-   * The name of generate the jar with mapped dependencies.
-   */
-  var jarName: String = "deps-mapping.jar"
 
   /**
    * Capitalizes the first letter of the mapped classes or fields name when [predicate] is true.
@@ -135,26 +128,6 @@ abstract class DependencyMapperExtension(internal val project: Project) {
   }
 
   /**
-   * Changes the path of output the generated jar with mapped dependencies to the specified [directory].
-   *
-   * Default, the jar file write out to the root project.
-   *
-   * @see jarName
-   */
-  fun outputTo(directory: File) {
-    outputFile = directory.resolve(jarName)
-  }
-
-  /**
-   * Changes the path of output the generated jar with mapped dependencies to the specified [directory].
-   *
-   * Default, the jar file write out to the root project.
-   *
-   * @see jarName
-   */
-  fun outputTo(directory: Path) = outputTo(directory.toFile())
-
-  /**
    * When the predicate returns `true`, remapping the dependencies.
    *
    * By default, only when a new dependency ([mapDependencies], [RemoteDependencies.keywords],
@@ -192,5 +165,4 @@ abstract class DependencyMapperExtension(internal val project: Project) {
   internal val mappedDependencies = mutableMapOf<DependencyNotation, DependencyMapped>()
   internal var remoteDependencies: RemoteDependencies? = null
   internal var needUpdate: ((Project) -> Boolean)? = null
-  internal var outputFile: File = project.file(jarName)
 }

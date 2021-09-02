@@ -18,6 +18,7 @@
  */
 import annotation.InternalGradleToolkitApi
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.extra
 import java.io.File
 import java.util.Properties
 
@@ -49,7 +50,10 @@ val Project.localProperties: Properties
  * return it value, if it can't find it, return null.
  */
 fun Project.findPropertyOrEnv(key: String): Any? = findProperty(key)
+  ?: extensions.extraProperties.properties[key]
   ?: findLocalProperties()?.getProperty(key)
+  ?: rootProject.findProperty(key)
+  ?: rootProject.extensions.extraProperties.properties[key]
   ?: rootProject.findLocalProperties()?.getProperty(key)
   ?: System.getenv(key)
 

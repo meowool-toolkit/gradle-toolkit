@@ -16,6 +16,8 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
+@file:Suppress("DEPRECATION")
+
 import com.android.build.api.dsl.AndroidSourceSet
 import org.gradle.api.NamedDomainObjectContainer
 

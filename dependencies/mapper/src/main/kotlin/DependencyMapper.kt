@@ -7,6 +7,7 @@ import org.gradle.api.initialization.Settings
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.getByType
 
 /**
  * A plugin that can map dependencies to classes or fields.
@@ -44,3 +45,20 @@ fun Settings.dependencyMapper(configuration: DependencyMapperExtension.() -> Uni
   apply<DependencyMapper>()
   gradle.rootProject { extensions.configure(configuration) }
 }
+
+/**
+ * Configures the dependency mapper based on the given [configuration].
+ */
+fun GradleToolkitExtension.dependencyMapper(configuration: DependencyMapperExtension.() -> Unit = {}) {
+  rootProject.apply<DependencyMapper>()
+  rootProject.extensions.configure(configuration)
+}
+
+/**
+ * Returns the gradle toolkit extension of root project.
+ */
+val GradleToolkitExtension.dependencyMapper: DependencyMapperExtension
+  get() {
+    rootProject.apply<DependencyMapper>()
+    return rootProject.extensions.getByType()
+  }

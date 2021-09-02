@@ -29,7 +29,7 @@ internal class DepFormatter {
    */
   fun format(rawNotation: CharSequence): CharSequence {
     // foo.bar:core-ext -> foo.bar:core.ext
-    val normalized = notationReplacers.fold(rawNotation.toString()) { acc, replacer -> replacer(acc) }
+    val normalized = notationReplacers.reversed().fold(rawNotation.toString()) { acc, replacer -> replacer(acc) }
       .replace('-', '.')
       .replace('_', '.')
 
@@ -66,7 +66,7 @@ internal class DepFormatter {
   /** Each part of the path is a name, and replaced it via [nameReplacers] */
   private fun String.joinPath(): String {
     val path = this.splitToSequence('.').map {
-      val replacedName = nameReplacers.fold(it) { acc, replacer -> replacer(acc) }
+      val replacedName = nameReplacers.reversed().fold(it) { acc, replacer -> replacer(acc) }
       replacedName.mayUpperCase()
     }
     // Foo.10.20 -> Foo_10_20

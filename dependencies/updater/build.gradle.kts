@@ -6,14 +6,19 @@ plugins {
   idea
 }
 
+publishingData {
+  artifact = "gradle-deps-updater"
+  name = "Dependency Updater for Gradle Toolkit"
+  description = "Let dependencies have version check for updates."
+}
+
 dependencies {
   implementationOf(
-    gradleKotlinDsl(),
     Libs.KotlinX.Coroutines.Core,
+    Libs.Google.Cloud.Storage,
+    Libs.Square.Moshi.Kotlin,
     Libs.Square.OkHttp3.OkHttp,
     Libs.Square.OkHttp3.Logging.Interceptor,
-    Libs.Square.Moshi.Kotlin,
-    "com.google.cloud:google-cloud-storage:_"
   )
   implementation(Libs.Square.Retrofit2.Retrofit) {
     because("It has ready to use HttpException class")
@@ -22,7 +27,6 @@ dependencies {
   testImplementationOf(
     Libs.Square.OkHttp3.Logging.Interceptor,
     Libs.Junit.Jupiter,
-    Libs.Kotest.Runner.Junit5,
     Libs.Kotlin.Test.Annotations.Common,
     Libs.Kotlin.Test.Junit5,
     platform(notation = "org.junit:junit-bom:_"),
@@ -33,7 +37,7 @@ dependencies {
   testFixturesApi(Libs.KotlinX.Coroutines.Core)
 
   constraints {
-    implementation("com.google.guava:guava") {
+    implementation(withoutVersion(Libs.Google.Guava)) {
       version {
         strictly("30.1.1-jre")
         // Without that version constraint forcing a known "jre" variant,

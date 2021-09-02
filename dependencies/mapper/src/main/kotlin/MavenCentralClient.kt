@@ -25,7 +25,7 @@ internal class MavenCentralClient(
     get<Search>("select?q=$keyword&start=$offset&rows=1000").result.dependencies
       .takeIf { it.isNotEmpty() }
       ?.forEachConcurrently { send(Dependency(it.toString())) }
-  }.retry(10)
+  }.retry()
 
   @Serializable private data class Search(@SerialName("response") val result: Result) {
     @Serializable data class Result(@SerialName("docs") val dependencies: List<Notation>) {

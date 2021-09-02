@@ -2,14 +2,16 @@
 
 plugins { kotlin; `kotlin-dsl`; `kotlin-kapt` }
 
+publishingData {
+  artifact = "gradle-publish"
+  name = "Gradle Toolkit Publish Module"
+}
+
 dependencies {
   apiOf(
-    project(":core"),
+    Libs.Mbonnin.Vespene.Lib,
     Libs.Jetbrains.Dokka.Gradle.Plugin,
-    "net.mbonnin.vespene:vespene-lib:_",
   )
-  implementation("com.gradle.publish:plugin-publish-plugin:_")
-  implementation("com.michael-bull.kotlin-retry:kotlin-retry:_")
+  implementation(Libs.Gradle.Publish.Plugin)
   compileOnly(Libs.Android.Tools.Build.Gradle version "4.2.1")
-  testImplementation(Libs.Kotlin.Test.Junit)
 }

@@ -16,72 +16,118 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
-package extension
+@file:Suppress("SpellCheckingInspection")
 
-import importLazyDependencies
-import kotlinCompile
-import kotlinJvmCompile
-import kotlinJvmOptions
-import kotlinOptions
 import org.gradle.api.Project
-import org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions
-import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile
+import org.gradle.api.artifacts.dsl.RepositoryHandler
+import org.gradle.kotlin.dsl.repositories
 
 /**
- * An extension of the gradle toolkit belonging to [project].
+ * An extension of the gradle toolkit belonging to [rootProject].
  *
  * @author 凛 (https://github.com/RinOrz)
  */
 interface GradleToolkitExtension {
 
   /**
-   * Returns the closest project.
+   * Returns the root project.
    */
-  val project: Project
+  val rootProject: Project
 
   /**
-   * The scope of the [project].
+   * Returns the all projects of root project.
    *
-   * This optional value is used in
-   * [RootGradleToolkitExtension.shareDependencies]
-   * [RootGradleToolkitExtension.shareLazyDependencies]
-   * [Project.importLazyDependencies].
+   * @see Project.getAllprojects
    */
-  var scope: String?
+  val allprojects: Set<Project>
 
   /**
-   * Additional data storage.
-   */
-  val data: MutableList<Any>
-
-  /**
-   * Imports shared lazy dependencies block by [scope] name.
+   * Returns the sub-projects of root project.
    *
-   * Note that this will use the scope name specified by the current project as much as possible.
+   * @see Project.getSubprojects
+   */
+  val subprojects: Set<Project>
+
+  /**
+   * Executes [action] of each all projects.
    *
-   * @see GradleToolkitExtension.scope
-   * @see RootGradleToolkitExtension.shareLazyDependencies
+   * @param afterEvaluate Performs [action] after project evaluation.
+   * @param filter Only when the filter block returns `true` will the [action] be performed for the
+   *   corresponding project.
+   *
+   * @see Project.allprojects
    */
-  fun importLazyDependencies(scope: String? = null) = project.importLazyDependencies(scope)
+  fun allprojects(
+    afterEvaluate: Boolean = true,
+    filter: Project.() -> Boolean = { buildFile.exists() },
+    action: Project.() -> Unit
+  )
 
   /**
-   * Uses given [configuration] to configure kotlin common compile task of this [project].
+   * Executes [action] of each sub-projects.
+   *
+   * @param afterEvaluate Performs [action] after subproject evaluation.
+   * @param filter Only when the filter block returns `true` will the [action] be performed for the
+   *   corresponding subproject.
+   *
+   * @see Project.subprojects
    */
-  fun kotlinCompile(configuration: KotlinCompile<KotlinCommonOptions>.() -> Unit) = project.kotlinCompile(configuration)
+  fun subprojects(
+    afterEvaluate: Boolean = true,
+    filter: Project.() -> Boolean = { buildFile.exists() },
+    action: Project.() -> Unit
+  )
 
   /**
-   * Uses given [configuration] to configure kotlin jvm compile task of this [project].
+   * Configures the repositories for all projects.
+   *
+   * Executes the given [configuration] block against the [RepositoryHandler] for all projects.
+   *
+   * @see Project.allprojects
+   * @see Project.repositories
    */
-  fun kotlinJvmCompile(configuration: KotlinJvmCompile.() -> Unit) = project.kotlinJvmCompile(configuration)
+  fun allrepositories(configuration: RepositoryHandler.() -> Unit) = allprojects { repositories(configuration) }
 
   /**
-   * Configures options for kotlin common compile task of this project with the given [configuration] block.
+   * Configures the repositories for all sub-projects.
+   *
+   * Executes the given [configuration] block against the [RepositoryHandler] for all sub-projects.
+   *
+   * @see Project.subprojects
+   * @see Project.repositories
    */
-  fun kotlinOptions(configuration: KotlinCommonOptions.() -> Unit) = project.kotlinOptions(configuration)
+  fun subrepositories(configuration: RepositoryHandler.() -> Unit) = subprojects { repositories(configuration) }
 
   /**
-   * Configures options for kotlin jvm compile task of this project with the given [configuration] block.
+   * Register shared logic through a given [registry] to reference them in any project.
+   *
+   * This behavior is also called [Dependency injection](https://en.wikipedia.org/wiki/Dependency_injection).
+   *
+   * NOTE: Very useful when having the same code logic in
+   * [multi-projects](https://docs.gradle.org/current/userguide/intro_multi_project_builds.html), this can greatly
+   * improve code conciseness.
+   *
+   * For example:
+   * ```
+   * // Root project:
+   * registerLogic {
+   *   project {
+   *     // Define common logic of project top level
+   *     ...
+   *   }
+   *   dependencies {
+   *     // Define common logic of dependencies
+   *     ...
+   *   }
+   *   dependencies(key = 1) {
+   *     // Define logic of dependencies that can only be injected by key
+   *     ...
+   *   }
+   * }
+   *
+   * // Then other projects, inject with
+   * // `injectProjectLogic()`, `injectDependenciesLogic()`, `injectDependenciesLogic(key = 1)`
+   * ```
    */
-  fun kotlinJvmOptions(configuration: KotlinCommonOptions.() -> Unit) = project.kotlinJvmOptions(configuration)
+  fun registerLogic(registry: LogicRegistry.() -> Unit)
 }

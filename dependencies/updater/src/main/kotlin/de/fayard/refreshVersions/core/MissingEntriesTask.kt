@@ -117,6 +117,6 @@ internal fun findMissingEntries(
             versionKey !in versionsMap
         }
         .mapValues { (_, dependencies) ->
-            dependencies.maxBy { it.version!! }!!
+            dependencies.maxByOrNull { it.version!! }!!
         }
 }

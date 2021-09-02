@@ -30,10 +30,11 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
  * @author 凛 (https://github.com/RinOrz)
  */
 fun Project.optIn(vararg annotationNames: String) {
-  addFreeCompilerArgs(annotationNames.map { "-opt-in=$it" })
+  addFreeCompilerArgs(annotationNames.map { "-Xopt-in=$it" })
   extensions.findByType<KotlinMultiplatformExtension>()?.sourceSets?.all {
     languageSettings {
-      annotationNames.forEach(::optIn)
+      // TODO Remove since 1.5.30
+      annotationNames.forEach(::useExperimentalAnnotation)
     }
   }
 }
@@ -43,4 +44,12 @@ fun Project.optIn(vararg annotationNames: String) {
  *
  * For more details, see [Opt-in](https://kotlinlang.org/docs/opt-in-requirements.html)
  */
-fun Project.optIn(annotationNames: List<String>) = optIn(*annotationNames.toTypedArray())
+fun Project.optIn(annotationNames: Iterable<String>) {
+  addFreeCompilerArgs(annotationNames.map { "-Xopt-in=$it" })
+  extensions.findByType<KotlinMultiplatformExtension>()?.sourceSets?.all {
+    languageSettings {
+      // TODO Remove since 1.5.30
+      annotationNames.forEach(::useExperimentalAnnotation)
+    }
+  }
+}

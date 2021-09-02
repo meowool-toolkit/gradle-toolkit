@@ -17,21 +17,26 @@
  * organization URL in your code file: https://github.com/meowool
  */
 import annotation.InternalGradleToolkitApi
-import extension.GradleToolkitExtension
-import extension.RootGradleToolkitExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
 
 @InternalGradleToolkitApi
-val Project.rootExtension: RootGradleToolkitExtension
+val Project.toolkitExtension: GradleToolkitExtension
   get() = checkRootBootstrap()
 
-private fun Project.checkRootBootstrap(): RootGradleToolkitExtension {
+@InternalGradleToolkitApi
+val Project.logicRegistry: LogicRegistry
+  get() = toolkitExtensionImpl.logicRegistry
+
+internal inline val Project.toolkitExtensionImpl: GradleToolkitExtensionImpl
+  get() = toolkitExtension as GradleToolkitExtensionImpl
+
+private fun Project.checkRootBootstrap(): GradleToolkitExtensionImpl {
   val extension = rootProject.extensions.findByType<GradleToolkitExtension>()
   check(extension != null) {
     // GradleToolkitCore.bootstrap
     "'gradle-toolkit' bootstrap has not started, please apply the GradleToolkit plugin in root settings.gradle(.kts) or build.gradle(.kts) first."
   }
-  check(extension is RootGradleToolkitExtension) { "Illegal root extension!" }
+  check(extension is GradleToolkitExtensionImpl) { "Illegal root extension!" }
   return extension
 }

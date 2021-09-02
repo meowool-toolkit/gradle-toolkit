@@ -1,1 +1,0 @@
-com.rin.dexpoet.sample

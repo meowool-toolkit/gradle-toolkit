@@ -2,8 +2,13 @@
 
 plugins { kotlin; `kotlin-dsl` }
 
+publishingData {
+  artifact = "gradle-meowool"
+  name = "Meowool Gradle Toolkit"
+  description = "Gradle Toolkit specific to the 'Meowool-Organization' project."
+}
+
 dependencies {
-  apiProjects(":core", ":android", ":dependencies", ":publish")
-  api("com.diffplug.spotless:spotless-plugin-gradle:_")
-  testImplementation(Libs.Kotlin.Test.Junit)
+  api(Libs.Gradle.Spotless)
+  apiProjects(":android", ":dependencies", ":publish")
 }

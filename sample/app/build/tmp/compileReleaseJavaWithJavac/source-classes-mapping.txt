@@ -1,4 +1,0 @@
-com/rin/dexpoet/sample/BuildConfig.java
- com.rin.dexpoet.sample.BuildConfig
-com/rin/dexpoet/sample/Try.java
- com.rin.dexpoet.sample.Try

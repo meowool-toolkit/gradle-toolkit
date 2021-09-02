@@ -17,6 +17,8 @@
             <option value="$PROJECT_DIR$/dependencies/mapper" />
             <option value="$PROJECT_DIR$/dependencies/prebuilt" />
             <option value="$PROJECT_DIR$/dependencies/updater" />
+            <option value="$PROJECT_DIR$/integration-testing" />
+            <option value="$PROJECT_DIR$/integration-testing/android" />
             <option value="$PROJECT_DIR$/meowool" />
             <option value="$PROJECT_DIR$/publish" />
           </set>
