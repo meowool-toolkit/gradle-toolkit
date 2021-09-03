@@ -6,5 +6,5 @@ dependencies.apiProjects(
   ":android",
   ":dependencies",
   ":meowool",
-  ":publish"
+  ":publisher"
 )

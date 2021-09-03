@@ -14,7 +14,6 @@ dependencies.implementationOf(
   Libs.Ktor.Client.Logging,
   Libs.Ktor.Client.Serialization,
   Libs.KotlinX.Serialization.Json,
-  Libs.Meowool.Toolkit.Sweekt,
   Libs.ByteBuddy.Byte.Buddy,
   Libs.Andreinc.Mockneat,
   Libs.Caffeine,

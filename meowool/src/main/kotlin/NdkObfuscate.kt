@@ -21,7 +21,7 @@
 import com.android.build.gradle.BaseExtension
 
 /**
- * Contains the c-flag of each obfuscator library.
+ * Contains the C [flags] of each obfuscator library.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
@@ -63,11 +63,11 @@ sealed class NdkObfuscator(val flags: List<String>) {
     stringObfuscate: Boolean = true,
   ) : NdkObfuscator(
     listOfNotNull(
-      "-mllvm -irobf-cff".takeIf { flatten }, // 过程相关控制流平坦混淆
-      "-mllvm -irobf-indbr".takeIf { indirectJump }, // 间接跳转,并加密跳转目标
-      "-mllvm -irobf-icall".takeIf { indirectCall }, // 间接函数调用,并加密目标函数地址
-      "-mllvm -irobf-indgv".takeIf { indirectGetVariable }, // 间接全局变量引用,并加密变量地址
-      "-mllvm -irobf-cse".takeIf { stringObfuscate } // 字符串 (c string) 加密功能
+      "-mllvm -irobf-cff".takeIf { flatten },
+      "-mllvm -irobf-indbr".takeIf { indirectJump },
+      "-mllvm -irobf-icall".takeIf { indirectCall },
+      "-mllvm -irobf-indgv".takeIf { indirectGetVariable },
+      "-mllvm -irobf-cse".takeIf { stringObfuscate }
     )
   )
 

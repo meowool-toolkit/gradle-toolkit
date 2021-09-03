@@ -14,7 +14,8 @@ plugins {
 }
 
 buildscript {
-  dependencies.classpath(files("build/tmp/deps-mapping/1630590420237.jar"))
+dependencies.classpath(files("build/tmp/deps-mapping/1630662446423.jar"))
+
   configurations.all {
     // Check for updates every build
     resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
@@ -22,7 +23,10 @@ buildscript {
 }
 
 gradleToolkit {
-  useMeowoolSpec(publishRootProject = false)
+  useMeowoolSpec(
+    publishRootProject = false,
+
+  )
   subprojects {
     optIn("annotation.InternalGradleToolkitApi")
     afterEvaluate {
@@ -49,10 +53,11 @@ gradleToolkit {
           apiProjects(":core")
         }
         apiOf(
+          gradleKotlinDsl(),
           Libs.Kotlin.Stdlib,
           Libs.KotlinX.Coroutines.Core,
+          Libs.Meowool.Toolkit.Sweekt,
         )
-        implementation(gradleKotlinDsl())
         testImplementationOf(
           gradleTestKit(),
           Libs.Kotest.Runner.Junit5
@@ -70,7 +75,7 @@ gradleToolkit {
     name = "Gradle Toolkit"
     artifact = "gradle"
     group = "com.meowool.toolkit"
-    version = "0.1.3-SNAPSHOT"
+    version = "0.1.4-SNAPSHOT"
     description = "Raise the practicality of gradle to a new level."
     url = "https://github.com/meowool-toolkit/gradle-toolkit/"
     scmUrl = "https://github.com/meowool-toolkit/gradle-toolkit.git"

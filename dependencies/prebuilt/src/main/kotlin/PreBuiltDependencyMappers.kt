@@ -1,4 +1,4 @@
-@file:Suppress("SpellCheckingInspection", "NAME_SHADOWING")
+@file:Suppress("SpellCheckingInspection", "NAME_SHADOWING", "DEPRECATION")
 
 import org.gradle.api.Project
 import org.gradle.api.initialization.Settings

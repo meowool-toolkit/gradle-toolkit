@@ -10,5 +10,5 @@ publishingData {
 
 dependencies {
   api(Libs.Gradle.Spotless)
-  apiProjects(":android", ":dependencies", ":publish")
+  apiProjects(":android", ":dependencies", ":publisher")
 }

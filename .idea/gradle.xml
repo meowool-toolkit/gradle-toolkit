@@ -20,7 +20,7 @@
             <option value="$PROJECT_DIR$/integration-testing" />
             <option value="$PROJECT_DIR$/integration-testing/android" />
             <option value="$PROJECT_DIR$/meowool" />
-            <option value="$PROJECT_DIR$/publish" />
+            <option value="$PROJECT_DIR$/publisher" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

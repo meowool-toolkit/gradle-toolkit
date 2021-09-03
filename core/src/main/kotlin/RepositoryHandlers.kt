@@ -23,28 +23,50 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.kotlin.dsl.maven
 
+
+/**
+ * Adds and configures a Maven repository.
+ *
+ * The provided [url] value is evaluated as per [org.gradle.api.Project.uri]. This means, for example, you can pass in a `File` object, or a relative path to be evaluated relative
+ * to the project directory.
+ *
+ * @param name the name for this repository.
+ * @param url The base URL of this repository. This URL is used to find both POMs and artifact files.
+ * @param action The action to use to configure the repository.
+ * @return The added repository.
+ *
+ * @see [RepositoryHandler.maven]
+ * @see [MavenArtifactRepository.setUrl]
+ */
+fun RepositoryHandler.maven(name: String, url: Any, action: MavenArtifactRepository.() -> Unit = {}) =
+  maven {
+    setName(name)
+    setUrl(url)
+    action()
+  }
+
 /**
  * Adds and configures a Maven mirror repository.
  */
 fun RepositoryHandler.mavenMirror(
   mirror: MavenMirrors,
   action: MavenArtifactRepository.() -> Unit = {},
-) = maven(mirror.url, action)
+) = maven(name = mirror.javaClass.simpleName, mirror.url, action)
 
 /**
  * Adds and configures a Sonatype repository.
  */
 fun RepositoryHandler.sonatype(action: MavenArtifactRepository.() -> Unit = {}) {
-  maven("https://s01.oss.sonatype.org/content/repositories/public", action)
-  maven("https://oss.sonatype.org/content/repositories/public", action)
+  maven(name = "Sonatype OSS S01", url = "https://s01.oss.sonatype.org/content/repositories/public", action)
+  maven(name = "Sonatype OSS", url = "https://oss.sonatype.org/content/repositories/public", action)
 }
 
 /**
  * Adds and configures a Sonatype snapshots repository.
  */
 fun RepositoryHandler.sonatypeSnapshots(action: MavenArtifactRepository.() -> Unit = {}) {
-  maven("https://s01.oss.sonatype.org/content/repositories/snapshots", action)
-  maven("https://oss.sonatype.org/content/repositories/snapshots", action)
+  maven(name = "Sonatype OSS S01 Snapshots", url = "https://s01.oss.sonatype.org/content/repositories/snapshots", action)
+  maven(name = "Sonatype OSS Snapshots", url = "https://oss.sonatype.org/content/repositories/snapshots", action)
 }
 
 /**
@@ -55,10 +77,10 @@ fun RepositoryHandler.sonatypeSnapshots(action: MavenArtifactRepository.() -> Un
   replaceWith = ReplaceWith("mavenMirror(MavenMirrors.Aliyun.JCenter)")
 )
 fun RepositoryHandler.jCenter(action: MavenArtifactRepository.() -> Unit = {}) =
-  mavenMirror(MavenMirrors.Aliyun.JCenter)
+  mavenMirror(MavenMirrors.Aliyun.JCenter, action)
 
 /**
  * Adds a repository which looks in Jitpack repository for [Project.dependencies].
  */
 fun RepositoryHandler.jitpack(action: MavenArtifactRepository.() -> Unit = {}) =
-  maven("https://jitpack.io", action)
+  maven(name = "Jitpack", url = "https://jitpack.io", action)

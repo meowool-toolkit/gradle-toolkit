@@ -38,7 +38,7 @@ class RemoteDependencies {
   fun keywords(
     vararg dependencyKeywords: String,
     repositories: (RemoteRepositories.() -> Unit)? = null,
-    filter: (Dependency) -> Boolean = { true }
+    filter: ((Dependency) -> Boolean)? = null
   ) = keywords.add(DependenciesFetchParameter(
     dependencyKeywords,
     repositories?.let { RemoteRepositories(this).apply(it).clientIds },
@@ -53,7 +53,7 @@ class RemoteDependencies {
   fun groups(
     vararg dependencyGroupIds: String,
     repositories: (RemoteRepositories.() -> Unit)? = null,
-    filter: (Dependency) -> Boolean = { true }
+    filter: ((Dependency) -> Boolean)? = null
   ) = groups.add(DependenciesFetchParameter(
     dependencyGroupIds,
     repositories?.let { RemoteRepositories(this).apply(it).clientIds },
@@ -68,7 +68,7 @@ class RemoteDependencies {
   fun startsWith(
     vararg beginningKeywords: String,
     repositories: (RemoteRepositories.() -> Unit)? = null,
-    filter: (Dependency) -> Boolean = { true }
+    filter: ((Dependency) -> Boolean)? = null
   ) = starts.add(DependenciesFetchParameter(
     beginningKeywords,
     repositories?.let { RemoteRepositories(this).apply(it).clientIds },
@@ -91,9 +91,9 @@ class RemoteDependencies {
 
   private val filters = mutableListOf<(Dependency) -> Boolean>()
   internal val defaultClientIds = mutableSetOf(0)
-  internal val keywords = mutableListOf<DependenciesFetchParameter>()
-  internal val groups = mutableListOf<DependenciesFetchParameter>()
-  internal val starts = mutableListOf<DependenciesFetchParameter>()
+  internal val keywords = mutableSetOf<DependenciesFetchParameter>()
+  internal val groups = mutableSetOf<DependenciesFetchParameter>()
+  internal val starts = mutableSetOf<DependenciesFetchParameter>()
   internal val clients = mutableSetOf<DependencyRepositoryClient>(MavenCentralClient())
 
   internal fun fetch() = channelFlow {
@@ -108,13 +108,17 @@ class RemoteDependencies {
   }
 
   private suspend fun ProducerScope<Dependency>.requestAll(
-    parameters: List<DependenciesFetchParameter>,
+    parameters: Set<DependenciesFetchParameter>,
     fetcher: DependencyRepositoryClient.(value: String) -> Flow<Dependency>
   ) = parameters.forEachConcurrently { param ->
     // Send request with all clients
     resolveClients(param.clientIds ?: defaultClientIds).forEachConcurrently { client ->
       param.requests.forEachConcurrently { value ->
-        sendAll { client.fetcher(value).filter { param.resultFilter(it) } }
+        sendAll {
+          client.fetcher(value).filter {
+            param.resultFilter?.invoke(it) ?: true
+          }
+        }
       }
     }
   }
