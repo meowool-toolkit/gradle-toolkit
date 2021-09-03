@@ -14,7 +14,7 @@ plugins {
 }
 
 buildscript {
-dependencies.classpath(files("build/tmp/deps-mapping/1630662446423.jar"))
+dependencies.classpath(files("build/tmp/deps-mapping/1630666417944.jar"))
 
   configurations.all {
     // Check for updates every build

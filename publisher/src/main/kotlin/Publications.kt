@@ -1,4 +1,3 @@
-import com.gradle.publish.PluginBundleExtension
 import com.meowool.toolkit.gradle.PublicationExtension
 import com.meowool.toolkit.gradle.Publisher
 import org.gradle.api.Project
@@ -14,7 +13,7 @@ import org.gradle.kotlin.dsl.getByType
  * @see Publisher
  * @see PublicationExtension
  */
-fun GradleToolkitExtension.publications(configuration: PluginBundleExtension.() -> Unit) = allprojects {
+fun GradleToolkitExtension.publications(configuration: PublicationExtension.() -> Unit) = allprojects {
   apply<Publisher>()
   extensions.configure(configuration)
 }
@@ -25,7 +24,7 @@ fun GradleToolkitExtension.publications(configuration: PluginBundleExtension.() 
  * @see Publisher
  * @see PublicationExtension
  */
-val Project.publication: PluginBundleExtension get() {
+val Project.publication: PublicationExtension get() {
   apply<Publisher>()
   return extensions.getByType()
 }

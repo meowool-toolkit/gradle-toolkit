@@ -6,3 +6,7 @@
 /dependencies/build/
 /dependencies/generator/build/
 /dependencies/updater/build/
+
+# Include dependencies mapping path
+!deps-mapping/
+!/build/tmp/deps-mapping/
