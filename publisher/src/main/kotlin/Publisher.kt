@@ -2,7 +2,6 @@
 
 package com.meowool.toolkit.gradle
 
-import GradleToolkitExtension
 import MavenLocalTarget
 import PublishingTarget
 import SonatypeTarget
@@ -70,100 +69,25 @@ class Publisher : Plugin<Project> {
 
       apply<MavenPublishPlugin>()
       apply<DokkaPlugin>()
-      val target = extension.target.ifEmpty { listOf(SonatypeTarget()) }
-      configureData(extension)
-      configureGradlePlugin(extension)
-      publishComponentsAndSourcesJar()
+
+      if (extension.target.isEmpty()) {
+        extension.publishToSonatype()
+      }
+
       publishing {
+        publishComponentsAndSourcesJar(project)
+        configureData(extension)
         configureDokkaJar(extension)
         configureSignings(extension)
-        configureRepositories(target)
+        configureRepositories(extension)
       }
+      configureGradlePlugin(extension)
 
       // Sonatype
       initSonatypeBuild()
-      target.filterIsInstance<SonatypeTarget>().firstOrNull()?.let {
+      extension.target.filterIsInstance<SonatypeTarget>().firstOrNull()?.let {
         taskInitializeSonatypeStaging(it)
         taskCloseAndReleaseSonatypeRepository(it)
-      }
-    }
-  }
-
-  /**
-   * Configures the data of publication.
-   */
-  private fun Project.configureData(extension: PublicationExtension) = with(extension) {
-    group = data.groupIdOrDefault()
-    version = data.versionOrDefault()
-    description = data.descriptionOrDefault()
-
-    target.forEach {
-      it.project = project
-      it.isSnapshot = version.toString().isSnapshot
-    }
-
-    publishing.publications.withType<MavenPublication> {
-      groupId = project.group.toString()
-      version = project.version.toString()
-      // Ref: https://github.com/vanniktech/gradle-maven-publish-plugin/blob/a824079592fd0e1895aa0b293b798f593949fadb/plugin/src/main/kotlin/com/vanniktech/maven/publish/legacy/Coordinates.kt#L25
-      if (this@withType.name.endsWith("PluginMarkerMaven").not()) {
-        // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
-        artifactId = data.artifactIdOrDefault() + artifactId.removePrefix(project.name)
-      }
-      pom {
-        name.set(data.displayNameOrDefault())
-        url.set(data.urlOrDefault())
-        description.set(project.description.toString())
-
-        developers {
-          data.developersOrDefault().forEach {
-            developer {
-              it.id?.let(id::set)
-              it.name?.let(name::set)
-              it.email?.let(email::set)
-              it.url?.let(url::set)
-            }
-          }
-        }
-        licenses {
-          data.licensesOrDefault().forEach {
-            license {
-              it.name?.let(name::set)
-              it.url?.let(url::set)
-            }
-          }
-        }
-        organization {
-          name.set(data.organizationNameOrDefault())
-          name.set(data.organizationUrlOrDefault())
-        }
-        scm {
-          url.set(data.vcsOrDefault())
-        }
-
-        // Collect all the repositories used in the project to add to the POM
-        // See https://maven.apache.org/pom.html#Repositories
-        withXml {
-          project.repositories
-            .filterIsInstance<MavenArtifactRepository>()
-            .filterNot { it.url.host.contains("repo.maven.apache.org") }
-            .takeIf { it.isNotEmpty() }
-            ?.also { repositories ->
-              val xml = this.asNode()
-              // Find or create `repositories` node
-              val repositoriesNode = xml.children().firstOrNull { it is Node && it.name() == "repositories" } as? Node
-                ?: xml.appendNode("repositories")
-
-              repositories.forEach { repo ->
-                repositoriesNode?.appendNode("repository")?.apply {
-                  appendNode("id", repo.name)
-                  appendNode("url", repo.url.toString())
-                }
-              }
-            }
-        }
-
-        data.pomConfigurations.forEach { it() }
       }
     }
   }
@@ -192,9 +116,9 @@ class Publisher : Plugin<Project> {
   /**
    * Configures the project components and sources jar to publish.
    */
-  private fun Project.publishComponentsAndSourcesJar() = publishing {
+  private fun PublishingExtension.publishComponentsAndSourcesJar(project: Project) = with(project) {
     // The kotlin multiplatform plugin publishes its own components
-    if (extensions.findByType<KotlinMultiplatformExtension>() != null) return@publishing
+    if (extensions.findByType<KotlinMultiplatformExtension>() != null) return@with
 
     val androidExtension = extensions.findByName("android") as? BaseExtension
     val isAndroid = androidExtension != null
@@ -219,6 +143,87 @@ class Publisher : Plugin<Project> {
       else -> publications.create<MavenPublication>("maven") {
         components.findByName("kotlin")?.let(::from) ?: components.findByName("java")?.let(::from)
         artifact(sourcesJar)
+      }
+    }
+  }
+
+  /**
+   * Configures the data of publication.
+   */
+  private fun PublishingExtension.configureData(extension: PublicationExtension) = with(extension) {
+    project.group = data.groupIdOrDefault()
+    project.version = data.versionOrDefault()
+    project.description = data.descriptionOrDefault()
+
+    target.forEach {
+      it.project = project
+      it.isSnapshot = project.version.toString().isSnapshot
+    }
+
+    project.afterEvaluate {
+      publications.withType<MavenPublication> {
+        groupId = project.group.toString()
+        version = project.version.toString()
+        // Ref: https://github.com/vanniktech/gradle-maven-publish-plugin/blob/a824079592fd0e1895aa0b293b798f593949fadb/plugin/src/main/kotlin/com/vanniktech/maven/publish/legacy/Coordinates.kt#L25
+        if (this@withType.name.endsWith("PluginMarkerMaven").not()) {
+          // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
+          artifactId = data.artifactIdOrDefault() + artifactId.removePrefix(project.name)
+        }
+        pom {
+          name.set(data.displayNameOrDefault())
+          url.set(data.urlOrDefault())
+          description.set(project.description.toString())
+
+          developers {
+            data.developersOrDefault().forEach {
+              developer {
+                it.id?.let(id::set)
+                it.name?.let(name::set)
+                it.email?.let(email::set)
+                it.url?.let(url::set)
+              }
+            }
+          }
+          licenses {
+            data.licensesOrDefault().forEach {
+              license {
+                it.name?.let(name::set)
+                it.url?.let(url::set)
+              }
+            }
+          }
+          organization {
+            name.set(data.organizationNameOrDefault())
+            name.set(data.organizationUrlOrDefault())
+          }
+          scm {
+            url.set(data.vcsOrDefault())
+          }
+
+          // Collect all the repositories used in the project to add to the POM
+          // See https://maven.apache.org/pom.html#Repositories
+          withXml {
+            project.repositories
+              .filterIsInstance<MavenArtifactRepository>()
+              .filterNot { it.url.host.contains("repo.maven.apache.org") }
+              .takeIf { it.isNotEmpty() }
+              ?.also { repositories ->
+                val xml = this.asNode()
+                // Find or create `repositories` node
+                val repositoriesNode = xml.children().firstOrNull { it is Node && it.name() == "repositories" } as? Node
+                  ?: xml.appendNode("repositories")
+
+                repositories.forEach { repo ->
+                  repositoriesNode?.appendNode("repository")?.apply {
+                    appendNode("id", repo.name)
+                    appendNode("url", repo.url.toString())
+                  }
+                }
+              }
+          }
+
+          data.pomConfigurations.forEach { it() }
+        }
       }
     }
   }
@@ -264,8 +269,8 @@ class Publisher : Plugin<Project> {
   /**
    * Configures target repositories to publish artifacts.
    */
-  private fun PublishingExtension.configureRepositories(target: List<PublishingTarget>) = repositories {
-    target.forEach {
+  private fun PublishingExtension.configureRepositories(extension: PublicationExtension) = repositories {
+    extension.target.forEach {
       val url = it.url
       val maven = if (url == MavenLocalTarget::class) mavenLocal() else maven(it.url)
       if (it.requiredCertificate) maven.credentials(PasswordCredentials::class.java)

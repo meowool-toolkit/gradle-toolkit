@@ -22,7 +22,7 @@ class GradleBuildTests : StringSpec({
   "mapping" {
     val buildFile = projectDir.resolve(Build).apply {
       writeText("""
-        plugins { id "com.meowool.toolkit.gradle-deps-mapper" }
+        plugins { id "com.meowool.gradle.toolkit-deps-mapper" }
       """.trimIndent())
     }
     projectDir.runGradle()

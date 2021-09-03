@@ -56,6 +56,10 @@ import org.gradle.api.publish.maven.MavenPomLicense
    * @see groupIdOrDefault
    */
   var groupId: String? = null
+    set(value) {
+      field = value
+      project.group = groupIdOrDefault()
+    }
 
   /**
    * The artifact id of a Maven publication or the suffix of Gradle plugin id.
@@ -135,6 +139,10 @@ import org.gradle.api.publish.maven.MavenPomLicense
    * @see versionOrDefault
    */
   var version: String? = null
+    set(value) {
+      field = value
+      project.version = versionOrDefault()
+    }
 
   /**
    * The display name of a Maven publication or Gradle plugin.
@@ -206,6 +214,10 @@ import org.gradle.api.publish.maven.MavenPomLicense
    * @see descriptionOrDefault
    */
   var description: String? = null
+    set(value) {
+      field = value
+      project.description = descriptionOrDefault()
+    }
 
   /**
    * The website URL of a Maven publication or Gradle plugin.
