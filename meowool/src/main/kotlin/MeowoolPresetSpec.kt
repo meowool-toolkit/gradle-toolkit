@@ -14,13 +14,17 @@ import mavenMirror
 import meowoolHomeDir
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
+import org.gradle.api.plugins.JavaPluginConvention
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.maven
+import org.gradle.kotlin.dsl.sourceSets
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.dokka.gradle.DokkaTask
 import releaseSigning
 import sonatype
 import java.io.File
+import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.io.path.readText
 
@@ -102,7 +106,7 @@ open class MeowoolPresetSpec {
    * Sets the content in the [path] as the [licenseHeader].
    */
   fun licenseHeader(path: Path) {
-    licenseHeader = path.readText()
+    licenseHeader = Files.readString(path)
   }
 
   /**
@@ -161,7 +165,10 @@ open class MeowoolPresetSpec {
   protected fun presetSpotless(): GradleToolkitExtension.() -> Unit = {
     allprojects {
       extensions.findByType<SpotlessExtension>()?.apply {
+        if (extensions.findByType<JavaPluginExtension>() == null) return@apply
         java {
+          // apply a specific flavor of google-java-format
+          googleJavaFormat().aosp()
           targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
           endWithNewline()
           trimTrailingWhitespace()

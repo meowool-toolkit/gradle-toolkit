@@ -115,15 +115,11 @@ fun LogicRegistry.androidLib(key: Any = DefaultAndroidKey, logic: LibraryExtensi
  *
  * @see LogicRegistry.android
  */
-fun Project.injectAndroidLogic(key: Any = DefaultAndroidKey, ignoreUnregistered: Boolean = false) = try {
-  android {
-    val logic = logicRegistry.androidLogic("common")[key] as? TestedExtension.(Project) -> Unit
-    if (ignoreUnregistered && logic == null) return@android
-    logic ?: notFoundKey(key)
-    logic(project)
-  }
-} catch (e: ClassCastException) {
-  error("This is not an android project, please make sure to apply the `android` or `android-library` plugin before inject.")
+fun Project.injectAndroidLogic(key: Any = DefaultAndroidKey, ignoreUnregistered: Boolean = false) = android {
+  val logic = logicRegistry.androidLogic("common")[key] as? TestedExtension.(Project) -> Unit
+  if (ignoreUnregistered && logic == null) return@android
+  logic ?: notFoundKey(key)
+  logic(project)
 }
 
 /**
@@ -135,7 +131,8 @@ fun Project.injectAndroidLogic(key: Any = DefaultAndroidKey, ignoreUnregistered:
  * @see LogicRegistry.android
  */
 fun Project.injectAndroidAppLogic(key: Any = DefaultAndroidKey, ignoreUnregistered: Boolean = false) = android {
-  this as? BaseAppModuleExtension ?: error("This is not an android application project, please make sure to apply the `android` plugin before inject.")
+  this as? BaseAppModuleExtension
+    ?: error("This is not an android application project, please make sure to apply the `android` plugin before inject.")
   val logic = logicRegistry.androidLogic("application")[key] as? BaseAppModuleExtension.(Project) -> Unit
   if (ignoreUnregistered && logic == null) return@android
   logic ?: notFoundKey(key)
@@ -151,7 +148,8 @@ fun Project.injectAndroidAppLogic(key: Any = DefaultAndroidKey, ignoreUnregister
  * @see LogicRegistry.android
  */
 fun Project.injectAndroidLibLogic(key: Any = DefaultAndroidKey, ignoreUnregistered: Boolean = false) = android {
-  this as? LibraryExtension ?: error("This is not an android application project, please make sure to apply the `android-library` plugin before inject.")
+  this as? LibraryExtension
+    ?: error("This is not an android application project, please make sure to apply the `android-library` plugin before inject.")
   val logic = logicRegistry.androidLogic("library")[key] as? LibraryExtension.(Project) -> Unit
   if (ignoreUnregistered && logic == null) return@android
   logic ?: notFoundKey(key)
@@ -160,6 +158,7 @@ fun Project.injectAndroidLibLogic(key: Any = DefaultAndroidKey, ignoreUnregister
 
 /** The default key is used for registration and injection of android logic. */
 internal const val DefaultAndroidKey = "default android logic"
+
 @InternalGradleToolkitApi
 const val DefaultInternalAndroidKey = "default android logic" // Spare
 
