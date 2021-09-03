@@ -1,12 +1,8 @@
 # Project exclude paths
 /.gradle/
-/all/build/
-/android/build/
-/build/
-/dependencies/build/
-/dependencies/generator/build/
-/dependencies/updater/build/
+/build/**
 
 # Include dependencies mapping path
-!deps-mapping/
+!/build/tmp/
 !/build/tmp/deps-mapping/
+!/build/tmp/deps-mapping/*
