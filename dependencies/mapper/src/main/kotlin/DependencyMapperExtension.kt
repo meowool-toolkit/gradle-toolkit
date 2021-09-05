@@ -18,7 +18,11 @@
  */
 @file:Suppress("SpellCheckingInspection", "MemberVisibilityCanBePrivate", "UNCHECKED_CAST")
 
-import MappedClassesFactory.Companion.validDependency
+package com.meowool.gradle.toolkit
+
+import com.meowool.gradle.toolkit.internal.DepFormatter
+import com.meowool.gradle.toolkit.internal.MappedClassesFactory.Companion.validDependency
+import com.meowool.gradle.toolkit.internal.RemoteDependencies
 import org.gradle.api.Project
 
 private typealias DependencyNotation = String

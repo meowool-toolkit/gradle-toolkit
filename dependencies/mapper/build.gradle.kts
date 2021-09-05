@@ -1,11 +1,12 @@
 plugins { kotlin; `kotlin-dsl`; kotlin("plugin.serialization") }
 
-createGradlePlugin(implementationClass = "DependencyMapper")
-
-publishingData {
-  artifact = "gradle-deps-mapper"
-  name = "Dependency Mapper for Gradle Toolkit"
-  description = "Map all dependencies to classes and fields for easy calling in gradle scripts."
+publication {
+  data {
+    artifactId = "toolkit-deps-mapper"
+    displayName = "com.meowool.gradle.toolkit.internal.Dependency Mapper for Gradle Toolkit"
+    description = "Map all dependencies to classes and fields for easy calling in gradle scripts."
+  }
+  pluginClass = "$group.toolkit.DependencyMapperPlugin"
 }
 
 dependencies.implementationOf(

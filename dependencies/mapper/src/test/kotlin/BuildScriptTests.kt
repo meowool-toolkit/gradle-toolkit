@@ -1,8 +1,9 @@
-import GradleScriptModifier.Companion.Build
-import GradleScriptModifier.Companion.BuildKts
-import GradleScriptModifier.Companion.Settings
-import GradleScriptModifier.Companion.SettingsKts
-import GradleScriptModifier.Companion.hasBuildscriptBlock
+import internal.GradleScriptModifier
+import internal.GradleScriptModifier.Companion.Build
+import internal.GradleScriptModifier.Companion.BuildKts
+import internal.GradleScriptModifier.Companion.Settings
+import internal.GradleScriptModifier.Companion.SettingsKts
+import internal.GradleScriptModifier.Companion.hasBuildscriptBlock
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.engine.spec.tempdir
 import io.kotest.matchers.booleans.shouldBeFalse

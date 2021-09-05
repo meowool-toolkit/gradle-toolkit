@@ -16,26 +16,24 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
-import org.junit.Test
+import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import java.io.File
-import kotlin.test.assertTrue
 
 /**
  * @author 凛 (https://github.com/RinOrz)
  */
-class IncludeTest : GradleKotlinDslXTest() {
-  private val directory = File(javaClass.getResource("include").file)
+class IncludeTest : GradleToolkitTest() {
+  private val includeDir = File(javaClass.getResource("include")!!.file)
 
-  @Test fun include() {
-    settings._rootDir = directory
-    settings.importProjects(directory)
-    assertTrue(settings.includedProjectPaths.joinToString()) {
-      val expected = listOf(
+  init {
+    settings._rootDir = includeDir
+    settings.importProjects(includeDir)
+    "include" {
+      settings.includedProjectPaths shouldContainExactlyInAnyOrder listOf(
         ":import1",
         ":import1:import-sub1",
         ":import2",
       )
-      settings.includedProjectPaths.containsAll(expected)
     }
   }
 }

@@ -18,6 +18,8 @@
  */
 @file:Suppress("SpellCheckingInspection")
 
+package com.meowool.gradle.toolkit.internal
+
 /**
  * Open source license of Meowool-Organization.
  *

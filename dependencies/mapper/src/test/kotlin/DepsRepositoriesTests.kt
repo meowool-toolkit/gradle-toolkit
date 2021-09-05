@@ -1,5 +1,6 @@
 @file:Suppress("SpellCheckingInspection")
 
+import com.meowool.gradle.toolkit.internal.Dependency
 import com.meowool.sweekt.coroutines.contains
 import com.meowool.sweekt.coroutines.flowOnIO
 import com.meowool.sweekt.coroutines.size

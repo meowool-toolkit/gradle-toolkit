@@ -1,12 +1,14 @@
 @file:Suppress("SpellCheckingInspection")
 
-plugins { kotlin; `kotlin-dsl`; `kotlin-kapt` }
+plugins { kotlin; `kotlin-dsl` }
 
-createGradlePlugin("com.meowool.toolkit.gradle.Publisher")
-
-publishingData {
-  artifact = "gradle-publisher"
-  name = "Gradle Toolkit Publisher"
+publication {
+  data {
+    artifactId = "toolkit-publisher"
+    displayName = "Gradle Toolkit Publisher"
+    description = "Pre-Built commonly used dependencies."
+  }
+  pluginClass = "$group.toolkit.publisher.PublisherPlugin"
 }
 
 dependencies {
@@ -18,13 +20,3 @@ dependencies {
   implementation(Libs.Gradle.Publish.Plugin)
   compileOnly(Libs.Android.Tools.Build.Gradle version "4.2.1")
 }
-
-//publication {
-//  releaseSigning = true
-//  snapshotSigning = false
-//  dokkaFormat = DokkaFormat.Html
-//  repositories.gradlePluginPortal()
-//  data {
-//
-//  }
-//}

@@ -1,7 +1,9 @@
 @file:Suppress("SpellCheckingInspection")
 
+import com.meowool.gradle.toolkit.internal.DepFormatter
 import com.meowool.sweekt.coroutines.size
 import com.meowool.sweekt.iteration.size
+import internal.MappedClassesFactory
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.flow.collect

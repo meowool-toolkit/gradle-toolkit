@@ -1,10 +1,9 @@
-import GradleScriptModifier.Companion.Build
-import GradleScriptModifier.Companion.BuildKts
-import GradleScriptModifier.Companion.Settings
-import GradleScriptModifier.Companion.SettingsKts
+import internal.GradleScriptModifier.Companion.Build
+import internal.GradleScriptModifier.Companion.BuildKts
+import internal.GradleScriptModifier.Companion.Settings
+import internal.GradleScriptModifier.Companion.SettingsKts
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.engine.spec.tempdir
-import org.gradle.testfixtures.ProjectBuilder
 import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.GradleRunner
 import java.io.File

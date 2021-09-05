@@ -18,14 +18,24 @@
  */
 @file:Suppress("UNCHECKED_CAST")
 
-import LogicRegistry.Companion.notFoundKey
-import LogicRegistry.Companion.requireNotKey
-import annotation.InternalGradleToolkitApi
+import com.meowool.gradle.toolkit.android.internal.requireAndroidAppPlugin
+import com.meowool.gradle.toolkit.android.internal.requireAndroidLibPlugin
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.TestedExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import com.meowool.gradle.toolkit.internal.LogicRegistry
+import com.meowool.gradle.toolkit.internal.LogicRegistry.Companion.logicRegistry
+import com.meowool.gradle.toolkit.internal.LogicRegistry.Companion.notFoundKey
+import com.meowool.gradle.toolkit.internal.LogicRegistry.Companion.requireNotKey
+import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.DefaultAndroidKey
+import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.androidAppLogics
+import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.androidCommonLogics
+import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.androidLibLogics
+import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.getAndroidAppLogic
+import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.getAndroidCommonLogic
+import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.getAndroidLibLogic
+import com.meowool.gradle.toolkit.android.internal.android
 import org.gradle.api.Project
-import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Registers the common android block [logic] belonging to the specified [key].
@@ -50,11 +60,12 @@ import java.util.concurrent.ConcurrentHashMap
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-fun LogicRegistry.android(key: Any = DefaultAndroidKey, logic: TestedExtension.(project: Project) -> Unit) {
-  androidLogic("common").apply {
-    requireNotKey(key)
-    set(key, logic)
-  }
+fun LogicRegistry.android(
+  key: Any = DefaultAndroidKey,
+  logic: TestedExtension.(project: Project) -> Unit,
+) = androidCommonLogics {
+  requireNotKey(key)
+  set(key, logic)
 }
 
 /**
@@ -75,11 +86,12 @@ fun LogicRegistry.android(key: Any = DefaultAndroidKey, logic: TestedExtension.(
  * }
  * ```
  */
-fun LogicRegistry.androidApp(key: Any = DefaultAndroidKey, logic: BaseAppModuleExtension.(project: Project) -> Unit) {
-  androidLogic("application").apply {
-    requireNotKey(key)
-    set(key, logic)
-  }
+fun LogicRegistry.androidApp(
+  key: Any = DefaultAndroidKey,
+  logic: BaseAppModuleExtension.(project: Project) -> Unit,
+) = androidAppLogics {
+  requireNotKey(key)
+  set(key, logic)
 }
 
 /**
@@ -100,11 +112,12 @@ fun LogicRegistry.androidApp(key: Any = DefaultAndroidKey, logic: BaseAppModuleE
  * }
  * ```
  */
-fun LogicRegistry.androidLib(key: Any = DefaultAndroidKey, logic: LibraryExtension.(project: Project) -> Unit) {
-  androidLogic("library").apply {
-    requireNotKey(key)
-    set(key, logic)
-  }
+fun LogicRegistry.androidLib(
+  key: Any = DefaultAndroidKey,
+  logic: LibraryExtension.(project: Project) -> Unit,
+) = androidLibLogics {
+  requireNotKey(key)
+  set(key, logic)
 }
 
 /**
@@ -115,11 +128,13 @@ fun LogicRegistry.androidLib(key: Any = DefaultAndroidKey, logic: LibraryExtensi
  *
  * @see LogicRegistry.android
  */
-fun Project.injectAndroidLogic(key: Any = DefaultAndroidKey, ignoreUnregistered: Boolean = false) = android {
-  val logic = logicRegistry.androidLogic("common")[key] as? TestedExtension.(Project) -> Unit
-  if (ignoreUnregistered && logic == null) return@android
-  logic ?: notFoundKey(key)
-  logic(project)
+fun Project.injectAndroidLogic(key: Any = DefaultAndroidKey, ignoreUnregistered: Boolean = false) {
+  android<TestedExtension> {
+    val logic = logicRegistry.getAndroidCommonLogic(key)
+    if (ignoreUnregistered && logic == null) return@android
+    logic ?: notFoundKey(key)
+    logic(project)
+  }
 }
 
 /**
@@ -130,13 +145,14 @@ fun Project.injectAndroidLogic(key: Any = DefaultAndroidKey, ignoreUnregistered:
  *
  * @see LogicRegistry.android
  */
-fun Project.injectAndroidAppLogic(key: Any = DefaultAndroidKey, ignoreUnregistered: Boolean = false) = android {
-  this as? BaseAppModuleExtension
-    ?: error("This is not an android application project, please make sure to apply the `android` plugin before inject.")
-  val logic = logicRegistry.androidLogic("application")[key] as? BaseAppModuleExtension.(Project) -> Unit
-  if (ignoreUnregistered && logic == null) return@android
-  logic ?: notFoundKey(key)
-  logic(project)
+fun Project.injectAndroidAppLogic(key: Any = DefaultAndroidKey, ignoreUnregistered: Boolean = false) {
+  requireAndroidAppPlugin()
+  android<BaseAppModuleExtension> {
+    val logic = logicRegistry.getAndroidAppLogic(key)
+    if (ignoreUnregistered && logic == null) return@android
+    logic ?: notFoundKey(key)
+    logic(project)
+  }
 }
 
 /**
@@ -147,21 +163,12 @@ fun Project.injectAndroidAppLogic(key: Any = DefaultAndroidKey, ignoreUnregister
  *
  * @see LogicRegistry.android
  */
-fun Project.injectAndroidLibLogic(key: Any = DefaultAndroidKey, ignoreUnregistered: Boolean = false) = android {
-  this as? LibraryExtension
-    ?: error("This is not an android application project, please make sure to apply the `android-library` plugin before inject.")
-  val logic = logicRegistry.androidLogic("library")[key] as? LibraryExtension.(Project) -> Unit
-  if (ignoreUnregistered && logic == null) return@android
-  logic ?: notFoundKey(key)
-  logic(project)
+fun Project.injectAndroidLibLogic(key: Any = DefaultAndroidKey, ignoreUnregistered: Boolean = false) {
+  requireAndroidLibPlugin()
+  android<LibraryExtension> {
+    val logic = logicRegistry.getAndroidLibLogic(key)
+    if (ignoreUnregistered && logic == null) return@android
+    logic ?: notFoundKey(key)
+    logic(project)
+  }
 }
-
-/** The default key is used for registration and injection of android logic. */
-internal const val DefaultAndroidKey = "default android logic"
-
-@InternalGradleToolkitApi
-const val DefaultInternalAndroidKey = "default android logic" // Spare
-
-
-private fun LogicRegistry.androidLogic(type: String) =
-  extraLogics.getOrPut("@#$%android??$type+") { ConcurrentHashMap<Any, Any>() } as ConcurrentHashMap<Any, Any>

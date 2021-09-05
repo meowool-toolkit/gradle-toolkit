@@ -1,8 +1,9 @@
 @file:Suppress("MemberVisibilityCanBePrivate")
 
 import com.diffplug.gradle.spotless.SpotlessPlugin
-import com.meowool.toolkit.gradle.MeowoolManualSpec
-import com.meowool.toolkit.gradle.MeowoolPresetSpec
+import com.meowool.gradle.toolkit.GradleToolkitExtension
+import com.meowool.gradle.toolkit.internal.MeowoolManualSpec
+import com.meowool.gradle.toolkit.internal.MeowoolPresetSpec
 import org.gradle.kotlin.dsl.apply
 
 /**

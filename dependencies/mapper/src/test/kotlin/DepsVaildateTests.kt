@@ -1,6 +1,6 @@
 @file:Suppress("SpellCheckingInspection")
 
-import MappedClassesFactory.Companion.validDependency
+import internal.MappedClassesFactory.Companion.validDependency
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowMessage
 import io.kotest.core.spec.style.FreeSpec

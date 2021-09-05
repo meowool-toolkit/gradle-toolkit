@@ -16,8 +16,6 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
-package com.meowbase.plugin.toolkit.ktx
-
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.kotlin.dsl.register

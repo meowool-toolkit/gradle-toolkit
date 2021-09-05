@@ -16,9 +16,8 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
-import annotation.InternalGradleToolkitApi
+import com.meowool.gradle.toolkit.internal.InternalGradleToolkitApi
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.extra
 import java.io.File
 import java.util.Properties
 

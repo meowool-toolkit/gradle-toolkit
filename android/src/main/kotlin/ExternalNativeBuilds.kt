@@ -19,6 +19,9 @@
 import com.android.build.api.dsl.Cmake
 import com.android.build.api.dsl.ExternalNativeBuild
 import com.android.build.api.dsl.NdkBuild
+import com.android.build.gradle.TestedExtension
+import com.meowool.gradle.toolkit.android.internal.android
+import com.meowool.gradle.toolkit.android.internal.requireAndroidPlugin
 import org.gradle.api.Project
 import java.io.File
 
@@ -33,8 +36,8 @@ import java.io.File
  * @author 凛 (https://github.com/RinOrz)
  */
 fun Project.cmake(path: File? = findCMakeBuildScript(), configuration: Cmake.() -> Unit = {}) {
-  requireApplyPlugin()
-  android {
+  requireAndroidPlugin()
+  android<TestedExtension> {
     externalNativeBuild.cmake {
       configuration()
       path?.let(::path)
@@ -51,8 +54,8 @@ fun Project.cmake(path: File? = findCMakeBuildScript(), configuration: Cmake.() 
  * @see ExternalNativeBuild.cmake
  */
 fun Project.cmake(path: String?, configuration: Cmake.() -> Unit = {}) {
-  requireApplyPlugin()
-  android {
+  requireAndroidPlugin()
+  android<TestedExtension> {
     externalNativeBuild.cmake {
       configuration()
       path?.let(::path)
@@ -69,8 +72,8 @@ fun Project.cmake(path: String?, configuration: Cmake.() -> Unit = {}) {
  * @see ExternalNativeBuild.ndkBuild
  */
 fun Project.ndkBuild(path: File? = findNdkBuildScript(), configuration: NdkBuild.() -> Unit = {}) {
-  requireApplyPlugin()
-  android {
+  requireAndroidPlugin()
+  android<TestedExtension> {
     externalNativeBuild.ndkBuild {
       configuration()
       path?.let(::path)
@@ -87,8 +90,8 @@ fun Project.ndkBuild(path: File? = findNdkBuildScript(), configuration: NdkBuild
  * @see ExternalNativeBuild.ndkBuild
  */
 fun Project.ndkBuild(path: String?, configuration: NdkBuild.() -> Unit = {}) {
-  requireApplyPlugin()
-  android {
+  requireAndroidPlugin()
+  android<TestedExtension> {
     externalNativeBuild.ndkBuild {
       configuration()
       path?.let(::path)

@@ -22,11 +22,6 @@ remoteDependencies.groups:
         org.yaml
     repositories: 0
     
-    requests:
-        mysql
-        org.yaml
-    repositories: 0
-    
 remoteDependencies.startsWith:
     requests:
         org.jetbrains.markdown
@@ -48,16 +43,36 @@ remoteDependencies.startsWith:
     requests:
         commons-io
         commons-logging
+        org.apache.tika
+        org.apache.hbase
+        org.apache.hadoop
+        org.apache.commons
+        org.apache.logging.log4j
+    repositories: 0
+    
+    requests:
+        com.google
+    repositories: 0
+    
+    requests:
+        android
+        androidx
+        com.android
+    repositories: 0, 1
+    
+    requests:
+        com.meowool
+    repositories: 0
+    
+    requests:
         app.cash
         net.mamoe
         net.bytebuddy
         me.liuwj.ktorm
         com.umeng
         com.airbnb
-        com.google
         com.rinorz
         com.tencent
-        com.meowool
         com.firebase
         com.facebook
         com.squareup
@@ -78,11 +93,6 @@ remoteDependencies.startsWith:
         org.robolectric
         org.springframework
         org.spekframework.spek2
-        org.apache.tika
-        org.apache.hbase
-        org.apache.hadoop
-        org.apache.commons
-        org.apache.logging.log4j
         io.ktor
         io.mockk
         io.kotest
@@ -93,12 +103,6 @@ remoteDependencies.startsWith:
         io.github.reactivecircus
         io.github.javaeden.orchid
     repositories: 0
-    
-    requests:
-        android
-        androidx
-        com.android
-    repositories: 0, 1
     
     requests:
         org.jetbrains.markdown
@@ -118,57 +122,12 @@ remoteDependencies.startsWith:
     repositories: 0
     
     requests:
-        commons-io
-        commons-logging
-        app.cash
-        net.mamoe
-        net.bytebuddy
-        me.liuwj.ktorm
-        com.umeng
-        com.airbnb
-        com.google
-        com.rinorz
-        com.tencent
-        com.meowool
-        com.firebase
-        com.facebook
-        com.squareup
-        com.yalantis
-        com.facebook
-        com.afollestad
-        com.didiglobal
-        com.jakewharton
-        com.linkedin.dexmaker
-        com.github.ajalt.clikt
-        org.ow2
-        org.junit
-        org.smali
-        org.jsoup
-        org.mockito
-        org.javassist
-        org.conscrypt
-        org.robolectric
-        org.springframework
-        org.spekframework.spek2
-        org.apache.tika
-        org.apache.hbase
-        org.apache.hadoop
-        org.apache.commons
-        org.apache.logging.log4j
-        io.ktor
-        io.mockk
-        io.kotest
-        io.strikt
-        io.coil-kt
-        io.arrow-kt
-        io.insert-koin
-        io.github.reactivecircus
-        io.github.javaeden.orchid
-    repositories: 0
-    
-    requests:
         android
         androidx
         com.android
     repositories: 0, 1
+    
+    requests:
+        com.meowool
+    repositories: 0
     

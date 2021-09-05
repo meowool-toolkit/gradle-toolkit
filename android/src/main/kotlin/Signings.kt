@@ -18,6 +18,7 @@
  */
 import com.android.build.api.dsl.SigningConfig
 import com.android.build.gradle.BaseExtension
+import com.meowool.gradle.toolkit.android.internal.loadSigningConfigPresets
 import java.io.File
 
 /**

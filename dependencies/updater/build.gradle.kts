@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -6,9 +8,9 @@ plugins {
   idea
 }
 
-publishingData {
-  artifact = "gradle-deps-updater"
-  name = "Dependency Updater for Gradle Toolkit"
+publication.data {
+  artifactId = "toolkit-deps-updater"
+  displayName = "Dependency Updater for Gradle Toolkit"
   description = "Let dependencies have version check for updates."
 }
 
@@ -25,10 +27,10 @@ dependencies {
   }
 
   testImplementationOf(
-    Libs.Square.OkHttp3.Logging.Interceptor,
     Libs.Junit.Jupiter,
-    Libs.Kotlin.Test.Annotations.Common,
     Libs.Kotlin.Test.Junit5,
+    Libs.Kotlin.Test.Annotations.Common,
+    Libs.Square.OkHttp3.Logging.Interceptor,
     platform(notation = "org.junit:junit-bom:_"),
   )
 
@@ -92,13 +94,4 @@ tasks.withType<KotlinCompile> {
       "-Xopt-in=de.fayard.refreshVersions.core.internal.InternalRefreshVersionsApi",
     )
   }
-}
-
-tasks.withType<Test> {
-  useJUnitPlatform()
-}
-
-java {
-  sourceCompatibility = JavaVersion.VERSION_1_8
-  targetCompatibility = JavaVersion.VERSION_1_8
 }

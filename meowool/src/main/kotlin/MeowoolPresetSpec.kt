@@ -1,24 +1,24 @@
 @file:Suppress("MemberVisibilityCanBePrivate")
 
-package com.meowool.toolkit.gradle
+package com.meowool.gradle.toolkit.internal
 
-import DefaultInternalAndroidKey
-import GradleToolkitExtension
-import OpenSourceLicense
+import MavenMirrors
+import NdkAbi
 import abiFilters
 import android
 import com.diffplug.gradle.spotless.SpotlessExtension
-import loadKeyProperties
+import com.meowool.gradle.toolkit.GradleToolkitExtension
+import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.DefaultCandidateAndroidKey
+import com.meowool.gradle.toolkit.publisher.PublicationExtension
 import jitpack
+import loadKeyProperties
 import mavenMirror
 import meowoolHomeDir
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
-import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.maven
-import org.gradle.kotlin.dsl.sourceSets
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.dokka.gradle.DokkaTask
 import releaseSigning
@@ -26,14 +26,13 @@ import sonatype
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
-import kotlin.io.path.readText
 
 /**
  * The preset specification configuration of 'Meowool-Organization'.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-open class MeowoolPresetSpec {
+open class MeowoolPresetSpec internal constructor() {
 
   /**
    * The repositories block for the project of this specification.
@@ -220,7 +219,7 @@ open class MeowoolPresetSpec {
 
   protected fun presetAndroid(): GradleToolkitExtension.() -> Unit = {
     registerLogic {
-      android(DefaultInternalAndroidKey) { project ->
+      android(DefaultCandidateAndroidKey) { project ->
         with(project) {
           releaseSigning {
             if (isOpenSourceProject) {

@@ -1,10 +1,8 @@
 @file:Suppress("MemberVisibilityCanBePrivate")
 
-package com.meowool.toolkit.gradle
+package com.meowool.gradle.toolkit.internal
 
-import GradleToolkitExtension
-import OpenSourceLicense
-import com.diffplug.gradle.spotless.SpotlessExtension
+import com.meowool.gradle.toolkit.GradleToolkitExtension
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 
@@ -13,7 +11,7 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-class MeowoolManualSpec : MeowoolPresetSpec() {
+class MeowoolManualSpec internal constructor() : MeowoolPresetSpec() {
 
   /**
    * The repositories block for the project of this specification.

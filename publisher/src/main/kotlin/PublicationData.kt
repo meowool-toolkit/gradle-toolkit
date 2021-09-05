@@ -1,7 +1,11 @@
 @file:Suppress("MemberVisibilityCanBePrivate", "DEPRECATION")
 
+package com.meowool.gradle.toolkit.publisher
+
+import com.meowool.gradle.toolkit.publisher.internal.maxOf
+import com.meowool.gradle.toolkit.publisher.internal.rootPublicationData
 import com.meowool.sweekt.ifNull
-import com.meowool.toolkit.gradle.*
+import findPropertyOrEnv
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloper
@@ -59,6 +63,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
     set(value) {
       field = value
       project.group = groupIdOrDefault()
+      project.allprojects { group = groupIdOrDefault() }
     }
 
   /**
@@ -142,6 +147,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
     set(value) {
       field = value
       project.version = versionOrDefault()
+      project.allprojects { version = versionOrDefault() }
     }
 
   /**
@@ -217,6 +223,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
     set(value) {
       field = value
       project.description = descriptionOrDefault()
+      project.allprojects { description = descriptionOrDefault() }
     }
 
   /**

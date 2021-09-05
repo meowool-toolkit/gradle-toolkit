@@ -1,43 +1,44 @@
-import com.meowool.toolkit.gradle.PublicationExtension
-import com.meowool.toolkit.gradle.Publisher
+import com.meowool.gradle.toolkit.GradleToolkitExtension
+import com.meowool.gradle.toolkit.publisher.PublicationExtension
+import com.meowool.gradle.toolkit.publisher.PublisherPlugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
 
 /**
- * Configures the [PublicationExtension] of the [Publisher] plugin in all projects.
+ * Configures the [PublicationExtension] of the [PublisherPlugin] plugin in all projects.
  *
  * @param configuration Configure publication extension.
  *
- * @see Publisher
+ * @see PublisherPlugin
  * @see PublicationExtension
  */
 fun GradleToolkitExtension.publications(configuration: PublicationExtension.() -> Unit) = allprojects {
-  apply<Publisher>()
+  apply<PublisherPlugin>()
   extensions.configure(configuration)
 }
 
 /**
- * Returns the [PublicationExtension] of the [Publisher] plugin in this project.
+ * Returns the [PublicationExtension] of the [PublisherPlugin] plugin in this project.
  *
- * @see Publisher
+ * @see PublisherPlugin
  * @see PublicationExtension
  */
 val Project.publication: PublicationExtension get() {
-  apply<Publisher>()
+  apply<PublisherPlugin>()
   return extensions.getByType()
 }
 
 /**
- * Configures the [PublicationExtension] of the [Publisher] plugin in this project.
+ * Configures the [PublicationExtension] of the [PublisherPlugin] plugin in this project.
  *
  * @param configuration Configure publication extension.
  *
- * @see Publisher
+ * @see PublisherPlugin
  * @see PublicationExtension
  */
 fun Project.publication(configuration: PublicationExtension.() -> Unit) {
-  apply<Publisher>()
-  afterEvaluate { extensions.configure(configuration) }
+  apply<PublisherPlugin>()
+  extensions.configure(configuration)
 }

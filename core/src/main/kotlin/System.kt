@@ -16,10 +16,10 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
-package com.meowbase.plugin.toolkit.ktx
+@file:Suppress()
 
 /**
- * Returns true if the current ide is Intellij-IDEA.
+ * Returns `true` if the current ide is Intellij-IDEA.
  *
  * @author 凛 (https://github.com/RinOrz)
  */

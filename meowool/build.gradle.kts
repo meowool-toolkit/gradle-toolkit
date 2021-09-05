@@ -2,13 +2,15 @@
 
 plugins { kotlin; `kotlin-dsl` }
 
-publishingData {
-  artifact = "gradle-meowool"
-  name = "Meowool Gradle Toolkit"
+publication.data {
+  artifactId = "toolkit-meowool"
+  displayName = "Meowool Gradle Toolkit"
   description = "Gradle Toolkit specific to the 'Meowool-Organization' project."
 }
 
-dependencies {
-  api(Libs.Gradle.Spotless)
-  apiProjects(":android", ":dependencies", ":publisher")
-}
+dependencies.apiOf(
+  projects.android,
+  projects.dependencies,
+  projects.publisher,
+  Libs.Gradle.Spotless,
+)

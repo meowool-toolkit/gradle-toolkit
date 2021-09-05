@@ -1,3 +1,4 @@
+import com.meowool.gradle.toolkit.internal.DepFormatter
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.core.spec.style.scopes.FreeSpecTerminalContext
 import io.kotest.matchers.shouldBe

@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION", "EXPERIMENTAL_IS_NOT_ENABLED")
 
-import annotation.InternalGradleToolkitApi
+import internal.InternalGradleToolkitApi
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.engine.spec.tempdir
 import org.gradle.testfixtures.ProjectBuilder

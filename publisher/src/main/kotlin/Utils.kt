@@ -1,11 +1,12 @@
-package com.meowool.toolkit.gradle
+package com.meowool.gradle.toolkit.publisher.internal
 
-import PublicationData
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.TestedExtension
 import com.android.build.gradle.api.BaseVariant
+import com.meowool.gradle.toolkit.publisher.PublicationData
+import com.meowool.gradle.toolkit.publisher.PublicationExtension
 import findPropertyOrEnv
 import net.mbonnin.vespene.lib.NexusStagingClient
 import org.gradle.api.Project
@@ -24,9 +25,11 @@ import org.gradle.kotlin.dsl.register
 private const val BUILD_LISTENER = "mavenPublish-buildListener"
 private const val REPOSITORIES_TO_CLOSE = "mavenPublish-waitForCloseRepositories"
 
-internal val String.isSnapshot get() = this.endsWith("SNAPSHOT")
+internal val Project.rootPublication: PublicationExtension?
+  get() = if (this == rootProject) null else rootProject.extensions.getByType()
+
 internal val Project.rootPublicationData: PublicationData?
-  get() = if (this == rootProject) null else rootProject.extensions.getByType<PublicationExtension>().data
+  get() = rootPublication?.data
 
 /**
  * Represents the build listener for the root project.

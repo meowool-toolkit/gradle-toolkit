@@ -2,11 +2,12 @@
 
 plugins { kotlin; `kotlin-dsl` }
 
-createGradlePlugin(implementationClass = "GradleToolkitCore")
-
-publishingData {
-  artifact = "gradle-core"
-  name = "Gradle Toolkit Core"
+publication {
+  data {
+    artifactId = "toolkit-core"
+    displayName = "Gradle Toolkit Core"
+  }
+  pluginClass = "$group.toolkit.GradleToolkitCorePlugin"
 }
 
 dependencies.api(Libs.Kotlin.Gradle.Plugin)

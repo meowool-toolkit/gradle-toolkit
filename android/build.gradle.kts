@@ -1,8 +1,8 @@
 plugins { kotlin; `kotlin-dsl` }
 
-publishingData {
-  artifact = "gradle-android"
-  name = "Android Gradle Toolkit"
+publication.data {
+  artifactId = "toolkit-android"
+  displayName = "Android Gradle Toolkit"
   description = "Raise the practicality of android-gradle-plugin (AGP) to a new level."
 }
 
