@@ -26,6 +26,7 @@ import MavenMirrors
 import NdkAbi
 import abiFilters
 import android
+import autofix.Module.Companion.module
 import com.diffplug.gradle.spotless.SpotlessApply
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.meowool.gradle.toolkit.GradleToolkitExtension
@@ -34,6 +35,7 @@ import com.meowool.gradle.toolkit.publisher.PublicationExtension
 import jitpack
 import loadKeyProperties
 import mavenMirror
+import me.tylerbwong.gradle.metalava.extension.MetalavaExtension
 import meowoolHomeDir
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
@@ -103,12 +105,12 @@ open class MeowoolPresetSpec internal constructor() {
   open var enabledSpotless: Boolean = true
 
   /**
-   * Whether to use this specification of [binary-compatibility-validator](https://github.com/Kotlin/binary-compatibility-validator).
+   * Whether to use this specification of metalava.
    *
-   * @see enableBinaryCompatibilityValidator
-   * @see disableBinaryCompatibilityValidator
+   * @see enableMetalava
+   * @see disableMetalava
    */
-  open var enabledBinaryCompatibilityValidator: Boolean = true
+  open var enabledMetalava: Boolean = true
 
   /**
    * The configurations list of the project of this specification.
@@ -117,7 +119,7 @@ open class MeowoolPresetSpec internal constructor() {
     presetAndroid(),
     presetSpotless(),
     presetPublications(),
-    presetBinaryCompatibilityValidator(),
+    presetMetalava(),
   )
 
   /**
@@ -176,17 +178,17 @@ open class MeowoolPresetSpec internal constructor() {
   }
 
   /**
-   * Enables the [binary-compatibility-validator](https://github.com/Kotlin/binary-compatibility-validator) plugin.
+   * Enables the [metalava](https://github.com/tylerbwong/metalava-gradle) plugin.
    */
-  fun enableBinaryCompatibilityValidator() {
-    enabledBinaryCompatibilityValidator = true
+  fun enableMetalava() {
+    enabledMetalava = true
   }
 
   /**
-   * Disables the [binary-compatibility-validator](https://github.com/Kotlin/binary-compatibility-validator) plugin.
+   * Disables the [metalava](https://github.com/tylerbwong/metalava-gradle) plugin.
    */
-  fun disableBinaryCompatibilityValidator() {
-    enabledBinaryCompatibilityValidator = false
+  fun disableMetalava() {
+    enabledMetalava = false
   }
 
   // ///////////////////////////////////////////////////////////////////////////////////
@@ -297,11 +299,31 @@ open class MeowoolPresetSpec internal constructor() {
     }
   }
 
-  protected fun presetBinaryCompatibilityValidator(): GradleToolkitExtension.() -> Unit = {
+  protected fun presetMetalava(): GradleToolkitExtension.() -> Unit = {
     allprojects {
-      // Output binary api
+      project.extensions.findByType<MetalavaExtension>()?.apply {
+        // TODO Modify when https://github.com/tylerbwong/metalava-gradle/pull/23 merged
+        val currentModule = module(this) ?: return@apply
+        autofix.MetalavaSignature.registerMetalavaSignatureTask(
+          project = project,
+          name = "metalavaGenerateSignature",
+          description = "Generates a Metalava signature descriptor file.",
+          extension = this,
+          module = currentModule
+        )
+        autofix.MetalavaCheckCompatibility.registerMetalavaCheckCompatibilityTask(
+          project = project,
+          extension = this,
+          module = currentModule
+        )
+
+        filename = "api/${project.version.takeUnless { it == "unspecified" } ?: "current"}.api"
+        includeSignatureVersion = false
+      }
+
+      // Output meta api before publish
       project.tasks.all {
-        if (name == "apiDump") {
+        if (name == "metalavaGenerateSignature") {
           afterEvaluate {
             project.tasks.findByName("publish")?.dependsOn(this@all)
           }

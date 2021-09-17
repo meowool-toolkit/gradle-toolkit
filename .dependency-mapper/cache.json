@@ -47,7 +47,8 @@
         "in.arunkumarsampath:transition-x": "TransitionX",
         "com.diffplug.spotless:spotless-plugin-gradle": "Gradle.Spotless",
         "com.gradle.publish:plugin-publish-plugin": "Gradle.Publish.Plugin",
-        "net.mbonnin.vespene:vespene-lib": "Vespene"
+        "net.mbonnin.vespene:vespene-lib": "Vespene",
+        "me.tylerbwong.gradle:metalava-gradle": "Gradle.Metalava"
       },
       "groupSearches": [
         {

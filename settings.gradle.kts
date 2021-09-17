@@ -48,7 +48,10 @@ dependencyMapper {
       // TODO Remove when meowool-sweekt released.
       "com.meowool.toolkit:sweekt",
     )
-    map("net.mbonnin.vespene:vespene-lib" to "Vespene")
+    map(
+      "net.mbonnin.vespene:vespene-lib" to "Vespene",
+      "me.tylerbwong.gradle:metalava-gradle" to "Gradle.Metalava"
+    )
   }
 }
 

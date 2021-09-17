@@ -40,6 +40,7 @@ fun Settings.importProjects(
   excludeBy: (File) -> Boolean,
 ) = includeDir.walkTopDown()
   .onEnter {
+    if (it == includeDir) return@onEnter true
     it.resolve(".skipimport").exists().not() &&
       excludeBy(it).not() &&
       // Enter the dir containing build scripts
@@ -47,7 +48,7 @@ fun Settings.importProjects(
       // Enter a non-build dir, or the parent dir does not contain build scripts
       (it.name != "build" || it.parentFile.containsBuildScript().not())
   }
-  .filter { it.isDirectory }
+  .filter { it.isDirectory && it != rootDir }
   .forEach { include(":${it.relativeTo(rootDir).path.replace(File.separatorChar, ':')}") }
 
 /**

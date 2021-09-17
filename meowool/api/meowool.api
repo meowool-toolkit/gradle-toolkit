@@ -43,3 +43,51 @@ public final class NdkObfuscator$Hikari : NdkObfuscator {
 	public synthetic fun <init> (ZZZZIIZZIZIIZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
+public final class com/meowool/gradle/toolkit/internal/MeowoolManualSpec : com/meowool/gradle/toolkit/internal/MeowoolPresetSpec {
+	public fun getConfigurations ()Ljava/util/List;
+	public fun getEnabledMetalava ()Z
+	public fun getEnabledSpotless ()Z
+	public fun getOptIn ()Ljava/util/List;
+	public fun getRepositories ()Lkotlin/jvm/functions/Function2;
+	public fun setEnabledMetalava (Z)V
+	public fun setEnabledSpotless (Z)V
+	public fun setRepositories (Lkotlin/jvm/functions/Function2;)V
+	public final fun useAndroidPreset ()Z
+	public final fun useOptInPreset ()Z
+	public final fun usePublicationsPreset ()Z
+	public final fun useRepositoriesPreset ()V
+	public final fun useSpotlessPreset ()Z
+}
+
+public class com/meowool/gradle/toolkit/internal/MeowoolPresetSpec {
+	public final fun disableMetalava ()V
+	public final fun disableSpotless ()V
+	public final fun enableMetalava ()V
+	public final fun enableSpotless ()V
+	public fun getConfigurations ()Ljava/util/List;
+	public fun getEnabledMetalava ()Z
+	public fun getEnabledSpotless ()Z
+	public final fun getLicenseHeader ()Ljava/lang/String;
+	public final fun getLicenseUrl ()Ljava/lang/String;
+	public fun getOptIn ()Ljava/util/List;
+	public fun getRepositories ()Lkotlin/jvm/functions/Function2;
+	public final fun isOpenSourceProject ()Z
+	public final fun licenseHeader (Ljava/io/File;)V
+	public final fun licenseHeader (Ljava/nio/file/Path;)V
+	public final fun openSourceProject (Ljava/lang/String;)V
+	protected final fun presetAndroid ()Lkotlin/jvm/functions/Function1;
+	protected final fun presetMetalava ()Lkotlin/jvm/functions/Function1;
+	protected final fun presetOptIn ()Ljava/util/List;
+	protected final fun presetPublications ()Lkotlin/jvm/functions/Function1;
+	protected final fun presetRepositories ()Lkotlin/jvm/functions/Function2;
+	protected final fun presetSpotless ()Lkotlin/jvm/functions/Function1;
+	public final fun privateProject ()V
+	public fun setEnabledMetalava (Z)V
+	public fun setEnabledSpotless (Z)V
+	public final fun setLicenseHeader (Ljava/lang/String;)V
+	public final fun setLicenseUrl (Ljava/lang/String;)V
+	public final fun setOpenSourceProject (Z)V
+	public fun setRepositories (Lkotlin/jvm/functions/Function2;)V
+	public final fun spotless (Lkotlin/jvm/functions/Function2;)V
+}
+

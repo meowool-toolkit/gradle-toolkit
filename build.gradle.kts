@@ -53,9 +53,9 @@ val internalMarkers = arrayOf(
   "de.fayard.refreshVersions.core.internal.InternalRefreshVersionsApi"
 )
 
-apiValidation {
-  nonPublicMarkers += internalMarkers
-  ignoredPackages += arrayOf(
+metalava {
+  hiddenAnnotations += internalMarkers
+  hiddenPackages += arrayOf(
     "com.meowool.gradle.toolkit.internal",
     "com.meowool.gradle.toolkit.android.internal",
     "com.meowool.gradle.toolkit.publisher.internal",

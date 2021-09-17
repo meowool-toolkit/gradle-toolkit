@@ -54,12 +54,12 @@ class MeowoolManualSpec internal constructor() : MeowoolPresetSpec() {
   override var enabledSpotless: Boolean = false
 
   /**
-   * Whether to use this specification of [binary-compatibility-validator](https://github.com/Kotlin/binary-compatibility-validator).
+   * Whether to use this specification of metalava.
    *
-   * @see enableBinaryCompatibilityValidator
-   * @see disableBinaryCompatibilityValidator
+   * @see enableMetalava
+   * @see disableMetalava
    */
-  override var enabledBinaryCompatibilityValidator: Boolean = false
+  override var enabledMetalava: Boolean = false
 
   /**
    * The configurations list of the project of this specification.

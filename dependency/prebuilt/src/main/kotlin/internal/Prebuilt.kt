@@ -33,6 +33,11 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
   plugins: String = PluginDependencyDeclaration.DefaultRootClassName,
 ) = apply {
   plugins(plugins) {
+    map(
+      "com.diffplug.spotless" to "Gradle.Spotless",
+      "com.gradle.publish" to "Gradle.Publish.Plugin",
+      "me.tylerbwong.gradle.metalava" to "Gradle.Metalava",
+    )
     searchPrefixes(
       "com.google",
 
@@ -47,16 +52,18 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
   libraries(libraries) {
     transferPluginIds(plugins)
     map(
-      "com.tfowl.ktor:ktor-jsoup" to "Ktor.Jsoup",
-      "com.github.ben-manes.caffeine:caffeine" to "Caffeine",
-      "com.github.promeg:tinypinyin" to "TinyPinyin",
-      "de.fayard.refreshVersions:refreshVersions" to "RefreshVersions",
-      "com.github.donkingliang:ConsecutiveScroller" to "ConsecutiveScroller",
       "org.zeroturnaround:zt-zip" to "ZtZip",
-      "com.andkulikov:transitionseverywhere" to "TransitionsEverywhere",
+      "com.tfowl.ktor:ktor-jsoup" to "Ktor.Jsoup",
+      "com.github.promeg:tinypinyin" to "TinyPinyin",
       "in.arunkumarsampath:transition-x" to "TransitionX",
+      "com.github.ben-manes.caffeine:caffeine" to "Caffeine",
+      "de.fayard.refreshVersions:refreshVersions" to "RefreshVersions",
+      "com.andkulikov:transitionseverywhere" to "TransitionsEverywhere",
+      "com.github.donkingliang:ConsecutiveScroller" to "ConsecutiveScroller",
+
+      "me.tylerbwong.gradle:metalava-gradle:" to "Gradle.Metalava",
       "com.diffplug.spotless:spotless-plugin-gradle" to "Gradle.Spotless",
-      "com.gradle.publish:plugin-publish-plugin" to "Gradle.Publish.Plugin"
+      "com.gradle.publish:plugin-publish-plugin" to "Gradle.Publish.Plugin",
     )
 
     // Do not use the following method, because it will receive additional options by the user
