@@ -41,7 +41,7 @@ import org.gradle.kotlin.dsl.apply
  */
 fun Project.androidApp(key: Any = DefaultAndroidKey, configuration: BaseAppModuleExtension.() -> Unit = {}) {
   when {
-    hasAndroidPlugin() -> apply(plugin = "android")
+    hasAndroidPlugin().not() -> apply(plugin = "android")
     else -> requireAndroidAppPlugin()
   }
   android<BaseAppModuleExtension> {
@@ -78,7 +78,7 @@ fun Project.androidKotlinApp(key: Any = DefaultAndroidKey, configuration: BaseAp
  */
 fun Project.androidLib(key: Any = DefaultAndroidKey, configuration: LibraryExtension.() -> Unit = {}) {
   when {
-    hasAndroidPlugin() -> apply(plugin = "android-library")
+    hasAndroidPlugin().not() -> apply(plugin = "android-library")
     else -> requireAndroidLibPlugin()
   }
   android<LibraryExtension> {

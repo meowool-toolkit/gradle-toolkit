@@ -40,9 +40,3 @@ dependencies {
   implementation(Libs.Gradle.Publish.Plugin)
   compileOnly(Libs.Android.Tools.Build.Gradle version "4.2.1")
 }
-
-fun sources(suffix: String) = sourceSets.flatMap { set ->
-  set.allSource.sourceDirectories.map { "${it.relativeTo(projectDir).path.removeSuffix(File.separator)}/*.$suffix" }
-}
-
-println(sources("kt"))

@@ -216,7 +216,7 @@ open class MeowoolPresetSpec internal constructor() {
   )
 
   protected fun presetSpotless(): GradleToolkitExtension.() -> Unit = {
-    allprojects {
+    allprojects(afterEvaluate = false) {
       extensions.findByType<SpotlessExtension>()?.apply {
         fun ktlintData() = mapOf(
           "indent_size" to "2",
@@ -241,24 +241,26 @@ open class MeowoolPresetSpec internal constructor() {
           licenseHeader?.let { licenseHeader(it, "(import |plugins|buildscript|tasks|apply|rootProject|@)") }
         }
 
-        if (extensions.findByType<JavaPluginExtension>() != null) afterEvaluate {
-          fun sources(suffix: String) = sourceSets.flatMap { set ->
-            set.allSource.sourceDirectories.map { it.relativeTo(projectDir).path.removeSuffix("/") + "/*.$suffix" }
-          }
-          java {
-            target(sources("java"))
-            // apply a specific flavor of google-java-format
-            googleJavaFormat().aosp()
-            endWithNewline()
-            trimTrailingWhitespace()
-            licenseHeader?.let { licenseHeader(it, "(package |import |public |private )") }
-          }
-          kotlin {
-            target(sources("kt"))
-            ktlint().userData(ktlintData())
-            endWithNewline()
-            trimTrailingWhitespace()
-            licenseHeader?.let { licenseHeader(it, "(package |import |class |fun |val |public |private |internal |@)") }
+        afterEvaluate {
+          if (extensions.findByType<JavaPluginExtension>() != null) {
+            fun sources(suffix: String): List<File> = sourceSets.flatMap { set ->
+              set.allSource.sourceDirectories.asFileTree.filter { it.extension == suffix }
+            }
+            java {
+              target(sources("java"))
+              // apply a specific flavor of google-java-format
+              googleJavaFormat().aosp()
+              endWithNewline()
+              trimTrailingWhitespace()
+              licenseHeader?.let { licenseHeader(it, "(package |import |public |private )") }
+            }
+            kotlin {
+              target(sources("kt"))
+              ktlint().userData(ktlintData())
+              endWithNewline()
+              trimTrailingWhitespace()
+              licenseHeader?.let { licenseHeader(it, "(package |import |class |fun |val |public |private |internal |@)") }
+            }
           }
         }
       }
