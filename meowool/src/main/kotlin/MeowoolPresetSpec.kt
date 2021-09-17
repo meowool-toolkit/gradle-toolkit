@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 @file:Suppress("MemberVisibilityCanBePrivate")
 
 package com.meowool.gradle.toolkit.internal
@@ -6,6 +26,7 @@ import MavenMirrors
 import NdkAbi
 import abiFilters
 import android
+import com.diffplug.gradle.spotless.SpotlessApply
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.meowool.gradle.toolkit.GradleToolkitExtension
 import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.DefaultCandidateAndroidKey
@@ -19,6 +40,7 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.maven
+import org.gradle.kotlin.dsl.sourceSets
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.dokka.gradle.DokkaTask
 import releaseSigning
@@ -48,12 +70,21 @@ open class MeowoolPresetSpec internal constructor() {
 
   /**
    * The license header of the source codes, if it is `null` and the project is privately, license header will not be
-   * written during spotless running.
+   * written during spotless running, otherwise use default license header by Meowool organization.
    *
    * @see spotless
    */
   var licenseHeader: String? = null
-    get() = if (field == null && isOpenSourceProject) OpenSourceLicense else null
+    get() = if (field == null && isOpenSourceProject) defaultOpenSourceLicense(licenseUrl!!) else null
+
+  /**
+   * The license url of the license header, if it is `null`, license url will not be
+   * written during spotless running, otherwise use default license url by Apache 2.0.
+   *
+   * @see spotless
+   */
+  var licenseUrl: String? = null
+    get() = if (field == null) Apache2License else null
 
   /**
    * Whether to currently developing an open source project belonging to 'Meowool Organization'.
@@ -72,19 +103,29 @@ open class MeowoolPresetSpec internal constructor() {
   open var enabledSpotless: Boolean = true
 
   /**
+   * Whether to use this specification of [binary-compatibility-validator](https://github.com/Kotlin/binary-compatibility-validator).
+   *
+   * @see enableBinaryCompatibilityValidator
+   * @see disableBinaryCompatibilityValidator
+   */
+  open var enabledBinaryCompatibilityValidator: Boolean = true
+
+  /**
    * The configurations list of the project of this specification.
    */
   open val configurations: MutableList<GradleToolkitExtension.() -> Unit> = mutableListOf(
     presetAndroid(),
     presetSpotless(),
     presetPublications(),
+    presetBinaryCompatibilityValidator(),
   )
 
   /**
    * Marks that an open source project belonging to the 'Meowool Organization' is currently being developed.
    */
-  fun openSourceProject() {
+  fun openSourceProject(licenseUrl: String) {
     isOpenSourceProject = true
+    this.licenseUrl = licenseUrl
   }
 
   /**
@@ -134,10 +175,23 @@ open class MeowoolPresetSpec internal constructor() {
     enabledSpotless = false
   }
 
+  /**
+   * Enables the [binary-compatibility-validator](https://github.com/Kotlin/binary-compatibility-validator) plugin.
+   */
+  fun enableBinaryCompatibilityValidator() {
+    enabledBinaryCompatibilityValidator = true
+  }
 
-  /////////////////////////////////////////////////////////////////////////////////////
-  ////                                Internal APIs                                ////
-  /////////////////////////////////////////////////////////////////////////////////////
+  /**
+   * Disables the [binary-compatibility-validator](https://github.com/Kotlin/binary-compatibility-validator) plugin.
+   */
+  fun disableBinaryCompatibilityValidator() {
+    enabledBinaryCompatibilityValidator = false
+  }
+
+  // ///////////////////////////////////////////////////////////////////////////////////
+  // //                                Internal APIs                                ////
+  // ///////////////////////////////////////////////////////////////////////////////////
 
   protected fun presetRepositories(): RepositoryHandler.(Project) -> Unit = { project ->
     project.rootProject.rootDir.resolve(".repo").takeIf { it.exists() }?.let(::maven)
@@ -164,26 +218,48 @@ open class MeowoolPresetSpec internal constructor() {
   protected fun presetSpotless(): GradleToolkitExtension.() -> Unit = {
     allprojects {
       extensions.findByType<SpotlessExtension>()?.apply {
-        if (extensions.findByType<JavaPluginExtension>() == null) return@apply
-        java {
-          // apply a specific flavor of google-java-format
-          googleJavaFormat().aosp()
-          targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
+        fun ktlintData() = mapOf(
+          "indent_size" to "2",
+          "chain-wrapping" to "true",
+          "modifier-order" to "true",
+          "string-template" to "true",
+          "no-semi" to "true",
+          "no-unit-return" to "true",
+          "no-unused-imports" to "true",
+          "no-trailing-spaces" to "true",
+          "no-wildcard-imports" to "true",
+          "no-line-break-before-assignment" to "true",
+          "experimental:multiline-if-else" to "true",
+          "experimental:double-colon-spacing" to "true",
+          "experimental:spacing-between-declarations-with-comments" to "true",
+        )
+
+        kotlinGradle {
+          ktlint().userData(ktlintData())
           endWithNewline()
           trimTrailingWhitespace()
-          licenseHeader?.let { licenseHeader(it, "(package |import |public |private)") }
+          licenseHeader?.let { licenseHeader(it, "(import |plugins|buildscript|tasks|apply|rootProject|@)") }
         }
-        kotlin {
-          targetExclude("${buildDir.absolutePath}/**", "**/resources/**")
-          ktlint("0.42.1").userData(
-            mapOf(
-              "indent_size" to "2",
-              "no-unused-imports" to "true",
-            )
-          )
-          endWithNewline()
-          trimTrailingWhitespace()
-          licenseHeader?.let { licenseHeader(it, "(package |import |@ |class |fun |val |public |private |internal)") }
+
+        if (extensions.findByType<JavaPluginExtension>() != null) afterEvaluate {
+          fun sources(suffix: String) = sourceSets.flatMap { set ->
+            set.allSource.sourceDirectories.map { it.relativeTo(projectDir).path.removeSuffix("/") + "/*.$suffix" }
+          }
+          java {
+            target(sources("java"))
+            // apply a specific flavor of google-java-format
+            googleJavaFormat().aosp()
+            endWithNewline()
+            trimTrailingWhitespace()
+            licenseHeader?.let { licenseHeader(it, "(package |import |public |private )") }
+          }
+          kotlin {
+            target(sources("kt"))
+            ktlint().userData(ktlintData())
+            endWithNewline()
+            trimTrailingWhitespace()
+            licenseHeader?.let { licenseHeader(it, "(package |import |class |fun |val |public |private |internal |@)") }
+          }
         }
       }
     }
@@ -202,6 +278,7 @@ open class MeowoolPresetSpec internal constructor() {
           organizationUrl = "https://github.com/meowool/"
         }
       }
+
       project.tasks.withType<DokkaTask> {
         dokkaSourceSets.configureEach {
           skipDeprecated.set(true)
@@ -209,13 +286,27 @@ open class MeowoolPresetSpec internal constructor() {
         }
       }
 
-      // Keep spotless before publish.
-      project.tasks.findByName("spotlessApply")?.also { spotless ->
-        project.tasks.findByName("publish")?.dependsOn(spotless)
+      // Keep spotless before publish
+      project.tasks.withType<SpotlessApply> {
+        afterEvaluate {
+          project.tasks.findByName("publish")?.dependsOn(this@withType)
+        }
       }
     }
   }
 
+  protected fun presetBinaryCompatibilityValidator(): GradleToolkitExtension.() -> Unit = {
+    allprojects {
+      // Output binary api
+      project.tasks.all {
+        if (name == "apiDump") {
+          afterEvaluate {
+            project.tasks.findByName("publish")?.dependsOn(this@all)
+          }
+        }
+      }
+    }
+  }
 
   protected fun presetAndroid(): GradleToolkitExtension.() -> Unit = {
     registerLogic {

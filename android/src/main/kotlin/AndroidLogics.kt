@@ -12,14 +12,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
+
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
+ *
+ * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
 @file:Suppress("UNCHECKED_CAST")
 
-import com.meowool.gradle.toolkit.android.internal.requireAndroidAppPlugin
-import com.meowool.gradle.toolkit.android.internal.requireAndroidLibPlugin
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.TestedExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
@@ -35,6 +35,8 @@ import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.getAndro
 import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.getAndroidCommonLogic
 import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.getAndroidLibLogic
 import com.meowool.gradle.toolkit.android.internal.android
+import com.meowool.gradle.toolkit.android.internal.requireAndroidAppPlugin
+import com.meowool.gradle.toolkit.android.internal.requireAndroidLibPlugin
 import org.gradle.api.Project
 
 /**

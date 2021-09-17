@@ -1,16 +1,36 @@
 {
+  "formatter": {
+    "startProcessorCount": 1,
+    "nameProcessorCount": 1,
+    "capitalizationPredicateCount": 1
+  },
   "declarations": {
     "Plugins": {
       "type": "com.meowool.gradle.toolkit.internal.PluginDependencyDeclarationImpl",
-      "rootClassName": "Plugins"
+      "rootClassName": "Plugins",
+      "prefixSearches": [
+        {
+          "values": [
+            "com.google",
+            "org.jetbrains.dokka",
+            "org.jetbrains.gradle",
+            "org.jetbrains.kotlin",
+            "org.jetbrains.intellij",
+            "org.jetbrains.changelog"
+          ],
+          "repositories": [
+            {
+              "type": "com.meowool.gradle.toolkit.internal.DependencyRepository.GradlePluginPortal"
+            }
+          ]
+        }
+      ]
     },
     "Libs": {
       "type": "com.meowool.gradle.toolkit.internal.LibraryDependencyDeclarationImpl",
       "rootClassName": "Libs",
-      "pluginDeclarations": [
-        {
-          "rootClassName": "Plugins"
-        }
+      "pluginDeclarationRootClasses": [
+        "Plugins"
       ],
       "map": [
         "net.andreinc:mockneat",
@@ -144,10 +164,5 @@
       "type": "com.meowool.gradle.toolkit.internal.ProjectDependencyDeclarationImpl",
       "rootClassName": "Projects"
     }
-  },
-  "formatter": {
-    "startProcessorCount": 1,
-    "nameProcessorCount": 1,
-    "capitalizationPredicateCount": 1
   }
 }

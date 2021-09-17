@@ -1,16 +1,32 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 import com.meowool.gradle.toolkit.DependencyMapperExtension
 import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl
 import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl.Companion.cacheJar
 import com.meowool.gradle.toolkit.internal.forEachConcurrently
 import com.meowool.gradle.toolkit.internal.sendAll
-import com.meowool.sweekt.iteration.size
 import io.kotest.assertions.withClue
-import io.kotest.core.TestConfiguration
 import io.kotest.core.spec.style.FreeSpec
-import io.kotest.core.spec.style.StringSpec
 import io.kotest.engine.spec.tempdir
 import io.kotest.matchers.booleans.shouldBeTrue
-import io.kotest.matchers.collections.shouldBeSameSizeAs
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.shouldBe
@@ -84,40 +100,6 @@ class MappedClassesTests : FreeSpec({
       }.shouldBeTrue()
     }
 
-    "declared with plugin id" {
-      val classLoader = runMapping {
-        val plugins = plugins(PluginsRoot)
-        libraries(LibrariesRoot) {
-          transferPluginIds(plugins)
-          map(
-            "foo:bar",
-            "foo.bar.plugin:foo.bar.plugin.gradle.plugin",
-          )
-        }
-      }
-      // Validate library notations
-      classLoader.findClass(LibrariesRoot).collectFields() shouldBe listOf(
-        Field(
-          holder = "$LibrariesRoot.Foo",
-          name = "Bar",
-          value = "foo:bar:_"
-        ),
-        Field(
-          holder = "$LibrariesRoot.Foo.Bar.Plugin.Gradle",
-          name = "Plugin",
-          value = "foo.bar.plugin:foo.bar.plugin.gradle.plugin:_"
-        ),
-      )
-      // Validate plugin id
-      classLoader.findClass(PluginsRoot).collectFields() shouldBe listOf(
-        Field(
-          holder = "$PluginsRoot.Foo.Bar",
-          name = "Plugin",
-          value = "foo.bar.plugin"
-        ),
-      )
-    }
-
     "remote" {
       infix fun List<*>.compareWith(other: List<*>) {
         withClue("this to other") { this shouldContainAll other }
@@ -137,11 +119,62 @@ class MappedClassesTests : FreeSpec({
       projects(ProjectsRoot) {
         mapRootProject("main-bar")
       }
-    }.findClass(ProjectsRoot).collectFields() shouldBe listOf(Field(
-      holder = "$ProjectsRoot.Main",
-      name = "Bar",
-      value = ":"
-    ))
+    }.findClass(ProjectsRoot).collectFields() shouldBe listOf(
+      Field(
+        holder = "$ProjectsRoot.Main",
+        name = "Bar",
+        value = ":"
+      )
+    )
+  }
+
+  "plugins and libraries" {
+    val classLoader = runMapping {
+      val plugins = plugins(PluginsRoot) {
+        map(
+          "com.plugin.id",
+          "pp",
+        )
+      }
+      libraries(LibrariesRoot) {
+        transferPluginIds(plugins)
+        map(
+          "foo:bar",
+          "foo.bar.plugin:foo.bar.plugin.gradle.plugin",
+        )
+      }
+    }
+    // Validate library notations
+    classLoader.findClass(LibrariesRoot).collectFields() shouldBe listOf(
+      Field(
+        holder = "$LibrariesRoot.Foo",
+        name = "Bar",
+        value = "foo:bar:_"
+      ),
+      Field(
+        holder = "$LibrariesRoot.Foo.Bar.Plugin.Gradle",
+        name = "Plugin",
+        value = "foo.bar.plugin:foo.bar.plugin.gradle.plugin:_"
+      ),
+    )
+    // Validate plugin id
+    classLoader.findClass(PluginsRoot).collectFields() shouldContainExactlyInAnyOrder listOf(
+      Field(
+        holder = "$PluginsRoot.Foo.Bar",
+        name = "Plugin",
+        value = "foo.bar.plugin"
+      ),
+      Field(
+        holder = "$PluginsRoot.Com.Plugin",
+        name = "Id",
+        value = "com.plugin.id"
+      ),
+      Field(
+        holder = PluginsRoot,
+        name = "Pp",
+        value = "pp"
+      ),
+    )
   }
 }) {
   private companion object {

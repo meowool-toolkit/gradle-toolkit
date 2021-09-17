@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 除如果您正在修改此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 package com.meowool.gradle.toolkit.internal.client
 
 import com.github.benmanes.caffeine.cache.Cache
@@ -8,18 +28,19 @@ import com.meowool.gradle.toolkit.internal.DefaultJson
 import com.meowool.gradle.toolkit.internal.JsoupFeature
 import com.meowool.gradle.toolkit.internal.retryConnection
 import com.meowool.gradle.toolkit.internal.sendList
-import io.ktor.client.*
-import io.ktor.client.engine.okhttp.*
-import io.ktor.client.features.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.request.*
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.features.ClientRequestException
+import io.ktor.client.features.defaultRequest
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.request.get
+import io.ktor.client.request.header
 import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.retry
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import net.andreinc.mockneat.unit.networking.IPv4s

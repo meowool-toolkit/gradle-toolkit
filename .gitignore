@@ -1,7 +1,3 @@
 # Project exclude paths
 /.gradle/
 /build/**
-
-# Include dependency-mapper caching path
-!/build/dependency-mapper/
-!/build/dependency-mapper/*

@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 @file:Suppress("MemberVisibilityCanBePrivate", "DEPRECATION")
 
 package com.meowool.gradle.toolkit.publisher
@@ -432,7 +452,6 @@ import org.gradle.api.publish.maven.MavenPomLicense
     pomConfigurations += configuration
   }
 
-
   /**
    * The developer data of a Maven publication.
    *
@@ -473,7 +492,6 @@ import org.gradle.api.publish.maven.MavenPomLicense
      * the publishing.
      */
     var url: String? = null
-
 
     override fun equals(other: Any?): Boolean {
       if (this === other) return true
@@ -521,7 +539,6 @@ import org.gradle.api.publish.maven.MavenPomLicense
      */
     var url: String? = null
 
-
     override fun equals(other: Any?): Boolean {
       if (this === other) return true
       if (other !is License) return false
@@ -539,10 +556,9 @@ import org.gradle.api.publish.maven.MavenPomLicense
     }
   }
 
-
-  /////////////////////////////////////////////////////////////////////////////////////
-  ////                                Internal APIs                                ////
-  /////////////////////////////////////////////////////////////////////////////////////
+  // ///////////////////////////////////////////////////////////////////////////////////
+  // //                                Internal APIs                                ////
+  // ///////////////////////////////////////////////////////////////////////////////////
 
   internal fun groupIdOrDefault(): String = groupId
     .ifNull { project.findPropertyOrEnv("publication.groupId")?.toString() }
@@ -605,12 +621,14 @@ import org.gradle.api.publish.maven.MavenPomLicense
     val urls = project.findPropertyOrEnv("publication.developers.url")?.toString()?.split(", ").orEmpty()
 
     repeat(maxOf(ids, names, emails, urls).size) { index ->
-      add(Developer().apply {
-        ids.getOrNull(index)?.let { id = it }
-        names.getOrNull(index)?.let { name = it }
-        emails.getOrNull(index)?.let { email = it }
-        urls.getOrNull(index)?.let { url = it }
-      })
+      add(
+        Developer().apply {
+          ids.getOrNull(index)?.let { id = it }
+          names.getOrNull(index)?.let { name = it }
+          emails.getOrNull(index)?.let { email = it }
+          urls.getOrNull(index)?.let { url = it }
+        }
+      )
     }
 
     // Root project also needs to be added
@@ -622,16 +640,17 @@ import org.gradle.api.publish.maven.MavenPomLicense
     val urls = project.findPropertyOrEnv("publication.licenses.url")?.toString()?.split(", ").orEmpty()
 
     repeat(maxOf(names, urls).size) { index ->
-      add(License().apply {
-        names.getOrNull(index)?.let { name = it }
-        urls.getOrNull(index)?.let { url = it }
-      })
+      add(
+        License().apply {
+          names.getOrNull(index)?.let { name = it }
+          urls.getOrNull(index)?.let { url = it }
+        }
+      )
     }
 
     // Root project also needs to be added
     project.rootPublicationData?.licensesOrDefault()?.let(::addAll)
   }
-
 
   @DslMarker internal annotation class Marker
 }

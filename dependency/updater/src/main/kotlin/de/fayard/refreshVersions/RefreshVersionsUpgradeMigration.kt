@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 除如果您正在修改此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 @file:JvmName("RefreshVersionsMigration")
 
 package de.fayard.refreshVersions
@@ -7,9 +27,9 @@ import org.gradle.api.initialization.Settings
 
 @JvmName("migrateIfNeeded")
 fun Settings.migrateRefreshVersionsIfNeeded(fromVersion: String) {
-    val currentVersion = RefreshVersionsCorePlugin.currentVersion
-    if (currentVersion == fromVersion) return // User didn't upgrade yet, skip
-    removeMigrationCall(this)
+  val currentVersion = RefreshVersionsCorePlugin.currentVersion
+  if (currentVersion == fromVersion) return // User didn't upgrade yet, skip
+  removeMigrationCall(this)
 /*
 TODO: Revisit/remove this once we put the version of refreshVersions in the versions.properties file.
  Note: We might need to keep an ordered list of all the versions, including dev versions for
@@ -32,65 +52,65 @@ skipping all migrations before the passed version. Also, report if passed versio
 }
 
 private fun removeMigrationCall(settings: Settings) {
-    val isKotlinDsl: Boolean
-    val settingsFile = settings.settingsDir.resolve("settings.gradle.kts").let { kotlinDslSettings ->
-        if (kotlinDslSettings.exists()) kotlinDslSettings.also { isKotlinDsl = true } else {
-            settings.settingsDir.resolve("settings.gradle").also {
-                check(it.exists())
-                isKotlinDsl = false
-            }
-        }
+  val isKotlinDsl: Boolean
+  val settingsFile = settings.settingsDir.resolve("settings.gradle.kts").let { kotlinDslSettings ->
+    if (kotlinDslSettings.exists()) kotlinDslSettings.also { isKotlinDsl = true } else {
+      settings.settingsDir.resolve("settings.gradle").also {
+        check(it.exists())
+        isKotlinDsl = false
+      }
     }
-    val initialContent = settingsFile.readText()
-    val newContent = withRemovedMigrationCall(
-        isKotlinDsl = isKotlinDsl,
-        initialContent = initialContent
-    )
-    settingsFile.writeText(newContent)
+  }
+  val initialContent = settingsFile.readText()
+  val newContent = withRemovedMigrationCall(
+    isKotlinDsl = isKotlinDsl,
+    initialContent = initialContent
+  )
+  settingsFile.writeText(newContent)
 }
 
 /**
  * Visible for testing.
  */
 internal fun withRemovedMigrationCall(
-    isKotlinDsl: Boolean,
-    initialContent: String
+  isKotlinDsl: Boolean,
+  initialContent: String
 ): String {
 
-    class ExpectedValues(
-        migrationPackageName: String = "de.fayard.refreshVersions",
-        migrationCallSymbol: String
-    ) {
-        val migrationCallImport = "import $migrationPackageName.${migrationCallSymbol.substringBefore('.')}"
-        val migrationCallText = "\n$migrationCallSymbol("
-    }
+  class ExpectedValues(
+    migrationPackageName: String = "de.fayard.refreshVersions",
+    migrationCallSymbol: String
+  ) {
+    val migrationCallImport = "import $migrationPackageName.${migrationCallSymbol.substringBefore('.')}"
+    val migrationCallText = "\n$migrationCallSymbol("
+  }
 
-    val expectedValues = ExpectedValues(
-        migrationCallSymbol = when {
-            isKotlinDsl -> "migrateRefreshVersionsIfNeeded"
-            else -> "RefreshVersionsMigration.migrateIfNeeded"
-        }
-    )
-
-    val migrationImportIndex = initialContent.indexOf(expectedValues.migrationCallImport).also {
-        check(it != -1) { "Migration import not found." }
+  val expectedValues = ExpectedValues(
+    migrationCallSymbol = when {
+      isKotlinDsl -> "migrateRefreshVersionsIfNeeded"
+      else -> "RefreshVersionsMigration.migrateIfNeeded"
     }
+  )
 
-    val migrationCallIndex = initialContent.indexOf(expectedValues.migrationCallText).also {
-        check(it != -1) { "Migration call not found." }
-    }
+  val migrationImportIndex = initialContent.indexOf(expectedValues.migrationCallImport).also {
+    check(it != -1) { "Migration import not found." }
+  }
 
-    return buildString {
-        val preImportText = initialContent.substring(startIndex = 0, endIndex = migrationImportIndex)
-        append(preImportText)
-        val postImportText = initialContent.substring(
-            startIndex = migrationImportIndex,
-            endIndex = migrationCallIndex
-        ).substringAfter('\n')
-        append(postImportText)
-        val postCallText = initialContent.substring(startIndex = migrationCallIndex + 2)
-            .substringAfter('\n').removePrefix("\n")
-        appendln()
-        append(postCallText)
-    }
+  val migrationCallIndex = initialContent.indexOf(expectedValues.migrationCallText).also {
+    check(it != -1) { "Migration call not found." }
+  }
+
+  return buildString {
+    val preImportText = initialContent.substring(startIndex = 0, endIndex = migrationImportIndex)
+    append(preImportText)
+    val postImportText = initialContent.substring(
+      startIndex = migrationImportIndex,
+      endIndex = migrationCallIndex
+    ).substringAfter('\n')
+    append(postImportText)
+    val postCallText = initialContent.substring(startIndex = migrationCallIndex + 2)
+      .substringAfter('\n').removePrefix("\n")
+    appendln()
+    append(postCallText)
+  }
 }

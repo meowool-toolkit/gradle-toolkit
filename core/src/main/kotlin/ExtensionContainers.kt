@@ -12,14 +12,15 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
+
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
+ *
+ * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
 import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.kotlin.dsl.add
 import kotlin.reflect.KClass
-
 
 /**
  * Adds a new extension to this container when the given name does not exist.
@@ -37,7 +38,6 @@ inline fun <reified T : Any> ExtensionContainer.addIfNotExists(name: String, ext
     add(name, extension())
   }
 }
-
 
 /**
  * Adds a new extension to this container when the given name does not exist.

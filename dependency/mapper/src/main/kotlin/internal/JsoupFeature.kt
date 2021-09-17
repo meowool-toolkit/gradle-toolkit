@@ -1,13 +1,37 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 除如果您正在修改此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 @file:Suppress("unused")
 
 package com.meowool.gradle.toolkit.internal
 
-import io.ktor.client.*
-import io.ktor.client.features.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
-import io.ktor.util.*
-import io.ktor.utils.io.*
+import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
+import io.ktor.client.features.HttpClientFeature
+import io.ktor.client.statement.HttpResponseContainer
+import io.ktor.client.statement.HttpResponsePipeline
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
+import io.ktor.util.AttributeKey
+import io.ktor.utils.io.ByteReadChannel
+import io.ktor.utils.io.readRemaining
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow

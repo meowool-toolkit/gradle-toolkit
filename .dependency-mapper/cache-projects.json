@@ -6,7 +6,6 @@
   ":meowool",
   ":publisher",
   ":dependency:mapper",
-  ":dependency:mapper-legacy",
   ":dependency:prebuilt",
   ":dependency:updater"
 ]

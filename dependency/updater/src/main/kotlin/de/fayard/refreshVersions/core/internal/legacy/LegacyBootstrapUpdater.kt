@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 除如果您正在修改此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 package de.fayard.refreshVersions.core.internal.legacy
 
 import de.fayard.refreshVersions.core.RefreshVersionsCorePlugin
@@ -12,174 +32,176 @@ import java.io.File
 
 internal object LegacyBootstrapUpdater {
 
-    fun updateGradleSettingsWithUpdates(
-        rootProject: Project,
-        selfUpdates: DependencyWithVersionCandidates
-    ) {
-        require(rootProject.isRootProject)
-        require(rootProject.isBuildSrc.not())
-        rootProject.updateGradleSettings(selfUpdates)
-        RefreshVersionsConfigHolder.buildSrc?.updateGradleSettings(selfUpdates)
-    }
+  fun updateGradleSettingsWithUpdates(
+    rootProject: Project,
+    selfUpdates: DependencyWithVersionCandidates
+  ) {
+    require(rootProject.isRootProject)
+    require(rootProject.isBuildSrc.not())
+    rootProject.updateGradleSettings(selfUpdates)
+    RefreshVersionsConfigHolder.buildSrc?.updateGradleSettings(selfUpdates)
+  }
 
-    class ExpectedValues private constructor(
-        bootstrapPackageName: String = "de.fayard.refreshVersions",
-        migrationPackageName: String = bootstrapPackageName,
-        val bootstrapSymbol: String,
-        val migrationCallSymbol: String
-    ) {
-        constructor(
-            isBuildSrc: Boolean,
-            isKotlinDsl: Boolean
-        ) : this(
-            bootstrapSymbol = when {
-                isBuildSrc -> when {
-                    isKotlinDsl -> "bootstrapRefreshVersionsForBuildSrc"
-                    else -> "RefreshVersionsSetup.bootstrapForBuildSrc"
-                }
-                else -> when {
-                    isKotlinDsl -> "bootstrapRefreshVersions"
-                    else -> "RefreshVersionsSetup.bootstrap"
-                }
-            },
-            migrationCallSymbol = when {
-                isKotlinDsl -> "migrateRefreshVersionsIfNeeded"
-                else -> "RefreshVersionsMigration.migrateIfNeeded"
-            }
-        )
+  class ExpectedValues private constructor(
+    bootstrapPackageName: String = "de.fayard.refreshVersions",
+    migrationPackageName: String = bootstrapPackageName,
+    val bootstrapSymbol: String,
+    val migrationCallSymbol: String
+  ) {
+    constructor(
+      isBuildSrc: Boolean,
+      isKotlinDsl: Boolean
+    ) : this(
+      bootstrapSymbol = when {
+        isBuildSrc -> when {
+          isKotlinDsl -> "bootstrapRefreshVersionsForBuildSrc"
+          else -> "RefreshVersionsSetup.bootstrapForBuildSrc"
+        }
+        else -> when {
+          isKotlinDsl -> "bootstrapRefreshVersions"
+          else -> "RefreshVersionsSetup.bootstrap"
+        }
+      },
+      migrationCallSymbol = when {
+        isKotlinDsl -> "migrateRefreshVersionsIfNeeded"
+        else -> "RefreshVersionsMigration.migrateIfNeeded"
+      }
+    )
 
-        val bootstrapImport = "import $bootstrapPackageName.${bootstrapSymbol.substringBefore('.')}"
+    val bootstrapImport = "import $bootstrapPackageName.${bootstrapSymbol.substringBefore('.')}"
 
-        val migrationCallImport = "import $migrationPackageName.${migrationCallSymbol.substringBefore('.')}"
-    }
+    val migrationCallImport = "import $migrationPackageName.${migrationCallSymbol.substringBefore('.')}"
+  }
 }
 
 private fun Project.updateGradleSettings(
-    selfUpdates: DependencyWithVersionCandidates
+  selfUpdates: DependencyWithVersionCandidates
 ) {
 
-    if (selfUpdates.versionsCandidates.isEmpty()) {
-        return // Because we only deal with self-updates for now.
-        // Remove that quick exit condition when/if we support showing updates from settings.gradle[.kts].
+  if (selfUpdates.versionsCandidates.isEmpty()) {
+    return // Because we only deal with self-updates for now.
+    // Remove that quick exit condition when/if we support showing updates from settings.gradle[.kts].
+  }
+
+  val settingsFile = file("settings.gradle.kts").let { kotlinDslSettings ->
+    when {
+      kotlinDslSettings.exists() -> kotlinDslSettings
+      else -> file("settings.gradle").also { check(it.exists()) }
     }
+  }
 
-    val settingsFile = file("settings.gradle.kts").let { kotlinDslSettings ->
-        when {
-            kotlinDslSettings.exists() -> kotlinDslSettings
-            else -> file("settings.gradle").also { check(it.exists()) }
-        }
-    }
+  val newContent = getSettingsWithSelfUpdates(
+    logger = logger,
+    settingsFile = settingsFile,
+    isBuildSrc = isBuildSrc,
+    initialContent = settingsFile.readText(),
+    selfUpdates = selfUpdates
+  )
 
-    val newContent = getSettingsWithSelfUpdates(
-        logger = logger,
-        settingsFile = settingsFile,
-        isBuildSrc = isBuildSrc,
-        initialContent = settingsFile.readText(),
-        selfUpdates = selfUpdates
-    )
-
-    settingsFile.writeText(newContent)
+  settingsFile.writeText(newContent)
 }
 
 private fun getSettingsWithSelfUpdates(
-    logger: Logger,
-    settingsFile: File,
-    isBuildSrc: Boolean,
-    initialContent: String,
-    selfUpdates: DependencyWithVersionCandidates
+  logger: Logger,
+  settingsFile: File,
+  isBuildSrc: Boolean,
+  initialContent: String,
+  selfUpdates: DependencyWithVersionCandidates
 ): String {
 
-    if (selfUpdates.versionsCandidates.isEmpty()) {
-        return initialContent
-    }
+  if (selfUpdates.versionsCandidates.isEmpty()) {
+    return initialContent
+  }
 
-    val settingsFilenameToDisplay = settingsFile.name.let {
-        if (isBuildSrc) "buildSrc/$it" else it
-    }
+  val settingsFilenameToDisplay = settingsFile.name.let {
+    if (isBuildSrc) "buildSrc/$it" else it
+  }
 
-    val logMarker = RefreshVersionsCorePlugin.LogMarkers.default
+  val logMarker = RefreshVersionsCorePlugin.LogMarkers.default
 
-    fun logWarning(message: String) = logger.warn(logMarker, "w: ${settingsFile.path}:\n$message")
-    fun logError(message: String) = logger.error(logMarker, "e: ${settingsFile.path}:\n$message")
+  fun logWarning(message: String) = logger.warn(logMarker, "w: ${settingsFile.path}:\n$message")
+  fun logError(message: String) = logger.error(logMarker, "e: ${settingsFile.path}:\n$message")
 
-    logWarning("A new version of refreshVersions is available.\n" +
-            "Open the $settingsFilenameToDisplay file to apply the update.")
+  logWarning(
+    "A new version of refreshVersions is available.\n" +
+      "Open the $settingsFilenameToDisplay file to apply the update."
+  )
 
-    val currentVersion = selfUpdates.currentVersion
+  val currentVersion = selfUpdates.currentVersion
 
-    val dependencyNotationIndex: Int = run {
-        val expectedDependencyNotation = "de.fayard.refreshVersions:refreshVersions:$currentVersion"
-        initialContent.indexOf(expectedDependencyNotation).let {
-            if (it != -1) it else {
-                @Suppress("name_shadowing")
-                val expectedDependencyNotation = "de.fayard.refreshVersions:refreshVersions-core:$currentVersion"
-                initialContent.indexOf(expectedDependencyNotation).also { i ->
-                    if (i == -1) {
-                        logError("Didn't find expected refreshVersions dependency declaration. Skipping.")
-                        return initialContent
-                    }
-                }
-            }
-        }
-    }
-
-    val dependencyDeclarationLineStart = initialContent.lastIndexOf(
-        char = '\n',
-        startIndex = dependencyNotationIndex
-    ).also {
-        if (it == -1) {
-            logError("Expected a new line before refreshVersions dependency declaration. Skipping.")
+  val dependencyNotationIndex: Int = run {
+    val expectedDependencyNotation = "de.fayard.refreshVersions:refreshVersions:$currentVersion"
+    initialContent.indexOf(expectedDependencyNotation).let {
+      if (it != -1) it else {
+        @Suppress("name_shadowing")
+        val expectedDependencyNotation = "de.fayard.refreshVersions:refreshVersions-core:$currentVersion"
+        initialContent.indexOf(expectedDependencyNotation).also { i ->
+          if (i == -1) {
+            logError("Didn't find expected refreshVersions dependency declaration. Skipping.")
             return initialContent
+          }
         }
-    } + 1
+      }
+    }
+  }
 
-    val dependencyDeclarationLineEnd = initialContent.indexOf(
+  val dependencyDeclarationLineStart = initialContent.lastIndexOf(
+    char = '\n',
+    startIndex = dependencyNotationIndex
+  ).also {
+    if (it == -1) {
+      logError("Expected a new line before refreshVersions dependency declaration. Skipping.")
+      return initialContent
+    }
+  } + 1
+
+  val dependencyDeclarationLineEnd = initialContent.indexOf(
+    char = '\n',
+    startIndex = dependencyNotationIndex
+  ).also {
+    if (it == -1) {
+      logError("Expected a new line after refreshVersions dependency declaration. Skipping.")
+      return initialContent
+    }
+  }
+  val declarationLine = initialContent.substring(
+    startIndex = dependencyDeclarationLineStart,
+    endIndex = dependencyDeclarationLineEnd
+  )
+  val currentVersionPrefixLength = declarationLine.substringBefore(currentVersion).length
+
+  val commentStart = "////"
+
+  val indexAfterPreviousAvailableComments = dependencyDeclarationLineEnd.let {
+    var index = it
+    val generatedCommentLineStart = "\n$commentStart"
+    do {
+      val indexOfNextLine = initialContent.indexOf(
         char = '\n',
-        startIndex = dependencyNotationIndex
-    ).also {
-        if (it == -1) {
-            logError("Expected a new line after refreshVersions dependency declaration. Skipping.")
-            return initialContent
+        startIndex = index
+      ).also { i ->
+        check(i != -1) {
+          "Didn't find expected new line after refreshVersions dependency declaration."
         }
-    }
-    val declarationLine = initialContent.substring(
-        startIndex = dependencyDeclarationLineStart,
-        endIndex = dependencyDeclarationLineEnd
-    )
-    val currentVersionPrefixLength = declarationLine.substringBefore(currentVersion).length
+      }
+      val indexOfNextGeneratedComment = initialContent.indexOf(
+        string = generatedCommentLineStart,
+        startIndex = index
+      )
+      index = indexOfNextLine + 1
+    } while (indexOfNextLine == indexOfNextGeneratedComment)
+    index
+  }
 
-    val commentStart = "////"
-
-    val indexAfterPreviousAvailableComments = dependencyDeclarationLineEnd.let {
-        var index = it
-        val generatedCommentLineStart = "\n$commentStart"
-        do {
-            val indexOfNextLine = initialContent.indexOf(
-                char = '\n',
-                startIndex = index
-            ).also { i ->
-                check(i != -1) {
-                    "Didn't find expected new line after refreshVersions dependency declaration."
-                }
-            }
-            val indexOfNextGeneratedComment = initialContent.indexOf(
-                string = generatedCommentLineStart,
-                startIndex = index
-            )
-            index = indexOfNextLine + 1
-        } while (indexOfNextLine == indexOfNextGeneratedComment)
-        index
+  return buildString {
+    appendln(initialContent.substring(startIndex = 0, endIndex = dependencyDeclarationLineEnd))
+    selfUpdates.versionsCandidates.forEach { versionCandidate ->
+      append(commentStart)
+      append(availableComment.padStart(currentVersionPrefixLength - commentStart.length - 1))
+      append(':')
+      append(versionCandidate.value)
+      appendln(declarationLine.substringAfter(currentVersion))
     }
-
-    return buildString {
-        appendln(initialContent.substring(startIndex = 0, endIndex = dependencyDeclarationLineEnd))
-        selfUpdates.versionsCandidates.forEach { versionCandidate ->
-            append(commentStart)
-            append(availableComment.padStart(currentVersionPrefixLength - commentStart.length - 1))
-            append(':')
-            append(versionCandidate.value)
-            appendln(declarationLine.substringAfter(currentVersion))
-        }
-        append(initialContent.substring(startIndex = indexAfterPreviousAvailableComments))
-    }
+    append(initialContent.substring(startIndex = indexAfterPreviousAvailableComments))
+  }
 }

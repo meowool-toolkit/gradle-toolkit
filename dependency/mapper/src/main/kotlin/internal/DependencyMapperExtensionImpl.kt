@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 除如果您正在修改此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 @file:Suppress("BlockingMethodInNonBlockingContext", "EXPERIMENTAL_API_USAGE")
 
 package com.meowool.gradle.toolkit.internal
@@ -10,7 +30,9 @@ import com.meowool.gradle.toolkit.ProjectDependencyDeclaration
 import com.meowool.sweekt.coroutines.flowOnIO
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -20,7 +42,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.buildscript
 import java.io.File
 import java.lang.System.currentTimeMillis
-import kotlin.time.measureTime
+import kotlin.system.measureTimeMillis
 
 /**
  * @author 凛 (https://github.com/RinOrz)
@@ -32,8 +54,8 @@ class DependencyMapperExtensionImpl(
 ) : DependencyMapperExtension {
   @Transient @Volatile
   private var isMapping = false
-  private val declarations = mutableMapOf<String, MapDeclaration>()
   private val formatter = DependencyFormatter()
+  internal val declarations = mutableMapOf<String, MapDeclaration>()
 
   @Transient @Volatile
   private var onlyPathChanges: Boolean = false
@@ -107,6 +129,12 @@ class DependencyMapperExtensionImpl(
     isUpdate = { true }
   }
 
+  /**
+   * TODO:
+   *   1. Optimize to avoid all updates
+   *   3. Compatible buildSrc
+   *   2. Use measureTime instead of measureTimeMillis when Gradle support kotlin 1.5.30
+   */
   fun mapping() = runWithLock {
     var cacheJar = project!!.cacheJar.takeIf { it.exists() }?.let { File(it.readText()) }
 
@@ -130,20 +158,39 @@ class DependencyMapperExtensionImpl(
       println("Mapping dependencies...")
 
       var mappingCount = 0
-      val consume = measureTime {
-        declarations.values
-          .let { if (onlyPathChanges) it.filterIsInstance<ProjectDependencyDeclarationImpl>() else it }
-          .sortedByDescending { it is LibraryDependencyDeclaration }
-          .forEach { declaration ->
-            MappedClassesFactory.produce(declaration.rootClassName) {
-              declaration.toFlow(formatter).flowOnIO().collect {
-                map(it.dependency, it.mappedPath)
-                mappingCount++
-              }
-            }.inject(cacheJar)
+      val consume = measureTimeMillis {
+        val declarations = when {
+          onlyPathChanges -> declarations.values.filterIsInstance<ProjectDependencyDeclarationImpl>()
+          else -> declarations.values
+        }
+        val factories = mutableMapOf<String, MappedClassesFactory>()
+        channelFlow {
+          declarations.forEachConcurrently { declaration ->
+            val factory = factories.getOrPut(declaration.rootClassName) {
+              MappedClassesFactory(declaration.rootClassName)
+            }
+            send(
+              declaration
+                .toFlow(this@DependencyMapperExtensionImpl, formatter)
+                .flowOnIO()
+                .collect {
+                  factory.map(it.dependency, it.mappedPath)
+                  mappingCount++
+                }
+            )
           }
+        }.onCompletion {
+          declarations.filterIsInstance<PluginDependencyDeclarationImpl>().forEach { declaration ->
+            val factory = factories[declaration.rootClassName]
+            val forgotten = declaration.getForgottenDependencies(formatter)
+            forgotten.forEach { factory?.map(it.dependency, it.mappedPath) }
+            mappingCount += forgotten.size
+          }
+        }.collect()
+
+        factories.values.forEach { it.make().inject(cacheJar) }
       }
-      println("Total $mappingCount dependencies are mapped, consume $consume.")
+      println("Total $mappingCount dependencies are mapped, consume ${consume / 1000.0}s.")
 
       updateCache()
     }
@@ -169,7 +216,7 @@ class DependencyMapperExtensionImpl(
   inline fun <reified T> T.toJson() = DefaultJson.encodeToString(this)
 
   companion object {
-    val Project.cacheDir get() = buildDir.resolve("dependency-mapper").apply { mkdirs() }
+    val Project.cacheDir get() = projectDir.resolve(".dependency-mapper").apply { mkdirs() }
     val Project.cacheJson get() = cacheDir.resolve("cache.json")
     val Project.cacheProjects get() = cacheDir.resolve("cache-projects.json")
     val Project.cacheJar get() = cacheDir.resolve("jar.path")

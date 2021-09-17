@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 @file:Suppress("NAME_SHADOWING")
 
 package com.meowool.gradle.toolkit.publisher
@@ -5,13 +25,14 @@ package com.meowool.gradle.toolkit.publisher
 import MavenLocalDestination
 import SonatypeDestination
 import addIfNotExists
-import com.android.build.gradle.BaseExtension
 import com.gradle.publish.PluginBundleExtension
 import com.gradle.publish.PublishPlugin
+import com.meowool.gradle.toolkit.publisher.internal.androidExtension
 import com.meowool.gradle.toolkit.publisher.internal.buildListener
 import com.meowool.gradle.toolkit.publisher.internal.configureAllVariants
 import com.meowool.gradle.toolkit.publisher.internal.createNexusStagingClient
 import com.meowool.gradle.toolkit.publisher.internal.createSourcesJar
+import com.meowool.gradle.toolkit.publisher.internal.isAndroid
 import com.meowool.gradle.toolkit.publisher.internal.isCompatible
 import com.meowool.gradle.toolkit.publisher.internal.repositoriesToClose
 import com.meowool.gradle.toolkit.publisher.internal.stagingDescription
@@ -84,7 +105,11 @@ class PublisherPlugin : Plugin<Project> {
 
       configureGradlePlugin(extension)
       publishing {
-        publishComponentsAndSourcesJar(project)
+        // The kotlin multiplatform plugin publishes its own components and sources
+        if (extensions.findByType<KotlinMultiplatformExtension>() == null) {
+          publishComponents(project)
+          publishSourcesJar(project)
+        }
         configureData(extension)
         configureDokkaJar(extension)
         configureSignings(extension)
@@ -121,34 +146,37 @@ class PublisherPlugin : Plugin<Project> {
   }
 
   /**
-   * Configures the project components and sources jar to publish.
+   * Configures the project components to publish.
    */
-  private fun PublishingExtension.publishComponentsAndSourcesJar(project: Project) = with(project) {
-    // The kotlin multiplatform plugin publishes its own components
-    if (extensions.findByType<KotlinMultiplatformExtension>() != null) return@with
-
-    val androidExtension = extensions.findByName("android") as? BaseExtension
-    val isAndroid = androidExtension != null
-    val kotlinSourcesJar = tasks.findByName("kotlinSourcesJar")
-    val sourcesJar = when {
-      isAndroid -> createSourcesJar("androidSourcesJar") { from(androidExtension!!.sourceSets.getByName("main").java.srcDirs) }
-      // Hand it over to kotlin
-      kotlinSourcesJar != null -> kotlinSourcesJar
-      else -> createSourcesJar("javaSourcesJar") {
-        from(extensions.getByType<JavaPluginExtension>().sourceSets.getByName("main").allSource)
-      }
-    }
-
+  private fun PublishingExtension.publishComponents(project: Project) = with(project) {
     // Configure artifacts with sources jar
     when {
       isAndroid -> androidExtension!!.configureAllVariants { variant ->
         publications.create<MavenPublication>(variant.name) {
           from(components[variant.name])
-          artifact(sourcesJar)
         }
       }
       else -> publications.create<MavenPublication>("maven") {
         components.findByName("kotlin")?.let(::from) ?: components.findByName("java")?.let(::from)
+      }
+    }
+  }
+
+  /**
+   * Configures the project sources jar to publish.
+   */
+  private fun PublishingExtension.publishSourcesJar(project: Project) = with(project) {
+    afterEvaluate {
+      val kotlinSourcesJar = tasks.findByName("kotlinSourcesJar")
+      val sourcesJar = when {
+        isAndroid -> createSourcesJar("androidSourcesJar") { from(androidExtension!!.sourceSets.getByName("main").java.srcDirs) }
+        // Hand it over to kotlin
+        kotlinSourcesJar != null -> kotlinSourcesJar
+        else -> createSourcesJar("javaSourcesJar") {
+          from(extensions.getByType<JavaPluginExtension>().sourceSets.getByName("main").allSource)
+        }
+      }
+      publications.withType<MavenPublication> {
         artifact(sourcesJar)
       }
     }
@@ -238,16 +266,21 @@ class PublisherPlugin : Plugin<Project> {
    * Configures the Dokka jar to publish.
    */
   private fun PublishingExtension.configureDokkaJar(extension: PublicationExtension) = with(extension) {
-    val dokkaJar by project.tasks.register<Jar>("dokkaJar") {
-      val dokkaTask = project.tasks.findByName(dokkaFormat.taskName).safeCast()
-        ?: project.tasks.withType<DokkaTask>().first()
+    project.afterEvaluate {
+      // We do not publish dokka for the snapshot version to improve the build speed
+      if (isSnapshotVersion) return@afterEvaluate
 
-      dependsOn(dokkaTask)
-      from(dokkaTask.outputDirectory)
-      archiveClassifier.set("javadoc")
+      val dokkaJar by tasks.register<Jar>("dokkaJar") {
+        val dokkaTask = tasks.findByName(dokkaFormat.taskName).safeCast()
+          ?: tasks.withType<DokkaTask>().first()
+
+        dependsOn(dokkaTask)
+        from(dokkaTask.outputDirectory)
+        archiveClassifier.set("javadoc")
+      }
+      // Configures dokka jar to all publications
+      publications.withType<MavenPublication> { artifact(dokkaJar) }
     }
-    // Configures dokka jar to all publications
-    publications.withType<MavenPublication> { artifact(dokkaJar) }
   }
 
   /**
@@ -374,9 +407,11 @@ class PublisherPlugin : Plugin<Project> {
           val repositoryIds = tasks.withType<PublishToMavenRepository>().mapNotNull {
             flow {
               val description = it.publication.stagingDescription
-              emit(client.getRepositories()
-                .firstOrNull { it.description == description }
-                ?.repositoryId)
+              emit(
+                client.getRepositories()
+                  .firstOrNull { it.description == description }
+                  ?.repositoryId
+              )
             }.retry(retries = 5) {
               // Retry after 1000 ms
               delay(1000)

@@ -1,0 +1,167 @@
+public class BasePublishingDestination : PublishingDestination {
+	public fun <init> (Ljava/lang/Object;ZLjava/lang/Object;)V
+	public synthetic fun <init> (Ljava/lang/Object;ZLjava/lang/Object;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getRequiredCertificate ()Z
+	public fun getUrl ()Ljava/lang/Object;
+	public fun hashCode ()I
+}
+
+public final class DirectoryDestination : BasePublishingDestination {
+	public fun <init> (Ljava/io/File;Ljava/io/File;)V
+	public synthetic fun <init> (Ljava/io/File;Ljava/io/File;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/nio/file/Path;Ljava/nio/file/Path;)V
+	public synthetic fun <init> (Ljava/nio/file/Path;Ljava/nio/file/Path;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)LDirectoryDestination;
+	public static synthetic fun copy$default (LDirectoryDestination;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)LDirectoryDestination;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class DokkaFormat : java/lang/Enum {
+	public static final field Gfm LDokkaFormat;
+	public static final field Html LDokkaFormat;
+	public static final field Javadoc LDokkaFormat;
+	public static final field Jekyll LDokkaFormat;
+	public final fun getTaskName ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)LDokkaFormat;
+	public static fun values ()[LDokkaFormat;
+}
+
+public final class DokkaFormatKt {
+	public static final fun dokka (Lorg/gradle/api/Project;LDokkaFormat;Lkotlin/jvm/functions/Function1;)V
+	public static final fun dokka (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun dokka$default (Lorg/gradle/api/Project;LDokkaFormat;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+}
+
+public final class MavenLocalDestination : BasePublishingDestination {
+	public static final field INSTANCE LMavenLocalDestination;
+	public fun equals (Ljava/lang/Object;)Z
+}
+
+public final class PublicationsKt {
+	public static final fun getPublication (Lorg/gradle/api/Project;)Lcom/meowool/gradle/toolkit/publisher/PublicationExtension;
+	public static final fun publication (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public static final fun publications (Lcom/meowool/gradle/toolkit/GradleToolkitExtension;Lkotlin/jvm/functions/Function1;)V
+}
+
+public abstract class PublishingDestination {
+	public field project Lorg/gradle/api/Project;
+	public fun <init> ()V
+	public final fun getProject ()Lorg/gradle/api/Project;
+	public abstract fun getRequiredCertificate ()Z
+	public abstract fun getUrl ()Ljava/lang/Object;
+	public final fun isSnapshot ()Z
+	public final fun setProject (Lorg/gradle/api/Project;)V
+}
+
+public final class SonatypeDestination : PublishingDestination {
+	public fun <init> ()V
+	public fun <init> (Z)V
+	public synthetic fun <init> (ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBaseUrl ()Ljava/lang/String;
+	public fun getRequiredCertificate ()Z
+	public fun getUrl ()Ljava/lang/Object;
+	public fun hashCode ()I
+}
+
+public final class com/meowool/gradle/toolkit/publisher/PublicationData {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun developer (Lkotlin/jvm/functions/Function1;)V
+	public final fun getArtifactId ()Ljava/lang/String;
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getDevelopers ()Ljava/util/List;
+	public final fun getDisplayName ()Ljava/lang/String;
+	public final fun getGroupId ()Ljava/lang/String;
+	public final fun getLicenses ()Ljava/util/List;
+	public final fun getOrganizationName ()Ljava/lang/String;
+	public final fun getOrganizationUrl ()Ljava/lang/String;
+	public final fun getPluginId ()Ljava/lang/String;
+	public final fun getTags ()Ljava/util/Set;
+	public final fun getUrl ()Ljava/lang/String;
+	public final fun getVcs ()Ljava/lang/String;
+	public final fun getVersion ()Ljava/lang/String;
+	public final fun license (Lkotlin/jvm/functions/Function1;)V
+	public final fun pom (Lkotlin/jvm/functions/Function1;)V
+	public final fun setArtifactId (Ljava/lang/String;)V
+	public final fun setDescription (Ljava/lang/String;)V
+	public final fun setDisplayName (Ljava/lang/String;)V
+	public final fun setGroupId (Ljava/lang/String;)V
+	public final fun setOrganizationName (Ljava/lang/String;)V
+	public final fun setOrganizationUrl (Ljava/lang/String;)V
+	public final fun setPluginId (Ljava/lang/String;)V
+	public final fun setTags (Ljava/util/Set;)V
+	public final fun setUrl (Ljava/lang/String;)V
+	public final fun setVcs (Ljava/lang/String;)V
+	public final fun setVersion (Ljava/lang/String;)V
+	public final fun tags ([Ljava/lang/String;)V
+}
+
+public final class com/meowool/gradle/toolkit/publisher/PublicationData$Developer {
+	public fun <init> ()V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEmail ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setEmail (Ljava/lang/String;)V
+	public final fun setId (Ljava/lang/String;)V
+	public final fun setName (Ljava/lang/String;)V
+	public final fun setUrl (Ljava/lang/String;)V
+}
+
+public final class com/meowool/gradle/toolkit/publisher/PublicationData$License {
+	public fun <init> ()V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setName (Ljava/lang/String;)V
+	public final fun setUrl (Ljava/lang/String;)V
+}
+
+public final class com/meowool/gradle/toolkit/publisher/PublicationExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun data (Lkotlin/jvm/functions/Function1;)Lcom/meowool/gradle/toolkit/publisher/PublicationData;
+	public final fun dokkaFormat (LDokkaFormat;)V
+	public final fun getData ()Lcom/meowool/gradle/toolkit/publisher/PublicationData;
+	public final fun getDestinations ()Ljava/util/Set;
+	public final fun getDokkaFormat ()LDokkaFormat;
+	public final fun getPluginClass ()Ljava/lang/String;
+	public final fun getShowIncompatibleWarnings ()Z
+	public final fun isLocalVersion ()Z
+	public final fun isSignRelease ()Z
+	public final fun isSignSnapshot ()Z
+	public final fun isSnapshotVersion ()Z
+	public final fun publishTo ([LPublishingDestination;)V
+	public final fun publishToDirectory (Ljava/io/File;Ljava/io/File;)V
+	public final fun publishToDirectory (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun publishToDirectory (Ljava/nio/file/Path;Ljava/nio/file/Path;)V
+	public static synthetic fun publishToDirectory$default (Lcom/meowool/gradle/toolkit/publisher/PublicationExtension;Ljava/io/File;Ljava/io/File;ILjava/lang/Object;)V
+	public static synthetic fun publishToDirectory$default (Lcom/meowool/gradle/toolkit/publisher/PublicationExtension;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static synthetic fun publishToDirectory$default (Lcom/meowool/gradle/toolkit/publisher/PublicationExtension;Ljava/nio/file/Path;Ljava/nio/file/Path;ILjava/lang/Object;)V
+	public final fun publishToMavenLocal ()V
+	public final fun publishToSonatype (Z)V
+	public static synthetic fun publishToSonatype$default (Lcom/meowool/gradle/toolkit/publisher/PublicationExtension;ZILjava/lang/Object;)V
+	public final fun setDokkaFormat (LDokkaFormat;)V
+	public final fun setPluginClass (Ljava/lang/String;)V
+	public final fun setShowIncompatibleWarnings (Z)V
+	public final fun setSignRelease (Z)V
+	public final fun setSignSnapshot (Z)V
+	public final fun signRelease (Z)V
+	public static synthetic fun signRelease$default (Lcom/meowool/gradle/toolkit/publisher/PublicationExtension;ZILjava/lang/Object;)V
+	public final fun signSnapshot (Z)V
+	public static synthetic fun signSnapshot$default (Lcom/meowool/gradle/toolkit/publisher/PublicationExtension;ZILjava/lang/Object;)V
+}
+
+public final class com/meowool/gradle/toolkit/publisher/PublisherPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+

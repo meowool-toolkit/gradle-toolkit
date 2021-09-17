@@ -1,6 +1,27 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 @file:Suppress("SpellCheckingInspection")
 
 import com.meowool.gradle.toolkit.LibraryDependency
+import com.meowool.gradle.toolkit.PluginId
 import com.meowool.gradle.toolkit.internal.client.DependencyRepositoryClient
 import com.meowool.gradle.toolkit.internal.client.MvnRepositoryClient
 import com.meowool.gradle.toolkit.internal.flatMapConcurrently
@@ -68,11 +89,10 @@ class RepoClientTests : FreeSpec({
         .flowOnIO()
         .size()
         .shouldBeZero()
-      client.fetchGroups("com.meowool.toolkit").flowOnIO().size() shouldBeGreaterThanOrEqual 2
     }
     "fetch by `startsWith`" {
       client.fetchStartsWith("com.meowool").flowOnIO().toList().also {
-        it shouldContain LibraryDependency("com.meowool.toolkit:gradle-dsl-x-core")
+        it shouldContain PluginId("com.meowool.toolkit.gradle-dsl-x").toLibraryDependency()
         it shouldContain LibraryDependency("com.meowool.toolkit.gradle-dsl-x-core:com.meowool.toolkit.gradle-dsl-x-core.gradle.plugin")
       }
     }
@@ -135,9 +155,5 @@ class RepoClientTests : FreeSpec({
 
   "from maven repository" - {
     commonTest(createCentralClient())
-  }
-
-  "t" {
-    println(mapOf("a" to 5, "d" to 6) == mapOf("d" to 6, "a" to 5))
   }
 })

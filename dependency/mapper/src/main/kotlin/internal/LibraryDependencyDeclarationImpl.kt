@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 除如果您正在修改此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 package com.meowool.gradle.toolkit.internal
 
 import com.meowool.gradle.toolkit.DependencyFormatter
@@ -22,7 +42,7 @@ import kotlinx.serialization.Transient
 internal class LibraryDependencyDeclarationImpl(
   override val rootClassName: String,
 ) : LibraryDependencyDeclaration, MapDeclaration {
-  private var pluginDeclarations = mutableSetOf<PluginDependencyDeclarationImpl>()
+  private var pluginDeclarationRootClasses = mutableSetOf<String>()
   private val map = mutableSetOf<String>()
   private val mapped = mutableMapOf<String, String>()
   private var keywordSearches = mutableListOf<SearchDeclarationImpl<LibraryDependency>>()
@@ -35,7 +55,11 @@ internal class LibraryDependencyDeclarationImpl(
   private var filterCount = 0
 
   override fun transferPluginIds(target: PluginDependencyDeclaration) {
-    pluginDeclarations += target as PluginDependencyDeclarationImpl
+    pluginDeclarationRootClasses += (target as PluginDependencyDeclarationImpl).rootClassName
+  }
+
+  override fun transferPluginIds(targetDeclarationName: String) {
+    pluginDeclarationRootClasses += targetDeclarationName
   }
 
   override fun map(vararg dependencies: CharSequence) {
@@ -80,6 +104,7 @@ internal class LibraryDependencyDeclarationImpl(
   }
 
   override fun toFlow(
+    parent: DependencyMapperExtensionImpl,
     formatter: DependencyFormatter,
   ): Flow<MappedDependency> = channelFlow {
     suspend fun List<SearchDeclarationImpl<LibraryDependency>>.sendAllResult(
@@ -119,7 +144,10 @@ internal class LibraryDependencyDeclarationImpl(
     val dep = LibraryDependency(notation.removeSuffix(":_"))
     // Transfer the plugin ids to plugin declarations
     if (dep.artifact == "${dep.group}.gradle.plugin") {
-      pluginDeclarations.forEachConcurrently { it.transfer(dep.group) }
+      pluginDeclarationRootClasses.map {
+        parent.declarations[it] as? PluginDependencyDeclarationImpl
+          ?: error("The plugin dependency declaration corresponding to $it was not found")
+      }.forEachConcurrently { it.transfer(dep.group) }
     }
     filters.all { it(dep) }
   }

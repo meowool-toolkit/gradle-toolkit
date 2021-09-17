@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 package com.meowool.gradle.toolkit.publisher.internal
 
 import com.android.build.gradle.AppExtension
@@ -21,7 +41,6 @@ import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.getCredentials
 import org.gradle.kotlin.dsl.register
 
-
 private const val BUILD_LISTENER = "mavenPublish-buildListener"
 private const val REPOSITORIES_TO_CLOSE = "mavenPublish-waitForCloseRepositories"
 
@@ -31,13 +50,15 @@ internal val Project.rootPublication: PublicationExtension?
 internal val Project.rootPublicationData: PublicationData?
   get() = rootPublication?.data
 
+internal val Project.androidExtension get() = extensions.findByName("android") as? BaseExtension
+internal val Project.isAndroid get() = androidExtension != null
+
 /**
  * Represents the build listener for the root project.
  */
 internal var Project.buildListener: Boolean
   set(value) = rootProject.extra.set(BUILD_LISTENER, value)
   get() = rootProject.extra.properties[BUILD_LISTENER] == true
-
 
 /**
  * The map to represents the repositories to be closed and its url.
@@ -100,6 +121,5 @@ internal val Project.isCompatible: Boolean
       plugins.hasPlugin("java-library") ||
       plugins.hasPlugin("java")
     )
-
 
 internal fun <T> maxOf(vararg lists: List<T>): List<T> = lists.maxByOrNull { it.size }.orEmpty()

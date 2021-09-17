@@ -1,11 +1,37 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 除如果您正在修改此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 package de.fayard.refreshVersions.core.internal
 
-import de.fayard.refreshVersions.core.*
+import de.fayard.refreshVersions.core.DependencySelection
+import de.fayard.refreshVersions.core.DependencyVersionsFetcher
 import de.fayard.refreshVersions.core.FeatureFlag.GRADLE_UPDATES
+import de.fayard.refreshVersions.core.ModuleId
+import de.fayard.refreshVersions.core.Version
 import de.fayard.refreshVersions.core.extensions.gradle.hasDynamicVersion
 import de.fayard.refreshVersions.core.extensions.gradle.isRootProject
 import de.fayard.refreshVersions.core.internal.legacy.LegacyBoostrapUpdatesFinder
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import okhttp3.OkHttpClient
 import org.gradle.api.Project
 import org.gradle.api.artifacts.ConfigurationContainer
@@ -17,173 +43,173 @@ import org.gradle.api.initialization.Settings
 import org.gradle.util.GradleVersion
 
 internal suspend fun lookupVersionCandidates(
-    httpClient: OkHttpClient,
-    project: Project,
-    versionMap: Map<String, String>,
-    versionKeyReader: ArtifactVersionKeyReader
+  httpClient: OkHttpClient,
+  project: Project,
+  versionMap: Map<String, String>,
+  versionKeyReader: ArtifactVersionKeyReader
 ): VersionCandidatesLookupResult {
 
-    require(project.isRootProject)
+  require(project.isRootProject)
 
-    val projects = RefreshVersionsConfigHolder.allProjects(project)
+  val projects = RefreshVersionsConfigHolder.allProjects(project)
 
-    val dependenciesWithHardcodedVersions = mutableListOf<Dependency>()
-    val dependenciesWithDynamicVersions = mutableListOf<Dependency>()
-    val dependencyFilter: (Dependency) -> Boolean = { dependency ->
-        dependency.isManageableVersion(versionMap, versionKeyReader).also { manageable ->
-            if (manageable) return@also
-            if (dependency.version != null) {
-                // null version means it's expected to be added by a BoM or a plugin, so we ignore them.
-                dependenciesWithHardcodedVersions.add(dependency)
-            }
-            if (dependency is ExternalDependency &&
-                dependency.versionConstraint.hasDynamicVersion()
-            ) {
-                dependenciesWithDynamicVersions.add(dependency)
-            }
-        }
+  val dependenciesWithHardcodedVersions = mutableListOf<Dependency>()
+  val dependenciesWithDynamicVersions = mutableListOf<Dependency>()
+  val dependencyFilter: (Dependency) -> Boolean = { dependency ->
+    dependency.isManageableVersion(versionMap, versionKeyReader).also { manageable ->
+      if (manageable) return@also
+      if (dependency.version != null) {
+        // null version means it's expected to be added by a BoM or a plugin, so we ignore them.
+        dependenciesWithHardcodedVersions.add(dependency)
+      }
+      if (dependency is ExternalDependency &&
+        dependency.versionConstraint.hasDynamicVersion()
+      ) {
+        dependenciesWithDynamicVersions.add(dependency)
+      }
     }
-    val dependencyVersionsFetchers: Set<DependencyVersionsFetcher> = projects.flatMap {
-        it.getDependencyVersionFetchers(httpClient = httpClient, dependencyFilter = dependencyFilter)
-    }.plus(
-        getUsedPluginsDependencyVersionFetchers(httpClient = httpClient)
-    ).toSet()
+  }
+  val dependencyVersionsFetchers: Set<DependencyVersionsFetcher> = projects.flatMap {
+    it.getDependencyVersionFetchers(httpClient = httpClient, dependencyFilter = dependencyFilter)
+  }.plus(
+    getUsedPluginsDependencyVersionFetchers(httpClient = httpClient)
+  ).toSet()
 
-    return coroutineScope {
+  return coroutineScope {
 
-        val resultMode = RefreshVersionsConfigHolder.resultMode
-        val versionRejectionFilter = RefreshVersionsConfigHolder.versionRejectionFilter ?: { false }
-        val dependenciesWithVersionCandidatesAsync = dependencyVersionsFetchers.groupBy {
-            it.moduleId
-        }.map { (moduleId: ModuleId, versionFetchers: List<DependencyVersionsFetcher>) ->
-            val propertyName = getVersionPropertyName(moduleId, versionKeyReader)
-            val resolvedVersion = resolveVersion(
-                properties = versionMap,
-                key = propertyName
-            ) ?: `Write versions candidates using latest most stable version and get it`(
-                propertyName = propertyName,
-                dependencyVersionsFetchers = versionFetchers
-            )
-            val selection = DependencySelection(moduleId, Version(resolvedVersion), propertyName)
-            async {
-                DependencyWithVersionCandidates(
-                    moduleId = moduleId,
-                    currentVersion = resolvedVersion,
-                    versionsCandidates = versionFetchers.getVersionCandidates(
-                        currentVersion = Version(resolvedVersion),
-                        resultMode = resultMode
-                    ).filterNot { version ->
-                        selection.candidate = version
-                        versionRejectionFilter(selection)
-                    }
-                )
-            }
-        }
-
-        val settingsPluginsUpdatesAsync = async {
-            SettingsPluginsUpdatesFinder.getSettingsPluginUpdates(httpClient, resultMode)
-        }
-
-        val selfUpdateAsync: Deferred<DependencyWithVersionCandidates>? = when {
-            RefreshVersionsConfigHolder.isSetupViaPlugin -> null
-            else -> async { LegacyBoostrapUpdatesFinder.getSelfUpdates(httpClient, resultMode) }
-        }
-
-        val gradleUpdatesAsync = async {
-            if (GRADLE_UPDATES.isEnabled) lookupAvailableGradleVersions() else emptyList()
-        }
-
-        val dependenciesWithVersionCandidates = dependenciesWithVersionCandidatesAsync.awaitAll()
-
-        return@coroutineScope VersionCandidatesLookupResult(
-            dependenciesUpdates = dependenciesWithVersionCandidates,
-            dependenciesWithHardcodedVersions = dependenciesWithHardcodedVersions,
-            dependenciesWithDynamicVersions = dependenciesWithDynamicVersions,
-            settingsPluginsUpdates = settingsPluginsUpdatesAsync.await().settings,
-            buildSrcSettingsPluginsUpdates = settingsPluginsUpdatesAsync.await().buildSrcSettings,
-            gradleUpdates = gradleUpdatesAsync.await(),
-            selfUpdatesForLegacyBootstrap = selfUpdateAsync?.await()
+    val resultMode = RefreshVersionsConfigHolder.resultMode
+    val versionRejectionFilter = RefreshVersionsConfigHolder.versionRejectionFilter ?: { false }
+    val dependenciesWithVersionCandidatesAsync = dependencyVersionsFetchers.groupBy {
+      it.moduleId
+    }.map { (moduleId: ModuleId, versionFetchers: List<DependencyVersionsFetcher>) ->
+      val propertyName = getVersionPropertyName(moduleId, versionKeyReader)
+      val resolvedVersion = resolveVersion(
+        properties = versionMap,
+        key = propertyName
+      ) ?: `Write versions candidates using latest most stable version and get it`(
+        propertyName = propertyName,
+        dependencyVersionsFetchers = versionFetchers
+      )
+      val selection = DependencySelection(moduleId, Version(resolvedVersion), propertyName)
+      async {
+        DependencyWithVersionCandidates(
+          moduleId = moduleId,
+          currentVersion = resolvedVersion,
+          versionsCandidates = versionFetchers.getVersionCandidates(
+            currentVersion = Version(resolvedVersion),
+            resultMode = resultMode
+          ).filterNot { version ->
+            selection.candidate = version
+            versionRejectionFilter(selection)
+          }
         )
-        TODO("Check version candidates for the same key are the same, or warn the user with actionable details")
+      }
     }
+
+    val settingsPluginsUpdatesAsync = async {
+      SettingsPluginsUpdatesFinder.getSettingsPluginUpdates(httpClient, resultMode)
+    }
+
+    val selfUpdateAsync: Deferred<DependencyWithVersionCandidates>? = when {
+      RefreshVersionsConfigHolder.isSetupViaPlugin -> null
+      else -> async { LegacyBoostrapUpdatesFinder.getSelfUpdates(httpClient, resultMode) }
+    }
+
+    val gradleUpdatesAsync = async {
+      if (GRADLE_UPDATES.isEnabled) lookupAvailableGradleVersions() else emptyList()
+    }
+
+    val dependenciesWithVersionCandidates = dependenciesWithVersionCandidatesAsync.awaitAll()
+
+    return@coroutineScope VersionCandidatesLookupResult(
+      dependenciesUpdates = dependenciesWithVersionCandidates,
+      dependenciesWithHardcodedVersions = dependenciesWithHardcodedVersions,
+      dependenciesWithDynamicVersions = dependenciesWithDynamicVersions,
+      settingsPluginsUpdates = settingsPluginsUpdatesAsync.await().settings,
+      buildSrcSettingsPluginsUpdates = settingsPluginsUpdatesAsync.await().buildSrcSettings,
+      gradleUpdates = gradleUpdatesAsync.await(),
+      selfUpdatesForLegacyBootstrap = selfUpdateAsync?.await()
+    )
+    TODO("Check version candidates for the same key are the same, or warn the user with actionable details")
+  }
 }
 
 private suspend fun lookupAvailableGradleVersions(): List<Version> = coroutineScope {
-    val checker = GradleUpdateChecker(RefreshVersionsConfigHolder.httpClient)
-    val currentGradleVersion = GradleVersion.current()
-    GradleUpdateChecker.VersionType.values().filterNot {
-        it == GradleUpdateChecker.VersionType.All
-    }.let { types ->
-        when {
-            currentGradleVersion.isSnapshot -> types
-            else -> types.filterNot {
-                it == GradleUpdateChecker.VersionType.ReleaseNightly ||
-                        it == GradleUpdateChecker.VersionType.Nightly
-            }
-        }
-    }.map { type ->
-        async {
-            checker.fetchGradleVersion(type).map { GradleVersion.version(it.version) }
-        }
-    }.awaitAll().flatten().filter {
-        it > currentGradleVersion
-    }.sorted().map { Version(it.version) }
+  val checker = GradleUpdateChecker(RefreshVersionsConfigHolder.httpClient)
+  val currentGradleVersion = GradleVersion.current()
+  GradleUpdateChecker.VersionType.values().filterNot {
+    it == GradleUpdateChecker.VersionType.All
+  }.let { types ->
+    when {
+      currentGradleVersion.isSnapshot -> types
+      else -> types.filterNot {
+        it == GradleUpdateChecker.VersionType.ReleaseNightly ||
+          it == GradleUpdateChecker.VersionType.Nightly
+      }
+    }
+  }.map { type ->
+    async {
+      checker.fetchGradleVersion(type).map { GradleVersion.version(it.version) }
+    }
+  }.awaitAll().flatten().filter {
+    it > currentGradleVersion
+  }.sorted().map { Version(it.version) }
 }
 
 internal fun Settings.getDependencyVersionFetchers(
-    httpClient: OkHttpClient,
-    dependencyFilter: (Dependency) -> Boolean
+  httpClient: OkHttpClient,
+  dependencyFilter: (Dependency) -> Boolean
 ): Sequence<DependencyVersionsFetcher> = getDependencyVersionFetchers(
-    httpClient = httpClient,
-    configurations = buildscript.configurations,
-    repositories = buildscript.repositories,
-    dependencyFilter = dependencyFilter
+  httpClient = httpClient,
+  configurations = buildscript.configurations,
+  repositories = buildscript.repositories,
+  dependencyFilter = dependencyFilter
 )
 
 private fun Project.getDependencyVersionFetchers(
-    httpClient: OkHttpClient,
-    dependencyFilter: (Dependency) -> Boolean
+  httpClient: OkHttpClient,
+  dependencyFilter: (Dependency) -> Boolean
 ): Sequence<DependencyVersionsFetcher> = getDependencyVersionFetchers(
-    httpClient = httpClient,
-    configurations = buildscript.configurations,
-    repositories = buildscript.repositories,
-    dependencyFilter = dependencyFilter
+  httpClient = httpClient,
+  configurations = buildscript.configurations,
+  repositories = buildscript.repositories,
+  dependencyFilter = dependencyFilter
 ).plus(
-    getDependencyVersionFetchers(
-        httpClient = httpClient,
-        configurations = configurations,
-        repositories = repositories,
-        dependencyFilter = dependencyFilter
-    )
+  getDependencyVersionFetchers(
+    httpClient = httpClient,
+    configurations = configurations,
+    repositories = repositories,
+    dependencyFilter = dependencyFilter
+  )
 )
 
 private fun getUsedPluginsDependencyVersionFetchers(
-    httpClient: OkHttpClient
+  httpClient: OkHttpClient
 ): Sequence<DependencyVersionsFetcher> {
-    return UsedPluginsHolder.read().flatMap { (dependency, repositories) ->
-        repositories.filterIsInstance<MavenArtifactRepository>().mapNotNull { repo ->
-            DependencyVersionsFetcher(
-                httpClient = httpClient,
-                dependency = dependency,
-                repository = repo
-            )
-        }.asSequence()
-    }
+  return UsedPluginsHolder.read().flatMap { (dependency, repositories) ->
+    repositories.filterIsInstance<MavenArtifactRepository>().mapNotNull { repo ->
+      DependencyVersionsFetcher(
+        httpClient = httpClient,
+        dependency = dependency,
+        repository = repo
+      )
+    }.asSequence()
+  }
 }
 
 private fun getDependencyVersionFetchers(
-    httpClient: OkHttpClient,
-    configurations: ConfigurationContainer,
-    repositories: RepositoryHandler,
-    dependencyFilter: (Dependency) -> Boolean
+  httpClient: OkHttpClient,
+  configurations: ConfigurationContainer,
+  repositories: RepositoryHandler,
+  dependencyFilter: (Dependency) -> Boolean
 ): Sequence<DependencyVersionsFetcher> = configurations.asSequence().flatMap {
-    it.dependencies.asSequence().filter(dependencyFilter)
+  it.dependencies.asSequence().filter(dependencyFilter)
 }.flatMap { dependency ->
-    repositories.filterIsInstance<MavenArtifactRepository>().mapNotNull { repo ->
-        DependencyVersionsFetcher(
-            httpClient = httpClient,
-            dependency = dependency,
-            repository = repo
-        )
-    }.asSequence()
+  repositories.filterIsInstance<MavenArtifactRepository>().mapNotNull { repo ->
+    DependencyVersionsFetcher(
+      httpClient = httpClient,
+      dependency = dependency,
+      repository = repo
+    )
+  }.asSequence()
 }

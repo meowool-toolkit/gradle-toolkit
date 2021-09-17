@@ -1,9 +1,30 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 除如果您正在修改此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 @file:JvmName("RefreshVersionsCoreSetup")
 
 package de.fayard.refreshVersions.core
 
 import de.fayard.refreshVersions.core.extensions.gradle.isBuildSrc
-import de.fayard.refreshVersions.core.internal.*
+import de.fayard.refreshVersions.core.internal.RefreshVersionsConfigHolder
+import de.fayard.refreshVersions.core.internal.UsedPluginsHolder
 import de.fayard.refreshVersions.core.internal.resolveVersion
 import de.fayard.refreshVersions.core.internal.setupVersionPlaceholdersResolving
 import org.gradle.api.artifacts.ExternalDependency
@@ -43,20 +64,20 @@ import java.io.File
 @JvmOverloads
 @JvmName("bootstrap")
 fun Settings.bootstrapRefreshVersionsCore(
-    artifactVersionKeyRules: List<String> = emptyList(),
-    versionsPropertiesFile: File = rootDir.resolve("versions.properties")
+  artifactVersionKeyRules: List<String> = emptyList(),
+  versionsPropertiesFile: File = rootDir.resolve("versions.properties")
 ) {
-    require(settings.isBuildSrc.not()) {
-        "This bootstrap is only for the root project. For buildSrc, please call " +
-                "bootstrapRefreshVersionsCoreForBuildSrc() instead (Kotlin DSL)," +
-                "or RefreshVersionsCoreSetup.bootstrapForBuildSrc() if you're using Groovy DSL."
-    }
-    RefreshVersionsConfigHolder.initialize(
-        settings = settings,
-        artifactVersionKeyRules = artifactVersionKeyRules,
-        versionsPropertiesFile = versionsPropertiesFile
-    )
-    setupRefreshVersions(settings = settings)
+  require(settings.isBuildSrc.not()) {
+    "This bootstrap is only for the root project. For buildSrc, please call " +
+      "bootstrapRefreshVersionsCoreForBuildSrc() instead (Kotlin DSL)," +
+      "or RefreshVersionsCoreSetup.bootstrapForBuildSrc() if you're using Groovy DSL."
+  }
+  RefreshVersionsConfigHolder.initialize(
+    settings = settings,
+    artifactVersionKeyRules = artifactVersionKeyRules,
+    versionsPropertiesFile = versionsPropertiesFile
+  )
+  setupRefreshVersions(settings = settings)
 }
 
 /**
@@ -89,8 +110,8 @@ fun Settings.bootstrapRefreshVersionsCore(
  */
 @JvmName("bootstrapForBuildSrc")
 fun Settings.bootstrapRefreshVersionsCoreForBuildSrc() {
-    RefreshVersionsConfigHolder.initializeBuildSrc(this)
-    setupRefreshVersions(settings = settings)
+  RefreshVersionsConfigHolder.initializeBuildSrc(this)
+  setupRefreshVersions(settings = settings)
 }
 
 /**
@@ -107,84 +128,85 @@ fun Settings.bootstrapRefreshVersionsCoreForBuildSrc() {
  * buildscript classpath configuration boilerplate.
  */
 private fun setupRefreshVersions(settings: Settings) {
-    val supportedGradleVersion = "6.3" // 6.2 fail with this error: https://gradle.com/s/shp7hbtd3i3ii
-    if (GradleVersion.current() < GradleVersion.version(supportedGradleVersion)) {
-        throw UnsupportedVersionException("""
+  val supportedGradleVersion = "6.3" // 6.2 fail with this error: https://gradle.com/s/shp7hbtd3i3ii
+  if (GradleVersion.current() < GradleVersion.version(supportedGradleVersion)) {
+    throw UnsupportedVersionException(
+      """
             The plugin "de.fayard.refreshVersions" only works with Gradle $supportedGradleVersion and above.
             See https://jmfayard.github.io/refreshVersions/setup/#update-gradle-if-needed
-            """.trimIndent())
-    }
-
-
-    val versionsMap = RefreshVersionsConfigHolder.readVersionsMap()
-    @Suppress("unchecked_cast")
-    setupPluginsVersionsResolution(
-        settings = settings,
-        properties = versionsMap
+      """.trimIndent()
     )
+  }
 
-    settings.gradle.setupVersionPlaceholdersResolving(versionsMap = versionsMap)
+  val versionsMap = RefreshVersionsConfigHolder.readVersionsMap()
+  @Suppress("unchecked_cast")
+  setupPluginsVersionsResolution(
+    settings = settings,
+    properties = versionsMap
+  )
 
-    settings.gradle.rootProject {
-        apply<RefreshVersionsCorePlugin>()
-    }
+  settings.gradle.setupVersionPlaceholdersResolving(versionsMap = versionsMap)
+
+  settings.gradle.rootProject {
+    apply<RefreshVersionsCorePlugin>()
+  }
 }
 
 private fun setupPluginsVersionsResolution(
-    settings: Settings,
-    properties: Map<String, String>
+  settings: Settings,
+  properties: Map<String, String>
 ) {
-    settings.pluginManagement {
-        resolutionStrategy.eachPlugin {
-            val pluginId = requested.id.id
-            if (pluginId == "de.fayard.refreshVersions") {
-                return@eachPlugin // Already in the buildscript with a defined version that will be used.
-            }
-            val pluginNamespace = requested.id.namespace ?: ""
-            fun String.namespaceStartsWith(prefix: String): Boolean {
-                require(prefix.endsWith('.').not())
-                return this == prefix || this.startsWith("$prefix.")
-            }
-            val versionKey = when {
-                pluginNamespace.namespaceStartsWith("org.jetbrains.kotlin") -> "version.kotlin"
-                pluginNamespace.namespaceStartsWith("com.android") -> "plugin.android"
-                else -> "plugin.$pluginId"
-            }
-            val version = resolveVersion(properties, versionKey)
-            if (version == null) {
-                val pluginVersion = requested.version ?: return@eachPlugin
-                UsedPluginsHolder.pluginHasNoEntryInVersionsFile(pluginIdToDependency(pluginId, pluginVersion))
-                return@eachPlugin
-            }
-            when {
-                pluginNamespace.startsWith("com.android") -> {
-                    val dependencyNotation = "com.android.tools.build:gradle:$version"
-                    UsedPluginsHolder.noteUsedPluginDependency(
-                        dependencyNotation = dependencyNotation,
-                        repositories = repositories
-                    )
-                    useModule(dependencyNotation)
-                }
-                else -> {
-                    UsedPluginsHolder.noteUsedPluginDependency(
-                        dependencyNotation = "$pluginId:$pluginId.gradle.plugin:$version",
-                        repositories = repositories
-                    )
-                    useVersion(version)
-                }
-            }
+  settings.pluginManagement {
+    resolutionStrategy.eachPlugin {
+      val pluginId = requested.id.id
+      if (pluginId == "de.fayard.refreshVersions") {
+        return@eachPlugin // Already in the buildscript with a defined version that will be used.
+      }
+      val pluginNamespace = requested.id.namespace ?: ""
+      fun String.namespaceStartsWith(prefix: String): Boolean {
+        require(prefix.endsWith('.').not())
+        return this == prefix || this.startsWith("$prefix.")
+      }
+      val versionKey = when {
+        pluginNamespace.namespaceStartsWith("org.jetbrains.kotlin") -> "version.kotlin"
+        pluginNamespace.namespaceStartsWith("com.android") -> "plugin.android"
+        else -> "plugin.$pluginId"
+      }
+      val version = resolveVersion(properties, versionKey)
+      if (version == null) {
+        val pluginVersion = requested.version ?: return@eachPlugin
+        UsedPluginsHolder.pluginHasNoEntryInVersionsFile(pluginIdToDependency(pluginId, pluginVersion))
+        return@eachPlugin
+      }
+      when {
+        pluginNamespace.startsWith("com.android") -> {
+          val dependencyNotation = "com.android.tools.build:gradle:$version"
+          UsedPluginsHolder.noteUsedPluginDependency(
+            dependencyNotation = dependencyNotation,
+            repositories = repositories
+          )
+          useModule(dependencyNotation)
         }
+        else -> {
+          UsedPluginsHolder.noteUsedPluginDependency(
+            dependencyNotation = "$pluginId:$pluginId.gradle.plugin:$version",
+            repositories = repositories
+          )
+          useVersion(version)
+        }
+      }
     }
+  }
 }
 
 // TODO: try to centralize version key shorthands
 internal fun pluginDependencyNotationToVersionKey(dependencyNotation: String): String? =
-    when {
-        dependencyNotation.startsWith("com.android") -> "plugin.android"
-        dependencyNotation.startsWith("org.jetbrains.kotlin.") -> "version.kotlin"
-        dependencyNotation.endsWith(".gradle.plugin") -> "plugin." + dependencyNotation.removeSuffix(".gradle.plugin")
-        else -> null
-    }
+  when {
+    dependencyNotation.startsWith("com.android") -> "plugin.android"
+    dependencyNotation.startsWith("org.jetbrains.kotlin.") -> "version.kotlin"
+    dependencyNotation.endsWith(".gradle.plugin") -> "plugin." + dependencyNotation.removeSuffix(".gradle.plugin")
+    else -> null
+  }
 
 internal fun pluginIdToDependency(pluginId: String, version: String): ExternalDependency =
-    DefaultClientModule(pluginId, "$pluginId.gradle.plugin", version)
+  DefaultClientModule(pluginId, "$pluginId.gradle.plugin", version)

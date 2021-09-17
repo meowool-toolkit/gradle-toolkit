@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 除如果您正在修改此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 @file:Suppress("SpellCheckingInspection", "NAME_SHADOWING", "DEPRECATION")
 
 package com.meowool.gradle.toolkit.internal.prebuilt
@@ -7,14 +27,25 @@ import com.meowool.gradle.toolkit.LibraryDependencyDeclaration
 import com.meowool.gradle.toolkit.PluginDependencyDeclaration
 import com.meowool.gradle.toolkit.ProjectDependencyDeclaration
 
-internal fun <T: DependencyMapperExtension> T.prebuilt(
+internal fun <T : DependencyMapperExtension> T.prebuilt(
   libraries: String = LibraryDependencyDeclaration.DefaultRootClassName,
   projects: String = ProjectDependencyDeclaration.DefaultRootClassName,
   plugins: String = PluginDependencyDeclaration.DefaultRootClassName,
 ) = apply {
-  val pluginsDeclaration = plugins(plugins)
+  plugins(plugins) {
+    searchPrefixes(
+      "com.google",
+
+      "org.jetbrains.dokka",
+      "org.jetbrains.gradle",
+      "org.jetbrains.kotlin",
+      "org.jetbrains.intellij",
+      "org.jetbrains.changelog",
+    ) { fromGradlePluginPortal() }
+  }
+
   libraries(libraries) {
-    transferPluginIds(pluginsDeclaration)
+    transferPluginIds(plugins)
     map(
       "com.tfowl.ktor:ktor-jsoup" to "Ktor.Jsoup",
       "com.github.ben-manes.caffeine:caffeine" to "Caffeine",
@@ -144,35 +175,36 @@ internal fun <T: DependencyMapperExtension> T.prebuilt(
         // Exact replacement
         "Io" -> "IO"
         "ios", "IOS" -> "iOS"
-        else -> it
-          .replace("androidx", "AndroidX")
-          .replace("kotlinx", "KotlinX")
-          .replace("viewmodel", "ViewModel")
-          .replace("uiautomator", "UiAutomator")
-          .replace("janktesthelper", "JanktestHelper")
-          .replace("constraintlayout", "ConstraintLayout")
-          .replace("viewbinding", "ViewBinding")
-          .replace("databinding", "DataBinding")
-          .replace("bundletool", "BundleTool")
-          .replace("signflinger", "SignFlinger")
-          .replace("zipflinger", "ZipFlinger")
-          .replace("vectordrawable", "VectorDrawable")
-          .replace("mingwx", "Mingw.X")
-          .replace("mingwarm", "Mingw.Arm")
-          .replace("linuxx", "Linux.X")
-          .replace("linuxarm", "Linux.Arm")
-          .replace("macosx", "MacOS.X")
-          .replace("macosarm", "MacOS.Arm")
-          .replace("iosx", "iOS.X")
-          .replace("iosarm", "iOS.Arm")
-          .replace("tvosx", "TvOS.X")
-          .replace("tvosarm", "TvOS.Arm")
-          .replace("wasm32", "wArm32")
-          .replace("wasm64", "wArm64")
-          .replace("watchosx", "WatchOS.X")
-          .replace("watchosarm", "WatchOS.Arm")
-          .replace("okhttp", "OkHttp")
-          .replace("bytebuddy", "ByteBuddy")
+        else ->
+          it
+            .replace("androidx", "AndroidX")
+            .replace("kotlinx", "KotlinX")
+            .replace("viewmodel", "ViewModel")
+            .replace("uiautomator", "UiAutomator")
+            .replace("janktesthelper", "JanktestHelper")
+            .replace("constraintlayout", "ConstraintLayout")
+            .replace("viewbinding", "ViewBinding")
+            .replace("databinding", "DataBinding")
+            .replace("bundletool", "BundleTool")
+            .replace("signflinger", "SignFlinger")
+            .replace("zipflinger", "ZipFlinger")
+            .replace("vectordrawable", "VectorDrawable")
+            .replace("mingwx", "Mingw.X")
+            .replace("mingwarm", "Mingw.Arm")
+            .replace("linuxx", "Linux.X")
+            .replace("linuxarm", "Linux.Arm")
+            .replace("macosx", "MacOS.X")
+            .replace("macosarm", "MacOS.Arm")
+            .replace("iosx", "iOS.X")
+            .replace("iosarm", "iOS.Arm")
+            .replace("tvosx", "TvOS.X")
+            .replace("tvosarm", "TvOS.Arm")
+            .replace("wasm32", "wArm32")
+            .replace("wasm64", "wArm64")
+            .replace("watchosx", "WatchOS.X")
+            .replace("watchosarm", "WatchOS.Arm")
+            .replace("okhttp", "OkHttp")
+            .replace("bytebuddy", "ByteBuddy")
       }
     }
     onStart {
