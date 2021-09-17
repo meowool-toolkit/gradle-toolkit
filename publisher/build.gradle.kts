@@ -13,8 +13,9 @@ publication {
 
 dependencies {
   apiOf(
+//    Libs.Vespene,
+    Libs.Vespene,
     Libs.Meowool.Toolkit.Sweekt,
-    Libs.Mbonnin.Vespene.Lib,
     Libs.Jetbrains.Dokka.Gradle.Plugin,
   )
   implementation(Libs.Gradle.Publish.Plugin)

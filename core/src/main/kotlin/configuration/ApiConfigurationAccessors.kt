@@ -44,6 +44,32 @@ fun DependencyHandler.api(
 )
 
 /**
+ * Adds a project dependency to the 'api' configuration.
+ *
+ * @param projectPath project path for the dependency to be added.
+ * @param dependencyConfiguration expression to use to configure the dependency.
+ * @return The dependency.
+ *
+ * @see [addDependencyTo]
+ */
+fun DependencyHandler.apiProject(
+  projectPath: CharSequence,
+  dependencyConfiguration: Action<ExternalModuleDependency>
+): ExternalModuleDependency = addDependencyTo(
+  this, "api", project(projectPath.toString()), dependencyConfiguration
+)
+
+/**
+ * Adds a project dependency to the 'api' configuration.
+ *
+ * @param projectPath project path for the dependencies to be added.
+ *
+ * @see [DependencyHandler.add]
+ */
+fun DependencyHandler.apiProject(projectPath: CharSequence): Dependency? =
+  add("api", project(projectPath.toString()))
+
+/**
  * Adds a dependencies to the 'api' configuration.
  *
  * @param dependenciesNotation notation for the dependencies to be added.

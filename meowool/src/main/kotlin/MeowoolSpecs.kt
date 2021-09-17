@@ -4,7 +4,46 @@ import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.meowool.gradle.toolkit.GradleToolkitExtension
 import com.meowool.gradle.toolkit.internal.MeowoolManualSpec
 import com.meowool.gradle.toolkit.internal.MeowoolPresetSpec
+import org.gradle.api.Project
+import org.gradle.api.initialization.Settings
 import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.getByType
+
+/**
+ * Simplified [useMeowoolSpec].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+fun Settings.gradleToolkitWithMeowoolSpec(configuration: MeowoolPresetSpec.() -> Unit = {}) = gradleToolkit {
+  useMeowoolSpec(configuration)
+}
+
+/**
+ * Simplified [useMeowoolManualSpec].
+ */
+fun Settings.gradleToolkitWithMeowoolManualSpec(configuration: MeowoolManualSpec.() -> Unit) = gradleToolkit {
+  useMeowoolManualSpec(configuration)
+}
+
+/**
+ * Simplified [useMeowoolSpec].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+fun Project.gradleToolkitWithMeowoolSpec(configuration: MeowoolPresetSpec.() -> Unit = {}) {
+  require (this == rootProject) { "You can only setup the 'MeowoolSpec' in the settings.gradle(.kts) or build.gradle(.kts) of root project." }
+  extensions.getByType<GradleToolkitExtension>().useMeowoolSpec(configuration)
+}
+
+/**
+ * Simplified [useMeowoolSpec].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+fun Project.gradleToolkitWithMeowoolManualSpec(configuration: MeowoolPresetSpec.() -> Unit = {}) {
+  require (this == rootProject) { "You can only setup the 'MeowoolManualSpec' in the settings.gradle(.kts) or build.gradle(.kts) of root project." }
+  extensions.getByType<GradleToolkitExtension>().useMeowoolManualSpec(configuration)
+}
 
 /**
  * Uses the specification of 'Meowool-Organization' and configure with [configuration].

@@ -43,6 +43,32 @@ fun DependencyHandler.testCompileOnly(
 )
 
 /**
+ * Adds a project dependency to the 'testCompileOnly' configuration.
+ *
+ * @param projectPath project path for the dependency to be added.
+ * @param dependencyConfiguration expression to use to configure the dependency.
+ * @return The dependency.
+ *
+ * @see [addDependencyTo]
+ */
+fun DependencyHandler.testCompileOnlyProject(
+  projectPath: CharSequence,
+  dependencyConfiguration: Action<ExternalModuleDependency>
+): ExternalModuleDependency = addDependencyTo(
+  this, "testCompileOnly", project(projectPath.toString()), dependencyConfiguration
+)
+
+/**
+ * Adds a project dependency to the 'testCompileOnly' configuration.
+ *
+ * @param projectPath project path for the dependencies to be added.
+ *
+ * @see [DependencyHandler.add]
+ */
+fun DependencyHandler.testCompileOnlyProject(projectPath: CharSequence): Dependency? =
+  add("testCompileOnly", project(projectPath.toString()))
+
+/**
  * Adds a dependencies to the 'testCompileOnly' configuration.
  *
  * @param dependenciesNotation notation for the dependencies to be added.

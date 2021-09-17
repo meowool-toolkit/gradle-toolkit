@@ -44,6 +44,32 @@ fun DependencyHandler.runtimeOnly(
 )
 
 /**
+ * Adds a project dependency to the 'runtimeOnly' configuration.
+ *
+ * @param projectPath project path for the dependency to be added.
+ * @param dependencyConfiguration expression to use to configure the dependency.
+ * @return The dependency.
+ *
+ * @see [addDependencyTo]
+ */
+fun DependencyHandler.runtimeOnlyProject(
+  projectPath: CharSequence,
+  dependencyConfiguration: Action<ExternalModuleDependency>
+): ExternalModuleDependency = addDependencyTo(
+  this, "runtimeOnly", project(projectPath.toString()), dependencyConfiguration
+)
+
+/**
+ * Adds a project dependency to the 'runtimeOnly' configuration.
+ *
+ * @param projectPath project path for the dependencies to be added.
+ *
+ * @see [DependencyHandler.add]
+ */
+fun DependencyHandler.runtimeOnlyProject(projectPath: CharSequence): Dependency? =
+  add("runtimeOnly", project(projectPath.toString()))
+
+/**
  * Adds a dependencies to the 'runtimeOnly' configuration.
  *
  * @param dependenciesNotation notation for the dependencies to be added.

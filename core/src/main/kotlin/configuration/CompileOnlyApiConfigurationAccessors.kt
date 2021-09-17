@@ -43,6 +43,32 @@ fun DependencyHandler.compileOnlyApi(
 )
 
 /**
+ * Adds a project dependency to the 'compileOnlyApi' configuration.
+ *
+ * @param projectPath project path for the dependency to be added.
+ * @param dependencyConfiguration expression to use to configure the dependency.
+ * @return The dependency.
+ *
+ * @see [addDependencyTo]
+ */
+fun DependencyHandler.compileOnlyApiProject(
+  projectPath: CharSequence,
+  dependencyConfiguration: Action<ExternalModuleDependency>
+): ExternalModuleDependency = addDependencyTo(
+  this, "compileOnlyApi", project(projectPath.toString()), dependencyConfiguration
+)
+
+/**
+ * Adds a project dependency to the 'compileOnlyApi' configuration.
+ *
+ * @param projectPath project path for the dependencies to be added.
+ *
+ * @see [DependencyHandler.add]
+ */
+fun DependencyHandler.compileOnlyApiProject(projectPath: CharSequence): Dependency? =
+  add("compileOnlyApi", project(projectPath.toString()))
+
+/**
  * Adds a dependencies to the 'compileOnlyApi' configuration.
  *
  * @param dependenciesNotation notation for the dependencies to be added.

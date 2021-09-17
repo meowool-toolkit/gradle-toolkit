@@ -43,6 +43,32 @@ fun DependencyHandler.testApi(
 )
 
 /**
+ * Adds a project dependency to the 'testApi' configuration.
+ *
+ * @param projectPath project path for the dependency to be added.
+ * @param dependencyConfiguration expression to use to configure the dependency.
+ * @return The dependency.
+ *
+ * @see [addDependencyTo]
+ */
+fun DependencyHandler.testApiProject(
+  projectPath: CharSequence,
+  dependencyConfiguration: Action<ExternalModuleDependency>
+): ExternalModuleDependency = addDependencyTo(
+  this, "testApi", project(projectPath.toString()), dependencyConfiguration
+)
+
+/**
+ * Adds a project dependency to the 'testApi' configuration.
+ *
+ * @param projectPath project path for the dependencies to be added.
+ *
+ * @see [DependencyHandler.add]
+ */
+fun DependencyHandler.testApiProject(projectPath: CharSequence): Dependency? =
+  add("testApi", project(projectPath.toString()))
+
+/**
  * Adds a dependencies to the 'testApi' configuration.
  *
  * @param dependenciesNotation notation for the dependencies to be added.

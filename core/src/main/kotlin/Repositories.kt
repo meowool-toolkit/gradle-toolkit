@@ -16,39 +16,35 @@
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  */
-@file:Suppress("SpellCheckingInspection")
+@file:Suppress("SpellCheckingInspection", "unused")
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.kotlin.dsl.maven
+import org.gradle.kotlin.dsl.repositories
 
 /**
- * Mirrors of maven repositories
+ * Configures the repositories for all projects.
+ *
+ * Executes the given [configuration] block against the [RepositoryHandler] for all projects.
+ *
+ * @see Project.allprojects
+ * @see Project.repositories
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-sealed class MavenMirrors(val url: String) {
+fun Project.allrepositories(configuration: RepositoryHandler.() -> Unit) = allprojects { repositories(configuration) }
 
-  /* More see https://maven.aliyun.com/repository */
-  sealed class Aliyun(type: String) : MavenMirrors("https://maven.aliyun.com/repository/$type") {
-    object Google : Aliyun("google")
-    object Public : Aliyun("public")
-    object Spring : Aliyun("spring")
-    object Central : Aliyun("central")
-    object JCenter : Aliyun("jcenter")
-    object GrailsCore : Aliyun("grails-core")
-    object SpringPlugin : Aliyun("spring-plugin")
-    object GradlePlugin : Aliyun("gradle-plugin")
-    object ApacheSnapshots : Aliyun("apache-snapshots")
-  }
-
-  /* More see https://mirrors.huaweicloud.com/ */
-  object Huawei : MavenMirrors("https://repo.huaweicloud.com/repository/maven/")
-
-  /* More see https://mirrors.cloud.tencent.com/ */
-  object Tencent : MavenMirrors("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/")
-}
+/**
+ * Configures the repositories for all sub-projects.
+ *
+ * Executes the given [configuration] block against the [RepositoryHandler] for all sub-projects.
+ *
+ * @see Project.subprojects
+ * @see Project.repositories
+ */
+fun Project.subrepositories(configuration: RepositoryHandler.() -> Unit) = subprojects { repositories(configuration) }
 
 /**
  * Adds and configures a Maven repository.
@@ -116,3 +112,30 @@ fun RepositoryHandler.jCenter(action: MavenArtifactRepository.() -> Unit = {}) =
  */
 fun RepositoryHandler.jitpack(action: MavenArtifactRepository.() -> Unit = {}) =
   maven(name = "Jitpack", url = "https://jitpack.io", action)
+
+/**
+ * Mirrors of maven repositories
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+sealed class MavenMirrors(val url: String) {
+
+  /* More see https://maven.aliyun.com/repository */
+  sealed class Aliyun(type: String) : MavenMirrors("https://maven.aliyun.com/repository/$type") {
+    object Google : Aliyun("google")
+    object Public : Aliyun("public")
+    object Spring : Aliyun("spring")
+    object Central : Aliyun("central")
+    object JCenter : Aliyun("jcenter")
+    object GrailsCore : Aliyun("grails-core")
+    object SpringPlugin : Aliyun("spring-plugin")
+    object GradlePlugin : Aliyun("gradle-plugin")
+    object ApacheSnapshots : Aliyun("apache-snapshots")
+  }
+
+  /* More see https://mirrors.huaweicloud.com/ */
+  object Huawei : MavenMirrors("https://repo.huaweicloud.com/repository/maven/")
+
+  /* More see https://mirrors.cloud.tencent.com/ */
+  object Tencent : MavenMirrors("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/")
+}

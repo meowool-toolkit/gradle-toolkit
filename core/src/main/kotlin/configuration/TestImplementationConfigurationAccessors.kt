@@ -43,6 +43,32 @@ fun DependencyHandler.testImplementation(
 )
 
 /**
+ * Adds a project dependency to the 'testImplementation' configuration.
+ *
+ * @param projectPath project path for the dependency to be added.
+ * @param dependencyConfiguration expression to use to configure the dependency.
+ * @return The dependency.
+ *
+ * @see [addDependencyTo]
+ */
+fun DependencyHandler.testImplementationProject(
+  projectPath: CharSequence,
+  dependencyConfiguration: Action<ExternalModuleDependency>
+): ExternalModuleDependency = addDependencyTo(
+  this, "testImplementation", project(projectPath.toString()), dependencyConfiguration
+)
+
+/**
+ * Adds a project dependency to the 'testImplementation' configuration.
+ *
+ * @param projectPath project path for the dependencies to be added.
+ *
+ * @see [DependencyHandler.add]
+ */
+fun DependencyHandler.testImplementationProject(projectPath: CharSequence): Dependency? =
+  add("testImplementation", project(projectPath.toString()))
+
+/**
  * Adds a dependencies to the 'testImplementation' configuration.
  *
  * @param dependenciesNotation notation for the dependencies to be added.

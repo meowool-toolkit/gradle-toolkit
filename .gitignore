@@ -2,7 +2,6 @@
 /.gradle/
 /build/**
 
-# Include dependencies mapping path
-!/build/tmp/
-!/build/tmp/deps-mapping/
-!/build/tmp/deps-mapping/*
+# Include dependency-mapper caching path
+!/build/dependency-mapper/
+!/build/dependency-mapper/*

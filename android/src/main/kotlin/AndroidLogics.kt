@@ -23,10 +23,10 @@ import com.meowool.gradle.toolkit.android.internal.requireAndroidLibPlugin
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.TestedExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import com.meowool.gradle.toolkit.internal.LogicRegistry
-import com.meowool.gradle.toolkit.internal.LogicRegistry.Companion.logicRegistry
-import com.meowool.gradle.toolkit.internal.LogicRegistry.Companion.notFoundKey
-import com.meowool.gradle.toolkit.internal.LogicRegistry.Companion.requireNotKey
+import com.meowool.gradle.toolkit.LogicRegistry
+import com.meowool.gradle.toolkit.LogicRegistry.Companion.logicRegistry
+import com.meowool.gradle.toolkit.LogicRegistry.Companion.notFoundKey
+import com.meowool.gradle.toolkit.LogicRegistry.Companion.requireNotKey
 import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.DefaultAndroidKey
 import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.androidAppLogics
 import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.androidCommonLogics

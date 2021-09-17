@@ -2,8 +2,6 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.repositories.PasswordCredentials
 import java.io.File
 import java.nio.file.Path
-import kotlin.io.path.ExperimentalPathApi
-import kotlin.io.path.absolutePathString
 
 /**
  * The repository destination to publish to.
@@ -93,10 +91,9 @@ data class DirectoryDestination constructor(
    * @param releases The directory path to releases repository.
    * @param snapshots The directory path to snapshots repository.
    */
-  @OptIn(ExperimentalPathApi::class)
   constructor(releases: Path, snapshots: Path = releases): this(
-    releases.normalize().absolutePathString(),
-    snapshots.normalize().absolutePathString()
+    releases.normalize().toAbsolutePath().toString(),
+    snapshots.normalize().toAbsolutePath().toString()
   )
 
   /**

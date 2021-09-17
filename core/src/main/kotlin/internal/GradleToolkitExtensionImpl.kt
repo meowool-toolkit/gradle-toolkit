@@ -21,6 +21,7 @@
 package com.meowool.gradle.toolkit.internal
 
 import com.meowool.gradle.toolkit.GradleToolkitExtension
+import com.meowool.gradle.toolkit.LogicRegistry
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
 

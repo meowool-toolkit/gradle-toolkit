@@ -44,6 +44,32 @@ fun DependencyHandler.implementation(
 )
 
 /**
+ * Adds a project dependency to the 'implementation' configuration.
+ *
+ * @param projectPath project path for the dependency to be added.
+ * @param dependencyConfiguration expression to use to configure the dependency.
+ * @return The dependency.
+ *
+ * @see [addDependencyTo]
+ */
+fun DependencyHandler.implementationProject(
+  projectPath: CharSequence,
+  dependencyConfiguration: Action<ExternalModuleDependency>
+): ExternalModuleDependency = addDependencyTo(
+  this, "implementation", project(projectPath.toString()), dependencyConfiguration
+)
+
+/**
+ * Adds a project dependency to the 'implementation' configuration.
+ *
+ * @param projectPath project path for the dependencies to be added.
+ *
+ * @see [DependencyHandler.add]
+ */
+fun DependencyHandler.implementationProject(projectPath: CharSequence): Dependency? =
+  add("implementation", project(projectPath.toString()))
+
+/**
  * Adds a dependencies to the 'implementation' configuration.
  *
  * @param dependenciesNotation notation for the dependencies to be added.

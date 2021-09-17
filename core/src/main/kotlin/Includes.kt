@@ -35,20 +35,12 @@ import java.nio.file.Path
  */
 fun Settings.importProjects(
   includeDir: File,
-  excludeBy: (File) -> Boolean
+  excludeBy: (File) -> Boolean,
 ) = includeDir.walkTopDown()
-  .asSequence()
-  .filterNot { it == rootDir }
-  .filterNot { excludeBy(it) }
-  .filterNot { it.resolve(".skipimport").exists() }
+  .onEnter { it.resolve(".skipimport").exists().not() && excludeBy(it).not() }
+  .filterNot { it == includeDir }
   .filter { it.resolve("build.gradle.kts").exists() || it.resolve("build.gradle").exists() }
-  .forEach {
-    include(
-      it.path
-        .removePrefix(rootDir.path)
-        .replace(File.separatorChar, ':')
-    )
-  }
+  .forEach { include(":${it.relativeTo(rootDir).path.replace(File.separatorChar, ':')}") }
 
 /**
  * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDirPath].
@@ -63,7 +55,7 @@ fun Settings.importProjects(
  */
 fun Settings.importProjects(
   includeDirPath: String,
-  excludeBy: (File) -> Boolean
+  excludeBy: (File) -> Boolean,
 ) = this.importProjects(File(includeDirPath), excludeBy)
 
 /**
@@ -79,7 +71,7 @@ fun Settings.importProjects(
  */
 fun Settings.importProjects(
   includeDirPath: Path,
-  excludeBy: (File) -> Boolean
+  excludeBy: (File) -> Boolean,
 ) = this.importProjects(includeDirPath.toFile(), excludeBy)
 
 /**
@@ -95,7 +87,7 @@ fun Settings.importProjects(
  */
 fun Settings.importProjects(
   includeDir: File,
-  vararg excludeDirs: File
+  vararg excludeDirs: File,
 ) = importProjects(includeDir) { file ->
   excludeDirs.any { exclude -> file.startsWith(exclude) }
 }
@@ -113,7 +105,7 @@ fun Settings.importProjects(
  */
 fun Settings.importProjects(
   includeDirPath: String,
-  vararg excludeDirPaths: String
+  vararg excludeDirPaths: String,
 ) = this.importProjects(File(includeDirPath), *excludeDirPaths.map(::File).toTypedArray())
 
 /**
@@ -129,5 +121,5 @@ fun Settings.importProjects(
  */
 fun Settings.importProjects(
   includeDirPath: Path,
-  vararg excludeDirPaths: Path
+  vararg excludeDirPaths: Path,
 ) = this.importProjects(includeDirPath.toFile(), *excludeDirPaths.map { it.toFile() }.toTypedArray())

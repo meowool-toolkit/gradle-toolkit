@@ -1,0 +1,1 @@
+fun <T> Result<T>.exceptionMessage(): String? = exceptionOrNull()?.message

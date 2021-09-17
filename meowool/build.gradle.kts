@@ -8,9 +8,11 @@ publication.data {
   description = "Gradle Toolkit specific to the 'Meowool-Organization' project."
 }
 
-dependencies.apiOf(
-  projects.android,
-  projects.dependencies,
-  projects.publisher,
-  Libs.Gradle.Spotless,
-)
+dependencies{
+  apiProjects(
+    Projects.Android,
+    Projects.Dependency,
+    Projects.Publisher,
+  )
+  api(Libs.Gradle.Spotless)
+}

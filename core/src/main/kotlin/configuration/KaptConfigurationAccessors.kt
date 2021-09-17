@@ -43,6 +43,32 @@ fun DependencyHandler.kapt(
 )
 
 /**
+ * Adds a project dependency to the 'kapt' configuration.
+ *
+ * @param projectPath project path for the dependency to be added.
+ * @param dependencyConfiguration expression to use to configure the dependency.
+ * @return The dependency.
+ *
+ * @see [addDependencyTo]
+ */
+fun DependencyHandler.kaptProject(
+  projectPath: CharSequence,
+  dependencyConfiguration: Action<ExternalModuleDependency>
+): ExternalModuleDependency = addDependencyTo(
+  this, "kapt", project(projectPath.toString()), dependencyConfiguration
+)
+
+/**
+ * Adds a project dependency to the 'kapt' configuration.
+ *
+ * @param projectPath project path for the dependencies to be added.
+ *
+ * @see [DependencyHandler.add]
+ */
+fun DependencyHandler.kaptProject(projectPath: CharSequence): Dependency? =
+  add("kapt", project(projectPath.toString()))
+
+/**
  * Adds a dependencies to the 'kapt' configuration.
  *
  * @param dependenciesNotation notation for the dependencies to be added.

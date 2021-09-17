@@ -1,11 +1,13 @@
 @file:Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
 
-import LogicRegistry.Companion.DefaultDependenciesKey
-import LogicRegistry.Companion.DefaultProjectKey
-import LogicRegistry.Companion.notFoundKey
-import annotation.InternalGradleToolkitApi
+package com.meowool.gradle.toolkit
+
+import DependencyHandlerToolkit
+import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl.Companion.toolkitExtensionImpl
+import com.meowool.gradle.toolkit.internal.InternalGradleToolkitApi
+import injectProjectLogic
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
+import injectDependenciesLogic
 import java.util.concurrent.ConcurrentHashMap
 
 /**
@@ -19,7 +21,7 @@ class LogicRegistry {
   @InternalGradleToolkitApi
   val extraLogics = ConcurrentHashMap<Any, Any>()
   internal val projectLogics = ConcurrentHashMap<Any, Project.() -> Unit>()
-  internal val dependenciesLogics = ConcurrentHashMap<Any, DependencyHandlerDelegate.() -> Unit>()
+  internal val dependenciesLogics = ConcurrentHashMap<Any, DependencyHandlerToolkit.() -> Unit>()
 
   /**
    * Registers the project block [logic] belonging to the specified [key].
@@ -36,7 +38,7 @@ class LogicRegistry {
    *
    * And then you can call [injectDependenciesLogic] in the any required project to inject [logic].
    */
-  fun dependencies(key: Any = DefaultDependenciesKey, logic: DependencyHandlerDelegate.() -> Unit) {
+  fun dependencies(key: Any = DefaultDependenciesKey, logic: DependencyHandlerToolkit.() -> Unit) {
     dependenciesLogics.requireNotKey(key)
     dependenciesLogics[key] = logic
   }
@@ -44,31 +46,13 @@ class LogicRegistry {
   @InternalGradleToolkitApi companion object {
     const val DefaultProjectKey = "default project logic"
     const val DefaultDependenciesKey = "default dependencies logic"
+
+    val Project.logicRegistry: LogicRegistry
+      get() = toolkitExtensionImpl.logicRegistry
+
     inline fun ConcurrentHashMap<*, *>.requireNotKey(key: Any) =
       require(containsKey(key).not()) { "$key already registered." }
     inline fun notFoundKey(key: Any): Nothing =
       error("Found not the logic related to the $key, please make sure you have registered.")
   }
-}
-
-/**
- * Injects the shared logic of project block registered in [LogicRegistry] into this project.
- *
- * @param key The key of the registered logic.
- * @see LogicRegistry.project
- */
-fun Project.injectProjectLogic(key: Any = DefaultProjectKey) {
-  val logic = logicRegistry.projectLogics[key] ?: notFoundKey(key)
-  logic(this)
-}
-
-/**
- * Injects the shared logic of dependencies block registered in [LogicRegistry] into this project.
- *
- * @param key The key of the registered logic.
- * @see LogicRegistry.dependencies
- */
-fun Project.injectDependenciesLogic(key: Any = DefaultDependenciesKey) = dependencies {
-  val logic = logicRegistry.dependenciesLogics[key] ?: notFoundKey(key)
-  logic(DependencyHandlerDelegate(project, this))
 }

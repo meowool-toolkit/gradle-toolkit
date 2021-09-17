@@ -4,7 +4,7 @@ import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.TestedExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.meowool.gradle.toolkit.internal.InternalGradleToolkitApi
-import com.meowool.gradle.toolkit.internal.LogicRegistry
+import com.meowool.gradle.toolkit.LogicRegistry
 import com.meowool.sweekt.cast
 import com.meowool.sweekt.safeCast
 import org.gradle.api.Project

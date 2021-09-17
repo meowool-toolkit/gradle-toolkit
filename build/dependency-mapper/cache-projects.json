@@ -1,0 +1,12 @@
+[
+  ":all",
+  ":android",
+  ":core",
+  ":dependency",
+  ":meowool",
+  ":publisher",
+  ":dependency:mapper",
+  ":dependency:mapper-legacy",
+  ":dependency:prebuilt",
+  ":dependency:updater"
+]
