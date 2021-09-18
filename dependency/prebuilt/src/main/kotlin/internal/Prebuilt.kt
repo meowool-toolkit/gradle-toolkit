@@ -32,14 +32,21 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
   projects: String = ProjectDependencyDeclaration.DefaultRootClassName,
   plugins: String = PluginDependencyDeclaration.DefaultRootClassName,
 ) = apply {
+  projects(projects)
+
   plugins(plugins) {
     map(
-      "com.diffplug.spotless" to "Gradle.Spotless",
-      "com.gradle.publish" to "Gradle.Publish.Plugin",
+      "com.diffplug.spotless" to "Spotless",
+      "com.gradle.publish" to "Gradle.Publish",
+      "com.gradle.build-scan" to "Gradle.BuildScan",
       "me.tylerbwong.gradle.metalava" to "Gradle.Metalava",
+      "org.gradle.crypto.checksum" to "Gradle.Crypto.Checksum",
+      "org.gradle.android.cache-fix" to "Gradle.AndroidCacheFix",
     )
     searchPrefixes(
       "com.google",
+      "org.gradle.kotlin",
+      "com.gradle.enterprise",
 
       "org.jetbrains.dokka",
       "org.jetbrains.gradle",
@@ -61,7 +68,7 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
       "com.andkulikov:transitionseverywhere" to "TransitionsEverywhere",
       "com.github.donkingliang:ConsecutiveScroller" to "ConsecutiveScroller",
 
-      "me.tylerbwong.gradle:metalava-gradle:" to "Gradle.Metalava",
+      "me.tylerbwong.gradle:metalava-gradle" to "Gradle.Metalava",
       "com.diffplug.spotless:spotless-plugin-gradle" to "Gradle.Spotless",
       "com.gradle.publish:plugin-publish-plugin" to "Gradle.Publish.Plugin",
     )
@@ -168,7 +175,6 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
       filterNot { it.startsWith("com.android.support") }
     }
   }
-  projects(projects)
 
   format {
     notCapitalize { name ->
@@ -221,9 +227,10 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
         .replace("com.google.android", "google")
         .replace("org.chromium.net", "chromium")
         .replace("com.squareup", "square")
+        .replace("io.arrow-kt", "arrow")
         .replace("app.cash", "CashApp")
         .replace("io.coil-kt", "Coil")
-        .replace("io.arrow-kt", "Arrow")
+        .replace("android.tools.build.gradle", "Android.GradlePlugin")
         .removePrefix("com.github.ajalt.")
         .removePrefix("com.linkedin.")
         .removePrefix("com.afollestad.")
@@ -243,6 +250,12 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
         it.startsWith("me.", ignoreCase = true) -> it.removePrefixFuzzy("me.")
         else -> it
       }
+    }
+    onEnd {
+      when {
+        it.startsWith("android.tools.build.gradle", ignoreCase = true) -> it.removePrefixFuzzy("com.")
+      }
+      it
     }
   }
 }

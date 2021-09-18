@@ -24,13 +24,10 @@ import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.meowool.gradle.toolkit.GradleToolkitExtension
 import com.meowool.gradle.toolkit.internal.MeowoolManualSpec
 import com.meowool.gradle.toolkit.internal.MeowoolPresetSpec
-import me.tylerbwong.gradle.metalava.extension.MetalavaExtension
 import me.tylerbwong.gradle.metalava.plugin.MetalavaPlugin
 import org.gradle.api.Project
 import org.gradle.api.initialization.Settings
-import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.getByType
 
 /**
@@ -58,11 +55,7 @@ private fun GradleToolkitExtension.useMeowoolSpecImpl(spec: MeowoolPresetSpec) {
     project.optIn(spec.optIn)
     spec.repositories.invoke(repositories, project)
     if (spec.enabledSpotless) project.apply<SpotlessPlugin>()
-    if (spec.enabledMetalava) {
-      // TODO Modify when https://github.com/tylerbwong/metalava-gradle/pull/23 merged
-      extensions.create("metalava", MetalavaExtension::class.java)
-//      rootProject.apply<MetalavaPlugin>()
-    }
+    if (spec.enabledMetalava) project.apply<MetalavaPlugin>()
   }
   spec.configurations.forEach { it() }
 }

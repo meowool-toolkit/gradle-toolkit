@@ -31,7 +31,7 @@ pluginManagement {
 }
 
 plugins {
-  id("com.meowool.gradle.toolkit") version "0.2.1-SNAPSHOT"
+  id("com.meowool.gradle.toolkit") version "0.2.1-LOCAL-SNAPSHOT"
 }
 
 buildscript {

@@ -1,9 +1,0 @@
-public final class PreBuiltDependencyMappersKt {
-	public static final fun dependencyMapperPrebuilt (Lcom/meowool/gradle/toolkit/GradleToolkitExtension;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun dependencyMapperPrebuilt (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun dependencyMapperPrebuilt (Lorg/gradle/api/initialization/Settings;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static synthetic fun dependencyMapperPrebuilt$default (Lcom/meowool/gradle/toolkit/GradleToolkitExtension;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
-	public static synthetic fun dependencyMapperPrebuilt$default (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
-	public static synthetic fun dependencyMapperPrebuilt$default (Lorg/gradle/api/initialization/Settings;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
-}
-

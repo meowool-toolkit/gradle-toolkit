@@ -54,8 +54,8 @@ val internalMarkers = arrayOf(
 )
 
 metalava {
-  hiddenAnnotations += internalMarkers
-  hiddenPackages += arrayOf(
+  hiddenAnnotations(*internalMarkers)
+  hiddenPackages(
     "com.meowool.gradle.toolkit.internal",
     "com.meowool.gradle.toolkit.android.internal",
     "com.meowool.gradle.toolkit.publisher.internal",
@@ -65,6 +65,7 @@ metalava {
 }
 
 subprojects {
+  optIn(*internalMarkers)
   kotlinJvmOptions {
     @Suppress("DEPRECATION")
     useIR = true
@@ -72,13 +73,11 @@ subprojects {
     languageVersion = "1.5"
     addFreeCompilerArgs("-Xskip-prerelease-check")
   }
-  optIn(*internalMarkers)
   tasks.withType<Test> { useJUnitPlatform() }
 }
 
 subdependencies {
   // All projects depend on the ':core'
-  if (project.path == Projects.Meowool.Metalava) return@subdependencies
   if (project.path != Projects.Core) {
     apiProject(Projects.Core)
   }

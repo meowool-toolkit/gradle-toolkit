@@ -26,7 +26,6 @@ import MavenMirrors
 import NdkAbi
 import abiFilters
 import android
-import autofix.Module.Companion.module
 import com.diffplug.gradle.spotless.SpotlessApply
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.meowool.gradle.toolkit.GradleToolkitExtension
@@ -300,24 +299,9 @@ open class MeowoolPresetSpec internal constructor() {
   }
 
   protected fun presetMetalava(): GradleToolkitExtension.() -> Unit = {
-    allprojects {
+    allprojects(afterEvaluate = false) {
       project.extensions.findByType<MetalavaExtension>()?.apply {
-        // TODO Modify when https://github.com/tylerbwong/metalava-gradle/pull/23 merged
-        val currentModule = module(this) ?: return@apply
-        autofix.MetalavaSignature.registerMetalavaSignatureTask(
-          project = project,
-          name = "metalavaGenerateSignature",
-          description = "Generates a Metalava signature descriptor file.",
-          extension = this,
-          module = currentModule
-        )
-        autofix.MetalavaCheckCompatibility.registerMetalavaCheckCompatibilityTask(
-          project = project,
-          extension = this,
-          module = currentModule
-        )
-
-        filename = "api/${project.version.takeUnless { it == "unspecified" } ?: "current"}.api"
+        ignoreUnsupportedModules = true
         includeSignatureVersion = false
       }
 

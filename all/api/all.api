@@ -1,5 +1,0 @@
-public final class com/meowool/gradle/toolkit/GradleToolkitPlugin : org/gradle/api/Plugin {
-	public fun <init> ()V
-	public fun apply (Ljava/lang/Object;)V
-}
-

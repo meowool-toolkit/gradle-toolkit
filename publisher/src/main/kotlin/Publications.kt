@@ -34,10 +34,11 @@ import org.gradle.kotlin.dsl.getByType
  * @see PublisherPlugin
  * @see PublicationExtension
  */
-fun GradleToolkitExtension.publications(configuration: PublicationExtension.() -> Unit) = allprojects {
-  apply<PublisherPlugin>()
-  extensions.configure(configuration)
-}
+fun GradleToolkitExtension.publications(configuration: PublicationExtension.() -> Unit) =
+  allprojects(afterEvaluate = false) {
+    apply<PublisherPlugin>()
+    extensions.configure(configuration)
+  }
 
 /**
  * Returns the [PublicationExtension] of the [PublisherPlugin] plugin in this project.
@@ -45,10 +46,11 @@ fun GradleToolkitExtension.publications(configuration: PublicationExtension.() -
  * @see PublisherPlugin
  * @see PublicationExtension
  */
-val Project.publication: PublicationExtension get() {
-  apply<PublisherPlugin>()
-  return extensions.getByType()
-}
+val Project.publication: PublicationExtension
+  get() {
+    apply<PublisherPlugin>()
+    return extensions.getByType()
+  }
 
 /**
  * Configures the [PublicationExtension] of the [PublisherPlugin] plugin in this project.

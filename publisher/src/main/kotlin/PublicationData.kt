@@ -18,12 +18,12 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-@file:Suppress("MemberVisibilityCanBePrivate", "DEPRECATION")
+@file:Suppress("MemberVisibilityCanBePrivate", "DEPRECATION", "unused")
 
 package com.meowool.gradle.toolkit.publisher
 
 import com.meowool.gradle.toolkit.publisher.internal.maxOf
-import com.meowool.gradle.toolkit.publisher.internal.rootPublicationData
+import com.meowool.gradle.toolkit.publisher.internal.parentPublicationData
 import com.meowool.sweekt.ifNull
 import findPropertyOrEnv
 import org.gradle.api.Project
@@ -562,57 +562,57 @@ import org.gradle.api.publish.maven.MavenPomLicense
 
   internal fun groupIdOrDefault(): String = groupId
     .ifNull { project.findPropertyOrEnv("publication.groupId")?.toString() }
-    .ifNull { project.rootPublicationData?.groupId }
+    .ifNull { project.parentPublicationData?.groupId }
     .ifNull { project.group.toString() }
 
   internal fun artifactIdOrDefault(): String = artifactId
     .ifNull { project.findPropertyOrEnv("publication.artifactId")?.toString() }
-    .ifNull { project.rootPublicationData?.artifactId }
+    .ifNull { project.parentPublicationData?.artifactId }
     .ifNull { project.name }
 
   internal fun pluginIdOrDefault(): String = pluginId
     .ifNull { project.findPropertyOrEnv("publication.pluginId")?.toString() }
-    .ifNull { project.rootPublicationData?.pluginId }
+    .ifNull { project.parentPublicationData?.pluginId }
     .ifNull { "${groupIdOrDefault()}.${artifactIdOrDefault()}" }
 
   internal fun versionOrDefault(): String = version
     .ifNull { project.findPropertyOrEnv("publication.version")?.toString() }
-    .ifNull { project.rootPublicationData?.version }
+    .ifNull { project.parentPublicationData?.version }
     .ifNull { project.version.toString() }
 
   internal fun displayNameOrDefault(): String = displayName
     .ifNull { project.findPropertyOrEnv("publication.displayName")?.toString() }
-    .ifNull { project.rootPublicationData?.displayName }
+    .ifNull { project.parentPublicationData?.displayName }
     .ifNull { artifactIdOrDefault().capitalize() }
 
   internal fun descriptionOrDefault() = description
     .ifNull { project.findPropertyOrEnv("publication.description")?.toString() }
-    .ifNull { project.rootPublicationData?.description }
+    .ifNull { project.parentPublicationData?.description }
     .ifNull { project.description }
 
   internal fun urlOrDefault(recursively: Boolean = true): String? = url
     .ifNull { project.findPropertyOrEnv("publication.url")?.toString() }
-    .ifNull { project.rootPublicationData?.url }
+    .ifNull { project.parentPublicationData?.url }
     .ifNull { if (recursively) vcsOrDefault(recursively = false) else null }
 
   internal fun vcsOrDefault(recursively: Boolean = true): String? = vcs
     .ifNull { project.findPropertyOrEnv("publication.vcs")?.toString() }
-    .ifNull { project.rootPublicationData?.vcs }
+    .ifNull { project.parentPublicationData?.vcs }
     .ifNull { if (recursively) urlOrDefault(recursively = false) else null }
 
   internal fun tagsOrDefault(): MutableSet<String> = tags.toMutableSet().apply {
     project.findPropertyOrEnv("publication.tags")?.toString()?.split(", ")?.toList()?.let(::addAll)
     // Root project also needs to be added
-    project.rootPublicationData?.tagsOrDefault()?.let(::addAll)
+    project.parentPublicationData?.tagsOrDefault()?.let(::addAll)
   }
 
   internal fun organizationNameOrDefault(): String? = organizationName
     .ifNull { project.findPropertyOrEnv("publication.organizationName")?.toString() }
-    .ifNull { project.rootPublicationData?.organizationName }
+    .ifNull { project.parentPublicationData?.organizationName }
 
   internal fun organizationUrlOrDefault(): String? = organizationUrl
     .ifNull { project.findPropertyOrEnv("publication.organizationUrl")?.toString() }
-    .ifNull { project.rootPublicationData?.organizationUrl }
+    .ifNull { project.parentPublicationData?.organizationUrl }
 
   internal fun developersOrDefault(): MutableSet<Developer> = developers.toMutableSet().apply {
     val ids = project.findPropertyOrEnv("publication.developers.id")?.toString()?.split(", ").orEmpty()
@@ -632,7 +632,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
     }
 
     // Root project also needs to be added
-    project.rootPublicationData?.developersOrDefault()?.let(::addAll)
+    project.parentPublicationData?.developersOrDefault()?.let(::addAll)
   }
 
   internal fun licensesOrDefault(): MutableSet<License> = licenses.toMutableSet().apply {
@@ -649,7 +649,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
     }
 
     // Root project also needs to be added
-    project.rootPublicationData?.licensesOrDefault()?.let(::addAll)
+    project.parentPublicationData?.licensesOrDefault()?.let(::addAll)
   }
 
   @DslMarker internal annotation class Marker

@@ -90,9 +90,7 @@ class PublisherPlugin : Plugin<Project> {
 
       // Incompatible project do not enable publishing
       if (isCompatible.not()) {
-        if (extension.showIncompatibleWarnings) target.logger.warn(
-          "Publisher skips incompatible project: '$path'"
-        )
+        if (extension.showIncompatibleWarnings!!) target.logger.warn("Publisher skips incompatible project: '$path'")
         return@afterEvaluate
       }
 
@@ -249,7 +247,7 @@ class PublisherPlugin : Plugin<Project> {
                 ?: xml.appendNode("repositories")
 
               repositories.forEach { repo ->
-                repositoriesNode?.appendNode("repository")?.apply {
+                repositoriesNode.appendNode("repository")?.apply {
                   appendNode("id", repo.name)
                   appendNode("url", repo.url.toString())
                 }
@@ -271,7 +269,7 @@ class PublisherPlugin : Plugin<Project> {
       if (isSnapshotVersion) return@afterEvaluate
 
       val dokkaJar by tasks.register<Jar>("dokkaJar") {
-        val dokkaTask = tasks.findByName(dokkaFormat.taskName).safeCast()
+        val dokkaTask = tasks.findByName(dokkaFormat!!.taskName).safeCast()
           ?: tasks.withType<DokkaTask>().first()
 
         dependsOn(dokkaTask)
@@ -287,16 +285,16 @@ class PublisherPlugin : Plugin<Project> {
    * Configures the signings to sign artifacts to publish.
    */
   private fun PublishingExtension.configureSignings(extension: PublicationExtension) = with(extension) {
-    if (isSignRelease || isSignSnapshot) {
+    if (isSignRelease!! || isSignSnapshot!!) {
       project.apply<SigningPlugin>()
 
       // Signing the artifacts
       project.extensions.configure<SigningExtension> {
         setRequired({
           when {
-            isSignRelease && isSignSnapshot.not() -> isSnapshotVersion.not()
-            isSignSnapshot && isSignRelease.not() -> isSnapshotVersion
-            isSignRelease && isSignSnapshot -> true
+            isSignRelease!! && isSignSnapshot!!.not() -> isSnapshotVersion.not()
+            isSignSnapshot!! && isSignRelease!!.not() -> isSnapshotVersion
+            isSignRelease!! && isSignSnapshot!! -> true
             else -> false
           }
         })
@@ -358,7 +356,7 @@ class PublisherPlugin : Plugin<Project> {
   private fun Project.taskInitializeSonatypeStaging(target: SonatypeDestination) =
     tasks.withType<PublishToMavenRepository>().all {
       doFirst {
-        // Don't redirect the publish of snapshot artifacts
+        // Don't redirect the publishing of snapshot artifacts
         if (target.isSnapshot.not()) runBlocking {
           flow {
             val client = project.createNexusStagingClient(target.baseUrl)

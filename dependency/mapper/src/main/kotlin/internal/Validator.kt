@@ -31,8 +31,8 @@ internal object Validator {
     return notation.valid("dependency notation") {
       if (it == ':') {
         require(colonExists.not()) {
-          "The dependency notation can only has one `:` symbol used to separate `group` and `artifact`, in other words," +
-            "the dependency notation cannot contains the version."
+          "The dependency notation `$notation` can only has one `:` symbol used to separate `group` and `artifact`, in other words," +
+            "it cannot contains the version."
         }
         colonExists = true
       }

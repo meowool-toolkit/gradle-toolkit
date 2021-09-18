@@ -18,6 +18,8 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+@file:Suppress("MemberVisibilityCanBePrivate", "unused")
+
 package com.meowool.gradle.toolkit.publisher
 
 import DirectoryDestination
@@ -25,7 +27,7 @@ import DokkaFormat
 import MavenLocalDestination
 import PublishingDestination
 import SonatypeDestination
-import com.meowool.gradle.toolkit.publisher.internal.rootPublication
+import com.meowool.gradle.toolkit.publisher.internal.parentPublication
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.plugin.devel.PluginDeclaration
@@ -45,7 +47,8 @@ class PublicationExtension(internal val project: Project) {
    *
    * Note that when this value has not been modified, this value defaults to the value of the root project.
    */
-  var showIncompatibleWarnings: Boolean = project.rootPublication?.showIncompatibleWarnings ?: true
+  var showIncompatibleWarnings: Boolean? = null
+    get() = field ?: project.parentPublication?.showIncompatibleWarnings ?: true
 
   /**
    * The data of this publication.
@@ -71,7 +74,7 @@ class PublicationExtension(internal val project: Project) {
    * Note that this value will inherit the value set in the root project.
    */
   val destinations: MutableSet<PublishingDestination> = mutableSetOf<PublishingDestination>().also {
-    project.rootPublication?.destinations?.apply(it::addAll)
+    project.parentPublication?.destinations?.apply(it::addAll)
   }
 
   /**
@@ -80,7 +83,8 @@ class PublicationExtension(internal val project: Project) {
    *
    * Note that this value will initially use the value set in the root project.
    */
-  var dokkaFormat: DokkaFormat = project.rootPublication?.dokkaFormat ?: DokkaFormat.Html
+  var dokkaFormat: DokkaFormat? = null
+    get() = field ?: project.parentPublication?.dokkaFormat ?: DokkaFormat.Html
 
   /**
    * Whether to sign the release version of this publication.
@@ -88,7 +92,8 @@ class PublicationExtension(internal val project: Project) {
    *
    * Note that this value will initially use the value set in the root project.
    */
-  var isSignRelease: Boolean = project.rootPublication?.isSignRelease ?: true
+  var isSignRelease: Boolean? = null
+    get() = field ?: project.parentPublication?.isSignRelease ?: true
 
   /**
    * Whether to sign the snapshot version of this publication.
@@ -96,7 +101,8 @@ class PublicationExtension(internal val project: Project) {
    *
    * Note that this value will initially use the value set in the root project.
    */
-  var isSignSnapshot: Boolean = project.rootPublication?.isSignSnapshot ?: false
+  var isSignSnapshot: Boolean? = null
+    get() = field ?: project.parentPublication?.isSignSnapshot ?: false
 
   /**
    * Returns `true` if this publication is a snapshot version.

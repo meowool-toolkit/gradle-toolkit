@@ -2,16 +2,31 @@
   "formatter": {
     "startProcessorCount": 1,
     "nameProcessorCount": 1,
+    "endProcessorCount": 1,
     "capitalizationPredicateCount": 1
   },
   "declarations": {
+    "Projects": {
+      "type": "com.meowool.gradle.toolkit.internal.ProjectDependencyDeclarationImpl",
+      "rootClassName": "Projects"
+    },
     "Plugins": {
       "type": "com.meowool.gradle.toolkit.internal.PluginDependencyDeclarationImpl",
       "rootClassName": "Plugins",
+      "mapped": {
+        "com.diffplug.spotless": "Spotless",
+        "com.gradle.publish": "Gradle.Publish",
+        "com.gradle.build-scan": "Gradle.BuildScan",
+        "me.tylerbwong.gradle.metalava": "Gradle.Metalava",
+        "org.gradle.crypto.checksum": "Gradle.Crypto.Checksum",
+        "org.gradle.android.cache-fix": "Gradle.AndroidCacheFix"
+      },
       "prefixSearches": [
         {
           "values": [
             "com.google",
+            "org.gradle.kotlin",
+            "com.gradle.enterprise",
             "org.jetbrains.dokka",
             "org.jetbrains.gradle",
             "org.jetbrains.kotlin",
@@ -37,18 +52,18 @@
         "com.meowool.toolkit:sweekt"
       ],
       "mapped": {
-        "com.tfowl.ktor:ktor-jsoup": "Ktor.Jsoup",
-        "com.github.ben-manes.caffeine:caffeine": "Caffeine",
-        "com.github.promeg:tinypinyin": "TinyPinyin",
-        "de.fayard.refreshVersions:refreshVersions": "RefreshVersions",
-        "com.github.donkingliang:ConsecutiveScroller": "ConsecutiveScroller",
         "org.zeroturnaround:zt-zip": "ZtZip",
-        "com.andkulikov:transitionseverywhere": "TransitionsEverywhere",
+        "com.tfowl.ktor:ktor-jsoup": "Ktor.Jsoup",
+        "com.github.promeg:tinypinyin": "TinyPinyin",
         "in.arunkumarsampath:transition-x": "TransitionX",
+        "com.github.ben-manes.caffeine:caffeine": "Caffeine",
+        "de.fayard.refreshVersions:refreshVersions": "RefreshVersions",
+        "com.andkulikov:transitionseverywhere": "TransitionsEverywhere",
+        "com.github.donkingliang:ConsecutiveScroller": "ConsecutiveScroller",
+        "me.tylerbwong.gradle:metalava-gradle": "Gradle.Metalava",
         "com.diffplug.spotless:spotless-plugin-gradle": "Gradle.Spotless",
         "com.gradle.publish:plugin-publish-plugin": "Gradle.Publish.Plugin",
-        "net.mbonnin.vespene:vespene-lib": "Vespene",
-        "me.tylerbwong.gradle:metalava-gradle": "Gradle.Metalava"
+        "net.mbonnin.vespene:vespene-lib": "Vespene"
       },
       "groupSearches": [
         {
@@ -160,10 +175,6 @@
           "filterCount": 1
         }
       ]
-    },
-    "Projects": {
-      "type": "com.meowool.gradle.toolkit.internal.ProjectDependencyDeclarationImpl",
-      "rootClassName": "Projects"
     }
   }
 }

@@ -44,11 +44,8 @@ import org.gradle.kotlin.dsl.register
 private const val BUILD_LISTENER = "mavenPublish-buildListener"
 private const val REPOSITORIES_TO_CLOSE = "mavenPublish-waitForCloseRepositories"
 
-internal val Project.rootPublication: PublicationExtension?
-  get() = if (this == rootProject) null else rootProject.extensions.getByType()
-
-internal val Project.rootPublicationData: PublicationData?
-  get() = rootPublication?.data
+internal val Project.parentPublication: PublicationExtension? get() = parent?.extensions?.getByType()
+internal val Project.parentPublicationData: PublicationData? get() = parentPublication?.data
 
 internal val Project.androidExtension get() = extensions.findByName("android") as? BaseExtension
 internal val Project.isAndroid get() = androidExtension != null
