@@ -7,5 +7,6 @@
   ":publisher",
   ":dependency:mapper",
   ":dependency:prebuilt",
-  ":dependency:updater"
+  ":dependency:updater",
+  ":meowool:metalava"
 ]

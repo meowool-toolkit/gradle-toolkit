@@ -78,6 +78,7 @@ subprojects {
 
 subdependencies {
   // All projects depend on the ':core'
+  if (project.path == Projects.Meowool.Metalava) return@subdependencies
   if (project.path != Projects.Core) {
     apiProject(Projects.Core)
   }
