@@ -27,7 +27,7 @@ publication.data {
   displayName = "Gradle Toolkit"
   artifactId = "toolkit"
   groupId = "com.meowool.gradle"
-  version = "0.2.2-LOCAL-SNAPSHOT"
+  version = "0.2.1-SNAPSHOT"
   description = "Raise the practicality of gradle to a new level."
   url = "https://github.com/meowool-toolkit/gradle-toolkit/"
   developer {
@@ -65,10 +65,10 @@ metalava {
 subprojects {
   optIn(*internalMarkers)
   kotlinJvmOptions {
-//    @Suppress("DEPRECATION")
-//    useIR = true
-//    apiVersion = "1.5"
-//    languageVersion = "1.5"
+    @Suppress("DEPRECATION")
+    useIR = true
+    apiVersion = "1.5"
+    languageVersion = "1.5"
     addFreeCompilerArgs("-Xskip-prerelease-check")
   }
   tasks.withType<Test> {

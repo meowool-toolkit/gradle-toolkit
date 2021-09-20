@@ -50,6 +50,7 @@ package com.meowool.gradle.toolkit.internal {
     method public boolean useSpotlessPreset();
     property public java.util.List<kotlin.jvm.functions.Function1<error.NonExistentClass,kotlin.Unit>> configurations;
     property public boolean enabledMetalava;
+    property public boolean enabledPublisher;
     property public boolean enabledSpotless;
     property public java.util.List<java.lang.String> optIn;
     property public kotlin.jvm.functions.Function2<org.gradle.api.artifacts.dsl.RepositoryHandler,org.gradle.api.Project,kotlin.Unit> repositories;
@@ -57,11 +58,14 @@ package com.meowool.gradle.toolkit.internal {
 
   public class MeowoolPresetSpec {
     method public final void disableMetalava();
+    method public final void disablePublisher();
     method public final void disableSpotless();
     method public final void enableMetalava();
+    method public final void enablePublisher();
     method public final void enableSpotless();
     method public java.util.List<kotlin.jvm.functions.Function1<error.NonExistentClass,kotlin.Unit>> getConfigurations();
     method public boolean getEnabledMetalava();
+    method public boolean getEnabledPublisher();
     method public boolean getEnabledSpotless();
     method public final String? getLicenseHeader();
     method public final String? getLicenseUrl();
@@ -79,6 +83,7 @@ package com.meowool.gradle.toolkit.internal {
     method protected final kotlin.jvm.functions.Function1<error.NonExistentClass,kotlin.Unit> presetSpotless();
     method public final void privateProject();
     method public void setEnabledMetalava(boolean enabledMetalava);
+    method public void setEnabledPublisher(boolean enabledPublisher);
     method public void setEnabledSpotless(boolean enabledSpotless);
     method public final void setLicenseHeader(String? licenseHeader);
     method public final void setLicenseUrl(String? licenseUrl);
@@ -87,6 +92,7 @@ package com.meowool.gradle.toolkit.internal {
     method public final void spotless(kotlin.jvm.functions.Function2<? super com.diffplug.gradle.spotless.SpotlessExtension,? super org.gradle.api.Project,kotlin.Unit> configuration);
     property public java.util.List<kotlin.jvm.functions.Function1<error.NonExistentClass,kotlin.Unit>> configurations;
     property public boolean enabledMetalava;
+    property public boolean enabledPublisher;
     property public boolean enabledSpotless;
     property public final boolean isOpenSourceProject;
     property public final String? licenseHeader;
