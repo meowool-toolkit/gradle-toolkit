@@ -1,17 +1,23 @@
 {
-  "formatter": {
-    "startProcessorCount": 1,
-    "nameProcessorCount": 1,
-    "endProcessorCount": 1,
-    "capitalizationPredicateCount": 1
-  },
-  "declarations": {
-    "Projects": {
-      "type": "com.meowool.gradle.toolkit.internal.ProjectDependencyDeclarationImpl",
-      "rootClassName": "Projects"
+  "collectors": [
+    {
+      "type": "com.meowool.gradle.toolkit.internal.ProjectDependencyDeclarationImpl.Data",
+      "rootClassName": "Projects",
+      "projectPaths": [
+        ":all",
+        ":android",
+        ":core",
+        ":dependency",
+        ":meowool",
+        ":publisher",
+        ":dependency:mapper",
+        ":dependency:prebuilt",
+        ":dependency:updater",
+        ":meowool:metalava"
+      ]
     },
-    "Plugins": {
-      "type": "com.meowool.gradle.toolkit.internal.PluginDependencyDeclarationImpl",
+    {
+      "type": "com.meowool.gradle.toolkit.internal.PluginDependencyDeclarationImpl.Data",
       "rootClassName": "Plugins",
       "mapped": {
         "com.diffplug.spotless": "Spotless",
@@ -21,7 +27,7 @@
         "org.gradle.crypto.checksum": "Gradle.Crypto.Checksum",
         "org.gradle.android.cache-fix": "Gradle.AndroidCacheFix"
       },
-      "prefixSearches": [
+      "searchPrefixes": [
         {
           "values": [
             "com.google",
@@ -41,12 +47,9 @@
         }
       ]
     },
-    "Libs": {
-      "type": "com.meowool.gradle.toolkit.internal.LibraryDependencyDeclarationImpl",
+    {
+      "type": "com.meowool.gradle.toolkit.internal.LibraryDependencyDeclarationImpl.Data",
       "rootClassName": "Libs",
-      "pluginDeclarationRootClasses": [
-        "Plugins"
-      ],
       "map": [
         "net.andreinc:mockneat",
         "com.meowool.toolkit:sweekt"
@@ -65,7 +68,10 @@
         "com.gradle.publish:plugin-publish-plugin": "Gradle.Publish.Plugin",
         "net.mbonnin.vespene:vespene-lib": "Vespene"
       },
-      "groupSearches": [
+      "pluginIdsTransferTargets": [
+        "Plugins"
+      ],
+      "searchGroups": [
         {
           "values": [
             "mysql",
@@ -78,7 +84,7 @@
           ]
         }
       ],
-      "prefixSearches": [
+      "searchPrefixes": [
         {
           "values": [
             "app.cash",
@@ -176,5 +182,21 @@
         }
       ]
     }
+  ],
+  "formatter": {
+    "startProcessorCount": 1,
+    "nameProcessorCount": 1,
+    "capitalizationPredicateCount": 1
+  },
+  "jarsCache": {
+    "libraries": [
+      "/Users/rin/Documents/Develop/Projects/meowool/toolkit/gradle-toolkit/.dependency-mapper/jars/Libs-1632155599363.jar"
+    ],
+    "projects": [
+      "/Users/rin/Documents/Develop/Projects/meowool/toolkit/gradle-toolkit/.dependency-mapper/jars/Projects-1632155669573.jar"
+    ],
+    "plugins": [
+      "/Users/rin/Documents/Develop/Projects/meowool/toolkit/gradle-toolkit/.dependency-mapper/jars/Plugins-1632155669578.jar"
+    ]
   }
 }

@@ -38,5 +38,5 @@ dependencies {
     Libs.Jetbrains.Dokka.Gradle.Plugin,
   )
   implementation(Libs.Gradle.Publish.Plugin)
-  compileOnly(Libs.Android.Tools.Build.Gradle)
+  compileOnly(Libs.Android.Gradle.Plugin)
 }

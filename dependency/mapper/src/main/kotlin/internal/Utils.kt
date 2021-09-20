@@ -123,7 +123,7 @@ internal fun Element.href() = attr("href")
 
 @Suppress("SuspendFunctionOnCoroutineScope")
 internal suspend fun CoroutineScope.consumeChannel(block: suspend ConcurrentScope<Any>.() -> Unit) =
-  produce { block(ConcurrentScope(this)) }.consumeEach {  }
+  produce { block(ConcurrentScope(this)) }.consumeEach { }
 
 internal fun <E> concurrentFlow(@BuilderInference block: suspend ConcurrentScope<E>.() -> Unit): Flow<E> =
   channelFlow { block(ConcurrentScope(this)) }
@@ -159,15 +159,15 @@ internal inline fun <T> List<T>?.takeIfNotEmpty(): List<T>? {
 }
 
 // TODO Migration
-internal inline fun <C: CharSequence> C?.takeIfNotEmpty(): C? {
+internal inline fun <C : CharSequence> C?.takeIfNotEmpty(): C? {
   return if (isNullOrEmpty()) null else this
 }
 // TODO Migration
-internal inline fun <C: CharSequence> C?.takeIfNullOrEmpty(): C? {
+internal inline fun <C : CharSequence> C?.takeIfNullOrEmpty(): C? {
   return if (isNullOrEmpty()) this else null
 }
 // TODO Migration
-internal inline fun <C: CharSequence> C.takeIfEmpty(): C? {
+internal inline fun <C : CharSequence> C.takeIfEmpty(): C? {
   return if (isEmpty()) this else null
 }
 

@@ -23,7 +23,6 @@ package com.meowool.gradle.toolkit.internal
 import com.meowool.gradle.toolkit.DependencyFormatter
 import com.meowool.gradle.toolkit.ProjectDependencyDeclaration
 import internal.ConcurrentScope
-import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.gradle.api.Project

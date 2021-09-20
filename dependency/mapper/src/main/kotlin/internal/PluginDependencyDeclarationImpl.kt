@@ -27,9 +27,7 @@ import com.meowool.gradle.toolkit.PluginId
 import com.meowool.gradle.toolkit.SearchDeclaration
 import com.meowool.gradle.toolkit.internal.BaseSearchDeclarationImpl.Data.Companion.clientUrls
 import com.meowool.sweekt.String
-import com.meowool.sweekt.safeCast
 import internal.ConcurrentScope
-import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -103,7 +101,7 @@ internal class PluginDependencyDeclarationImpl(rootClassName: String) : PluginDe
 
     override suspend fun ConcurrentScope<*>.collect(project: Project, pool: JarPool, formatter: DependencyFormatter) {
       suspend fun sendMap(dependency: CharSequence, mappedPath: CharSequence = formatter.toPath(dependency)) {
-        val pluginId = when(dependency) {
+        val pluginId = when (dependency) {
           // For `search**`... Do not send remote dependency that is not a plugin id
           is LibraryDependency -> dependency.toPluginIdOrNull() ?: return
           // For `map` or `mapped`

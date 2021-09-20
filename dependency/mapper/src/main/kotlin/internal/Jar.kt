@@ -23,7 +23,6 @@ package com.meowool.gradle.toolkit.internal
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import net.bytebuddy.dynamic.DynamicType
-import java.util.concurrent.ConcurrentHashMap
 
 /**
  * A jar containing mapped classes.

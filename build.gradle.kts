@@ -20,8 +20,6 @@
  */
 @file:Suppress("SpellCheckingInspection")
 
-import com.meowool.sweekt.withType
-
 buildscript { repositories.mavenCentral() }
 
 // Root data, not publish (all sub-projects extends from here)

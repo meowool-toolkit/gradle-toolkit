@@ -22,7 +22,6 @@ package com.meowool.gradle.toolkit.internal
 
 import com.meowool.gradle.toolkit.DependencyFormatter
 import internal.ConcurrentScope
-import kotlinx.coroutines.channels.ProducerScope
 import org.gradle.api.Project
 
 /**

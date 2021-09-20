@@ -20,20 +20,14 @@
  */
 @file:Suppress("EXPERIMENTAL_API_USAGE")
 
-import com.meowool.gradle.toolkit.internal.DefaultJson
 import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl
 import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl.Companion.CacheDir
 import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl.Companion.CacheJarsDir
-import io.kotest.assertions.asClue
 import io.kotest.assertions.forEachAsClue
-import io.kotest.assertions.withClue
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.engine.spec.tempdir
-import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldStartWith
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
 import org.gradle.testfixtures.ProjectBuilder
 
 /**

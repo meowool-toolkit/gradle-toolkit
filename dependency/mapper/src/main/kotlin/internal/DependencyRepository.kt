@@ -69,14 +69,14 @@ internal sealed class DependencyRepository {
       client.close()
     }
 
-     companion object {
-       private val default = MvnRepositoryClient(false)
-       private val exactly = MvnRepositoryClient(true)
+    companion object {
+      private val default = MvnRepositoryClient(false)
+      private val exactly = MvnRepositoryClient(true)
 
-       fun closeClient() {
-         default.close()
-         exactly.close()
-       }
+      fun closeClient() {
+        default.close()
+        exactly.close()
+      }
     }
   }
 }

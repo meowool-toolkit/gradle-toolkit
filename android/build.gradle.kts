@@ -26,4 +26,4 @@ publication.data {
   description = "Raise the practicality of android-gradle-plugin (AGP) to a new level."
 }
 
-dependencies.api(Libs.Android.Tools.Build.Gradle)
+dependencies.api(Libs.Android.Gradle.Plugin)

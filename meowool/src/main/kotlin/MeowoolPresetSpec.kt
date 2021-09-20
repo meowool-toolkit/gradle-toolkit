@@ -291,7 +291,7 @@ open class MeowoolPresetSpec internal constructor() {
   }
 
   protected fun presetPublications(): GradleToolkitExtension.() -> Unit = {
-    allprojects {
+    allprojects(afterEvaluate = false) {
       project.extensions.findByType<PublicationExtension>()?.apply {
         showIncompatibleWarnings = false
         data {

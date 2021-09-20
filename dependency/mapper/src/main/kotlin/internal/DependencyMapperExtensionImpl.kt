@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 @file:Suppress("EXPERIMENTAL_API_USAGE", "NestedLambdaShadowedImplicitParameter")
 @file:UseContextualSerialization(File::class)
 
@@ -8,9 +28,7 @@ import com.meowool.gradle.toolkit.DependencyMapperExtension
 import com.meowool.gradle.toolkit.LibraryDependencyDeclaration
 import com.meowool.gradle.toolkit.PluginDependencyDeclaration
 import com.meowool.gradle.toolkit.ProjectDependencyDeclaration
-import com.meowool.sweekt.HostingStack
 import com.meowool.sweekt.datetime.nowMilliseconds
-import com.meowool.sweekt.hosting
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
@@ -194,9 +212,9 @@ internal class DependencyMapperExtensionImpl(private val project: Project) : Dep
 
     val all: List<File> get() = libraries + projects + plugins
 
-    /////////////////////////////////////////////////////////////////////////
-    ////    Invalidated when the any declared jar file does not exist    ////
-    /////////////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////////////
+    // //    Invalidated when the any declared jar file does not exist    ////
+    // ///////////////////////////////////////////////////////////////////////
 
     val isInvalidLibraries: Boolean get() = libraries.any { it.exists().not() }
     val isInvalidProjects: Boolean get() = projects.any { it.exists().not() }

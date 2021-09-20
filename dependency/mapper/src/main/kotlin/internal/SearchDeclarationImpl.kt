@@ -25,7 +25,6 @@ import com.meowool.gradle.toolkit.SearchDeclaration
 import com.meowool.gradle.toolkit.internal.client.DependencyRepositoryClient
 import com.meowool.sweekt.coroutines.flowOnIO
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.serialization.Serializable
