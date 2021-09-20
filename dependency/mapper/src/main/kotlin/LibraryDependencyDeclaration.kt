@@ -47,9 +47,9 @@ interface LibraryDependencyDeclaration {
    *
    * For more details, see (Plugin Marker Artifacts)[https://docs.gradle.org/current/userguide/plugins.html#sec:plugin_markers]
    *
-   * @param targetDeclarationName The root class name of the target, see [DependencyMapperExtension.plugins]
+   * @param targetRootClassName The root class name of the target, see [DependencyMapperExtension.plugins]
    */
-  fun transferPluginIds(targetDeclarationName: String = PluginDependencyDeclaration.DefaultRootClassName)
+  fun transferPluginIds(targetRootClassName: String = PluginDependencyDeclaration.DefaultRootClassName)
 
   /**
    * Adds the given [dependencies] to map as path.

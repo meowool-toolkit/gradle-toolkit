@@ -24,9 +24,7 @@ package com.meowool.gradle.toolkit.internal.client
 
 import com.meowool.gradle.toolkit.LibraryDependency
 import com.meowool.gradle.toolkit.internal.DependencyRepository
-import com.meowool.gradle.toolkit.internal.forEachConcurrently
 import com.meowool.gradle.toolkit.internal.href
-import com.meowool.gradle.toolkit.internal.sendAll
 import com.meowool.sweekt.substringBefore
 import kotlinx.coroutines.flow.Flow
 import okhttp3.logging.HttpLoggingInterceptor
@@ -61,7 +59,7 @@ internal class MvnRepositoryClient(
     fetchGroups(group, recursively = false)
   }
 
-  override fun fetchStartsWith(startsWith: String): Flow<LibraryDependency> = cache(Fetch.StartsWith(startsWith)) {
+  override fun fetchPrefixes(startsWith: String): Flow<LibraryDependency> = cache(Fetch.Prefixes(startsWith)) {
     fetchGroups(group = startsWith, recursively = true)
   }
 
@@ -79,7 +77,7 @@ internal class MvnRepositoryClient(
           // Just an artifact
           link.contains('/') -> send(resolveDependency(link))
           // Collect nested artifacts
-          recursively -> sendAll { fetchGroups(group = link, recursively = true) }
+          recursively -> sendAll(fetchGroups(group = link, recursively = true))
         }
       }
     }

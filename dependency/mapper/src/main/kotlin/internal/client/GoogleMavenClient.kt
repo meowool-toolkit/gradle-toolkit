@@ -24,10 +24,11 @@ package com.meowool.gradle.toolkit.internal.client
 
 import com.meowool.gradle.toolkit.LibraryDependency
 import com.meowool.gradle.toolkit.internal.DependencyRepository
+import com.meowool.gradle.toolkit.internal.concurrentFlow
 import com.meowool.gradle.toolkit.internal.flatMapConcurrently
-import com.meowool.gradle.toolkit.internal.forEachConcurrently
 import com.meowool.gradle.toolkit.internal.retryConnection
-import com.meowool.gradle.toolkit.internal.sendList
+import com.meowool.sweekt.coroutines.flowOnIO
+import internal.ConcurrentScope
 import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
@@ -49,7 +50,7 @@ internal class GoogleMavenClient(
   }
 
   override fun fetchGroups(group: String): Flow<LibraryDependency> = cache(Fetch.Group(group)) {
-    channelFlow {
+    concurrentFlow<LibraryDependency> {
       when (val allDependencies = cache.getIfPresent(Fetch.Any)) {
         // The cache of all dependencies is expired
         null -> {
@@ -63,9 +64,7 @@ internal class GoogleMavenClient(
           }
         }
         // Filter out artifacts through all cached dependencies
-        else -> sendList {
-          allDependencies.filter { it.group == group }
-        }
+        else -> sendList(allDependencies.filter { it.group == group })
       }
     }.retryConnection()
   }
@@ -74,14 +73,14 @@ internal class GoogleMavenClient(
     fetchAllGroups().flatMapConcurrently { fetchGroups(it) }
   }
 
-  private fun fetchAllGroups() = channelFlow<String> {
+  private fun fetchAllGroups() = concurrentFlow<String> {
     // <metadata>
     //   <android.arch.core/>
     // </metadata>
     sendChildren(getOrNull("master-index.xml"))
-  }.retryConnection()
+  }.retryConnection().flowOnIO()
 
-  private suspend inline fun <T> ProducerScope<T>.sendChildren(
+  private suspend inline fun <T> ConcurrentScope<T>.sendChildren(
     document: Document?,
     crossinline map: (String) -> T = @Suppress("UNCHECKED_CAST") { it as T }
   ) = document?.children()?.firstOrNull()?.children()?.forEachConcurrently { send(map(it.tagName())) }

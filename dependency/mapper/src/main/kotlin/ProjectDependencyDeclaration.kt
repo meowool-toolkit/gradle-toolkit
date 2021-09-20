@@ -35,19 +35,19 @@ interface ProjectDependencyDeclaration {
    * By default, the generated mapping class does not contain the root project, please manually call this function to
    * map the root project.
    *
-   * @param mapped The mapped name or directory, if it is `null`, use [Project.getName].
+   * @param mapped The mapped name or path, if it is `null`, use [Project.getName].
    */
   fun mapRootProject(mapped: CharSequence? = null)
 
   /**
    * If the [predicate] is `true`, the corresponding [Project] will be mapped, otherwise it will not be mapped.
    */
-  fun filter(predicate: Project.() -> Boolean)
+  fun filter(predicate: (Project) -> Boolean)
 
   /**
    * If the [predicate] is `false`, the corresponding [Project] will be mapped, otherwise it will not be mapped.
    */
-  fun filterNot(predicate: Project.() -> Boolean) = filter { predicate().not() }
+  fun filterNot(predicate: (Project) -> Boolean) = filter { predicate(it).not() }
 
   companion object {
     const val DefaultRootClassName = "Projects"

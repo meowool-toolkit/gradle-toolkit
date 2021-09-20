@@ -22,9 +22,16 @@
 
 import com.meowool.gradle.toolkit.internal.DefaultJson
 import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl
+import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl.Companion.CacheDir
+import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl.Companion.CacheJarsDir
+import io.kotest.assertions.asClue
+import io.kotest.assertions.forEachAsClue
+import io.kotest.assertions.withClue
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.engine.spec.tempdir
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldStartWith
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import org.gradle.testfixtures.ProjectBuilder
@@ -34,34 +41,81 @@ import org.gradle.testfixtures.ProjectBuilder
  */
 class CacheTests : StringSpec({
   val project = ProjectBuilder.builder().withProjectDir(tempdir()).build()
-
-  "test identity" {
-    val original = DependencyMapperExtensionImpl(project).apply {
-      val p = plugins("PluginMapped")
-      libraries("Libraries") {
-        transferPluginIds(p)
-        map("foo:bar", "a.B.C:dd")
-        map(
-          "com.foo.bar:v" to "Foo",
-          "test:test.plugin" to "Test.Plugin"
-        )
-        searchDefaultOptions {
-          filter { true }
-        }
-        search("remote")
-        searchGroups("com.google.android") {
-          fromGoogle()
-          filter { false }
-        }
-        searchPrefixes("org.jetbrains", "org.apache") {
-          fromMavenCentral()
-          fromGradlePluginPortal()
-        }
+  val dependencyMapper = DependencyMapperExtensionImpl(project).apply {
+    val p = plugins("PluginMapped")
+    libraries("Libraries") {
+      transferPluginIds(p)
+      map("foo:bar", "a.B.C:dd")
+      map(
+        "com.foo.bar:v" to "Foo",
+        "test:test.plugin" to "Test.Plugin"
+      )
+      searchDefaultOptions {
+        filter { true }
       }
-      projects("PATHS")
+      search("meowool")
+      searchGroups("com.google.android") {
+        fromGoogle()
+        filter { false }
+      }
+      searchPrefixes("org.jetbrains.anko", "org.apache.avro") {
+        fromMavenCentral()
+        fromGradlePluginPortal()
+      }
     }
-    val encoded = DefaultJson.encodeToString(original)
-    val decoded = DefaultJson.decodeFromString<DependencyMapperExtensionImpl>(encoded)
-    original shouldBe decoded
+    projects("PATHS")
+  }
+
+  fun checkUsingCache() {
+    dependencyMapper.mapping() shouldBe false
+  }
+
+  fun checkRemapping() {
+    dependencyMapper.mapping() shouldBe true
+  }
+
+  "initial cache" {
+    checkRemapping()
+  }
+
+  "remapping" {
+    println("==============  using cache  ==============")
+    checkUsingCache()
+    dependencyMapper.apply {
+      libraries("Libraries") {
+        map("new.group:id")
+      }
+    }
+    checkRemapping()
+
+    println("==============  using cache  ==============")
+    checkUsingCache()
+    dependencyMapper.apply {
+      plugins("AdditionalPlugins") {
+        map("addition.plugin")
+      }
+    }
+    checkRemapping()
+  }
+
+  "clear cache" {
+    checkUsingCache()
+
+    // Ensure that some cache names remain unchanged
+    val cacheJarsDir = project.projectDir.resolve("$CacheDir/$CacheJarsDir")
+    val cacheJars = cacheJarsDir.listFiles()!!
+
+    // Clear `AdditionalPlugins`
+    cacheJars.filter { it.name.startsWith("AdditionalPlugins") }.forEach { it.delete() }
+
+    checkRemapping()
+
+    val newCacheJars = cacheJarsDir.listFiles()!!
+
+    // Only `AdditionalPlugins` re-cached
+    newCacheJars.filter { new ->
+      // Filter out names that do not exist in the old `cacheJars`
+      cacheJars.none { old -> new == old }
+    }.forEachAsClue { it.name.shouldStartWith("AdditionalPlugins") }
   }
 })

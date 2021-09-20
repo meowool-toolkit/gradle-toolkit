@@ -22,8 +22,8 @@ package com.meowool.gradle.toolkit.internal
 
 import com.meowool.gradle.toolkit.DependencyFormatter
 import com.meowool.gradle.toolkit.ProjectDependencyDeclaration
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.channelFlow
+import internal.ConcurrentScope
+import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.gradle.api.Project
@@ -31,46 +31,55 @@ import org.gradle.api.Project
 /**
  * @author 凛 (https://github.com/RinOrz)
  */
-@Serializable
-internal class ProjectDependencyDeclarationImpl(
-  override val rootClassName: String,
-  @Transient
-  private val project: Project? = null,
-) : ProjectDependencyDeclaration, MapDeclaration {
-  private var rootProjectMapping: String? = null
+internal class ProjectDependencyDeclarationImpl(rootClassName: String, val project: Project) :
+  ProjectDependencyDeclaration {
 
-  @Transient
-  private var filters = mutableListOf<(Project) -> Boolean>()
-  private var filterCount = 0
+  val data: Data by lazy { Data(rootClassName, project.subpaths) }
 
   override fun mapRootProject(mapped: CharSequence?) {
-    rootProjectMapping = mapped?.toString() ?: project!!.rootProject.name
+    data.rootProjectMappedPath = mapped?.toString() ?: project.rootProject.name
   }
 
-  override fun filter(predicate: Project.() -> Boolean) {
-    filters += predicate
-    filterCount++
+  override fun filter(predicate: (Project) -> Boolean) {
+    data.filters += predicate
+    data.filterCount++
   }
 
-  override fun toFlow(
-    parent: DependencyMapperExtensionImpl,
-    formatter: DependencyFormatter
-  ): Flow<MappedDependency> = channelFlow {
-    rootProjectMapping?.also {
-      send(
-        MappedDependency(
-          dependency = project!!.rootProject.path,
-          mappedPath = formatter.toPath(it),
+  @Serializable
+  data class Data(
+    val rootClassName: String,
+    var projectPaths: List<String>,
+    var rootProjectMappedPath: String? = null,
+    val map: MutableSet<String> = mutableSetOf(),
+    val mapped: MutableMap<String, String> = mutableMapOf(),
+    var filterCount: Int = 0,
+  ) : DependencyCollector {
+    @Transient
+    val filters: MutableList<(Project) -> Boolean> = mutableListOf()
+
+    override suspend fun ConcurrentScope<*>.collect(project: Project, pool: JarPool, formatter: DependencyFormatter) {
+      val mappedProjects = mutableListOf<String>()
+
+      suspend fun sendMap(project: Project, mappedPath: CharSequence = project.path) {
+        // Do not send if any filter predicate is false
+        if (filters.any { it(project).not() }) return
+
+        mappedProjects += project.path
+
+        pool.projectsJar(rootClassName).addDependencyField(
+          fullPath = formatter.toPath(mappedPath), // Dir.Sub
+          value = project.path, // :dir:sub
         )
-      )
+      }
+
+      rootProjectMappedPath?.also { sendMap(project.rootProject, mappedPath = it) }
+      project.subprojects.forEach { sendMap(it) }
+
+      if (mappedProjects.isNotEmpty()) project.logger.quiet("Project paths: $mappedProjects is collected.")
     }
-    project!!.subprojects.map { it.path }.forEachConcurrently {
-      send(
-        MappedDependency(
-          dependency = it,
-          mappedPath = formatter.toPath(it),
-        )
-      )
-    }
+  }
+
+  companion object {
+    private val Project.subpaths: List<String> get() = project.subprojects.map { it.path }
   }
 }

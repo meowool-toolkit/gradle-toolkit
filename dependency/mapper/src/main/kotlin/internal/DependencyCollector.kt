@@ -20,10 +20,14 @@
  */
 package com.meowool.gradle.toolkit.internal
 
+import com.meowool.gradle.toolkit.DependencyFormatter
+import internal.ConcurrentScope
+import kotlinx.coroutines.channels.ProducerScope
+import org.gradle.api.Project
+
 /**
  * @author 凛 (https://github.com/RinOrz)
  */
-internal data class MappedDependency(
-  val dependency: CharSequence,
-  val mappedPath: CharSequence,
-)
+internal interface DependencyCollector {
+  suspend fun ConcurrentScope<*>.collect(project: Project, pool: JarPool, formatter: DependencyFormatter)
+}

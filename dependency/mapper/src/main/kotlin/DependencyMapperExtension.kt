@@ -32,13 +32,6 @@ import org.gradle.api.Project
 interface DependencyMapperExtension {
 
   /**
-   * The prefix of the name of generate the jar with mapped dependencies.
-   *
-   * The default is 'classes'.
-   */
-  var jarPrefix: String
-
-  /**
    * Adds or configures the dependency mapper of libraries.
    *
    * @param rootClassName The root class name of the library dependency mapper.

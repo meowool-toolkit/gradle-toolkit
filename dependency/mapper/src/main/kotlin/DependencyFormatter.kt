@@ -76,7 +76,7 @@ typealias FormatProcessor = (input: String) -> String
  * @author 凛 (https://github.com/RinOrz)
  */
 @Serializable
-class DependencyFormatter {
+data class DependencyFormatter(
 
   /**
    * Whether to merge duplicate path levels.
@@ -84,7 +84,13 @@ class DependencyFormatter {
    * For example, merge the path 'foo.bar.foo.bar.baz' with duplicate levels as 'foo.bar.baz'.
    * But if they are not connected, just like `foo.bar.break.foo.bar.baz`, it will not merge.
    */
-  var isMergeDuplicateLevels: Boolean = true
+  var isMergeDuplicateLevels: Boolean = true,
+
+  private var startProcessorCount: Int = 0,
+  private var nameProcessorCount: Int = 0,
+  private var endProcessorCount: Int = 0,
+  private var capitalizationPredicateCount: Int = 0,
+) {
 
   /**
    * Merges duplicate path levels.
@@ -150,22 +156,19 @@ class DependencyFormatter {
     endProcessorCount++
   }
 
-  // /////////////////////////////////////////////////////////////////////////
-  // //                           Internal APIs                           ////
-  // /////////////////////////////////////////////////////////////////////////
+
+  ///////////////////////////////////////////////////////////////////////////
+  ////                           Internal APIs                           ////
+  ///////////////////////////////////////////////////////////////////////////
 
   @Transient
-  internal var startProcessors = mutableListOf<FormatProcessor>()
-  private var startProcessorCount = 0
+  internal var startProcessors: MutableList<FormatProcessor> = mutableListOf()
   @Transient
-  internal var nameProcessors = mutableListOf<FormatProcessor>()
-  private var nameProcessorCount = 0
+  internal var nameProcessors: MutableList<FormatProcessor> = mutableListOf()
   @Transient
-  internal var endProcessors = mutableListOf<FormatProcessor>()
-  private var endProcessorCount = 0
+  internal var endProcessors: MutableList<FormatProcessor> = mutableListOf()
   @Transient
-  internal var capitalizationPredicates = mutableListOf<(String) -> Boolean>()
-  private var capitalizationPredicateCount = 0
+  internal var capitalizationPredicates: MutableList<(String) -> Boolean> = mutableListOf()
 
   /**
    * Formats the dependency as path.

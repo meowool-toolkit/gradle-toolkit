@@ -20,64 +20,83 @@
  */
 package com.meowool.gradle.toolkit.internal
 
+import com.meowool.gradle.toolkit.LibraryDependency
 import com.meowool.gradle.toolkit.SearchDeclaration
+import com.meowool.gradle.toolkit.internal.client.DependencyRepositoryClient
+import com.meowool.sweekt.coroutines.flowOnIO
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.filter
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
 /**
  * @author 凛 (https://github.com/RinOrz)
  */
-@Serializable
-internal class SearchDeclarationImpl<Result>(val values: List<String> = emptyList()) : SearchDeclaration<Result> {
-  private val repositories = mutableSetOf<DependencyRepository>()
-
-  @Transient
-  var filters = mutableListOf<(Result) -> Boolean>()
-  private var filterCount = 0
-
-  fun getClients() = repositories.ifEmpty { setOf(DependencyRepository.MavenCentral) }.map { it.client }
-
-  fun copyFrom(source: SearchDeclarationImpl<Result>) = apply {
-    repositories += source.repositories
-    filters += source.filters
-  }
+internal abstract class BaseSearchDeclarationImpl<Result>(values: List<String>) : SearchDeclaration<Result> {
+  val data: Data = Data(values)
 
   override fun fromMavenCentral() {
-    repositories += DependencyRepository.MavenCentral
+    data.repositories += DependencyRepository.MavenCentral
   }
 
   override fun fromGoogle() {
-    repositories += DependencyRepository.Google
+    data.repositories += DependencyRepository.Google
   }
 
   override fun fromGradlePluginPortal() {
-    repositories += DependencyRepository.GradlePluginPortal
+    data.repositories += DependencyRepository.GradlePluginPortal
   }
 
   override fun fromMvnRepository(fetchExactly: Boolean) {
-    repositories += DependencyRepository.MvnRepository(fetchExactly)
+    data.repositories += DependencyRepository.MvnRepository(fetchExactly)
   }
 
   override fun filter(predicate: (Result) -> Boolean) {
-    filters += predicate
-    filterCount++
+    data.filters += convertFilter(predicate)
+    data.filterCount++
   }
 
-  override fun equals(other: Any?): Boolean {
-    if (this === other) return true
-    if (other !is SearchDeclarationImpl<*>) return false
+  abstract fun convertFilter(original: (Result) -> Boolean): (LibraryDependency) -> Boolean
 
-    if (values != other.values) return false
-    if (repositories != other.repositories) return false
-    if (filterCount != other.filterCount) return false
+  @Serializable
+  data class Data(
+    val values: List<String> = emptyList(),
+    val repositories: MutableSet<DependencyRepository> = mutableSetOf(),
+    var filterCount: Int = 0,
+  ) {
+    @Transient
+    val filters: MutableList<(LibraryDependency) -> Boolean> = mutableListOf()
 
-    return true
-  }
+    val clients: List<DependencyRepositoryClient> get() = repositories
+      .ifEmpty { setOf(DependencyRepository.MavenCentral) }
+      .map { it.client }
 
-  override fun hashCode(): Int {
-    var result = values.hashCode()
-    result = 31 * result + repositories.hashCode()
-    result = 31 * result + filterCount
-    return result
+    fun merge(other: Data): Data = apply {
+      repositories += other.repositories
+      filters += other.filters
+    }
+
+    suspend fun searchKeywords(): Flow<LibraryDependency> = searchImpl { fetch(it) }
+    suspend fun searchPrefixes(): Flow<LibraryDependency> = searchImpl { fetchPrefixes(it) }
+    suspend fun searchGroups(): Flow<LibraryDependency> = searchImpl { fetchGroups(it) }
+
+    private suspend inline fun searchImpl(
+      crossinline search: DependencyRepositoryClient.(String) -> Flow<LibraryDependency>
+    ): Flow<LibraryDependency> = concurrentFlow {
+      clients.forEachConcurrently { client ->
+        values.forEachConcurrently { value ->
+          // Call the real client callback to execute the search
+          client.search(value)
+            .filter { result -> filters.all { it(result) } }
+            .collect(::send)
+        }
+      }
+    }.flowOnIO()
+
+    companion object {
+      fun List<Data>.clientUrls() = flatMap { it.clients }.distinct().joinToString { it.baseUrl }
+    }
   }
 }

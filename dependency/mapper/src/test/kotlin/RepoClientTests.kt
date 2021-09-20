@@ -69,7 +69,7 @@ class RepoClientTests : FreeSpec({
     }
     "fetch by `startsWith`" {
       val starts = flowOf("androidx", "com.android")
-      starts.flatMapConcurrently { google.fetchStartsWith(it) }
+      starts.flatMapConcurrently { google.fetchPrefixes(it) }
         .flowOnIO()
         .filterNot { dep -> starts.toList().any { dep.startsWith(it) } }
         .size()
@@ -91,7 +91,7 @@ class RepoClientTests : FreeSpec({
         .shouldBeZero()
     }
     "fetch by `startsWith`" {
-      client.fetchStartsWith("com.meowool").flowOnIO().toList().also {
+      client.fetchPrefixes("com.meowool").flowOnIO().toList().also {
         it shouldContain PluginId("com.meowool.toolkit.gradle-dsl-x").toLibraryDependency()
         it shouldContain LibraryDependency("com.meowool.toolkit.gradle-dsl-x-core:com.meowool.toolkit.gradle-dsl-x-core.gradle.plugin")
       }
@@ -128,7 +128,7 @@ class RepoClientTests : FreeSpec({
     }
     "fetch by `startsWith`" {
       flowOf("io.reactivex", "org.scala-lang")
-        .flatMapConcurrently { client.fetchStartsWith(it) }
+        .flatMapConcurrently { client.fetchPrefixes(it) }
         .flowOnIO().toList().apply {
           forEach { println(it) }
           if (client is MvnRepositoryClient) {

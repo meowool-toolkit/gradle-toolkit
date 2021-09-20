@@ -18,13 +18,12 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-@file:Suppress("EXPERIMENTAL_API_USAGE")
+@file:Suppress("EXPERIMENTAL_API_USAGE", "SpellCheckingInspection")
 
 package com.meowool.gradle.toolkit.internal.client
 
 import com.meowool.gradle.toolkit.LibraryDependency
 import com.meowool.gradle.toolkit.internal.DependencyRepository
-import com.meowool.gradle.toolkit.internal.forEachConcurrently
 import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -37,7 +36,7 @@ import okhttp3.logging.HttpLoggingInterceptor
  */
 internal class MavenCentralClient(
   logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE
-) : DependencyRepositoryClient(baseUrl = "https://search.maven.org/solrsearch", logLevel) {
+) : DependencyRepositoryClient(baseUrl = "https://search.maven.org", logLevel) {
 
   override fun fetch(keyword: String): Flow<LibraryDependency> = cache(Fetch.Keyword(keyword)) {
     fetchImpl(keyword)
@@ -50,7 +49,7 @@ internal class MavenCentralClient(
   private fun fetchImpl(keyword: String): Flow<LibraryDependency> = pagesFlow { page ->
     val offset = (page - 1) * 1000
     // Only get up to 1000 results at a time to avoid excessive server pressure
-    get<Search>("select?q=$keyword&start=$offset&rows=1000").result.dependencies
+    get<Search>("solrsearch/select?q=$keyword&start=$offset&rows=1000").result.dependencies
       .takeIf { it.isNotEmpty() }
       ?.forEachConcurrently { send(LibraryDependency(it.toString())) }
   }

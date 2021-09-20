@@ -25,7 +25,6 @@ package com.meowool.gradle.toolkit.internal.client
 import com.meowool.gradle.toolkit.LibraryDependency
 import com.meowool.gradle.toolkit.PluginId
 import com.meowool.gradle.toolkit.internal.DependencyRepository
-import com.meowool.gradle.toolkit.internal.forEachConcurrently
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
 import okhttp3.logging.HttpLoggingInterceptor

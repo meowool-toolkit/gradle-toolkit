@@ -18,20 +18,25 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+import com.meowool.sweekt.iteration.toArray
 import java.io.File
 import java.util.jar.JarFile
 
-class JarClassLoader(private val jarFile: JarFile) : ClassLoader() {
-  constructor(file: File) : this(JarFile(file))
-  constructor(path: String) : this(JarFile(path))
+class JarClassLoader(private vararg val jarFiles: JarFile) : ClassLoader() {
+  constructor(vararg files: File) : this(*files.map(::JarFile).toArray())
+  constructor(vararg paths: String) : this(*paths.map(::JarFile).toArray())
 
   public override fun findClass(name: String): Class<*> {
-    val byte = loadClassData(name)
+    val byte = loadClassData(name) ?: throw ClassNotFoundException(name)
     return defineClass(name, byte, 0, byte.size)
   }
 
-  private fun loadClassData(className: String): ByteArray {
+  private fun loadClassData(className: String): ByteArray? {
     val classFileName = className.replace('.', File.separatorChar) + ".class"
-    return jarFile.getInputStream(jarFile.getJarEntry(classFileName)).readBytes()
+    jarFiles.forEach {
+      val entry = it.getJarEntry(classFileName) ?: return@forEach
+      return it.getInputStream(entry).readBytes()
+    }
+    return null
   }
 }

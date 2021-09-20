@@ -20,11 +20,13 @@
  */
 package com.meowool.gradle.toolkit.internal
 
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import net.bytebuddy.dynamic.DynamicType
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * A factory used to [make] mapped classes.
+ * A jar containing mapped classes.
  *
  * ```
  * // inputs
@@ -50,36 +52,36 @@ import java.util.concurrent.ConcurrentHashMap
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-internal class MappedClassesFactory(private val rootClassName: String) {
-
+internal class Jar(private val rootClassName: String) {
+  private val mutex = Mutex()
   private val addedDependencies = mutableListOf<CharSequence>()
+  private val classPool = mutableMapOf<String, DynamicType.Builder<*>>(
+    rootClassName to createClass(rootClassName, isStatic = false)
+  )
 
-  private val classPool = ConcurrentHashMap<String, DynamicType.Builder<*>>().apply {
-    put(rootClassName, createClass(rootClassName, isStatic = false))
-  }
-
-  fun map(dependency: CharSequence, mapped: CharSequence) {
-    val mappedPath = mapped.split('.')
+  suspend fun addDependencyField(fullPath: CharSequence, value: CharSequence) = mutex.withLock {
+    val mappedPath = fullPath.split('.')
     mappedPath.foldIndexed(rootClassName) { index, parentName, name ->
       val parent = classPool[parentName]!!
       when (index) {
         // Add a field as a dependency
         mappedPath.lastIndex -> {
           // Avoid adding duplicate dependencies
-          if (addedDependencies.contains(dependency).not()) {
+          if (addedDependencies.contains(value).not()) {
             var alias = name
             var extra = 0
             while (parent.toTypeDescription().declaredFields.any { it.name == alias }) {
               // If the field name already exists, use the alias
               alias = name + ++extra
             }
-            classPool[parentName] = parent.addField(alias, "$dependency")
-            addedDependencies.add(dependency)
+            classPool[parentName] = parent.addField(alias, value.toString())
+            addedDependencies += value
           }
           parentName
         }
         // Add inner class
         else -> "$parentName$$name".also { fullName ->
+          // Avoid adding duplicate class
           if (classPool.containsKey(fullName).not()) {
             val inner = createClass(fullName, isStatic = true).setParent(parent)
             classPool[fullName] = inner
@@ -89,6 +91,8 @@ internal class MappedClassesFactory(private val rootClassName: String) {
       }
     }
   }
+
+  fun size(): Int = addedDependencies.size
 
   fun make(): UnloadedType = classPool[rootClassName]!!.makeWith(classPool)
 }

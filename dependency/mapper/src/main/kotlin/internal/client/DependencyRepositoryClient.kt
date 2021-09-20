@@ -26,8 +26,11 @@ import com.github.benmanes.caffeine.cache.Expiry
 import com.meowool.gradle.toolkit.LibraryDependency
 import com.meowool.gradle.toolkit.internal.DefaultJson
 import com.meowool.gradle.toolkit.internal.JsoupFeature
+import com.meowool.gradle.toolkit.internal.concurrentFlow
 import com.meowool.gradle.toolkit.internal.retryConnection
-import com.meowool.gradle.toolkit.internal.sendList
+import com.meowool.sweekt.coroutines.flowOnDefault
+import com.meowool.sweekt.coroutines.flowOnIO
+import internal.ConcurrentScope
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.ClientRequestException
@@ -38,6 +41,7 @@ import io.ktor.client.request.get
 import io.ktor.client.request.header
 import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.onEach
@@ -90,14 +94,16 @@ internal abstract class DependencyRepositoryClient(
 
   abstract fun fetchGroups(group: String): Flow<LibraryDependency>
 
-  open fun fetchStartsWith(startsWith: String): Flow<LibraryDependency> = channelFlow {
-    suspend fun LibraryDependency.send() = launch { send(this@send) }
-    val cacheKey = Fetch.StartsWith(startsWith)
-    cache.getIfPresent(cacheKey) ?: when (val allDependencies = cache.getIfPresent(Fetch.Any)) {
-      // The cache of all dependencies is expired
-      null -> fetch(startsWith).filter { it.startsWith(startsWith) }.onEach { it.send() }.toList()
-      else -> allDependencies.filter { it.startsWith(startsWith) }.onEach { it.send() }
-    }.also { cache.put(cacheKey, it) }
+  open fun fetchPrefixes(startsWith: String): Flow<LibraryDependency> {
+    val cacheKey = Fetch.Prefixes(startsWith)
+    return cache.getIfPresent(cacheKey)?.asFlow() ?: channelFlow {
+      suspend fun LibraryDependency.send() = launch { send(this@send) }
+      when (val allDependencies = cache.getIfPresent(Fetch.Any)) {
+        // The cache of all dependencies is expired
+        null -> fetch(startsWith).filter { it.startsWith(startsWith) }.onEach { it.send() }.toList()
+        else -> allDependencies.filter { it.startsWith(startsWith) }.onEach { it.send() }
+      }.also { cache.put(cacheKey, it) }
+    }
   }
 
   suspend inline fun <reified T> get(url: String): T = (client ?: createClient()).get("$baseUrl/${url.replace("//", "/")}")
@@ -111,21 +117,19 @@ internal abstract class DependencyRepositoryClient(
   protected fun cache(
     key: Fetch,
     fetcher: suspend () -> Flow<LibraryDependency>
-  ): Flow<LibraryDependency> = channelFlow {
-    sendList {
-      cache.getIfPresent(key) ?: fetcher().toList().also { cache.put(key, it) }
-    }
-  }
+  ): Flow<LibraryDependency> = concurrentFlow {
+    sendList(cache.getIfPresent(key) ?: fetcher().toList().also { cache.put(key, it) })
+  }.flowOnDefault()
 
   protected fun pagesFlow(
     initial: Int = 1,
-    block: suspend ProducerScope<LibraryDependency>.(Int) -> Any?
-  ): Flow<LibraryDependency> = channelFlow {
+    block: suspend ConcurrentScope<LibraryDependency>.(Int) -> Any?
+  ): Flow<LibraryDependency> = concurrentFlow {
     var page = initial
     while (true) {
       block(page++) ?: break
     }
-  }.retryConnection()
+  }.retryConnection().flowOnIO()
 
   private fun createClient() = HttpClient(OkHttp) {
     install(JsoupFeature)
@@ -146,27 +150,11 @@ internal abstract class DependencyRepositoryClient(
     client = null
   }
 
-  override fun equals(other: Any?): Boolean {
-    if (this === other) return true
-    if (other !is DependencyRepositoryClient) return false
-    if (other.javaClass != this.javaClass) return false
-
-    if (baseUrl != other.baseUrl) return false
-
-    return true
-  }
-
-  override fun hashCode(): Int {
-    var result = baseUrl.hashCode()
-    result = 31 * result + javaClass.hashCode()
-    return result
-  }
-
   protected sealed class Fetch(val value: String?) {
     object Any : Fetch(null)
     class Keyword(value: String) : Fetch(value)
     class Group(value: String) : Fetch(value)
-    class StartsWith(value: String) : Fetch(value)
+    class Prefixes(value: String) : Fetch(value)
 
     override fun equals(other: kotlin.Any?): Boolean {
       if (this === other) return true

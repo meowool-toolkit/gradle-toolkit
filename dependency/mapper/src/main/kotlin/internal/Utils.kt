@@ -18,28 +18,32 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-@file:Suppress("EXPERIMENTAL_API_USAGE", "SuspendFunctionOnCoroutineScope")
+@file:Suppress("EXPERIMENTAL_API_USAGE")
 @file:OptIn(ExperimentalTypeInference::class)
 
 package com.meowool.gradle.toolkit.internal
 
+import com.meowool.sweekt.Hosting
 import com.meowool.sweekt.className
 import com.meowool.sweekt.coroutines.contains
+import com.meowool.sweekt.hosting
 import com.meowool.sweekt.isEnglish
 import com.meowool.sweekt.isEnglishNotPunctuation
 import com.meowool.sweekt.iteration.endsWith
+import com.meowool.sweekt.iteration.isNullOrEmpty
 import com.meowool.sweekt.iteration.size
 import com.meowool.sweekt.iteration.startsWith
 import com.meowool.sweekt.select
-import kotlinx.coroutines.channels.ProducerScope
-import kotlinx.coroutines.coroutineScope
+import internal.ConcurrentScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.retry
-import kotlinx.coroutines.launch
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
@@ -64,10 +68,10 @@ internal val DefaultJson = Json {
   this.prettyPrint = true
   this.prettyPrintIndent = "  "
   this.serializersModule = SerializersModule {
-    polymorphic(MapDeclaration::class) {
-      subclass(LibraryDependencyDeclarationImpl::class)
-      subclass(ProjectDependencyDeclarationImpl::class)
-      subclass(PluginDependencyDeclarationImpl::class)
+    polymorphic(DependencyCollector::class) {
+      subclass(LibraryDependencyDeclarationImpl.Data::class)
+      subclass(ProjectDependencyDeclarationImpl.Data::class)
+      subclass(PluginDependencyDeclarationImpl.Data::class)
     }
     contextual(
       File::class,
@@ -110,42 +114,75 @@ internal fun <T> DynamicType.Builder<T>.makeWith(
   return this.make().include(innerClasses)
 }
 
+internal fun <T> hosting(
+  key: Any? = null,
+  initializer: () -> T,
+): Hosting<T> = hosting(key, lock = null, initializer = initializer)
+
 internal fun Element.href() = attr("href")
 
-internal suspend inline fun <T> Iterable<T>.forEachConcurrently(
-  crossinline action: suspend (T) -> Unit
-) = coroutineScope {
-  forEach {
-    launch { action(it) }
-  }
-}
+@Suppress("SuspendFunctionOnCoroutineScope")
+internal suspend fun CoroutineScope.consumeChannel(block: suspend ConcurrentScope<Any>.() -> Unit) =
+  produce { block(ConcurrentScope(this)) }.consumeEach {  }
 
-internal suspend inline fun <T> Array<T>.forEachConcurrently(
-  crossinline action: suspend (T) -> Unit
-) = coroutineScope {
-  forEach {
-    launch { action(it) }
-  }
-}
-
-internal suspend inline fun <K, V> MutableMap<K, V>.forEachConcurrently(
-  crossinline action: suspend (Map.Entry<K, V>) -> Unit
-) = coroutineScope {
-  forEach {
-    launch { action(it) }
-  }
-}
+internal fun <E> concurrentFlow(@BuilderInference block: suspend ConcurrentScope<E>.() -> Unit): Flow<E> =
+  channelFlow { block(ConcurrentScope(this)) }
 
 internal fun <T, R> Flow<T>.flatMapConcurrently(
   concurrency: Int = Int.MAX_VALUE,
   transform: suspend (T) -> Flow<R>
 ): Flow<R> = flatMapMerge(concurrency, transform)
 
-internal suspend inline fun <T> ProducerScope<T>.sendAll(crossinline block: suspend () -> Flow<T>?) =
-  block()?.collect { launch { send(it) } }
+/**
+ * Returns `this` value if it satisfies the given [predicate] or `null`, if it doesn't.
+ *
+ * For detailed usage information see the documentation for [scope functions](https://kotlinlang.org/docs/reference/scope-functions.html#takeif-and-takeunless).
+ */
+// TODO Migration
+internal inline fun <T> List<T>.takeIfEmpty(): List<T>? {
+  return if (isEmpty()) this else null
+}
 
-internal suspend inline fun <T> ProducerScope<T>.sendList(crossinline block: suspend () -> List<T>?) =
-  block()?.forEach { launch { send(it) } }
+// TODO Migration
+internal inline fun <T> List<T>?.takeIfNullOrEmpty(): List<T>? {
+  return if (isNullOrEmpty()) this else null
+}
+
+/**
+ * Returns `this` value if it satisfies the given [predicate] or `null`, if it doesn't.
+ *
+ * For detailed usage information see the documentation for [scope functions](https://kotlinlang.org/docs/reference/scope-functions.html#takeif-and-takeunless).
+ */
+// TODO Migration
+internal inline fun <T> List<T>?.takeIfNotEmpty(): List<T>? {
+  return if (isNullOrEmpty()) null else this
+}
+
+// TODO Migration
+internal inline fun <C: CharSequence> C?.takeIfNotEmpty(): C? {
+  return if (isNullOrEmpty()) null else this
+}
+// TODO Migration
+internal inline fun <C: CharSequence> C?.takeIfNullOrEmpty(): C? {
+  return if (isNullOrEmpty()) this else null
+}
+// TODO Migration
+internal inline fun <C: CharSequence> C.takeIfEmpty(): C? {
+  return if (isEmpty()) this else null
+}
+
+// TODO Migration
+internal inline fun String?.takeIfNotEmpty(): String? {
+  return if (isNullOrEmpty()) null else this
+}
+// TODO Migration
+internal inline fun String?.takeIfNullOrEmpty(): String? {
+  return if (isNullOrEmpty()) this else null
+}
+// TODO Migration
+internal inline fun String.takeIfEmpty(): String? {
+  return if (isEmpty()) this else null
+}
 
 // TODO Migration
 internal fun String.removeLineBreaks() = replace("\n", "").replace("\r", "").replace("\r\n", "")

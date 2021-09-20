@@ -20,9 +20,9 @@
  */
 import com.meowool.gradle.toolkit.DependencyMapperExtension
 import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl
-import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl.Companion.cacheJar
-import com.meowool.gradle.toolkit.internal.forEachConcurrently
-import com.meowool.gradle.toolkit.internal.sendAll
+import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl.Companion.CacheDir
+import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl.Companion.CacheJarsDir
+import com.meowool.gradle.toolkit.internal.concurrentFlow
 import io.kotest.assertions.withClue
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.engine.spec.tempdir
@@ -38,15 +38,17 @@ import org.gradle.testfixtures.ProjectBuilder
 /**
  * @author 凛 (https://github.com/RinOrz)
  */
-class MappedClassesTests : FreeSpec({
+class MappingTests : FreeSpec({
   val project = ProjectBuilder.builder()
     .withProjectDir(tempdir())
     .build()
 
-  fun runMapping(block: DependencyMapperExtension.() -> Unit): JarClassLoader {
-    DependencyMapperExtensionImpl(project).apply(block).mapping()
-    return JarClassLoader(project.cacheJar.readText())
-  }
+  fun runMapping(block: DependencyMapperExtension.() -> Unit): JarClassLoader =
+    DependencyMapperExtensionImpl(project).run {
+      block()
+      mapping()
+      JarClassLoader(*project.projectDir.resolve("$CacheDir/$CacheJarsDir").listFiles()!!)
+    }
 
   "libraries" - {
     "declared" {
@@ -199,12 +201,12 @@ class MappedClassesTests : FreeSpec({
      * }
      */
     suspend fun Class<*>.collectFields(): List<Field> {
-      fun Class<*>.impl(): Flow<Field> = channelFlow {
+      fun Class<*>.impl(): Flow<Field> = concurrentFlow {
         declaredFields.forEachConcurrently {
           send(Field(it.declaringClass.canonicalName, it.name, it.get(null).toString()))
         }
-        declaredClasses.forEach {
-          sendAll { it.impl() }
+        declaredClasses.forEachConcurrently {
+          sendAll(it.impl())
         }
       }
       return impl().toList()
