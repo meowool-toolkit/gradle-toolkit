@@ -37,7 +37,6 @@ import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.getCredentials
 import org.gradle.kotlin.dsl.register
 

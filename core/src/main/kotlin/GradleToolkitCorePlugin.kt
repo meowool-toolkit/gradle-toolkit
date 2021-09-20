@@ -64,16 +64,17 @@ class GradleToolkitCorePlugin : Plugin<Any> {
       afterEvaluate {
         optIn("kotlin.RequiresOptIn")
 
-        kotlinOptions {
-          apiVersion = KotlinApiVersion
-          languageVersion = KotlinLanguageVersion
-        }
-
-        kotlinJvmOptions {
-          @Suppress("DEPRECATION")
-          useIR = true
-          jvmTarget = KotlinJvmTarget
-        }
+        // TODO Remove
+//        kotlinOptions {
+//          apiVersion = KotlinApiVersion
+//          languageVersion = KotlinLanguageVersion
+//        }
+//
+//        kotlinJvmOptions {
+//          @Suppress("DEPRECATION")
+//          useIR = true
+//          jvmTarget = KotlinJvmTarget
+//        }
 
         extensions.findByType<SourceSetContainer>()?.apply {
           findByName("main")?.java?.srcDirs("src/main/kotlin")

@@ -68,7 +68,7 @@ subprojects {
     @Suppress("DEPRECATION")
     useIR = true
     apiVersion = null
-    languageVersion = null
+    languageVersion = "1.4"
     addFreeCompilerArgs("-Xskip-prerelease-check")
   }
   tasks.withType<Test> { useJUnitPlatform() }
