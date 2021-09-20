@@ -22,11 +22,6 @@ package com.meowool.gradle.toolkit
 
 import addIfNotExists
 import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl
-import com.meowool.gradle.toolkit.internal.KotlinApiVersion
-import com.meowool.gradle.toolkit.internal.KotlinJvmTarget
-import com.meowool.gradle.toolkit.internal.KotlinLanguageVersion
-import kotlinJvmOptions
-import kotlinOptions
 import optIn
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
