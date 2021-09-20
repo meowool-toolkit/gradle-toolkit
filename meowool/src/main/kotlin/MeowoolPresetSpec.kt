@@ -112,6 +112,14 @@ open class MeowoolPresetSpec internal constructor() {
   open var enabledMetalava: Boolean = true
 
   /**
+   * Whether to use this specification of publisher.
+   *
+   * @see enablePublisher
+   * @see disablePublisher
+   */
+  open var enabledPublisher: Boolean = true
+
+  /**
    * The configurations list of the project of this specification.
    */
   open val configurations: MutableList<GradleToolkitExtension.() -> Unit> = mutableListOf(
@@ -160,6 +168,20 @@ open class MeowoolPresetSpec internal constructor() {
         extensions.findByType<SpotlessExtension>()?.apply { configuration(project) }
       }
     }
+  }
+
+  /**
+   * Enables the [publisher](https://github.com/meowool-toolkit/gradle-toolkit/publisher) plugin.
+   */
+  fun enablePublisher() {
+    enabledPublisher = true
+  }
+
+  /**
+   * Disables the [publisher](https://github.com/meowool-toolkit/gradle-toolkit/publisher) plugin.
+   */
+  fun disablePublisher() {
+    enabledPublisher = false
   }
 
   /**

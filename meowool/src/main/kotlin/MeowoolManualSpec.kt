@@ -62,6 +62,14 @@ class MeowoolManualSpec internal constructor() : MeowoolPresetSpec() {
   override var enabledMetalava: Boolean = false
 
   /**
+   * Whether to use this specification of publisher.
+   *
+   * @see enablePublisher
+   * @see disablePublisher
+   */
+  override var enabledPublisher: Boolean = false
+
+  /**
    * The configurations list of the project of this specification.
    */
   override val configurations: MutableList<GradleToolkitExtension.() -> Unit> = mutableListOf()

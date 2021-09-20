@@ -24,6 +24,7 @@ import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.meowool.gradle.toolkit.GradleToolkitExtension
 import com.meowool.gradle.toolkit.internal.MeowoolManualSpec
 import com.meowool.gradle.toolkit.internal.MeowoolPresetSpec
+import com.meowool.gradle.toolkit.publisher.PublisherPlugin
 import me.tylerbwong.gradle.metalava.plugin.MetalavaPlugin
 import org.gradle.api.Project
 import org.gradle.api.initialization.Settings
@@ -56,6 +57,7 @@ private fun GradleToolkitExtension.useMeowoolSpecImpl(spec: MeowoolPresetSpec) {
     spec.repositories.invoke(repositories, project)
     if (spec.enabledSpotless) project.apply<SpotlessPlugin>()
     if (spec.enabledMetalava) project.apply<MetalavaPlugin>()
+    if (spec.enabledPublisher) project.apply<PublisherPlugin>()
   }
   spec.configurations.forEach { it() }
 }
