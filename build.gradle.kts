@@ -67,14 +67,11 @@ subprojects {
   kotlinJvmOptions {
     @Suppress("DEPRECATION")
     useIR = true
-    apiVersion = "1.5"
-    languageVersion = "1.5"
+    apiVersion = null
+    languageVersion = null
     addFreeCompilerArgs("-Xskip-prerelease-check")
   }
-  tasks.withType<Test> {
-    useJUnitPlatform()
-    testLogging.showStandardStreams = true
-  }
+  tasks.withType<Test> { useJUnitPlatform() }
 }
 
 subdependencies {

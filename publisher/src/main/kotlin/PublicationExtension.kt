@@ -73,8 +73,10 @@ class PublicationExtension(internal val project: Project) {
    *
    * Note that this value will inherit the value set in the root project.
    */
-  val destinations: MutableSet<PublishingDestination> = mutableSetOf<PublishingDestination>().also {
-    project.parentPublication?.destinations?.apply(it::addAll)
+  val destinations: MutableSet<PublishingDestination> by lazy {
+    mutableSetOf<PublishingDestination>().also {
+      project.parentPublication?.destinations?.apply(it::addAll)
+    }
   }
 
   /**
