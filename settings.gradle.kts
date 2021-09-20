@@ -31,7 +31,7 @@ pluginManagement {
 }
 
 plugins {
-  id("com.meowool.gradle.toolkit") version "0.2.2-LOCAL-SNAPSHOT"
+  id("com.meowool.gradle.toolkit") version "0.2.1-SNAPSHOT"
 }
 
 buildscript {
@@ -48,10 +48,7 @@ dependencyMapper {
       // TODO Remove when meowool-sweekt released.
       "com.meowool.toolkit:sweekt",
     )
-    map(
-      "net.mbonnin.vespene:vespene-lib" to "Vespene",
-      "me.tylerbwong.gradle:metalava-gradle" to "Gradle.Metalava"
-    )
+    map("net.mbonnin.vespene:vespene-lib" to "Vespene")
   }
 }
 
