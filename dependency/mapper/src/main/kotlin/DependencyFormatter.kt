@@ -167,10 +167,9 @@ data class DependencyFormatter(
     endProcessorCount++
   }
 
-
-  ///////////////////////////////////////////////////////////////////////////
-  ////                           Internal APIs                           ////
-  ///////////////////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////////////////
+  // //                           Internal APIs                           ////
+  // /////////////////////////////////////////////////////////////////////////
 
   @Transient
   internal var initProcessors: MutableList<FormatProcessor> = mutableListOf()
@@ -204,12 +203,12 @@ data class DependencyFormatter(
    */
   internal fun toPath(input: CharSequence): String {
     val initialized = initProcessors.fold(input.toString()) { acc, processor -> processor(acc) }
-    val normalized = startProcessors.fold(initialized.mergeDuplicateLevels()) { acc, processor -> processor(acc) }
       // foo.bar:core-ext -> foo.bar:core.ext
       .replace('-', '.').replace('_', '.')
       // :parent:sub -> parent.sub
       .replace(':', '.').removePrefix(".")
-    val path = normalized.splitToSequence(Dot)
+    val normalized = startProcessors.fold(initialized.mergeDuplicateLevels()) { acc, processor -> processor(acc) }
+    val path = normalized.split(Dot)
       .map(::transformEachName)
       .joinToPath()
     return endProcessors.fold(path) { acc, processor -> processor(acc) }
@@ -278,7 +277,7 @@ data class DependencyFormatter(
     return (left + right).joinToString(Dot.toString())
   }
 
-  private fun Sequence<String>.joinToPath(): String {
+  private fun Iterable<String>.joinToPath(): String {
     val builder = StringBuilder()
     // Fix https://www.scala-sbt.org/1.x/docs/Library-Dependencies.html#Getting+the+right+Scala+version+with
     // Foo.10.20 -> Foo_10_20

@@ -47,11 +47,18 @@ class DependencyFormatterTests : FreeSpec({
   "Replaced" - {
     val formatter = DependencyFormatter().apply {
       mergeDuplicateLevels()
-      onStart { it.replace("noodle.egg", "com.food") }
+      onStart { it.replace("noodle.egg", "com.food").replace("org.jetbrains.kotlin", "kotlin") }
       onEachName { if (it == "eat") "custom" else it }
       isCapitalize { false }
     }
+    "org.jetbrains.kotlin:kotlin-stdlib-jdk8 -> kotlin.stdlib.jdk8" { this(formatter) }
     "noodle.egg:noodle.egg -> com.food" { this(formatter) }
     "foo.bar.eat:eat -> foo.bar.custom" { this(formatter) }
+  }
+
+  "MergeDuplicateLevels" - {
+    val formatter = DependencyFormatter()
+    "foo.bar.eat:foo.bar.eat -> Foo.Bar.Eat" { this(formatter) }
+    "foo.bar:foo.bar.baz -> Foo.Bar.Baz" { this(formatter) }
   }
 })
