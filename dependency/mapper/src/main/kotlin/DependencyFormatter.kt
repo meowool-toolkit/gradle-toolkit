@@ -86,6 +86,7 @@ data class DependencyFormatter(
    */
   var isMergeDuplicateLevels: Boolean = true,
 
+  private var initProcessorCount: Int = 0,
   private var startProcessorCount: Int = 0,
   private var nameProcessorCount: Int = 0,
   private var endProcessorCount: Int = 0,
@@ -106,6 +107,16 @@ data class DependencyFormatter(
    * Adds a [processor] to processes the input before calling [toPath].
    *
    * @return The result will be used as the input argument of [toPath].
+   * @see toPath
+   */
+  fun onInit(processor: FormatProcessor) {
+    initProcessors += processor
+    initProcessorCount++
+  }
+
+  /**
+   * Adds a [processor] to processes the input at the beginning of calling [toPath].
+   *
    * @see toPath
    */
   fun onStart(processor: FormatProcessor) {
@@ -162,6 +173,8 @@ data class DependencyFormatter(
   ///////////////////////////////////////////////////////////////////////////
 
   @Transient
+  internal var initProcessors: MutableList<FormatProcessor> = mutableListOf()
+  @Transient
   internal var startProcessors: MutableList<FormatProcessor> = mutableListOf()
   @Transient
   internal var nameProcessors: MutableList<FormatProcessor> = mutableListOf()
@@ -190,13 +203,13 @@ data class DependencyFormatter(
    * @return The path after formatting [input] dependency.
    */
   internal fun toPath(input: CharSequence): String {
-    val normalized = startProcessors.fold(input.toString()) { acc, processor -> processor(acc) }
+    val initialized = initProcessors.fold(input.toString()) { acc, processor -> processor(acc) }
+    val normalized = startProcessors.fold(initialized.mergeDuplicateLevels()) { acc, processor -> processor(acc) }
       // foo.bar:core-ext -> foo.bar:core.ext
       .replace('-', '.').replace('_', '.')
       // :parent:sub -> parent.sub
       .replace(':', '.').removePrefix(".")
     val path = normalized.splitToSequence(Dot)
-      .mergeDuplicateLevels()
       .map(::transformEachName)
       .joinToPath()
     return endProcessors.fold(path) { acc, processor -> processor(acc) }
@@ -228,7 +241,7 @@ data class DependencyFormatter(
    *
    * @see isMergeDuplicateLevels
    * */
-  private fun Sequence<String>.mergeDuplicateLevels(): Sequence<String> {
+  private fun String.mergeDuplicateLevels(): String {
     if (isMergeDuplicateLevels.not()) return this
 
     // The pool storing each name, each looping is taken from here, until the pool is empty.
@@ -236,7 +249,7 @@ data class DependencyFormatter(
     //     Left part:  [A]
     val left = mutableListOf<String>()
     //     Right part: [B, C, B, C, D]
-    val right = this.toMutableList()
+    val right = split(Dot).toMutableList()
 
     while (right.isNotEmpty()) {
       // Take the first from the pool and splice to the end of 'before'
@@ -262,10 +275,7 @@ data class DependencyFormatter(
       }
     }
 
-    return sequence {
-      yieldAll(left)
-      yieldAll(right)
-    }
+    return (left + right).joinToString(Dot.toString())
   }
 
   private fun Sequence<String>.joinToPath(): String {
