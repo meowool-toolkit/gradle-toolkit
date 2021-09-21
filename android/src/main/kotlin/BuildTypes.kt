@@ -18,6 +18,8 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+@file:Suppress("UnstableApiUsage")
+
 import com.android.build.api.dsl.BuildType
 import org.gradle.api.NamedDomainObjectContainer
 

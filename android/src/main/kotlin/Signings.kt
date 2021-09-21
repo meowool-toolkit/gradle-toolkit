@@ -18,8 +18,8 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-import com.android.build.api.dsl.SigningConfig
 import com.android.build.gradle.BaseExtension
+import com.android.build.gradle.internal.dsl.SigningConfig
 import com.meowool.gradle.toolkit.android.internal.loadSigningConfigPresets
 import java.io.File
 
@@ -31,7 +31,7 @@ import java.io.File
 fun BaseExtension.debugSigning(configuration: SigningConfig.() -> Unit) {
   signingConfigs { debug(configuration) }
   buildTypes {
-    debug { signingConfig = signingConfigs.debug }
+    debug { setSigningConfig(signingConfigs.debug) }
   }
 }
 
@@ -41,7 +41,7 @@ fun BaseExtension.debugSigning(configuration: SigningConfig.() -> Unit) {
 fun BaseExtension.releaseSigning(configuration: SigningConfig.() -> Unit) {
   signingConfigs { release(configuration) }
   buildTypes {
-    release { signingConfig = signingConfigs.release }
+    release { setSigningConfig(signingConfigs.release)  }
   }
 }
 
@@ -58,8 +58,8 @@ fun BaseExtension.signing(configuration: SigningConfig.() -> Unit) {
     }
   }
   buildTypes {
-    debug { signingConfig = signingConfigs.getByName(config) }
-    release { signingConfig = signingConfigs.getByName(config) }
+    debug { setSigningConfig(signingConfigs.getByName(config)) }
+    release { setSigningConfig(signingConfigs.getByName(config)) }
   }
 }
 
