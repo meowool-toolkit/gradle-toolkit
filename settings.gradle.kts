@@ -31,13 +31,16 @@ pluginManagement {
 }
 
 plugins {
-  id("com.meowool.gradle.toolkit") version "0.2.1-SNAPSHOT"
+  id("com.meowool.gradle.toolkit") version "0.2.2-SNAPSHOT"
 }
 
 buildscript {
   configurations.all {
     // Check for updates every build
-    resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
+    resolutionStrategy {
+      force("com.android.tools.build:gradle:4.2.1")
+      cacheChangingModulesFor(0, TimeUnit.SECONDS)
+    }
   }
 }
 

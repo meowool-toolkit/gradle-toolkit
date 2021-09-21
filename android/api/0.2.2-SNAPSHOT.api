@@ -103,11 +103,11 @@ package  {
   }
 
   public final class SigningsKt {
-    method public static void debugSigning(com.android.build.gradle.BaseExtension, kotlin.jvm.functions.Function1<? super com.android.build.api.dsl.SigningConfig,kotlin.Unit> configuration);
-    method public static void loadKeyProperties(com.android.build.api.dsl.SigningConfig, error.NonExistentClass file);
-    method public static error.NonExistentClass! loadKeyProperties(com.android.build.api.dsl.SigningConfig, String path);
-    method public static void releaseSigning(com.android.build.gradle.BaseExtension, kotlin.jvm.functions.Function1<? super com.android.build.api.dsl.SigningConfig,kotlin.Unit> configuration);
-    method public static void signing(com.android.build.gradle.BaseExtension, kotlin.jvm.functions.Function1<? super com.android.build.api.dsl.SigningConfig,kotlin.Unit> configuration);
+    method public static void debugSigning(com.android.build.gradle.BaseExtension, kotlin.jvm.functions.Function1<? super com.android.build.gradle.internal.dsl.SigningConfig,kotlin.Unit> configuration);
+    method public static void loadKeyProperties(com.android.build.gradle.internal.dsl.SigningConfig, error.NonExistentClass file);
+    method public static error.NonExistentClass! loadKeyProperties(com.android.build.gradle.internal.dsl.SigningConfig, String path);
+    method public static void releaseSigning(com.android.build.gradle.BaseExtension, kotlin.jvm.functions.Function1<? super com.android.build.gradle.internal.dsl.SigningConfig,kotlin.Unit> configuration);
+    method public static void signing(com.android.build.gradle.BaseExtension, kotlin.jvm.functions.Function1<? super com.android.build.gradle.internal.dsl.SigningConfig,kotlin.Unit> configuration);
   }
 
   public final class VariantsKt {
@@ -115,24 +115,6 @@ package  {
     method public static void libraryVariants(com.android.build.gradle.LibraryExtension, kotlin.jvm.functions.Function1<? super com.android.build.gradle.api.LibraryVariant,kotlin.Unit> configuration);
     method public static void testVariants(com.android.build.gradle.TestedExtension, kotlin.jvm.functions.Function1<? super com.android.build.gradle.api.TestVariant,kotlin.Unit> configuration);
     method public static void variants(com.android.build.gradle.BaseExtension, kotlin.jvm.functions.Function1<? super com.android.build.gradle.api.BaseVariant,kotlin.Unit> configuration);
-  }
-
-}
-
-package com.meowool.gradle.toolkit.android.internal {
-
-  public final class AndroidLogicRegistry {
-    field public static final String DefaultCandidateAndroidKey = "default android candidate logic";
-    field public static final com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry INSTANCE;
-  }
-
-  public final class ConstantsKt {
-  }
-
-  public final class PluginsKt {
-  }
-
-  public final class PresetsKt {
   }
 
 }
@@ -292,11 +274,6 @@ package org.gradle.kotlin.dsl {
   @org.gradle.api.Generated public final class Accessors2xn0wsnv47qerxchr8se4tmemKt {
     method public static void androidComponents(org.gradle.api.Project, org.gradle.api.Action<com.android.build.api.extension.ApplicationAndroidComponentsExtension> configure);
     method public static com.android.build.api.extension.ApplicationAndroidComponentsExtension getAndroidComponents(org.gradle.api.Project);
-  }
-
-  @org.gradle.api.Generated public final class Accessors377twfxlhpj2n65rquy9ybeqsKt {
-    method public static void android(org.gradle.api.Project, org.gradle.api.Action<com.android.build.gradle.internal.dsl.BaseAppModuleExtension> configure);
-    method public static com.android.build.gradle.internal.dsl.BaseAppModuleExtension getAndroid(org.gradle.api.Project);
   }
 
   @org.gradle.api.Generated public final class Accessors37pl5uow427xtlikrsyjd1w25Kt {

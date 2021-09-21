@@ -18,15 +18,10 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-@file:Suppress("EXPERIMENTAL_API_USAGE")
-@file:OptIn(ExperimentalTypeInference::class)
-
 package com.meowool.gradle.toolkit.internal
 
-import com.meowool.sweekt.Hosting
 import com.meowool.sweekt.className
 import com.meowool.sweekt.coroutines.contains
-import com.meowool.sweekt.hosting
 import com.meowool.sweekt.isEnglish
 import com.meowool.sweekt.isEnglishNotPunctuation
 import com.meowool.sweekt.iteration.endsWith
@@ -34,7 +29,6 @@ import com.meowool.sweekt.iteration.isNullOrEmpty
 import com.meowool.sweekt.iteration.size
 import com.meowool.sweekt.iteration.startsWith
 import com.meowool.sweekt.select
-import internal.ConcurrentScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.channels.produce
@@ -60,7 +54,6 @@ import net.bytebuddy.dynamic.scaffold.subclass.ConstructorStrategy
 import net.bytebuddy.jar.asm.Opcodes
 import org.jsoup.nodes.Element
 import java.io.File
-import kotlin.experimental.ExperimentalTypeInference
 
 @PublishedApi
 internal val DefaultJson = Json {
@@ -113,11 +106,6 @@ internal fun <T> DynamicType.Builder<T>.makeWith(
   }
   return this.make().include(innerClasses)
 }
-
-internal fun <T> hosting(
-  key: Any? = null,
-  initializer: () -> T,
-): Hosting<T> = hosting(key, lock = null, initializer = initializer)
 
 internal fun Element.href() = attr("href")
 

@@ -46,6 +46,19 @@ private const val REPOSITORIES_TO_CLOSE = "mavenPublish-waitForCloseRepositories
 internal val Project.parentPublication: PublicationExtension? get() = parent?.extensions?.findByType()
 internal val Project.parentPublicationData: PublicationData? get() = parentPublication?.data
 
+internal fun <R> Project.onEachParentPublicationData(action: (PublicationData) -> R?): R? {
+  var project = parent
+  while (project != null) {
+    val publication = project.extensions.findByType<PublicationExtension>()?.data
+    if (publication != null) {
+      val result = action(publication)
+      if (result != null) return result
+    }
+    project = project.parent ?: return null
+  }
+  return null
+}
+
 internal val Project.androidExtension get() = extensions.findByName("android") as? BaseExtension
 internal val Project.isAndroid get() = androidExtension != null
 

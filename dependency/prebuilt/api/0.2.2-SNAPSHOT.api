@@ -9,10 +9,3 @@ package  {
 
 }
 
-package com.meowool.gradle.toolkit.internal.prebuilt {
-
-  public final class PrebuiltKt {
-  }
-
-}
-

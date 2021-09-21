@@ -41,7 +41,7 @@ fun BaseExtension.debugSigning(configuration: SigningConfig.() -> Unit) {
 fun BaseExtension.releaseSigning(configuration: SigningConfig.() -> Unit) {
   signingConfigs { release(configuration) }
   buildTypes {
-    release { setSigningConfig(signingConfigs.release)  }
+    release { setSigningConfig(signingConfigs.release) }
   }
 }
 

@@ -301,7 +301,6 @@ package  {
     method public static Object? findPropertyOrEnv(org.gradle.api.Project, String key);
     method public static error.NonExistentClass! getLocalProperties(org.gradle.api.Project);
     method public static Object getPropertyOrEnv(org.gradle.api.Project, String key, Object defaultValue);
-    method @com.meowool.gradle.toolkit.internal.InternalGradleToolkitApi public static error.NonExistentClass! toPropertiesOrNull(error.NonExistentClass);
   }
 
   public final class RepositoriesKt {
@@ -421,23 +420,6 @@ package com.meowool.gradle.toolkit {
     field public static final com.meowool.gradle.toolkit.LogicRegistry.Companion Companion;
     field public static final String DefaultDependenciesKey = "default dependencies logic";
     field public static final String DefaultProjectKey = "default project logic";
-  }
-
-  @com.meowool.gradle.toolkit.internal.InternalGradleToolkitApi public static final class LogicRegistry.Companion {
-    method public com.meowool.gradle.toolkit.LogicRegistry getLogicRegistry(org.gradle.api.Project);
-    method public inline Void notFoundKey(Object key);
-    method public inline error.NonExistentClass! requireNotKey(error.NonExistentClass, Object key);
-    property public final com.meowool.gradle.toolkit.LogicRegistry logicRegistry;
-  }
-
-}
-
-package com.meowool.gradle.toolkit.internal {
-
-  public final class ConstantsKt {
-  }
-
-  @kotlin.RequiresOptIn(message="Internal api of \'gradle-toolkit\', should not be called manually.") public @interface InternalGradleToolkitApi {
   }
 
 }

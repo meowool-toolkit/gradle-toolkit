@@ -111,7 +111,7 @@ class PublicationExtension(internal val project: Project) {
    *
    * @see [PublicationData.version]
    */
-  val isSnapshotVersion: Boolean get() = data.versionOrDefault().endsWith("-SNAPSHOT")
+  val isSnapshotVersion: Boolean get() = data.version.endsWith("-SNAPSHOT")
 
   /**
    * Returns `true` if this publication is a local version.
@@ -121,7 +121,7 @@ class PublicationExtension(internal val project: Project) {
    *
    * @see [PublicationData.version]
    */
-  val isLocalVersion: Boolean get() = data.versionOrDefault().contains("LOCAL")
+  val isLocalVersion: Boolean get() = data.version.contains("LOCAL")
 
   /**
    * Configures the data of this publication with [configuration].

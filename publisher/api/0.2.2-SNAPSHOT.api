@@ -43,6 +43,10 @@ package  {
     method public static error.NonExistentClass! publications(error.NonExistentClass, kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.publisher.PublicationExtension,kotlin.Unit> configuration);
   }
 
+  public final class PublishTasksKt {
+    method public static void disablePublishTask(org.gradle.api.Project);
+  }
+
   public abstract class PublishingDestination {
     ctor public PublishingDestination();
     method public final org.gradle.api.Project getProject();
@@ -76,50 +80,54 @@ package com.meowool.gradle.toolkit.publisher {
   public final class PublicationData {
     ctor public PublicationData(org.gradle.api.Project project);
     method public void developer(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.publisher.PublicationData.Developer,kotlin.Unit> configuration);
-    method public String? getArtifactId();
+    method public String getArtifactId();
     method public String? getDescription();
-    method public java.util.List<com.meowool.gradle.toolkit.publisher.PublicationData.Developer> getDevelopers();
-    method public String? getDisplayName();
-    method public String? getGroupId();
-    method public java.util.List<com.meowool.gradle.toolkit.publisher.PublicationData.License> getLicenses();
+    method public java.util.Set<com.meowool.gradle.toolkit.publisher.PublicationData.Developer> getDevelopers();
+    method public String getDisplayName();
+    method public String getGroupId();
+    method public java.util.Set<com.meowool.gradle.toolkit.publisher.PublicationData.License> getLicenses();
     method public String? getOrganizationName();
     method public String? getOrganizationUrl();
-    method public String? getPluginId();
+    method public String getPluginId();
     method public java.util.Set<java.lang.String> getTags();
     method public String? getUrl();
     method public String? getVcs();
-    method public String? getVersion();
+    method public String getVersion();
     method public void license(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.publisher.PublicationData.License,kotlin.Unit> configuration);
     method public void pom(kotlin.jvm.functions.Function1<? super org.gradle.api.publish.maven.MavenPom,kotlin.Unit> configuration);
-    method public void setArtifactId(String? artifactId);
+    method public void setArtifactId(String value);
     method public void setDescription(String? value);
-    method public void setDisplayName(String? displayName);
-    method public void setGroupId(String? value);
-    method public void setOrganizationName(String? organizationName);
-    method public void setOrganizationUrl(String? organizationUrl);
-    method public void setPluginId(String? pluginId);
-    method public void setTags(java.util.Set<java.lang.String> tags);
-    method public void setUrl(String? url);
-    method public void setVcs(String? vcs);
-    method public void setVersion(String? value);
+    method public void setDisplayName(String value);
+    method public void setGroupId(String value);
+    method public void setOrganizationName(String? value);
+    method public void setOrganizationUrl(String? value);
+    method public void setPluginId(String value);
+    method public void setUrl(String? value);
+    method public void setVcs(String? value);
+    method public void setVersion(String value);
     method public void tags(java.lang.String... tags);
-    property public final String? artifactId;
+    property public final String artifactId;
     property public final String? description;
-    property public final java.util.List<com.meowool.gradle.toolkit.publisher.PublicationData.Developer> developers;
-    property public final String? displayName;
-    property public final String? groupId;
-    property public final java.util.List<com.meowool.gradle.toolkit.publisher.PublicationData.License> licenses;
+    property public final java.util.Set<com.meowool.gradle.toolkit.publisher.PublicationData.Developer> developers;
+    property public final String displayName;
+    property public final String groupId;
+    property public final java.util.Set<com.meowool.gradle.toolkit.publisher.PublicationData.License> licenses;
     property public final String? organizationName;
     property public final String? organizationUrl;
-    property public final String? pluginId;
+    property public final String pluginId;
     property public final java.util.Set<java.lang.String> tags;
     property public final String? url;
     property public final String? vcs;
-    property public final String? version;
+    property public final String version;
   }
 
   public static final class PublicationData.Developer {
-    ctor public PublicationData.Developer();
+    ctor public PublicationData.Developer(optional String? id, optional String? name, optional String? email, optional String? url);
+    method public String? component1();
+    method public String? component2();
+    method public String? component3();
+    method public String? component4();
+    method public com.meowool.gradle.toolkit.publisher.PublicationData.Developer copy(String? id, String? name, String? email, String? url);
     method public boolean equals(Object? other);
     method public String? getEmail();
     method public String? getId();
@@ -130,6 +138,7 @@ package com.meowool.gradle.toolkit.publisher {
     method public void setId(String? id);
     method public void setName(String? name);
     method public void setUrl(String? url);
+    method public String toString();
     property public final String? email;
     property public final String? id;
     property public final String? name;
@@ -137,13 +146,17 @@ package com.meowool.gradle.toolkit.publisher {
   }
 
   public static final class PublicationData.License {
-    ctor public PublicationData.License();
+    ctor public PublicationData.License(optional String? name, optional String? url);
+    method public String? component1();
+    method public String? component2();
+    method public com.meowool.gradle.toolkit.publisher.PublicationData.License copy(String? name, String? url);
     method public boolean equals(Object? other);
     method public String? getName();
     method public String? getUrl();
     method public int hashCode();
     method public void setName(String? name);
     method public void setUrl(String? url);
+    method public String toString();
     property public final String? name;
     property public final String? url;
   }
@@ -188,13 +201,6 @@ package com.meowool.gradle.toolkit.publisher {
   public final class PublisherPlugin implements org.gradle.api.Plugin<org.gradle.api.Project> {
     ctor public PublisherPlugin();
     method public void apply(org.gradle.api.Project target);
-  }
-
-}
-
-package com.meowool.gradle.toolkit.publisher.internal {
-
-  public final class UtilsKt {
   }
 
 }

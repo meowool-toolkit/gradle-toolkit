@@ -25,9 +25,8 @@ buildscript { repositories.mavenCentral() }
 // Root data, not publish (all sub-projects extends from here)
 publication.data {
   displayName = "Gradle Toolkit"
-  artifactId = "toolkit"
   groupId = "com.meowool.gradle"
-  version = "0.2.1-SNAPSHOT"
+  version = "0.2.2-SNAPSHOT"
   description = "Raise the practicality of gradle to a new level."
   url = "https://github.com/meowool-toolkit/gradle-toolkit/"
   developer {
@@ -75,6 +74,7 @@ subprojects {
 }
 
 subdependencies {
+  if (project.path.startsWith(Projects.Integration.Testing)) return@subdependencies
   // All projects depend on the ':core'
   if (project.path != Projects.Core) {
     apiProject(Projects.Core)

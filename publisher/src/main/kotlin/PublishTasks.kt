@@ -18,25 +18,21 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-@file:Suppress("SpellCheckingInspection")
+import com.gradle.publish.PublishTask
+import com.meowool.sweekt.withType
+import org.gradle.api.Project
+import org.gradle.api.publish.maven.plugins.MavenPublishPlugin.PUBLISH_LOCAL_LIFECYCLE_TASK_NAME
+import org.gradle.api.publish.plugins.PublishingPlugin.PUBLISH_LIFECYCLE_TASK_NAME
 
-plugins { kotlin; `kotlin-dsl` }
-
-publication {
-  data {
-    artifactId = "toolkit-publisher"
-    displayName = "Gradle Toolkit Publisher"
-    description = "Used to quickly create maven or plugin publications and publish."
+/**
+ * Disable all publishing tasks for this project.
+ */
+fun Project.disablePublishTask() {
+  afterEvaluate {
+    tasks.findByName(PUBLISH_LIFECYCLE_TASK_NAME)?.enabled = false
+    tasks.findByName(PUBLISH_LOCAL_LIFECYCLE_TASK_NAME)?.enabled = false
   }
-  pluginClass = "${data.groupId}.toolkit.publisher.PublisherPlugin"
-}
-
-dependencies {
-  apiOf(
-    Libs.Vespene,
-    Libs.Meowool.Toolkit.Sweekt,
-    Libs.Jetbrains.Dokka.Gradle.Plugin,
-  )
-  implementation(Libs.Gradle.Publish.Plugin)
-  compileOnly(Libs.Android.Gradle.Plugin)
+  tasks.withType<PublishTask> {
+    enabled = false
+  }
 }

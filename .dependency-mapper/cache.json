@@ -8,11 +8,13 @@
         ":android",
         ":core",
         ":dependency",
+        ":integration-testing",
         ":meowool",
         ":publisher",
         ":dependency:mapper",
         ":dependency:prebuilt",
         ":dependency:updater",
+        ":integration-testing:android",
         ":meowool:metalava"
       ]
     },
@@ -190,13 +192,13 @@
   },
   "jarsCache": {
     "libraries": [
-      "/Users/rin/Documents/Develop/Projects/meowool/toolkit/gradle-toolkit/.dependency-mapper/jars/Libs-1632155599363.jar"
+      "/Users/rin/Documents/Develop/Projects/meowool/toolkit/gradle-toolkit/.dependency-mapper/jars/Libs-1632204056990.jar"
     ],
     "projects": [
-      "/Users/rin/Documents/Develop/Projects/meowool/toolkit/gradle-toolkit/.dependency-mapper/jars/Projects-1632158051282.jar"
+      "/Users/rin/Documents/Develop/Projects/meowool/toolkit/gradle-toolkit/.dependency-mapper/jars/Projects-1632221016176.jar"
     ],
     "plugins": [
-      "/Users/rin/Documents/Develop/Projects/meowool/toolkit/gradle-toolkit/.dependency-mapper/jars/Plugins-1632155669578.jar"
+      "/Users/rin/Documents/Develop/Projects/meowool/toolkit/gradle-toolkit/.dependency-mapper/jars/Plugins-1632204060010.jar"
     ]
   }
 }

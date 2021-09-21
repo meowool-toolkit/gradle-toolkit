@@ -29,7 +29,6 @@ import com.meowool.gradle.toolkit.PluginDependencyDeclaration
 import com.meowool.gradle.toolkit.SearchDeclaration
 import com.meowool.gradle.toolkit.internal.BaseSearchDeclarationImpl.Data.Companion.clientUrls
 import com.meowool.sweekt.String
-import internal.ConcurrentScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient

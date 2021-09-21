@@ -24,13 +24,13 @@ import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
 import com.github.benmanes.caffeine.cache.Expiry
 import com.meowool.gradle.toolkit.LibraryDependency
+import com.meowool.gradle.toolkit.internal.ConcurrentScope
 import com.meowool.gradle.toolkit.internal.DefaultJson
 import com.meowool.gradle.toolkit.internal.JsoupFeature
 import com.meowool.gradle.toolkit.internal.concurrentFlow
 import com.meowool.gradle.toolkit.internal.retryConnection
 import com.meowool.sweekt.coroutines.flowOnDefault
 import com.meowool.sweekt.coroutines.flowOnIO
-import internal.ConcurrentScope
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.ClientRequestException
@@ -145,6 +145,7 @@ internal abstract class DependencyRepositoryClient(
   }
 
   override fun close() {
+    cache.invalidateAll()
     client?.close()
     client = null
   }

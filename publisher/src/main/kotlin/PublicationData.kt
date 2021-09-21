@@ -23,6 +23,7 @@
 package com.meowool.gradle.toolkit.publisher
 
 import com.meowool.gradle.toolkit.publisher.internal.maxOf
+import com.meowool.gradle.toolkit.publisher.internal.onEachParentPublicationData
 import com.meowool.gradle.toolkit.publisher.internal.parentPublicationData
 import com.meowool.sweekt.ifNull
 import findPropertyOrEnv
@@ -51,9 +52,9 @@ import org.gradle.api.publish.maven.MavenPomLicense
   /**
    * The group id of a Maven publication or the prefix of Gradle plugin id.
    *
-   * If this value is `null`, it is searched with `publication.groupId` through the `gradle.properties` of the
-   * project or the root project, or even system environment variables. If it is not found in these locations, the
-   * group defined by the [Project.setGroup] is used.
+   * By default, it is searched with `publication.groupId` through the `gradle.properties` of the project or the
+   * root project, or even system environment variables. If it is not found in these locations, try to use the group
+   * of the parent project or use the [Project.getGroup] as group.
    *
    * For the Maven publication, it is equivalent to:
    * ```
@@ -76,23 +77,27 @@ import org.gradle.api.publish.maven.MavenPomLicense
    *   }
    * }
    * ```
-   *
-   * @see groupIdOrDefault
    */
-  var groupId: String? = null
+  var groupId: String
+    get() = _groupId
+      .ifNull { project.findPropertyOrEnv("publication.groupId")?.toString() }
+      .ifNull { project.onEachParentPublicationData { it._groupId } }
+      .ifNull { project.group.toString() }
     set(value) {
-      field = value
-      // We don’t set the project group, because it will cause AGP errors:
-      //   `You must use different identification (either name or group) for each module.`
-      // project.group = value
-      // project.allprojects { group = value }
+      _groupId = value
+      project.allprojects {
+        // The sub-project needs to be evaluated before we change its group id,
+        // otherwise, the AGP maybe throw exceptions:
+        //   `You must use different identification (either name or group) for each module.`
+        afterEvaluate { group = value }
+      }
     }
 
   /**
    * The artifact id of a Maven publication or the suffix of Gradle plugin id.
    *
-   * If this value is `null`, it is searched with `publication.artifactId` through the `gradle.properties` of the
-   * project or the root project, or even system environment variables. If it is not found in these locations, the
+   * By default, it is searched with `publication.artifactId` through the `gradle.properties` of the project or the
+   * root project, or even system environment variables. If it is not found in these locations, use the
    * [Project.getName] as artifact id.
    *
    * For the Maven publication, it is equivalent to:
@@ -116,16 +121,20 @@ import org.gradle.api.publish.maven.MavenPomLicense
    *   }
    * }
    * ```
-   *
-   * @see artifactIdOrDefault
    */
-  var artifactId: String? = null
+  var artifactId: String
+    get() = _artifactId
+      .ifNull { project.findPropertyOrEnv("publication.artifactId")?.toString() }
+      .ifNull { project.name }
+    set(value) {
+      _artifactId = value
+    }
 
   /**
    * The plugin id of a Gradle plugin.
    *
-   * If this value is `null`, it is searched with `publication.pluginId` through the `gradle.properties` of the
-   * project or the root project, or even system environment variables. If it is not found in these locations, use
+   * By default, it is searched with `publication.pluginId` through the `gradle.properties` of the project or the
+   * root project, or even system environment variables. If it is not found in these locations, use
    * [groupId] + [artifactId] as the plugin id.
    *
    * It is equivalent to:
@@ -138,17 +147,21 @@ import org.gradle.api.publish.maven.MavenPomLicense
    *   }
    * }
    * ```
-   *
-   * @see pluginIdOrDefault
    */
-  var pluginId: String? = null
+  var pluginId: String
+    get() = _pluginId
+      .ifNull { project.findPropertyOrEnv("publication.pluginId")?.toString() }
+      .ifNull { "$groupId.$artifactId" }
+    set(value) {
+      _pluginId = value
+    }
 
   /**
    * The version of a Maven publication or Gradle plugin.
    *
-   * If this value is `null`, it is searched with `publication.version` through the `gradle.properties` of the project
-   * or the root project, or even system environment variables. If it is not found in these locations, the version
-   * defined by the [Project.setVersion] is used.
+   * By default, it is searched with `publication.version` through the `gradle.properties` of the project or the root
+   * project, or even system environment variables. If it is not found in these locations, try to use the version of
+   * the parent project or the version defined by the [Project.setVersion] is used.
    *
    * For the Maven publication, it is equivalent to:
    * ```
@@ -162,21 +175,21 @@ import org.gradle.api.publish.maven.MavenPomLicense
    * ```
    *
    * For the Gradle plugin, it is equivalent to [Project.setVersion].
-   *
-   * @see versionOrDefault
    */
-  var version: String? = null
+  var version: String
+    get() = _version
+      .ifNull { project.findPropertyOrEnv("publication.version")?.toString() }
+      .ifNull { project.onEachParentPublicationData { it._version } }
+      .ifNull { project.version.toString() }
     set(value) {
-      field = value?.also {
-        project.version = it
-        project.allprojects { version = it }
-      }
+      _version = value
+      project.allprojects { version = value }
     }
 
   /**
    * The display name of a Maven publication or Gradle plugin.
    *
-   * If this value is `null`, it is searched with `publication.displayName` through the `gradle.properties` of the
+   * By default, it is searched with `publication.displayName` through the `gradle.properties` of the
    * project or the root project, or even system environment variables. If it is not found in these locations, the
    * capitalized [artifactId] as display name.
    *
@@ -203,15 +216,19 @@ import org.gradle.api.publish.maven.MavenPomLicense
    *   }
    * }
    * ```
-   *
-   * @see displayNameOrDefault
    */
-  var displayName: String? = null
+  var displayName: String
+    get() = _displayName
+      .ifNull { project.findPropertyOrEnv("publication.displayName")?.toString() }
+      .ifNull { artifactId.split('-').joinToString(" ") { it.capitalize() } }
+    set(value) {
+      _displayName = value
+    }
 
   /**
    * The description of a Maven publication or Gradle plugin.
    *
-   * If this value is `null`, it is searched with `publication.description` through the `gradle.properties` of the
+   * By default, it is searched with `publication.description` through the `gradle.properties` of the
    * project or the root project, or even system environment variables. If it is not found in these locations, the
    * description defined by the [Project.setDescription] is used.
    *
@@ -239,23 +256,22 @@ import org.gradle.api.publish.maven.MavenPomLicense
    *   }
    * }
    * ```
-   *
-   * @see descriptionOrDefault
    */
-  var description: String? = null
+  var description: String?
+    get() = _description
+      .ifNull { project.findPropertyOrEnv("publication.description")?.toString() }
+      .ifNull { project.description }
     set(value) {
-      field = value.also {
-        project.description = it
-        project.allprojects { description = it }
-      }
+      _description = value
+      project.allprojects { description = value }
     }
 
   /**
    * The website URL of a Maven publication or Gradle plugin.
    *
-   * If this value is `null`, it is searched with `publication.url` through the `gradle.properties` of the project or
-   * the root project, or even system environment variables. If it is not found in these locations, the [vcs] as
-   * the website URL.
+   * By default, it is searched with `publication.url` through the `gradle.properties` of the project or the root
+   * project, or even system environment variables. If it is not found in these locations, try to use the url of the
+   * parent project or the [vcs] as the website URL, if all are `null`, it will not be bind to the publishing.
    *
    * For the Maven publication, it is equivalent to:
    * ```
@@ -276,17 +292,19 @@ import org.gradle.api.publish.maven.MavenPomLicense
    *   website = ???
    * }
    * ```
-   *
-   * @see urlOrDefault
    */
-  var url: String? = null
+  var url: String?
+    get() = _url ?: defaultUrl()
+    set(value) {
+      _url = value
+    }
 
   /**
    * The VCS (aka SCM) URL of a Maven publication or Gradle plugin.
    *
-   * If this value is `null`, it is searched with `publication.vcs` through the `gradle.properties` of the project
-   * or the root project, or even system environment variables. If it is not found in these locations, it will not be
-   * bind to the publishing.
+   * By default, it is searched with `publication.vcs` through the `gradle.properties` of the project or the root
+   * project, or even system environment variables. If it is not found in these locations, try to use the vcs of the
+   * parent project or the [url] as the vcs URL, if all are `null`, it will not be bind to the publishing.
    *
    * For the Maven publication, it is equivalent to:
    * ```
@@ -309,10 +327,12 @@ import org.gradle.api.publish.maven.MavenPomLicense
    *   vcsUrl = ???
    * }
    * ```
-   *
-   * @see vcsOrDefault
    */
-  var vcs: String? = null
+  var vcs: String?
+    get() = _vcs ?: defaultVcs()
+    set(value) {
+      _vcs = value
+    }
 
   /**
    * The tags of a Gradle plugin.
@@ -327,32 +347,43 @@ import org.gradle.api.publish.maven.MavenPomLicense
    *   tags = ???
    * }
    * ```
-   *
-   * @see tagsOrDefault
    */
-  var tags: MutableSet<String> = mutableSetOf()
+  val tags: MutableSet<String> = mutableSetOf()
+    get() = field.apply {
+      project.findPropertyOrEnv("publication.tags")?.toString()?.split(", ")?.toList()?.let(::addAll)
+      // Root project also needs to be added
+      project.parentPublicationData?.tags?.let(::addAll)
+    }
 
   /**
    * The organization name of a Maven publication.
    *
-   * If this value is `null`, it is searched with `publication.organizationName` through the `gradle.properties` of
-   * the project or the root project, or even system environment variables. If it is not found in these locations, it
-   * will not be bind to the publishing.
-   *
-   * @see organizationNameOrDefault
+   * By default, it is searched with `publication.organizationName` through the `gradle.properties` of the project or
+   * the root project, or even system environment variables. If it is not found in these locations, it will not be
+   * bind to the publishing.
    */
-  var organizationName: String? = null
+  var organizationName: String?
+    get() = _organizationName
+      .ifNull { project.findPropertyOrEnv("publication.organizationName")?.toString() }
+      .ifNull { project.onEachParentPublicationData { it._organizationName } }
+    set(value) {
+      _organizationName = value
+    }
 
   /**
    * The organization URL of a Maven publication.
    *
-   * If this value is `null`, it is searched with `publication.organizationUrl` through the `gradle.properties` of
-   * the project or the root project, or even system environment variables. If it is not found in these locations, it
-   * will not be bind to the publishing.
-   *
-   * @see organizationUrlOrDefault
+   * By default, it is searched with `publication.organizationUrl` through the `gradle.properties` of the project or
+   * the root project, or even system environment variables. If it is not found in these locations, it will not be
+   * bind to the publishing.
    */
-  var organizationUrl: String? = null
+  var organizationUrl: String?
+    get() = _organizationUrl
+      .ifNull { project.findPropertyOrEnv("publication.organizationUrl")?.toString() }
+      .ifNull { project.onEachParentPublicationData { it._organizationUrl } }
+    set(value) {
+      _organizationUrl = value
+    }
 
   /**
    * The data of developers of a Maven publication.
@@ -382,10 +413,28 @@ import org.gradle.api.publish.maven.MavenPomLicense
    *   }
    * }
    * ```
-   *
-   * @see developersOrDefault
    */
-  val developers: MutableList<Developer> = mutableListOf()
+  val developers: MutableSet<Developer> = mutableSetOf()
+    get() = field.apply {
+      val ids = project.findPropertyOrEnv("publication.developers.id")?.toString()?.split(", ").orEmpty()
+      val names = project.findPropertyOrEnv("publication.developers.name")?.toString()?.split(", ").orEmpty()
+      val emails = project.findPropertyOrEnv("publication.developers.email")?.toString()?.split(", ").orEmpty()
+      val urls = project.findPropertyOrEnv("publication.developers.url")?.toString()?.split(", ").orEmpty()
+
+      repeat(maxOf(ids, names, emails, urls).size) { index ->
+        add(
+          Developer().apply {
+            ids.getOrNull(index)?.let { id = it }
+            names.getOrNull(index)?.let { name = it }
+            emails.getOrNull(index)?.let { email = it }
+            urls.getOrNull(index)?.let { url = it }
+          }
+        )
+      }
+
+      // Root project also needs to be added
+      project.parentPublicationData?.developers?.let(::addAll)
+    }
 
   /**
    * The data of licenses of a Maven publication.
@@ -413,10 +462,24 @@ import org.gradle.api.publish.maven.MavenPomLicense
    *   }
    * }
    * ```
-   *
-   * @see licensesOrDefault
    */
-  val licenses: MutableList<License> = mutableListOf()
+  val licenses: MutableSet<License> = mutableSetOf()
+    get() = field.apply {
+      val names = project.findPropertyOrEnv("publication.licenses.name")?.toString()?.split(", ").orEmpty()
+      val urls = project.findPropertyOrEnv("publication.licenses.url")?.toString()?.split(", ").orEmpty()
+
+      repeat(maxOf(names, urls).size) { index ->
+        add(
+          License().apply {
+            names.getOrNull(index)?.let { name = it }
+            urls.getOrNull(index)?.let { url = it }
+          }
+        )
+      }
+
+      // Root project also needs to be added
+      project.parentPublicationData?.licenses?.let(::addAll)
+    }
 
   internal val pomConfigurations: MutableList<MavenPom.() -> Unit> = mutableListOf()
 
@@ -463,7 +526,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
    *
    * @see MavenPomDeveloper
    */
-  @Marker class Developer {
+  @Marker data class Developer(
 
     /**
      * The unique ID of this developer in the VSC (aka SCM).
@@ -471,7 +534,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
      * If this value is `null`, it is searched through the root project. If it is not found, it will not be bind to
      * the publishing.
      */
-    var id: String? = null
+    var id: String? = null,
 
     /**
      * The name of this developer.
@@ -479,7 +542,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
      * If this value is `null`, it is searched through the root project. If it is not found, it will not be bind to
      * the publishing.
      */
-    var name: String? = null
+    var name: String? = null,
 
     /**
      * The email of this developer.
@@ -487,7 +550,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
      * If this value is `null`, it is searched through the root project. If it is not found, it will not be bind to
      * the publishing.
      */
-    var email: String? = null
+    var email: String? = null,
 
     /**
      * The URL of this developer.
@@ -495,28 +558,8 @@ import org.gradle.api.publish.maven.MavenPomLicense
      * If this value is `null`, it is searched through the root project. If it is not found, it will not be bind to
      * the publishing.
      */
-    var url: String? = null
-
-    override fun equals(other: Any?): Boolean {
-      if (this === other) return true
-      if (other !is Developer) return false
-
-      if (id != other.id) return false
-      if (name != other.name) return false
-      if (email != other.email) return false
-      if (url != other.url) return false
-
-      return true
-    }
-
-    override fun hashCode(): Int {
-      var result = id?.hashCode() ?: 0
-      result = 31 * result + (name?.hashCode() ?: 0)
-      result = 31 * result + (email?.hashCode() ?: 0)
-      result = 31 * result + (url?.hashCode() ?: 0)
-      return result
-    }
-  }
+    var url: String? = null,
+  )
 
   /**
    * The license data of a Maven publication.
@@ -525,7 +568,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
    *
    * @see MavenPomLicense
    */
-  @Marker class License {
+  @Marker data class License(
 
     /**
      * The name of this license.
@@ -533,7 +576,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
      * If this value is `null`, it is searched through the root project. If it is not found, it will not be bind to
      * the publishing.
      */
-    var name: String? = null
+    var name: String? = null,
 
     /**
      * The URL of this license.
@@ -541,120 +584,31 @@ import org.gradle.api.publish.maven.MavenPomLicense
      * If this value is `null`, it is searched through the root project. If it is not found, it will not be bind to
      * the publishing.
      */
-    var url: String? = null
-
-    override fun equals(other: Any?): Boolean {
-      if (this === other) return true
-      if (other !is License) return false
-
-      if (name != other.name) return false
-      if (url != other.url) return false
-
-      return true
-    }
-
-    override fun hashCode(): Int {
-      var result = name?.hashCode() ?: 0
-      result = 31 * result + (url?.hashCode() ?: 0)
-      return result
-    }
-  }
+    var url: String? = null,
+  )
 
   // ///////////////////////////////////////////////////////////////////////////////////
   // //                                Internal APIs                                ////
   // ///////////////////////////////////////////////////////////////////////////////////
 
-  internal fun groupIdOrDefault(): String = groupId
-    .ifNull { project.findPropertyOrEnv("publication.groupId")?.toString() }
-    .ifNull { project.parentPublicationData?.groupIdOrDefault() }
-    .ifNull { project.group.toString() }
+  private var _groupId: String? = null
+  private var _artifactId: String? = null
+  private var _pluginId: String? = null
+  private var _version: String? = null
+  private var _displayName: String? = null
+  private var _description: String? = null
+  private var _url: String? = null
+  private var _vcs: String? = null
+  private var _organizationName: String? = null
+  private var _organizationUrl: String? = null
 
-  internal fun artifactIdOrDefault(): String = artifactId
-    .ifNull { project.findPropertyOrEnv("publication.artifactId")?.toString() }
-    .ifNull { project.parentPublicationData?.artifactIdOrDefault() }
-    .ifNull { project.name }
+  private fun defaultUrl(orVcs: Boolean = true): String? = project.findPropertyOrEnv("publication.url")?.toString()
+    .ifNull { project.onEachParentPublicationData { it._url } }
+    .ifNull { if (orVcs) defaultVcs(orUrl = false) else null }
 
-  internal fun pluginIdOrDefault(): String = pluginId
-    .ifNull { project.findPropertyOrEnv("publication.pluginId")?.toString() }
-    .ifNull { project.parentPublicationData?.pluginIdOrDefault() }
-    .ifNull { "${groupIdOrDefault()}.${artifactIdOrDefault()}" }
-
-  internal fun versionOrDefault(): String = version
-    .ifNull { project.findPropertyOrEnv("publication.version")?.toString() }
-    .ifNull { project.parentPublicationData?.versionOrDefault() }
-    .ifNull { project.version.toString() }
-
-  internal fun displayNameOrDefault(): String = displayName
-    .ifNull { project.findPropertyOrEnv("publication.displayName")?.toString() }
-    .ifNull { project.parentPublicationData?.displayNameOrDefault() }
-    .ifNull { artifactIdOrDefault().capitalize() }
-
-  internal fun descriptionOrDefault(): String? = description
-    .ifNull { project.findPropertyOrEnv("publication.description")?.toString() }
-    .ifNull { project.parentPublicationData?.descriptionOrDefault() }
-    .ifNull { project.description }
-
-  internal fun urlOrDefault(vcsLeast: Boolean = true): String? = url
-    .ifNull { project.findPropertyOrEnv("publication.url")?.toString() }
-    .ifNull { project.parentPublicationData?.urlOrDefault() }
-    .ifNull { if (vcsLeast) vcsOrDefault(urlLeast = false) else null }
-
-  internal fun vcsOrDefault(urlLeast: Boolean = true): String? = vcs
-    .ifNull { project.findPropertyOrEnv("publication.vcs")?.toString() }
-    .ifNull { project.parentPublicationData?.vcsOrDefault() }
-    .ifNull { if (urlLeast) urlOrDefault(vcsLeast = false) else null }
-
-  internal fun tagsOrDefault(): MutableSet<String> = tags.toMutableSet().apply {
-    project.findPropertyOrEnv("publication.tags")?.toString()?.split(", ")?.toList()?.let(::addAll)
-    // Root project also needs to be added
-    project.parentPublicationData?.tagsOrDefault()?.let(::addAll)
-  }
-
-  internal fun organizationNameOrDefault(): String? = organizationName
-    .ifNull { project.findPropertyOrEnv("publication.organizationName")?.toString() }
-    .ifNull { project.parentPublicationData?.organizationNameOrDefault() }
-
-  internal fun organizationUrlOrDefault(): String? = organizationUrl
-    .ifNull { project.findPropertyOrEnv("publication.organizationUrl")?.toString() }
-    .ifNull { project.parentPublicationData?.organizationUrlOrDefault() }
-
-  internal fun developersOrDefault(): MutableSet<Developer> = developers.toMutableSet().apply {
-    val ids = project.findPropertyOrEnv("publication.developers.id")?.toString()?.split(", ").orEmpty()
-    val names = project.findPropertyOrEnv("publication.developers.name")?.toString()?.split(", ").orEmpty()
-    val emails = project.findPropertyOrEnv("publication.developers.email")?.toString()?.split(", ").orEmpty()
-    val urls = project.findPropertyOrEnv("publication.developers.url")?.toString()?.split(", ").orEmpty()
-
-    repeat(maxOf(ids, names, emails, urls).size) { index ->
-      add(
-        Developer().apply {
-          ids.getOrNull(index)?.let { id = it }
-          names.getOrNull(index)?.let { name = it }
-          emails.getOrNull(index)?.let { email = it }
-          urls.getOrNull(index)?.let { url = it }
-        }
-      )
-    }
-
-    // Root project also needs to be added
-    project.parentPublicationData?.developersOrDefault()?.let(::addAll)
-  }
-
-  internal fun licensesOrDefault(): MutableSet<License> = licenses.toMutableSet().apply {
-    val names = project.findPropertyOrEnv("publication.licenses.name")?.toString()?.split(", ").orEmpty()
-    val urls = project.findPropertyOrEnv("publication.licenses.url")?.toString()?.split(", ").orEmpty()
-
-    repeat(maxOf(names, urls).size) { index ->
-      add(
-        License().apply {
-          names.getOrNull(index)?.let { name = it }
-          urls.getOrNull(index)?.let { url = it }
-        }
-      )
-    }
-
-    // Root project also needs to be added
-    project.parentPublicationData?.licensesOrDefault()?.let(::addAll)
-  }
+  private fun defaultVcs(orUrl: Boolean = true): String? = project.findPropertyOrEnv("publication.vcs")?.toString()
+    .ifNull { project.onEachParentPublicationData { it._vcs } }
+    .ifNull { if (orUrl) defaultUrl(orVcs = false) else null }
 
   @DslMarker internal annotation class Marker
 }

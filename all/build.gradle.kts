@@ -20,7 +20,10 @@
  */
 plugins { kotlin; `kotlin-dsl` }
 
-publication.pluginClass = "$group.toolkit.GradleToolkitPlugin"
+publication {
+  data.pluginId = "${data.groupId}.toolkit"
+  pluginClass = "${data.groupId}.toolkit.GradleToolkitPlugin"
+}
 
 dependencies.apiProjects(
   Projects.Android,

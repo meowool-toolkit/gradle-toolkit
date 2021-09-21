@@ -307,9 +307,7 @@ open class MeowoolPresetSpec internal constructor() {
               googleJavaFormat().aosp()
               endWithNewline()
               trimTrailingWhitespace()
-              licenseHeader?.let {
-                licenseHeader(it, "(package |import |public |private |/*|//)")
-              }
+              licenseHeader?.let { licenseHeader(it, "(package |import |public |private )") }
             }
             kotlin {
               target(sources("kt"))
@@ -317,7 +315,7 @@ open class MeowoolPresetSpec internal constructor() {
               endWithNewline()
               trimTrailingWhitespace()
               licenseHeader?.let {
-                licenseHeader(it, "(package |import |class |fun |val |public |private |internal |@|/*|//)")
+                licenseHeader(it, "(package |import |class |fun |val |public |private |internal |@)")
               }
             }
           }

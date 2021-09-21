@@ -86,13 +86,3 @@ implementation(Libs.Square.OkHttp3)
 >   }
 > }
 > ```
-
-#### 幕后工作
-
--------
-
-* 生成了一个 `deps-mapping.jar`, 包含了所有
-  [Pre-Built](../prebuilt/src/main/kotlin/PreBuiltDependencyMappers.kt)
-  `fun prebuilt()` 方法中预先声明的依赖
-* 
-

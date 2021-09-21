@@ -27,7 +27,7 @@ publication {
     artifactId = "toolkit-core"
     displayName = "Gradle Toolkit Core"
   }
-  pluginClass = "$group.toolkit.GradleToolkitCorePlugin"
+  pluginClass = "${data.groupId}.toolkit.GradleToolkitCorePlugin"
 }
 
 dependencies.api(Libs.Kotlin.Gradle.Plugin)

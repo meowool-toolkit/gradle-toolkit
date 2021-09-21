@@ -22,22 +22,17 @@ import com.android.build.api.dsl.ComposeOptions
 import com.android.build.gradle.BaseExtension
 
 /**
- * Enables the 'Compose' for the current android project
+ * Enables the [Jetpack-Compose](https://developer.android.com/jetpack/compose/) for the current android project
  *
  * @author 凛 (https://github.com/RinOrz)
  */
 fun BaseExtension.enableCompose(configuration: ComposeOptions.() -> Unit = {}) {
   buildFeatures.compose = true
   getGlobalProject().configurations.configureEach {
-    val kotlinDependency = allDependencies.find {
-      it.group?.startsWith("org.jetbrains.kotlin") == true && it.version != null
-    }
     val composeDependency = allDependencies.find {
       it.group?.startsWith("androidx.compose") == true && it.version != null
     }
     composeOptions {
-      // We use the first kotlin-dependency version found as the compose-compiler version
-      kotlinDependency?.version.let { kotlinCompilerVersion = it }
       // We use the first compose-dependency version found as the compose-compiler-extension version
       composeDependency?.version.let { kotlinCompilerExtensionVersion = it }
       configuration()

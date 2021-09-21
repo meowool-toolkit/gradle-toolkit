@@ -3,10 +3,10 @@ plugins { kotlin; `kotlin-dsl`; kotlin("plugin.serialization") }
 publication {
   data {
     artifactId = "toolkit-dependency-mapper-legacy"
-    displayName = "com.meowool.gradle.toolkit.internal.Dependency Mapper for Gradle Toolkit"
+    displayName = "Dependency Mapper for Gradle Toolkit"
     description = "Map all dependencies to classes and fields for easy calling in gradle scripts."
   }
-  pluginClass = "$group.toolkit.DependencyMapperPlugin"
+  pluginClass = "${data.groupId}.toolkit.DependencyMapperPlugin"
 }
 
 dependencies.implementationOf(

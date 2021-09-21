@@ -1,1 +1,3 @@
+plugins { `android-library` }
+
 androidLib {}

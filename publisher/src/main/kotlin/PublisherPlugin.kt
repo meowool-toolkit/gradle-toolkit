@@ -128,16 +128,16 @@ class PublisherPlugin : Plugin<Project> {
     if (pluginClass != null) {
       apply<PublishPlugin>()
       extensions.configure<PluginBundleExtension> {
-        tags = data.tagsOrDefault()
-        data.urlOrDefault()?.let(::setWebsite)
-        data.vcsOrDefault()?.let(::setVcsUrl)
+        tags = data.tags
+        data.url?.let(::setWebsite)
+        data.vcs?.let(::setVcsUrl)
       }
       extensions.configure<GradlePluginDevelopmentExtension> {
-        plugins.create(data.artifactIdOrDefault()) {
+        plugins.create(data.artifactId) {
           implementationClass = pluginClass
-          id = data.pluginIdOrDefault()
-          displayName = data.displayNameOrDefault()
-          data.descriptionOrDefault()?.let(::setDescription)
+          id = data.pluginId
+          displayName = data.displayName
+          data.description?.let(::setDescription)
         }
       }
     }
@@ -189,25 +189,25 @@ class PublisherPlugin : Plugin<Project> {
       it.isSnapshot = isSnapshotVersion
     }
     publications.withType<MavenPublication> {
-      project.group = data.groupIdOrDefault()
-      project.version = data.versionOrDefault()
-      project.description = data.descriptionOrDefault()
+      project.group = data.groupId
+      project.version = data.version
+      project.description = data.description
 
-      groupId = data.groupIdOrDefault()
-      version = data.versionOrDefault()
+      this.groupId = data.groupId
+      this.version = data.version
       // Ref: https://github.com/vanniktech/gradle-maven-publish-plugin/blob/a824079592fd0e1895aa0b293b798f593949fadb/plugin/src/main/kotlin/com/vanniktech/maven/publish/legacy/Coordinates.kt#L25
       if (this@withType.name.endsWith("PluginMarkerMaven").not()) {
         // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
         // E.g. library, library-jvm, library-native
-        artifactId = data.artifactIdOrDefault() + artifactId.removePrefix(project.name)
+        this.artifactId = data.artifactId + artifactId.removePrefix(project.name)
       }
       pom {
-        name.set(data.displayNameOrDefault())
-        url.set(data.urlOrDefault())
-        description.set(data.descriptionOrDefault().toString())
+        name.set(data.displayName)
+        url.set(data.url)
+        description.set(data.description.toString())
 
         developers {
-          data.developersOrDefault().forEach {
+          data.developers.forEach {
             developer {
               it.id?.let(id::set)
               it.name?.let(name::set)
@@ -217,7 +217,7 @@ class PublisherPlugin : Plugin<Project> {
           }
         }
         licenses {
-          data.licensesOrDefault().forEach {
+          data.licenses.forEach {
             license {
               it.name?.let(name::set)
               it.url?.let(url::set)
@@ -225,11 +225,11 @@ class PublisherPlugin : Plugin<Project> {
           }
         }
         organization {
-          name.set(data.organizationNameOrDefault())
-          name.set(data.organizationUrlOrDefault())
+          name.set(data.organizationName)
+          name.set(data.organizationUrl)
         }
         scm {
-          url.set(data.vcsOrDefault())
+          url.set(data.vcs)
         }
 
         // Collect all the repositories used in the project to add to the POM
@@ -362,8 +362,8 @@ class PublisherPlugin : Plugin<Project> {
             val client = project.createNexusStagingClient(target.baseUrl)
             val description = publication.stagingDescription
             val profiles = client.getProfiles()
-            val profile = profiles.firstOrNull { extension.data.groupIdOrDefault() == it.name }
-              ?: profiles.firstOrNull { extension.data.groupIdOrDefault().startsWith(it.name) }
+            val profile = profiles.firstOrNull { extension.data.groupId == it.name }
+              ?: profiles.firstOrNull { extension.data.groupId.startsWith(it.name) }
               ?: profiles.firstOrNull()
               ?: return@flow
 

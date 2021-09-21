@@ -18,17 +18,15 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-@file:Suppress("EXPERIMENTAL_API_USAGE")
-
 package com.meowool.gradle.toolkit.internal.client
 
 import com.meowool.gradle.toolkit.LibraryDependency
+import com.meowool.gradle.toolkit.internal.ConcurrentScope
 import com.meowool.gradle.toolkit.internal.DependencyRepository
 import com.meowool.gradle.toolkit.internal.concurrentFlow
 import com.meowool.gradle.toolkit.internal.flatMapConcurrently
 import com.meowool.gradle.toolkit.internal.retryConnection
 import com.meowool.sweekt.coroutines.flowOnIO
-import internal.ConcurrentScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
 import okhttp3.logging.HttpLoggingInterceptor

@@ -20,7 +20,6 @@
  */
 package com.meowool.gradle.toolkit.internal
 
-import internal.ConcurrentScope
 import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 

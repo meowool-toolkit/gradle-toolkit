@@ -137,37 +137,3 @@ package com.meowool.gradle.toolkit {
 
 }
 
-package com.meowool.gradle.toolkit.internal {
-
-  public final class JsoupFeature {
-    method public java.util.Map<io.ktor.http.ContentType,org.jsoup.parser.Parser> getParsers();
-    property public final java.util.Map<io.ktor.http.ContentType,org.jsoup.parser.Parser> parsers;
-    field public static final com.meowool.gradle.toolkit.internal.JsoupFeature.Feature Feature;
-  }
-
-  public static final class JsoupFeature.Config {
-    ctor public JsoupFeature.Config();
-    method public java.util.Map<io.ktor.http.ContentType,org.jsoup.parser.Parser> getParsers();
-    property public final java.util.Map<io.ktor.http.ContentType,org.jsoup.parser.Parser> parsers;
-  }
-
-  public static final class JsoupFeature.Feature implements io.ktor.client.features.HttpClientFeature<com.meowool.gradle.toolkit.internal.JsoupFeature.Config,com.meowool.gradle.toolkit.internal.JsoupFeature> {
-    method public io.ktor.util.AttributeKey<com.meowool.gradle.toolkit.internal.JsoupFeature> getKey();
-    method public void install(com.meowool.gradle.toolkit.internal.JsoupFeature feature, io.ktor.client.HttpClient scope);
-    method public com.meowool.gradle.toolkit.internal.JsoupFeature prepare(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.internal.JsoupFeature.Config,kotlin.Unit> block);
-    property public io.ktor.util.AttributeKey<com.meowool.gradle.toolkit.internal.JsoupFeature> key;
-  }
-
-  public final class JsoupFeatureKt {
-    method public static void Jsoup(io.ktor.client.HttpClientConfig<?>, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.internal.JsoupFeature.Config,kotlin.Unit> block);
-  }
-
-  public final class UtilsKt {
-    method public static suspend <T> Object? contains(kotlinx.coroutines.flow.Flow<? extends T>, T? element, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
-    method public static <T> boolean endsWith(Iterable<? extends T>, T? slice);
-    method public static boolean isEnglish(CharSequence, optional boolean allowPunctuation);
-    method public static <T> boolean startsWith(Iterable<? extends T>, T? slice);
-  }
-
-}
-

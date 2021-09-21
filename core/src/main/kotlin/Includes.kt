@@ -27,7 +27,7 @@ import java.nio.file.Path
 /**
  * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDir].
  *
- * Please note that for the directories you don’t want to import, you can add a file named `.skipimport`, which
+ * Please note that for the directories you don’t want to import, you can add a file named `.skip-import`, which
  * will skip import.
  *
  * @param includeDir the directory of project included.
@@ -41,7 +41,7 @@ fun Settings.importProjects(
 ) = includeDir.walkTopDown()
   .onEnter {
     if (it == includeDir) return@onEnter true
-    it.resolve(".skipimport").exists().not() && excludeBy(it).not()
+    it.resolve(".skip-import").exists().not() && excludeBy(it).not()
   }
   .filter {
     it.isDirectory && it != rootDir &&
@@ -55,7 +55,7 @@ fun Settings.importProjects(
 /**
  * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDirPath].
  *
- * Please note that for the directories you don’t want to import, you can add a file named `.skipimport`, which
+ * Please note that for the directories you don’t want to import, you can add a file named `.skip-import`, which
  * will skip import.
  *
  * @param includeDirPath the directory of project included.
@@ -71,7 +71,7 @@ fun Settings.importProjects(
 /**
  * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDirPath].
  *
- * Please note that for the directories you don’t want to import, you can add a file named `.skipimport`, which
+ * Please note that for the directories you don’t want to import, you can add a file named `.skip-import`, which
  * will skip import.
  *
  * @param includeDirPath the directory of project included.
@@ -87,7 +87,7 @@ fun Settings.importProjects(
 /**
  * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDir].
  *
- * Please note that for the directories you don’t want to import, you can add a file named `.skipimport`, which
+ * Please note that for the directories you don’t want to import, you can add a file named `.skip-import`, which
  * will skip import.
  *
  * @param includeDir the directory of project included.
@@ -105,7 +105,7 @@ fun Settings.importProjects(
 /**
  * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDirPath].
  *
- * Please note that for the directories you don’t want to import, you can add a file named `.skipimport`, which
+ * Please note that for the directories you don’t want to import, you can add a file named `.skip-import`, which
  * will skip import.
  *
  * @param includeDirPath the directory of project included.
@@ -121,7 +121,7 @@ fun Settings.importProjects(
 /**
  * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDirPath].
  *
- * Please note that for the directories you don’t want to import, you can add a file named `.skipimport`, which
+ * Please note that for the directories you don’t want to import, you can add a file named `.skip-import`, which
  * will skip import.
  *
  * @param includeDirPath the directory of project included.
