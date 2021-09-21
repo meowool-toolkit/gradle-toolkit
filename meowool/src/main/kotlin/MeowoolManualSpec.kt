@@ -46,28 +46,37 @@ class MeowoolManualSpec internal constructor() : MeowoolPresetSpec() {
   override val optIn: MutableList<String> = mutableListOf()
 
   /**
-   * Whether to use this specification spotless.
+   * The project whether to use this specification spotless.
+   *
+   * If the [Project.getProjectDir] contains a file named `.skip-spotless`, the project will not enable spotless
+   * plugin by 'Meowool-Spec' anyway.
    *
    * @see enableSpotless
    * @see disableSpotless
    */
-  override var enabledSpotless: Boolean = false
+  override var enabledSpotless: (Project) -> Boolean = { false }
 
   /**
-   * Whether to use this specification of metalava.
+   * The project whether to use this specification of metalava.
+   *
+   * If the [Project.getProjectDir] contains a file named `.skip-metalava`, the project will not enable metalava
+   * plugin by 'Meowool-Spec' anyway.
    *
    * @see enableMetalava
    * @see disableMetalava
    */
-  override var enabledMetalava: Boolean = false
+  override var enabledMetalava: (Project) -> Boolean = { false }
 
   /**
-   * Whether to use this specification of publisher.
+   * The project whether to use this specification of publisher.
+   *
+   * If the [Project.getProjectDir] contains a file named `.skip-publisher`, the project will not enable publisher
+   * plugin by 'Meowool-Spec' anyway.
    *
    * @see enablePublisher
    * @see disablePublisher
    */
-  override var enabledPublisher: Boolean = false
+  override var enabledPublisher: (Project) -> Boolean = { false }
 
   /**
    * The configurations list of the project of this specification.

@@ -48,6 +48,7 @@ internal fun defaultOpenSourceLicense(url: String) = """
    *
    * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
    */
+
 """.trimIndent().trim()
 
 internal const val Apache2License = "http://www.apache.org/licenses/LICENSE-2.0"

@@ -96,28 +96,37 @@ open class MeowoolPresetSpec internal constructor() {
   var isOpenSourceProject: Boolean = true
 
   /**
-   * Whether to use this specification spotless.
+   * The project whether to use this specification spotless.
+   *
+   * If the [Project.getProjectDir] contains a file named `.skip-spotless`, the project will not enable spotless
+   * plugin by 'Meowool-Spec' anyway.
    *
    * @see enableSpotless
    * @see disableSpotless
    */
-  open var enabledSpotless: Boolean = true
+  open var enabledSpotless: (Project) -> Boolean = { true }
 
   /**
-   * Whether to use this specification of metalava.
+   * The project whether to use this specification of metalava.
+   *
+   * If the [Project.getProjectDir] contains a file named `.skip-metalava`, the project will not enable metalava
+   * plugin by 'Meowool-Spec' anyway.
    *
    * @see enableMetalava
    * @see disableMetalava
    */
-  open var enabledMetalava: Boolean = true
+  open var enabledMetalava: (Project) -> Boolean = { true }
 
   /**
-   * Whether to use this specification of publisher.
+   * The project whether to use this specification of publisher.
+   *
+   * If the [Project.getProjectDir] contains a file named `.skip-publisher`, the project will not enable publisher
+   * plugin by 'Meowool-Spec' anyway.
    *
    * @see enablePublisher
    * @see disablePublisher
    */
-  open var enabledPublisher: Boolean = true
+  open var enabledPublisher: (Project) -> Boolean = { true }
 
   /**
    * The configurations list of the project of this specification.
@@ -171,45 +180,66 @@ open class MeowoolPresetSpec internal constructor() {
   }
 
   /**
-   * Enables the [publisher](https://github.com/meowool-toolkit/gradle-toolkit/publisher) plugin.
-   */
-  fun enablePublisher() {
-    enabledPublisher = true
-  }
-
-  /**
-   * Disables the [publisher](https://github.com/meowool-toolkit/gradle-toolkit/publisher) plugin.
-   */
-  fun disablePublisher() {
-    enabledPublisher = false
-  }
-
-  /**
    * Enables the [spotless](https://github.com/diffplug/spotless) plugin.
+   *
+   * If the [Project.getProjectDir] contains a file named `.skip-spotless`, the project will not enable spotless
+   * plugin by 'Meowool-Spec' anyway.
+   *
+   * @param filterProject Projects whose predicate is `true` will enable the spotless plugin.
    */
-  fun enableSpotless() {
-    enabledSpotless = true
+  fun enableSpotless(filterProject: (Project) -> Boolean = { true }) {
+    enabledSpotless = filterProject
   }
 
   /**
    * Disables the [spotless](https://github.com/diffplug/spotless) plugin.
+   *
+   * @param filterProject Projects whose predicate is `true` will disable the spotless plugin.
    */
-  fun disableSpotless() {
-    enabledSpotless = false
+  fun disableSpotless(filterProject: (Project) -> Boolean = { true }) {
+    enabledSpotless = { filterProject(it).not() }
   }
 
   /**
    * Enables the [metalava](https://github.com/tylerbwong/metalava-gradle) plugin.
+   *
+   * If the [Project.getProjectDir] contains a file named `.skip-metalava`, the project will not enable metalava
+   * plugin by 'Meowool-Spec' anyway.
+   *
+   * @param filterProject Projects whose predicate is `true` will enable the metalava plugin.
    */
-  fun enableMetalava() {
-    enabledMetalava = true
+  fun enableMetalava(filterProject: (Project) -> Boolean = { true }) {
+    enabledMetalava = filterProject
   }
 
   /**
    * Disables the [metalava](https://github.com/tylerbwong/metalava-gradle) plugin.
+   *
+   * @param filterProject Projects whose predicate is `true` will disable the metalava plugin.
    */
-  fun disableMetalava() {
-    enabledMetalava = false
+  fun disableMetalava(filterProject: (Project) -> Boolean = { true }) {
+    enabledMetalava = { filterProject(it).not() }
+  }
+
+  /**
+   * Enables the [publisher](https://github.com/meowool-toolkit/gradle-toolkit/publisher) plugin.
+   *
+   * If the [Project.getProjectDir] contains a file named `.skip-publisher`, the project will not enable publisher
+   * plugin by 'Meowool-Spec' anyway.
+   *
+   * @param filterProject Projects whose predicate is `true` will enable the publisher plugin.
+   */
+  fun enablePublisher(filterProject: (Project) -> Boolean = { true }) {
+    enabledPublisher = filterProject
+  }
+
+  /**
+   * Disables the [publisher](https://github.com/meowool-toolkit/gradle-toolkit/publisher) plugin.
+   *
+   * @param filterProject Projects whose predicate is `true` will disable the publisher plugin.
+   */
+  fun disablePublisher(filterProject: (Project) -> Boolean = { true }) {
+    enabledPublisher = { filterProject(it).not() }
   }
 
   // ///////////////////////////////////////////////////////////////////////////////////
@@ -234,8 +264,10 @@ open class MeowoolPresetSpec internal constructor() {
     "kotlin.ExperimentalPathApi",
     "kotlin.time.ExperimentalTime",
     "kotlin.contracts.ExperimentalContracts",
-    "kotlin.experimental.ExperimentalTypeInference",
+    "kotlinx.coroutines.FlowPreview",
     "kotlinx.coroutines.ExperimentalCoroutinesApi",
+    "kotlin.experimental.ExperimentalTypeInference",
+    "kotlinx.serialization.ExperimentalSerializationApi",
   )
 
   protected fun presetSpotless(): GradleToolkitExtension.() -> Unit = {
@@ -275,14 +307,18 @@ open class MeowoolPresetSpec internal constructor() {
               googleJavaFormat().aosp()
               endWithNewline()
               trimTrailingWhitespace()
-              licenseHeader?.let { licenseHeader(it, "(package |import |public |private )") }
+              licenseHeader?.let {
+                licenseHeader(it, "(package |import |public |private |/*|//)")
+              }
             }
             kotlin {
               target(sources("kt"))
               ktlint().userData(ktlintData())
               endWithNewline()
               trimTrailingWhitespace()
-              licenseHeader?.let { licenseHeader(it, "(package |import |class |fun |val |public |private |internal |@)") }
+              licenseHeader?.let {
+                licenseHeader(it, "(package |import |class |fun |val |public |private |internal |@|/*|//)")
+              }
             }
           }
         }
