@@ -18,7 +18,7 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-@file:Suppress("MemberVisibilityCanBePrivate", "DEPRECATION", "unused")
+@file:Suppress("MemberVisibilityCanBePrivate", "DEPRECATION", "unused", "RedundantSetter")
 
 package com.meowool.gradle.toolkit.publisher
 
@@ -82,8 +82,10 @@ import org.gradle.api.publish.maven.MavenPomLicense
   var groupId: String? = null
     set(value) {
       field = value
-      project.group = groupIdOrDefault()
-      project.allprojects { group = groupIdOrDefault() }
+      // We don’t set the project group, because it will cause AGP errors:
+      //   `You must use different identification (either name or group) for each module.`
+      // project.group = value
+      // project.allprojects { group = value }
     }
 
   /**
@@ -165,9 +167,10 @@ import org.gradle.api.publish.maven.MavenPomLicense
    */
   var version: String? = null
     set(value) {
-      field = value
-      project.version = versionOrDefault()
-      project.allprojects { version = versionOrDefault() }
+      field = value?.also {
+        project.version = it
+        project.allprojects { version = it }
+      }
     }
 
   /**
@@ -241,9 +244,10 @@ import org.gradle.api.publish.maven.MavenPomLicense
    */
   var description: String? = null
     set(value) {
-      field = value
-      project.description = descriptionOrDefault()
-      project.allprojects { description = descriptionOrDefault() }
+      field = value.also {
+        project.description = it
+        project.allprojects { description = it }
+      }
     }
 
   /**
@@ -562,43 +566,43 @@ import org.gradle.api.publish.maven.MavenPomLicense
 
   internal fun groupIdOrDefault(): String = groupId
     .ifNull { project.findPropertyOrEnv("publication.groupId")?.toString() }
-    .ifNull { project.parentPublicationData?.groupId }
+    .ifNull { project.parentPublicationData?.groupIdOrDefault() }
     .ifNull { project.group.toString() }
 
   internal fun artifactIdOrDefault(): String = artifactId
     .ifNull { project.findPropertyOrEnv("publication.artifactId")?.toString() }
-    .ifNull { project.parentPublicationData?.artifactId }
+    .ifNull { project.parentPublicationData?.artifactIdOrDefault() }
     .ifNull { project.name }
 
   internal fun pluginIdOrDefault(): String = pluginId
     .ifNull { project.findPropertyOrEnv("publication.pluginId")?.toString() }
-    .ifNull { project.parentPublicationData?.pluginId }
+    .ifNull { project.parentPublicationData?.pluginIdOrDefault() }
     .ifNull { "${groupIdOrDefault()}.${artifactIdOrDefault()}" }
 
   internal fun versionOrDefault(): String = version
     .ifNull { project.findPropertyOrEnv("publication.version")?.toString() }
-    .ifNull { project.parentPublicationData?.version }
+    .ifNull { project.parentPublicationData?.versionOrDefault() }
     .ifNull { project.version.toString() }
 
   internal fun displayNameOrDefault(): String = displayName
     .ifNull { project.findPropertyOrEnv("publication.displayName")?.toString() }
-    .ifNull { project.parentPublicationData?.displayName }
+    .ifNull { project.parentPublicationData?.displayNameOrDefault() }
     .ifNull { artifactIdOrDefault().capitalize() }
 
-  internal fun descriptionOrDefault() = description
+  internal fun descriptionOrDefault(): String? = description
     .ifNull { project.findPropertyOrEnv("publication.description")?.toString() }
-    .ifNull { project.parentPublicationData?.description }
+    .ifNull { project.parentPublicationData?.descriptionOrDefault() }
     .ifNull { project.description }
 
-  internal fun urlOrDefault(recursively: Boolean = true): String? = url
+  internal fun urlOrDefault(vcsLeast: Boolean = true): String? = url
     .ifNull { project.findPropertyOrEnv("publication.url")?.toString() }
-    .ifNull { project.parentPublicationData?.url }
-    .ifNull { if (recursively) vcsOrDefault(recursively = false) else null }
+    .ifNull { project.parentPublicationData?.urlOrDefault() }
+    .ifNull { if (vcsLeast) vcsOrDefault(urlLeast = false) else null }
 
-  internal fun vcsOrDefault(recursively: Boolean = true): String? = vcs
+  internal fun vcsOrDefault(urlLeast: Boolean = true): String? = vcs
     .ifNull { project.findPropertyOrEnv("publication.vcs")?.toString() }
-    .ifNull { project.parentPublicationData?.vcs }
-    .ifNull { if (recursively) urlOrDefault(recursively = false) else null }
+    .ifNull { project.parentPublicationData?.vcsOrDefault() }
+    .ifNull { if (urlLeast) urlOrDefault(vcsLeast = false) else null }
 
   internal fun tagsOrDefault(): MutableSet<String> = tags.toMutableSet().apply {
     project.findPropertyOrEnv("publication.tags")?.toString()?.split(", ")?.toList()?.let(::addAll)
@@ -608,11 +612,11 @@ import org.gradle.api.publish.maven.MavenPomLicense
 
   internal fun organizationNameOrDefault(): String? = organizationName
     .ifNull { project.findPropertyOrEnv("publication.organizationName")?.toString() }
-    .ifNull { project.parentPublicationData?.organizationName }
+    .ifNull { project.parentPublicationData?.organizationNameOrDefault() }
 
   internal fun organizationUrlOrDefault(): String? = organizationUrl
     .ifNull { project.findPropertyOrEnv("publication.organizationUrl")?.toString() }
-    .ifNull { project.parentPublicationData?.organizationUrl }
+    .ifNull { project.parentPublicationData?.organizationUrlOrDefault() }
 
   internal fun developersOrDefault(): MutableSet<Developer> = developers.toMutableSet().apply {
     val ids = project.findPropertyOrEnv("publication.developers.id")?.toString()?.split(", ").orEmpty()

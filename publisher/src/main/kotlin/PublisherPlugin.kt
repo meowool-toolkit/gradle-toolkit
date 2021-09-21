@@ -117,7 +117,7 @@ class PublisherPlugin : Plugin<Project> {
       // Sonatype
       initSonatypeBuild()
       extension.destinations.filterIsInstance<SonatypeDestination>().firstOrNull()?.let {
-        taskInitializeSonatypeStaging(it)
+        taskInitializeSonatypeStaging(extension, it)
         taskCloseAndReleaseSonatypeRepository(it)
       }
     }
@@ -137,7 +137,7 @@ class PublisherPlugin : Plugin<Project> {
           implementationClass = pluginClass
           id = data.pluginIdOrDefault()
           displayName = data.displayNameOrDefault()
-          project.description?.let(::setDescription)
+          data.descriptionOrDefault()?.let(::setDescription)
         }
       }
     }
@@ -184,18 +184,17 @@ class PublisherPlugin : Plugin<Project> {
    * Configures the data of publication.
    */
   private fun PublishingExtension.configureData(extension: PublicationExtension) = with(extension) {
-    project.group = data.groupIdOrDefault()
-    project.version = data.versionOrDefault()
-    project.description = data.descriptionOrDefault()
-
     destinations.forEach {
       it.project = project
       it.isSnapshot = isSnapshotVersion
     }
-
     publications.withType<MavenPublication> {
-      groupId = project.group.toString()
-      version = project.version.toString()
+      project.group = data.groupIdOrDefault()
+      project.version = data.versionOrDefault()
+      project.description = data.descriptionOrDefault()
+
+      groupId = data.groupIdOrDefault()
+      version = data.versionOrDefault()
       // Ref: https://github.com/vanniktech/gradle-maven-publish-plugin/blob/a824079592fd0e1895aa0b293b798f593949fadb/plugin/src/main/kotlin/com/vanniktech/maven/publish/legacy/Coordinates.kt#L25
       if (this@withType.name.endsWith("PluginMarkerMaven").not()) {
         // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
@@ -205,7 +204,7 @@ class PublisherPlugin : Plugin<Project> {
       pom {
         name.set(data.displayNameOrDefault())
         url.set(data.urlOrDefault())
-        description.set(project.description.toString())
+        description.set(data.descriptionOrDefault().toString())
 
         developers {
           data.developersOrDefault().forEach {
@@ -247,9 +246,10 @@ class PublisherPlugin : Plugin<Project> {
                 ?: xml.appendNode("repositories")
 
               repositories.forEach { repo ->
+                val url = repo.url.host ?: return@forEach
                 repositoriesNode.appendNode("repository")?.apply {
                   appendNode("id", repo.name)
-                  appendNode("url", repo.url.toString())
+                  appendNode("url", url)
                 }
               }
             }
@@ -353,7 +353,7 @@ class PublisherPlugin : Plugin<Project> {
    *
    * Because the Sonatype release version needs to specify the staging repository.
    */
-  private fun Project.taskInitializeSonatypeStaging(target: SonatypeDestination) =
+  private fun Project.taskInitializeSonatypeStaging(extension: PublicationExtension, target: SonatypeDestination) =
     tasks.withType<PublishToMavenRepository>().all {
       doFirst {
         // Don't redirect the publishing of snapshot artifacts
@@ -362,8 +362,8 @@ class PublisherPlugin : Plugin<Project> {
             val client = project.createNexusStagingClient(target.baseUrl)
             val description = publication.stagingDescription
             val profiles = client.getProfiles()
-            val profile = profiles.firstOrNull { project.group.toString() == it.name }
-              ?: profiles.firstOrNull { project.group.toString().startsWith(it.name) }
+            val profile = profiles.firstOrNull { extension.data.groupIdOrDefault() == it.name }
+              ?: profiles.firstOrNull { extension.data.groupIdOrDefault().startsWith(it.name) }
               ?: profiles.firstOrNull()
               ?: return@flow
 
