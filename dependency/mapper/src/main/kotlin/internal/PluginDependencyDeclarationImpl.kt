@@ -18,6 +18,8 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+@file:Suppress("NAME_SHADOWING")
+
 package com.meowool.gradle.toolkit.internal
 
 import com.meowool.gradle.toolkit.DependencyFormatter
@@ -100,9 +102,10 @@ internal class PluginDependencyDeclarationImpl(rootClassName: String) : PluginDe
 
     override suspend fun ConcurrentScope<*>.collect(project: Project, pool: JarPool, formatter: DependencyFormatter) {
       suspend fun sendMap(dependency: CharSequence, mappedPath: CharSequence = formatter.toPath(dependency)) {
+        var mappedPath = mappedPath
         val pluginId = when (dependency) {
           // For `search**`... Do not send remote dependency that is not a plugin id
-          is LibraryDependency -> dependency.toPluginIdOrNull() ?: return
+          is LibraryDependency -> dependency.toPluginIdOrNull()?.also { mappedPath = formatter.toPath(it) } ?: return
           // For `map` or `mapped`
           else -> PluginId(dependency)
         }

@@ -129,6 +129,29 @@ class MappingTests : FreeSpec({
     )
   }
 
+  "remote plugins" {
+    val fields = runMapping {
+      plugins(PluginsRoot) {
+        searchPrefixes("org.gradle.kotlin") { fromGradlePluginPortal() }
+      }
+    }.findClass(PluginsRoot).collectFields()
+    fields shouldContainAll listOf(
+      Field(
+        holder = "$PluginsRoot.Org.Gradle.Kotlin",
+        name = "Dsl",
+        value = "org.gradle.kotlin.kotlin-dsl"
+      ),
+      Field(
+        holder = "$PluginsRoot.Org.Gradle.Kotlin.Embedded",
+        name = "Kotlin",
+        value = "org.gradle.kotlin.embedded-kotlin"
+      ),
+    )
+    fields.all {
+      it.holder.startsWith("$PluginsRoot.Org.Gradle.Kotlin")
+    }.shouldBeTrue()
+  }
+
   "plugins and libraries" {
     val classLoader = runMapping {
       val plugins = plugins(PluginsRoot) {
