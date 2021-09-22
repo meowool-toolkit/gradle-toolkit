@@ -43,7 +43,14 @@ class MeowoolManualSpec internal constructor() : MeowoolPresetSpec() {
    *
    * For more details, see [Opt-in](https://kotlinlang.org/docs/opt-in-requirements.html)
    */
-  override val optIn: MutableList<String> = mutableListOf()
+  override val optIn: MutableSet<String> = mutableSetOf()
+
+  /**
+   * Kotlin compiler arguments.
+   *
+   * For more details, see [Kotlin Source](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
+   */
+  override val compilerArguments: MutableSet<String> = mutableSetOf()
 
   /**
    * The project whether to use this specification spotless.
@@ -94,6 +101,11 @@ class MeowoolManualSpec internal constructor() : MeowoolPresetSpec() {
    * Use the preset of [MeowoolPresetSpec.optIn].
    */
   fun useOptInPreset() = optIn.addAll(presetOptIn())
+
+  /**
+   * Use the preset of [MeowoolPresetSpec.compilerArguments].
+   */
+  fun useCompilerArgumentsPreset() = compilerArguments.addAll(presetCompilerArguments())
 
   /**
    * Use the preset of [MeowoolPresetSpec.presetAndroid].

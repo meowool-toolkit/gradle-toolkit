@@ -54,6 +54,7 @@ fun GradleToolkitExtension.useMeowoolManualSpec(configuration: MeowoolManualSpec
 private fun GradleToolkitExtension.useMeowoolSpecImpl(spec: MeowoolPresetSpec) {
   allprojects(afterEvaluate = false) {
     project.optIn(spec.optIn)
+    project.addFreeCompilerArgs(spec.compilerArguments)
     spec.repositories.invoke(repositories, project)
     if (spec.enabledSpotless(project) && projectDir.resolve(".skip-spotless").exists().not())
       project.apply<SpotlessPlugin>()

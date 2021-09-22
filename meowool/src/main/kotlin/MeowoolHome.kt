@@ -30,7 +30,7 @@ internal const val HomePropertyKey = "meowool.home"
  */
 val Project.meowoolHomeDir: File?
   get() = findPropertyOrEnv(HomePropertyKey)?.toString()?.let(::File)?.takeIf { it.exists() }.also {
-    if (it == null) println(
+    if (it == null) logger.warn(
       "You are currently developing a project belonging to the 'Meowool-Organization', in order " +
         "to standardize you should define `meowool.home` in the system environment variables first."
     )

@@ -124,7 +124,6 @@ private class DependencyNotationImpl(
 sealed class AbstractDependencyGroup(
   val group: String,
   rawRule: String? = null,
-  @InternalRefreshVersionsApi
   var usePlatformConstraints: Boolean = false
 ) {
 

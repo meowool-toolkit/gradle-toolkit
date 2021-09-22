@@ -18,7 +18,7 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-@file:Suppress("MemberVisibilityCanBePrivate")
+@file:Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection")
 
 package com.meowool.gradle.toolkit.internal
 
@@ -67,7 +67,14 @@ open class MeowoolPresetSpec internal constructor() {
    *
    * For more details, see [Opt-in](https://kotlinlang.org/docs/opt-in-requirements.html)
    */
-  open val optIn: MutableList<String> = presetOptIn()
+  open val optIn: MutableSet<String> = presetOptIn()
+
+  /**
+   * Kotlin compiler arguments.
+   *
+   * For more details, see [Kotlin Source](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
+   */
+  open val compilerArguments: MutableSet<String> = presetCompilerArguments()
 
   /**
    * The license header of the source codes, if it is `null` and the project is privately, license header will not be
@@ -256,7 +263,23 @@ open class MeowoolPresetSpec internal constructor() {
     jitpack()
   }
 
-  protected fun presetOptIn() = mutableListOf(
+  /**
+   * [See](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
+   */
+  protected fun presetCompilerArguments() = mutableSetOf(
+    "-Xnew-inference",
+    "-Xno-check-actual",
+    "-Xskip-prerelease-check",
+    "-Xsuppress-version-warnings",
+    "-Xenable-builder-inference",
+    "-Xskip-metadata-version-check",
+    // See: https://kotlinlang.org/docs/whatsnew1530.html#improvements-to-type-inference-for-recursive-generic-types
+    "-Xself-upper-bound-inference",
+    // See: https://kotlinlang.org/docs/whatsnew1530.html#eliminating-builder-inference-restrictions
+    "-Xunrestricted-builder-inference",
+  )
+
+  protected fun presetOptIn() = mutableSetOf(
     "kotlin.RequiresOptIn",
     "kotlin.Experimental",
     "kotlin.ExperimentalStdlibApi",
@@ -381,7 +404,7 @@ open class MeowoolPresetSpec internal constructor() {
               meowoolHomeDir?.resolve(".key/key.properties")
                 ?.takeIf { it.exists() }
                 ?.let(::loadKeyProperties)
-                ?: println(
+                ?: project.logger.warn(
                   "There is a key of signing common to open source projects in 'Meowool-Organization', " +
                     "for normalization, it should be used."
                 )

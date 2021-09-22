@@ -1,4 +1,4 @@
-plugins { kotlin; `kotlin-dsl`; kotlin("plugin.serialization") }
+plugins { `kotlin-dsl`; kotlin("plugin.serialization") }
 
 publication {
   data {

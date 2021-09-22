@@ -20,16 +20,12 @@
  */
 @file:Suppress("SpellCheckingInspection")
 
-plugins { kotlin; `kotlin-dsl` }
+plugins { `kotlin-dsl` }
 
 publication.data {
   artifactId = "toolkit-meowool"
   displayName = "Meowool Gradle Toolkit"
   description = "Gradle Toolkit specific to the 'Meowool-Organization' project."
-}
-
-subprojects {
-  apply(plugin = "org.gradle.kotlin.kotlin-dsl")
 }
 
 dependencies {

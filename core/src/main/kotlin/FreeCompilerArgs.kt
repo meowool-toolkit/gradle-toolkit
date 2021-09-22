@@ -22,27 +22,47 @@ import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+/**
+ * [See](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
 fun KotlinCommonOptions.addFreeCompilerArgs(vararg args: String) {
-  freeCompilerArgs = freeCompilerArgs + args
+  freeCompilerArgs = (freeCompilerArgs + args).distinct()
 }
 
+/**
+ * [See](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
+ */
 fun KotlinCommonOptions.addFreeCompilerArgs(args: Iterable<String>) {
-  freeCompilerArgs = freeCompilerArgs + args
+  freeCompilerArgs = (freeCompilerArgs + args).distinct()
 }
 
-fun KotlinCompile.addFreeCompilerArgs(vararg args: String) {
-  kotlinOptions.freeCompilerArgs += args
+/**
+ * [See](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
+ */
+fun KotlinCompile.addFreeCompilerArgs(vararg args: String) = kotlinOptions {
+  freeCompilerArgs = (freeCompilerArgs + args).distinct()
 }
 
-fun KotlinCompile.addFreeCompilerArgs(args: Iterable<String>) {
-  kotlinOptions.freeCompilerArgs += args
+/**
+ * [See](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
+ */
+fun KotlinCompile.addFreeCompilerArgs(args: Iterable<String>) = kotlinOptions {
+  freeCompilerArgs = (freeCompilerArgs + args).distinct()
 }
 
+/**
+ * [See](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
+ */
 fun Project.addFreeCompilerArgs(vararg args: String) {
   kotlinOptions { addFreeCompilerArgs(*args) }
   kotlinJvmOptions { addFreeCompilerArgs(*args) }
 }
 
+/**
+ * [See](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
+ */
 fun Project.addFreeCompilerArgs(args: Iterable<String>) {
   kotlinOptions { addFreeCompilerArgs(args) }
   kotlinJvmOptions { addFreeCompilerArgs(args) }

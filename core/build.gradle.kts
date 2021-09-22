@@ -20,7 +20,7 @@
  */
 @file:Suppress("SpellCheckingInspection")
 
-plugins { kotlin; `kotlin-dsl` }
+plugins { `kotlin-dsl` }
 
 publication {
   data {

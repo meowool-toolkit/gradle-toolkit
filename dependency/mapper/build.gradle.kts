@@ -18,7 +18,7 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-plugins { kotlin; `kotlin-dsl`; kotlin("plugin.serialization") }
+plugins { `kotlin-dsl`; kotlin("plugin.serialization") }
 
 publication {
   data {

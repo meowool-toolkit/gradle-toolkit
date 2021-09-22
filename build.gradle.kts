@@ -26,7 +26,7 @@ buildscript { repositories.mavenCentral() }
 publication.data {
   displayName = "Gradle Toolkit"
   groupId = "com.meowool.gradle"
-  version = "0.2.2-SNAPSHOT"
+  version = "0.2.2-LOCAL-SNAPSHOT"
   description = "Raise the practicality of gradle to a new level."
   url = "https://github.com/meowool-toolkit/gradle-toolkit/"
   developer {
@@ -66,9 +66,6 @@ subprojects {
   kotlinJvmOptions {
     @Suppress("DEPRECATION")
     useIR = true
-    apiVersion = null
-    languageVersion = "1.4"
-    addFreeCompilerArgs("-Xskip-prerelease-check")
   }
   tasks.withType<Test> { useJUnitPlatform() }
 }

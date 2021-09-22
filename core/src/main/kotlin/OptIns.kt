@@ -43,9 +43,6 @@ fun Project.optIn(annotationNames: Iterable<String>) {
   if (annotationNames.isEmpty()) return
   addFreeCompilerArgs(annotationNames.map { "-Xopt-in=$it" })
   extensions.findByType<KotlinMultiplatformExtension>()?.sourceSets?.all {
-    languageSettings {
-      // TODO Remove since 1.5.30
-      annotationNames.forEach(::useExperimentalAnnotation)
-    }
+    languageSettings { annotationNames.forEach(::optIn) }
   }
 }
