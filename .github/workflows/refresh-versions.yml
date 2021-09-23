@@ -10,4 +10,4 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: rinorz/refresh-versions-action@v1
+      - uses: rinorz/refresh-versions-action@v1.1
