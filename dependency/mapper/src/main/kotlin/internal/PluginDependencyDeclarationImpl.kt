@@ -30,6 +30,7 @@ import com.meowool.gradle.toolkit.SearchDeclaration
 import com.meowool.gradle.toolkit.internal.BaseSearchDeclarationImpl.Data.Companion.clientUrls
 import com.meowool.sweekt.String
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.gradle.api.Project
@@ -113,14 +114,18 @@ internal class PluginDependencyDeclarationImpl(rootClassName: String) : PluginDe
       searchKeywords.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote plugins from: [$urls] by keywords...")
         searchKeywords.forEachConcurrently {
-          it.searchKeywords().collect { output.plugins += it.toString() }
+          it.searchKeywords()
+            .mapNotNull { it.toPluginIdOrNull() }
+            .collect { output.plugins += it.toString() }
         }
       }
 
       searchPrefixes.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote plugins from: [$urls] by prefixes...")
         searchPrefixes.forEachConcurrently {
-          it.searchPrefixes().collect { output.plugins += it.toString() }
+          it.searchPrefixes()
+            .mapNotNull { it.toPluginIdOrNull() }
+            .collect { output.plugins += it.toString() }
         }
       }
     }
