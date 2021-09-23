@@ -41,7 +41,7 @@ dependencies {
   )
 }
 
-tasks.create("searchDependenciesCI").doLast {
+tasks.create("syncDependencies").doLast {
   DependencyMapperInternal.collectDependencies(
     project,
     destination = projectDir.resolve("src/main/ci-dependencies.json")
@@ -55,7 +55,7 @@ tasks.create("searchDependenciesCI").doLast {
         "org.gradle.crypto.checksum" to "Gradle.Crypto.Checksum",
         "org.gradle.android.cache-fix" to "Gradle.AndroidCacheFix",
       )
-      
+
       searchPrefixes(
         "com.google",
         "org.gradle.kotlin",
