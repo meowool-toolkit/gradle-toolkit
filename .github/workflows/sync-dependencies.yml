@@ -26,10 +26,10 @@ jobs:
     - name: Synchronizing dependencies
       uses: gradle/gradle-build-action@v1
       with:
-        distributions-cache-enabled: true
-        dependencies-cache-enabled: false
-        configuration-cache-enabled: false
         gradle-version: release-candidate
+        distributions-cache-enabled: true
+        dependencies-cache-enabled: true
+        configuration-cache-enabled: true
         # Run https://github.com/meowool-toolkit/gradle-toolkit/blob/main/dependency/prebuilt/build.gradle.kts#L44
         arguments: syncDependencies
       
