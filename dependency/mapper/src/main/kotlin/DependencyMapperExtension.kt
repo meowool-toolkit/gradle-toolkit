@@ -32,6 +32,11 @@ import org.gradle.api.Project
 interface DependencyMapperExtension {
 
   /**
+   * The project this extension belongs to.
+   */
+  val project: Project
+
+  /**
    * Adds or configures the dependency mapper of libraries.
    *
    * @param rootClassName The root class name of the library dependency mapper.
@@ -76,7 +81,8 @@ interface DependencyMapperExtension {
    *
    * By default, only when the dependency declaration changed, will the mapped dependency jar
    * be regenerated. But please note that the code block change like of [format] or [SearchDeclaration.filter] will
-   * not be recorded. In this case, clean the build directory of project manually and synchronize gradle.
+   * not be recorded. In this case, run the `dependencyMapperCleanup` task (./gradlew dependencyMapperCleanup) of
+   * project manually and synchronize gradle.
    *
    * @see alwaysUpdate
    */
@@ -87,7 +93,8 @@ interface DependencyMapperExtension {
    *
    * By default, only when the dependency declaration changed, will the mapped dependency jar
    * be regenerated. But please note that the code block change like of [format] or [SearchDeclaration.filter] will
-   * not be recorded. In this case, clean the build directory of project manually and synchronize gradle.
+   * not be recorded. In this case, run the `dependencyMapperCleanup` task (./gradlew dependencyMapperCleanup) of
+   * project manually and synchronize gradle.
    *
    * @see updateWhen
    */

@@ -36,6 +36,7 @@ import com.meowool.gradle.toolkit.publisher.internal.isAndroid
 import com.meowool.gradle.toolkit.publisher.internal.isCompatible
 import com.meowool.gradle.toolkit.publisher.internal.repositoriesToClose
 import com.meowool.gradle.toolkit.publisher.internal.stagingDescription
+import com.meowool.sweekt.isNotNull
 import com.meowool.sweekt.safeCast
 import groovy.util.Node
 import kotlinx.coroutines.delay
@@ -237,7 +238,7 @@ class PublisherPlugin : Plugin<Project> {
         withXml {
           project.repositories
             .filterIsInstance<MavenArtifactRepository>()
-            .filterNot { it.url.host.contains("repo.maven.apache.org") }
+            .filterNot { it.url.host.isNotNull() && it.url.host.contains("repo.maven.apache.org") }
             .takeIf { it.isNotEmpty() }
             ?.also { repositories ->
               val xml = this.asNode()
@@ -246,10 +247,9 @@ class PublisherPlugin : Plugin<Project> {
                 ?: xml.appendNode("repositories")
 
               repositories.forEach { repo ->
-                val url = repo.url.host ?: return@forEach
                 repositoriesNode.appendNode("repository")?.apply {
                   appendNode("id", repo.name)
-                  appendNode("url", url)
+                  appendNode("url", repo.url.host)
                 }
               }
             }

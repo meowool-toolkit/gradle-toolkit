@@ -18,15 +18,21 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-package com.meowool.gradle.toolkit.internal
-
-import com.meowool.gradle.toolkit.DependencyFormatter
-import org.gradle.api.Project
+import com.meowool.gradle.toolkit.internal.prebuilt.PrebuiltList
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.engine.spec.tempdir
+import io.kotest.matchers.ints.shouldBeGreaterThan
+import org.gradle.testfixtures.ProjectBuilder
 
 /**
  * @author 凛 (https://github.com/RinOrz)
  */
-internal interface DependencyCollector {
-  suspend fun ConcurrentScope<*>.collect(project: Project, output: DependencyMapperInternal.DependencyOutputList) {}
-  suspend fun ConcurrentScope<*>.collect(project: Project, pool: JarPool, formatter: DependencyFormatter)
-}
+class PrebuiltListTest : StringSpec({
+  val project = ProjectBuilder.builder().withProjectDir(tempdir()).build()
+  "fromRemote" {
+    PrebuiltList.fromRemote(project).size shouldBeGreaterThan 10000
+  }
+  "fromCacheOrBundle" {
+    PrebuiltList.fromCacheOrBundle(project, Exception()).size shouldBeGreaterThan 10000
+  }
+})

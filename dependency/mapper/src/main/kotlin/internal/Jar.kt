@@ -94,4 +94,6 @@ internal class Jar(private val rootClassName: String) {
   fun size(): Int = addedDependencies.size
 
   fun make(): UnloadedType = classPool[rootClassName]!!.makeWith(classPool)
+
+  fun getDependencies(): List<String> = addedDependencies.map { it.toString().removeSuffix(":_") }
 }

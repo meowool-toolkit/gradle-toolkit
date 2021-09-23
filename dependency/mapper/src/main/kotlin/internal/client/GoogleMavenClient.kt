@@ -38,38 +38,28 @@ import org.jsoup.nodes.Document
  * @author 凛 (https://github.com/RinOrz)
  */
 internal class GoogleMavenClient(
-  logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE
+  logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE,
 ) : DependencyRepositoryClient(baseUrl = "https://maven.google.com", logLevel) {
 
-  override fun fetch(keyword: String): Flow<LibraryDependency> = cache(Fetch.Keyword(keyword)) {
-    fetchAllDependencies().filter { it.contains(keyword) }
-  }
+  override fun fetch(keyword: String): Flow<LibraryDependency> = fetchAllGroupIds()
+    .flatMapConcurrently { fetchGroups(it) }
 
-  override fun fetchGroups(group: String): Flow<LibraryDependency> = cache(Fetch.Group(group)) {
-    concurrentFlow<LibraryDependency> {
-      when (val allDependencies = cache.getIfPresent(Fetch.Any)) {
-        // The cache of all dependencies is expired
-        null -> {
-          val groupPath = group.replace('.', '/')
-          // <android.arch.core>
-          //   <core/>
-          //   <runtime/>
-          // </android.arch.core>
-          sendChildren(getOrNull("$groupPath/group-index.xml")) {
-            LibraryDependency("$group:$it")
-          }
-        }
-        // Filter out artifacts through all cached dependencies
-        else -> sendList(allDependencies.filter { it.group == group })
-      }
-    }.retryConnection()
-  }
+  override fun fetchGroups(group: String): Flow<LibraryDependency> = concurrentFlow {
+    val groupPath = group.replace('.', '/')
+    // <android.arch.core>
+    //   <core/>
+    //   <runtime/>
+    // </android.arch.core>
+    sendChildren(getOrNull("$groupPath/group-index.xml")) {
+      LibraryDependency("$group:$it")
+    }
+  }.retryConnection()
 
-  fun fetchAllDependencies(): Flow<LibraryDependency> = cache(Fetch.Any) {
-    fetchAllGroups().flatMapConcurrently { fetchGroups(it) }
-  }
+  override fun fetchPrefixes(startsWith: String): Flow<LibraryDependency> = fetchAllGroupIds()
+    .filter { it.startsWith(startsWith) }
+    .flatMapConcurrently { fetchGroups(it) }
 
-  private fun fetchAllGroups() = concurrentFlow<String> {
+  private fun fetchAllGroupIds() = concurrentFlow<String> {
     // <metadata>
     //   <android.arch.core/>
     // </metadata>
@@ -78,6 +68,6 @@ internal class GoogleMavenClient(
 
   private suspend inline fun <T> ConcurrentScope<T>.sendChildren(
     document: Document?,
-    crossinline map: (String) -> T = @Suppress("UNCHECKED_CAST") { it as T }
+    crossinline map: (String) -> T = @Suppress("UNCHECKED_CAST") { it as T },
   ) = document?.children()?.firstOrNull()?.children()?.forEachConcurrently { send(map(it.tagName())) }
 }

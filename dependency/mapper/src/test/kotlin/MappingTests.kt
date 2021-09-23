@@ -20,8 +20,8 @@
  */
 import com.meowool.gradle.toolkit.DependencyMapperExtension
 import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl
-import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl.Companion.CacheDir
-import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl.Companion.CacheJarsDir
+import com.meowool.gradle.toolkit.internal.DependencyMapperInternal.CacheDir
+import com.meowool.gradle.toolkit.internal.DependencyMapperInternal.CacheJarsDir
 import com.meowool.gradle.toolkit.internal.concurrentFlow
 import io.kotest.assertions.withClue
 import io.kotest.core.spec.style.FreeSpec

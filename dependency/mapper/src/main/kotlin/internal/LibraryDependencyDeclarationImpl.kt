@@ -115,6 +115,40 @@ internal class LibraryDependencyDeclarationImpl(rootClassName: String) : Library
     @Transient
     val filters: MutableList<(LibraryDependency) -> Boolean> = mutableListOf()
 
+    override suspend fun ConcurrentScope<*>.collect(
+      project: Project,
+      output: DependencyMapperInternal.DependencyOutputList
+    ) {
+      map.forEachConcurrently(capacity = 500) { output.libraries += it }
+
+      mapped.forEachConcurrently(capacity = 500) { dependency, mappedPath ->
+        output.mappedLibraries[dependency] = mappedPath
+      }
+
+      searchKeywords.clientUrls().takeIfNotEmpty()?.also { urls ->
+        project.logger.quiet("Search remote plugins from: [$urls] by keywords...")
+        searchKeywords.forEachConcurrently {
+          it.searchKeywords().collect { output.libraries += it.toString() }
+        }
+      }
+
+      searchPrefixes.clientUrls().takeIfNotEmpty()?.also { urls ->
+        project.logger.quiet("Search remote plugins from: [$urls] by prefixes...")
+        searchPrefixes.forEachConcurrently {
+          it.searchPrefixes().collect { output.libraries += it.toString() }
+        }
+      }
+
+      searchGroups.clientUrls().takeIfNotEmpty()?.also { urls ->
+        project.logger.quiet("Search remote libraries from: [$urls] by groups...")
+        searchGroups.forEachConcurrently {
+          it.searchGroups().collect {
+            output.libraries += it.toString()
+          }
+        }
+      }
+    }
+
     override suspend fun ConcurrentScope<*>.collect(project: Project, pool: JarPool, formatter: DependencyFormatter) {
       suspend fun sendMap(dependency: CharSequence, mappedPath: CharSequence = formatter.toPath(dependency)) {
         val dependency = dependency as? LibraryDependency ?: LibraryDependency(dependency)
@@ -136,9 +170,9 @@ internal class LibraryDependencyDeclarationImpl(rootClassName: String) : Library
         )
       }
 
-      map.forEachConcurrently { sendMap(it) }
+      map.forEachConcurrently(capacity = 500, ::sendMap)
 
-      mapped.forEachConcurrently { (dependency, mappedPath) -> sendMap(dependency, mappedPath) }
+      mapped.forEachConcurrently(capacity = 500, ::sendMap)
 
       searchKeywords.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote libraries from: [$urls] by keywords...")
@@ -150,7 +184,7 @@ internal class LibraryDependencyDeclarationImpl(rootClassName: String) : Library
         searchPrefixes.forEachConcurrently { it.searchPrefixes().collect(::sendMap) }
       }
 
-      searchPrefixes.clientUrls().takeIfNotEmpty()?.also { urls ->
+      searchGroups.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote libraries from: [$urls] by groups...")
         searchGroups.forEachConcurrently { it.searchGroups().collect(::sendMap) }
       }

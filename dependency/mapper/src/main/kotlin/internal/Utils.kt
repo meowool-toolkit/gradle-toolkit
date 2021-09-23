@@ -18,10 +18,13 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+@file:Suppress("SuspendFunctionOnCoroutineScope")
+
 package com.meowool.gradle.toolkit.internal
 
 import com.meowool.sweekt.className
 import com.meowool.sweekt.coroutines.contains
+import com.meowool.sweekt.datetime.nanos
 import com.meowool.sweekt.isEnglish
 import com.meowool.sweekt.isEnglishNotPunctuation
 import com.meowool.sweekt.iteration.endsWith
@@ -35,8 +38,10 @@ import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flatMapMerge
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.retry
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
@@ -54,6 +59,9 @@ import net.bytebuddy.dynamic.scaffold.subclass.ConstructorStrategy
 import net.bytebuddy.jar.asm.Opcodes
 import org.jsoup.nodes.Element
 import java.io.File
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.time.Duration
 
 @PublishedApi
 internal val DefaultJson = Json {
@@ -66,6 +74,15 @@ internal val DefaultJson = Json {
       subclass(ProjectDependencyDeclarationImpl.Data::class)
       subclass(PluginDependencyDeclarationImpl.Data::class)
     }
+    contextual(
+      Duration::class,
+      object : KSerializer<Duration> {
+        override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Duration::class.className, PrimitiveKind.LONG)
+        @Suppress("DEPRECATION") // FIXME Gradle Kotlin DSL Support duration
+        override fun serialize(encoder: Encoder, value: Duration) = encoder.encodeLong(value.toLongNanoseconds())
+        override fun deserialize(decoder: Decoder): Duration = decoder.decodeLong().nanos
+      }
+    )
     contextual(
       File::class,
       object : KSerializer<File> {
@@ -110,8 +127,11 @@ internal fun <T> DynamicType.Builder<T>.makeWith(
 internal fun Element.href() = attr("href")
 
 @Suppress("SuspendFunctionOnCoroutineScope")
-internal suspend fun CoroutineScope.consumeChannel(block: suspend ConcurrentScope<Any>.() -> Unit) =
-  produce { block(ConcurrentScope(this)) }.consumeEach { }
+internal suspend fun CoroutineScope.consumeChannel(
+  context: CoroutineContext = EmptyCoroutineContext,
+  capacity: Int = 0,
+  block: suspend ConcurrentScope<Any>.() -> Unit
+) = produce(context, capacity) { block(ConcurrentScope(this)) }.consumeEach { }
 
 internal fun <E> concurrentFlow(@BuilderInference block: suspend ConcurrentScope<E>.() -> Unit): Flow<E> =
   channelFlow { block(ConcurrentScope(this)) }
@@ -121,6 +141,19 @@ internal fun <T, R> Flow<T>.flatMapConcurrently(
   transform: suspend (T) -> Flow<R>
 ): Flow<R> = flatMapMerge(concurrency, transform)
 
+internal suspend fun <T> CoroutineScope.withTimeout(timeout: Duration?, block: suspend CoroutineScope.() -> T): T {
+  if (timeout == null) return block()
+  return kotlinx.coroutines.withTimeout(timeout, block)
+}
+fun <T> Flow<T>.distinct(): Flow<T> = distinctBy { it }
+
+fun <T, K> Flow<T>.distinctBy(selector: (T) -> K): Flow<T> = flow {
+  val keySet = mutableSetOf<K>()
+  collect { value ->
+    if (keySet.add(selector(value)))
+      emit(value)
+  }
+}
 /**
  * Returns `this` value if it satisfies the given [predicate] or `null`, if it doesn't.
  *

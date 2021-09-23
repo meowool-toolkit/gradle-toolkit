@@ -38,13 +38,9 @@ internal class MavenCentralClient(
   logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE
 ) : DependencyRepositoryClient(baseUrl = "https://search.maven.org", logLevel) {
 
-  override fun fetch(keyword: String): Flow<LibraryDependency> = cache(Fetch.Keyword(keyword)) {
-    fetchImpl(keyword)
-  }
+  override fun fetch(keyword: String): Flow<LibraryDependency> = fetchImpl(keyword)
 
-  override fun fetchGroups(group: String): Flow<LibraryDependency> = cache(Fetch.Group(group)) {
-    fetchImpl("g:\"$group\"")
-  }
+  override fun fetchGroups(group: String): Flow<LibraryDependency> = fetchImpl("g:\"$group\"")
 
   private fun fetchImpl(keyword: String): Flow<LibraryDependency> = pagesFlow { page ->
     val offset = (page - 1) * 1000

@@ -26,7 +26,7 @@ buildscript { repositories.mavenCentral() }
 publication.data {
   displayName = "Gradle Toolkit"
   groupId = "com.meowool.gradle"
-  version = "0.2.2-LOCAL-SNAPSHOT"
+  version = "0.2.2-SNAPSHOT"
   description = "Raise the practicality of gradle to a new level."
   url = "https://github.com/meowool-toolkit/gradle-toolkit/"
   developer {

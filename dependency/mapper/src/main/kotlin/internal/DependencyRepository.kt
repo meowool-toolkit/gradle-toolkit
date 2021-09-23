@@ -58,25 +58,14 @@ internal sealed class DependencyRepository {
   }
 
   @Serializable
-  class MvnRepository(private val fetchExactly: Boolean) : DependencyRepository() {
+  object MvnRepository : DependencyRepository() {
     @Transient
-    override val client: DependencyRepositoryClient = when (fetchExactly) {
-      true -> exactly
-      else -> default
-    }
+    override val client: DependencyRepositoryClient = MvnRepositoryClient(false)
+  }
 
-    override fun closeClient() {
-      client.close()
-    }
-
-    companion object {
-      private val default = MvnRepositoryClient(false)
-      private val exactly = MvnRepositoryClient(true)
-
-      fun closeClient() {
-        default.close()
-        exactly.close()
-      }
-    }
+  @Serializable
+  object MvnExactlyRepository : DependencyRepository() {
+    @Transient
+    override val client: DependencyRepositoryClient = MvnRepositoryClient(true)
   }
 }

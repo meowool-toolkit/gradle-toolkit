@@ -20,16 +20,15 @@
  */
 package com.meowool.gradle.toolkit.internal
 
-import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 
 /**
  * @author 凛 (https://github.com/RinOrz)
  */
 internal class JarPool {
-  private val libraries = ConcurrentHashMap<String, Jar>()
-  private val projects = ConcurrentHashMap<String, Jar>()
-  private val plugins = ConcurrentHashMap<String, Jar>()
+  val libraries = ConcurrentHashMap<String, Jar>()
+  val projects = ConcurrentHashMap<String, Jar>()
+  val plugins = ConcurrentHashMap<String, Jar>()
 
   fun librariesJar(rootClassName: String): Jar {
     require(projects.containsKey(rootClassName).not()) { "$rootClassName is a mapped class of project dependencies!" }
@@ -48,13 +47,4 @@ internal class JarPool {
     require(projects.containsKey(rootClassName).not()) { "$rootClassName is a mapped class of project dependencies!" }
     return plugins.getOrPut(rootClassName) { Jar(rootClassName) }
   }
-
-  suspend fun ConcurrentScope<*>.mapLibrariesJar(action: suspend (String, Jar) -> File) =
-    libraries.mapConcurrently { action(it.key, it.value) }
-
-  suspend fun ConcurrentScope<*>.mapProjectsJar(action: suspend (String, Jar) -> File) =
-    projects.mapConcurrently { action(it.key, it.value) }
-
-  suspend fun ConcurrentScope<*>.mapPluginsJar(action: suspend (String, Jar) -> File) =
-    plugins.mapConcurrently { action(it.key, it.value) }
 }

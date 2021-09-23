@@ -30,8 +30,7 @@ publication {
 }
 
 dependencies.implementationOf(
-  Libs.Jsoup,
-  Libs.Caffeine,
+  Libs.Ktor.Jsoup,
   Libs.Ktor.Client.OkHttp,
   Libs.Ktor.Client.Logging,
   Libs.Ktor.Client.Serialization,

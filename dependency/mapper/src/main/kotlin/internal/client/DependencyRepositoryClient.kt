@@ -20,17 +20,13 @@
  */
 package com.meowool.gradle.toolkit.internal.client
 
-import com.github.benmanes.caffeine.cache.Cache
-import com.github.benmanes.caffeine.cache.Caffeine
-import com.github.benmanes.caffeine.cache.Expiry
 import com.meowool.gradle.toolkit.LibraryDependency
 import com.meowool.gradle.toolkit.internal.ConcurrentScope
 import com.meowool.gradle.toolkit.internal.DefaultJson
-import com.meowool.gradle.toolkit.internal.JsoupFeature
 import com.meowool.gradle.toolkit.internal.concurrentFlow
 import com.meowool.gradle.toolkit.internal.retryConnection
-import com.meowool.sweekt.coroutines.flowOnDefault
 import com.meowool.sweekt.coroutines.flowOnIO
+import com.tfowl.ktor.client.features.JsoupFeature
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.ClientRequestException
@@ -40,16 +36,10 @@ import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.get
 import io.ktor.client.request.header
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
 import net.andreinc.mockneat.unit.networking.IPv4s
 import net.andreinc.mockneat.unit.networking.IPv6s
 import okhttp3.logging.HttpLoggingInterceptor
-import java.util.concurrent.TimeUnit
 
 /**
  * Common repository client abstract class.
@@ -61,49 +51,13 @@ internal abstract class DependencyRepositoryClient(
   private val logLevel: HttpLoggingInterceptor.Level,
 ) : AutoCloseable {
   private var client: HttpClient? = null
-  protected val cache: Cache<Fetch, List<LibraryDependency>> = Caffeine.newBuilder()
-    .expireAfter(object : Expiry<Fetch, List<LibraryDependency>> {
-      override fun expireAfterCreate(
-        key: Fetch?,
-        value: List<LibraryDependency>?,
-        currentTime: Long
-      ): Long = Long.MAX_VALUE
-
-      override fun expireAfterUpdate(
-        key: Fetch?,
-        value: List<LibraryDependency>?,
-        currentTime: Long,
-        currentDuration: Long,
-      ): Long = Long.MAX_VALUE
-
-      override fun expireAfterRead(
-        key: Fetch?,
-        value: List<LibraryDependency>?,
-        currentTime: Long,
-        currentDuration: Long,
-      ): Long = when (key) {
-        // Big data, cache for 1 minute
-        is Fetch.Any -> TimeUnit.MINUTES.toNanos(1)
-        // Other small data can be fetched through the cached big data, so only need to be cached for 20 seconds
-        else -> TimeUnit.SECONDS.toNanos(20)
-      }
-    }).build()
 
   abstract fun fetch(keyword: String): Flow<LibraryDependency>
 
   abstract fun fetchGroups(group: String): Flow<LibraryDependency>
 
-  open fun fetchPrefixes(startsWith: String): Flow<LibraryDependency> {
-    val cacheKey = Fetch.Prefixes(startsWith)
-    return cache.getIfPresent(cacheKey)?.asFlow() ?: channelFlow {
-      suspend fun LibraryDependency.send() = launch { send(this@send) }
-      when (val allDependencies = cache.getIfPresent(Fetch.Any)) {
-        // The cache of all dependencies is expired
-        null -> fetch(startsWith).filter { it.startsWith(startsWith) }.onEach { it.send() }.toList()
-        else -> allDependencies.filter { it.startsWith(startsWith) }.onEach { it.send() }
-      }.also { cache.put(cacheKey, it) }
-    }
-  }
+  open fun fetchPrefixes(startsWith: String): Flow<LibraryDependency> = fetch(startsWith)
+    .filter { it.startsWith(startsWith) }
 
   suspend inline fun <reified T> get(url: String): T = (client ?: createClient()).get("$baseUrl/${url.replace("//", "/")}")
 
@@ -112,13 +66,6 @@ internal abstract class DependencyRepositoryClient(
   } catch (e: ClientRequestException) {
     null
   }
-
-  protected fun cache(
-    key: Fetch,
-    fetcher: suspend () -> Flow<LibraryDependency>
-  ): Flow<LibraryDependency> = concurrentFlow {
-    sendList(cache.getIfPresent(key) ?: fetcher().toList().also { cache.put(key, it) })
-  }.flowOnDefault()
 
   protected fun pagesFlow(
     initial: Int = 1,
@@ -145,29 +92,7 @@ internal abstract class DependencyRepositoryClient(
   }
 
   override fun close() {
-    cache.invalidateAll()
     client?.close()
     client = null
-  }
-
-  protected sealed class Fetch(val value: String?) {
-    object Any : Fetch(null)
-    class Keyword(value: String) : Fetch(value)
-    class Group(value: String) : Fetch(value)
-    class Prefixes(value: String) : Fetch(value)
-
-    override fun equals(other: kotlin.Any?): Boolean {
-      if (this === other) return true
-      if (other !is Fetch) return false
-      if (javaClass != other.javaClass) return false
-      if (value != other.value) return false
-      return true
-    }
-
-    override fun hashCode(): Int {
-      var result = value?.hashCode() ?: 0
-      result = 31 * result + javaClass.name.hashCode()
-      return result
-    }
   }
 }

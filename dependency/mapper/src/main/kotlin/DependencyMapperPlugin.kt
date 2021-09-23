@@ -22,11 +22,14 @@ package com.meowool.gradle.toolkit
 
 import addIfNotExists
 import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl
+import com.meowool.gradle.toolkit.internal.DependencyMapperInternal.CacheDir
 import com.meowool.sweekt.cast
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.initialization.Settings
+import org.gradle.api.tasks.Delete
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.maybeCreate
 
 /**
  * A plugin that can map dependencies to classes or fields.
@@ -46,6 +49,9 @@ class DependencyMapperPlugin : Plugin<Any> {
   }
 
   private fun Project.bootstrap() {
+    tasks.maybeCreate<Delete>("dependencyMapperCleanup").apply {
+      delete(projectDir.resolve(CacheDir))
+    }
     extensions.addIfNotExists(DependencyMapperExtension::class, "dependencyMapper") {
       DependencyMapperExtensionImpl(this)
     }

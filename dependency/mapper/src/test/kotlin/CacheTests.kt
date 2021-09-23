@@ -21,8 +21,8 @@
 @file:Suppress("EXPERIMENTAL_API_USAGE")
 
 import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl
-import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl.Companion.CacheDir
-import com.meowool.gradle.toolkit.internal.DependencyMapperExtensionImpl.Companion.CacheJarsDir
+import com.meowool.gradle.toolkit.internal.DependencyMapperInternal.CacheDir
+import com.meowool.gradle.toolkit.internal.DependencyMapperInternal.CacheJarsDir
 import io.kotest.assertions.forEachAsClue
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.engine.spec.tempdir

@@ -34,32 +34,26 @@ import org.jsoup.nodes.Document
  * @author 凛 (https://github.com/RinOrz)
  */
 internal class MvnRepositoryClient(
-  internal val fetchExactly: Boolean,
+  private val fetchExactly: Boolean,
   logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE
 ) : DependencyRepositoryClient(baseUrl = "https://mvnrepository.com", logLevel) {
 
-  override fun fetch(keyword: String): Flow<LibraryDependency> = cache(Fetch.Keyword(keyword)) {
-    pagesFlow { page ->
-      getOrNull<Document>("search?q=$keyword&p=$page")?.run {
-        // <div class="im">
-        //   <a href="/artifact/org.springframework/spring-web">
-        //     <picture>..</picture>
-        //   </a>
-        // </div>
-        select(".im > a").takeIf { it.isNotEmpty() }?.forEachConcurrently {
-          send(resolveDependency(link = it.attr("href").removePrefix("/artifact/")))
-        }
+  override fun fetch(keyword: String): Flow<LibraryDependency> = pagesFlow { page ->
+    getOrNull<Document>("search?q=$keyword&p=$page")?.run {
+      // <div class="im">
+      //   <a href="/artifact/org.springframework/spring-web">
+      //     <picture>..</picture>
+      //   </a>
+      // </div>
+      select(".im > a").takeIf { it.isNotEmpty() }?.forEachConcurrently {
+        send(resolveDependency(link = it.attr("href").removePrefix("/artifact/")))
       }
     }
   }
 
-  override fun fetchGroups(group: String): Flow<LibraryDependency> = cache(Fetch.Group(group)) {
-    fetchGroups(group, recursively = false)
-  }
+  override fun fetchGroups(group: String): Flow<LibraryDependency> = fetchGroups(group, recursively = false)
 
-  override fun fetchPrefixes(startsWith: String): Flow<LibraryDependency> = cache(Fetch.Prefixes(startsWith)) {
-    fetchGroups(group = startsWith, recursively = true)
-  }
+  override fun fetchPrefixes(startsWith: String): Flow<LibraryDependency> = fetchGroups(group = startsWith, recursively = true)
 
   private fun fetchGroups(group: String, recursively: Boolean): Flow<LibraryDependency> = pagesFlow { page ->
     getOrNull<Document>("artifact/$group?p=$page")?.run {
@@ -95,21 +89,5 @@ internal class MvnRepositoryClient(
       }
 
     return LibraryDependency(notation)
-  }
-
-  override fun equals(other: Any?): Boolean {
-    if (this === other) return true
-    if (other !is MvnRepositoryClient) return false
-    if (!super.equals(other)) return false
-
-    if (fetchExactly != other.fetchExactly) return false
-
-    return true
-  }
-
-  override fun hashCode(): Int {
-    var result = super.hashCode()
-    result = 31 * result + fetchExactly.hashCode()
-    return result
   }
 }

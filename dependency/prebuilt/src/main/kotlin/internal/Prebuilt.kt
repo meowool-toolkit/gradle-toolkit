@@ -26,70 +26,69 @@ import com.meowool.gradle.toolkit.DependencyMapperExtension
 import com.meowool.gradle.toolkit.LibraryDependencyDeclaration
 import com.meowool.gradle.toolkit.PluginDependencyDeclaration
 import com.meowool.gradle.toolkit.ProjectDependencyDeclaration
-import com.meowool.gradle.toolkit.internal.DependencyMapperInternal
+import com.meowool.gradle.toolkit.internal.DependencyMapperInternal.CacheDir
+import com.meowool.gradle.toolkit.internal.DependencyMapperInternal.DependencyOutputList
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.CIO
-import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer.Companion.DefaultJson
 import io.ktor.client.request.get
 import io.ktor.utils.io.core.use
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.decodeFromStream
+import org.gradle.api.Project
+
+/**
+ * The prebuilt dependency JSON, this list is continuously updated through CI by default to ensure that the mapped
+ * dependencies are all up to date.
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+internal object PrebuiltList {
+  private const val CacheFileName = "ci-dependencies.json"
+  private const val RemoteUrl = "https://raw.githubusercontent.com/meowool-toolkit/gradle-toolkit/main/dependency/prebuilt/src/main/resources/$CacheFileName"
+  private val Project.listCache
+    get() = project.projectDir.resolve("$CacheDir/$CacheFileName").apply { parentFile.mkdirs() }
+
+  suspend fun fromRemote(project: Project): DependencyOutputList = HttpClient().use {
+    val result = it.get<String>(RemoteUrl)
+    project.listCache.writeText(result)
+    DefaultJson.decodeFromString(result)
+  }
+
+  fun fromCacheOrBundle(project: Project, remoteE: Exception): DependencyOutputList = DefaultJson.decodeFromStream(
+    project.listCache.takeIf { it.exists() }?.inputStream()
+      ?: PrebuiltList::class.java.getResourceAsStream("/ci-dependencies.json")
+      ?: error("Prebuilt JSON ($RemoteUrl) gets failed: ${remoteE.message}")
+  )
+
+  suspend fun get(project: Project): DependencyOutputList = try {
+    fromRemote(project)
+  } catch (e: Exception) {
+    fromCacheOrBundle(project, e)
+  }
+}
 
 internal fun <T : DependencyMapperExtension> T.prebuilt(
   libraries: String = LibraryDependencyDeclaration.DefaultRootClassName,
   projects: String = ProjectDependencyDeclaration.DefaultRootClassName,
   plugins: String = PluginDependencyDeclaration.DefaultRootClassName,
 ) = runBlocking(Dispatchers.IO) {
-  val dependenciesCI: DependencyMapperInternal.DependencyOutputList = try {
-    HttpClient(CIO) { install(JsonFeature) }.use {
-      it.get("https://raw.githubusercontent.com/meowool-toolkit/gradle-toolkit/main/dependency/prebuilt/ci-dependencies.json")
-    }
-  } catch(e: Exception) {
-    DefaultJson.decodeFromString(
-      javaClass.getResource("ci-dependencies.json")!!.readText()
-    )
-  }
-
-  projects(projects)
+  val dependenciesCI = PrebuiltList.get(project)
 
   plugins(plugins) {
-    map(
-      "com.diffplug.spotless" to "Spotless",
-      "com.gradle.publish" to "Gradle.Publish",
-      "com.gradle.build-scan" to "Gradle.BuildScan",
-      "me.tylerbwong.gradle.metalava" to "Gradle.Metalava",
-      "org.gradle.crypto.checksum" to "Gradle.Crypto.Checksum",
-      "org.gradle.android.cache-fix" to "Gradle.AndroidCacheFix",
-    )
-
     // Results from CI search or resource
     map(dependenciesCI.plugins)
     map(dependenciesCI.mappedPlugins)
   }
-
   libraries(libraries) {
     transferPluginIds(plugins)
-    map(
-      "org.zeroturnaround:zt-zip" to "ZtZip",
-      "com.tfowl.ktor:ktor-jsoup" to "Ktor.Jsoup",
-      "com.github.promeg:tinypinyin" to "TinyPinyin",
-      "in.arunkumarsampath:transition-x" to "TransitionX",
-      "com.github.ben-manes.caffeine:caffeine" to "Caffeine",
-      "de.fayard.refreshVersions:refreshVersions" to "RefreshVersions",
-      "com.andkulikov:transitionseverywhere" to "TransitionsEverywhere",
-      "com.github.donkingliang:ConsecutiveScroller" to "ConsecutiveScroller",
-
-      "me.tylerbwong.gradle:metalava-gradle" to "Gradle.Metalava",
-      "com.diffplug.spotless:spotless-plugin-gradle" to "Gradle.Spotless",
-      "com.gradle.publish:plugin-publish-plugin" to "Gradle.Publish.Plugin",
-    )
 
     // Results from CI search or resource
     map(dependenciesCI.libraries)
     map(dependenciesCI.mappedLibraries)
   }
+  projects(projects)
 
   format {
     notCapitalize { name ->

@@ -54,11 +54,6 @@ class RepoClientTests : FreeSpec({
     "fetch not found" {
       google.getOrNull<Document>("abcdefg/group-index.xml").shouldBeNull()
     }
-    "fetch all" {
-      google.fetchAllDependencies()
-        .filter { it.equals("androidx.annotation:annotation-experimental-lint") }
-        .flowOnIO().size() shouldBe 1
-    }
     "fetch by group" {
       val groups = flowOf("androidx", "com.android")
       groups.flatMapConcurrently { google.fetchGroups(it) }

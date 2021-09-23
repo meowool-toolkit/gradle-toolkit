@@ -107,7 +107,7 @@ interface LibraryDependencyDeclaration {
    *
    * @param dependenciesAndPaths The first parameter of pairs is dependencies, the second parameter is mapped paths.
    */
-  fun map(dependenciesAndPaths: Map<CharSequence, CharSequence>) = map(*dependenciesAndPaths.toList().toArray())
+  fun map(dependenciesAndPaths: Map<out CharSequence, CharSequence>) = map(*dependenciesAndPaths.toList().toArray())
 
   /**
    * Adds a request to searches remote dependencies by [keywords].

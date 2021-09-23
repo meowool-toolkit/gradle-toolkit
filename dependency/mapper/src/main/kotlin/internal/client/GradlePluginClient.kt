@@ -34,21 +34,17 @@ import org.jsoup.nodes.Document
  * @author 凛 (https://github.com/RinOrz)
  */
 internal class GradlePluginClient(
-  logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE
+  logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE,
 ) : DependencyRepositoryClient(baseUrl = "https://plugins.gradle.org", logLevel) {
 
-  override fun fetch(keyword: String): Flow<LibraryDependency> = cache(Fetch.Keyword(keyword)) {
-    pagesFlow(initial = 0) { page ->
-      get<Document>("search?term=$keyword&page=$page")
-        .select(".plugin-id")
-        .takeIf { it.isNotEmpty() }
-        ?.forEachConcurrently { send(PluginId(it.text()).toLibraryDependency()) }
-    }
+  override fun fetch(keyword: String): Flow<LibraryDependency> = pagesFlow(initial = 0) { page ->
+    get<Document>("search?term=$keyword&page=$page")
+      .select(".plugin-id")
+      .takeIf { it.isNotEmpty() }
+      ?.forEachConcurrently { send(PluginId(it.text()).toLibraryDependency()) }
   }
 
-  override fun fetchGroups(group: String): Flow<LibraryDependency> = cache(Fetch.Group(group)) {
-    fetch(group).filter { it.group == group }
-  }
+  override fun fetchGroups(group: String): Flow<LibraryDependency> = fetch(group).filter { it.group == group }
 
 // FIXME: It's too slow..
 //  override fun fetchStartsWith(startsWith: String): Flow<LibraryDependency> = cache(Fetch.StartsWith(startsWith)) {

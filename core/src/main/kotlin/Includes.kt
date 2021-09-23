@@ -31,24 +31,30 @@ import java.nio.file.Path
  * will skip import.
  *
  * @param includeDir the directory of project included.
+ * @param excludeBuildDir Will not import all subdirectories in the 'build' name directory. But if you want to import
+ *   some build directory, you can add a file named `.force-import` to overwrite this behavior.
  * @param excludeBy exclude files if the given condition is true.
  *
  * @see Settings.include
  */
 fun Settings.importProjects(
   includeDir: File,
+  excludeBuildDir: Boolean = true,
   excludeBy: (File) -> Boolean,
 ) = includeDir.walkTopDown()
   .onEnter {
     if (it == includeDir) return@onEnter true
+    if (it.resolve(".force-import").exists().not()) {
+      if (excludeBuildDir && it.name == "build") return@onEnter false
+    }
     it.resolve(".skip-import").exists().not() && excludeBy(it).not()
   }
   .filter {
     it.isDirectory && it != rootDir &&
-      // Ensure the dir containing build scripts
-      it.containsBuildScript() &&
-      // Ensure a non-build dir, or the parent dir does not contain build scripts
-      (it.name != "build" || it.parentFile.containsBuildScript().not())
+      it.resolve("build.gradle.kts").exists() ||
+      it.resolve("build.gradle").exists() ||
+      it.resolve("settings.gradle.kts").exists() ||
+      it.resolve("settings.gradle").exists()
   }
   .forEach { include(":${it.relativeTo(rootDir).path.replace(File.separatorChar, ':')}") }
 
@@ -65,8 +71,9 @@ fun Settings.importProjects(
  */
 fun Settings.importProjects(
   includeDirPath: String,
+  excludeBuildDir: Boolean = true,
   excludeBy: (File) -> Boolean,
-) = this.importProjects(File(includeDirPath), excludeBy)
+) = this.importProjects(File(includeDirPath), excludeBuildDir, excludeBy)
 
 /**
  * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDirPath].
@@ -81,8 +88,9 @@ fun Settings.importProjects(
  */
 fun Settings.importProjects(
   includeDirPath: Path,
+  excludeBuildDir: Boolean = true,
   excludeBy: (File) -> Boolean,
-) = this.importProjects(includeDirPath.toFile(), excludeBy)
+) = this.importProjects(includeDirPath.toFile(), excludeBuildDir, excludeBy)
 
 /**
  * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDir].
@@ -97,8 +105,9 @@ fun Settings.importProjects(
  */
 fun Settings.importProjects(
   includeDir: File,
+  excludeBuildDir: Boolean = true,
   vararg excludeDirs: File,
-) = importProjects(includeDir) { file ->
+) = importProjects(includeDir, excludeBuildDir) { file ->
   excludeDirs.any { exclude -> file.startsWith(exclude) }
 }
 
@@ -115,8 +124,9 @@ fun Settings.importProjects(
  */
 fun Settings.importProjects(
   includeDirPath: String,
+  excludeBuildDir: Boolean = true,
   vararg excludeDirPaths: String,
-) = this.importProjects(File(includeDirPath), *excludeDirPaths.map(::File).toTypedArray())
+) = this.importProjects(File(includeDirPath), excludeBuildDir, *excludeDirPaths.map(::File).toTypedArray())
 
 /**
  * Recursively import all projects that contain `build.gradle` or `build.gradle.kts` in the [includeDirPath].
@@ -131,10 +141,6 @@ fun Settings.importProjects(
  */
 fun Settings.importProjects(
   includeDirPath: Path,
+  excludeBuildDir: Boolean = true,
   vararg excludeDirPaths: Path,
-) = this.importProjects(includeDirPath.toFile(), *excludeDirPaths.map { it.toFile() }.toTypedArray())
-
-private fun File?.containsBuildScript(): Boolean {
-  if (this == null) return false
-  return resolve("build.gradle.kts").exists() || resolve("build.gradle").exists()
-}
+) = this.importProjects(includeDirPath.toFile(), excludeBuildDir, *excludeDirPaths.map { it.toFile() }.toTypedArray())

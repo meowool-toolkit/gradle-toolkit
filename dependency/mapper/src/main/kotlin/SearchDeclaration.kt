@@ -20,6 +20,9 @@
  */
 package com.meowool.gradle.toolkit
 
+import com.meowool.sweekt.datetime.minutes
+import kotlin.time.Duration
+
 /**
  * Used to declare how to search for remote dependencies.
  *
@@ -51,6 +54,16 @@ interface SearchDeclaration<Result> {
    *   [Scala docs](https://www.scala-sbt.org/1.x/docs/Library-Dependencies.html#Getting+the+right+Scala+version+with)
    */
   fun fromMvnRepository(fetchExactly: Boolean = false)
+
+  /**
+   * Sets a minimum count for search results.
+   *
+   * @param minCount The minimum expected count of the searched results.
+   * @param retryIfMissing If the value is `true`, try again when the count of searched results is less than [minCount],
+   *   otherwise throw an exception.
+   * @param retryTimeout Retry timeout when [retryIfMissing] is true.
+   */
+  fun requireResultAtLeast(minCount: Int, retryIfMissing: Boolean = true, retryTimeout: Duration = 1.minutes)
 
   /**
    * Sets the filter [predicate] to filter search results.

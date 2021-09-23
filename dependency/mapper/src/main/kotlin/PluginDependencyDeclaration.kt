@@ -83,7 +83,7 @@ interface PluginDependencyDeclaration {
    *
    * @param pluginIdsAndPaths The first parameter of pairs is plugin ids, the second parameter is mapped paths.
    */
-  fun map(pluginIdsAndPaths: Map<CharSequence, CharSequence>) = map(*pluginIdsAndPaths.toList().toArray())
+  fun map(pluginIdsAndPaths: Map<out CharSequence, CharSequence>) = map(*pluginIdsAndPaths.toList().toArray())
 
   /**
    * Adds a request to searches remote plugin ids by [keywords].

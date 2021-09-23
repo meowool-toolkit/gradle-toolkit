@@ -28,6 +28,9 @@ import com.meowool.gradle.toolkit.DependencyMapperExtension
 import com.meowool.gradle.toolkit.LibraryDependencyDeclaration
 import com.meowool.gradle.toolkit.PluginDependencyDeclaration
 import com.meowool.gradle.toolkit.ProjectDependencyDeclaration
+import com.meowool.gradle.toolkit.internal.DependencyMapperInternal.CacheDir
+import com.meowool.gradle.toolkit.internal.DependencyMapperInternal.CacheJarsDir
+import com.meowool.gradle.toolkit.internal.DependencyMapperInternal.CacheJson
 import com.meowool.sweekt.datetime.nowMilliseconds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -40,14 +43,17 @@ import kotlinx.serialization.encodeToString
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.buildscript
 import java.io.File
-import kotlin.system.measureTimeMillis
+import java.util.concurrent.atomic.AtomicInteger
+import kotlin.time.measureTime
 
 /**
  * @author 凛 (https://github.com/RinOrz)
  */
-internal class DependencyMapperExtensionImpl(private val project: Project) : DependencyMapperExtension {
+@PublishedApi
+internal class DependencyMapperExtensionImpl(override val project: Project) : DependencyMapperExtension {
   private val data: Data = Data()
-  private val mutex: Mutex = Mutex()
+  private val mappingMutex: Mutex = Mutex()
+  private val collectMutex: Mutex = Mutex()
   private val declarations: MutableMap<String, Any> = mutableMapOf()
   private var isUpdate: () -> Boolean = { cacheGraph.isInvalid }
 
@@ -110,6 +116,23 @@ internal class DependencyMapperExtensionImpl(private val project: Project) : Dep
     DependencyRepository.Google.closeClient()
     DependencyRepository.GradlePluginPortal.closeClient()
     DependencyRepository.MvnRepository.closeClient()
+    DependencyRepository.MvnExactlyRepository.closeClient()
+  }
+
+  fun collectDependencies(destination: File) = runBlocking(Dispatchers.IO) {
+    collectMutex.withLock {
+      val outputList = DependencyMapperInternal.DependencyOutputList()
+      val consume = measureTime {
+        consumeChannel {
+          data.collectors.forEachConcurrently {
+            with(it) { collect(project, outputList) }
+          }
+        }
+      }
+      // Output to list and write to file (used to CI)
+      destination.writeText(DefaultJson.encodeToString(outputList))
+      project.logger.quiet("A total of ${outputList.size} dependencies are output, consume $consume.")
+    }
   }
 
   fun mapping(): Boolean = runBlocking(Dispatchers.IO) {
@@ -117,15 +140,15 @@ internal class DependencyMapperExtensionImpl(private val project: Project) : Dep
     var remapped = false
 
     cacheGraph = CacheGraph()
-    mutex.withLock {
+    mappingMutex.withLock {
       // Merge jar paths cache
       data.jarsCache.merge(cacheGraph.cache?.jarsCache)
 
       if (isUpdate()) {
         project.logger.quiet("Mapping dependencies...")
 
-        var mappingCount = 0
-        val consume = measureTimeMillis {
+        val mappingCount = AtomicInteger()
+        val consume = measureTime {
           val jarPool = JarPool()
 
           consumeChannel {
@@ -142,28 +165,30 @@ internal class DependencyMapperExtensionImpl(private val project: Project) : Dep
 
           consumeChannel {
             fun writeEachJar(rootClassName: String, jar: Jar): File {
-              mappingCount += jar.size()
+              mappingCount.addAndGet(jar.size())
               return cacheGraph.writeJar(rootClassName, jar)
             }
 
             if (cacheGraph.isInvalidLibraries) jarPool.apply {
               data.jarsCache.libraries.onEach { it.delete() }.clear()
-              data.jarsCache.libraries += mapLibrariesJar(::writeEachJar)
+              data.jarsCache.libraries += libraries.mapConcurrently(::writeEachJar)
             }
 
             if (cacheGraph.isInvalidProjects) jarPool.apply {
               data.jarsCache.projects.onEach { it.delete() }.clear()
-              data.jarsCache.projects += mapProjectsJar(::writeEachJar)
+              data.jarsCache.projects += projects.mapConcurrently(::writeEachJar)
             }
 
             if (cacheGraph.isInvalidPlugins) jarPool.apply {
               data.jarsCache.plugins.onEach { it.delete() }.clear()
-              data.jarsCache.plugins += mapPluginsJar(::writeEachJar)
+              data.jarsCache.plugins += plugins.mapConcurrently(::writeEachJar)
             }
+
+            cacheGraph.writeCache()
           }
         }
-        project.logger.quiet("Total $mappingCount dependencies are mapped, consume ${consume / 1000.0}s.")
-        cacheGraph.writeCache()
+
+        project.logger.quiet("A total of ${mappingCount.get()} dependencies are mapped, consume $consume.")
         closeAllClients()
         remapped = true
       }
@@ -269,11 +294,5 @@ internal class DependencyMapperExtensionImpl(private val project: Project) : Dep
     fun writeCache() {
       json.writeText(DefaultJson.encodeToString(data))
     }
-  }
-
-  companion object {
-    const val CacheDir = ".dependency-mapper"
-    const val CacheJson = "cache.json"
-    const val CacheJarsDir = "jars"
   }
 }

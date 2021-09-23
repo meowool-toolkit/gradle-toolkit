@@ -18,7 +18,7 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-@file:Suppress("NAME_SHADOWING")
+@file:Suppress("NAME_SHADOWING", "NestedLambdaShadowedImplicitParameter")
 
 package com.meowool.gradle.toolkit.internal
 
@@ -100,6 +100,31 @@ internal class PluginDependencyDeclarationImpl(rootClassName: String) : PluginDe
     @Transient
     val filters: MutableList<(PluginId) -> Boolean> = mutableListOf()
 
+    override suspend fun ConcurrentScope<*>.collect(
+      project: Project,
+      output: DependencyMapperInternal.DependencyOutputList
+    ) {
+      map.forEachConcurrently(capacity = 500) { output.plugins += it }
+
+      mapped.forEachConcurrently(capacity = 500) { dependency, mappedPath ->
+        output.mappedPlugins[dependency] = mappedPath
+      }
+
+      searchKeywords.clientUrls().takeIfNotEmpty()?.also { urls ->
+        project.logger.quiet("Search remote plugins from: [$urls] by keywords...")
+        searchKeywords.forEachConcurrently {
+          it.searchKeywords().collect { output.plugins += it.toString() }
+        }
+      }
+
+      searchPrefixes.clientUrls().takeIfNotEmpty()?.also { urls ->
+        project.logger.quiet("Search remote plugins from: [$urls] by prefixes...")
+        searchPrefixes.forEachConcurrently {
+          it.searchPrefixes().collect { output.plugins += it.toString() }
+        }
+      }
+    }
+
     override suspend fun ConcurrentScope<*>.collect(project: Project, pool: JarPool, formatter: DependencyFormatter) {
       suspend fun sendMap(dependency: CharSequence, mappedPath: CharSequence = formatter.toPath(dependency)) {
         var mappedPath = mappedPath
@@ -119,9 +144,9 @@ internal class PluginDependencyDeclarationImpl(rootClassName: String) : PluginDe
         )
       }
 
-      map.forEachConcurrently { sendMap(it) }
+      map.forEachConcurrently(capacity = 500, ::sendMap)
 
-      mapped.forEachConcurrently { (dependency, mappedPath) -> sendMap(dependency, mappedPath) }
+      mapped.forEachConcurrently(capacity = 500, ::sendMap)
 
       searchKeywords.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote plugins from: [$urls] by keywords...")

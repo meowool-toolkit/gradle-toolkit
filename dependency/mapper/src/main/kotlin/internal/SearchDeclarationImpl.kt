@@ -18,17 +18,29 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+@file:UseContextualSerialization(Duration::class)
+
 package com.meowool.gradle.toolkit.internal
 
 import com.meowool.gradle.toolkit.LibraryDependency
 import com.meowool.gradle.toolkit.SearchDeclaration
 import com.meowool.gradle.toolkit.internal.client.DependencyRepositoryClient
 import com.meowool.sweekt.coroutines.flowOnIO
+import com.meowool.sweekt.datetime.minutes
+import com.meowool.sweekt.throwIf
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.retry
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
+import kotlinx.serialization.UseContextualSerialization
+import java.util.concurrent.atomic.AtomicInteger
+import kotlin.time.Duration
+import kotlin.time.TimeMark
+import kotlin.time.TimeSource
 
 /**
  * @author 凛 (https://github.com/RinOrz)
@@ -49,7 +61,16 @@ internal abstract class BaseSearchDeclarationImpl<Result>(values: List<String>) 
   }
 
   override fun fromMvnRepository(fetchExactly: Boolean) {
-    data.repositories += DependencyRepository.MvnRepository(fetchExactly)
+    data.repositories += when {
+      fetchExactly -> DependencyRepository.MvnRepository
+      else -> DependencyRepository.MvnExactlyRepository
+    }
+  }
+
+  override fun requireResultAtLeast(minCount: Int, retryIfMissing: Boolean, retryTimeout: Duration) {
+    data.minResultsRequired = minCount
+    data.retryIfMissing = retryIfMissing
+    data.retryTimeout = retryTimeout
   }
 
   override fun filter(predicate: (Result) -> Boolean) {
@@ -64,13 +85,17 @@ internal abstract class BaseSearchDeclarationImpl<Result>(values: List<String>) 
     val values: List<String> = emptyList(),
     val repositories: MutableSet<DependencyRepository> = mutableSetOf(),
     var filterCount: Int = 0,
+    var minResultsRequired: Int = 0,
+    var retryIfMissing: Boolean = true,
+    var retryTimeout: Duration = 1.minutes,
   ) {
     @Transient
     val filters: MutableList<(LibraryDependency) -> Boolean> = mutableListOf()
 
-    val clients: List<DependencyRepositoryClient> get() = repositories
-      .ifEmpty { setOf(DependencyRepository.MavenCentral) }
-      .map { it.client }
+    val clients: List<DependencyRepositoryClient>
+      get() = repositories
+        .ifEmpty { setOf(DependencyRepository.MavenCentral) }
+        .map { it.client }
 
     fun merge(other: Data): Data = apply {
       repositories += other.repositories
@@ -81,18 +106,43 @@ internal abstract class BaseSearchDeclarationImpl<Result>(values: List<String>) 
     suspend fun searchPrefixes(): Flow<LibraryDependency> = searchImpl { fetchPrefixes(it) }
     suspend fun searchGroups(): Flow<LibraryDependency> = searchImpl { fetchGroups(it) }
 
-    private suspend inline fun searchImpl(
-      crossinline search: DependencyRepositoryClient.(String) -> Flow<LibraryDependency>
-    ): Flow<LibraryDependency> = concurrentFlow {
-      clients.forEachConcurrently { client ->
-        values.forEachConcurrently { value ->
-          // Call the real client callback to execute the search
-          client.search(value)
-            .filter { result -> filters.all { it(result) } }
-            .collect(::send)
+    private suspend fun searchImpl(
+      search: DependencyRepositoryClient.(String) -> Flow<LibraryDependency>,
+    ): Flow<LibraryDependency> {
+      var lastRetry: TimeMark? = null
+      var retryIfMissing = retryIfMissing
+
+      return concurrentFlow {
+        val count = AtomicInteger()
+
+        try {
+          // Remaining timeout
+          withTimeout(lastRetry?.let { retryTimeout - it.elapsedNow() }) {
+            clients.forEach { client ->
+              values.forEachConcurrently { value ->
+                // Call the real client callback to execute the search
+                client.search(value)
+                  .distinct()
+                  .onEach { count.incrementAndGet() }
+                  .filter { lib -> filters.all { it(lib) } }
+                  .collect(::send)
+              }
+            }
+            throwIf(count.get() < minResultsRequired) {
+              // Start waiting for retry timeout
+              if (lastRetry == null) lastRetry = TimeSource.Monotonic.markNow()
+              ResultsMissingException(count.get())
+            }
+          }
+        } catch (e: TimeoutCancellationException) {
+          retryIfMissing = false
+          throw ResultsMissingException(count.get())
         }
-      }
-    }.flowOnIO()
+      }.flowOnIO().retry(Long.MAX_VALUE) { retryIfMissing && it is ResultsMissingException }
+    }
+
+    private inner class ResultsMissingException(count: Int) :
+      IllegalStateException("Need at least $minResultsRequired results, but only $count results found, search timeout $retryTimeout.")
 
     companion object {
       fun List<Data>.clientUrls() = flatMap { it.clients }.distinct().joinToString { it.baseUrl }

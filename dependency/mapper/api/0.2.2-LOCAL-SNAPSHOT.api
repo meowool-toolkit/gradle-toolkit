@@ -40,12 +40,10 @@ package com.meowool.gradle.toolkit {
   public interface DependencyMapperExtension {
     method public void alwaysUpdate();
     method public void format(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.DependencyFormatter,kotlin.Unit> formatter);
-    method public org.gradle.api.Project getProject();
     method public com.meowool.gradle.toolkit.LibraryDependencyDeclaration libraries(optional String rootClassName, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.LibraryDependencyDeclaration,kotlin.Unit> configuration);
     method public com.meowool.gradle.toolkit.PluginDependencyDeclaration plugins(optional String rootClassName, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.PluginDependencyDeclaration,kotlin.Unit> configuration);
     method public com.meowool.gradle.toolkit.ProjectDependencyDeclaration projects(optional String rootClassName, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.ProjectDependencyDeclaration,kotlin.Unit> configuration);
     method public void updateWhen(kotlin.jvm.functions.Function1<? super org.gradle.api.Project,java.lang.Boolean> predicate);
-    property public abstract org.gradle.api.Project project;
   }
 
   public final class DependencyMapperPlugin implements org.gradle.api.Plugin<java.lang.Object> {
@@ -71,7 +69,7 @@ package com.meowool.gradle.toolkit {
     method public void map(java.lang.CharSequence... dependencies);
     method public default void map(Iterable<? extends java.lang.CharSequence> dependencies);
     method public void map(kotlin.Pair<? extends java.lang.CharSequence,? extends java.lang.CharSequence>... dependenciesAndPaths);
-    method public default void map(java.util.Map<? extends java.lang.CharSequence,? extends java.lang.CharSequence> dependenciesAndPaths);
+    method public default void map(java.util.Map<java.lang.CharSequence,? extends java.lang.CharSequence> dependenciesAndPaths);
     method public void search(CharSequence![] keywords, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.LibraryDependency>,kotlin.Unit> declaration);
     method public default void search(Iterable<? extends java.lang.CharSequence> keywords, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.LibraryDependency>,kotlin.Unit> declaration);
     method public void searchDefaultOptions(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.LibraryDependency>,kotlin.Unit> declaration);
@@ -95,7 +93,7 @@ package com.meowool.gradle.toolkit {
     method public void map(java.lang.CharSequence... pluginIds);
     method public default void map(Iterable<? extends java.lang.CharSequence> pluginIds);
     method public void map(kotlin.Pair<? extends java.lang.CharSequence,? extends java.lang.CharSequence>... pluginIdsAndPaths);
-    method public default void map(java.util.Map<? extends java.lang.CharSequence,? extends java.lang.CharSequence> pluginIdsAndPaths);
+    method public default void map(java.util.Map<java.lang.CharSequence,? extends java.lang.CharSequence> pluginIdsAndPaths);
     method public void search(CharSequence![] keywords, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.PluginId>,kotlin.Unit> declaration);
     method public default void search(Iterable<? extends java.lang.CharSequence> keywords, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.PluginId>,kotlin.Unit> declaration);
     method public void searchDefaultOptions(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.PluginId>,kotlin.Unit> declaration);

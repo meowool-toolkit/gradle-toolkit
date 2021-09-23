@@ -20,9 +20,12 @@
  */
 package com.meowool.gradle.toolkit.internal
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.channels.ProducerScope
+import kotlinx.coroutines.channels.produce
+import kotlinx.coroutines.channels.toList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -33,49 +36,58 @@ import com.meowool.sweekt.coroutines.withDefault as withDefaultContext
  */
 internal class ConcurrentScope<E>(producerScope: ProducerScope<E>) : ProducerScope<E> by producerScope {
 
-  internal suspend inline fun <T> Iterable<T>.forEachConcurrently(
-    crossinline action: suspend (T) -> Unit,
+  internal suspend fun <T> Iterable<T>.forEachConcurrently(
+    capacity: Int = Concurrency,
+    action: suspend (T) -> Unit,
   ) {
     if (this is Collection && this.isEmpty()) return
-    withDefaultContext {
-      forEach { launch { action(it) } }
+    consumeChannel(Dispatchers.Default, capacity) {
+      forEach {
+        launch { send(action(it)) }
+      }
     }
   }
 
-  internal suspend inline fun <T> Array<T>.forEachConcurrently(
-    crossinline action: suspend (T) -> Unit,
+  internal suspend fun <T> Array<T>.forEachConcurrently(
+    capacity: Int = Concurrency,
+    action: suspend (T) -> Unit,
   ) {
     if (this.isEmpty()) return
-    withDefaultContext {
-      forEach { launch { action(it) } }
+    consumeChannel(Dispatchers.Default, capacity) {
+      forEach {
+        launch { send(action(it)) }
+      }
     }
   }
 
-  internal suspend inline fun <K, V> MutableMap<K, V>.forEachConcurrently(
-    crossinline action: suspend (Map.Entry<K, V>) -> Unit,
+  internal suspend fun <K, V> MutableMap<K, V>.forEachConcurrently(
+    capacity: Int = Concurrency,
+    action: suspend (key: K, value: V) -> Unit,
   ) {
     if (this.isEmpty()) return
-    withDefaultContext {
-      forEach { launch { action(it) } }
+    consumeChannel(Dispatchers.Default, capacity) {
+      forEach {
+        launch { send(action(it.key, it.value)) }
+      }
     }
   }
 
-  internal suspend inline fun <K, V, R> MutableMap<K, V>.mapConcurrently(
-    crossinline transform: suspend (Map.Entry<K, V>) -> R,
+  internal suspend fun <K, V, R> MutableMap<K, V>.mapConcurrently(
+    transform: suspend (key: K, value: V) -> R,
   ): List<R> {
     if (this.isEmpty()) return emptyList()
-    return withDefaultContext {
-      map {
-        async { transform(it) }
-      }.awaitAll()
-    }
+    return produce(Dispatchers.Default, capacity = Concurrency) {
+      forEach {
+        send(async { transform(it.key, it.value) })
+      }
+    }.toList().awaitAll()
   }
 
   internal suspend inline fun sendAll(flow: Flow<E>?) = withDefaultContext {
     flow?.collect { launch { send(it) } }
   }
 
-  internal suspend inline fun sendList(list: List<E>?) = withDefaultContext {
-    list?.forEach { launch { send(it) } }
+  companion object {
+    private const val Concurrency = 20
   }
 }
