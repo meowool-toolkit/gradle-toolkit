@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.meowool.gradle</groupId>
+  <artifactId>toolkit-meowool-metalava</artifactId>
+  <versioning>
+    <latest>0.2.2-SNAPSHOT</latest>
+    <versions>
+      <version>0.2.1-SNAPSHOT</version>
+      <version>0.2.2-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20210923090142</lastUpdated>
+  </versioning>
+</metadata>
