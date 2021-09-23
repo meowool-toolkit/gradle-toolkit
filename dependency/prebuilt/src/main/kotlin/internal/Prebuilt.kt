@@ -26,12 +26,32 @@ import com.meowool.gradle.toolkit.DependencyMapperExtension
 import com.meowool.gradle.toolkit.LibraryDependencyDeclaration
 import com.meowool.gradle.toolkit.PluginDependencyDeclaration
 import com.meowool.gradle.toolkit.ProjectDependencyDeclaration
+import com.meowool.gradle.toolkit.internal.DependencyMapperInternal
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer.Companion.DefaultJson
+import io.ktor.client.request.get
+import io.ktor.utils.io.core.use
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.decodeFromString
 
 internal fun <T : DependencyMapperExtension> T.prebuilt(
   libraries: String = LibraryDependencyDeclaration.DefaultRootClassName,
   projects: String = ProjectDependencyDeclaration.DefaultRootClassName,
   plugins: String = PluginDependencyDeclaration.DefaultRootClassName,
-) = apply {
+) = runBlocking(Dispatchers.IO) {
+  val dependenciesCI: DependencyMapperInternal.DependencyOutputList = try {
+    HttpClient(CIO) { install(JsonFeature) }.use {
+      it.get("https://raw.githubusercontent.com/meowool-toolkit/gradle-toolkit/main/dependency/prebuilt/ci-dependencies.json")
+    }
+  } catch(e: Exception) {
+    DefaultJson.decodeFromString(
+      javaClass.getResource("ci-dependencies.json")!!.readText()
+    )
+  }
+
   projects(projects)
 
   plugins(plugins) {
@@ -43,17 +63,10 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
       "org.gradle.crypto.checksum" to "Gradle.Crypto.Checksum",
       "org.gradle.android.cache-fix" to "Gradle.AndroidCacheFix",
     )
-    searchPrefixes(
-      "com.google",
-      "org.gradle.kotlin",
-      "com.gradle.enterprise",
 
-      "org.jetbrains.dokka",
-      "org.jetbrains.gradle",
-      "org.jetbrains.kotlin",
-      "org.jetbrains.intellij",
-      "org.jetbrains.changelog",
-    ) { fromGradlePluginPortal() }
+    // Results from CI search or resource
+    map(dependenciesCI.plugins)
+    map(dependenciesCI.mappedPlugins)
   }
 
   libraries(libraries) {
@@ -73,107 +86,9 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
       "com.gradle.publish:plugin-publish-plugin" to "Gradle.Publish.Plugin",
     )
 
-    // Do not use the following method, because it will receive additional options by the user
-    // searchDefaultOptions { fromMavenCentral() }
-
-    searchGroups(
-      "mysql",
-      "org.yaml",
-    ) { fromMavenCentral() }
-
-    searchPrefixes(
-      "app.cash",
-      "net.mamoe",
-      "net.bytebuddy",
-      "me.liuwj.ktorm",
-
-      // Apache
-      "commons-io",
-      "commons-logging",
-
-      "org.apache.tika",
-      "org.apache.hbase",
-      "org.apache.hadoop",
-      "org.apache.commons",
-      "org.apache.logging.log4j",
-
-      "com.umeng",
-      "com.airbnb",
-      "com.rinorz",
-      "com.tencent",
-      "com.meowool",
-      "com.firebase",
-      "com.facebook",
-      "com.squareup",
-      "com.yalantis",
-      "com.facebook",
-      "com.afollestad",
-      "com.didiglobal",
-      "com.jakewharton",
-      "com.linkedin.dexmaker",
-      "com.github.ajalt.clikt",
-
-      "org.ow2",
-      "org.junit",
-      "org.smali",
-      "org.jsoup",
-      "org.mockito",
-      "org.javassist",
-      "org.conscrypt",
-      "org.robolectric",
-      "org.springframework",
-      "org.spekframework.spek2",
-
-      "io.ktor",
-      "io.mockk",
-      "io.kotest",
-      "io.strikt",
-      "io.coil-kt",
-      "io.arrow-kt",
-      "io.insert-koin",
-      "io.github.reactivecircus",
-      "io.github.javaeden.orchid",
-
-      "org.jetbrains.markdown",
-      "org.jetbrains.annotations",
-      "org.jetbrains.kotlin",
-      "org.jetbrains.kotlinx",
-      "org.jetbrains.compose",
-      "org.jetbrains.dokka",
-      "org.jetbrains.exposed",
-      "org.jetbrains.kotlin-wrappers",
-      "org.jetbrains.intellij",
-      "org.jetbrains.anko",
-      "org.jetbrains.spek",
-      "org.jetbrains.lets-plot",
-      "org.jetbrains.skiko",
-      "org.jetbrains.teamcity",
-    ) {
-      fromMavenCentral()
-      // Skip deprecated dependencies
-      filterNot {
-        it.group == "com.squareup.okhttp" ||
-          it.artifact == "kotlinx-serialization-runtime-jsonparser" ||
-          it.startsWith("com.meowool.toolkit:gradle-dsl-x")
-      }
-    }
-
-    searchPrefixes(
-      "com.google",
-    ) {
-      fromMavenCentral()
-      fromGoogle()
-    }
-
-    searchPrefixes(
-      "android",
-      "androidx",
-      "com.android",
-    ) {
-      fromGoogle()
-      // Skip deprecated dependencies
-      filterNot { it.startsWith("com.android.support") }
-    }
+    // Results from CI search or resource
+    map(dependenciesCI.libraries)
+    map(dependenciesCI.mappedLibraries)
   }
 
   format {
