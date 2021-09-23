@@ -8,6 +8,8 @@ on:
     # Also run this workflow whenever we update prebuilt configuration file
     paths:
       - '**/prebuilt/build.gradle.kts'
+  # Allow to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   sync:
