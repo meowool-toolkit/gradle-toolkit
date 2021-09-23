@@ -44,7 +44,7 @@ dependencies {
 tasks.create("syncDependencies").doLast {
   DependencyMapperInternal.collectDependencies(
     project,
-    destination = projectDir.resolve("src/main/ci-dependencies.json")
+    destination = projectDir.resolve("src/main/resources/ci-dependencies.json")
   ) {
     plugins {
       map(
