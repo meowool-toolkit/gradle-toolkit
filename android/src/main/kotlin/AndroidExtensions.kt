@@ -44,16 +44,17 @@ fun Project.androidApp(key: Any = DefaultAndroidKey, configuration: BaseAppModul
     hasAndroidPlugin().not() -> apply(plugin = "android")
     else -> requireAndroidAppPlugin()
   }
-  android<BaseAppModuleExtension> {
-    loadAndroidPresets()
-    configuration()
-  }
   // Use registered common-logic
   injectAndroidLogic(key, ignoreUnregistered = true)
   injectAndroidLogic(DefaultCandidateAndroidKey, ignoreUnregistered = true)
   // Use registered application-logic
   injectAndroidAppLogic(key, ignoreUnregistered = true)
   injectAndroidAppLogic(DefaultCandidateAndroidKey, ignoreUnregistered = true)
+
+  android<BaseAppModuleExtension> {
+    loadAndroidPresets()
+    configuration()
+  }
 }
 
 /**
@@ -81,16 +82,17 @@ fun Project.androidLib(key: Any = DefaultAndroidKey, configuration: LibraryExten
     hasAndroidPlugin().not() -> apply(plugin = "android-library")
     else -> requireAndroidLibPlugin()
   }
-  android<LibraryExtension> {
-    loadAndroidPresets()
-    configuration()
-  }
   // Use registered common-logic
   injectAndroidLogic(key, ignoreUnregistered = true)
   injectAndroidLogic(DefaultCandidateAndroidKey, ignoreUnregistered = true)
   // Use registered library-logic
   injectAndroidLibLogic(key, ignoreUnregistered = true)
   injectAndroidLibLogic(DefaultCandidateAndroidKey, ignoreUnregistered = true)
+
+  android<LibraryExtension> {
+    loadAndroidPresets()
+    configuration()
+  }
 }
 
 /**
