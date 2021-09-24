@@ -22,11 +22,11 @@
 
 pluginManagement {
   repositories {
-    mavenLocal()
+    maven(file(".repo"))
     maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
+    google()
     mavenCentral()
     gradlePluginPortal()
-    google()
   }
 }
 
