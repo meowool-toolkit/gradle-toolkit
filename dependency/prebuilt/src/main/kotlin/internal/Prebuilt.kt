@@ -145,6 +145,8 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
         .replace("app.cash", "CashApp")
         .replace("io.coil-kt", "Coil")
         .replace("android.tools.build.gradle", "Android.Gradle.Plugin")
+        .removePrefix("com.rinorz")
+        .removePrefix("com.soywiz")
         .removePrefix("com.github.ajalt.")
         .removePrefix("com.linkedin.")
         .removePrefix("com.afollestad.")
