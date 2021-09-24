@@ -171,6 +171,7 @@ package com.meowool.gradle.toolkit.publisher {
     method public com.meowool.gradle.toolkit.publisher.PublicationData getData();
     method public java.util.Set<PublishingDestination> getDestinations();
     method public DokkaFormat? getDokkaFormat();
+    method public java.util.Set<PublishingDestination> getLocalDestinations();
     method public String? getPluginClass();
     method public Boolean? getShowIncompatibleWarnings();
     method public boolean isLocalVersion();
@@ -183,7 +184,9 @@ package com.meowool.gradle.toolkit.publisher {
     method public void publishToDirectory(error.NonExistentClass releases, optional error.NonExistentClass snapshots);
     method public void publishToMavenLocal();
     method public void publishToSonatype(optional boolean s01);
+    method public void setDestinations(java.util.Set<PublishingDestination> destinations);
     method public void setDokkaFormat(DokkaFormat? dokkaFormat);
+    method public void setLocalDestinations(java.util.Set<PublishingDestination> localDestinations);
     method public void setPluginClass(String? pluginClass);
     method public void setShowIncompatibleWarnings(Boolean? showIncompatibleWarnings);
     method public void setSignRelease(Boolean? isSignRelease);
@@ -197,6 +200,7 @@ package com.meowool.gradle.toolkit.publisher {
     property public final Boolean? isSignRelease;
     property public final Boolean? isSignSnapshot;
     property public final boolean isSnapshotVersion;
+    property public final java.util.Set<PublishingDestination> localDestinations;
     property public final String? pluginClass;
     property public final Boolean? showIncompatibleWarnings;
   }

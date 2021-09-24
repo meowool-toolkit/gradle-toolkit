@@ -254,7 +254,8 @@ open class MeowoolPresetSpec internal constructor() {
   // ///////////////////////////////////////////////////////////////////////////////////
 
   protected fun presetRepositories(): RepositoryHandler.(Project) -> Unit = { project ->
-    project.rootProject.rootDir.resolve(".repo").takeIf { it.exists() }?.let(::maven)
+    project.rootDir.resolve(".repo").takeIf { it.exists() }?.let(::maven)
+    project.projectDir.resolve(".repo").takeIf { it.exists() }?.let(::maven)
     google()
     mavenCentral()
     sonatype()

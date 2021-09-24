@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.meowool.gradle</groupId>
+  <artifactId>toolkit-android</artifactId>
+  <versioning>
+    <latest>0.2.2-LOCAL-SNAPSHOT</latest>
+    <versions>
+      <version>0.2.2-LOCAL-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20210924043039</lastUpdated>
+  </versioning>
+</metadata>

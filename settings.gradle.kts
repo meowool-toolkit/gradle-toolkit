@@ -31,7 +31,8 @@ pluginManagement {
 }
 
 plugins {
-  // In the Github Action environment, we use the non-local version for testing
+  // In the Github Action environment, we use the non-local version for testing, see:
+  //   https://github.com/meowool-toolkit/gradle-toolkit/blob/main/.github/workflows/deployment.yml
   id("com.meowool.gradle.toolkit") version when (System.getenv().containsKey("use.ci.version")) {
     true -> "0.2.2-SNAPSHOT"
     false -> "0.2.2-LOCAL-SNAPSHOT"

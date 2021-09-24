@@ -185,7 +185,7 @@ class PublisherPlugin : Plugin<Project> {
    * Configures the data of publication.
    */
   private fun PublishingExtension.configureData(extension: PublicationExtension) = with(extension) {
-    destinations.forEach {
+    (destinations + localDestinations).forEach {
       it.project = project
       it.isSnapshot = isSnapshotVersion
     }
@@ -307,14 +307,13 @@ class PublisherPlugin : Plugin<Project> {
    * Configures target repositories to publish artifacts.
    */
   private fun PublishingExtension.configureRepositories(extension: PublicationExtension) = repositories {
-    if (extension.isLocalVersion) {
-      mavenLocal()
-    } else {
-      extension.destinations.forEach {
-        val url = it.url
-        val maven = if (url == MavenLocalDestination::class) mavenLocal() else maven(it.url)
-        if (it.requiredCertificate) maven.credentials(PasswordCredentials::class.java)
-      }
+    when (extension.isLocalVersion) {
+      true -> extension.localDestinations
+      false -> extension.destinations
+    }.forEach {
+      val url = it.url
+      val maven = if (url == MavenLocalDestination::class) mavenLocal() else maven(it.url)
+      if (it.requiredCertificate) maven.credentials(PasswordCredentials::class.java)
     }
   }
 

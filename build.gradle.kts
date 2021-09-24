@@ -22,31 +22,6 @@
 
 buildscript { repositories.mavenCentral() }
 
-// Root data, not publish (all sub-projects extends from here)
-publication.data {
-  displayName = "Gradle Toolkit"
-  groupId = "com.meowool.gradle"
-  version = "0.2.2-LOCAL-SNAPSHOT"
-  // Used to publish non-local versions of artifacts in CI environment
-  versionInCI = "0.2.2-SNAPSHOT"
-  description = "Raise the practicality of gradle to a new level."
-  url = "https://github.com/meowool-toolkit/gradle-toolkit/"
-  developer {
-    id = "rin"
-    name = "Rin Orz"
-    url = "https://github.com/RinOrz/"
-  }
-  tags(
-    "kotlin",
-    "kotlin-dsl",
-    "gradle-dsl",
-    "gradle-utils",
-    "gradle-toolkit",
-    "dependency",
-    "dependency-updater",
-  )
-}
-
 val internalMarkers = arrayOf(
   "com.meowool.gradle.toolkit.internal.InternalGradleToolkitApi",
   "de.fayard.refreshVersions.core.internal.InternalRefreshVersionsApi"
@@ -88,4 +63,33 @@ subdependencies {
     gradleTestKit(),
     Libs.Kotest.Runner.Junit5
   )
+}
+
+/** Root publish data declaration (all sub-projects extends from here) */
+publication {
+  data {
+    displayName = "Gradle Toolkit"
+    groupId = "com.meowool.gradle"
+    version = "0.2.2-LOCAL-SNAPSHOT"
+    // Used to publish non-local versions of artifacts in CI environment
+    versionInCI = "0.2.2-SNAPSHOT"
+    description = "Raise the practicality of gradle to a new level."
+    url = "https://github.com/meowool-toolkit/gradle-toolkit/"
+    developer {
+      id = "rin"
+      name = "Rin Orz"
+      url = "https://github.com/RinOrz/"
+    }
+    tags(
+      "kotlin",
+      "kotlin-dsl",
+      "gradle-dsl",
+      "gradle-utils",
+      "gradle-toolkit",
+      "dependency",
+      "dependency-updater",
+    )
+  }
+  // Publish to the `.repo` directory for checkout in CI environment
+  localDestinations = mutableSetOf(DirectoryDestination(rootDir.resolve(".repo")))
 }

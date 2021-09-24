@@ -311,6 +311,93 @@ package de.fayard.refreshVersions.core.extensions.text {
 
 }
 
+package de.fayard.refreshVersions.core.internal {
+
+  public final class ArtifactVersionKeyRuleKt {
+  }
+
+  public final class ArtifactVersionKeyRulesChecksKt {
+  }
+
+  public final class ArtifactVersionKeysReadingKt {
+  }
+
+  public final class DependencyVersionsFetcher_CompanionKt {
+  }
+
+  public final class GettingVersionCandidatesKt {
+  }
+
+  public final class InternalExtensionsKt {
+  }
+
+  @kotlin.RequiresOptIn public @interface InternalRefreshVersionsApi {
+  }
+
+  public final class LintUpdaterKt {
+  }
+
+  public final class NewRefreshVersionsImplKt {
+  }
+
+  public final class VersionsPlaceholdersReplacementKt {
+  }
+
+}
+
+package de.fayard.refreshVersions.core.internal.codeparsing {
+
+  public final class ArgumentsExtractingKt {
+  }
+
+  public final class SourceCodeRangesFindingKt {
+  }
+
+  public final class StringBuilderKt {
+  }
+
+  public final class SymbolLocationFindingKt {
+  }
+
+}
+
+package de.fayard.refreshVersions.core.internal.codeparsing.gradle {
+
+  public final class GradleScriptParsingKt {
+  }
+
+  public final class PluginBlocksLocatingKt {
+  }
+
+}
+
+package de.fayard.refreshVersions.core.internal.legacy {
+
+  public final class LegacyBootstrapUpdaterKt {
+  }
+
+}
+
+package de.fayard.refreshVersions.core.internal.problems {
+
+  public final class ProblemLoggingKt {
+  }
+
+}
+
+package de.fayard.refreshVersions.core.internal.versions {
+
+  public final class VersionsPropertiesReadingKt {
+  }
+
+  public final class VersionsPropertiesTransformKt {
+  }
+
+  public final class VersionsPropertiesWritingKt {
+  }
+
+}
+
 package org.gradle.kotlin.dsl {
 
   public final class RefreshVersionsKt {
