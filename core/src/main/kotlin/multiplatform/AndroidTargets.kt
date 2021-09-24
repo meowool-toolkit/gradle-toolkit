@@ -18,6 +18,8 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+import com.android.build.gradle.BaseExtension
+import com.meowool.sweekt.safeCast
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.get
@@ -32,7 +34,16 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 fun Project.androidTarget(
   name: String = "android",
   configure: KotlinAndroidTarget.() -> Unit = {},
-) = kotlinMultiplatform { android(name, configure) }
+) = kotlinMultiplatform {
+  afterEvaluate {
+    extensions.findByName("android").safeCast<BaseExtension>()?.sourceSets?.all {
+      if (manifest.srcFile.exists().not()) {
+        manifest.srcFile("src/android${name.capitalize()}/AndroidManifest.xml")
+      }
+    }
+  }
+  android(name, configure)
+}
 
 /**
  * Configure the main source set of android target.

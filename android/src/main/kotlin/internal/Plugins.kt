@@ -39,11 +39,11 @@ internal fun Project.requireAndroidPlugin() = require(hasAndroidPlugin()) {
 }
 
 internal fun Project.requireAndroidAppPlugin() = require(extensions.findByName("android") is BaseAppModuleExtension) {
-  "This is not an android application project, please make sure to apply the `android` plugin before inject."
+  "This is not an android application project, please make sure the applied plugin is `android` plugin: id(\"com.android.application\")"
 }
 
 internal fun Project.requireAndroidLibPlugin() = require(extensions.findByName("android") is LibraryExtension) {
-  "This is not an android library project, please make sure to apply the `android-library` plugin before inject."
+  "This is not an android library project, please make sure the applied plugin is `android-library` plugin: id(\"com.android.library\")"
 }
 
 internal fun <T : TestedExtension> Project.android(configuration: T.() -> Unit) {

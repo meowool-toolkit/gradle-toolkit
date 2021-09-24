@@ -30,7 +30,10 @@ publication {
   pluginClass = "${data.groupId}.toolkit.GradleToolkitCorePlugin"
 }
 
-dependencies.apiOf(
-  Libs.Kotlin.Gradle.Plugin,
-  Libs.Gradle.CiDetectPlugin,
-)
+dependencies{
+  apiOf(
+    Libs.Kotlin.Gradle.Plugin,
+    Libs.Gradle.CiDetectPlugin,
+  )
+  compileOnly(Libs.Android.Gradle.Plugin)
+}
