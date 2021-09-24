@@ -5,6 +5,9 @@ on: push
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      mavenUsername: ${{ secrets.mavenUsername }}
+      mavenCentralRepositoryPassword: ${{ secrets.mavenCentralRepositoryPassword }}
 
     steps:
       - uses: actions/checkout@v2
