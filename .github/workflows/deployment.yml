@@ -5,9 +5,6 @@ on: push
 jobs:
   publish:
     runs-on: ubuntu-latest
-    env:
-      ORG_GRADLE_PROJECT_mavenUsername: ${{ secrets.mavenUsername }}
-      ORG_GRADLE_PROJECT_mavenCentralRepositoryPassword: ${{ secrets.mavenCentralRepositoryPassword }}
 
     steps:
       - uses: actions/checkout@v2
