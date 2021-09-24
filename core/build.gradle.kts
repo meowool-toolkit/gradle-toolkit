@@ -30,4 +30,7 @@ publication {
   pluginClass = "${data.groupId}.toolkit.GradleToolkitCorePlugin"
 }
 
-dependencies.api(Libs.Kotlin.Gradle.Plugin)
+dependencies.apiOf(
+  Libs.Kotlin.Gradle.Plugin,
+  Libs.Gradle.CiDetectPlugin,
+)

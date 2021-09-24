@@ -22,6 +22,7 @@
 
 package com.meowool.gradle.toolkit.publisher
 
+import be.vbgn.gradle.cidetect.CiInformation
 import com.meowool.gradle.toolkit.publisher.internal.maxOf
 import com.meowool.gradle.toolkit.publisher.internal.onEachParentPublicationData
 import com.meowool.gradle.toolkit.publisher.internal.parentPublicationData
@@ -182,8 +183,29 @@ import org.gradle.api.publish.maven.MavenPomLicense
       .ifNull { project.onEachParentPublicationData { it._version } }
       .ifNull { project.version.toString() }
     set(value) {
-      _version = value
-      project.allprojects { version = value }
+      // Only set this version not in the CI environment
+      if (ciInformation.isCi.not()) {
+        _version = value
+        project.allprojects { version = value }
+      }
+    }
+
+  /**
+   * The version of the Maven publication or Gradle plugin in the continuous integrated environment. If it is
+   * null, use [version].
+   *
+   * Usually this is used to publish different versions locally and in the CI environment (e.g. Github Action).
+   *
+   * @see version
+   */
+  var versionInCI: String?
+    get() = _version
+    set(value) {
+      // Only set this version in the CI environment
+      if (ciInformation.isCi) {
+        _version = value
+        project.allprojects { version = value!! }
+      }
     }
 
   /**
@@ -601,6 +623,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
   private var _vcs: String? = null
   private var _organizationName: String? = null
   private var _organizationUrl: String? = null
+  private val ciInformation = CiInformation.detect(project)
 
   private fun defaultUrl(orVcs: Boolean = true): String? = project.findPropertyOrEnv("publication.url")?.toString()
     .ifNull { project.onEachParentPublicationData { it._url } }

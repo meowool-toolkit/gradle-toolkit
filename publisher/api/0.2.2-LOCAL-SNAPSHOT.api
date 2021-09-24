@@ -93,6 +93,7 @@ package com.meowool.gradle.toolkit.publisher {
     method public String? getUrl();
     method public String? getVcs();
     method public String getVersion();
+    method public String? getVersionInCI();
     method public void license(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.publisher.PublicationData.License,kotlin.Unit> configuration);
     method public void pom(kotlin.jvm.functions.Function1<? super org.gradle.api.publish.maven.MavenPom,kotlin.Unit> configuration);
     method public void setArtifactId(String value);
@@ -105,6 +106,7 @@ package com.meowool.gradle.toolkit.publisher {
     method public void setUrl(String? value);
     method public void setVcs(String? value);
     method public void setVersion(String value);
+    method public void setVersionInCI(String? value);
     method public void tags(java.lang.String... tags);
     property public final String artifactId;
     property public final String? description;
@@ -119,6 +121,7 @@ package com.meowool.gradle.toolkit.publisher {
     property public final String? url;
     property public final String? vcs;
     property public final String version;
+    property public final String? versionInCI;
   }
 
   public static final class PublicationData.Developer {
