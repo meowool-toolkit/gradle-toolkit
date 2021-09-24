@@ -41,8 +41,8 @@ fun Project.optIn(vararg annotationNames: String) = optIn(annotationNames.toList
  */
 fun Project.optIn(annotationNames: Iterable<String>) {
   if (annotationNames.isEmpty()) return
-  addFreeCompilerArgs(annotationNames.map { "-Xopt-in=$it" })
-  extensions.findByType<KotlinMultiplatformExtension>()?.sourceSets?.all {
+  mppExtensionOrNull?.sourceSets?.all {
     languageSettings { annotationNames.forEach(::optIn) }
   }
+  addFreeCompilerArgs(annotationNames.map { "-Xopt-in=$it" })
 }

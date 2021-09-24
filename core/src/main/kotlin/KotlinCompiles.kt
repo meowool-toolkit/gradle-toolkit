@@ -34,24 +34,24 @@ import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
  * @author 凛 (https://github.com/RinOrz)
  */
 fun Project.kotlinCompile(configuration: KotlinCompile<KotlinCommonOptions>.() -> Unit) {
-  extensions.findByType<KotlinMultiplatformExtension>()?.targets?.all {
+  mppExtensionOrNull?.targets?.all {
     compilations.all {
       compileKotlinTask.apply(configuration)
     }
   }
-  tasks.withType(configuration)
+  tasks.withType<KotlinCompile<KotlinCommonOptions>>().all(configuration)
 }
 
 /**
  * Uses given [configuration] to configure kotlin jvm compile task of this project.
  */
 fun Project.kotlinJvmCompile(configuration: KotlinJvmCompile.() -> Unit) {
-  extensions.findByType<KotlinMultiplatformExtension>()?.targets?.all {
+  mppExtensionOrNull?.targets?.all {
     if (this is KotlinJvmTarget) compilations.all {
       compileKotlinTask.apply(configuration)
     }
   }
-  tasks.withType(configuration)
+  tasks.withType<KotlinJvmCompile>().all(configuration)
 }
 
 /**

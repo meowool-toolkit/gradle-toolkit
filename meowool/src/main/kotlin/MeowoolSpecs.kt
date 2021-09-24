@@ -53,8 +53,6 @@ fun GradleToolkitExtension.useMeowoolManualSpec(configuration: MeowoolManualSpec
 
 private fun GradleToolkitExtension.useMeowoolSpecImpl(spec: MeowoolPresetSpec) {
   allprojects(afterEvaluate = false) {
-    project.optIn(spec.optIn)
-    project.addFreeCompilerArgs(spec.compilerArguments)
     spec.repositories.invoke(repositories, project)
     if (spec.enabledSpotless(project) && projectDir.resolve(".skip-spotless").exists().not())
       project.apply<SpotlessPlugin>()
@@ -62,6 +60,11 @@ private fun GradleToolkitExtension.useMeowoolSpecImpl(spec: MeowoolPresetSpec) {
       project.apply<MetalavaPlugin>()
     if (spec.enabledPublisher(project) && projectDir.resolve(".skip-publisher").exists().not())
       project.apply<PublisherPlugin>()
+
+    afterEvaluate {
+      project.optIn(spec.optIn)
+      project.addFreeCompilerArgs(spec.compilerArguments)
+    }
   }
   spec.configurations.forEach { it() }
 }

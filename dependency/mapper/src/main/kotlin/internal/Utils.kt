@@ -209,17 +209,8 @@ internal inline fun String.takeIfEmpty(): String? {
 internal fun String.removeLineBreaks() = replace("\n", "").replace("\r", "").replace("\r\n", "")
 
 // TODO Migration
-internal fun <T> Flow<T>?.orEmpty() = this ?: emptyFlow()
-
-// TODO Migration
 internal fun String?.isDigits(): Boolean = this?.all { it.isDigit() } == true
 
-/**
- * Returns `true` if all contents of this char sequence is chinese.
- */
-fun CharSequence.isEnglish(allowPunctuation: Boolean = true): Boolean = all {
-  if (allowPunctuation) it.isEnglish() else it.isEnglishNotPunctuation()
-}
 
 internal fun <T> List<T>.dropFirst(): List<T> = drop(1)
 internal fun <T> List<T>.dropLast(): List<T> = dropLast(1)
