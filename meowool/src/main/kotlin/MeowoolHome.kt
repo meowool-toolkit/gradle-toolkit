@@ -18,10 +18,12 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+import com.meowool.sweekt.ifNull
 import org.gradle.api.Project
 import java.io.File
 
-internal const val HomePropertyKey = "meowool.home"
+private const val HomePropertyKey = "meowool.home"
+private const val HomeUppercasePropertyKey = "MEOWOOL_HOME"
 
 /**
  * Returns the 'Meowool' home directory.
@@ -29,9 +31,13 @@ internal const val HomePropertyKey = "meowool.home"
  * @author 凛 (https://github.com/RinOrz)
  */
 val Project.meowoolHomeDir: File?
-  get() = findPropertyOrEnv(HomePropertyKey)?.toString()?.let(::File)?.takeIf { it.exists() }.also {
-    if (it == null) logger.warn(
-      "You are currently developing a project belonging to the 'Meowool-Organization', in order " +
-        "to standardize you should define `meowool.home` in the system environment variables first."
-    )
-  }
+  get() = findPropertyOrEnv(HomePropertyKey)?.toString()
+    .ifNull { findPropertyOrEnv(HomeUppercasePropertyKey)?.toString() }
+    ?.let(::File)
+    ?.takeIf { it.exists() }
+    .also {
+      if (it == null) logger.warn(
+        "You are currently developing a project belonging to the 'Meowool-Organization', in order " +
+          "to normalize you should define `$HomePropertyKey` or `$HomeUppercasePropertyKey` in the system environment variables first."
+      )
+    }

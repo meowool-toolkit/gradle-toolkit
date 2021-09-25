@@ -2,3 +2,4 @@
 /.gradle/
 /build/**
 /.dependency-mapper
+local.properties
