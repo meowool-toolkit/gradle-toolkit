@@ -57,22 +57,6 @@ class GradleToolkitCorePlugin : Plugin<Any> {
         @Suppress("DEPRECATION")
         useIR = true
       }
-      plugins.matching { it is KotlinMultiplatformPluginWrapper }.all {
-        kotlinMultiplatformExtensionOrNull?.apply {
-          sourceSets.findByName("jvmMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
-          sourceSets.findByName("androidMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
-
-          sourceSets.findByName("jvmTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
-          sourceSets.findByName("androidTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
-
-          targets.all {
-            if (this is KotlinAndroidTarget) {
-              // Overwrite can be avoided in this case
-              if (publishLibraryVariants.isNullOrEmpty()) publishAllLibraryVariants()
-            }
-          }
-        }
-      }
 
 //        extensions.findByType<JavaPluginExtension>()?.apply {
 //          sourceCompatibility = JavaVersion.VERSION_1_8
@@ -92,8 +76,21 @@ class GradleToolkitCorePlugin : Plugin<Any> {
       afterEvaluate {
         optIn("kotlin.RequiresOptIn")
 
-        if (kotlinMultiplatformExtensionOrNull == null)
-        extensions.findByType<SourceSetContainer>()?.apply {
+        kotlinMultiplatformExtensionOrNull?.apply {
+          // TODO Custom shared source sets until https://youtrack.jetbrains.com/issue/KT-42466 is completed
+          sourceSets.findByName("jvmMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
+          sourceSets.findByName("androidMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
+
+          sourceSets.findByName("jvmTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
+          sourceSets.findByName("androidTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
+
+          targets.all {
+            if (this is KotlinAndroidTarget) {
+              // Overwrite can be avoided in this case
+              if (publishLibraryVariants.isNullOrEmpty()) publishAllLibraryVariants()
+            }
+          }
+        } ?: extensions.findByType<SourceSetContainer>()?.apply {
           findByName("main")?.java?.srcDirs("src/main/kotlin")
           findByName("test")?.java?.srcDirs("src/test/kotlin")
         }

@@ -44,7 +44,7 @@ fun Project.androidTarget(
         ?.let(manifest::srcFile)
     }
   }
-  // TODO Remove until https://youtrack.jetbrains.com/issue/KTIJ-18575 fixed
+  // TODO Temporary solution until https://youtrack.jetbrains.com/issue/KTIJ-18575 fixed
   sourceSets.removeAll { it.name == "androidAndroidTestRelease" }
 }
 
