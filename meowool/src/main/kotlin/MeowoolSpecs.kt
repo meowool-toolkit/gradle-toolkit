@@ -30,6 +30,7 @@ import org.gradle.api.Project
 import org.gradle.api.initialization.Settings
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.repositories
 
 /**
  * Uses the specification of 'Meowool-Organization' and configure with [configuration].
@@ -54,8 +55,13 @@ fun GradleToolkitExtension.useMeowoolManualSpec(configuration: MeowoolManualSpec
 private fun GradleToolkitExtension.useMeowoolSpecImpl(spec: MeowoolPresetSpec) {
   allprojects(afterEvaluate = false) {
     spec.repositories.invoke(repositories, project)
-    if (spec.enabledSpotless(project) && projectDir.resolve(".skip-spotless").exists().not())
+    if (spec.enabledSpotless(project) && projectDir.resolve(".skip-spotless").exists().not()) {
+      // Add a maven central repository to avoid the formatter dependency not found (ktlint, google-java-format)
+      if (project == rootProject) {
+        project.buildscript.repositories { mavenCentral() }
+      }
       project.apply<SpotlessPlugin>()
+    }
     if (spec.enabledMetalava(project) && projectDir.resolve(".skip-metalava").exists().not())
       project.apply<MetalavaPlugin>()
     if (spec.enabledPublisher(project) && projectDir.resolve(".skip-publisher").exists().not())
