@@ -23,21 +23,15 @@ package com.meowool.gradle.toolkit
 import addIfNotExists
 import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl
 import kotlinJvmOptions
-import kotlinMultiplatformExtension
 import kotlinMultiplatformExtensionOrNull
 import optIn
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.initialization.Settings
-import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.SourceSetContainer
-import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 /**
  * Enhanced plugin core for gradle kotlin dsl.
@@ -59,13 +53,26 @@ class GradleToolkitCorePlugin : Plugin<Any> {
       GradleToolkitExtensionImpl(rootProject)
     }
     allprojects {
-      afterEvaluate {
-        optIn("kotlin.RequiresOptIn")
+      kotlinJvmOptions {
+        @Suppress("DEPRECATION")
+        useIR = true
+      }
+      plugins.matching { it is KotlinMultiplatformPluginWrapper }.all {
+        kotlinMultiplatformExtensionOrNull?.apply {
+          sourceSets.findByName("jvmMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
+          sourceSets.findByName("androidMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
 
-        kotlinJvmOptions {
-          @Suppress("DEPRECATION")
-          useIR = true
+          sourceSets.findByName("jvmTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
+          sourceSets.findByName("androidTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
+
+          targets.all {
+            if (this is KotlinAndroidTarget) {
+              // Overwrite can be avoided in this case
+              if (publishLibraryVariants.isNullOrEmpty()) publishAllLibraryVariants()
+            }
+          }
         }
+      }
 
 //        extensions.findByType<JavaPluginExtension>()?.apply {
 //          sourceCompatibility = JavaVersion.VERSION_1_8
@@ -82,20 +89,11 @@ class GradleToolkitCorePlugin : Plugin<Any> {
 //          targetCompatibility = JavaVersion.VERSION_1_8.toString()
 //        }
 
-        kotlinMultiplatformExtensionOrNull?.apply {
-          sourceSets.findByName("jvmMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
-          sourceSets.findByName("androidMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
+      afterEvaluate {
+        optIn("kotlin.RequiresOptIn")
 
-          sourceSets.findByName("jvmTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
-          sourceSets.findByName("androidTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
-
-          targets.all {
-            if (this is KotlinAndroidTarget) {
-              // Overwrite can be avoided in this case
-              if (publishLibraryVariants.isNullOrEmpty()) publishAllLibraryVariants()
-            }
-          }
-        } ?: extensions.findByType<SourceSetContainer>()?.apply {
+        if (kotlinMultiplatformExtensionOrNull == null)
+        extensions.findByType<SourceSetContainer>()?.apply {
           findByName("main")?.java?.srcDirs("src/main/kotlin")
           findByName("test")?.java?.srcDirs("src/test/kotlin")
         }
