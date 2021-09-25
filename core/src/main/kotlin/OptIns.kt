@@ -22,8 +22,6 @@
 
 import com.meowool.sweekt.iteration.isEmpty
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.findByType
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 /**
  * Uses all given annotation classes [annotationNames] and suppress their experimental warning.
@@ -41,7 +39,7 @@ fun Project.optIn(vararg annotationNames: String) = optIn(annotationNames.toList
  */
 fun Project.optIn(annotationNames: Iterable<String>) {
   if (annotationNames.isEmpty()) return
-  mppExtensionOrNull?.sourceSets?.all {
+  kotlinMultiplatformExtensionOrNull?.sourceSets?.all {
     languageSettings { annotationNames.forEach(::optIn) }
   }
   addFreeCompilerArgs(annotationNames.map { "-Xopt-in=$it" })

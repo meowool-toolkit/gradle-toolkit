@@ -61,7 +61,7 @@ val NamedDomainObjectContainer<KotlinSourceSet>.jvmMain: KotlinSourceSet
   get() = get("jvmMain")
 
 val Project.jvmMainSourceSet: KotlinSourceSet
-  get() = mppExtension.sourceSets.jvmMain
+  get() = kotlinMultiplatformExtension.sourceSets.jvmMain
 
 val KotlinJvmTarget.main: KotlinSourceSet
   get() = project.jvmMainSourceSet
@@ -70,7 +70,7 @@ val NamedDomainObjectContainer<KotlinSourceSet>.jvmTest: KotlinSourceSet
   get() = get("jvmTest")
 
 val Project.jvmTestSourceSet: KotlinSourceSet
-  get() = mppExtension.sourceSets.jvmTest
+  get() = kotlinMultiplatformExtension.sourceSets.jvmTest
 
 val KotlinJvmTarget.test: KotlinSourceSet
   get() = project.jvmTestSourceSet

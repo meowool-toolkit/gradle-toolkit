@@ -60,7 +60,7 @@ val NamedDomainObjectContainer<KotlinSourceSet>.commonMain: KotlinSourceSet
   get() = get("commonMain")
 
 val Project.commonMainSourceSet: KotlinSourceSet
-  get() = mppExtension.sourceSets.commonMain
+  get() = kotlinMultiplatformExtension.sourceSets.commonMain
 
 val CommonTarget.main: KotlinSourceSet
   get() = extension.sourceSets.commonMain
@@ -69,7 +69,7 @@ val NamedDomainObjectContainer<KotlinSourceSet>.commonTest: KotlinSourceSet
   get() = get("commonMain")
 
 val Project.commonTestSourceSet: KotlinSourceSet
-  get() = mppExtension.sourceSets.commonTest
+  get() = kotlinMultiplatformExtension.sourceSets.commonTest
 
 val CommonTarget.test: KotlinSourceSet
   get() = extension.sourceSets.commonTest

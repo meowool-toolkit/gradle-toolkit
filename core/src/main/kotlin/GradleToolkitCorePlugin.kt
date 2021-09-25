@@ -22,6 +22,9 @@ package com.meowool.gradle.toolkit
 
 import addIfNotExists
 import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl
+import kotlinJvmOptions
+import kotlinMultiplatformExtension
+import kotlinMultiplatformExtensionOrNull
 import optIn
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -59,39 +62,27 @@ class GradleToolkitCorePlugin : Plugin<Any> {
       afterEvaluate {
         optIn("kotlin.RequiresOptIn")
 
-        // TODO Remove
-//        kotlinOptions {
-//          apiVersion = KotlinApiVersion
-//          languageVersion = KotlinLanguageVersion
+        kotlinJvmOptions {
+          @Suppress("DEPRECATION")
+          useIR = true
+        }
+
+//        extensions.findByType<JavaPluginExtension>()?.apply {
+//          sourceCompatibility = JavaVersion.VERSION_1_8
+//          targetCompatibility = JavaVersion.VERSION_1_8
 //        }
 //
-//        kotlinJvmOptions {
-//          @Suppress("DEPRECATION")
-//          useIR = true
-//          jvmTarget = KotlinJvmTarget
+//        tasks.withType<JavaCompile> {
+//          sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+//          targetCompatibility = JavaVersion.VERSION_1_8.toString()
+//        }
+//
+//        tasks.withType<KotlinCompile> {
+//          sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+//          targetCompatibility = JavaVersion.VERSION_1_8.toString()
 //        }
 
-        extensions.findByType<SourceSetContainer>()?.apply {
-          findByName("main")?.java?.srcDirs("src/main/kotlin")
-          findByName("test")?.java?.srcDirs("src/test/kotlin")
-        }
-
-        extensions.findByType<JavaPluginExtension>()?.apply {
-          sourceCompatibility = JavaVersion.VERSION_1_8
-          targetCompatibility = JavaVersion.VERSION_1_8
-        }
-
-        tasks.withType<JavaCompile> {
-          sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-          targetCompatibility = JavaVersion.VERSION_1_8.toString()
-        }
-
-        tasks.withType<KotlinCompile> {
-          sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-          targetCompatibility = JavaVersion.VERSION_1_8.toString()
-        }
-
-        extensions.findByType<KotlinMultiplatformExtension>()?.apply {
+        kotlinMultiplatformExtensionOrNull?.apply {
           sourceSets.findByName("jvmMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
           sourceSets.findByName("androidMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
 
@@ -104,6 +95,9 @@ class GradleToolkitCorePlugin : Plugin<Any> {
               if (publishLibraryVariants.isNullOrEmpty()) publishAllLibraryVariants()
             }
           }
+        } ?: extensions.findByType<SourceSetContainer>()?.apply {
+          findByName("main")?.java?.srcDirs("src/main/kotlin")
+          findByName("test")?.java?.srcDirs("src/test/kotlin")
         }
       }
     }

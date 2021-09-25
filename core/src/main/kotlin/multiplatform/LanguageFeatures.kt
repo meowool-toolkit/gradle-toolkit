@@ -19,7 +19,6 @@
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.findByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 /**
@@ -28,7 +27,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
  * @author 凛 (https://github.com/RinOrz)
  */
 fun Project.enableLanguageFeatures(vararg names: String) =
-  mppExtensionOrNull?.enableLanguageFeatures(*names)
+  kotlinMultiplatformExtensionOrNull?.enableLanguageFeatures(*names)
 
 /**
  * Enable all language features by given [names].

@@ -33,8 +33,8 @@ fun Project.kotlinMultiplatform(configuration: KotlinMultiplatformExtension.() -
   extensions.configure(configuration)
 }
 
-internal inline val Project.mppExtensionOrNull: KotlinMultiplatformExtension?
+internal inline val Project.kotlinMultiplatformExtensionOrNull: KotlinMultiplatformExtension?
   get() = extensions.findByType()
 
-internal inline val Project.mppExtension: KotlinMultiplatformExtension
-  get() = mppExtensionOrNull ?: error("Please apply the `kotlin-multiplatform` plugin first.")
+internal inline val Project.kotlinMultiplatformExtension: KotlinMultiplatformExtension
+  get() = kotlinMultiplatformExtensionOrNull ?: error("Please apply the `kotlin-multiplatform` plugin first.")

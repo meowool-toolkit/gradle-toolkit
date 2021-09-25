@@ -20,13 +20,12 @@
  */
 import com.android.build.gradle.BaseExtension
 import com.meowool.sweekt.cast
-import com.meowool.sweekt.ifNull
-import com.meowool.sweekt.safeCast
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.get
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
+import java.io.File
 
 /**
  * Enable and configure target of android target.
@@ -40,7 +39,9 @@ fun Project.androidTarget(
   android(name, configure)
   extensions.findByName("android").cast<BaseExtension>().sourceSets.all {
     if (manifest.srcFile.exists().not()) {
-      manifest.srcFile("src/android${name.capitalize()}/AndroidManifest.xml")
+      File("src/android${name.capitalize()}/AndroidManifest.xml")
+        .takeIf { it.exists() }
+        ?.let(manifest::srcFile)
     }
   }
 }
@@ -62,7 +63,7 @@ val NamedDomainObjectContainer<KotlinSourceSet>.androidMain: KotlinSourceSet
   get() = get("androidMain")
 
 val Project.androidMainSourceSet: KotlinSourceSet
-  get() = mppExtension.sourceSets.androidMain
+  get() = kotlinMultiplatformExtension.sourceSets.androidMain
 
 val KotlinAndroidTarget.main: KotlinSourceSet
   get() = project.androidMainSourceSet
@@ -71,7 +72,7 @@ val NamedDomainObjectContainer<KotlinSourceSet>.androidTest: KotlinSourceSet
   get() = get("androidTest")
 
 val Project.androidTestSourceSet: KotlinSourceSet
-  get() = mppExtension.sourceSets.androidTest
+  get() = kotlinMultiplatformExtension.sourceSets.androidTest
 
 val KotlinAndroidTarget.test: KotlinSourceSet
   get() = project.androidTestSourceSet

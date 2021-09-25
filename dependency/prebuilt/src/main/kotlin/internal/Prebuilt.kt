@@ -170,7 +170,10 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
   }
 }
 
-/** com or Com or COM */
-private fun String.removePrefixFuzzy(prefix: String) = removePrefix(prefix)
+private fun String.removePrefixFuzzy(prefix: String) =
+  // com
+  removePrefix(prefix)
+  // Com
   .removePrefix(prefix.capitalize())
-  .removePrefix(prefix.toUpperCase())
+  // COM
+  .removePrefix(prefix.uppercase())

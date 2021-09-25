@@ -19,13 +19,11 @@
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 
 /**
@@ -34,7 +32,7 @@ import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
  * @author 凛 (https://github.com/RinOrz)
  */
 fun Project.kotlinCompile(configuration: KotlinCompile<KotlinCommonOptions>.() -> Unit) {
-  mppExtensionOrNull?.targets?.all {
+  kotlinMultiplatformExtensionOrNull?.targets?.all {
     compilations.all {
       compileKotlinTask.apply(configuration)
     }
@@ -46,7 +44,7 @@ fun Project.kotlinCompile(configuration: KotlinCompile<KotlinCommonOptions>.() -
  * Uses given [configuration] to configure kotlin jvm compile task of this project.
  */
 fun Project.kotlinJvmCompile(configuration: KotlinJvmCompile.() -> Unit) {
-  mppExtensionOrNull?.targets?.all {
+  kotlinMultiplatformExtensionOrNull?.targets?.all {
     if (this is KotlinJvmTarget) compilations.all {
       compileKotlinTask.apply(configuration)
     }
