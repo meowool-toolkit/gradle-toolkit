@@ -1,3 +1,1 @@
-plugins { `android-library` }
-
-androidLib {}
+androidApp { sourceSets.main.manifest.srcFile("AndroidManifest.xml") }

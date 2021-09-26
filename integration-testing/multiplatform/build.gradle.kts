@@ -18,20 +18,17 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+androidLib { sourceSets.main.manifest.srcFile("AndroidManifest.xml") }
 
-/**
- * Represents this [KotlinSourceSet] depends on the given [others] source sets.
- *
- * @author 凛 (https://github.com/RinOrz)
- */
-fun KotlinSourceSet.dependsOn(vararg others: KotlinSourceSet) {
-  others.forEach(::dependsOn)
-}
+commonTarget()
+androidTarget()
+jvmTarget()
 
-/**
- * Represents this [KotlinSourceSet] depends on the given [others] source sets.
- */
-fun KotlinSourceSet.dependsOn(others: Iterable<KotlinSourceSet>) {
-  others.forEach(::dependsOn)
+publication {
+  data {
+    groupId = "com.meowool.gradle.test"
+    artifactId = "multiplatform-test"
+    version = "0.1.0"
+  }
+  publishToDirectory(buildDir.resolve("repo"))
 }

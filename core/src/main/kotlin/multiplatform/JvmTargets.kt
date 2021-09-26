@@ -41,14 +41,14 @@ inline fun Project.jvmTarget(
 /**
  * Configure the main source set of jvm target.
  */
-inline  fun KotlinJvmTarget.main(configure: KotlinSourceSet.() -> Unit) {
+inline fun KotlinJvmTarget.main(configure: KotlinSourceSet.() -> Unit) {
   main.apply(configure)
 }
 
 /**
  * Configure the main source set of jvm target.
  */
-inline  fun KotlinJvmTarget.test(configure: KotlinSourceSet.() -> Unit) {
+inline fun KotlinJvmTarget.test(configure: KotlinSourceSet.() -> Unit) {
   test.apply(configure)
 }
 

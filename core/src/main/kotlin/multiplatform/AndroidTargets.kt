@@ -21,7 +21,6 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
 import com.android.build.gradle.BaseExtension
-import com.meowool.sweekt.cast
 import com.meowool.sweekt.safeCast
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project

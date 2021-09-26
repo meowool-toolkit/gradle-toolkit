@@ -30,7 +30,6 @@ import org.gradle.api.Project
 import org.gradle.api.initialization.Settings
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.kotlin.dsl.findByType
-import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 
 /**
@@ -58,20 +57,20 @@ class GradleToolkitCorePlugin : Plugin<Any> {
         useIR = true
       }
 
-//        extensions.findByType<JavaPluginExtension>()?.apply {
-//          sourceCompatibility = JavaVersion.VERSION_1_8
-//          targetCompatibility = JavaVersion.VERSION_1_8
-//        }
+//      extensions.findByType<JavaPluginExtension>()?.apply {
+//        sourceCompatibility = JavaVersion.VERSION_1_8
+//        targetCompatibility = JavaVersion.VERSION_1_8
+//      }
 //
-//        tasks.withType<JavaCompile> {
-//          sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-//          targetCompatibility = JavaVersion.VERSION_1_8.toString()
-//        }
+//      tasks.withType<JavaCompile> {
+//        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+//        targetCompatibility = JavaVersion.VERSION_1_8.toString()
+//      }
 //
-//        tasks.withType<KotlinCompile> {
-//          sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-//          targetCompatibility = JavaVersion.VERSION_1_8.toString()
-//        }
+//      tasks.withType<KotlinCompile> {
+//        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+//        targetCompatibility = JavaVersion.VERSION_1_8.toString()
+//      }
 
       afterEvaluate {
         optIn("kotlin.RequiresOptIn")
@@ -79,7 +78,7 @@ class GradleToolkitCorePlugin : Plugin<Any> {
         kotlinMultiplatformExtensionOrNull?.apply {
           // TODO Custom shared source sets until https://youtrack.jetbrains.com/issue/KT-42466 is completed
           sourceSets.all {
-            when(name) {
+            when (name) {
               "jvmMain", "androidMain" -> kotlin.srcDirs("src/jvmShareMain/kotlin")
               "jvmTest", "androidTest" -> kotlin.srcDirs("src/jvmShareTest/kotlin")
             }
