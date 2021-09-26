@@ -38,6 +38,7 @@ import com.meowool.gradle.toolkit.publisher.internal.isCompatible
 import com.meowool.gradle.toolkit.publisher.internal.isMultiplatform
 import com.meowool.gradle.toolkit.publisher.internal.repositoriesToClose
 import com.meowool.gradle.toolkit.publisher.internal.stagingDescription
+import com.meowool.sweekt.castOrNull
 import com.meowool.sweekt.isNotNull
 import com.meowool.sweekt.safeCast
 import groovy.util.Node
@@ -278,7 +279,7 @@ class PublisherPlugin : Plugin<Project> {
       if (isSnapshotVersion) return@afterEvaluate
 
       val dokkaJar by tasks.register<Jar>("dokkaJar") {
-        val dokkaTask = tasks.findByName(dokkaFormat!!.taskName).safeCast()
+        val dokkaTask = tasks.findByName(dokkaFormat!!.taskName).castOrNull()
           ?: tasks.withType<DokkaTask>().first()
 
         dependsOn(dokkaTask)

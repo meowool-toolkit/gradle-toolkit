@@ -26,8 +26,8 @@ import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.internal.dsl.DefaultConfig
 import com.android.build.gradle.internal.scope.GlobalScope
+import com.meowool.sweekt.castOrNull
 import com.meowool.sweekt.ifNull
-import com.meowool.sweekt.safeCast
 import org.gradle.api.Project
 
 /**
@@ -117,7 +117,7 @@ internal fun BaseExtension.getGlobalProject(): Project {
       javaClass.declaredMethods
         .firstOrNull { it.returnType == GlobalScope::class.java }
         ?.apply { isAccessible = true }?.invoke(this)
-    }.safeCast<GlobalScope>() ?: error("Unable to get the 'GlobalScope' in 'BaseExtension'!")
+    }.castOrNull<GlobalScope>() ?: error("Unable to get the 'GlobalScope' in 'BaseExtension'!")
 
   val project = globalScope.javaClass.declaredFields
     .firstOrNull { it.type == Project::class.java }
@@ -126,7 +126,7 @@ internal fun BaseExtension.getGlobalProject(): Project {
       globalScope.javaClass.declaredMethods
         .firstOrNull { it.returnType == Project::class.java }
         ?.apply { isAccessible = true }?.invoke(globalScope)
-    }.safeCast<Project>() ?: error("Unable to get the 'Project' in 'GlobalScope'!")
+    }.castOrNull<Project>() ?: error("Unable to get the 'Project' in 'GlobalScope'!")
 
   return project
 }

@@ -28,6 +28,7 @@ import com.meowool.gradle.toolkit.PluginDependencyDeclaration
 import com.meowool.gradle.toolkit.ProjectDependencyDeclaration
 import com.meowool.gradle.toolkit.internal.DependencyMapperInternal.CacheDir
 import com.meowool.gradle.toolkit.internal.DependencyMapperInternal.DependencyOutputList
+import com.meowool.sweekt.firstCharTitlecase
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.serializer.KotlinxSerializer.Companion.DefaultJson
 import io.ktor.client.request.get
@@ -171,5 +172,5 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
 }
 
 private fun String.removePrefixFuzzy(prefix: String) = removePrefix(prefix) // com
-  .removePrefix(prefix.capitalize()) // Com
+  .removePrefix(prefix.firstCharTitlecase()) // Com
   .removePrefix(prefix.uppercase()) // COM

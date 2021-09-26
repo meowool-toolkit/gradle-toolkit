@@ -21,6 +21,7 @@
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.api.BaseVariant
+import com.meowool.sweekt.firstCharTitlecase
 import org.gradle.api.Project
 import org.gradle.api.Task
 
@@ -38,7 +39,7 @@ import org.gradle.api.Task
  */
 fun Project.findAndroidTask(name: String, ignoreCase: Boolean = false): Task? {
   fun Task.matches(variant: BaseVariant) =
-    this.name.equals(name.replace("*", variant.buildType.name.capitalize()), ignoreCase)
+    this.name.equals(name.replace("*", variant.buildType.name.firstCharTitlecase()), ignoreCase)
 
   extensions.getByName("android").apply {
     return when (this) {

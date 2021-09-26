@@ -26,6 +26,7 @@ import be.vbgn.gradle.cidetect.CiInformation
 import com.meowool.gradle.toolkit.publisher.internal.maxOf
 import com.meowool.gradle.toolkit.publisher.internal.onEachParentPublicationData
 import com.meowool.gradle.toolkit.publisher.internal.parentPublicationData
+import com.meowool.sweekt.firstCharTitlecase
 import com.meowool.sweekt.ifNull
 import findPropertyOrEnv
 import org.gradle.api.Project
@@ -242,7 +243,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
   var displayName: String
     get() = _displayName
       .ifNull { project.findPropertyOrEnv("publication.displayName")?.toString() }
-      .ifNull { artifactId.split('-').joinToString(" ") { it.capitalize() } }
+      .ifNull { artifactId.split('-').joinToString(" ") { it.firstCharTitlecase() } }
     set(value) {
       _displayName = value
     }

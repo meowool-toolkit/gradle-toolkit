@@ -26,7 +26,7 @@ import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.meowool.gradle.toolkit.LogicRegistry
 import com.meowool.gradle.toolkit.internal.InternalGradleToolkitApi
 import com.meowool.sweekt.cast
-import com.meowool.sweekt.safeCast
+import com.meowool.sweekt.castOrNull
 import org.gradle.api.Project
 import java.util.concurrent.ConcurrentHashMap
 
@@ -61,13 +61,13 @@ object AndroidLogicRegistry {
 
   /** [TestedExtension] */
   internal fun LogicRegistry.getAndroidCommonLogic(key: Any): (TestedExtension.(Project) -> Unit)? =
-    getOrCreateLogicPool("common")[key].safeCast()
+    getOrCreateLogicPool("common")[key].castOrNull()
 
   /** [BaseAppModuleExtension] */
   internal fun LogicRegistry.getAndroidAppLogic(key: Any): (BaseAppModuleExtension.(Project) -> Unit)? =
-    getOrCreateLogicPool("application")[key].safeCast()
+    getOrCreateLogicPool("application")[key].castOrNull()
 
   /** [LibraryExtension] */
   internal fun LogicRegistry.getAndroidLibLogic(key: Any): (LibraryExtension.(Project) -> Unit)? =
-    getOrCreateLogicPool("library")[key].safeCast()
+    getOrCreateLogicPool("library")[key].castOrNull()
 }

@@ -22,7 +22,8 @@
 
 package com.meowool.gradle.toolkit
 
-import com.meowool.gradle.toolkit.internal.removeSuffix
+import com.meowool.sweekt.firstCharTitlecase
+import com.meowool.sweekt.iteration.removeSuffix
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
@@ -230,7 +231,7 @@ data class DependencyFormatter(
     val isCapitalize = capitalizationPredicates.all { it(name) }
     val processedName = nameProcessors.fold(name) { acc, processor -> processor(acc) }
     return when {
-      isCapitalize -> processedName.capitalize()
+      isCapitalize -> processedName.firstCharTitlecase()
       else -> processedName
     }
   }

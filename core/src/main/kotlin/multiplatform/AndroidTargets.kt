@@ -21,6 +21,8 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
 import com.android.build.gradle.BaseExtension
+import com.meowool.sweekt.castOrNull
+import com.meowool.sweekt.firstCharTitlecase
 import com.meowool.sweekt.safeCast
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
@@ -37,9 +39,9 @@ inline fun Project.androidTarget(
   name: String = "android",
   noinline configure: KotlinAndroidTarget.() -> Unit = {},
 ) {
-  project.extensions.findByName("android").safeCast<BaseExtension>()?.sourceSets?.all {
+  project.extensions.findByName("android").castOrNull<BaseExtension>()?.sourceSets?.all {
     if (manifest.srcFile.exists().not()) {
-      project.file("src/android${getName().capitalize()}/AndroidManifest.xml")
+      project.file("src/android${getName().firstCharTitlecase()}/AndroidManifest.xml")
         .takeIf { it.exists() }
         ?.let(manifest::srcFile)
     }

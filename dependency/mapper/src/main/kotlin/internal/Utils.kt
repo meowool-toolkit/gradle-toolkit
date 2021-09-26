@@ -25,12 +25,6 @@ package com.meowool.gradle.toolkit.internal
 import com.meowool.sweekt.className
 import com.meowool.sweekt.coroutines.contains
 import com.meowool.sweekt.datetime.nanos
-import com.meowool.sweekt.isEnglish
-import com.meowool.sweekt.isEnglishNotPunctuation
-import com.meowool.sweekt.iteration.endsWith
-import com.meowool.sweekt.iteration.isNullOrEmpty
-import com.meowool.sweekt.iteration.size
-import com.meowool.sweekt.iteration.startsWith
 import com.meowool.sweekt.select
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.consumeEach
@@ -39,7 +33,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.retry
@@ -154,139 +147,6 @@ fun <T, K> Flow<T>.distinctBy(selector: (T) -> K): Flow<T> = flow {
       emit(value)
   }
 }
-/**
- * Returns `this` value if it satisfies the given [predicate] or `null`, if it doesn't.
- *
- * For detailed usage information see the documentation for [scope functions](https://kotlinlang.org/docs/reference/scope-functions.html#takeif-and-takeunless).
- */
-// TODO Migration
-internal inline fun <T> List<T>.takeIfEmpty(): List<T>? {
-  return if (isEmpty()) this else null
-}
-
-// TODO Migration
-internal inline fun <T> List<T>?.takeIfNullOrEmpty(): List<T>? {
-  return if (isNullOrEmpty()) this else null
-}
-
-/**
- * Returns `this` value if it satisfies the given [predicate] or `null`, if it doesn't.
- *
- * For detailed usage information see the documentation for [scope functions](https://kotlinlang.org/docs/reference/scope-functions.html#takeif-and-takeunless).
- */
-// TODO Migration
-internal inline fun <T> List<T>?.takeIfNotEmpty(): List<T>? {
-  return if (isNullOrEmpty()) null else this
-}
-
-// TODO Migration
-internal inline fun <C : CharSequence> C?.takeIfNotEmpty(): C? {
-  return if (isNullOrEmpty()) null else this
-}
-// TODO Migration
-internal inline fun <C : CharSequence> C?.takeIfNullOrEmpty(): C? {
-  return if (isNullOrEmpty()) this else null
-}
-// TODO Migration
-internal inline fun <C : CharSequence> C.takeIfEmpty(): C? {
-  return if (isEmpty()) this else null
-}
-
-// TODO Migration
-internal inline fun String?.takeIfNotEmpty(): String? {
-  return if (isNullOrEmpty()) null else this
-}
-// TODO Migration
-internal inline fun String?.takeIfNullOrEmpty(): String? {
-  return if (isNullOrEmpty()) this else null
-}
-// TODO Migration
-internal inline fun String.takeIfEmpty(): String? {
-  return if (isEmpty()) this else null
-}
-
-// TODO Migration
-internal fun String.removeLineBreaks() = replace("\n", "").replace("\r", "").replace("\r\n", "")
-
-// TODO Migration
-internal fun <T> Flow<T>?.orEmpty() = this ?: emptyFlow()
-
-// TODO Migration
-internal fun String?.isDigits(): Boolean = this?.all { it.isDigit() } == true
-
-/**
- * Returns `true` if all contents of this char sequence is chinese.
- */
-fun CharSequence.isEnglish(allowPunctuation: Boolean = true): Boolean = all {
-  if (allowPunctuation) it.isEnglish() else it.isEnglishNotPunctuation()
-}
-
-internal fun <T> List<T>.dropFirst(): List<T> = drop(1)
-internal fun <T> List<T>.dropLast(): List<T> = dropLast(1)
-
-internal fun <T> MutableList<T>.deleteLast(n: Int) {
-  subList(this.size - n, this.size).clear()
-}
-
-internal fun <T> MutableList<T>.delete(n: Int) {
-  subList(0, n).clear()
-}
-
-/**
- * Returns `true` if this iterable starts with given [slice].
- */
-fun <T> Iterable<T>.startsWith(slice: T) = this.first() == slice
-
-/**
- * Returns `true` if this iterable ends with given [slice].
- */
-fun <T> Iterable<T>.endsWith(slice: T) = this.last() == slice
-
-internal fun <T> List<T>.dropPrefix(prefix: T): List<T> =
-  if (startsWith(prefix)) this.dropFirst() else this
-
-internal fun <T> List<T>.dropPrefix(vararg prefix: T): List<T> =
-  if (startsWith(*prefix)) this.drop(prefix.size) else this
-
-internal fun <T> List<T>.dropPrefix(prefix: Iterable<T>): List<T> =
-  if (startsWith(prefix)) this.drop(prefix.size) else this
-
-internal fun <T> List<T>.dropSuffix(suffix: T): List<T> =
-  if (endsWith(suffix)) this.dropLast() else this
-
-internal fun <T> List<T>.dropSuffix(vararg suffix: T): List<T> =
-  if (endsWith(*suffix)) this.dropLast(suffix.size) else this
-
-internal fun <T> List<T>.dropSuffix(suffix: Iterable<T>): List<T> =
-  if (endsWith(suffix)) this.dropLast(suffix.size) else this
-
-internal fun <T> MutableList<T>.removePrefix(prefix: T) {
-  if (startsWith(prefix)) removeFirst()
-}
-
-internal fun <T> MutableList<T>.removePrefix(vararg prefix: T) {
-  if (startsWith(*prefix)) delete(prefix.size)
-}
-
-internal fun <T> MutableList<T>.removePrefix(prefix: Iterable<T>) {
-  if (startsWith(prefix)) delete(prefix.size)
-}
-
-internal fun <T> MutableList<T>.removeSuffix(suffix: T) {
-  if (endsWith(suffix)) removeLast()
-}
-
-internal fun <T> MutableList<T>.removeSuffix(vararg suffix: T) {
-  if (endsWith(suffix)) deleteLast(suffix.size)
-}
-
-internal fun <T> MutableList<T>.removeSuffix(suffix: Iterable<T>) {
-  if (endsWith(suffix)) deleteLast(suffix.size)
-}
-/**
- * Returns `true` if at least one element matches the given [element].
- */
-suspend fun <T> Flow<T>.contains(element: T): Boolean = contains { it == element }
 
 internal fun <T> Flow<T>.retryConnection(): Flow<T> = retry(50) {
   delay(8)
