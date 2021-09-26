@@ -78,11 +78,12 @@ class GradleToolkitCorePlugin : Plugin<Any> {
 
         kotlinMultiplatformExtensionOrNull?.apply {
           // TODO Custom shared source sets until https://youtrack.jetbrains.com/issue/KT-42466 is completed
-          sourceSets.findByName("jvmMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
-          sourceSets.findByName("androidMain")?.kotlin?.srcDirs("src/jvmMainShared/kotlin")
-
-          sourceSets.findByName("jvmTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
-          sourceSets.findByName("androidTest")?.kotlin?.srcDirs("src/jvmTestShared/kotlin")
+          sourceSets.all {
+            when(name) {
+              "jvmMain", "androidMain" -> kotlin.srcDirs("src/jvmShareMain/kotlin")
+              "jvmTest", "androidTest" -> kotlin.srcDirs("src/jvmShareTest/kotlin")
+            }
+          }
 
           targets.all {
             if (this is KotlinAndroidTarget) {
