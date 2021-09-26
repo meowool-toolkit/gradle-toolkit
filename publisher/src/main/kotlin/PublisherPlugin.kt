@@ -85,6 +85,9 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
  */
 class PublisherPlugin : Plugin<Project> {
   override fun apply(target: Project) = with(target) {
+    // Apply the plugin earlier, otherwise `kotlin-multiplatform` will lack artifacts
+    apply<MavenPublishPlugin>()
+
     extensions.addIfNotExists("publication") { PublicationExtension(project) }
     afterEvaluate {
       val extension = extensions.getByType<PublicationExtension>()
@@ -95,7 +98,6 @@ class PublisherPlugin : Plugin<Project> {
         return@afterEvaluate
       }
 
-      apply<MavenPublishPlugin>()
       apply<DokkaPlugin>()
 
       if (extension.destinations.isEmpty()) {
