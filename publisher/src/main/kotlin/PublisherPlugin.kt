@@ -25,6 +25,7 @@ package com.meowool.gradle.toolkit.publisher
 import MavenLocalDestination
 import SonatypeDestination
 import addIfNotExists
+import com.android.build.gradle.internal.crash.afterEvaluate
 import com.gradle.publish.PluginBundleExtension
 import com.gradle.publish.PublishPlugin
 import com.meowool.gradle.toolkit.publisher.internal.androidExtension
@@ -34,6 +35,7 @@ import com.meowool.gradle.toolkit.publisher.internal.createNexusStagingClient
 import com.meowool.gradle.toolkit.publisher.internal.createSourcesJar
 import com.meowool.gradle.toolkit.publisher.internal.isAndroid
 import com.meowool.gradle.toolkit.publisher.internal.isCompatible
+import com.meowool.gradle.toolkit.publisher.internal.isMultiplatform
 import com.meowool.gradle.toolkit.publisher.internal.repositoriesToClose
 import com.meowool.gradle.toolkit.publisher.internal.stagingDescription
 import com.meowool.sweekt.isNotNull
@@ -63,7 +65,6 @@ import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
-import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.getValue
@@ -76,7 +77,6 @@ import org.gradle.plugins.signing.SigningExtension
 import org.gradle.plugins.signing.SigningPlugin
 import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 /**
  * A plugin for publishing Gradle or Maven publications.
@@ -107,7 +107,7 @@ class PublisherPlugin : Plugin<Project> {
       configureGradlePlugin(extension)
       publishing {
         // The kotlin multiplatform plugin publishes its own components and sources
-        if (extensions.findByType<KotlinMultiplatformExtension>() == null) {
+        if (isMultiplatform.not()) {
           publishComponents(project)
           publishSourcesJar(project)
         }
@@ -170,7 +170,9 @@ class PublisherPlugin : Plugin<Project> {
     afterEvaluate {
       val kotlinSourcesJar = tasks.findByName("kotlinSourcesJar")
       val sourcesJar = when {
-        isAndroid -> createSourcesJar("androidSourcesJar") { from(androidExtension!!.sourceSets.getByName("main").java.srcDirs) }
+        isAndroid -> createSourcesJar("androidSourcesJar") {
+          from(androidExtension!!.sourceSets.getByName("main").java.srcDirs)
+        }
         // Hand it over to kotlin
         kotlinSourcesJar != null -> kotlinSourcesJar
         else -> createSourcesJar("javaSourcesJar") {
@@ -194,24 +196,20 @@ class PublisherPlugin : Plugin<Project> {
       project.version = data.version
       project.description = data.description
 
-      // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
-      // E.g. library, library-jvm, library-native
-      val artifactIdExcepted = data.artifactId + artifactId.removePrefix(project.name)
+      this.groupId = data.groupId
+      this.version = data.version
 
-      fun configureBaseData() {
-        this.groupId = data.groupId
-        this.version = data.version
-
-        // Do not set the artifactId of plugin, because it is specified by `java-gradle-plugin`:
-        // https://docs.gradle.org/current/userguide/plugins.html#sec:plugin_markers
-        if (this.name.endsWith("PluginMarkerMaven").not() && this.artifactId != artifactIdExcepted) {
-          this.artifactId = artifactIdExcepted
+      // Do not set the artifactId of plugin, because it is specified by `java-gradle-plugin`:
+      // https://docs.gradle.org/current/userguide/plugins.html#sec:plugin_markers
+      if (this.name.endsWith("PluginMarkerMaven").not()) when {
+        // Lazy setting the artifact id to avoid replacement by MPP plugin
+        project.isMultiplatform -> afterEvaluate {
+          // The `kotlin-multiplatform` plugin uses the project name as the artifact prefix, so we need to replace it.
+          // E.g. library, library-jvm, library-native
+          this.artifactId = data.artifactId + this.artifactId.removePrefix(project.name)
         }
+        else -> this.artifactId = data.artifactId
       }
-
-      configureBaseData()
-      // Configure the base data again to resolve replacement by MPP plugin
-      project.afterEvaluate { configureBaseData() }
 
       pom {
         name.set(data.displayName)

@@ -18,6 +18,8 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+plugins {}
+
 androidLib { sourceSets.main.manifest.srcFile("AndroidManifest.xml") }
 
 commonTarget()
@@ -30,5 +32,5 @@ publication {
     artifactId = "multiplatform-test"
     version = "0.1.0"
   }
-  publishToDirectory(buildDir.resolve("repo"))
+  publishToDirectory(file("repo"))
 }

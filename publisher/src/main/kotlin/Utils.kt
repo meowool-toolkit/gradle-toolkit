@@ -39,9 +39,12 @@ import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.getCredentials
 import org.gradle.kotlin.dsl.register
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 private const val BUILD_LISTENER = "mavenPublish-buildListener"
 private const val REPOSITORIES_TO_CLOSE = "mavenPublish-waitForCloseRepositories"
+
+internal val Project.isMultiplatform: Boolean get() = extensions.findByType<KotlinMultiplatformExtension>() != null
 
 internal val Project.parentPublication: PublicationExtension? get() = parent?.extensions?.findByType()
 internal val Project.parentPublicationData: PublicationData? get() = parentPublication?.data
