@@ -20,12 +20,12 @@
  */
 import com.android.build.gradle.BaseExtension
 import com.meowool.sweekt.cast
+import com.meowool.sweekt.safeCast
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.get
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
-import java.io.File
 
 /**
  * Enable and configure target of android target.
@@ -37,13 +37,13 @@ fun Project.androidTarget(
   configure: KotlinAndroidTarget.() -> Unit = {},
 ) = kotlinMultiplatform {
   android(name, configure)
-  extensions.findByName("android").cast<BaseExtension>().sourceSets.all {
+  extensions.findByName("android").safeCast<BaseExtension>()?.sourceSets?.all {
     if (manifest.srcFile.exists().not()) {
-      File("src/android${name.capitalize()}/AndroidManifest.xml")
+      project.file("src/android${name.capitalize()}/AndroidManifest.xml")
         .takeIf { it.exists() }
         ?.let(manifest::srcFile)
     }
-  }
+  } ?: error("Android extension is not found, please apply `android` or `android-library` plugin first.")
   // TODO Temporary solution until https://youtrack.jetbrains.com/issue/KTIJ-18575 fixed
   sourceSets.removeAll { it.name == "androidAndroidTestRelease" }
 }
