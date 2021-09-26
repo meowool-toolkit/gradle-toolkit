@@ -43,7 +43,7 @@ buildscript {
   configurations.all {
     // Check for updates every build
     resolutionStrategy {
-      force("com.android.tools.build:gradle:4.2.1")
+      force("com.android.tools.build:gradle:4.2.2")
       cacheChangingModulesFor(0, TimeUnit.SECONDS)
     }
   }
