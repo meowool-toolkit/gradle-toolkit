@@ -5,21 +5,21 @@
   <version>0.2.2-LOCAL-SNAPSHOT</version>
   <versioning>
     <snapshot>
-      <timestamp>20210926.091153</timestamp>
-      <buildNumber>1</buildNumber>
+      <timestamp>20210926.100432</timestamp>
+      <buildNumber>2</buildNumber>
     </snapshot>
-    <lastUpdated>20210926091153</lastUpdated>
+    <lastUpdated>20210926100432</lastUpdated>
     <snapshotVersions>
-      <snapshotVersion>
-        <extension>pom</extension>
-        <value>0.2.2-LOCAL-20210926.091153-1</value>
-        <updated>20210926091153</updated>
-      </snapshotVersion>
       <snapshotVersion>
         <classifier>sources</classifier>
         <extension>jar</extension>
-        <value>0.2.2-LOCAL-20210926.091153-1</value>
-        <updated>20210926091153</updated>
+        <value>0.2.2-LOCAL-20210926.100432-2</value>
+        <updated>20210926100432</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>0.2.2-LOCAL-20210926.100432-2</value>
+        <updated>20210926100432</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>

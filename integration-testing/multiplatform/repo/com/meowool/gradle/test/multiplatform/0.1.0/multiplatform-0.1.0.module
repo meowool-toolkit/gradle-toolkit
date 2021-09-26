@@ -1,0 +1,127 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowool.gradle.test",
+    "module": "multiplatform",
+    "version": "0.1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.2-rc-3"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.5.31"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "multiplatform-metadata-0.1.0.jar",
+          "url": "multiplatform-0.1.0.jar",
+          "size": 261,
+          "sha512": "305cd80d5c593ad97477467ae5afe1a18be400b5913d995ed0051fe27359e2737dd698d46ff2489d8cf8a1cd077e10c323dc07817cb90a3ee000bee26cb13c74",
+          "sha256": "44f30ba018ea0744b7d678dbe77cb41908f238d71e8162ce18bf4800741eb5a1",
+          "sha1": "1c136fc3222190ccccf9089581cdb77674807a0b",
+          "md5": "17069c3d9724035ffbde47f0686b3da0"
+        }
+      ]
+    },
+    {
+      "name": "debugApiElements-published",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../multiplatform-android-debug/0.1.0/multiplatform-android-debug-0.1.0.module",
+        "group": "com.meowool.gradle.test",
+        "module": "multiplatform-android-debug",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "name": "debugRuntimeElements-published",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../multiplatform-android-debug/0.1.0/multiplatform-android-debug-0.1.0.module",
+        "group": "com.meowool.gradle.test",
+        "module": "multiplatform-android-debug",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../multiplatform-android/0.1.0/multiplatform-android-0.1.0.module",
+        "group": "com.meowool.gradle.test",
+        "module": "multiplatform-android",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../multiplatform-android/0.1.0/multiplatform-android-0.1.0.module",
+        "group": "com.meowool.gradle.test",
+        "module": "multiplatform-android",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../multiplatform-jvm/0.1.0/multiplatform-jvm-0.1.0.module",
+        "group": "com.meowool.gradle.test",
+        "module": "multiplatform-jvm",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../multiplatform-jvm/0.1.0/multiplatform-jvm-0.1.0.module",
+        "group": "com.meowool.gradle.test",
+        "module": "multiplatform-jvm",
+        "version": "0.1.0"
+      }
+    }
+  ]
+}

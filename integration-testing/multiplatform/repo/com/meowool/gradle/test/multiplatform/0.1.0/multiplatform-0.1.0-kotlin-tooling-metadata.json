@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0.0",
+  "buildSystem": "Gradle",
+  "buildSystemVersion": "7.2-rc-3",
+  "buildPlugin": "org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper",
+  "buildPluginVersion": "1.5.31",
+  "projectSettings": {
+    "isHmppEnabled": false,
+    "isCompatibilityMetadataVariantEnabled": true
+  },
+  "projectTargets": [
+    {
+      "target": "org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget",
+      "platformType": "androidJvm",
+      "extras": {
+        "android": {
+          "sourceCompatibility": "1.8",
+          "targetCompatibility": "1.8"
+        }
+      }
+    },
+    {
+      "target": "org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget",
+      "platformType": "jvm",
+      "extras": {
+        "jvm": {
+          "jvmTarget": "1.8",
+          "withJavaEnabled": false
+        }
+      }
+    },
+    {
+      "target": "org.jetbrains.kotlin.gradle.plugin.mpp.KotlinMetadataTarget",
+      "platformType": "common"
+    }
+  ]
+}
