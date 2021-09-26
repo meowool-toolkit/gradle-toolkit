@@ -177,9 +177,7 @@ class PublisherPlugin : Plugin<Project> {
           from(extensions.getByType<JavaPluginExtension>().sourceSets.getByName("main").allSource)
         }
       }
-      publications.withType<MavenPublication> {
-        artifact(sourcesJar)
-      }
+      publications.withType<MavenPublication> { artifact(sourcesJar) }
     }
   }
 
@@ -196,14 +194,25 @@ class PublisherPlugin : Plugin<Project> {
       project.version = data.version
       project.description = data.description
 
-      this.groupId = data.groupId
-      this.version = data.version
-      // Ref: https://github.com/vanniktech/gradle-maven-publish-plugin/blob/a824079592fd0e1895aa0b293b798f593949fadb/plugin/src/main/kotlin/com/vanniktech/maven/publish/legacy/Coordinates.kt#L25
-      if (this@withType.name.endsWith("PluginMarkerMaven").not()) {
-        // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
-        // E.g. library, library-jvm, library-native
-        this.artifactId = data.artifactId + artifactId.removePrefix(project.name)
+      // There will be a suffix when a multi-platform project, so use the way of prefix replacing.
+      // E.g. library, library-jvm, library-native
+      val artifactIdExcepted = data.artifactId + artifactId.removePrefix(project.name)
+
+      fun configureBaseData() {
+        this.groupId = data.groupId
+        this.version = data.version
+
+        // Do not set the artifactId of plugin, because it is specified by `java-gradle-plugin`:
+        // https://docs.gradle.org/current/userguide/plugins.html#sec:plugin_markers
+        if (this.name.endsWith("PluginMarkerMaven").not() && this.artifactId != artifactIdExcepted) {
+          this.artifactId = artifactIdExcepted
+        }
       }
+
+      configureBaseData()
+      // Configure the base data again to resolve replacement by MPP plugin
+      project.afterEvaluate { configureBaseData() }
+
       pom {
         name.set(data.displayName)
         url.set(data.url)
