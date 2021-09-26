@@ -29,8 +29,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
  * @author 凛 (https://github.com/RinOrz)
  */
 fun Project.kotlinMultiplatform(configuration: KotlinMultiplatformExtension.() -> Unit) {
-  plugins.applyIfNotExists("kotlin-multiplatform")
-  extensions.configure(configuration)
+  project.plugins.applyIfNotExists("kotlin-multiplatform")
+  project.extensions.configure(configuration)
 }
 
 internal inline val Project.kotlinMultiplatformExtensionOrNull: KotlinMultiplatformExtension?

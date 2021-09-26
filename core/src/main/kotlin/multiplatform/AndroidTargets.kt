@@ -18,6 +18,8 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+@file:Suppress("NOTHING_TO_INLINE")
+
 import com.android.build.gradle.BaseExtension
 import com.meowool.sweekt.cast
 import com.meowool.sweekt.safeCast
@@ -32,11 +34,11 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-fun Project.androidTarget(
+inline fun Project.androidTarget(
   name: String = "android",
-  configure: KotlinAndroidTarget.() -> Unit = {},
+  noinline configure: KotlinAndroidTarget.() -> Unit = {},
 ) {
-  extensions.findByName("android").safeCast<BaseExtension>()?.sourceSets?.all {
+  project.extensions.findByName("android").safeCast<BaseExtension>()?.sourceSets?.all {
     if (manifest.srcFile.exists().not()) {
       project.file("src/android${name.capitalize()}/AndroidManifest.xml")
         .takeIf { it.exists() }

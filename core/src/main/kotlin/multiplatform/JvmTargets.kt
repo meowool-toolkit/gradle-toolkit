@@ -18,6 +18,8 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+@file:Suppress("NOTHING_TO_INLINE")
+
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.get
@@ -31,29 +33,29 @@ import org.jetbrains.kotlin.gradle.targets.jvm.tasks.KotlinJvmTest
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-fun Project.jvmTarget(
+inline fun Project.jvmTarget(
   name: String = "jvm",
-  configure: KotlinJvmTarget.() -> Unit = {},
+  noinline configure: KotlinJvmTarget.() -> Unit = {},
 ) = kotlinMultiplatform { jvm(name, configure) }
 
 /**
  * Configure the main source set of jvm target.
  */
-fun KotlinJvmTarget.main(configure: KotlinSourceSet.() -> Unit) {
+inline  fun KotlinJvmTarget.main(configure: KotlinSourceSet.() -> Unit) {
   main.apply(configure)
 }
 
 /**
  * Configure the main source set of jvm target.
  */
-fun KotlinJvmTarget.test(configure: KotlinSourceSet.() -> Unit) {
+inline  fun KotlinJvmTarget.test(configure: KotlinSourceSet.() -> Unit) {
   test.apply(configure)
 }
 
 /**
  * Configure the test run task by given [configuration].
  */
-fun KotlinJvmTarget.configureTestRunTask(configuration: KotlinJvmTest.() -> Unit) {
+inline fun KotlinJvmTarget.configureTestRunTask(noinline configuration: KotlinJvmTest.() -> Unit) {
   testRuns[DEFAULT_TEST_RUN_NAME].executionTask.configure(configuration)
 }
 
