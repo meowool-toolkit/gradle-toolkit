@@ -33,7 +33,7 @@ pluginManagement {
 plugins {
   // In the Github Action environment, we use the non-local version for testing, see:
   //   https://github.com/meowool-toolkit/gradle-toolkit/blob/main/.github/workflows/deployment.yml
-  id("com.meowool.gradle.toolkit") version when (System.getenv().containsKey("use.ci.version")) {
+  id("com.meowool.gradle.toolkit") version when (System.getenv().containsKey("use-non-local-version")) {
     true -> "0.2.2-SNAPSHOT"
     false -> "0.2.2-LOCAL-SNAPSHOT"
   }
@@ -74,5 +74,9 @@ gradleToolkitWithMeowoolSpec(spec = {
 
 importProjects(
   includeDir = rootDir,
-  excludeDirs = arrayOf(file("core/src/test"))
+  excludeDirs = arrayOf(file("core/src/test")) + when(System.getenv().containsKey("skip-integration-testing")) {
+    // Skip all integration testing modules (in CI)
+    true -> arrayOf(file("integration-testing"))
+    else -> emptyArray()
+ }
 )
