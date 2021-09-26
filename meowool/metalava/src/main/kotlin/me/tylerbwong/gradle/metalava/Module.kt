@@ -72,8 +72,10 @@ internal sealed class Module {
       val multiplatformExtension = extensions.findByName("kotlin")
       val javaPluginExtension = extensions.findByType<JavaPluginExtension>()
       return when {
-        libraryExtension != null && libraryExtension is LibraryExtension ->
-          Android(libraryExtension, extension.androidVariantName)
+        libraryExtension != null -> when (libraryExtension is LibraryExtension) {
+          true -> Android(libraryExtension, extension.androidVariantName)
+          else -> null
+        }
 
         multiplatformExtension != null && multiplatformExtension is KotlinMultiplatformExtension ->
           Multiplatform(multiplatformExtension)

@@ -33,22 +33,23 @@ class MetalavaPlugin : Plugin<Project> {
     with(target) {
       val extension = extensions.create("metalava", MetalavaExtension::class.java)
       afterEvaluate {
-        val currentModule = module(extension) ?: return@afterEvaluate
-        MetalavaSignature.registerMetalavaSignatureTask(
-          project = this,
-          name = "metalavaGenerateSignature",
-          description = "Generates a Metalava signature descriptor file.",
-          extension = extension,
-          module = currentModule
-        )
-        MetalavaCheckCompatibility.registerMetalavaCheckCompatibilityTask(
-          project = this,
-          extension = extension,
-          module = currentModule
-        )
-        tasks.register("metalavaCleanup", Delete::class.java) {
-          group = "cleanup"
-          delete("api")
+        module(extension)?.also { currentModule ->
+          MetalavaSignature.registerMetalavaSignatureTask(
+            project = this,
+            name = "metalavaGenerateSignature",
+            description = "Generates a Metalava signature descriptor file.",
+            extension = extension,
+            module = currentModule
+          )
+          MetalavaCheckCompatibility.registerMetalavaCheckCompatibilityTask(
+            project = this,
+            extension = extension,
+            module = currentModule
+          )
+          tasks.register("metalavaCleanup", Delete::class.java) {
+            group = "cleanup"
+            delete("api")
+          }
         }
       }
     }
