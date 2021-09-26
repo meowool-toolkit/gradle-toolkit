@@ -40,7 +40,7 @@ inline fun Project.androidTarget(
 ) {
   project.extensions.findByName("android").safeCast<BaseExtension>()?.sourceSets?.all {
     if (manifest.srcFile.exists().not()) {
-      project.file("src/android${name.capitalize()}/AndroidManifest.xml")
+      project.file("src/android${getName().capitalize()}/AndroidManifest.xml")
         .takeIf { it.exists() }
         ?.let(manifest::srcFile)
     }
