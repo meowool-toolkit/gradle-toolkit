@@ -20,7 +20,9 @@
  */
 package com.meowool.gradle.toolkit.internal
 
+import org.gradle.api.JavaVersion
+
 // TODO: Change to next Kotlin release version
 internal const val KotlinApiVersion = "1.5"
 internal const val KotlinLanguageVersion = "1.5"
-internal const val KotlinJvmTarget = "1.8"
+internal val DefaultJavaVersion = JavaVersion.VERSION_11

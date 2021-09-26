@@ -23,7 +23,6 @@
 package com.meowool.gradle.toolkit.internal
 
 import com.meowool.sweekt.className
-import com.meowool.sweekt.coroutines.contains
 import com.meowool.sweekt.datetime.nanos
 import com.meowool.sweekt.select
 import kotlinx.coroutines.CoroutineScope

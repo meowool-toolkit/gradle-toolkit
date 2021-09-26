@@ -1,0 +1,180 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowool.gradle",
+    "module": "toolkit-dependency",
+    "version": "0.1.0-LOCAL-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.2-rc-3"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-dependency-mapper",
+          "version": {
+            "requires": "0.1.0-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-dependency-updater",
+          "version": {
+            "requires": "0.1.0-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-dependency-prebuilt",
+          "version": {
+            "requires": "0.1.0-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-core",
+          "version": {
+            "requires": "0.1.0-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "0.1.0-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-dependency-0.1.0-LOCAL-SNAPSHOT.jar",
+          "url": "toolkit-dependency-0.1.0-LOCAL-SNAPSHOT.jar",
+          "size": 261,
+          "sha512": "b7ff810980c6dee268f4be09ecc6625be2b3696f82c8d38b7de7208021052d76258edc9c79753e1a1b086f1ef365da3075e158a866eabda5f95aad1d073cbbc3",
+          "sha256": "60155ab0dc7cde8b728f947bef386b9853d406cba01ec8b174a3c415c19c7e75",
+          "sha1": "04bb9e3007a00996d5ed9e5ef53d385e6d4ea880",
+          "md5": "7ef4e1b488ec5292bc04e1c3f308ab0c"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-dependency-mapper",
+          "version": {
+            "requires": "0.1.0-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-dependency-updater",
+          "version": {
+            "requires": "0.1.0-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-dependency-prebuilt",
+          "version": {
+            "requires": "0.1.0-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-core",
+          "version": {
+            "requires": "0.1.0-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "0.1.0-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-dependency-0.1.0-LOCAL-SNAPSHOT.jar",
+          "url": "toolkit-dependency-0.1.0-LOCAL-SNAPSHOT.jar",
+          "size": 261,
+          "sha512": "b7ff810980c6dee268f4be09ecc6625be2b3696f82c8d38b7de7208021052d76258edc9c79753e1a1b086f1ef365da3075e158a866eabda5f95aad1d073cbbc3",
+          "sha256": "60155ab0dc7cde8b728f947bef386b9853d406cba01ec8b174a3c415c19c7e75",
+          "sha1": "04bb9e3007a00996d5ed9e5ef53d385e6d4ea880",
+          "md5": "7ef4e1b488ec5292bc04e1c3f308ab0c"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowool.gradle",
+    "module": "toolkit-android",
+    "version": "0.1.0-LOCAL-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.2-rc-3"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "7.0.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-core",
+          "version": {
+            "requires": "0.1.0-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "0.1.0-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-android-0.1.0-LOCAL-SNAPSHOT.jar",
+          "url": "toolkit-android-0.1.0-LOCAL-SNAPSHOT.jar",
+          "size": 789381,
+          "sha512": "b784ad2e6554f5a847d22e5f6e2334721ef9f4b07bf24f2ec124bfdb393516acef84bf9ba5af997e600c1949dd424a4a944eccfab97c2929b12483fa0e8d167a",
+          "sha256": "5b6715159c6c60c30fd7f989231b1eae381471f92240ecdd75424f4b52662605",
+          "sha1": "decc1d45616d7b44ecc1108fcd0ecfe3677dc1b1",
+          "md5": "9eb055db3451976e7af196be39d54fa2"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "7.0.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-core",
+          "version": {
+            "requires": "0.1.0-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "0.1.0-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-android-0.1.0-LOCAL-SNAPSHOT.jar",
+          "url": "toolkit-android-0.1.0-LOCAL-SNAPSHOT.jar",
+          "size": 789381,
+          "sha512": "b784ad2e6554f5a847d22e5f6e2334721ef9f4b07bf24f2ec124bfdb393516acef84bf9ba5af997e600c1949dd424a4a944eccfab97c2929b12483fa0e8d167a",
+          "sha256": "5b6715159c6c60c30fd7f989231b1eae381471f92240ecdd75424f4b52662605",
+          "sha1": "decc1d45616d7b44ecc1108fcd0ecfe3677dc1b1",
+          "md5": "9eb055db3451976e7af196be39d54fa2"
+        }
+      ]
+    }
+  ]
+}

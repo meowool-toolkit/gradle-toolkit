@@ -26,5 +26,5 @@ publication {
     artifactId = "jvm-test"
     version = "0.1.0"
   }
-  publishToDirectory(file("repo"))
+  publishToDirectory(buildDir.resolve("repo"))
 }

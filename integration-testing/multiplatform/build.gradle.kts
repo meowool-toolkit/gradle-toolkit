@@ -29,8 +29,8 @@ jvmTarget()
 publication {
   data {
     groupId = "com.meowool.gradle.test"
-    artifactId = "multiplatform-test"
+    artifactId = "custom-multiplatform"
     version = "0.1.0"
   }
-  publishToDirectory(file("repo"))
+  publishToDirectory(buildDir.resolve("repo"))
 }

@@ -23,7 +23,6 @@
 import com.android.build.gradle.BaseExtension
 import com.meowool.sweekt.castOrNull
 import com.meowool.sweekt.firstCharTitlecase
-import com.meowool.sweekt.safeCast
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.get

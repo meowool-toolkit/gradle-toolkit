@@ -21,6 +21,7 @@
 package com.meowool.gradle.toolkit
 
 import addIfNotExists
+import com.meowool.gradle.toolkit.internal.DefaultJavaVersion
 import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl
 import kotlinJvmOptions
 import kotlinMultiplatformExtensionOrNull
@@ -28,9 +29,13 @@ import optIn
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.initialization.Settings
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.SourceSetContainer
+import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 /**
  * Enhanced plugin core for gradle kotlin dsl.
@@ -57,20 +62,20 @@ class GradleToolkitCorePlugin : Plugin<Any> {
         useIR = true
       }
 
-//      extensions.findByType<JavaPluginExtension>()?.apply {
-//        sourceCompatibility = JavaVersion.VERSION_1_8
-//        targetCompatibility = JavaVersion.VERSION_1_8
-//      }
-//
-//      tasks.withType<JavaCompile> {
-//        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-//        targetCompatibility = JavaVersion.VERSION_1_8.toString()
-//      }
-//
-//      tasks.withType<KotlinCompile> {
-//        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-//        targetCompatibility = JavaVersion.VERSION_1_8.toString()
-//      }
+      extensions.findByType<JavaPluginExtension>()?.apply {
+        sourceCompatibility = DefaultJavaVersion
+        targetCompatibility = DefaultJavaVersion
+      }
+
+      tasks.withType<JavaCompile> {
+        sourceCompatibility = DefaultJavaVersion.toString()
+        targetCompatibility = DefaultJavaVersion.toString()
+      }
+
+      tasks.withType<KotlinCompile> {
+        sourceCompatibility = DefaultJavaVersion.toString()
+        targetCompatibility = DefaultJavaVersion.toString()
+      }
 
       afterEvaluate {
         optIn("kotlin.RequiresOptIn")
