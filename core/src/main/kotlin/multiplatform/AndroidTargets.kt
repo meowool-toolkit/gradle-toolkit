@@ -36,7 +36,6 @@ fun Project.androidTarget(
   name: String = "android",
   configure: KotlinAndroidTarget.() -> Unit = {},
 ) = kotlinMultiplatform {
-  android(name, configure)
   extensions.findByName("android").safeCast<BaseExtension>()?.sourceSets?.all {
     if (manifest.srcFile.exists().not()) {
       project.file("src/android${name.capitalize()}/AndroidManifest.xml")
@@ -44,6 +43,7 @@ fun Project.androidTarget(
         ?.let(manifest::srcFile)
     }
   } ?: error("Android extension is not found, please apply `android` or `android-library` plugin first.")
+  android(name, configure)
   // TODO Temporary solution until https://youtrack.jetbrains.com/issue/KTIJ-18575 fixed
   sourceSets.removeAll { it.name == "androidAndroidTestRelease" }
 }
