@@ -3,10 +3,11 @@
   <groupId>com.meowool.gradle</groupId>
   <artifactId>all</artifactId>
   <versioning>
-    <latest>0.1.0-LOCAL-SNAPSHOT</latest>
+    <latest>0.1.0-LOCAL</latest>
+    <release>0.1.0-LOCAL</release>
     <versions>
-      <version>0.1.0-LOCAL-SNAPSHOT</version>
+      <version>0.1.0-LOCAL</version>
     </versions>
-    <lastUpdated>20210926153835</lastUpdated>
+    <lastUpdated>20210926164702</lastUpdated>
   </versioning>
 </metadata>

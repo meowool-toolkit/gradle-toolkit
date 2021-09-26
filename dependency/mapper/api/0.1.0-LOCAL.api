@@ -1,0 +1,142 @@
+// Signature format: 4.0
+package  {
+
+  public final class DependencyMappersKt {
+    method public static void dependencyMapper(org.gradle.api.initialization.Settings, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.DependencyMapperExtension,kotlin.Unit> configuration);
+    method public static void dependencyMapper(error.NonExistentClass, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.DependencyMapperExtension,kotlin.Unit> configuration);
+    method public static com.meowool.gradle.toolkit.DependencyMapperExtension getDependencyMapper(error.NonExistentClass);
+  }
+
+}
+
+package com.meowool.gradle.toolkit {
+
+  @kotlinx.serialization.Serializable public final class DependencyFormatter {
+    ctor public DependencyFormatter(optional boolean isMergeDuplicateLevels, optional int initProcessorCount, optional int startProcessorCount, optional int nameProcessorCount, optional int endProcessorCount, optional int capitalizationPredicateCount);
+    method public boolean component1();
+    method public com.meowool.gradle.toolkit.DependencyFormatter copy(boolean isMergeDuplicateLevels, int initProcessorCount, int startProcessorCount, int nameProcessorCount, int endProcessorCount, int capitalizationPredicateCount);
+    method public boolean equals(Object? other);
+    method public int hashCode();
+    method public void isCapitalize(kotlin.jvm.functions.Function1<? super java.lang.String,java.lang.Boolean> predicate);
+    method public boolean isMergeDuplicateLevels();
+    method public void mergeDuplicateLevels();
+    method public void notCapitalize(kotlin.jvm.functions.Function1<? super java.lang.String,java.lang.Boolean> predicate);
+    method public void onEachName(kotlin.jvm.functions.Function1<? super java.lang.String,java.lang.String> processor);
+    method public void onEnd(kotlin.jvm.functions.Function1<? super java.lang.String,java.lang.String> processor);
+    method public void onInit(kotlin.jvm.functions.Function1<? super java.lang.String,java.lang.String> processor);
+    method public void onStart(kotlin.jvm.functions.Function1<? super java.lang.String,java.lang.String> processor);
+    method public void setMergeDuplicateLevels(boolean isMergeDuplicateLevels);
+    method public String toString();
+    property public final boolean isMergeDuplicateLevels;
+    field public static final com.meowool.gradle.toolkit.DependencyFormatter.Companion Companion;
+  }
+
+  public static final class DependencyFormatter.Companion {
+  }
+
+  public final class DependencyFormatterKt {
+  }
+
+  public interface DependencyMapperExtension {
+    method public void alwaysUpdate();
+    method public void format(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.DependencyFormatter,kotlin.Unit> formatter);
+    method public org.gradle.api.Project getProject();
+    method public com.meowool.gradle.toolkit.LibraryDependencyDeclaration libraries(optional String rootClassName, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.LibraryDependencyDeclaration,kotlin.Unit> configuration);
+    method public com.meowool.gradle.toolkit.PluginDependencyDeclaration plugins(optional String rootClassName, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.PluginDependencyDeclaration,kotlin.Unit> configuration);
+    method public com.meowool.gradle.toolkit.ProjectDependencyDeclaration projects(optional String rootClassName, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.ProjectDependencyDeclaration,kotlin.Unit> configuration);
+    method public void updateWhen(kotlin.jvm.functions.Function1<? super org.gradle.api.Project,java.lang.Boolean> predicate);
+    property public abstract org.gradle.api.Project project;
+  }
+
+  public final class DependencyMapperPlugin implements org.gradle.api.Plugin<java.lang.Object> {
+    ctor public DependencyMapperPlugin();
+    method public void apply(Object target);
+  }
+
+  @kotlinx.serialization.Serializable public final class LibraryDependency {
+    ctor public LibraryDependency(String group, String artifact);
+    method public boolean equals(Object? other);
+    method public String getArtifact();
+    method public String getGroup();
+    method public int hashCode();
+    method public com.meowool.gradle.toolkit.PluginId? toPluginIdOrNull();
+    method public String toString();
+    property public final String artifact;
+    property public final String group;
+  }
+
+  public interface LibraryDependencyDeclaration {
+    method public void filter(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.LibraryDependency,java.lang.Boolean> predicate);
+    method public default void filterNot(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.LibraryDependency,java.lang.Boolean> predicate);
+    method public void map(java.lang.CharSequence... dependencies);
+    method public default void map(Iterable<? extends java.lang.CharSequence> dependencies);
+    method public void map(kotlin.Pair<? extends java.lang.CharSequence,? extends java.lang.CharSequence>... dependenciesAndPaths);
+    method public default void map(java.util.Map<? extends java.lang.CharSequence,? extends java.lang.CharSequence> dependenciesAndPaths);
+    method public void search(CharSequence![] keywords, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.LibraryDependency>,kotlin.Unit> declaration);
+    method public default void search(Iterable<? extends java.lang.CharSequence> keywords, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.LibraryDependency>,kotlin.Unit> declaration);
+    method public void searchDefaultOptions(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.LibraryDependency>,kotlin.Unit> declaration);
+    method public void searchGroups(CharSequence![] groups, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.LibraryDependency>,kotlin.Unit> declaration);
+    method public default void searchGroups(Iterable<? extends java.lang.CharSequence> groups, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.LibraryDependency>,kotlin.Unit> declaration);
+    method public void searchPrefixes(CharSequence![] prefixes, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.LibraryDependency>,kotlin.Unit> declaration);
+    method public default void searchPrefixes(Iterable<? extends java.lang.CharSequence> prefixes, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.LibraryDependency>,kotlin.Unit> declaration);
+    method public void transferPluginIds(com.meowool.gradle.toolkit.PluginDependencyDeclaration target);
+    method public void transferPluginIds(optional String targetRootClassName);
+    field public static final com.meowool.gradle.toolkit.LibraryDependencyDeclaration.Companion Companion;
+    field public static final String DefaultRootClassName = "Libs";
+  }
+
+  public static final class LibraryDependencyDeclaration.Companion {
+    field public static final String DefaultRootClassName = "Libs";
+  }
+
+  public interface PluginDependencyDeclaration {
+    method public void filter(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.PluginId,java.lang.Boolean> predicate);
+    method public default void filterNot(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.PluginId,java.lang.Boolean> predicate);
+    method public void map(java.lang.CharSequence... pluginIds);
+    method public default void map(Iterable<? extends java.lang.CharSequence> pluginIds);
+    method public void map(kotlin.Pair<? extends java.lang.CharSequence,? extends java.lang.CharSequence>... pluginIdsAndPaths);
+    method public default void map(java.util.Map<? extends java.lang.CharSequence,? extends java.lang.CharSequence> pluginIdsAndPaths);
+    method public void search(CharSequence![] keywords, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.PluginId>,kotlin.Unit> declaration);
+    method public default void search(Iterable<? extends java.lang.CharSequence> keywords, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.PluginId>,kotlin.Unit> declaration);
+    method public void searchDefaultOptions(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.PluginId>,kotlin.Unit> declaration);
+    method public void searchPrefixes(CharSequence![] prefixes, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.PluginId>,kotlin.Unit> declaration);
+    method public default void searchPrefixes(Iterable<? extends java.lang.CharSequence> prefixes, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.SearchDeclaration<com.meowool.gradle.toolkit.PluginId>,kotlin.Unit> declaration);
+    field public static final com.meowool.gradle.toolkit.PluginDependencyDeclaration.Companion Companion;
+    field public static final String DefaultRootClassName = "Plugins";
+  }
+
+  public static final class PluginDependencyDeclaration.Companion {
+    field public static final String DefaultRootClassName = "Plugins";
+  }
+
+  @kotlinx.serialization.Serializable public final class PluginId {
+    method public boolean equals(Object? other);
+    method public int hashCode();
+    method public com.meowool.gradle.toolkit.LibraryDependency toLibraryDependency();
+    method public String toString();
+  }
+
+  public interface ProjectDependencyDeclaration {
+    method public void filter(kotlin.jvm.functions.Function1<? super org.gradle.api.Project,java.lang.Boolean> predicate);
+    method public default void filterNot(kotlin.jvm.functions.Function1<? super org.gradle.api.Project,java.lang.Boolean> predicate);
+    method public void mapRootProject(optional CharSequence? mapped);
+    field public static final com.meowool.gradle.toolkit.ProjectDependencyDeclaration.Companion Companion;
+    field public static final String DefaultRootClassName = "Projects";
+  }
+
+  public static final class ProjectDependencyDeclaration.Companion {
+    field public static final String DefaultRootClassName = "Projects";
+  }
+
+  public interface SearchDeclaration<Result> {
+    method public void filter(kotlin.jvm.functions.Function1<? super Result,java.lang.Boolean> predicate);
+    method public default void filterNot(kotlin.jvm.functions.Function1<? super Result,java.lang.Boolean> predicate);
+    method public void fromGoogle();
+    method public void fromGradlePluginPortal();
+    method public void fromMavenCentral();
+    method public void fromMvnRepository(optional boolean fetchExactly);
+    method public void requireResultAtLeast(int minCount, optional boolean retryIfMissing, optional long retryTimeout);
+  }
+
+}
+

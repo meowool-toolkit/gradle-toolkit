@@ -1,0 +1,947 @@
+// Signature format: 4.0
+package  {
+
+  public final class AndroidTargetsKt {
+    method public static inline void androidTarget(org.gradle.api.Project, optional String name, optional kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget,kotlin.Unit> configure);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getAndroidMain(org.gradle.api.NamedDomainObjectContainer<org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet>);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getAndroidMainSourceSet(org.gradle.api.Project);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getAndroidTest(org.gradle.api.NamedDomainObjectContainer<org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet>);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getAndroidTestSourceSet(org.gradle.api.Project);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getMain(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getTest(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget);
+    method public static void main(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet,kotlin.Unit> configure);
+    method public static void test(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet,kotlin.Unit> configure);
+  }
+
+  public final class ApiConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.ExternalModuleDependency api(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency api(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, CharSequence dependencyNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> apiFiles(org.gradle.api.Project, String![] directories, optional java.util.List<java.lang.String> include);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> apiJars(org.gradle.api.Project, optional java.lang.String... jarDirectory);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> apiOf(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> apiOf(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence![] dependenciesNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> allDependenciesConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> apiOf(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> apiOf(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, CharSequence![] dependenciesNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency apiProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.Dependency? apiProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> apiProjects(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> apiProjects(org.gradle.api.artifacts.dsl.DependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> apiProjects(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> apiProjects(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+  }
+
+  public final class CommonTarget {
+    ctor public CommonTarget(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension extension);
+    method public org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension getExtension();
+    property public final org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension extension;
+  }
+
+  public final class CommonTargetsKt {
+    method public static inline void common(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension, optional kotlin.jvm.functions.Function1<? super CommonTarget,kotlin.Unit> configure);
+    method public static inline void commonTarget(org.gradle.api.Project, optional kotlin.jvm.functions.Function1<? super CommonTarget,kotlin.Unit> configure);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getCommonMain(org.gradle.api.NamedDomainObjectContainer<org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet>);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getCommonMainSourceSet(org.gradle.api.Project);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getCommonTest(org.gradle.api.NamedDomainObjectContainer<org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet>);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getCommonTestSourceSet(org.gradle.api.Project);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getMain(CommonTarget);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getTest(CommonTarget);
+    method public static void main(CommonTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet,kotlin.Unit> configure);
+    method public static void test(CommonTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet,kotlin.Unit> configure);
+  }
+
+  public final class CompileOnlyApiConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.ExternalModuleDependency compileOnlyApi(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyApiFiles(org.gradle.api.Project, String![] directories, optional java.util.List<java.lang.String> include);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyApiJars(org.gradle.api.Project, optional java.lang.String... jarDirectory);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyApiOf(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> compileOnlyApiOf(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence![] dependenciesNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> allDependenciesConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency compileOnlyApiProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.Dependency? compileOnlyApiProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyApiProjects(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyApiProjects(org.gradle.api.artifacts.dsl.DependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+  }
+
+  public final class CompileOnlyConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.ExternalModuleDependency compileOnly(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency compileOnly(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, CharSequence dependencyNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyFiles(org.gradle.api.Project, String![] directories, optional java.util.List<java.lang.String> include);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyJars(org.gradle.api.Project, optional java.lang.String... jarDirectory);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyOf(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> compileOnlyOf(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence![] dependenciesNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> allDependenciesConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyOf(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> compileOnlyOf(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, CharSequence![] dependenciesNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency compileOnlyProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.Dependency? compileOnlyProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyProjects(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyProjects(org.gradle.api.artifacts.dsl.DependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyProjects(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> compileOnlyProjects(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+  }
+
+  public final class DependenciesKt {
+    method public static void alldependencies(org.gradle.api.Project, kotlin.jvm.functions.Function1<? super DependencyHandlerToolkit,kotlin.Unit> configuration);
+    method public static String getArtifactId(CharSequence dependency);
+    method public static String getDependencyArtifact(CharSequence);
+    method public static String getDependencyGroup(CharSequence);
+    method public static String getDependencyVersion(CharSequence);
+    method public static String getGroupId(CharSequence dependency);
+    method public static String getVersion(CharSequence dependency);
+    method public static String removeVersion(CharSequence);
+    method public static void subdependencies(org.gradle.api.Project, kotlin.jvm.functions.Function1<? super DependencyHandlerToolkit,kotlin.Unit> configuration);
+    method public static infix String version(CharSequence, String? ver);
+    method public static String withoutVersion(CharSequence dependency);
+  }
+
+  public final class DependencyHandlerToolkit implements org.gradle.api.artifacts.dsl.DependencyHandler {
+    ctor public DependencyHandlerToolkit(org.gradle.api.Project project, org.gradle.kotlin.dsl.DependencyHandlerScope dependencies);
+    method public org.gradle.api.artifacts.Dependency? classpath(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method public inline org.gradle.api.artifacts.ExternalModuleDependency classpath(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public org.gradle.api.artifacts.ExternalModuleDependency classpath(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext);
+    method public inline org.gradle.api.artifacts.ExternalModuleDependency classpath(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public inline <T extends org.gradle.api.artifacts.ModuleDependency> T classpath(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public org.gradle.api.artifacts.DependencyConstraint? classpath(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object dependencyConstraintNotation);
+    method public org.gradle.api.artifacts.DependencyConstraint? classpath(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object dependencyConstraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> configuration);
+    method public void constraints(kotlin.jvm.functions.Function1<? super org.gradle.kotlin.dsl.DependencyConstraintHandlerScope,kotlin.Unit> configureAction);
+    method public org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getClasspath(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+    method public org.gradle.api.Project getProject();
+    method public org.gradle.api.artifacts.Dependency gradleKotlinDsl();
+    method public operator org.gradle.api.artifacts.Dependency? invoke(String, Object dependencyNotation);
+    method public operator org.gradle.api.artifacts.ExternalModuleDependency invoke(String, String dependencyNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public operator org.gradle.api.artifacts.ExternalModuleDependency invoke(String, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext);
+    method public operator org.gradle.api.artifacts.ExternalModuleDependency invoke(String, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public operator <T extends org.gradle.api.artifacts.ModuleDependency> T invoke(String, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public operator org.gradle.api.artifacts.Dependency? invoke(org.gradle.api.artifacts.Configuration, Object dependencyNotation);
+    method public inline operator org.gradle.api.artifacts.ExternalModuleDependency invoke(org.gradle.api.artifacts.Configuration, String dependencyNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public operator org.gradle.api.artifacts.ExternalModuleDependency invoke(org.gradle.api.artifacts.Configuration, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext);
+    method public inline operator org.gradle.api.artifacts.ExternalModuleDependency invoke(org.gradle.api.artifacts.Configuration, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public inline operator <T extends org.gradle.api.artifacts.ModuleDependency> T invoke(org.gradle.api.artifacts.Configuration, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method @org.gradle.api.Incubating public operator <T> void invoke(org.gradle.api.artifacts.Configuration, org.gradle.api.provider.Provider<T> dependency, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method @org.gradle.api.Incubating public operator <T> void invoke(org.gradle.api.artifacts.Configuration, org.gradle.api.provider.Provider<T> dependency);
+    method @org.gradle.api.Incubating public operator <T> void invoke(String, org.gradle.api.provider.Provider<T> dependency, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method @org.gradle.api.Incubating public operator <T> void invoke(String, org.gradle.api.provider.Provider<T> dependency);
+    property public final org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> classpath;
+    property public final org.gradle.api.Project project;
+  }
+
+  public final class ExtensionContainersKt {
+    method public static inline <reified T extends > void addIfNotExists(org.gradle.api.plugins.ExtensionContainer, String name, kotlin.jvm.functions.Function0<? extends T> extension);
+    method public static inline <reified T extends > void addIfNotExists(org.gradle.api.plugins.ExtensionContainer, kotlin.reflect.KClass<T> publicType, String name, kotlin.jvm.functions.Function0<? extends T> extension);
+  }
+
+  public final class FreeCompilerArgsKt {
+    method public static void addFreeCompilerArgs(org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions, java.lang.String... args);
+    method public static void addFreeCompilerArgs(org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions, Iterable<java.lang.String> args);
+    method public static void addFreeCompilerArgs(org.jetbrains.kotlin.gradle.tasks.KotlinCompile, java.lang.String... args);
+    method public static void addFreeCompilerArgs(org.jetbrains.kotlin.gradle.tasks.KotlinCompile, Iterable<java.lang.String> args);
+    method public static void addFreeCompilerArgs(org.gradle.api.Project, java.lang.String... args);
+    method public static void addFreeCompilerArgs(org.gradle.api.Project, Iterable<java.lang.String> args);
+  }
+
+  public final class GradleToolkitKt {
+    method public static void gradleToolkit(org.gradle.api.initialization.Settings, kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.GradleToolkitExtension,kotlin.Unit> configuration);
+  }
+
+  public final class ImplementationConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.ExternalModuleDependency implementation(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency implementation(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, CharSequence dependencyNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> implementationFiles(org.gradle.api.Project, String![] directories, optional java.util.List<java.lang.String> include);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> implementationJars(org.gradle.api.Project, optional java.lang.String... jarDirectory);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> implementationOf(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> implementationOf(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence![] dependenciesNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> allDependenciesConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> implementationOf(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> implementationOf(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, CharSequence![] dependenciesNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency implementationProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.Dependency? implementationProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> implementationProjects(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> implementationProjects(org.gradle.api.artifacts.dsl.DependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> implementationProjects(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> implementationProjects(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+  }
+
+  public final class IncludesKt {
+    method public static error.NonExistentClass! importProjects(org.gradle.api.initialization.Settings, error.NonExistentClass includeDir, optional boolean excludeBuildDir, kotlin.jvm.functions.Function1<? super error.NonExistentClass,java.lang.Boolean> excludeBy);
+    method public static error.NonExistentClass! importProjects(org.gradle.api.initialization.Settings, String includeDirPath, optional boolean excludeBuildDir, kotlin.jvm.functions.Function1<? super error.NonExistentClass,java.lang.Boolean> excludeBy);
+    method public static error.NonExistentClass! importProjects(org.gradle.api.initialization.Settings, error.NonExistentClass includeDirPath, optional boolean excludeBuildDir, kotlin.jvm.functions.Function1<? super error.NonExistentClass,java.lang.Boolean> excludeBy);
+    method public static error.NonExistentClass! importProjects(org.gradle.api.initialization.Settings, error.NonExistentClass includeDir, optional boolean excludeBuildDir, error.NonExistentClass... excludeDirs);
+    method public static error.NonExistentClass! importProjects(org.gradle.api.initialization.Settings, String includeDirPath, optional boolean excludeBuildDir, java.lang.String... excludeDirPaths);
+    method public static error.NonExistentClass! importProjects(org.gradle.api.initialization.Settings, error.NonExistentClass includeDirPath, optional boolean excludeBuildDir, error.NonExistentClass... excludeDirPaths);
+  }
+
+  public final class JvmTargetsKt {
+    method public static inline void configureTestRunTask(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.targets.jvm.tasks.KotlinJvmTest,kotlin.Unit> configuration);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getJvmMain(org.gradle.api.NamedDomainObjectContainer<org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet>);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getJvmMainSourceSet(org.gradle.api.Project);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getJvmTest(org.gradle.api.NamedDomainObjectContainer<org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet>);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getJvmTestSourceSet(org.gradle.api.Project);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getMain(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget);
+    method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getTest(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget);
+    method public static inline void jvmTarget(org.gradle.api.Project, optional String name, optional kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget,kotlin.Unit> configure);
+    method public static inline void main(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet,kotlin.Unit> configure);
+    method public static inline void test(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet,kotlin.Unit> configure);
+  }
+
+  public final class KaptConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.ExternalModuleDependency kapt(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> kaptFiles(org.gradle.api.Project, String![] directories, optional java.util.List<java.lang.String> include);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> kaptJars(org.gradle.api.Project, optional java.lang.String... jarDirectory);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> kaptOf(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> kaptOf(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence![] dependenciesNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> allDependenciesConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency kaptProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.Dependency? kaptProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> kaptProjects(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> kaptProjects(org.gradle.api.artifacts.dsl.DependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+  }
+
+  public final class KotlinCompilesKt {
+    method public static void kotlinCompile(org.gradle.api.Project, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.dsl.KotlinCompile<? extends org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions>,kotlin.Unit> configuration);
+    method public static void kotlinJvmCompile(org.gradle.api.Project, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile,kotlin.Unit> configuration);
+    method public static void kotlinJvmOptions(org.gradle.api.Project, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions,kotlin.Unit> configuration);
+    method public static void kotlinJvmOptions(org.jetbrains.kotlin.gradle.dsl.KotlinCompile<?>, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions,kotlin.Unit> configuration);
+    method public static void kotlinOptions(org.gradle.api.Project, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions,kotlin.Unit> configuration);
+    method public static inline <T extends org.jetbrains.kotlin.gradle.dsl.KotlinCompile<?>> void onDefaultVariant(T, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> action);
+    method public static inline <T extends org.jetbrains.kotlin.gradle.dsl.KotlinCompile<?>> void onTestVariant(T, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> action);
+  }
+
+  public final class KotlinExplicitApisKt {
+    method public static void kotlinDefaultVariantExplicitApi(org.gradle.api.Project, optional org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode mode);
+    method public static void kotlinExplicitApi(org.gradle.api.Project, optional org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode mode);
+    method public static void kotlinTestVariantExplicitApi(org.gradle.api.Project, optional org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode mode);
+  }
+
+  public final class KotlinMultiplatformExtensionsKt {
+    method public static void kotlinMultiplatform(org.gradle.api.Project, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension,kotlin.Unit> configuration);
+  }
+
+  public final class KotlinSourceSetsKt {
+    method public static void dependsOn(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet, org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet... others);
+    method public static void dependsOn(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet, Iterable<? extends org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet> others);
+  }
+
+  public final class LanguageFeaturesKt {
+    method public static kotlin.Unit? enableLanguageFeatures(org.gradle.api.Project, java.lang.String... names);
+    method public static kotlin.Unit? enableLanguageFeatures(org.gradle.api.Project, java.util.List<java.lang.String> names);
+    method public static void enableLanguageFeatures(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension, java.lang.String... names);
+    method public static void enableLanguageFeatures(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension, java.util.List<java.lang.String> names);
+  }
+
+  public final class LogicsKt {
+    method public static void injectDependenciesLogic(org.gradle.api.Project, optional Object key);
+    method public static void injectProjectLogic(org.gradle.api.Project, optional Object key);
+    method public static void registerLogic(org.gradle.api.Project, kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.LogicRegistry,kotlin.Unit> registry);
+    method public static void registerLogic(org.gradle.api.initialization.Settings, kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.LogicRegistry,kotlin.Unit> registry);
+  }
+
+  public abstract sealed class MavenMirrors {
+    method public final String getUrl();
+    property public final String url;
+  }
+
+  public abstract static sealed class MavenMirrors.Aliyun extends MavenMirrors {
+  }
+
+  public static final class MavenMirrors.Aliyun.ApacheSnapshots extends MavenMirrors.Aliyun {
+    field public static final MavenMirrors.Aliyun.ApacheSnapshots INSTANCE;
+  }
+
+  public static final class MavenMirrors.Aliyun.Central extends MavenMirrors.Aliyun {
+    field public static final MavenMirrors.Aliyun.Central INSTANCE;
+  }
+
+  public static final class MavenMirrors.Aliyun.Google extends MavenMirrors.Aliyun {
+    field public static final MavenMirrors.Aliyun.Google INSTANCE;
+  }
+
+  public static final class MavenMirrors.Aliyun.GradlePlugin extends MavenMirrors.Aliyun {
+    field public static final MavenMirrors.Aliyun.GradlePlugin INSTANCE;
+  }
+
+  public static final class MavenMirrors.Aliyun.GrailsCore extends MavenMirrors.Aliyun {
+    field public static final MavenMirrors.Aliyun.GrailsCore INSTANCE;
+  }
+
+  public static final class MavenMirrors.Aliyun.JCenter extends MavenMirrors.Aliyun {
+    field public static final MavenMirrors.Aliyun.JCenter INSTANCE;
+  }
+
+  public static final class MavenMirrors.Aliyun.Public extends MavenMirrors.Aliyun {
+    field public static final MavenMirrors.Aliyun.Public INSTANCE;
+  }
+
+  public static final class MavenMirrors.Aliyun.Spring extends MavenMirrors.Aliyun {
+    field public static final MavenMirrors.Aliyun.Spring INSTANCE;
+  }
+
+  public static final class MavenMirrors.Aliyun.SpringPlugin extends MavenMirrors.Aliyun {
+    field public static final MavenMirrors.Aliyun.SpringPlugin INSTANCE;
+  }
+
+  public static final class MavenMirrors.Huawei extends MavenMirrors {
+    field public static final MavenMirrors.Huawei INSTANCE;
+  }
+
+  public static final class MavenMirrors.Tencent extends MavenMirrors {
+    field public static final MavenMirrors.Tencent INSTANCE;
+  }
+
+  public final class OptInsKt {
+    method public static void optIn(org.gradle.api.Project, java.lang.String... annotationNames);
+    method public static void optIn(org.gradle.api.Project, Iterable<java.lang.String> annotationNames);
+  }
+
+  public final class PluginContainersKt {
+    method public static inline <reified T extends org.gradle.api.Plugin<?>> T! apply(org.gradle.api.plugins.PluginContainer);
+    method public static void applyIfNotExists(org.gradle.api.plugins.PluginContainer, String id);
+    method public static inline <reified T extends org.gradle.api.Plugin<?>> void applyIfNotExists(org.gradle.api.plugins.PluginContainer);
+    method public static inline <reified T extends org.gradle.api.Plugin<?>> boolean hasNotPlugin(org.gradle.api.plugins.PluginContainer);
+    method public static inline <reified T extends org.gradle.api.Plugin<?>> boolean hasPlugin(org.gradle.api.plugins.PluginContainer);
+  }
+
+  public final class PropertiesKt {
+    method public static error.NonExistentClass! findLocalProperties(org.gradle.api.Project);
+    method public static Object? findPropertyOrEnv(org.gradle.api.Project, String key);
+    method public static error.NonExistentClass! getLocalProperties(org.gradle.api.Project);
+    method public static Object getPropertyOrEnv(org.gradle.api.Project, String key, Object defaultValue);
+  }
+
+  public final class RepositoriesKt {
+    method public static void allrepositories(org.gradle.api.Project, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.dsl.RepositoryHandler,kotlin.Unit> configuration);
+    method @Deprecated public static org.gradle.api.artifacts.repositories.MavenArtifactRepository! jCenter(org.gradle.api.artifacts.dsl.RepositoryHandler, optional kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.repositories.MavenArtifactRepository,kotlin.Unit> action);
+    method public static org.gradle.api.artifacts.repositories.MavenArtifactRepository! jitpack(org.gradle.api.artifacts.dsl.RepositoryHandler, optional kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.repositories.MavenArtifactRepository,kotlin.Unit> action);
+    method public static org.gradle.api.artifacts.repositories.MavenArtifactRepository! maven(org.gradle.api.artifacts.dsl.RepositoryHandler, String name, Object url, optional kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.repositories.MavenArtifactRepository,kotlin.Unit> action);
+    method public static org.gradle.api.artifacts.repositories.MavenArtifactRepository! mavenMirror(org.gradle.api.artifacts.dsl.RepositoryHandler, MavenMirrors mirror, optional kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.repositories.MavenArtifactRepository,kotlin.Unit> action);
+    method public static void sonatype(org.gradle.api.artifacts.dsl.RepositoryHandler, optional kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.repositories.MavenArtifactRepository,kotlin.Unit> action);
+    method public static void sonatypeSnapshots(org.gradle.api.artifacts.dsl.RepositoryHandler, optional kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.repositories.MavenArtifactRepository,kotlin.Unit> action);
+    method public static void subrepositories(org.gradle.api.Project, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.dsl.RepositoryHandler,kotlin.Unit> configuration);
+  }
+
+  public final class RuntimeOnlyConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.ExternalModuleDependency runtimeOnly(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency runtimeOnly(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, CharSequence dependencyNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> runtimeOnlyFiles(org.gradle.api.Project, String![] directories, optional java.util.List<java.lang.String> include);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> runtimeOnlyJars(org.gradle.api.Project, optional java.lang.String... jarDirectory);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> runtimeOnlyOf(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> runtimeOnlyOf(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence![] dependenciesNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> allDependenciesConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> runtimeOnlyOf(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> runtimeOnlyOf(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, CharSequence![] dependenciesNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency runtimeOnlyProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.Dependency? runtimeOnlyProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> runtimeOnlyProjects(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> runtimeOnlyProjects(org.gradle.api.artifacts.dsl.DependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> runtimeOnlyProjects(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> runtimeOnlyProjects(org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+  }
+
+  public final class SourceSetContainersKt {
+    method public static org.gradle.api.tasks.SourceSet getMain(org.gradle.api.tasks.SourceSetContainer);
+    method public static org.gradle.api.tasks.SourceSet getTest(org.gradle.api.tasks.SourceSetContainer);
+    method public static org.gradle.api.tasks.SourceSet main(org.gradle.api.tasks.SourceSetContainer, kotlin.jvm.functions.Function1<? super org.gradle.api.tasks.SourceSet,kotlin.Unit> block);
+    method public static org.gradle.api.tasks.SourceSet test(org.gradle.api.tasks.SourceSetContainer, kotlin.jvm.functions.Function1<? super org.gradle.api.tasks.SourceSet,kotlin.Unit> block);
+  }
+
+  public final class SystemKt {
+    method public static boolean isIntelliJ();
+  }
+
+  public final class TasksKt {
+    method public static org.gradle.api.Task? findTask(org.gradle.api.Project, String name);
+    method public static java.util.Set<error.NonExistentClass> getInputFileSet(org.gradle.api.Task);
+    method public static java.util.Set<error.NonExistentClass> getOutputFileSet(org.gradle.api.Task);
+    method public static void registerTasks(org.gradle.api.Project, kotlin.Pair<java.lang.String,? extends kotlin.reflect.KClass<? extends org.gradle.api.Task>>... tasksWithNames);
+    method public static void registerTasks(org.gradle.api.Project, kotlin.reflect.KClass<? extends org.gradle.api.Task>... tasks);
+    method public static error.NonExistentClass! skipTask(org.gradle.api.Project, kotlin.jvm.functions.Function1<? super org.gradle.api.Task,java.lang.Boolean> predicate);
+    method public static void skipTasks(org.gradle.api.Project, java.lang.String... taskNames);
+  }
+
+  public final class TestApiConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testApi(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testApiFiles(org.gradle.api.Project, String![] directories, optional java.util.List<java.lang.String> include);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testApiJars(org.gradle.api.Project, optional java.lang.String... jarDirectory);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testApiOf(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> testApiOf(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence![] dependenciesNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> allDependenciesConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testApiProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.Dependency? testApiProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testApiProjects(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testApiProjects(org.gradle.api.artifacts.dsl.DependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+  }
+
+  public final class TestCompileApiConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testCompileOnly(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testCompileOnlyFiles(org.gradle.api.Project, String![] directories, optional java.util.List<java.lang.String> include);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testCompileOnlyJars(org.gradle.api.Project, optional java.lang.String... jarDirectory);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testCompileOnlyOf(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> testCompileOnlyOf(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence![] dependenciesNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> allDependenciesConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testCompileOnlyProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.Dependency? testCompileOnlyProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testCompileOnlyProjects(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testCompileOnlyProjects(org.gradle.api.artifacts.dsl.DependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+  }
+
+  public final class TestImplementationConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testImplementation(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testImplementationFiles(org.gradle.api.Project, String![] directories, optional java.util.List<java.lang.String> include);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testImplementationJars(org.gradle.api.Project, optional java.lang.String... jarDirectory);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testImplementationOf(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.Object... dependenciesNotation);
+    method public static java.util.List<org.gradle.api.artifacts.ExternalModuleDependency> testImplementationOf(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence![] dependenciesNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> allDependenciesConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testImplementationProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.Dependency? testImplementationProject(org.gradle.api.artifacts.dsl.DependencyHandler, CharSequence projectPath);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testImplementationProjects(org.gradle.api.artifacts.dsl.DependencyHandler, java.lang.String... projectPaths);
+    method public static java.util.List<org.gradle.api.artifacts.Dependency> testImplementationProjects(org.gradle.api.artifacts.dsl.DependencyHandler, String![] projectPaths, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ModuleDependency,kotlin.Unit> allDependenciesConfiguration);
+  }
+
+}
+
+package com.meowool.gradle.toolkit {
+
+  public final class GradleToolkitCorePlugin implements org.gradle.api.Plugin<java.lang.Object> {
+    ctor public GradleToolkitCorePlugin();
+    method public void apply(Object target);
+  }
+
+  public interface GradleToolkitExtension {
+    method public void allprojects(optional boolean afterEvaluate, optional kotlin.jvm.functions.Function1<? super org.gradle.api.Project,java.lang.Boolean> filter, kotlin.jvm.functions.Function1<? super org.gradle.api.Project,kotlin.Unit> action);
+    method public default void allrepositories(kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.dsl.RepositoryHandler,kotlin.Unit> configuration);
+    method public java.util.Set<org.gradle.api.Project> getAllprojects();
+    method public org.gradle.api.Project getRootProject();
+    method public java.util.Set<org.gradle.api.Project> getSubprojects();
+    method public void registerLogic(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.LogicRegistry,kotlin.Unit> registry);
+    method public void subprojects(optional boolean afterEvaluate, optional kotlin.jvm.functions.Function1<? super org.gradle.api.Project,java.lang.Boolean> filter, kotlin.jvm.functions.Function1<? super org.gradle.api.Project,kotlin.Unit> action);
+    method public default void subrepositories(kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.dsl.RepositoryHandler,kotlin.Unit> configuration);
+    property public abstract java.util.Set<org.gradle.api.Project> allprojects;
+    property public abstract org.gradle.api.Project rootProject;
+    property public abstract java.util.Set<org.gradle.api.Project> subprojects;
+  }
+
+  public final class LogicRegistry {
+    ctor public LogicRegistry();
+    method public void dependencies(optional Object key, kotlin.jvm.functions.Function1<? super DependencyHandlerToolkit,kotlin.Unit> logic);
+    method public error.NonExistentClass! getExtraLogics();
+    method public void project(optional Object key, kotlin.jvm.functions.Function1<? super org.gradle.api.Project,kotlin.Unit> logic);
+    property public final error.NonExistentClass! extraLogics;
+    field public static final com.meowool.gradle.toolkit.LogicRegistry.Companion Companion;
+    field public static final String DefaultDependenciesKey = "default dependencies logic";
+    field public static final String DefaultProjectKey = "default project logic";
+  }
+
+}
+
+package org.gradle.kotlin.dsl {
+
+  @org.gradle.api.Generated public final class Accessors15c80wxji7qdhvcsteytc58m6Kt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getTestCompileOnly(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors16h8i8yvcoyu6adqodek0vazlKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getBuild(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors1crcmgpg53bs3tut9tzeov9zsKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getBuildNeeded(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors1je17tzadwn2i8n7cte4ejjucKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getTestClasses(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors1rjydc5cf7y0f6xd8ou20m2o4Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getSpotlessDiagnose(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors1togd3myxkhlxm3hm03it918yKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getCompileOnlyApi(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors1y0x5zjrw062ti39iwig4ztsqKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.javadoc.Javadoc> getJavadoc(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors20m89wvqrtvolhrxzuq1utrarKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getArchives(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors21zhoq018jw7yza6oupdxasaqKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getCompileClasspath(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors22u2hh96au8aanrt52kede4lkKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.buildinit.tasks.InitBuild> getInit(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors2ccw5a3jr4u6s0w7on61o6me9Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getSpotlessCheck(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors2oadk7let745pm8ahqypkqzlkKt {
+    method public static org.gradle.api.tasks.SourceSetContainer getSourceSets(org.gradle.api.Project);
+    method public static void sourceSets(org.gradle.api.Project, org.gradle.api.Action<org.gradle.api.tasks.SourceSetContainer> configure);
+  }
+
+  @org.gradle.api.Generated public final class Accessors2s1m7qhtdel2iy5x5gc2gv6f5Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getCheck(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors30fkku080rcvoj344u192bkfhKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getRuntimeElements(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors30jk6jfapu42mm16w76juqsr8Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getRefreshVersionsDependenciesMapping(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors32yk85ycsljiuajc2oknj21ltKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getApiElements(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors3b00icj6uvdwt6la5hcnud6zhKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.diagnostics.DependencyInsightReportTask> getDependencyInsight(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors3n8emmxviy35h2y6h0cr1n1i7Kt {
+    method public static org.gradle.plugins.signing.SigningExtension getSigning(org.gradle.api.Project);
+    method public static void signing(org.gradle.api.Project, org.gradle.api.Action<org.gradle.plugins.signing.SigningExtension> configure);
+  }
+
+  @org.gradle.api.Generated public final class Accessors45cftp2do14y8dm8cnj0yfjzmKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getAnnotationProcessor(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors49985hyy071qu5jjdlrughl86Kt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getTestRuntimeOnly(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors4g3ee48g3j8ovb2sfufkb1xghKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getTestRuntimeClasspath(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors4ymn32ugs7fc7ez4f1y4vdr9nKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.compile.JavaCompile> getCompileJava(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors5cx8iclyvbivcabq86i8mlot5Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getAssemble(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors5dc5ntgnadimckiddcyeoreqKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getImplementation(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors5fk7ujd52n5i4lgh9rsd3nr80Kt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.tasks.SourceSet> getMain(org.gradle.api.tasks.SourceSetContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors5r7od1ls1rcal14bwiw1aolf3Kt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getDefault(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors5w9es0er3ypxz7btqxgwmopo6Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getPrepareKotlinBuildScriptModel(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors60qstau5cx5bln125iqy9zc2sKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getUploadArchives(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors60wvtf0hlc6m7pu4zcziugmriKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getTestCompileClasspath(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors6kce2f9onf1yvha3oi0wn04jfKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.diagnostics.DependencyReportTask> getDependencies(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors6wxdx4iuccspcc9otwurfe3puKt {
+    method public static void base(org.gradle.api.Project, org.gradle.api.Action<org.gradle.api.plugins.BasePluginConvention> configure);
+    method public static org.gradle.api.plugins.BasePluginConvention getBase(org.gradle.api.Project);
+  }
+
+  @org.gradle.api.Generated public final class Accessors6xcmy081jxud3rx4r453mbm9fKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getPublishToMavenLocal(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors6xkpc5r938hqmmzagr5yicp7sKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getRuntimeClasspath(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors70qre8uzkvqv2741psvay03jnKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.diagnostics.TaskReportTask> getTasks(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors7pildy6t6pgcmk0gyewx4z8k1Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.language.jvm.tasks.ProcessResources> getProcessResources(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors8rh5iqya1t168oyiaurnwv106Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.configuration.Help> getHelp(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors8s478vwgng6v6a1mno9kdtss0Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.diagnostics.ProjectReportTask> getProjects(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors8uzlaa9ndo750hmo4da2vgu2vKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getBuildDependents(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors96b3ii45gitqpy1kb3tvcvtxvKt {
+    method public static org.gradle.api.plugins.JavaPluginExtension getJava(org.gradle.api.Project);
+    method public static void java(org.gradle.api.Project, org.gradle.api.Action<org.gradle.api.plugins.JavaPluginExtension> configure);
+  }
+
+  @org.gradle.api.Generated public final class Accessors9upc35ddn1m31thgty51w1nrjKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getTestAnnotationProcessor(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessors9xbdx9ypglb5iceqwefq3l2uKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.Delete> getClean(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessors9xim6xjdq0ry1lmc4wm5ei8ehKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getCompileOnly(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsa47105wcmcbzx75lm7p2ciqqbKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getTestImplementation(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsaofthkmarv0q41bodk71vcqi7Kt {
+    method public static void defaultArtifacts(org.gradle.api.Project, org.gradle.api.Action<org.gradle.api.internal.plugins.DefaultArtifactPublicationSet> configure);
+    method public static org.gradle.api.internal.plugins.DefaultArtifactPublicationSet getDefaultArtifacts(org.gradle.api.Project);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsate8f555kaiquem4dt3800he9Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getPublishSubprojects(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsb13nju9doius8kxwhlptqirtrKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getPublish(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsbmy583k9y2oirweo6ih2u7jf2Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.diagnostics.BuildEnvironmentReportTask> getBuildEnvironment(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsbp4j8g31qsxo0ekjysvxih5jgKt {
+    method public static org.gradle.jvm.toolchain.JavaToolchainService getJavaToolchains(org.gradle.api.Project);
+    method public static void javaToolchains(org.gradle.api.Project, org.gradle.api.Action<org.gradle.jvm.toolchain.JavaToolchainService> configure);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsbr6csdgbi78dxx91v6i73dtxgKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.jvm.toolchain.internal.task.ShowToolchainsTask> getJavaToolchains(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsbtc8iwv8u9b0f38ikfmodj8nsKt {
+    method public static org.gradle.api.reporting.ReportingExtension getReporting(org.gradle.api.Project);
+    method public static void reporting(org.gradle.api.Project, org.gradle.api.Action<org.gradle.api.reporting.ReportingExtension> configure);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsbv7g6m9lvlbwpguz01lzxkxggKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.reporting.components.ComponentReport> getComponents(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsbyqv0rd7bbuxjncv5k9yklxgbKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.reporting.dependents.DependentComponentsReport> getDependentComponents(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsc7pk2waxt3uzxyp4clhgc0b89Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.reporting.model.ModelReport> getModel(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorscchdiujech8u294vwhihsq7ghKt {
+    method public static org.gradle.api.publish.PublishingExtension getPublishing(org.gradle.api.Project);
+    method public static void publishing(org.gradle.api.Project, org.gradle.api.Action<org.gradle.api.publish.PublishingExtension> configure);
+  }
+
+  @org.gradle.api.Generated public final class Accessorscj8cnlwdt7k507876yfc4m1xzKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.diagnostics.OutgoingVariantsReportTask> getOutgoingVariants(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorscosmuqa5m4pz5v4rp16nnpsrnKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.testing.Test> getTest(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsd7e4odubtwwdqpjhh6pvdtm35Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.diagnostics.PropertyReportTask> getProperties(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsdbsxdiburo0fnqzew185uq319Kt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.kotlin.dsl.accessors.tasks.PrintAccessors> getKotlinDslAccessorsReport(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsdemns0nrfvv4tm1e985ahms6rKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getRuntimeOnly(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsdhblu8rt4vbwuf4rib4cwj9luKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getApi(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsdirr8g3rs0a9h4cvi2o23j1gyKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.language.jvm.tasks.ProcessResources> getProcessTestResources(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorse19x8vdfbjcc5sva65yvzy3h5Kt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.artifacts.Configuration> getSignatures(org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>);
+  }
+
+  @org.gradle.api.Generated public final class Accessorse1rkywyln7kgzh4axk281mwcqKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getSpotlessApply(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorse2li3ct2mq14jt8s33r9id7ymKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getInstallArchives(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorseessl0al0otcsbyqqruvoncpdKt {
+    method public static void ext(org.gradle.api.reporting.ReportingExtension, org.gradle.api.Action<org.gradle.api.plugins.ExtraPropertiesExtension> configure);
+    method public static org.gradle.api.plugins.ExtraPropertiesExtension getExt(org.gradle.api.reporting.ReportingExtension);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsem8w6wnof1lrw3ubqr6eh9gcjKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.DefaultTask> getClasses(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsf2247vvkmo98qvrnampydesmuKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.wrapper.Wrapper> getWrapper(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsf2jx22njgpl8k21k7scc1t0rwKt {
+    method public static org.gradle.api.NamedDomainObjectProvider<org.gradle.api.tasks.SourceSet> getTest(org.gradle.api.tasks.SourceSetContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsfbf92xd7bth9xw3u4y6q8qcdKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.compile.JavaCompile> getCompileTestJava(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class Accessorsw34mwj3hroscfmyxar5atwjzKt {
+    method public static org.gradle.api.tasks.TaskProvider<org.gradle.api.tasks.bundling.Jar> getJar(org.gradle.api.tasks.TaskContainer);
+  }
+
+  @org.gradle.api.Generated public final class AnnotationProcessorConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.Dependency? annotationProcessor(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency annotationProcessor(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static void annotationProcessor(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency annotationProcessor(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method public static <T extends org.gradle.api.artifacts.ModuleDependency> T annotationProcessor(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.DependencyConstraint? annotationProcessor(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method public static org.gradle.api.artifacts.DependencyConstraint? annotationProcessor(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact annotationProcessor(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact annotationProcessor(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class ApiConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.Dependency? api(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency api(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static void api(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency api(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method public static <T extends org.gradle.api.artifacts.ModuleDependency> T api(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.DependencyConstraint? api(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method public static org.gradle.api.artifacts.DependencyConstraint? api(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact api(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact api(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class ApiElementsConfigurationAccessorsKt {
+    method @Deprecated public static org.gradle.api.artifacts.Dependency? apiElements(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency apiElements(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static void apiElements(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency apiElements(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method @Deprecated public static <T extends org.gradle.api.artifacts.ModuleDependency> T apiElements(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? apiElements(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? apiElements(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact apiElements(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact apiElements(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class ArchivesConfigurationAccessorsKt {
+    method @Deprecated public static org.gradle.api.artifacts.Dependency? archives(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency archives(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static void archives(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency archives(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method @Deprecated public static <T extends org.gradle.api.artifacts.ModuleDependency> T archives(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? archives(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? archives(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact archives(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact archives(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class CompileClasspathConfigurationAccessorsKt {
+    method @Deprecated public static org.gradle.api.artifacts.Dependency? compileClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency compileClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static void compileClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency compileClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method @Deprecated public static <T extends org.gradle.api.artifacts.ModuleDependency> T compileClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? compileClasspath(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? compileClasspath(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact compileClasspath(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact compileClasspath(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class CompileOnlyApiConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.Dependency? compileOnlyApi(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency compileOnlyApi(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static void compileOnlyApi(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency compileOnlyApi(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method public static <T extends org.gradle.api.artifacts.ModuleDependency> T compileOnlyApi(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.DependencyConstraint? compileOnlyApi(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method public static org.gradle.api.artifacts.DependencyConstraint? compileOnlyApi(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact compileOnlyApi(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact compileOnlyApi(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class CompileOnlyConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.Dependency? compileOnly(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency compileOnly(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static void compileOnly(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency compileOnly(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method public static <T extends org.gradle.api.artifacts.ModuleDependency> T compileOnly(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.DependencyConstraint? compileOnly(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method public static org.gradle.api.artifacts.DependencyConstraint? compileOnly(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact compileOnly(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact compileOnly(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class DefaultConfigurationAccessorsKt {
+    method @Deprecated public static org.gradle.api.artifacts.Dependency? default(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency default(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static void default(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency default(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method @Deprecated public static <T extends org.gradle.api.artifacts.ModuleDependency> T default(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? default(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? default(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact default(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact default(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class ImplementationConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.Dependency? implementation(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency implementation(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static void implementation(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency implementation(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method public static <T extends org.gradle.api.artifacts.ModuleDependency> T implementation(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.DependencyConstraint? implementation(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method public static org.gradle.api.artifacts.DependencyConstraint? implementation(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact implementation(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact implementation(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class RuntimeClasspathConfigurationAccessorsKt {
+    method @Deprecated public static org.gradle.api.artifacts.Dependency? runtimeClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency runtimeClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static void runtimeClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency runtimeClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method @Deprecated public static <T extends org.gradle.api.artifacts.ModuleDependency> T runtimeClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? runtimeClasspath(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? runtimeClasspath(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact runtimeClasspath(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact runtimeClasspath(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class RuntimeElementsConfigurationAccessorsKt {
+    method @Deprecated public static org.gradle.api.artifacts.Dependency? runtimeElements(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency runtimeElements(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static void runtimeElements(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency runtimeElements(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method @Deprecated public static <T extends org.gradle.api.artifacts.ModuleDependency> T runtimeElements(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? runtimeElements(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? runtimeElements(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact runtimeElements(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact runtimeElements(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class RuntimeOnlyConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.Dependency? runtimeOnly(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency runtimeOnly(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static void runtimeOnly(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency runtimeOnly(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method public static <T extends org.gradle.api.artifacts.ModuleDependency> T runtimeOnly(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.DependencyConstraint? runtimeOnly(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method public static org.gradle.api.artifacts.DependencyConstraint? runtimeOnly(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact runtimeOnly(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact runtimeOnly(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class SignaturesConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.Dependency? signatures(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency signatures(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static void signatures(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency signatures(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method public static <T extends org.gradle.api.artifacts.ModuleDependency> T signatures(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.DependencyConstraint? signatures(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method public static org.gradle.api.artifacts.DependencyConstraint? signatures(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact signatures(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact signatures(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class TestAnnotationProcessorConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.Dependency? testAnnotationProcessor(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testAnnotationProcessor(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static void testAnnotationProcessor(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testAnnotationProcessor(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method public static <T extends org.gradle.api.artifacts.ModuleDependency> T testAnnotationProcessor(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.DependencyConstraint? testAnnotationProcessor(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method public static org.gradle.api.artifacts.DependencyConstraint? testAnnotationProcessor(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact testAnnotationProcessor(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact testAnnotationProcessor(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class TestCompileClasspathConfigurationAccessorsKt {
+    method @Deprecated public static org.gradle.api.artifacts.Dependency? testCompileClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency testCompileClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static void testCompileClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency testCompileClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method @Deprecated public static <T extends org.gradle.api.artifacts.ModuleDependency> T testCompileClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? testCompileClasspath(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? testCompileClasspath(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact testCompileClasspath(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact testCompileClasspath(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class TestCompileOnlyConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.Dependency? testCompileOnly(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testCompileOnly(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static void testCompileOnly(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testCompileOnly(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method public static <T extends org.gradle.api.artifacts.ModuleDependency> T testCompileOnly(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.DependencyConstraint? testCompileOnly(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method public static org.gradle.api.artifacts.DependencyConstraint? testCompileOnly(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact testCompileOnly(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact testCompileOnly(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class TestImplementationConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.Dependency? testImplementation(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testImplementation(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static void testImplementation(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testImplementation(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method public static <T extends org.gradle.api.artifacts.ModuleDependency> T testImplementation(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.DependencyConstraint? testImplementation(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method public static org.gradle.api.artifacts.DependencyConstraint? testImplementation(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact testImplementation(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact testImplementation(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class TestRuntimeClasspathConfigurationAccessorsKt {
+    method @Deprecated public static org.gradle.api.artifacts.Dependency? testRuntimeClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency testRuntimeClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static void testRuntimeClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.ExternalModuleDependency testRuntimeClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method @Deprecated public static <T extends org.gradle.api.artifacts.ModuleDependency> T testRuntimeClasspath(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? testRuntimeClasspath(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method @Deprecated public static org.gradle.api.artifacts.DependencyConstraint? testRuntimeClasspath(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact testRuntimeClasspath(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact testRuntimeClasspath(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+  @org.gradle.api.Generated public final class TestRuntimeOnlyConfigurationAccessorsKt {
+    method public static org.gradle.api.artifacts.Dependency? testRuntimeOnly(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testRuntimeOnly(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static void testRuntimeOnly(org.gradle.api.artifacts.dsl.DependencyHandler, org.gradle.api.provider.Provider<?> dependencyNotation, org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.ExternalModuleDependency testRuntimeOnly(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, optional org.gradle.api.Action<org.gradle.api.artifacts.ExternalModuleDependency>? dependencyConfiguration);
+    method public static <T extends org.gradle.api.artifacts.ModuleDependency> T testRuntimeOnly(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public static org.gradle.api.artifacts.DependencyConstraint? testRuntimeOnly(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation);
+    method public static org.gradle.api.artifacts.DependencyConstraint? testRuntimeOnly(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object constraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> block);
+    method public static org.gradle.api.artifacts.PublishArtifact testRuntimeOnly(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation);
+    method public static org.gradle.api.artifacts.PublishArtifact testRuntimeOnly(org.gradle.api.artifacts.dsl.ArtifactHandler, Object artifactNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ConfigurablePublishArtifact,kotlin.Unit> configureAction);
+  }
+
+}
+

@@ -3,10 +3,11 @@
   <groupId>com.meowool.gradle</groupId>
   <artifactId>toolkit-dependency-prebuilt</artifactId>
   <versioning>
-    <latest>0.1.0-LOCAL-SNAPSHOT</latest>
+    <latest>0.1.0-LOCAL</latest>
+    <release>0.1.0-LOCAL</release>
     <versions>
-      <version>0.1.0-LOCAL-SNAPSHOT</version>
+      <version>0.1.0-LOCAL</version>
     </versions>
-    <lastUpdated>20210926153831</lastUpdated>
+    <lastUpdated>20210926164551</lastUpdated>
   </versioning>
 </metadata>

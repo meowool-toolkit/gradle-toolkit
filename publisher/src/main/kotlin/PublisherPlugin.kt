@@ -117,10 +117,12 @@ class PublisherPlugin : Plugin<Project> {
       }
 
       // Sonatype
-      initSonatypeBuild()
-      extension.destinations.filterIsInstance<SonatypeDestination>().firstOrNull()?.let {
-        taskInitializeSonatypeStaging(extension, it)
-        taskCloseAndReleaseSonatypeRepository(it)
+      if (extension.isLocalVersion.not()) {
+        initSonatypeBuild()
+        extension.destinations.filterIsInstance<SonatypeDestination>().firstOrNull()?.let {
+          taskInitializeSonatypeStaging(extension, it)
+          taskCloseAndReleaseSonatypeRepository(it)
+        }
       }
     }
   }
@@ -274,7 +276,7 @@ class PublisherPlugin : Plugin<Project> {
   private fun PublishingExtension.configureDokkaJar(extension: PublicationExtension) = with(extension) {
     project.afterEvaluate {
       // We do not publish dokka for the snapshot version to improve the build speed
-      if (isSnapshotVersion) return@afterEvaluate
+      if (isSnapshotVersion || isLocalVersion) return@afterEvaluate
 
       val dokkaJar by tasks.register<Jar>("dokkaJar") {
         val dokkaTask = tasks.findByName(dokkaFormat!!.taskName).castOrNull()

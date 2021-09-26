@@ -1,0 +1,203 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowool.gradle",
+    "module": "toolkit-dependency-updater",
+    "version": "0.1.0-LOCAL",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.2-rc-3"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-core",
+          "version": {
+            "requires": "0.1.0-LOCAL"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "0.1.0-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-dependency-updater-0.1.0-LOCAL.jar",
+          "url": "toolkit-dependency-updater-0.1.0-LOCAL.jar",
+          "size": 553901,
+          "sha512": "8a87ef4bb0cc00c49557f1e2db2ccbdd8decc4cdc502fea0df813547d3b10eb79854cd7ec08ce09dd837acb52c421ab4ffef8aaffff267e0352b2e73a1ac5c09",
+          "sha256": "11a2b60d817b8d68d3453c146a1dd6f14282901d0c11f84275f2243d5909379b",
+          "sha1": "729b20c1b1bce63ed438e5356c1ed132fae0896f",
+          "md5": "545c710274c0bd4e8023a6fac86b3047"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.google.cloud",
+          "module": "google-cloud-storage",
+          "version": {
+            "requires": "2.1.5",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.squareup.moshi",
+          "module": "moshi-kotlin",
+          "version": {
+            "requires": "1.12.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "4.9.1",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "logging-interceptor",
+          "version": {
+            "requires": "4.9.1",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "retrofit",
+          "version": {
+            "requires": "2.9.0",
+            "rejects": [
+              "_"
+            ]
+          },
+          "reason": "It has ready to use HttpException class"
+        },
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-core",
+          "version": {
+            "requires": "0.1.0-LOCAL"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "0.1.0-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "com.google.guava",
+          "module": "guava",
+          "version": {
+            "strictly": "30.1.1-jre",
+            "requires": "30.1.1-jre"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-dependency-updater-0.1.0-LOCAL.jar",
+          "url": "toolkit-dependency-updater-0.1.0-LOCAL.jar",
+          "size": 553901,
+          "sha512": "8a87ef4bb0cc00c49557f1e2db2ccbdd8decc4cdc502fea0df813547d3b10eb79854cd7ec08ce09dd837acb52c421ab4ffef8aaffff267e0352b2e73a1ac5c09",
+          "sha256": "11a2b60d817b8d68d3453c146a1dd6f14282901d0c11f84275f2243d5909379b",
+          "sha1": "729b20c1b1bce63ed438e5356c1ed132fae0896f",
+          "md5": "545c710274c0bd4e8023a6fac86b3047"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowool.gradle",
+    "module": "toolkit-core",
+    "version": "0.1.0-LOCAL",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.2-rc-3"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "be.vbgn.gradle",
+          "module": "ci-detect-plugin",
+          "version": {
+            "requires": "0.5.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "0.1.0-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-core-0.1.0-LOCAL.jar",
+          "url": "toolkit-core-0.1.0-LOCAL.jar",
+          "size": 359244,
+          "sha512": "6230d55ff50b0ea8c338242704abbc19f8db1182917a6d6f35f0ccb85a6f634c1139b6f774033b8213dfe5ae340dbb551baf037c42a78bbd8c3483e8dcc40763",
+          "sha256": "fdd1f5904daaf2f8a584a7a3c0034413823100e27a4caac00298c8e9db7667cd",
+          "sha1": "75da64a0bca2e3a962280c5d0add68aecae89df2",
+          "md5": "9d3a3ff166d06ac5121352e23da51bbb"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "be.vbgn.gradle",
+          "module": "ci-detect-plugin",
+          "version": {
+            "requires": "0.5.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "0.1.0-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-core-0.1.0-LOCAL.jar",
+          "url": "toolkit-core-0.1.0-LOCAL.jar",
+          "size": 359244,
+          "sha512": "6230d55ff50b0ea8c338242704abbc19f8db1182917a6d6f35f0ccb85a6f634c1139b6f774033b8213dfe5ae340dbb551baf037c42a78bbd8c3483e8dcc40763",
+          "sha256": "fdd1f5904daaf2f8a584a7a3c0034413823100e27a4caac00298c8e9db7667cd",
+          "sha1": "75da64a0bca2e3a962280c5d0add68aecae89df2",
+          "md5": "9d3a3ff166d06ac5121352e23da51bbb"
+        }
+      ]
+    }
+  ]
+}

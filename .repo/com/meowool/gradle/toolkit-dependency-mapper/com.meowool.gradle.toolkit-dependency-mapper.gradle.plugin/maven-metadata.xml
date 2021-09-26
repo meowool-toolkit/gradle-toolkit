@@ -3,10 +3,11 @@
   <groupId>com.meowool.gradle.toolkit-dependency-mapper</groupId>
   <artifactId>com.meowool.gradle.toolkit-dependency-mapper.gradle.plugin</artifactId>
   <versioning>
-    <latest>0.1.0-LOCAL-SNAPSHOT</latest>
+    <latest>0.1.0-LOCAL</latest>
+    <release>0.1.0-LOCAL</release>
     <versions>
-      <version>0.1.0-LOCAL-SNAPSHOT</version>
+      <version>0.1.0-LOCAL</version>
     </versions>
-    <lastUpdated>20210926153811</lastUpdated>
+    <lastUpdated>20210926164506</lastUpdated>
   </versioning>
 </metadata>
