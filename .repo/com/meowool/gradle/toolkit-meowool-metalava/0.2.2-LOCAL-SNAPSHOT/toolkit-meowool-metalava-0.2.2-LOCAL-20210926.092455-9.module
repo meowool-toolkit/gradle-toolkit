@@ -1,0 +1,138 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowool.gradle",
+    "module": "toolkit-meowool-metalava",
+    "version": "0.2.2-LOCAL-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.2-rc-3"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-core",
+          "version": {
+            "requires": "0.2.2-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "1.24-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-meowool-metalava-0.2.2-LOCAL-SNAPSHOT.jar",
+          "url": "toolkit-meowool-metalava-0.2.2-LOCAL-SNAPSHOT.jar",
+          "size": 48305,
+          "sha512": "6971ede10935375a23c8354519f9354c4f997e4b057f3c6b4ed3991cb3b3b676ca034ba9ae19e7b3111b4edefb3aa74723e90666965574e4b6beb01541355ba8",
+          "sha256": "343c9922507398a963d33077f6f2e59e3418bf257ec3a1a621f22ede146bd8c5",
+          "sha1": "b72713501bb0103647f4f858950b0e5b96456d2b",
+          "md5": "79460c28459228bf79f50ca8862b1d31"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-core",
+          "version": {
+            "requires": "0.2.2-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "1.24-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-meowool-metalava-0.2.2-LOCAL-SNAPSHOT.jar",
+          "url": "toolkit-meowool-metalava-0.2.2-LOCAL-SNAPSHOT.jar",
+          "size": 48305,
+          "sha512": "6971ede10935375a23c8354519f9354c4f997e4b057f3c6b4ed3991cb3b3b676ca034ba9ae19e7b3111b4edefb3aa74723e90666965574e4b6beb01541355ba8",
+          "sha256": "343c9922507398a963d33077f6f2e59e3418bf257ec3a1a621f22ede146bd8c5",
+          "sha1": "b72713501bb0103647f4f858950b0e5b96456d2b",
+          "md5": "79460c28459228bf79f50ca8862b1d31"
+        }
+      ]
+    }
+  ]
+}

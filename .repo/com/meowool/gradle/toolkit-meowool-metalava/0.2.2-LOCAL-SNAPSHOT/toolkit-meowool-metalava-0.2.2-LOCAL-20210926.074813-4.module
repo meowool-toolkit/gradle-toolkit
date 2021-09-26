@@ -1,0 +1,142 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowool.gradle",
+    "module": "toolkit-meowool-metalava",
+    "version": "0.2.2-LOCAL-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.2-rc-3"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-core",
+          "version": {
+            "requires": "0.2.2-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "1.24-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-meowool-metalava-0.2.2-LOCAL-SNAPSHOT.jar",
+          "url": "toolkit-meowool-metalava-0.2.2-LOCAL-SNAPSHOT.jar",
+          "size": 48515,
+          "sha512": "f4815112274c389f0a02b4d88db89b64301f5df8304ab3aeecea0b66d5521e0928bb7a0a56f48ac93287e0e637a208966a4a9f3f39bcbb20ad4208de9ecf3153",
+          "sha256": "8f6b8bd31c483e7ca5ae99e03e669c9dcfb42ac73f16347d9b33a34eb10531cf",
+          "sha1": "5237928de50d6e24ba96f7b75b9b79d170975162",
+          "md5": "0ee4906de2435b875681b3aea8f34343"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.meowool.gradle",
+          "module": "toolkit-core",
+          "version": {
+            "requires": "0.2.2-LOCAL-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowool.toolkit",
+          "module": "sweekt",
+          "version": {
+            "requires": "1.24-SNAPSHOT",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-meowool-metalava-0.2.2-LOCAL-SNAPSHOT.jar",
+          "url": "toolkit-meowool-metalava-0.2.2-LOCAL-SNAPSHOT.jar",
+          "size": 48515,
+          "sha512": "f4815112274c389f0a02b4d88db89b64301f5df8304ab3aeecea0b66d5521e0928bb7a0a56f48ac93287e0e637a208966a4a9f3f39bcbb20ad4208de9ecf3153",
+          "sha256": "8f6b8bd31c483e7ca5ae99e03e669c9dcfb42ac73f16347d9b33a34eb10531cf",
+          "sha1": "5237928de50d6e24ba96f7b75b9b79d170975162",
+          "md5": "0ee4906de2435b875681b3aea8f34343"
+        }
+      ]
+    }
+  ]
+}
