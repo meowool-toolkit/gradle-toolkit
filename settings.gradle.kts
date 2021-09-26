@@ -35,7 +35,7 @@ plugins {
   //   https://github.com/meowool-toolkit/gradle-toolkit/blob/main/.github/workflows/deployment.yml
   id("com.meowool.gradle.toolkit") version when (System.getenv().containsKey("use-non-local-version")) {
     true -> "0.1.0-SNAPSHOT"
-    false -> "0.1.0-LOCAL-SNAPSHOT"
+    false -> "0.1.0-LOCAL"
   }
 }
 
