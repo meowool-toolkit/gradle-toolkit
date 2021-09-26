@@ -29,6 +29,7 @@ import com.meowool.gradle.toolkit.PluginId
 import com.meowool.gradle.toolkit.SearchDeclaration
 import com.meowool.gradle.toolkit.internal.BaseSearchDeclarationImpl.Data.Companion.clientUrls
 import com.meowool.sweekt.String
+import com.meowool.sweekt.takeIfNotEmpty
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.serialization.Serializable

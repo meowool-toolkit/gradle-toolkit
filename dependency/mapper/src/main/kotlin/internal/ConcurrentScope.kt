@@ -20,6 +20,7 @@
  */
 package com.meowool.gradle.toolkit.internal
 
+import com.meowool.sweekt.coroutines.withDefaultContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -29,7 +30,6 @@ import kotlinx.coroutines.channels.toList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import com.meowool.sweekt.coroutines.withDefault as withDefaultContext
 
 /**
  * @author 凛 (https://github.com/RinOrz)
