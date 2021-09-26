@@ -25,7 +25,7 @@ jobs:
           configuration-cache-enabled: true
           dependencies-cache-enabled: true
           # Publish all projects
-          arguments: publish
+          arguments: publish --stacktrace
 
   build:
     needs: publish
