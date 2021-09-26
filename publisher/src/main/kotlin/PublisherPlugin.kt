@@ -25,7 +25,6 @@ package com.meowool.gradle.toolkit.publisher
 import MavenLocalDestination
 import SonatypeDestination
 import addIfNotExists
-import com.android.build.gradle.internal.crash.afterEvaluate
 import com.gradle.publish.PluginBundleExtension
 import com.gradle.publish.PublishPlugin
 import com.meowool.gradle.toolkit.publisher.internal.androidExtension
@@ -40,7 +39,6 @@ import com.meowool.gradle.toolkit.publisher.internal.repositoriesToClose
 import com.meowool.gradle.toolkit.publisher.internal.stagingDescription
 import com.meowool.sweekt.castOrNull
 import com.meowool.sweekt.isNotNull
-import com.meowool.sweekt.safeCast
 import groovy.util.Node
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
@@ -197,19 +195,19 @@ class PublisherPlugin : Plugin<Project> {
       project.version = data.version
       project.description = data.description
 
-      this.groupId = data.groupId
-      this.version = data.version
+      groupId = data.groupId
+      version = data.version
 
       // Do not set the artifactId of plugin, because it is specified by `java-gradle-plugin`:
       // https://docs.gradle.org/current/userguide/plugins.html#sec:plugin_markers
-      if (this.name.endsWith("PluginMarkerMaven").not()) when {
+      if (name.endsWith("PluginMarkerMaven").not()) when {
         // Lazy setting the artifact id to avoid replacement by MPP plugin
-        project.isMultiplatform -> afterEvaluate {
+        project.isMultiplatform -> project.afterEvaluate {
           // The `kotlin-multiplatform` plugin uses the project name as the artifact prefix, so we need to replace it.
           // E.g. library, library-jvm, library-native
-          this.artifactId = data.artifactId + this.artifactId.removePrefix(project.name)
+          artifactId = data.artifactId + artifactId.removePrefix(project.name)
         }
-        else -> this.artifactId = data.artifactId
+        else -> artifactId = data.artifactId
       }
 
       pom {
