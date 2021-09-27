@@ -38,9 +38,9 @@ metalava {
 
 subprojects {
   optIn(*internalMarkers)
-  kotlinJvmOptions {
-    @Suppress("DEPRECATION")
-    useIR = true
+  configurations.all {
+    // Check for updates every build
+    resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
   }
   tasks.withType<Test> { useJUnitPlatform() }
 }
