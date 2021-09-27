@@ -20,9 +20,25 @@
  */
 @file:Suppress()
 
+import be.vbgn.gradle.cidetect.CiInformation
+
 /**
  * Returns `true` if the current ide is Intellij-IDEA.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
 val isIntelliJ: Boolean get() = System.getenv("__CFBundleIdentifier") == "com.jetbrains.intellij"
+
+/**
+ * Returns true if it is currently running in a CI environment.
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+val isCiEnvironment: Boolean get() = ciEnvironment.isCi
+
+/**
+ * Returns the information of CI environment.
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+val ciEnvironment: CiInformation get() = CiInformation.detect()
