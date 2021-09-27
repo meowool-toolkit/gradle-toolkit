@@ -22,7 +22,7 @@ jobs:
         with:
           distributions-cache-enabled: true
           configuration-cache-enabled: false
-          dependencies-cache-enabled: true
+          dependencies-cache-enabled: false
           # Publish all projects
           arguments: publish --stacktrace
 
@@ -45,4 +45,4 @@ jobs:
         with:
           distributions-cache-enabled: true
           configuration-cache-enabled: false
-          dependencies-cache-enabled: true
+          dependencies-cache-enabled: false
