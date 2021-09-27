@@ -68,11 +68,11 @@
         {
           "name": "toolkit-dependency-mapper-0.1.0-LOCAL.jar",
           "url": "toolkit-dependency-mapper-0.1.0-LOCAL.jar",
-          "size": 508955,
-          "sha512": "167c95c3779815ad9d93c1f82d07ae0054dbe8ea888eb23fe0eec77a53cb27a6f430843be797b918cc8d3cff63c37235782d391de2678f34bd999c814ac2903b",
-          "sha256": "8ee5cca187262f190b51c5b69772166af07433176c94b04c2b79a74ac79815fd",
-          "sha1": "bb0da2b92e83c4404536027f040c34d725581cce",
-          "md5": "1daff81eddee378669dacf3547c75413"
+          "size": 508792,
+          "sha512": "b99e66d9dddf2845e8b39bdd2482a7ecda814173e696f5d8d8e42006ec8f145d734f88d5e9273b4bc7052dbe44e21ddda81961ab53d0e67e48ee4c01cb5e2e8b",
+          "sha256": "8c24cd022bba1477a45eb87553b7d62e52a1f34bdeb9d62309be63e50597aa8d",
+          "sha1": "05d3e675f21789859452936d5859f90aa26824c4",
+          "md5": "af593e697cb21a0b6005ecb9b74544f7"
         }
       ]
     },
@@ -210,11 +210,11 @@
         {
           "name": "toolkit-dependency-mapper-0.1.0-LOCAL.jar",
           "url": "toolkit-dependency-mapper-0.1.0-LOCAL.jar",
-          "size": 508955,
-          "sha512": "167c95c3779815ad9d93c1f82d07ae0054dbe8ea888eb23fe0eec77a53cb27a6f430843be797b918cc8d3cff63c37235782d391de2678f34bd999c814ac2903b",
-          "sha256": "8ee5cca187262f190b51c5b69772166af07433176c94b04c2b79a74ac79815fd",
-          "sha1": "bb0da2b92e83c4404536027f040c34d725581cce",
-          "md5": "1daff81eddee378669dacf3547c75413"
+          "size": 508792,
+          "sha512": "b99e66d9dddf2845e8b39bdd2482a7ecda814173e696f5d8d8e42006ec8f145d734f88d5e9273b4bc7052dbe44e21ddda81961ab53d0e67e48ee4c01cb5e2e8b",
+          "sha256": "8c24cd022bba1477a45eb87553b7d62e52a1f34bdeb9d62309be63e50597aa8d",
+          "sha1": "05d3e675f21789859452936d5859f90aa26824c4",
+          "md5": "af593e697cb21a0b6005ecb9b74544f7"
         }
       ]
     }
