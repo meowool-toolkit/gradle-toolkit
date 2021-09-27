@@ -20,9 +20,9 @@ jobs:
       - name: Publish publications
         uses: gradle/gradle-build-action@v1
         with:
-          distributions-cache-enabled: false
-          configuration-cache-enabled: false
-          dependencies-cache-enabled: false
+          distributions-cache-enabled: true
+          configuration-cache-enabled: true
+          dependencies-cache-enabled: true
           # Publish all projects
           arguments: publish --stacktrace
 
@@ -43,6 +43,6 @@ jobs:
       - name: Gradle sync
         uses: gradle/gradle-build-action@v1
         with:
-          distributions-cache-enabled: false
-          configuration-cache-enabled: false
-          dependencies-cache-enabled: false
+          distributions-cache-enabled: true
+          configuration-cache-enabled: true
+          dependencies-cache-enabled: true
