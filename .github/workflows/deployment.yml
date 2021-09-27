@@ -20,10 +20,9 @@ jobs:
       - name: Publish publications
         uses: gradle/gradle-build-action@v1
         with:
-          gradle-version: release-candidate
-          distributions-cache-enabled: true
-          configuration-cache-enabled: true
-          dependencies-cache-enabled: true
+          distributions-cache-enabled: false
+          configuration-cache-enabled: false
+          dependencies-cache-enabled: false
           # Publish all projects
           arguments: publish --stacktrace
 
@@ -31,6 +30,7 @@ jobs:
     needs: publish
     runs-on: ubuntu-latest
     env:
+      # Build test published artifacts
       use-non-local-version: true
 
     steps:
@@ -43,7 +43,6 @@ jobs:
       - name: Gradle sync
         uses: gradle/gradle-build-action@v1
         with:
-          gradle-version: release-candidate
-          distributions-cache-enabled: true
-          configuration-cache-enabled: true
-          dependencies-cache-enabled: true
+          distributions-cache-enabled: false
+          configuration-cache-enabled: false
+          dependencies-cache-enabled: false
