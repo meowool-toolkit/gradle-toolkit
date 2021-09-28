@@ -5,9 +5,9 @@
   <artifactId>com.meowool.gradle.toolkit.gradle.plugin</artifactId>
   <version>0.1.0-LOCAL</version>
   <packaging>pom</packaging>
-  <name>All</name>
+  <name>Toolkit</name>
   <description>Raise the practicality of gradle to a new level.</description>
-  <url>https://github.com/meowool-toolkit/gradle-toolkit/</url>
+  <url>https://github.com/meowool-toolkit/gradle-toolkit</url>
   <organization>
     <name>https://github.com/meowool/</name>
   </organization>
@@ -25,7 +25,7 @@
     </developer>
   </developers>
   <scm>
-    <url>https://github.com/meowool-toolkit/gradle-toolkit/.git</url>
+    <url>https://github.com/meowool-toolkit/gradle-toolkit.git</url>
   </scm>
   <repositories>
     <repository>
@@ -60,7 +60,7 @@
   <dependencies>
     <dependency>
       <groupId>com.meowool.gradle</groupId>
-      <artifactId>all</artifactId>
+      <artifactId>toolkit</artifactId>
       <version>0.1.0-LOCAL</version>
     </dependency>
   </dependencies>

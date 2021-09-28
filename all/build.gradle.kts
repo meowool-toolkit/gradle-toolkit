@@ -21,7 +21,7 @@
 plugins { `kotlin-dsl` }
 
 publication {
-  data.pluginId = "${data.groupId}.toolkit"
+  data.artifactId = "toolkit"
   pluginClass = "${data.groupId}.toolkit.GradleToolkitPlugin"
 }
 

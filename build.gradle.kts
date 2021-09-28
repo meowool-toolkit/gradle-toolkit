@@ -74,7 +74,7 @@ publication {
     displayName = "Gradle Toolkit"
     groupId = "com.meowool.gradle"
     description = "Raise the practicality of gradle to a new level."
-    url = "https://github.com/meowool-toolkit/gradle-toolkit/"
+    url = "https://github.com/meowool-toolkit/gradle-toolkit"
     vcs = "$url.git"
     developer {
       id = "rin"
