@@ -2,7 +2,7 @@ name: Sync prebuilt dependencies
 
 on:
   schedule:
-    - cron: '5 3 * * *'
+    - cron: '5 20 * * *'
   push:
     paths:
       - '.github/workflows/sync-dependencies.yml'
