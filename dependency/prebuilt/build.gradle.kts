@@ -48,6 +48,7 @@ tasks.create("syncDependencies").doLast {
   ) {
     plugins {
       map(
+        "com.github.johnrengelman.shadow" to "Shadow",
         "com.diffplug.spotless" to "Spotless",
         "com.gradle.publish" to "Gradle.Publish",
         "com.gradle.build-scan" to "Gradle.BuildScan",

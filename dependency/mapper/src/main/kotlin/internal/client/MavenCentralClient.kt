@@ -43,9 +43,9 @@ internal class MavenCentralClient(
   override fun fetchGroups(group: String): Flow<LibraryDependency> = fetchImpl("g:\"$group\"")
 
   private fun fetchImpl(keyword: String): Flow<LibraryDependency> = pagesFlow { page ->
-    val offset = (page - 1) * 1000
-    // Only get up to 1000 results at a time to avoid excessive server pressure
-    get<Search>("solrsearch/select?q=$keyword&start=$offset&rows=1000").result.dependencies
+    val offset = (page - 1) * Max
+    // Only get up to 'Max' results at a time to avoid excessive server pressure
+    get<Search>("solrsearch/select?q=$keyword&start=$offset&rows=$Max").result.dependencies
       .takeIf { it.isNotEmpty() }
       ?.forEachConcurrently { send(LibraryDependency(it.toString())) }
   }
@@ -56,5 +56,9 @@ internal class MavenCentralClient(
         override fun toString(): String = "$group:$artifact"
       }
     }
+  }
+
+  companion object {
+    private const val Max = 200
   }
 }
