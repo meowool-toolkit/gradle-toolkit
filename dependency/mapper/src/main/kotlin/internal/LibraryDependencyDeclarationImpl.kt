@@ -152,7 +152,10 @@ internal class LibraryDependencyDeclarationImpl(rootClassName: String) : Library
     }
 
     override suspend fun ConcurrentScope<*>.collect(
-      project: Project, pool: JarPool, isConcurrently: Boolean, formatter: DependencyFormatter
+      project: Project,
+      pool: JarPool,
+      isConcurrently: Boolean,
+      formatter: DependencyFormatter
     ) {
       suspend fun sendMap(dependency: CharSequence, mappedPath: CharSequence = formatter.toPath(dependency)) {
         val dependency = dependency as? LibraryDependency ?: LibraryDependency(dependency)

@@ -298,6 +298,7 @@ open class MeowoolPresetSpec internal constructor() {
     allprojects(afterEvaluate = false) {
       extensions.findByType<SpotlessExtension>()?.apply {
         fun ktlintData() = mapOf(
+          "disabled_rules" to "filename",
           "indent_size" to "2",
           "chain-wrapping" to "true",
           "modifier-order" to "true",
