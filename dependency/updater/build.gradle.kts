@@ -57,21 +57,6 @@ dependencies {
   testFixturesApi(Libs.Square.OkHttp3.OkHttp)
   testFixturesApi(Libs.Square.OkHttp3.Logging.Interceptor)
   testFixturesApi(Libs.KotlinX.Coroutines.Core)
-
-  constraints {
-    implementation(withoutVersion(Libs.Google.Guava)) {
-      version {
-        strictly("30.1.1-jre")
-        // Without that version constraint forcing a known "jre" variant,
-        // GCS makes an "android" variant being selected for the buildscript classpath,
-        // which creates a conflict with the Android Gradle Plugin and possibly other plugins,
-        // that would manifest itself at runtime like the following:
-        // Failed to notify project evaluation listener.
-        //   > 'java.util.stream.Collector com.google.common.collect.ImmutableList.toImmutableList()'
-        // (The Android Gradle Plugin is not an Android app or library, so it relies on the "jre" variant.)
-      }
-    }
-  }
 }
 
 kotlin {

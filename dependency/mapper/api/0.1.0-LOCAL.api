@@ -39,6 +39,7 @@ package com.meowool.gradle.toolkit {
 
   public interface DependencyMapperExtension {
     method public void alwaysUpdate();
+    method public void concurrency(optional boolean isConcurrently);
     method public void format(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.DependencyFormatter,kotlin.Unit> formatter);
     method public org.gradle.api.Project getProject();
     method public com.meowool.gradle.toolkit.LibraryDependencyDeclaration libraries(optional String rootClassName, optional kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.LibraryDependencyDeclaration,kotlin.Unit> configuration);
