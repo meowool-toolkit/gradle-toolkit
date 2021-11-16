@@ -104,6 +104,7 @@ internal class PluginDependencyDeclarationImpl(rootClassName: String) : PluginDe
 
     override suspend fun ConcurrentScope<*>.collect(
       project: Project,
+      isConcurrently: Boolean,
       output: DependencyMapperInternal.DependencyOutputList
     ) {
       map.forEachConcurrently(capacity = 500) { output.plugins += it }
@@ -115,7 +116,7 @@ internal class PluginDependencyDeclarationImpl(rootClassName: String) : PluginDe
       searchKeywords.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote plugins from: [$urls] by keywords...")
         searchKeywords.forEachConcurrently {
-          it.searchKeywords()
+          it.searchKeywords(isConcurrently)
             .mapNotNull { it.toPluginIdOrNull() }
             .collect { output.plugins += it.toString() }
         }
@@ -124,14 +125,19 @@ internal class PluginDependencyDeclarationImpl(rootClassName: String) : PluginDe
       searchPrefixes.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote plugins from: [$urls] by prefixes...")
         searchPrefixes.forEachConcurrently {
-          it.searchPrefixes()
+          it.searchPrefixes(isConcurrently)
             .mapNotNull { it.toPluginIdOrNull() }
             .collect { output.plugins += it.toString() }
         }
       }
     }
 
-    override suspend fun ConcurrentScope<*>.collect(project: Project, pool: JarPool, formatter: DependencyFormatter) {
+    override suspend fun ConcurrentScope<*>.collect(
+      project: Project,
+      pool: JarPool,
+      isConcurrently: Boolean,
+      formatter: DependencyFormatter
+    ) {
       suspend fun sendMap(dependency: CharSequence, mappedPath: CharSequence = formatter.toPath(dependency)) {
         var mappedPath = mappedPath
         val pluginId = when (dependency) {
@@ -156,12 +162,12 @@ internal class PluginDependencyDeclarationImpl(rootClassName: String) : PluginDe
 
       searchKeywords.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote plugins from: [$urls] by keywords...")
-        searchKeywords.forEachConcurrently { it.searchKeywords().collect(::sendMap) }
+        searchKeywords.forEachConcurrently { it.searchKeywords(isConcurrently).collect(::sendMap) }
       }
 
       searchPrefixes.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote plugins from: [$urls] by prefixes...")
-        searchPrefixes.forEachConcurrently { it.searchPrefixes().collect(::sendMap) }
+        searchPrefixes.forEachConcurrently { it.searchPrefixes(isConcurrently).collect(::sendMap) }
       }
     }
   }

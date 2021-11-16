@@ -56,6 +56,7 @@ internal class DependencyMapperExtensionImpl(override val project: Project) : De
   private val collectMutex: Mutex = Mutex()
   private val declarations: MutableMap<String, Any> = mutableMapOf()
   private var isUpdate: () -> Boolean = { cacheGraph.isInvalid }
+  private var isConcurrently: Boolean = true
 
   private lateinit var cacheGraph: CacheGraph
 
@@ -103,6 +104,10 @@ internal class DependencyMapperExtensionImpl(override val project: Project) : De
 
   override fun format(formatter: DependencyFormatter.() -> Unit) = data.formatter.run(formatter)
 
+  override fun concurrency(isConcurrently: Boolean) {
+    this.isConcurrently = isConcurrently
+  }
+
   override fun updateWhen(predicate: (Project) -> Boolean) {
     isUpdate = { predicate(project) }
   }
@@ -123,7 +128,7 @@ internal class DependencyMapperExtensionImpl(override val project: Project) : De
     collectMutex.withLock {
       val outputList = DependencyMapperInternal.DependencyOutputList()
       val consume = measureTime {
-        consumeChannel {
+        consumeChannel(isConcurrently) {
           data.collectors.forEachConcurrently {
             with(it) { collect(project, outputList) }
           }
@@ -151,7 +156,7 @@ internal class DependencyMapperExtensionImpl(override val project: Project) : De
         val consume = measureTime {
           val jarPool = JarPool()
 
-          consumeChannel {
+          consumeChannel(isConcurrently) {
             data.collectors.forEachConcurrently {
               with(it) {
                 // Remap only when the corresponding cache is invalid
@@ -163,7 +168,7 @@ internal class DependencyMapperExtensionImpl(override val project: Project) : De
             }
           }
 
-          consumeChannel {
+          consumeChannel(isConcurrently) {
             fun writeEachJar(rootClassName: String, jar: Jar): File {
               mappingCount.addAndGet(jar.size())
               return cacheGraph.writeJar(rootClassName, jar)

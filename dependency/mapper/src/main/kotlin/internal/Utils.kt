@@ -120,13 +120,16 @@ internal fun Element.href() = attr("href")
 
 @Suppress("SuspendFunctionOnCoroutineScope")
 internal suspend fun CoroutineScope.consumeChannel(
+  isConcurrently: Boolean = true,
   context: CoroutineContext = EmptyCoroutineContext,
   capacity: Int = 0,
   block: suspend ConcurrentScope<Any>.() -> Unit
-) = produce(context, capacity) { block(ConcurrentScope(this)) }.consumeEach { }
+) = produce(context, capacity) { block(ConcurrentScope(this, isConcurrently)) }.consumeEach { }
 
-internal fun <E> concurrentFlow(@BuilderInference block: suspend ConcurrentScope<E>.() -> Unit): Flow<E> =
-  channelFlow { block(ConcurrentScope(this)) }
+internal fun <E> concurrentFlow(
+  isConcurrently: Boolean = true,
+  @BuilderInference block: suspend ConcurrentScope<E>.() -> Unit
+): Flow<E> = channelFlow { block(ConcurrentScope(this, isConcurrently)) }
 
 internal fun <T, R> Flow<T>.flatMapConcurrently(
   concurrency: Int = Int.MAX_VALUE,

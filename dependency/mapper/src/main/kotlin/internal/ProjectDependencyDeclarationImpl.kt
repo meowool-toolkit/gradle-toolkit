@@ -55,7 +55,12 @@ internal class ProjectDependencyDeclarationImpl(rootClassName: String, val proje
     @Transient
     val filters: MutableList<(Project) -> Boolean> = mutableListOf()
 
-    override suspend fun ConcurrentScope<*>.collect(project: Project, pool: JarPool, formatter: DependencyFormatter) {
+    override suspend fun ConcurrentScope<*>.collect(
+      project: Project,
+      pool: JarPool,
+      isConcurrently: Boolean,
+      formatter: DependencyFormatter
+    ) {
       val mappedProjects = mutableListOf<String>()
 
       suspend fun sendMap(project: Project, mappedPath: CharSequence = project.path) {

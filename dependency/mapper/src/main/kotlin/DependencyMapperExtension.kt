@@ -25,7 +25,7 @@ package com.meowool.gradle.toolkit
 import org.gradle.api.Project
 
 /**
- * The optional configuration of Dependencies Mapper.
+ * The optional configuration of Dependency Mapper.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
@@ -75,6 +75,12 @@ interface DependencyMapperExtension {
    * @see DependencyFormatter.toPath
    */
   fun format(formatter: DependencyFormatter.() -> Unit)
+
+  /**
+   * Controls whether all 'DependencyMapper' processing is executed in a concurrent environment.
+   * Note that the all processing is concurrent by default.
+   */
+  fun concurrency(isConcurrently: Boolean = true)
 
   /**
    * When the predicate returns `true`, remapping the dependencies.

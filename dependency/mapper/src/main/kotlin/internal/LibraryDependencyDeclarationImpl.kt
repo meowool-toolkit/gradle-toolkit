@@ -118,6 +118,7 @@ internal class LibraryDependencyDeclarationImpl(rootClassName: String) : Library
 
     override suspend fun ConcurrentScope<*>.collect(
       project: Project,
+      isConcurrently: Boolean,
       output: DependencyMapperInternal.DependencyOutputList
     ) {
       map.forEachConcurrently(capacity = 500) { output.libraries += it }
@@ -129,28 +130,30 @@ internal class LibraryDependencyDeclarationImpl(rootClassName: String) : Library
       searchKeywords.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote plugins from: [$urls] by keywords...")
         searchKeywords.forEachConcurrently {
-          it.searchKeywords().collect { output.libraries += it.toString() }
+          it.searchKeywords(isConcurrently).collect { output.libraries += it.toString() }
         }
       }
 
       searchPrefixes.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote plugins from: [$urls] by prefixes...")
         searchPrefixes.forEachConcurrently {
-          it.searchPrefixes().collect { output.libraries += it.toString() }
+          it.searchPrefixes(isConcurrently).collect { output.libraries += it.toString() }
         }
       }
 
       searchGroups.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote libraries from: [$urls] by groups...")
         searchGroups.forEachConcurrently {
-          it.searchGroups().collect {
+          it.searchGroups(isConcurrently).collect {
             output.libraries += it.toString()
           }
         }
       }
     }
 
-    override suspend fun ConcurrentScope<*>.collect(project: Project, pool: JarPool, formatter: DependencyFormatter) {
+    override suspend fun ConcurrentScope<*>.collect(
+      project: Project, pool: JarPool, isConcurrently: Boolean, formatter: DependencyFormatter
+    ) {
       suspend fun sendMap(dependency: CharSequence, mappedPath: CharSequence = formatter.toPath(dependency)) {
         val dependency = dependency as? LibraryDependency ?: LibraryDependency(dependency)
 
@@ -177,17 +180,17 @@ internal class LibraryDependencyDeclarationImpl(rootClassName: String) : Library
 
       searchKeywords.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote libraries from: [$urls] by keywords...")
-        searchKeywords.forEachConcurrently { it.searchKeywords().collect(::sendMap) }
+        searchKeywords.forEachConcurrently { it.searchKeywords(isConcurrently).collect(::sendMap) }
       }
 
       searchPrefixes.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote libraries from: [$urls] by prefixes...")
-        searchPrefixes.forEachConcurrently { it.searchPrefixes().collect(::sendMap) }
+        searchPrefixes.forEachConcurrently { it.searchPrefixes(isConcurrently).collect(::sendMap) }
       }
 
       searchGroups.clientUrls().takeIfNotEmpty()?.also { urls ->
         project.logger.quiet("Search remote libraries from: [$urls] by groups...")
-        searchGroups.forEachConcurrently { it.searchGroups().collect(::sendMap) }
+        searchGroups.forEachConcurrently { it.searchGroups(isConcurrently).collect(::sendMap) }
       }
     }
   }

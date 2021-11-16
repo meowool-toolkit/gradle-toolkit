@@ -102,17 +102,21 @@ internal abstract class BaseSearchDeclarationImpl<Result>(values: List<String>) 
       filters += other.filters
     }
 
-    suspend fun searchKeywords(): Flow<LibraryDependency> = searchImpl { fetch(it) }
-    suspend fun searchPrefixes(): Flow<LibraryDependency> = searchImpl { fetchPrefixes(it) }
-    suspend fun searchGroups(): Flow<LibraryDependency> = searchImpl { fetchGroups(it) }
+    suspend fun searchKeywords(isConcurrently: Boolean): Flow<LibraryDependency> =
+      searchImpl(isConcurrently) { fetch(it) }
+    suspend fun searchPrefixes(isConcurrently: Boolean): Flow<LibraryDependency> =
+      searchImpl(isConcurrently) { fetchPrefixes(it) }
+    suspend fun searchGroups(isConcurrently: Boolean): Flow<LibraryDependency> =
+      searchImpl(isConcurrently) { fetchGroups(it) }
 
     private suspend fun searchImpl(
+      isConcurrently: Boolean,
       search: DependencyRepositoryClient.(String) -> Flow<LibraryDependency>,
     ): Flow<LibraryDependency> {
       var lastRetry: TimeMark? = null
       var retryIfMissing = retryIfMissing
 
-      return concurrentFlow {
+      return concurrentFlow(isConcurrently) {
         val count = AtomicInteger()
 
         try {

@@ -27,6 +27,16 @@ import org.gradle.api.Project
  * @author 凛 (https://github.com/RinOrz)
  */
 internal interface DependencyCollector {
-  suspend fun ConcurrentScope<*>.collect(project: Project, output: DependencyMapperInternal.DependencyOutputList) {}
-  suspend fun ConcurrentScope<*>.collect(project: Project, pool: JarPool, formatter: DependencyFormatter)
+  suspend fun ConcurrentScope<*>.collect(
+    project: Project,
+    isConcurrently: Boolean,
+    output: DependencyMapperInternal.DependencyOutputList
+  ) = Unit
+
+  suspend fun ConcurrentScope<*>.collect(
+    project: Project,
+    pool: JarPool,
+    isConcurrently: Boolean,
+    formatter: DependencyFormatter
+  )
 }

@@ -34,16 +34,20 @@ import kotlinx.coroutines.launch
 /**
  * @author 凛 (https://github.com/RinOrz)
  */
-internal class ConcurrentScope<E>(producerScope: ProducerScope<E>) : ProducerScope<E> by producerScope {
+internal class ConcurrentScope<E>(
+  producerScope: ProducerScope<E>,
+  private val isConcurrently: Boolean
+) : ProducerScope<E> by producerScope {
 
   internal suspend fun <T> Iterable<T>.forEachConcurrently(
     capacity: Int = Concurrency,
     action: suspend (T) -> Unit,
   ) {
     if (this is Collection && this.isEmpty()) return
-    consumeChannel(Dispatchers.Default, capacity) {
+    consumeChannel(isConcurrently, Dispatchers.Default, capacity) {
       forEach {
-        launch { send(action(it)) }
+        if (isConcurrently) send(action(it))
+        else launch { send(action(it)) }
       }
     }
   }
@@ -53,9 +57,10 @@ internal class ConcurrentScope<E>(producerScope: ProducerScope<E>) : ProducerSco
     action: suspend (T) -> Unit,
   ) {
     if (this.isEmpty()) return
-    consumeChannel(Dispatchers.Default, capacity) {
+    consumeChannel(isConcurrently, Dispatchers.Default, capacity) {
       forEach {
-        launch { send(action(it)) }
+        if (isConcurrently) send(action(it))
+        else launch { send(action(it)) }
       }
     }
   }
@@ -65,9 +70,10 @@ internal class ConcurrentScope<E>(producerScope: ProducerScope<E>) : ProducerSco
     action: suspend (key: K, value: V) -> Unit,
   ) {
     if (this.isEmpty()) return
-    consumeChannel(Dispatchers.Default, capacity) {
+    consumeChannel(isConcurrently, Dispatchers.Default, capacity) {
       forEach {
-        launch { send(action(it.key, it.value)) }
+        if (isConcurrently) send(action(it.key, it.value))
+        else launch { send(action(it.key, it.value)) }
       }
     }
   }
@@ -76,15 +82,19 @@ internal class ConcurrentScope<E>(producerScope: ProducerScope<E>) : ProducerSco
     transform: suspend (key: K, value: V) -> R,
   ): List<R> {
     if (this.isEmpty()) return emptyList()
-    return produce(Dispatchers.Default, capacity = Concurrency) {
+    return if (isConcurrently) produce(Dispatchers.Default, capacity = Concurrency) {
       forEach {
         send(async { transform(it.key, it.value) })
       }
     }.toList().awaitAll()
+    else map { transform(it.key, it.value) }.toList()
   }
 
   internal suspend inline fun sendAll(flow: Flow<E>?) = withDefaultContext {
-    flow?.collect { launch { send(it) } }
+    flow?.collect {
+      if (isConcurrently) send(it)
+      else launch { send(it) }
+    }
   }
 
   companion object {
