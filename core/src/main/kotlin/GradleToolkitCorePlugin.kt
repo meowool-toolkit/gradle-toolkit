@@ -18,8 +18,11 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+@file:Suppress("SpellCheckingInspection")
+
 package com.meowool.gradle.toolkit
 
+import addFreeCompilerArgs
 import addIfNotExists
 import com.meowool.gradle.toolkit.internal.DefaultJavaVersion
 import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl
@@ -76,6 +79,9 @@ class GradleToolkitCorePlugin : Plugin<Any> {
       kotlinJvmOptions {
         jvmTarget = DefaultJavaVersion.toString()
       }
+
+      // See: https://github.com/JetBrains/kotlin/blob/1.6.0/libraries/stdlib/jvm/src/kotlin/jvm/JvmDefault.kt#L37-L50
+      kotlinOptions { addFreeCompilerArgs("-Xjvm-default=all") }
 
       afterEvaluate {
         optIn("kotlin.RequiresOptIn")
