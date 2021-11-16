@@ -123,6 +123,12 @@ package  {
     property public final org.gradle.api.Project project;
   }
 
+  public final class EnvironmentsKt {
+    method public static be.vbgn.gradle.cidetect.CiInformation getCiEnvironment();
+    method public static boolean isCiEnvironment();
+    method public static boolean isIntelliJ();
+  }
+
   public final class ExtensionContainersKt {
     method public static inline <reified T extends > void addIfNotExists(org.gradle.api.plugins.ExtensionContainer, String name, kotlin.jvm.functions.Function0<? extends T> extension);
     method public static inline <reified T extends > void addIfNotExists(org.gradle.api.plugins.ExtensionContainer, kotlin.reflect.KClass<T> publicType, String name, kotlin.jvm.functions.Function0<? extends T> extension);
@@ -336,10 +342,6 @@ package  {
     method public static org.gradle.api.tasks.SourceSet getTest(org.gradle.api.tasks.SourceSetContainer);
     method public static org.gradle.api.tasks.SourceSet main(org.gradle.api.tasks.SourceSetContainer, kotlin.jvm.functions.Function1<? super org.gradle.api.tasks.SourceSet,kotlin.Unit> block);
     method public static org.gradle.api.tasks.SourceSet test(org.gradle.api.tasks.SourceSetContainer, kotlin.jvm.functions.Function1<? super org.gradle.api.tasks.SourceSet,kotlin.Unit> block);
-  }
-
-  public final class SystemKt {
-    method public static boolean isIntelliJ();
   }
 
   public final class TasksKt {

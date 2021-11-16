@@ -25,6 +25,7 @@ import com.meowool.gradle.toolkit.internal.DefaultJavaVersion
 import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl
 import kotlinJvmOptions
 import kotlinMultiplatformExtensionOrNull
+import kotlinOptions
 import optIn
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -57,11 +58,6 @@ class GradleToolkitCorePlugin : Plugin<Any> {
       GradleToolkitExtensionImpl(rootProject)
     }
     allprojects {
-      kotlinJvmOptions {
-        @Suppress("DEPRECATION")
-        useIR = true
-      }
-
       extensions.findByType<JavaPluginExtension>()?.apply {
         sourceCompatibility = DefaultJavaVersion
         targetCompatibility = DefaultJavaVersion
@@ -75,6 +71,10 @@ class GradleToolkitCorePlugin : Plugin<Any> {
       tasks.withType<KotlinCompile> {
         sourceCompatibility = DefaultJavaVersion.toString()
         targetCompatibility = DefaultJavaVersion.toString()
+      }
+
+      kotlinJvmOptions {
+        jvmTarget = DefaultJavaVersion.toString()
       }
 
       afterEvaluate {
