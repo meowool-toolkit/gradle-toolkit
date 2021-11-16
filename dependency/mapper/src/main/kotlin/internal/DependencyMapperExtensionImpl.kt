@@ -130,7 +130,7 @@ internal class DependencyMapperExtensionImpl(override val project: Project) : De
       val consume = measureTime {
         consumeChannel(isConcurrently) {
           data.collectors.forEachConcurrently {
-            with(it) { collect(project, outputList) }
+            with(it) { collect(project, isConcurrently, outputList) }
           }
         }
       }
@@ -163,7 +163,7 @@ internal class DependencyMapperExtensionImpl(override val project: Project) : De
                 if ((cacheGraph.isInvalidLibraries && it is LibraryDependencyDeclarationImpl.Data) ||
                   (cacheGraph.isInvalidProjects && it is ProjectDependencyDeclarationImpl.Data) ||
                   (cacheGraph.isInvalidPlugins && it is PluginDependencyDeclarationImpl.Data)
-                ) collect(project, jarPool, data.formatter)
+                ) collect(project, jarPool, isConcurrently, data.formatter)
               }
             }
           }
