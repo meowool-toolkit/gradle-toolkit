@@ -46,7 +46,7 @@ tasks.create("syncDependencies").doLast {
     project,
     destination = projectDir.resolve("src/main/resources/ci-dependencies.json")
   ) {
-    concurrency(false)
+    //concurrency(false)
     plugins {
       map(
         "com.github.johnrengelman.shadow" to "Shadow",
