@@ -10,7 +10,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "7.2-rc-3"
+      "version": "7.3"
     }
   },
   "variants": [
@@ -19,10 +19,10 @@
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
         "org.gradle.jvm.version": 11,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-api",
-        "org.jetbrains.kotlin.localToProject": "public",
         "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
@@ -37,7 +37,7 @@
           "group": "org.jetbrains.kotlin",
           "module": "kotlin-stdlib",
           "version": {
-            "requires": "1.5.31",
+            "requires": "1.6.0",
             "rejects": [
               "_"
             ]
@@ -68,11 +68,11 @@
         {
           "name": "toolkit-meowool-metalava-0.1.0-LOCAL.jar",
           "url": "toolkit-meowool-metalava-0.1.0-LOCAL.jar",
-          "size": 48207,
-          "sha512": "89afae8e5f06807055cff3a60f64ff493679a406d25b57132016ac1c9dbcd616e3da0e8ba03a22817bc8eca42a757f1cb0cb09f0f82f8bcaee653fde793778d5",
-          "sha256": "f3d17c815e3bc91112cdbbdfa956b48bb39277053e373bb815fe07f97424fb52",
-          "sha1": "bce2edeefcc140ebc8e2396a1b9af12d304aaa43",
-          "md5": "0231807f94a70b6f238e079c71803da1"
+          "size": 47388,
+          "sha512": "86e54540b3eb9c3718a460316d5bec745fa6e90e294426d266a3457a5eb8b7d8537fdd561b5e46745478b7f59ac001d5533252bd1f93d7d9c12ea9cf5815b003",
+          "sha256": "685b456293cfb448bd341343e25a14091fce615217e84dfc6cf31d88eaf4b82c",
+          "sha1": "a01cac21ce789fcf57dd607ce7f04d4625d74958",
+          "md5": "33af7db5e6694f08063cf4f2a91070eb"
         }
       ]
     },
@@ -81,10 +81,10 @@
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
         "org.gradle.jvm.version": 11,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.localToProject": "public",
         "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
@@ -99,7 +99,7 @@
           "group": "org.jetbrains.kotlin",
           "module": "kotlin-stdlib",
           "version": {
-            "requires": "1.5.31",
+            "requires": "1.6.0",
             "rejects": [
               "_"
             ]
@@ -130,11 +130,11 @@
         {
           "name": "toolkit-meowool-metalava-0.1.0-LOCAL.jar",
           "url": "toolkit-meowool-metalava-0.1.0-LOCAL.jar",
-          "size": 48207,
-          "sha512": "89afae8e5f06807055cff3a60f64ff493679a406d25b57132016ac1c9dbcd616e3da0e8ba03a22817bc8eca42a757f1cb0cb09f0f82f8bcaee653fde793778d5",
-          "sha256": "f3d17c815e3bc91112cdbbdfa956b48bb39277053e373bb815fe07f97424fb52",
-          "sha1": "bce2edeefcc140ebc8e2396a1b9af12d304aaa43",
-          "md5": "0231807f94a70b6f238e079c71803da1"
+          "size": 47388,
+          "sha512": "86e54540b3eb9c3718a460316d5bec745fa6e90e294426d266a3457a5eb8b7d8537fdd561b5e46745478b7f59ac001d5533252bd1f93d7d9c12ea9cf5815b003",
+          "sha256": "685b456293cfb448bd341343e25a14091fce615217e84dfc6cf31d88eaf4b82c",
+          "sha1": "a01cac21ce789fcf57dd607ce7f04d4625d74958",
+          "md5": "33af7db5e6694f08063cf4f2a91070eb"
         }
       ]
     }

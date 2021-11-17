@@ -11,7 +11,7 @@
   <version>0.1.0-LOCAL</version>
   <name>Gradle Toolkit Publisher</name>
   <description>Used to quickly create maven or plugin publications and publish.</description>
-  <url>https://github.com/meowool-toolkit/gradle-toolkit/</url>
+  <url>https://github.com/meowool-toolkit/gradle-toolkit</url>
   <organization>
     <name>https://github.com/meowool/</name>
   </organization>
@@ -29,7 +29,7 @@
     </developer>
   </developers>
   <scm>
-    <url>https://github.com/meowool-toolkit/gradle-toolkit/.git</url>
+    <url>https://github.com/meowool-toolkit/gradle-toolkit.git</url>
   </scm>
   <dependencies>
     <dependency>
@@ -47,7 +47,7 @@
     <dependency>
       <groupId>org.jetbrains.dokka</groupId>
       <artifactId>dokka-gradle-plugin</artifactId>
-      <version>1.5.30</version>
+      <version>1.5.31</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -59,7 +59,7 @@
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
-      <version>1.5.31</version>
+      <version>1.6.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -71,7 +71,7 @@
     <dependency>
       <groupId>com.gradle.publish</groupId>
       <artifactId>plugin-publish-plugin</artifactId>
-      <version>0.16.0</version>
+      <version>0.18.0</version>
       <scope>runtime</scope>
     </dependency>
   </dependencies>

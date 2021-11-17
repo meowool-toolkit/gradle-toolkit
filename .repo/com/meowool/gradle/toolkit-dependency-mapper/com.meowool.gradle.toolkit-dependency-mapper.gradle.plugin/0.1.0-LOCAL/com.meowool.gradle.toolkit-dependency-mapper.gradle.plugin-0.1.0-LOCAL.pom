@@ -7,7 +7,7 @@
   <packaging>pom</packaging>
   <name>Dependency Mapper for Gradle Toolkit</name>
   <description>Map all dependencies to classes and fields for easy calling in gradle scripts.</description>
-  <url>https://github.com/meowool-toolkit/gradle-toolkit/</url>
+  <url>https://github.com/meowool-toolkit/gradle-toolkit</url>
   <organization>
     <name>https://github.com/meowool/</name>
   </organization>
@@ -25,7 +25,7 @@
     </developer>
   </developers>
   <scm>
-    <url>https://github.com/meowool-toolkit/gradle-toolkit/.git</url>
+    <url>https://github.com/meowool-toolkit/gradle-toolkit.git</url>
   </scm>
   <repositories>
     <repository>

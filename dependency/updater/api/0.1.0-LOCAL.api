@@ -1,0 +1,321 @@
+// Signature format: 4.0
+package de.fayard.refreshVersions {
+
+  public class FeatureFlagExtension {
+    ctor public FeatureFlagExtension();
+    method public final void disable(de.fayard.refreshVersions.core.FeatureFlag flag);
+    method public final void enable(de.fayard.refreshVersions.core.FeatureFlag flag);
+  }
+
+  public class RefreshVersionsDependenciesMigrationTask extends org.gradle.api.DefaultTask {
+    ctor public RefreshVersionsDependenciesMigrationTask();
+    method @org.gradle.api.tasks.TaskAction public final void taskActionMigrate();
+  }
+
+  public class RefreshVersionsExtension {
+    ctor public RefreshVersionsExtension();
+    method @org.gradle.api.Incubating public final void enableBuildSrcLibs();
+    method public final void extraArtifactVersionKeyRules(error.NonExistentClass file);
+    method public final void extraArtifactVersionKeyRules(String rawRules);
+    method public final void featureFlags(org.gradle.api.Action<de.fayard.refreshVersions.FeatureFlagExtension> extension);
+    method public final java.util.List<java.lang.String> getExtraArtifactVersionKeyRules();
+    method public final error.NonExistentClass! getVersionsPropertiesFile();
+    method public final void rejectVersionIf(groovy.lang.Closure<java.lang.Boolean> filter);
+    method public final void rejectVersionIf(kotlin.jvm.functions.Function1<? super de.fayard.refreshVersions.core.DependencySelection,java.lang.Boolean> filter);
+    method public final void setExtraArtifactVersionKeyRules(java.util.List<java.lang.String> extraArtifactVersionKeyRules);
+    method public final void setVersionsPropertiesFile(error.NonExistentClass! versionsPropertiesFile);
+    property public final java.util.List<java.lang.String> extraArtifactVersionKeyRules;
+    property public final error.NonExistentClass! versionsPropertiesFile;
+  }
+
+  public class RefreshVersionsMigrateTask extends org.gradle.api.DefaultTask {
+    ctor public RefreshVersionsMigrateTask();
+    method @org.gradle.api.tasks.TaskAction public final void migrateBuild();
+    method @org.gradle.api.tasks.TaskAction public final void refreshVersionsMissingEntries();
+  }
+
+  public final class RefreshVersionsMigrateTaskKt {
+  }
+
+  public final class RefreshVersionsMigration {
+    method public static void migrateIfNeeded(org.gradle.api.initialization.Settings, String fromVersion);
+  }
+
+  public class RefreshVersionsPlugin implements org.gradle.api.Plugin<java.lang.Object> {
+    ctor public RefreshVersionsPlugin();
+    method public void apply(Object target);
+    method public static final java.util.List<java.lang.String> getArtifactVersionKeyRules();
+    field public static final de.fayard.refreshVersions.RefreshVersionsPlugin.Companion Companion;
+  }
+
+  public static final class RefreshVersionsPlugin.Companion {
+    method public java.util.List<java.lang.String> getArtifactVersionKeyRules();
+    property public final java.util.List<java.lang.String> artifactVersionKeyRules;
+  }
+
+  public final class RefreshVersionsSetup {
+    method public static void bootstrap(org.gradle.api.initialization.Settings, optional error.NonExistentClass versionsPropertiesFile);
+    method public static void bootstrap(org.gradle.api.initialization.Settings);
+    method public static void bootstrapForBuildSrc(org.gradle.api.initialization.Settings);
+  }
+
+}
+
+package de.fayard.refreshVersions.core {
+
+  public abstract sealed class AbstractDependencyGroup {
+    method public final String getGroup();
+    method public final boolean getUsePlatformConstraints();
+    method public final de.fayard.refreshVersions.core.DependencyNotation module(String name, optional boolean isBom, optional Boolean? usePlatformConstraints);
+    method public final void setUsePlatformConstraints(boolean usePlatformConstraints);
+    property public final String group;
+    property public final boolean usePlatformConstraints;
+    field public static final de.fayard.refreshVersions.core.AbstractDependencyGroup.Companion Companion;
+  }
+
+  public static final class AbstractDependencyGroup.Companion {
+    method public java.util.List<de.fayard.refreshVersions.core.internal.ArtifactVersionKeyRule> getALL_RULES();
+    method public boolean getDisableBomCheck();
+    method public void setDisableBomCheck(boolean disableBomCheck);
+    property public final java.util.List<de.fayard.refreshVersions.core.internal.ArtifactVersionKeyRule> ALL_RULES;
+    property public final boolean disableBomCheck;
+  }
+
+  public interface DependencyNotation {
+    method public default void attachToGroup(de.fayard.refreshVersions.core.AbstractDependencyGroup dependencyGroup);
+    method public Void getExternalImplementationGuard();
+    method public operator String invoke(String? version);
+    method public String toString();
+    method public String withVersion(String version);
+    method public String withVersionPlaceholder();
+    method public String withoutVersion();
+    property public abstract Void externalImplementationGuard;
+    field public static final de.fayard.refreshVersions.core.DependencyNotation.Companion Companion;
+  }
+
+  public static final class DependencyNotation.Companion {
+    method public operator de.fayard.refreshVersions.core.DependencyNotation invoke(String group, String name, optional boolean isBom, optional Boolean? usePlatformConstraints);
+  }
+
+  public final class DependencySelection {
+    method public de.fayard.refreshVersions.core.Version getCandidate();
+    method public de.fayard.refreshVersions.core.Version getCurrent();
+    method public de.fayard.refreshVersions.core.ModuleId getModuleId();
+    method public String getVersionKey();
+    property public final de.fayard.refreshVersions.core.Version candidate;
+    property public final de.fayard.refreshVersions.core.Version current;
+    property public final de.fayard.refreshVersions.core.ModuleId moduleId;
+    property public final String versionKey;
+    field public de.fayard.refreshVersions.core.Version candidate;
+  }
+
+  @org.gradle.api.Incubating public abstract class DependencyVersionsFetcher {
+    ctor protected DependencyVersionsFetcher(de.fayard.refreshVersions.core.ModuleId moduleId, Object repoKey);
+    method public final boolean equals(Object? other);
+    method @kotlin.jvm.Throws(exceptionClasses={IOException::class, Exception::class}) public abstract suspend Object? getAvailableVersionsOrNull(kotlin.jvm.functions.Function1<? super de.fayard.refreshVersions.core.Version,java.lang.Boolean>? versionFilter, kotlin.coroutines.Continuation<? super de.fayard.refreshVersions.core.DependencyVersionsFetcher.SuccessfulResult> p);
+    method public final de.fayard.refreshVersions.core.ModuleId getModuleId();
+    method public final Object getRepoKey();
+    method public final int hashCode();
+    property public final de.fayard.refreshVersions.core.ModuleId moduleId;
+    property public final Object repoKey;
+    field public static final de.fayard.refreshVersions.core.DependencyVersionsFetcher.Companion Companion;
+  }
+
+  public static final class DependencyVersionsFetcher.Companion {
+  }
+
+  public static final class DependencyVersionsFetcher.SuccessfulResult {
+    ctor public DependencyVersionsFetcher.SuccessfulResult(long lastUpdateTimestampMillis, java.util.List<de.fayard.refreshVersions.core.Version> availableVersions);
+    method public long component1();
+    method public java.util.List<de.fayard.refreshVersions.core.Version> component2();
+    method public de.fayard.refreshVersions.core.DependencyVersionsFetcher.SuccessfulResult copy(long lastUpdateTimestampMillis, java.util.List<de.fayard.refreshVersions.core.Version> availableVersions);
+    method public boolean equals(Object? other);
+    method public java.util.List<de.fayard.refreshVersions.core.Version> getAvailableVersions();
+    method public long getLastUpdateTimestampMillis();
+    method public int hashCode();
+    method public String toString();
+    property public final java.util.List<de.fayard.refreshVersions.core.Version> availableVersions;
+    property public final long lastUpdateTimestampMillis;
+  }
+
+  public enum FeatureFlag {
+    enum_constant public static final de.fayard.refreshVersions.core.FeatureFlag GRADLE_UPDATES;
+    enum_constant public static final de.fayard.refreshVersions.core.FeatureFlag LIBS;
+    field public static final de.fayard.refreshVersions.core.FeatureFlag.Companion Companion;
+  }
+
+  public static final class FeatureFlag.Companion {
+    method public java.util.Map<de.fayard.refreshVersions.core.FeatureFlag,java.lang.Boolean> getUserSettings();
+    property public final java.util.Map<de.fayard.refreshVersions.core.FeatureFlag,java.lang.Boolean> userSettings;
+  }
+
+  @org.gradle.api.Incubating public class MissingEntriesTask extends org.gradle.api.DefaultTask {
+    ctor public MissingEntriesTask();
+    method @org.gradle.api.tasks.TaskAction public final void refreshVersionsMissingEntries();
+  }
+
+  public final class MissingEntriesTaskKt {
+  }
+
+  @org.gradle.api.Incubating public final class ModuleId {
+    ctor public ModuleId(String? group, String name);
+    method public String? component1();
+    method public String component2();
+    method public de.fayard.refreshVersions.core.ModuleId copy(String? group, String name);
+    method public boolean equals(Object? other);
+    method public String? getGroup();
+    method public String getName();
+    method public int hashCode();
+    method public String toString();
+    property public final String? group;
+    property public final String name;
+  }
+
+  public class RefreshVersionsCleanupTask extends org.gradle.api.DefaultTask {
+    ctor public RefreshVersionsCleanupTask();
+    method @org.gradle.api.tasks.TaskAction public final void cleanUpSettings();
+    method @org.gradle.api.tasks.TaskAction public final void cleanUpVersionsProperties();
+  }
+
+  public class RefreshVersionsCorePlugin implements org.gradle.api.Plugin<org.gradle.api.Project> {
+    ctor public RefreshVersionsCorePlugin();
+    method public void apply(org.gradle.api.Project project);
+    field public static final de.fayard.refreshVersions.core.RefreshVersionsCorePlugin.Companion Companion;
+  }
+
+  public final class RefreshVersionsCoreSetup {
+    method public static void bootstrap(org.gradle.api.initialization.Settings, optional java.util.List<java.lang.String> artifactVersionKeyRules, optional error.NonExistentClass versionsPropertiesFile);
+    method public static void bootstrap(org.gradle.api.initialization.Settings, optional java.util.List<java.lang.String> artifactVersionKeyRules);
+    method public static void bootstrap(org.gradle.api.initialization.Settings);
+    method public static void bootstrapForBuildSrc(org.gradle.api.initialization.Settings);
+  }
+
+  public class RefreshVersionsTask extends org.gradle.api.DefaultTask {
+    ctor public RefreshVersionsTask();
+    method public final de.fayard.refreshVersions.core.FeatureFlag? getDisableFlag();
+    method public final de.fayard.refreshVersions.core.FeatureFlag? getEnableFlag();
+    method public final void setDisableFlag(de.fayard.refreshVersions.core.FeatureFlag? value);
+    method public final void setEnableFlag(de.fayard.refreshVersions.core.FeatureFlag? value);
+    method @org.gradle.api.tasks.TaskAction public final void taskActionRefreshVersions();
+    property public final de.fayard.refreshVersions.core.FeatureFlag? disableFlag;
+    property public final de.fayard.refreshVersions.core.FeatureFlag? enableFlag;
+  }
+
+  @org.gradle.api.Incubating public enum StabilityLevel {
+    method public final infix boolean isAtLeastAsStableAs(de.fayard.refreshVersions.core.StabilityLevel other);
+    method public final infix boolean isLessStableThan(de.fayard.refreshVersions.core.StabilityLevel other);
+    method public final infix boolean isMoreStableThan(de.fayard.refreshVersions.core.StabilityLevel other);
+    enum_constant public static final de.fayard.refreshVersions.core.StabilityLevel Alpha;
+    enum_constant public static final de.fayard.refreshVersions.core.StabilityLevel Beta;
+    enum_constant public static final de.fayard.refreshVersions.core.StabilityLevel Development;
+    enum_constant public static final de.fayard.refreshVersions.core.StabilityLevel EarlyAccessProgram;
+    enum_constant public static final de.fayard.refreshVersions.core.StabilityLevel Milestone;
+    enum_constant public static final de.fayard.refreshVersions.core.StabilityLevel Preview;
+    enum_constant public static final de.fayard.refreshVersions.core.StabilityLevel ReleaseCandidate;
+    enum_constant public static final de.fayard.refreshVersions.core.StabilityLevel Snapshot;
+    enum_constant public static final de.fayard.refreshVersions.core.StabilityLevel Stable;
+    enum_constant public static final de.fayard.refreshVersions.core.StabilityLevel Unknown;
+  }
+
+  @org.gradle.api.Incubating public final class Version {
+    ctor public Version(String value);
+    method public int compareTo(de.fayard.refreshVersions.core.Version other);
+    method public String component1();
+    method public de.fayard.refreshVersions.core.Version copy(String value);
+    method public boolean equals(Object? other);
+    method public de.fayard.refreshVersions.core.StabilityLevel getStabilityLevel();
+    method public String getValue();
+    method public int hashCode();
+    method public String toString();
+    property public final de.fayard.refreshVersions.core.StabilityLevel stabilityLevel;
+    property public final String value;
+    field public static final de.fayard.refreshVersions.core.Version.Companion Companion;
+  }
+
+  public static final class Version.Companion {
+  }
+
+  public final class Versions {
+    method public static String versionFor(String versionKey);
+    method public static String versionFor(CharSequence dependencyNotation);
+  }
+
+}
+
+package de.fayard.refreshVersions.core.extensions.collections {
+
+  public final class MutableListKt {
+  }
+
+}
+
+package de.fayard.refreshVersions.core.extensions.dom {
+
+  public final class NodeListKt {
+  }
+
+}
+
+package de.fayard.refreshVersions.core.extensions.gradle {
+
+  public final class AuthenticationSupportedKt {
+    method public static org.gradle.api.artifacts.repositories.PasswordCredentials? getPasswordCredentials(org.gradle.api.artifacts.repositories.AuthenticationSupported);
+  }
+
+  public final class DependencyKt {
+  }
+
+  public final class ModuleIdentifierKt {
+  }
+
+  public final class ProjectKt {
+  }
+
+  public final class SettingsKt {
+    method public static boolean isBuildSrc(org.gradle.api.initialization.Settings);
+  }
+
+  public final class VersionConstraintKt {
+  }
+
+}
+
+package de.fayard.refreshVersions.core.extensions.okhttp {
+
+  public final class CallKt {
+  }
+
+}
+
+package de.fayard.refreshVersions.core.extensions.ranges {
+
+  public final class IntRangeKt {
+  }
+
+}
+
+package de.fayard.refreshVersions.core.extensions.sequences {
+
+  public final class UniqueSequenceKt {
+  }
+
+}
+
+package de.fayard.refreshVersions.core.extensions.text {
+
+  public final class CharSequenceKt {
+  }
+
+  public final class StringKt {
+  }
+
+}
+
+package org.gradle.kotlin.dsl {
+
+  public final class RefreshVersionsKt {
+    method public static inline void refreshVersions(org.gradle.api.initialization.Settings, kotlin.jvm.functions.Function1<? super de.fayard.refreshVersions.RefreshVersionsExtension,kotlin.Unit> configure);
+  }
+
+}
+

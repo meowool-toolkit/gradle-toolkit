@@ -11,7 +11,7 @@
   <version>0.1.0-LOCAL</version>
   <name>Meowool Gradle Toolkit</name>
   <description>Gradle Toolkit specific to the 'Meowool-Organization' project.</description>
-  <url>https://github.com/meowool-toolkit/gradle-toolkit/</url>
+  <url>https://github.com/meowool-toolkit/gradle-toolkit</url>
   <organization>
     <name>https://github.com/meowool/</name>
   </organization>
@@ -29,7 +29,7 @@
     </developer>
   </developers>
   <scm>
-    <url>https://github.com/meowool-toolkit/gradle-toolkit/.git</url>
+    <url>https://github.com/meowool-toolkit/gradle-toolkit.git</url>
   </scm>
   <dependencies>
     <dependency>
@@ -59,7 +59,7 @@
     <dependency>
       <groupId>com.diffplug.spotless</groupId>
       <artifactId>spotless-plugin-gradle</artifactId>
-      <version>5.15.1</version>
+      <version>5.17.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -71,7 +71,7 @@
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
-      <version>1.5.31</version>
+      <version>1.6.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

@@ -38,11 +38,24 @@ metalava {
 
 subprojects {
   optIn(*internalMarkers)
+  kotlinJvmOptions {
+    // TODO: Remove when Gradle's embedded Kotlin uses IR
+    runCatching {
+      javaClass.getMethod("setUseIR", Boolean::class.java).invoke(this, true)
+    }
+  }
   configurations.all {
     // Check for updates every build
     resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
   }
   tasks.withType<Test> { useJUnitPlatform() }
+  afterEvaluate {
+    // Don't let the fork of 'refreshVersion' spotless.
+    if (projectDir.absolutePath.endsWith("dependency/updater")) {
+      tasks.findByName("spotlessApply")?.enabled = false
+      tasks.findByName("spotlessKotlin")?.enabled = false
+    }
+  }
 }
 
 subdependencies {
