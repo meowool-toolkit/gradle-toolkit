@@ -14,8 +14,6 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    env:
-      use-non-local-version: true
 
     steps:
     - uses: actions/checkout@v2
@@ -27,10 +25,7 @@ jobs:
     - name: Synchronizing dependencies
       uses: gradle/gradle-build-action@v1
       with:
-        gradle-version: release-candidate
-        distributions-cache-enabled: true
-        dependencies-cache-enabled: true
-        configuration-cache-enabled: true
+        gradle-version: wrapper
         # Run https://github.com/meowool-toolkit/gradle-toolkit/blob/main/dependency/prebuilt/build.gradle.kts#L44
         arguments: syncDependencies
       
