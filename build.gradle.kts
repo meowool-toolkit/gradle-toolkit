@@ -61,6 +61,11 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
       tasks.findByName("spotlessApply")?.enabled = false
       tasks.findByName("spotlessKotlin")?.enabled = false
     }
+    afterEvaluate {
+      kotlinJvmOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+      }
+    }
   }
 }
 

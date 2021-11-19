@@ -22,6 +22,7 @@
 
 package com.meowool.gradle.toolkit
 
+import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.kotlin.dsl.repositories
@@ -51,6 +52,12 @@ interface GradleToolkitExtension {
    * @see Project.getSubprojects
    */
   val subprojects: Set<Project>
+
+  /**
+   * The default JVM target for all projects.
+   * This value defaults to `11`.
+   */
+  var defaultJvmTarget: JavaVersion
 
   /**
    * Executes [action] of each all projects.

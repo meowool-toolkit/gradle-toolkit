@@ -24,6 +24,7 @@ package com.meowool.gradle.toolkit.internal
 
 import com.meowool.gradle.toolkit.GradleToolkitExtension
 import com.meowool.gradle.toolkit.LogicRegistry
+import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
 
@@ -36,6 +37,7 @@ internal open class GradleToolkitExtensionImpl(override val rootProject: Project
     get() = rootProject.allprojects
   override val subprojects: Set<Project>
     get() = rootProject.subprojects
+  override var defaultJvmTarget: JavaVersion = JavaVersion.VERSION_11
 
   override fun allprojects(afterEvaluate: Boolean, filter: Project.() -> Boolean, action: Project.() -> Unit) =
     rootProject.allprojects {
