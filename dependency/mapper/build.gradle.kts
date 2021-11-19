@@ -18,7 +18,11 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-plugins { `kotlin-dsl`; kotlin("plugin.serialization") }
+plugins {
+  `kotlin-dsl`
+  kotlin("plugin.serialization")
+  id("com.github.johnrengelman.shadow")
+}
 
 publication {
   data {
@@ -29,13 +33,34 @@ publication {
   pluginClass = "${data.groupId}.toolkit.DependencyMapperPlugin"
 }
 
-dependencies.implementationOf(
-  Libs.Ktor.Jsoup,
-  Libs.Ktor.Client.OkHttp,
-  Libs.Ktor.Client.Logging,
-  Libs.Ktor.Client.Serialization,
-  Libs.KotlinX.Serialization.Json,
-  Libs.Square.OkHttp3.Logging.Interceptor,
-  Libs.ByteBuddy.Byte.Buddy,
-  Libs.Andreinc.Mockneat,
-)
+dependencies {
+  shadow(Libs.Kotlin.Stdlib.Common)
+  implementationOf(
+    Libs.Ktor.Jsoup,
+    Libs.Ktor.Client.OkHttp,
+    Libs.Ktor.Client.Logging,
+    Libs.Ktor.Client.Serialization,
+    Libs.KotlinX.Serialization.Json,
+    Libs.Square.OkHttp3.Logging.Interceptor,
+    Libs.ByteBuddy.Byte.Buddy,
+    Libs.Andreinc.Mockneat,
+  )
+}
+
+tasks {
+  shadowJar {
+    configurations = listOf(project.configurations.shadow.get())
+    relocate("kotlin", "com.meowool.toolkit.kotlin")
+  }
+  // Replace the standard jar with the one built by 'shadowJar' in both api and runtime variants
+  configurations {
+    apiElements.get().outgoing {
+      artifacts.clear()
+      artifact(shadowJar.flatMap { it.archiveFile })
+    }
+    runtimeElements.get().outgoing {
+      artifacts.clear()
+      artifact(shadowJar.flatMap { it.archiveFile })
+    }
+  }
+}
