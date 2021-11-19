@@ -21,7 +21,6 @@
 plugins {
   `kotlin-dsl`
   kotlin("plugin.serialization")
-  id("com.github.johnrengelman.shadow")
 }
 
 publication {
