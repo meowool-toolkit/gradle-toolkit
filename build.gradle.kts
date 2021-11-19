@@ -39,6 +39,7 @@ metalava {
 subprojects {
   optIn(*internalMarkers)
   kotlinJvmOptions {
+    jvmTarget = "11"
     // TODO: Remove when Gradle's embedded Kotlin uses IR
     runCatching {
       javaClass.getMethod("setUseIR", Boolean::class.java).invoke(this, true)
