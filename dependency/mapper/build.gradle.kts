@@ -33,34 +33,13 @@ publication {
   pluginClass = "${data.groupId}.toolkit.DependencyMapperPlugin"
 }
 
-dependencies {
-  shadow(Libs.Kotlin.Stdlib.Common)
-  implementationOf(
-    Libs.Ktor.Jsoup,
-    Libs.Ktor.Client.OkHttp,
-    Libs.Ktor.Client.Logging,
-    Libs.Ktor.Client.Serialization,
-    Libs.KotlinX.Serialization.Json,
-    Libs.Square.OkHttp3.Logging.Interceptor,
-    Libs.ByteBuddy.Byte.Buddy,
-    Libs.Andreinc.Mockneat,
-  )
-}
-
-tasks {
-  shadowJar {
-    configurations = listOf(project.configurations.shadow.get())
-    relocate("kotlin", "com.meowool.toolkit.kotlin")
-  }
-  // Replace the standard jar with the one built by 'shadowJar' in both api and runtime variants
-  configurations {
-    apiElements.get().outgoing {
-      artifacts.clear()
-      artifact(shadowJar.flatMap { it.archiveFile })
-    }
-    runtimeElements.get().outgoing {
-      artifacts.clear()
-      artifact(shadowJar.flatMap { it.archiveFile })
-    }
-  }
-}
+dependencies.implementationOf(
+  Libs.Ktor.Jsoup,
+  Libs.Ktor.Client.OkHttp,
+  Libs.Ktor.Client.Logging,
+  Libs.Ktor.Client.Serialization,
+  Libs.KotlinX.Serialization.Json,
+  Libs.Square.OkHttp3.Logging.Interceptor,
+  Libs.ByteBuddy.Byte.Buddy,
+  Libs.Andreinc.Mockneat,
+)

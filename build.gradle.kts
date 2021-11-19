@@ -74,6 +74,10 @@ subdependencies {
     gradleTestKit(),
     Libs.Kotest.Runner.Junit5
   )
+  // TODO: Remove when Gradle supports Kotlin-1.6
+  configurations.all {
+    resolutionStrategy.force(Libs.Kotlin.Stdlib.Common version "1.5.31")
+  }
 }
 
 /** Root publish data declaration (all sub-projects extends from here) */
