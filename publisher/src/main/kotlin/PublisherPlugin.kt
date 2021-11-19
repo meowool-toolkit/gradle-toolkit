@@ -90,6 +90,7 @@ class PublisherPlugin : Plugin<Project> {
     extensions.addIfNotExists("publication") { PublicationExtension(project) }
     afterEvaluate {
       val extension = extensions.getByType<PublicationExtension>()
+      if (extension.enabled.not()) return@afterEvaluate
 
       // Incompatible project do not enable publishing
       if (isCompatible.not()) {

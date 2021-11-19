@@ -192,7 +192,7 @@ class ResultsCollectTests : FreeSpec({
             "com.linkedin.dexmaker",
             "com.github.ajalt.clikt",
 
-            "org.ow2",
+            "org.ow2.asm",
             "org.junit",
             "org.smali",
             "org.jsoup",

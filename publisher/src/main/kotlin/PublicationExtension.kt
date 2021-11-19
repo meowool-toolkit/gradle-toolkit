@@ -43,6 +43,12 @@ import java.nio.file.Path
 class PublicationExtension(internal val project: Project) {
 
   /**
+   * Enabled the publication for this [project].
+   * If this value is `false`, this [project] will not publish any artifacts.
+   */
+  var enabled: Boolean = true
+
+  /**
    * If the value is `true`, when the project has applied the [PublisherPlugin] but is incompatible, a warning message
    * will be printed. If the value is `false`, no warning message is printed and the project is skipped.
    *

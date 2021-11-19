@@ -62,7 +62,8 @@ internal abstract class DependencyRepositoryClient(
   open fun fetchPrefixes(startsWith: String): Flow<LibraryDependency> = fetch(startsWith)
     .filter { it.startsWith(startsWith) }
 
-  suspend inline fun <reified T> get(url: String): T = (client ?: createClient()).get("$baseUrl/${url.replace("//", "/")}")
+  suspend inline fun <reified T> get(url: String): T =
+    (client ?: createClient()).get("$baseUrl/${url.replace("//", "/")}")
 
   suspend inline fun <reified T> getOrNull(url: String): T? = try {
     get(url)

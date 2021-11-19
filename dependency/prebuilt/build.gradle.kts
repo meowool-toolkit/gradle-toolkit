@@ -167,7 +167,7 @@ tasks.create("syncDependencies").doLast {
         "org.jetbrains.teamcity",
       ) {
         fromMavenCentral()
-        requireResultAtLeast(10900)
+        requireResultAtLeast(7800)
         // Skip deprecated dependencies
         filterNot {
           it.group == "com.squareup.okhttp" ||
