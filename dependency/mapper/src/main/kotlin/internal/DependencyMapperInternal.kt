@@ -40,7 +40,7 @@ object DependencyMapperInternal {
   /**
    * Applies the [block] and start mapping dependencies.
    */
-  inline fun mapping(project: Project, block: DependencyMapperExtension.() -> Unit): Boolean =
+  fun mapping(project: Project, block: DependencyMapperExtension.() -> Unit): Boolean =
     DependencyMapperExtensionImpl(project).apply(block).mapping()
 
   /**
@@ -48,7 +48,7 @@ object DependencyMapperInternal {
    *
    * @see DependencyOutputList
    */
-  inline fun collectDependencies(project: Project, destination: File, block: DependencyMapperExtension.() -> Unit) =
+  fun collectDependencies(project: Project, destination: File, block: DependencyMapperExtension.() -> Unit) =
     DependencyMapperExtensionImpl(project).apply(block).collectDependencies(destination)
 
   /**
