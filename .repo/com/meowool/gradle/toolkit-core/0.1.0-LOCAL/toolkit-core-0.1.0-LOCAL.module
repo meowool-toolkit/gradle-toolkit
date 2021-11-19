@@ -81,11 +81,11 @@
         {
           "name": "toolkit-core-0.1.0-LOCAL.jar",
           "url": "toolkit-core-0.1.0-LOCAL.jar",
-          "size": 373443,
-          "sha512": "342bcf55526533c7ee23a3d3030139712c12bf156ad32128a2eccef92b389ecf8344416c314cef6cd0fca1cf0201ab823cefd11ccd9552fbac0d9587f00926b2",
-          "sha256": "a550f589364376427ff79adf7adaeefccbb0b5ab2148f30cf494f827197ec207",
-          "sha1": "88bbec1748528d874decb4989ddb59e1bc05c00b",
-          "md5": "96059404ccfa051be007415da0e3c719"
+          "size": 361987,
+          "sha512": "25efb78e92eb5b5864d13d3e891ab2b1c1ba7c041e5946a0b5706bb21357c081ce85bb831e205200aa95b96b7a0b83f8cca302f5beb9b07784bebf4734fc9151",
+          "sha256": "2e892131f99ec5584e360343bf254737ce417196237d8e79035d60e2dace2c74",
+          "sha1": "48318b9b338e894c87680895e69c3cdb1500cc77",
+          "md5": "7337b41a21a88a4a3b39f76ebbde0eb1"
         }
       ]
     },
@@ -156,11 +156,11 @@
         {
           "name": "toolkit-core-0.1.0-LOCAL.jar",
           "url": "toolkit-core-0.1.0-LOCAL.jar",
-          "size": 373443,
-          "sha512": "342bcf55526533c7ee23a3d3030139712c12bf156ad32128a2eccef92b389ecf8344416c314cef6cd0fca1cf0201ab823cefd11ccd9552fbac0d9587f00926b2",
-          "sha256": "a550f589364376427ff79adf7adaeefccbb0b5ab2148f30cf494f827197ec207",
-          "sha1": "88bbec1748528d874decb4989ddb59e1bc05c00b",
-          "md5": "96059404ccfa051be007415da0e3c719"
+          "size": 361987,
+          "sha512": "25efb78e92eb5b5864d13d3e891ab2b1c1ba7c041e5946a0b5706bb21357c081ce85bb831e205200aa95b96b7a0b83f8cca302f5beb9b07784bebf4734fc9151",
+          "sha256": "2e892131f99ec5584e360343bf254737ce417196237d8e79035d60e2dace2c74",
+          "sha1": "48318b9b338e894c87680895e69c3cdb1500cc77",
+          "md5": "7337b41a21a88a4a3b39f76ebbde0eb1"
         }
       ]
     }

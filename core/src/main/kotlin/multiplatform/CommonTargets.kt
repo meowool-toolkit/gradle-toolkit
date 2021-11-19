@@ -34,13 +34,13 @@ class CommonTarget(val extension: KotlinMultiplatformExtension)
 /**
  * Enable and configure common target.
  */
-inline fun Project.commonTarget(crossinline configure: CommonTarget.() -> Unit = {}) =
+fun Project.commonTarget(configure: CommonTarget.() -> Unit = {}) =
   kotlinMultiplatform { configure(CommonTarget(this)) }
 
 /**
  * Configure common target.
  */
-inline fun KotlinMultiplatformExtension.common(configure: CommonTarget.() -> Unit = {}) =
+fun KotlinMultiplatformExtension.common(configure: CommonTarget.() -> Unit = {}) =
   configure(CommonTarget(this))
 
 /**

@@ -33,29 +33,29 @@ import org.jetbrains.kotlin.gradle.targets.jvm.tasks.KotlinJvmTest
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-inline fun Project.jvmTarget(
+fun Project.jvmTarget(
   name: String = "jvm",
-  noinline configure: KotlinJvmTarget.() -> Unit = {},
+  configure: KotlinJvmTarget.() -> Unit = {},
 ) = kotlinMultiplatform { jvm(name, configure) }
 
 /**
  * Configure the main source set of jvm target.
  */
-inline fun KotlinJvmTarget.main(configure: KotlinSourceSet.() -> Unit) {
+fun KotlinJvmTarget.main(configure: KotlinSourceSet.() -> Unit) {
   main.apply(configure)
 }
 
 /**
  * Configure the main source set of jvm target.
  */
-inline fun KotlinJvmTarget.test(configure: KotlinSourceSet.() -> Unit) {
+fun KotlinJvmTarget.test(configure: KotlinSourceSet.() -> Unit) {
   test.apply(configure)
 }
 
 /**
  * Configure the test run task by given [configuration].
  */
-inline fun KotlinJvmTarget.configureTestRunTask(noinline configuration: KotlinJvmTest.() -> Unit) {
+fun KotlinJvmTarget.configureTestRunTask(configuration: KotlinJvmTest.() -> Unit) {
   testRuns[DEFAULT_TEST_RUN_NAME].executionTask.configure(configuration)
 }
 

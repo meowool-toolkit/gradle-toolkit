@@ -49,63 +49,63 @@ val BaseExtension.isLibrary: Boolean get() = this is LibraryExtension
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-inline fun BaseExtension.applicationId(applicationId: String) {
+fun BaseExtension.applicationId(applicationId: String) {
   defaultConfig.applicationId = applicationId
 }
 
 /**
  * Bridge to the [DefaultConfig.minSdkVersion].
  */
-inline fun BaseExtension.minSdk(version: String) {
+fun BaseExtension.minSdk(version: String) {
   defaultConfig.minSdkVersion(version)
 }
 
 /**
  * Bridge to the [DefaultConfig.minSdkVersion].
  */
-inline fun BaseExtension.minSdk(version: Int) {
+fun BaseExtension.minSdk(version: Int) {
   defaultConfig.minSdkVersion(version)
 }
 
 /**
  * Bridge to the [DefaultConfig.targetSdkVersion].
  */
-inline fun BaseExtension.targetSdk(version: String) {
+fun BaseExtension.targetSdk(version: String) {
   defaultConfig.targetSdkVersion(version)
 }
 
 /**
  * Bridge to the [DefaultConfig.targetSdkVersion].
  */
-inline fun BaseExtension.targetSdk(version: Int) {
+fun BaseExtension.targetSdk(version: Int) {
   defaultConfig.targetSdkVersion(version)
 }
 
 /**
  * Bridge to the [DefaultConfig.versionCode].
  */
-inline fun BaseExtension.versionCode(code: Int) {
+fun BaseExtension.versionCode(code: Int) {
   defaultConfig.versionCode(code)
 }
 
 /**
  * Bridge to the [DefaultConfig.versionName].
  */
-inline fun BaseExtension.versionName(name: String) {
+fun BaseExtension.versionName(name: String) {
   defaultConfig.versionName(name)
 }
 
 /**
  * Bridge to the [DefaultConfig.versionNameSuffix].
  */
-inline fun BaseExtension.versionNameSuffix(name: String) {
+fun BaseExtension.versionNameSuffix(name: String) {
   defaultConfig.versionNameSuffix(name)
 }
 
 /**
  * Bridge to the [BaseFlavor.buildConfigField].
  */
-inline fun BaseExtension.buildConfigField(type: String, name: String, value: String) {
+fun BaseExtension.buildConfigField(type: String, name: String, value: String) {
   defaultConfig.buildConfigField(type, name, value)
 }
 

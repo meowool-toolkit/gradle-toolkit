@@ -39,17 +39,11 @@ metalava {
 subprojects {
   optIn(*internalMarkers)
   kotlinJvmOptions {
-    jvmTarget = "11"
     // TODO: Remove when Gradle's embedded Kotlin uses IR
     runCatching {
       javaClass.getMethod("setUseIR", Boolean::class.java).invoke(this, true)
     }
   }
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "11"
-        }
-    }
   configurations.all {
     // Check for updates every build
     resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
@@ -60,11 +54,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     if (projectDir.absolutePath.endsWith("dependency/updater")) {
       tasks.findByName("spotlessApply")?.enabled = false
       tasks.findByName("spotlessKotlin")?.enabled = false
-    }
-    afterEvaluate {
-      kotlinJvmOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-      }
     }
   }
 }

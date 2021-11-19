@@ -2,7 +2,7 @@
 package  {
 
   public final class AndroidTargetsKt {
-    method public static inline void androidTarget(org.gradle.api.Project, optional String name, optional kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget,kotlin.Unit> configure);
+    method public static void androidTarget(org.gradle.api.Project, optional String name, optional kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget,kotlin.Unit> configure);
     method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getAndroidMain(org.gradle.api.NamedDomainObjectContainer<org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet>);
     method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getAndroidMainSourceSet(org.gradle.api.Project);
     method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getAndroidTest(org.gradle.api.NamedDomainObjectContainer<org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet>);
@@ -37,8 +37,8 @@ package  {
   }
 
   public final class CommonTargetsKt {
-    method public static inline void common(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension, optional kotlin.jvm.functions.Function1<? super CommonTarget,kotlin.Unit> configure);
-    method public static inline void commonTarget(org.gradle.api.Project, optional kotlin.jvm.functions.Function1<? super CommonTarget,kotlin.Unit> configure);
+    method public static void common(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension, optional kotlin.jvm.functions.Function1<? super CommonTarget,kotlin.Unit> configure);
+    method public static void commonTarget(org.gradle.api.Project, optional kotlin.jvm.functions.Function1<? super CommonTarget,kotlin.Unit> configure);
     method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getCommonMain(org.gradle.api.NamedDomainObjectContainer<org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet>);
     method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getCommonMainSourceSet(org.gradle.api.Project);
     method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getCommonTest(org.gradle.api.NamedDomainObjectContainer<org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet>);
@@ -95,10 +95,10 @@ package  {
   public final class DependencyHandlerToolkit implements org.gradle.api.artifacts.dsl.DependencyHandler {
     ctor public DependencyHandlerToolkit(org.gradle.api.Project project, org.gradle.kotlin.dsl.DependencyHandlerScope dependencies);
     method public org.gradle.api.artifacts.Dependency? classpath(org.gradle.api.artifacts.dsl.DependencyHandler, Object dependencyNotation);
-    method public inline org.gradle.api.artifacts.ExternalModuleDependency classpath(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public org.gradle.api.artifacts.ExternalModuleDependency classpath(org.gradle.api.artifacts.dsl.DependencyHandler, String dependencyNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
     method public org.gradle.api.artifacts.ExternalModuleDependency classpath(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext);
-    method public inline org.gradle.api.artifacts.ExternalModuleDependency classpath(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
-    method public inline <T extends org.gradle.api.artifacts.ModuleDependency> T classpath(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public org.gradle.api.artifacts.ExternalModuleDependency classpath(org.gradle.api.artifacts.dsl.DependencyHandler, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public <T extends org.gradle.api.artifacts.ModuleDependency> T classpath(org.gradle.api.artifacts.dsl.DependencyHandler, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
     method public org.gradle.api.artifacts.DependencyConstraint? classpath(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object dependencyConstraintNotation);
     method public org.gradle.api.artifacts.DependencyConstraint? classpath(org.gradle.api.artifacts.dsl.DependencyConstraintHandler, Object dependencyConstraintNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.DependencyConstraint,kotlin.Unit> configuration);
     method public void constraints(kotlin.jvm.functions.Function1<? super org.gradle.kotlin.dsl.DependencyConstraintHandlerScope,kotlin.Unit> configureAction);
@@ -111,10 +111,10 @@ package  {
     method public operator org.gradle.api.artifacts.ExternalModuleDependency invoke(String, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
     method public operator <T extends org.gradle.api.artifacts.ModuleDependency> T invoke(String, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
     method public operator org.gradle.api.artifacts.Dependency? invoke(org.gradle.api.artifacts.Configuration, Object dependencyNotation);
-    method public inline operator org.gradle.api.artifacts.ExternalModuleDependency invoke(org.gradle.api.artifacts.Configuration, String dependencyNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public operator org.gradle.api.artifacts.ExternalModuleDependency invoke(org.gradle.api.artifacts.Configuration, String dependencyNotation, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
     method public operator org.gradle.api.artifacts.ExternalModuleDependency invoke(org.gradle.api.artifacts.Configuration, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext);
-    method public inline operator org.gradle.api.artifacts.ExternalModuleDependency invoke(org.gradle.api.artifacts.Configuration, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
-    method public inline operator <T extends org.gradle.api.artifacts.ModuleDependency> T invoke(org.gradle.api.artifacts.Configuration, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
+    method public operator org.gradle.api.artifacts.ExternalModuleDependency invoke(org.gradle.api.artifacts.Configuration, String group, String name, optional String? version, optional String? configuration, optional String? classifier, optional String? ext, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
+    method public operator <T extends org.gradle.api.artifacts.ModuleDependency> T invoke(org.gradle.api.artifacts.Configuration, T dependency, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> dependencyConfiguration);
     method @org.gradle.api.Incubating public operator <T> void invoke(org.gradle.api.artifacts.Configuration, org.gradle.api.provider.Provider<T> dependency, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
     method @org.gradle.api.Incubating public operator <T> void invoke(org.gradle.api.artifacts.Configuration, org.gradle.api.provider.Provider<T> dependency);
     method @org.gradle.api.Incubating public operator <T> void invoke(String, org.gradle.api.provider.Provider<T> dependency, kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.ExternalModuleDependency,kotlin.Unit> dependencyConfiguration);
@@ -174,16 +174,16 @@ package  {
   }
 
   public final class JvmTargetsKt {
-    method public static inline void configureTestRunTask(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.targets.jvm.tasks.KotlinJvmTest,kotlin.Unit> configuration);
+    method public static void configureTestRunTask(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.targets.jvm.tasks.KotlinJvmTest,kotlin.Unit> configuration);
     method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getJvmMain(org.gradle.api.NamedDomainObjectContainer<org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet>);
     method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getJvmMainSourceSet(org.gradle.api.Project);
     method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getJvmTest(org.gradle.api.NamedDomainObjectContainer<org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet>);
     method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getJvmTestSourceSet(org.gradle.api.Project);
     method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getMain(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget);
     method public static org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet getTest(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget);
-    method public static inline void jvmTarget(org.gradle.api.Project, optional String name, optional kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget,kotlin.Unit> configure);
-    method public static inline void main(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet,kotlin.Unit> configure);
-    method public static inline void test(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet,kotlin.Unit> configure);
+    method public static void jvmTarget(org.gradle.api.Project, optional String name, optional kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget,kotlin.Unit> configure);
+    method public static void main(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet,kotlin.Unit> configure);
+    method public static void test(org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget, kotlin.jvm.functions.Function1<? super org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet,kotlin.Unit> configure);
   }
 
   public final class KaptConfigurationAccessorsKt {
@@ -403,12 +403,15 @@ package com.meowool.gradle.toolkit {
     method public void allprojects(optional boolean afterEvaluate, optional kotlin.jvm.functions.Function1<? super org.gradle.api.Project,java.lang.Boolean> filter, kotlin.jvm.functions.Function1<? super org.gradle.api.Project,kotlin.Unit> action);
     method public default void allrepositories(kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.dsl.RepositoryHandler,kotlin.Unit> configuration);
     method public java.util.Set<org.gradle.api.Project> getAllprojects();
+    method public org.gradle.api.JavaVersion getDefaultJvmTarget();
     method public org.gradle.api.Project getRootProject();
     method public java.util.Set<org.gradle.api.Project> getSubprojects();
     method public void registerLogic(kotlin.jvm.functions.Function1<? super com.meowool.gradle.toolkit.LogicRegistry,kotlin.Unit> registry);
+    method public void setDefaultJvmTarget(org.gradle.api.JavaVersion defaultJvmTarget);
     method public void subprojects(optional boolean afterEvaluate, optional kotlin.jvm.functions.Function1<? super org.gradle.api.Project,java.lang.Boolean> filter, kotlin.jvm.functions.Function1<? super org.gradle.api.Project,kotlin.Unit> action);
     method public default void subrepositories(kotlin.jvm.functions.Function1<? super org.gradle.api.artifacts.dsl.RepositoryHandler,kotlin.Unit> configuration);
     property public abstract java.util.Set<org.gradle.api.Project> allprojects;
+    property public abstract org.gradle.api.JavaVersion defaultJvmTarget;
     property public abstract org.gradle.api.Project rootProject;
     property public abstract java.util.Set<org.gradle.api.Project> subprojects;
   }

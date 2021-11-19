@@ -34,9 +34,9 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-inline fun Project.androidTarget(
+fun Project.androidTarget(
   name: String = "android",
-  noinline configure: KotlinAndroidTarget.() -> Unit = {},
+  configure: KotlinAndroidTarget.() -> Unit = {},
 ) {
   project.extensions.findByName("android").castOrNull<BaseExtension>()?.sourceSets?.all {
     if (manifest.srcFile.exists().not()) {

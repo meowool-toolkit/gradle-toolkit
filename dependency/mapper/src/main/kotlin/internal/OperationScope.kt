@@ -20,9 +20,17 @@
  */
 package com.meowool.gradle.toolkit.internal
 
-import org.gradle.api.JavaVersion
+import kotlinx.coroutines.channels.ProducerScope
 
-// TODO: Change to next Kotlin release version
-internal const val KotlinApiVersion = "1.5"
-internal const val KotlinLanguageVersion = "1.5"
-internal val DefaultJavaVersion = JavaVersion.VERSION_11
+/**
+ * @author 凛 (https://github.com/RinOrz)
+ */
+class OperationScope(
+  private val concurrentScope: ProducerScope<*>?,
+) {
+  internal suspend fun <T> forEach(
+    elements: Iterable<T>,
+    action: suspend (T) -> Unit,
+  ) {
+  }
+}

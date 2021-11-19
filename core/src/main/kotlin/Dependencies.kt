@@ -89,7 +89,10 @@ class DependencyHandlerToolkit(
    * @return The dependency.
    * @see [DependencyHandler.add]
    */
-  operator fun String.invoke(dependencyNotation: String, dependencyConfiguration: ExternalModuleDependency.() -> Unit): ExternalModuleDependency =
+  operator fun String.invoke(
+    dependencyNotation: String,
+    dependencyConfiguration: ExternalModuleDependency.() -> Unit
+  ): ExternalModuleDependency =
     dependencies.add(this, dependencyNotation, dependencyConfiguration)
 
   /**
@@ -171,7 +174,10 @@ class DependencyHandlerToolkit(
    * @return The dependency.
    * @see [DependencyHandler.add]
    */
-  inline operator fun Configuration.invoke(dependencyNotation: String, dependencyConfiguration: ExternalModuleDependency.() -> Unit): ExternalModuleDependency =
+  operator fun Configuration.invoke(
+    dependencyNotation: String,
+    dependencyConfiguration: ExternalModuleDependency.() -> Unit
+  ): ExternalModuleDependency =
     add(name, dependencyNotation, dependencyConfiguration)
 
   /**
@@ -212,7 +218,7 @@ class DependencyHandlerToolkit(
    * @see [DependencyHandler.create]
    * @see [DependencyHandler.add]
    */
-  inline operator fun Configuration.invoke(
+  operator fun Configuration.invoke(
     group: String,
     name: String,
     version: String? = null,
@@ -232,7 +238,7 @@ class DependencyHandlerToolkit(
    *
    * @see [DependencyHandler.add]
    */
-  inline operator fun <T : ModuleDependency> Configuration.invoke(dependency: T, dependencyConfiguration: T.() -> Unit): T =
+  operator fun <T : ModuleDependency> Configuration.invoke(dependency: T, dependencyConfiguration: T.() -> Unit): T =
     add(name, dependency, dependencyConfiguration)
 
   /**
@@ -245,7 +251,10 @@ class DependencyHandlerToolkit(
    * @since 7.0
    */
   @Incubating
-  operator fun <T : Any> Configuration.invoke(dependency: Provider<T>, dependencyConfiguration: ExternalModuleDependency.() -> Unit) =
+  operator fun <T : Any> Configuration.invoke(
+    dependency: Provider<T>,
+    dependencyConfiguration: ExternalModuleDependency.() -> Unit
+  ) =
     addProvider(name, dependency, dependencyConfiguration)
 
   /**
@@ -270,7 +279,10 @@ class DependencyHandlerToolkit(
    * @since 7.0
    */
   @Incubating
-  operator fun <T : Any> String.invoke(dependency: Provider<T>, dependencyConfiguration: ExternalModuleDependency.() -> Unit) =
+  operator fun <T : Any> String.invoke(
+    dependency: Provider<T>,
+    dependencyConfiguration: ExternalModuleDependency.() -> Unit
+  ) =
     addProvider(this, dependency, dependencyConfiguration)
 
   /**
@@ -315,7 +327,7 @@ class DependencyHandlerToolkit(
    *
    * @see [DependencyHandler.add]
    */
-  inline fun DependencyHandler.classpath(
+  fun DependencyHandler.classpath(
     dependencyNotation: String,
     dependencyConfiguration: ExternalModuleDependency.() -> Unit
   ): ExternalModuleDependency = add(ScriptHandler.CLASSPATH_CONFIGURATION, dependencyNotation, dependencyConfiguration)
@@ -359,7 +371,7 @@ class DependencyHandlerToolkit(
    * @see [DependencyHandler.create]
    * @see [DependencyHandler.add]
    */
-  inline fun DependencyHandler.classpath(
+  fun DependencyHandler.classpath(
     group: String,
     name: String,
     version: String? = null,
@@ -380,7 +392,7 @@ class DependencyHandlerToolkit(
    *
    * @see [DependencyHandler.add]
    */
-  inline fun <T : ModuleDependency> DependencyHandler.classpath(
+  fun <T : ModuleDependency> DependencyHandler.classpath(
     dependency: T,
     dependencyConfiguration: T.() -> Unit
   ): T = add(ScriptHandler.CLASSPATH_CONFIGURATION, dependency, dependencyConfiguration)
@@ -409,7 +421,10 @@ class DependencyHandlerToolkit(
    * @see [DependencyConstraintHandler.add]
    * @since 5.0
    */
-  fun DependencyConstraintHandler.classpath(dependencyConstraintNotation: Any, configuration: DependencyConstraint.() -> Unit): DependencyConstraint? =
+  fun DependencyConstraintHandler.classpath(
+    dependencyConstraintNotation: Any,
+    configuration: DependencyConstraint.() -> Unit
+  ): DependencyConstraint? =
     add(ScriptHandler.CLASSPATH_CONFIGURATION, dependencyConstraintNotation, configuration)
 }
 
