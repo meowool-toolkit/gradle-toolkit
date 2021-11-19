@@ -66,7 +66,7 @@ subdependencies {
   }
   apiOf(
     gradleKotlinDsl(),
-    Libs.Kotlin.Stdlib,
+    Libs.Kotlin.Stdlib.Common,
     Libs.KotlinX.Coroutines.Core,
     Libs.Meowool.Toolkit.Sweekt,
   )
