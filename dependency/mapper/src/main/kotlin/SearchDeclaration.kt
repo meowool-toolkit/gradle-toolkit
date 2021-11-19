@@ -20,8 +20,7 @@
  */
 package com.meowool.gradle.toolkit
 
-import com.meowool.sweekt.datetime.minutes
-import kotlin.time.Duration
+import java.time.Duration
 
 /**
  * Used to declare how to search for remote dependencies.
@@ -63,7 +62,11 @@ interface SearchDeclaration<Result> {
    *   otherwise throw an exception.
    * @param retryTimeout Retry timeout when [retryIfMissing] is true.
    */
-  fun requireResultAtLeast(minCount: Int, retryIfMissing: Boolean = true, retryTimeout: Duration = 1.minutes)
+  fun requireResultAtLeast(
+    minCount: Int,
+    retryIfMissing: Boolean = true,
+    retryTimeout: Duration = Duration.ofMinutes(1)
+  )
 
   /**
    * Sets the filter [predicate] to filter search results.

@@ -51,9 +51,9 @@ import net.bytebuddy.dynamic.scaffold.subclass.ConstructorStrategy
 import net.bytebuddy.jar.asm.Opcodes
 import org.jsoup.nodes.Element
 import java.io.File
+import java.time.Duration
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
-import kotlin.time.Duration
 
 @PublishedApi
 internal val DefaultJson = Json {
@@ -71,8 +71,8 @@ internal val DefaultJson = Json {
       object : KSerializer<Duration> {
         override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(Duration::class.className, PrimitiveKind.LONG)
         @Suppress("DEPRECATION") // FIXME Gradle Kotlin DSL Support duration
-        override fun serialize(encoder: Encoder, value: Duration) = encoder.encodeLong(value.toLongNanoseconds())
-        override fun deserialize(decoder: Decoder): Duration = decoder.decodeLong().nanos
+        override fun serialize(encoder: Encoder, value: Duration) = encoder.encodeLong(value.toNanos())
+        override fun deserialize(decoder: Decoder): Duration = Duration.ofNanos(decoder.decodeLong())
       }
     )
     contextual(
@@ -138,7 +138,7 @@ internal fun <T, R> Flow<T>.flatMapConcurrently(
 
 internal suspend fun <T> CoroutineScope.withTimeout(timeout: Duration?, block: suspend CoroutineScope.() -> T): T {
   if (timeout == null) return block()
-  return kotlinx.coroutines.withTimeout(timeout, block)
+  return kotlinx.coroutines.withTimeout(timeout.toMillis(), block)
 }
 fun <T> Flow<T>.distinct(): Flow<T> = distinctBy { it }
 

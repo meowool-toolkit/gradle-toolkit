@@ -37,10 +37,8 @@ import kotlinx.coroutines.flow.retry
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import kotlinx.serialization.UseContextualSerialization
+import java.time.Duration
 import java.util.concurrent.atomic.AtomicInteger
-import kotlin.time.Duration
-import kotlin.time.TimeMark
-import kotlin.time.TimeSource
 
 /**
  * @author 凛 (https://github.com/RinOrz)
@@ -87,7 +85,7 @@ internal abstract class BaseSearchDeclarationImpl<Result>(values: List<String>) 
     var filterCount: Int = 0,
     var minResultsRequired: Int = 0,
     var retryIfMissing: Boolean = true,
-    var retryTimeout: Duration = 1.minutes,
+    var retryTimeout: Duration = Duration.ofMinutes(1),
   ) {
     @Transient
     val filters: MutableList<(LibraryDependency) -> Boolean> = mutableListOf()
@@ -113,7 +111,7 @@ internal abstract class BaseSearchDeclarationImpl<Result>(values: List<String>) 
       isConcurrently: Boolean,
       search: DependencyRepositoryClient.(String) -> Flow<LibraryDependency>,
     ): Flow<LibraryDependency> {
-      var lastRetry: TimeMark? = null
+      var lastRetry: Duration? = null
       var retryIfMissing = retryIfMissing
 
       return concurrentFlow(isConcurrently) {
@@ -121,7 +119,7 @@ internal abstract class BaseSearchDeclarationImpl<Result>(values: List<String>) 
 
         try {
           // Remaining timeout
-          withTimeout(lastRetry?.let { retryTimeout - it.elapsedNow() }) {
+          withTimeout(lastRetry?.let { retryTimeout - it }) {
             clients.forEach { client ->
               values.forEachConcurrently { value ->
                 // Call the real client callback to execute the search
@@ -134,7 +132,7 @@ internal abstract class BaseSearchDeclarationImpl<Result>(values: List<String>) 
             }
             throwIf(count.get() < minResultsRequired) {
               // Start waiting for retry timeout
-              if (lastRetry == null) lastRetry = TimeSource.Monotonic.markNow()
+              if (lastRetry == null) lastRetry = Duration.ofMillis(System.currentTimeMillis())
               ResultsMissingException(count.get())
             }
           }
