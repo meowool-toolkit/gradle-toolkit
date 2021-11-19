@@ -45,6 +45,11 @@ subprojects {
       javaClass.getMethod("setUseIR", Boolean::class.java).invoke(this, true)
     }
   }
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "11"
+        }
+    }
   configurations.all {
     // Check for updates every build
     resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
