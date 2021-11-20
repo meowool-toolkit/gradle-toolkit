@@ -53,13 +53,13 @@ fun GradleToolkitExtension.useMeowoolManualSpec(configuration: MeowoolManualSpec
 }
 
 private fun GradleToolkitExtension.useMeowoolSpecImpl(spec: MeowoolPresetSpec) {
+  // Add a maven central repository to avoid the formatter dependency not found (ktlint, google-java-format)
+  rootProject.buildscript.repositories { mavenCentral() }
   allprojects(afterEvaluate = false) {
     spec.repositories.invoke(repositories, project)
-    if (spec.enabledSpotless(project) && projectDir.resolve(".skip-spotless").exists().not()) {
-      // Add a maven central repository to avoid the formatter dependency not found (ktlint, google-java-format)
-      project.buildscript.repositories { mavenCentral() }
+
+    if (spec.enabledSpotless(project) && projectDir.resolve(".skip-spotless").exists().not())
       project.apply<SpotlessPlugin>()
-    }
     if (spec.enabledMetalava(project) && projectDir.resolve(".skip-metalava").exists().not())
       project.apply<MetalavaPlugin>()
     if (spec.enabledPublisher(project) && projectDir.resolve(".skip-publisher").exists().not())
