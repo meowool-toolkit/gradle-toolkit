@@ -42,7 +42,7 @@ internal fun defaultOpenSourceLicense(url: String) = """
    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    * See the License for the specific language governing permissions and
    * limitations under the License.
-
+   *
    * In addition, if you modified the project, you must include the Meowool
    * organization URL in your code file: https://github.com/meowool
    *
