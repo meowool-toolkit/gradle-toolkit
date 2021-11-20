@@ -318,7 +318,7 @@ open class MeowoolPresetSpec internal constructor() {
           ktlint().userData(ktlintData())
           endWithNewline()
           trimTrailingWhitespace()
-          licenseHeader?.let { licenseHeader(it, "(import |plugins|buildscript|tasks|apply|rootProject|android|@)") }
+          licenseHeader?.let { licenseHeader(it, "(import |project.|rootProject.|pluginManagement|plugins|buildscript|tasks|apply|rootProject|android|@)") }
         }
 
         afterEvaluate {
