@@ -29,7 +29,7 @@ import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
  * For more details, see [doc](https://kotlinlang.org/docs/whatsnew14.html#explicit-api-mode-for-library-authors)
  */
 fun Project.kotlinExplicitApi(mode: ExplicitApiMode = ExplicitApiMode.Strict) = kotlinOptions {
-  addFreeCompilerArgs("-Xexplicit-api=${mode.name}")
+  addFreeCompilerArgs(mode.toCompilerArg())
 }
 
 /**
@@ -38,7 +38,7 @@ fun Project.kotlinExplicitApi(mode: ExplicitApiMode = ExplicitApiMode.Strict) = 
  * For more details, see [doc](https://kotlinlang.org/docs/whatsnew14.html#explicit-api-mode-for-library-authors)
  */
 fun Project.kotlinDefaultVariantExplicitApi(mode: ExplicitApiMode = ExplicitApiMode.Strict) = kotlinCompile {
-  onDefaultVariant { addFreeCompilerArgs("-Xexplicit-api=${mode.name}") }
+  onDefaultVariant { addFreeCompilerArgs(mode.toCompilerArg()) }
 }
 
 /**
@@ -47,5 +47,5 @@ fun Project.kotlinDefaultVariantExplicitApi(mode: ExplicitApiMode = ExplicitApiM
  * For more details, see [doc](https://kotlinlang.org/docs/whatsnew14.html#explicit-api-mode-for-library-authors)
  */
 fun Project.kotlinTestVariantExplicitApi(mode: ExplicitApiMode = ExplicitApiMode.Strict) = kotlinCompile {
-  onTestVariant { addFreeCompilerArgs("-Xexplicit-api=${mode.name}") }
+  onTestVariant { addFreeCompilerArgs(mode.toCompilerArg()) }
 }
