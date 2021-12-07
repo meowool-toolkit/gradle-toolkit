@@ -39,17 +39,6 @@ plugins {
   }
 }
 
-buildscript {
-  configurations.all {
-    // Check for updates every build
-    resolutionStrategy {
-      force("com.android.tools.build:gradle:4.2.2")
-      force("io.kotest:kotest-assertions-kotlinx-time:+")
-      cacheChangingModulesFor(0, TimeUnit.SECONDS)
-    }
-  }
-}
-
 dependencyMapper {
   libraries {
     map(
