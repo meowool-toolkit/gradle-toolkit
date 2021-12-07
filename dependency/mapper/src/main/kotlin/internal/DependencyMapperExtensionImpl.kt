@@ -128,6 +128,11 @@ internal class DependencyMapperExtensionImpl(override val project: Project) : De
     collectMutex.withLock {
       val outputList = DependencyMapperInternal.DependencyOutputList()
       val consume = measureTime {
+//        when {
+//          isConcurrently -> data.collectors.forEach {
+//
+//          }
+//        }
         consumeChannel(isConcurrently) {
           data.collectors.forEachConcurrently {
             with(it) { collect(project, isConcurrently, outputList) }

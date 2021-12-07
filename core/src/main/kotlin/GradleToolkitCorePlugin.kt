@@ -63,7 +63,17 @@ class GradleToolkitCorePlugin : Plugin<Any> {
     allprojects {
       val extension = toolkitExtensionImpl
 
-      setJvmTarget(extension)
+      extensions.findByType<JavaPluginExtension>()?.apply {
+        sourceCompatibility = extension.defaultJvmTarget
+        targetCompatibility = extension.defaultJvmTarget
+      }
+
+      tasks.withType<JavaCompile> {
+        sourceCompatibility = extension.defaultJvmTarget.toString()
+        targetCompatibility = extension.defaultJvmTarget.toString()
+      }
+
+      setKotlinJvmTarget(extension)
 
       // See: https://github.com/JetBrains/kotlin/blob/1.6.0/libraries/stdlib/jvm/src/kotlin/jvm/JvmDefault.kt#L37-L50
       kotlinOptions { addFreeCompilerArgs("-Xjvm-default=all") }
@@ -72,7 +82,7 @@ class GradleToolkitCorePlugin : Plugin<Any> {
         optIn("kotlin.RequiresOptIn")
 
         // TODO: Remove when https://github.com/gradle/gradle/issues/18935 fixed
-        afterEvaluate { setJvmTarget(extension) }; setJvmTarget(extension)
+        afterEvaluate { setKotlinJvmTarget(extension) }; setKotlinJvmTarget(extension)
 
         kotlinMultiplatformExtensionOrNull?.apply {
           // TODO Custom shared source sets until https://youtrack.jetbrains.com/issue/KT-42466 is completed
@@ -97,17 +107,7 @@ class GradleToolkitCorePlugin : Plugin<Any> {
     }
   }
 
-  private fun Project.setJvmTarget(extension: GradleToolkitExtension) {
-    extensions.findByType<JavaPluginExtension>()?.apply {
-      sourceCompatibility = extension.defaultJvmTarget
-      targetCompatibility = extension.defaultJvmTarget
-    }
-
-    tasks.withType<JavaCompile> {
-      sourceCompatibility = extension.defaultJvmTarget.toString()
-      targetCompatibility = extension.defaultJvmTarget.toString()
-    }
-
+  private fun Project.setKotlinJvmTarget(extension: GradleToolkitExtension) {
     tasks.withType<KotlinCompile> {
       sourceCompatibility = extension.defaultJvmTarget.toString()
       targetCompatibility = extension.defaultJvmTarget.toString()
