@@ -10,7 +10,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "7.3"
+      "version": "7.3.1"
     }
   },
   "variants": [
@@ -35,7 +35,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-common",
           "version": {
             "requires": "1.6.0",
             "rejects": [
@@ -47,7 +47,7 @@
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
-            "requires": "1.5.2",
+            "requires": "1.6.0-RC",
             "rejects": [
               "_"
             ]
@@ -68,11 +68,11 @@
         {
           "name": "toolkit-dependency-mapper-0.1.0-LOCAL.jar",
           "url": "toolkit-dependency-mapper-0.1.0-LOCAL.jar",
-          "size": 514095,
-          "sha512": "37e0e895c00f19507088439d5fff1ffcbcefb91f015f256d53c79c3df98b628ff2f3c9655f82f41ef438f87e50383d3bb6dad7155cdd3dbb2a3594c1179d67ab",
-          "sha256": "df41b53ba5d302c6700a849c3440d134acc317710173f44fa37f91d8198fece2",
-          "sha1": "a1e64f5cee305ca0b2bd4ab1744212ec6c2691dc",
-          "md5": "30be0defee46b6814f0c6c6a7eeef540"
+          "size": 516651,
+          "sha512": "4d8aeac5b1aaa1448be4f6ca74801cc6cdb7dfcfac8fce7e3eb7425d1f820b69675cc1b65a400c8840448f442920dfe81bb71dfd2bf07b5e1146a983a74bc719",
+          "sha256": "a0d2e25e77575541c7cd40d4d8f90a851210776121a255dc170bedf8adc0de28",
+          "sha1": "b03750c83fd32ab1f0e14779ad0ee273af96c787",
+          "md5": "bb9ef96655edc50d8fd9f48136a6d1ca"
         }
       ]
     },
@@ -102,7 +102,7 @@
           "group": "io.ktor",
           "module": "ktor-client-okhttp",
           "version": {
-            "requires": "1.6.5",
+            "requires": "1.6.6",
             "rejects": [
               "_"
             ]
@@ -112,7 +112,7 @@
           "group": "io.ktor",
           "module": "ktor-client-logging",
           "version": {
-            "requires": "1.6.5",
+            "requires": "1.6.6",
             "rejects": [
               "_"
             ]
@@ -122,7 +122,7 @@
           "group": "io.ktor",
           "module": "ktor-client-serialization",
           "version": {
-            "requires": "1.6.5",
+            "requires": "1.6.6",
             "rejects": [
               "_"
             ]
@@ -142,7 +142,7 @@
           "group": "com.squareup.okhttp3",
           "module": "logging-interceptor",
           "version": {
-            "requires": "4.9.2",
+            "requires": "4.9.3",
             "rejects": [
               "_"
             ]
@@ -152,7 +152,7 @@
           "group": "net.bytebuddy",
           "module": "byte-buddy",
           "version": {
-            "requires": "1.12.1",
+            "requires": "1.12.3",
             "rejects": [
               "_"
             ]
@@ -177,7 +177,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-common",
           "version": {
             "requires": "1.6.0",
             "rejects": [
@@ -189,7 +189,7 @@
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
-            "requires": "1.5.2",
+            "requires": "1.6.0-RC",
             "rejects": [
               "_"
             ]
@@ -210,11 +210,11 @@
         {
           "name": "toolkit-dependency-mapper-0.1.0-LOCAL.jar",
           "url": "toolkit-dependency-mapper-0.1.0-LOCAL.jar",
-          "size": 514095,
-          "sha512": "37e0e895c00f19507088439d5fff1ffcbcefb91f015f256d53c79c3df98b628ff2f3c9655f82f41ef438f87e50383d3bb6dad7155cdd3dbb2a3594c1179d67ab",
-          "sha256": "df41b53ba5d302c6700a849c3440d134acc317710173f44fa37f91d8198fece2",
-          "sha1": "a1e64f5cee305ca0b2bd4ab1744212ec6c2691dc",
-          "md5": "30be0defee46b6814f0c6c6a7eeef540"
+          "size": 516651,
+          "sha512": "4d8aeac5b1aaa1448be4f6ca74801cc6cdb7dfcfac8fce7e3eb7425d1f820b69675cc1b65a400c8840448f442920dfe81bb71dfd2bf07b5e1146a983a74bc719",
+          "sha256": "a0d2e25e77575541c7cd40d4d8f90a851210776121a255dc170bedf8adc0de28",
+          "sha1": "b03750c83fd32ab1f0e14779ad0ee273af96c787",
+          "md5": "bb9ef96655edc50d8fd9f48136a6d1ca"
         }
       ]
     }

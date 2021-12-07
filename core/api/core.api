@@ -1,0 +1,1025 @@
+public final class AndroidTargetsKt {
+	public static final fun androidTarget (Lorg/gradle/api/Project;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun androidTarget$default (Lorg/gradle/api/Project;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun getAndroidMain (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getAndroidMainSourceSet (Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getAndroidTest (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getAndroidTestSourceSet (Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getMain (Lorg/jetbrains/kotlin/gradle/plugin/mpp/KotlinAndroidTarget;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getTest (Lorg/jetbrains/kotlin/gradle/plugin/mpp/KotlinAndroidTarget;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun main (Lorg/jetbrains/kotlin/gradle/plugin/mpp/KotlinAndroidTarget;Lkotlin/jvm/functions/Function1;)V
+	public static final fun test (Lorg/jetbrains/kotlin/gradle/plugin/mpp/KotlinAndroidTarget;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class ApiConfigurationAccessorsKt {
+	public static final fun api (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun api (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;Ljava/lang/CharSequence;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun apiFiles (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
+	public static synthetic fun apiFiles$default (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun apiJars (Lorg/gradle/api/Project;[Ljava/lang/String;)Ljava/util/List;
+	public static synthetic fun apiJars$default (Lorg/gradle/api/Project;[Ljava/lang/String;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun apiOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Ljava/util/List;
+	public static final fun apiOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun apiOf (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/CharSequence;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun apiOf (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun apiProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun apiProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun apiProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun apiProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun apiProjects (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun apiProjects (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class CommonTarget {
+	public fun <init> (Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;)V
+	public final fun getExtension ()Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;
+}
+
+public final class CommonTargetsKt {
+	public static final fun common (Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun common$default (Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun commonTarget (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun commonTarget$default (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun getCommonMain (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getCommonMainSourceSet (Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getCommonTest (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getCommonTestSourceSet (Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getMain (LCommonTarget;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getTest (LCommonTarget;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun main (LCommonTarget;Lkotlin/jvm/functions/Function1;)V
+	public static final fun test (LCommonTarget;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class CompileOnlyApiConfigurationAccessorsKt {
+	public static final fun compileOnlyApi (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun compileOnlyApiFiles (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
+	public static synthetic fun compileOnlyApiFiles$default (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun compileOnlyApiJars (Lorg/gradle/api/Project;[Ljava/lang/String;)Ljava/util/List;
+	public static synthetic fun compileOnlyApiJars$default (Lorg/gradle/api/Project;[Ljava/lang/String;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun compileOnlyApiOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Ljava/util/List;
+	public static final fun compileOnlyApiOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun compileOnlyApiProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun compileOnlyApiProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun compileOnlyApiProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun compileOnlyApiProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class CompileOnlyConfigurationAccessorsKt {
+	public static final fun compileOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun compileOnly (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;Ljava/lang/CharSequence;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun compileOnlyFiles (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
+	public static synthetic fun compileOnlyFiles$default (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun compileOnlyJars (Lorg/gradle/api/Project;[Ljava/lang/String;)Ljava/util/List;
+	public static synthetic fun compileOnlyJars$default (Lorg/gradle/api/Project;[Ljava/lang/String;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun compileOnlyOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Ljava/util/List;
+	public static final fun compileOnlyOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun compileOnlyOf (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/CharSequence;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun compileOnlyOf (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun compileOnlyProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun compileOnlyProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun compileOnlyProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun compileOnlyProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun compileOnlyProjects (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun compileOnlyProjects (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class DependenciesKt {
+	public static final fun alldependencies (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public static final fun getArtifactId (Ljava/lang/CharSequence;)Ljava/lang/String;
+	public static final fun getDependencyArtifact (Ljava/lang/CharSequence;)Ljava/lang/String;
+	public static final fun getDependencyGroup (Ljava/lang/CharSequence;)Ljava/lang/String;
+	public static final fun getDependencyVersion (Ljava/lang/CharSequence;)Ljava/lang/String;
+	public static final fun getGroupId (Ljava/lang/CharSequence;)Ljava/lang/String;
+	public static final fun getVersion (Ljava/lang/CharSequence;)Ljava/lang/String;
+	public static final fun removeVersion (Ljava/lang/CharSequence;)Ljava/lang/String;
+	public static final fun subdependencies (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public static final fun version (Ljava/lang/CharSequence;Ljava/lang/String;)Ljava/lang/String;
+	public static final fun withoutVersion (Ljava/lang/CharSequence;)Ljava/lang/String;
+}
+
+public final class DependencyHandlerToolkit : org/gradle/api/artifacts/dsl/DependencyHandler {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/kotlin/dsl/DependencyHandlerScope;)V
+	public fun add (Ljava/lang/String;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public fun add (Ljava/lang/String;Ljava/lang/Object;Lgroovy/lang/Closure;)Lorg/gradle/api/artifacts/Dependency;
+	public fun addProvider (Ljava/lang/String;Lorg/gradle/api/provider/Provider;)V
+	public fun addProvider (Ljava/lang/String;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public fun artifactTypes (Lorg/gradle/api/Action;)V
+	public fun attributesSchema (Lorg/gradle/api/Action;)Lorg/gradle/api/attributes/AttributesSchema;
+	public final fun classpath (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public final fun classpath (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public final fun classpath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public final fun classpath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public final fun classpath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public final fun classpath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public final fun classpath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static synthetic fun classpath$default (LDependencyHandlerToolkit;Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static synthetic fun classpath$default (LDependencyHandlerToolkit;Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public fun components (Lorg/gradle/api/Action;)V
+	public final fun constraints (Lkotlin/jvm/functions/Function1;)V
+	public fun constraints (Lorg/gradle/api/Action;)V
+	public fun create (Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public fun create (Ljava/lang/Object;Lgroovy/lang/Closure;)Lorg/gradle/api/artifacts/Dependency;
+	public fun createArtifactResolutionQuery ()Lorg/gradle/api/artifacts/query/ArtifactResolutionQuery;
+	public fun enforcedPlatform (Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public fun enforcedPlatform (Ljava/lang/Object;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/Dependency;
+	public fun enforcedPlatform (Lorg/gradle/api/provider/Provider;)Lorg/gradle/api/provider/Provider;
+	public fun getArtifactTypes ()Lorg/gradle/api/artifacts/type/ArtifactTypeContainer;
+	public fun getAttributesSchema ()Lorg/gradle/api/attributes/AttributesSchema;
+	public final fun getClasspath (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public fun getComponents ()Lorg/gradle/api/artifacts/dsl/ComponentMetadataHandler;
+	public fun getConstraints ()Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;
+	public fun getExtensions ()Lorg/gradle/api/plugins/ExtensionContainer;
+	public fun getModules ()Lorg/gradle/api/artifacts/dsl/ComponentModuleMetadataHandler;
+	public final fun getProject ()Lorg/gradle/api/Project;
+	public fun gradleApi ()Lorg/gradle/api/artifacts/Dependency;
+	public final fun gradleKotlinDsl ()Lorg/gradle/api/artifacts/Dependency;
+	public fun gradleTestKit ()Lorg/gradle/api/artifacts/Dependency;
+	public final fun invoke (Ljava/lang/String;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public final fun invoke (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public final fun invoke (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public final fun invoke (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public final fun invoke (Ljava/lang/String;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public final fun invoke (Ljava/lang/String;Lorg/gradle/api/provider/Provider;)V
+	public final fun invoke (Ljava/lang/String;Lorg/gradle/api/provider/Provider;Lkotlin/jvm/functions/Function1;)V
+	public final fun invoke (Lorg/gradle/api/artifacts/Configuration;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public final fun invoke (Lorg/gradle/api/artifacts/Configuration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public final fun invoke (Lorg/gradle/api/artifacts/Configuration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public final fun invoke (Lorg/gradle/api/artifacts/Configuration;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public final fun invoke (Lorg/gradle/api/artifacts/Configuration;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public final fun invoke (Lorg/gradle/api/artifacts/Configuration;Lorg/gradle/api/provider/Provider;)V
+	public final fun invoke (Lorg/gradle/api/artifacts/Configuration;Lorg/gradle/api/provider/Provider;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun invoke$default (LDependencyHandlerToolkit;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static synthetic fun invoke$default (LDependencyHandlerToolkit;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static synthetic fun invoke$default (LDependencyHandlerToolkit;Lorg/gradle/api/artifacts/Configuration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static synthetic fun invoke$default (LDependencyHandlerToolkit;Lorg/gradle/api/artifacts/Configuration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public fun localGroovy ()Lorg/gradle/api/artifacts/Dependency;
+	public fun module (Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public fun module (Ljava/lang/Object;Lgroovy/lang/Closure;)Lorg/gradle/api/artifacts/Dependency;
+	public fun modules (Lorg/gradle/api/Action;)V
+	public fun platform (Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public fun platform (Ljava/lang/Object;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/Dependency;
+	public fun project (Ljava/util/Map;)Lorg/gradle/api/artifacts/Dependency;
+	public fun registerTransform (Ljava/lang/Class;Lorg/gradle/api/Action;)V
+	public fun registerTransform (Lorg/gradle/api/Action;)V
+	public fun testFixtures (Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public fun testFixtures (Ljava/lang/Object;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/Dependency;
+	public fun variantOf (Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)Lorg/gradle/api/provider/Provider;
+}
+
+public final class EnvironmentsKt {
+	public static final fun getCiEnvironment ()Lbe/vbgn/gradle/cidetect/CiInformation;
+	public static final fun isCiEnvironment ()Z
+	public static final fun isIntelliJ ()Z
+}
+
+public final class FreeCompilerArgsKt {
+	public static final fun addFreeCompilerArgs (Lorg/gradle/api/Project;Ljava/lang/Iterable;)V
+	public static final fun addFreeCompilerArgs (Lorg/gradle/api/Project;[Ljava/lang/String;)V
+	public static final fun addFreeCompilerArgs (Lorg/jetbrains/kotlin/gradle/dsl/KotlinCommonOptions;Ljava/lang/Iterable;)V
+	public static final fun addFreeCompilerArgs (Lorg/jetbrains/kotlin/gradle/dsl/KotlinCommonOptions;[Ljava/lang/String;)V
+	public static final fun addFreeCompilerArgs (Lorg/jetbrains/kotlin/gradle/tasks/KotlinCompile;Ljava/lang/Iterable;)V
+	public static final fun addFreeCompilerArgs (Lorg/jetbrains/kotlin/gradle/tasks/KotlinCompile;[Ljava/lang/String;)V
+}
+
+public final class GradleToolkitKt {
+	public static final fun gradleToolkit (Lorg/gradle/api/initialization/Settings;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class ImplementationConfigurationAccessorsKt {
+	public static final fun implementation (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun implementation (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;Ljava/lang/CharSequence;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun implementationFiles (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
+	public static synthetic fun implementationFiles$default (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun implementationJars (Lorg/gradle/api/Project;[Ljava/lang/String;)Ljava/util/List;
+	public static synthetic fun implementationJars$default (Lorg/gradle/api/Project;[Ljava/lang/String;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun implementationOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Ljava/util/List;
+	public static final fun implementationOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun implementationOf (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/CharSequence;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun implementationOf (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun implementationProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun implementationProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun implementationProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun implementationProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun implementationProjects (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun implementationProjects (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class IncludesKt {
+	public static final fun importProjects (Lorg/gradle/api/initialization/Settings;Ljava/io/File;ZLkotlin/jvm/functions/Function1;)V
+	public static final fun importProjects (Lorg/gradle/api/initialization/Settings;Ljava/io/File;Z[Ljava/io/File;)V
+	public static final fun importProjects (Lorg/gradle/api/initialization/Settings;Ljava/lang/String;ZLkotlin/jvm/functions/Function1;)V
+	public static final fun importProjects (Lorg/gradle/api/initialization/Settings;Ljava/lang/String;Z[Ljava/lang/String;)V
+	public static final fun importProjects (Lorg/gradle/api/initialization/Settings;Ljava/nio/file/Path;ZLkotlin/jvm/functions/Function1;)V
+	public static final fun importProjects (Lorg/gradle/api/initialization/Settings;Ljava/nio/file/Path;Z[Ljava/nio/file/Path;)V
+	public static synthetic fun importProjects$default (Lorg/gradle/api/initialization/Settings;Ljava/io/File;ZLkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun importProjects$default (Lorg/gradle/api/initialization/Settings;Ljava/io/File;Z[Ljava/io/File;ILjava/lang/Object;)V
+	public static synthetic fun importProjects$default (Lorg/gradle/api/initialization/Settings;Ljava/lang/String;ZLkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun importProjects$default (Lorg/gradle/api/initialization/Settings;Ljava/lang/String;Z[Ljava/lang/String;ILjava/lang/Object;)V
+	public static synthetic fun importProjects$default (Lorg/gradle/api/initialization/Settings;Ljava/nio/file/Path;ZLkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun importProjects$default (Lorg/gradle/api/initialization/Settings;Ljava/nio/file/Path;Z[Ljava/nio/file/Path;ILjava/lang/Object;)V
+}
+
+public final class JvmTargetsKt {
+	public static final fun configureTestRunTask (Lorg/jetbrains/kotlin/gradle/targets/jvm/KotlinJvmTarget;Lkotlin/jvm/functions/Function1;)V
+	public static final fun getJvmMain (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getJvmMainSourceSet (Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getJvmTest (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getJvmTestSourceSet (Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getMain (Lorg/jetbrains/kotlin/gradle/targets/jvm/KotlinJvmTarget;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun getTest (Lorg/jetbrains/kotlin/gradle/targets/jvm/KotlinJvmTarget;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun jvmTarget (Lorg/gradle/api/Project;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun jvmTarget$default (Lorg/gradle/api/Project;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun main (Lorg/jetbrains/kotlin/gradle/targets/jvm/KotlinJvmTarget;Lkotlin/jvm/functions/Function1;)V
+	public static final fun test (Lorg/jetbrains/kotlin/gradle/targets/jvm/KotlinJvmTarget;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class KaptConfigurationAccessorsKt {
+	public static final fun kapt (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun kaptFiles (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
+	public static synthetic fun kaptFiles$default (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun kaptJars (Lorg/gradle/api/Project;[Ljava/lang/String;)Ljava/util/List;
+	public static synthetic fun kaptJars$default (Lorg/gradle/api/Project;[Ljava/lang/String;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun kaptOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Ljava/util/List;
+	public static final fun kaptOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun kaptProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun kaptProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun kaptProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun kaptProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class KotlinCompilesKt {
+	public static final fun kotlinCompile (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public static final fun kotlinJvmCompile (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public static final fun kotlinJvmOptions (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public static final fun kotlinJvmOptions (Lorg/jetbrains/kotlin/gradle/dsl/KotlinCompile;Lkotlin/jvm/functions/Function1;)V
+	public static final fun kotlinOptions (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onDefaultVariant (Lorg/jetbrains/kotlin/gradle/dsl/KotlinCompile;Lkotlin/jvm/functions/Function1;)V
+	public static final fun onTestVariant (Lorg/jetbrains/kotlin/gradle/dsl/KotlinCompile;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class KotlinExplicitApisKt {
+	public static final fun kotlinDefaultVariantExplicitApi (Lorg/gradle/api/Project;Lorg/jetbrains/kotlin/gradle/dsl/ExplicitApiMode;)V
+	public static synthetic fun kotlinDefaultVariantExplicitApi$default (Lorg/gradle/api/Project;Lorg/jetbrains/kotlin/gradle/dsl/ExplicitApiMode;ILjava/lang/Object;)V
+	public static final fun kotlinExplicitApi (Lorg/gradle/api/Project;Lorg/jetbrains/kotlin/gradle/dsl/ExplicitApiMode;)V
+	public static synthetic fun kotlinExplicitApi$default (Lorg/gradle/api/Project;Lorg/jetbrains/kotlin/gradle/dsl/ExplicitApiMode;ILjava/lang/Object;)V
+	public static final fun kotlinTestVariantExplicitApi (Lorg/gradle/api/Project;Lorg/jetbrains/kotlin/gradle/dsl/ExplicitApiMode;)V
+	public static synthetic fun kotlinTestVariantExplicitApi$default (Lorg/gradle/api/Project;Lorg/jetbrains/kotlin/gradle/dsl/ExplicitApiMode;ILjava/lang/Object;)V
+}
+
+public final class KotlinMultiplatformExtensionsKt {
+	public static final fun kotlinMultiplatform (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class KotlinSourceSetsKt {
+	public static final fun dependsOn (Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;Ljava/lang/Iterable;)V
+	public static final fun dependsOn (Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;[Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;)V
+}
+
+public final class LanguageFeaturesKt {
+	public static final fun enableLanguageFeatures (Lorg/gradle/api/Project;Ljava/util/List;)Lkotlin/Unit;
+	public static final fun enableLanguageFeatures (Lorg/gradle/api/Project;[Ljava/lang/String;)Lkotlin/Unit;
+	public static final fun enableLanguageFeatures (Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;Ljava/util/List;)V
+	public static final fun enableLanguageFeatures (Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;[Ljava/lang/String;)V
+}
+
+public final class LogicsKt {
+	public static final fun injectDependenciesLogic (Lorg/gradle/api/Project;Ljava/lang/Object;)V
+	public static synthetic fun injectDependenciesLogic$default (Lorg/gradle/api/Project;Ljava/lang/Object;ILjava/lang/Object;)V
+	public static final fun injectProjectLogic (Lorg/gradle/api/Project;Ljava/lang/Object;)V
+	public static synthetic fun injectProjectLogic$default (Lorg/gradle/api/Project;Ljava/lang/Object;ILjava/lang/Object;)V
+	public static final fun registerLogic (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public static final fun registerLogic (Lorg/gradle/api/initialization/Settings;Lkotlin/jvm/functions/Function1;)V
+}
+
+public abstract class MavenMirrors {
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getUrl ()Ljava/lang/String;
+}
+
+public abstract class MavenMirrors$Aliyun : MavenMirrors {
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class MavenMirrors$Aliyun$ApacheSnapshots : MavenMirrors$Aliyun {
+	public static final field INSTANCE LMavenMirrors$Aliyun$ApacheSnapshots;
+}
+
+public final class MavenMirrors$Aliyun$Central : MavenMirrors$Aliyun {
+	public static final field INSTANCE LMavenMirrors$Aliyun$Central;
+}
+
+public final class MavenMirrors$Aliyun$Google : MavenMirrors$Aliyun {
+	public static final field INSTANCE LMavenMirrors$Aliyun$Google;
+}
+
+public final class MavenMirrors$Aliyun$GradlePlugin : MavenMirrors$Aliyun {
+	public static final field INSTANCE LMavenMirrors$Aliyun$GradlePlugin;
+}
+
+public final class MavenMirrors$Aliyun$GrailsCore : MavenMirrors$Aliyun {
+	public static final field INSTANCE LMavenMirrors$Aliyun$GrailsCore;
+}
+
+public final class MavenMirrors$Aliyun$JCenter : MavenMirrors$Aliyun {
+	public static final field INSTANCE LMavenMirrors$Aliyun$JCenter;
+}
+
+public final class MavenMirrors$Aliyun$Public : MavenMirrors$Aliyun {
+	public static final field INSTANCE LMavenMirrors$Aliyun$Public;
+}
+
+public final class MavenMirrors$Aliyun$Spring : MavenMirrors$Aliyun {
+	public static final field INSTANCE LMavenMirrors$Aliyun$Spring;
+}
+
+public final class MavenMirrors$Aliyun$SpringPlugin : MavenMirrors$Aliyun {
+	public static final field INSTANCE LMavenMirrors$Aliyun$SpringPlugin;
+}
+
+public final class MavenMirrors$Huawei : MavenMirrors {
+	public static final field INSTANCE LMavenMirrors$Huawei;
+}
+
+public final class MavenMirrors$Tencent : MavenMirrors {
+	public static final field INSTANCE LMavenMirrors$Tencent;
+}
+
+public final class OptInsKt {
+	public static final fun optIn (Lorg/gradle/api/Project;Ljava/lang/Iterable;)V
+	public static final fun optIn (Lorg/gradle/api/Project;[Ljava/lang/String;)V
+}
+
+public final class PluginContainersKt {
+	public static final fun applyIfNotExists (Lorg/gradle/api/plugins/PluginContainer;Ljava/lang/String;)V
+}
+
+public final class PropertiesKt {
+	public static final fun findLocalProperties (Lorg/gradle/api/Project;)Ljava/util/Properties;
+	public static final fun findPropertyOrEnv (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/lang/Object;
+	public static final fun getLocalProperties (Lorg/gradle/api/Project;)Ljava/util/Properties;
+	public static final fun getPropertyOrEnv (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class RepositoriesKt {
+	public static final fun allrepositories (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public static final fun jCenter (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static synthetic fun jCenter$default (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static final fun jitpack (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static synthetic fun jitpack$default (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static final fun maven (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static synthetic fun maven$default (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static final fun mavenMirror (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;LMavenMirrors;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static synthetic fun mavenMirror$default (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;LMavenMirrors;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static final fun sonatype (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun sonatype$default (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun sonatypeSnapshots (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun sonatypeSnapshots$default (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun subrepositories (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class RuntimeOnlyConfigurationAccessorsKt {
+	public static final fun runtimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun runtimeOnly (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;Ljava/lang/CharSequence;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun runtimeOnlyFiles (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
+	public static synthetic fun runtimeOnlyFiles$default (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun runtimeOnlyJars (Lorg/gradle/api/Project;[Ljava/lang/String;)Ljava/util/List;
+	public static synthetic fun runtimeOnlyJars$default (Lorg/gradle/api/Project;[Ljava/lang/String;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun runtimeOnlyOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Ljava/util/List;
+	public static final fun runtimeOnlyOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun runtimeOnlyOf (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/CharSequence;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun runtimeOnlyOf (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun runtimeOnlyProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun runtimeOnlyProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun runtimeOnlyProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun runtimeOnlyProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun runtimeOnlyProjects (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun runtimeOnlyProjects (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class SourceSetContainersKt {
+	public static final fun getMain (Lorg/gradle/api/tasks/SourceSetContainer;)Lorg/gradle/api/tasks/SourceSet;
+	public static final fun getTest (Lorg/gradle/api/tasks/SourceSetContainer;)Lorg/gradle/api/tasks/SourceSet;
+	public static final fun main (Lorg/gradle/api/tasks/SourceSetContainer;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/tasks/SourceSet;
+	public static final fun test (Lorg/gradle/api/tasks/SourceSetContainer;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/tasks/SourceSet;
+}
+
+public final class TasksKt {
+	public static final fun findTask (Lorg/gradle/api/Project;Ljava/lang/String;)Lorg/gradle/api/Task;
+	public static final fun getInputFileSet (Lorg/gradle/api/Task;)Ljava/util/Set;
+	public static final fun getOutputFileSet (Lorg/gradle/api/Task;)Ljava/util/Set;
+	public static final fun registerTasks (Lorg/gradle/api/Project;[Lkotlin/Pair;)V
+	public static final fun registerTasks (Lorg/gradle/api/Project;[Lkotlin/reflect/KClass;)V
+	public static final fun skipTask (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public static final fun skipTasks (Lorg/gradle/api/Project;[Ljava/lang/String;)V
+}
+
+public final class TestApiConfigurationAccessorsKt {
+	public static final fun testApi (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testApiFiles (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
+	public static synthetic fun testApiFiles$default (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun testApiJars (Lorg/gradle/api/Project;[Ljava/lang/String;)Ljava/util/List;
+	public static synthetic fun testApiJars$default (Lorg/gradle/api/Project;[Ljava/lang/String;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun testApiOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Ljava/util/List;
+	public static final fun testApiOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun testApiProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun testApiProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testApiProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun testApiProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class TestCompileApiConfigurationAccessorsKt {
+	public static final fun testCompileOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testCompileOnlyFiles (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
+	public static synthetic fun testCompileOnlyFiles$default (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun testCompileOnlyJars (Lorg/gradle/api/Project;[Ljava/lang/String;)Ljava/util/List;
+	public static synthetic fun testCompileOnlyJars$default (Lorg/gradle/api/Project;[Ljava/lang/String;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun testCompileOnlyOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Ljava/util/List;
+	public static final fun testCompileOnlyOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun testCompileOnlyProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun testCompileOnlyProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testCompileOnlyProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun testCompileOnlyProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class TestImplementationConfigurationAccessorsKt {
+	public static final fun testImplementation (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testImplementationFiles (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
+	public static synthetic fun testImplementationFiles$default (Lorg/gradle/api/Project;[Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun testImplementationJars (Lorg/gradle/api/Project;[Ljava/lang/String;)Ljava/util/List;
+	public static synthetic fun testImplementationJars$default (Lorg/gradle/api/Project;[Ljava/lang/String;ILjava/lang/Object;)Ljava/util/List;
+	public static final fun testImplementationOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Ljava/util/List;
+	public static final fun testImplementationOf (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/Object;)Ljava/util/List;
+	public static final fun testImplementationProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun testImplementationProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/CharSequence;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testImplementationProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;)Ljava/util/List;
+	public static final fun testImplementationProjects (Lorg/gradle/api/artifacts/dsl/DependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class com/meowool/gradle/toolkit/GradleToolkitCorePlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public fun apply (Ljava/lang/Object;)V
+}
+
+public abstract interface class com/meowool/gradle/toolkit/GradleToolkitExtension {
+	public abstract fun allprojects (ZLkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun allprojects$default (Lcom/meowool/gradle/toolkit/GradleToolkitExtension;ZLkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public fun allrepositories (Lkotlin/jvm/functions/Function1;)V
+	public abstract fun getAllprojects ()Ljava/util/Set;
+	public abstract fun getDefaultJvmTarget ()Lorg/gradle/api/JavaVersion;
+	public abstract fun getRootProject ()Lorg/gradle/api/Project;
+	public abstract fun getSubprojects ()Ljava/util/Set;
+	public abstract fun registerLogic (Lkotlin/jvm/functions/Function1;)V
+	public abstract fun setDefaultJvmTarget (Lorg/gradle/api/JavaVersion;)V
+	public abstract fun subprojects (ZLkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun subprojects$default (Lcom/meowool/gradle/toolkit/GradleToolkitExtension;ZLkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public fun subrepositories (Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class com/meowool/gradle/toolkit/LogicRegistry {
+	public static final field Companion Lcom/meowool/gradle/toolkit/LogicRegistry$Companion;
+	public static final field DefaultDependenciesKey Ljava/lang/String;
+	public static final field DefaultProjectKey Ljava/lang/String;
+	public fun <init> ()V
+	public final fun dependencies (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun dependencies$default (Lcom/meowool/gradle/toolkit/LogicRegistry;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun getExtraLogics ()Ljava/util/concurrent/ConcurrentHashMap;
+	public final fun project (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun project$default (Lcom/meowool/gradle/toolkit/LogicRegistry;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+}
+
+public final class org/gradle/kotlin/dsl/Accessors15c80wxji7qdhvcsteytc58m6Kt {
+	public static final fun getTestCompileOnly (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors16h8i8yvcoyu6adqodek0vazlKt {
+	public static final fun getBuild (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors1crcmgpg53bs3tut9tzeov9zsKt {
+	public static final fun getBuildNeeded (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors1je17tzadwn2i8n7cte4ejjucKt {
+	public static final fun getTestClasses (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors1rjydc5cf7y0f6xd8ou20m2o4Kt {
+	public static final fun getSpotlessDiagnose (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors1togd3myxkhlxm3hm03it918yKt {
+	public static final fun getCompileOnlyApi (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors1y0x5zjrw062ti39iwig4ztsqKt {
+	public static final fun getJavadoc (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors20m89wvqrtvolhrxzuq1utrarKt {
+	public static final fun getArchives (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors21zhoq018jw7yza6oupdxasaqKt {
+	public static final fun getCompileClasspath (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors22u2hh96au8aanrt52kede4lkKt {
+	public static final fun getInit (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors2ccw5a3jr4u6s0w7on61o6me9Kt {
+	public static final fun getSpotlessCheck (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors2oadk7let745pm8ahqypkqzlkKt {
+	public static final fun getSourceSets (Lorg/gradle/api/Project;)Lorg/gradle/api/tasks/SourceSetContainer;
+	public static final fun sourceSets (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public final class org/gradle/kotlin/dsl/Accessors2s1m7qhtdel2iy5x5gc2gv6f5Kt {
+	public static final fun getCheck (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors30fkku080rcvoj344u192bkfhKt {
+	public static final fun getRuntimeElements (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors30jk6jfapu42mm16w76juqsr8Kt {
+	public static final fun getRefreshVersionsDependenciesMapping (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors32yk85ycsljiuajc2oknj21ltKt {
+	public static final fun getApiElements (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors3b00icj6uvdwt6la5hcnud6zhKt {
+	public static final fun getDependencyInsight (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors3n8emmxviy35h2y6h0cr1n1i7Kt {
+	public static final fun getSigning (Lorg/gradle/api/Project;)Lorg/gradle/plugins/signing/SigningExtension;
+	public static final fun signing (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public final class org/gradle/kotlin/dsl/Accessors45cftp2do14y8dm8cnj0yfjzmKt {
+	public static final fun getAnnotationProcessor (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors49985hyy071qu5jjdlrughl86Kt {
+	public static final fun getTestRuntimeOnly (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors4g3ee48g3j8ovb2sfufkb1xghKt {
+	public static final fun getTestRuntimeClasspath (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors4ymn32ugs7fc7ez4f1y4vdr9nKt {
+	public static final fun getCompileJava (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors5cx8iclyvbivcabq86i8mlot5Kt {
+	public static final fun getAssemble (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors5dc5ntgnadimckiddcyeoreqKt {
+	public static final fun getImplementation (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors5fk7ujd52n5i4lgh9rsd3nr80Kt {
+	public static final fun getMain (Lorg/gradle/api/tasks/SourceSetContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors5r7od1ls1rcal14bwiw1aolf3Kt {
+	public static final fun getDefault (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors5w9es0er3ypxz7btqxgwmopo6Kt {
+	public static final fun getPrepareKotlinBuildScriptModel (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors60qstau5cx5bln125iqy9zc2sKt {
+	public static final fun getUploadArchives (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors60wvtf0hlc6m7pu4zcziugmriKt {
+	public static final fun getTestCompileClasspath (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors6kce2f9onf1yvha3oi0wn04jfKt {
+	public static final fun getDependencies (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors6wxdx4iuccspcc9otwurfe3puKt {
+	public static final fun base (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static final fun getBase (Lorg/gradle/api/Project;)Lorg/gradle/api/plugins/BasePluginConvention;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors6xcmy081jxud3rx4r453mbm9fKt {
+	public static final fun getPublishToMavenLocal (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors6xkpc5r938hqmmzagr5yicp7sKt {
+	public static final fun getRuntimeClasspath (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors70qre8uzkvqv2741psvay03jnKt {
+	public static final fun getTasks (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors7pildy6t6pgcmk0gyewx4z8k1Kt {
+	public static final fun getProcessResources (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors8rh5iqya1t168oyiaurnwv106Kt {
+	public static final fun getHelp (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors8s478vwgng6v6a1mno9kdtss0Kt {
+	public static final fun getProjects (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors8uzlaa9ndo750hmo4da2vgu2vKt {
+	public static final fun getBuildDependents (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors96b3ii45gitqpy1kb3tvcvtxvKt {
+	public static final fun getJava (Lorg/gradle/api/Project;)Lorg/gradle/api/plugins/JavaPluginExtension;
+	public static final fun java (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public final class org/gradle/kotlin/dsl/Accessors9upc35ddn1m31thgty51w1nrjKt {
+	public static final fun getTestAnnotationProcessor (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors9xbdx9ypglb5iceqwefq3l2uKt {
+	public static final fun getClean (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessors9xim6xjdq0ry1lmc4wm5ei8ehKt {
+	public static final fun getCompileOnly (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsa47105wcmcbzx75lm7p2ciqqbKt {
+	public static final fun getTestImplementation (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsaofthkmarv0q41bodk71vcqi7Kt {
+	public static final fun defaultArtifacts (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static final fun getDefaultArtifacts (Lorg/gradle/api/Project;)Lorg/gradle/api/internal/plugins/DefaultArtifactPublicationSet;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsate8f555kaiquem4dt3800he9Kt {
+	public static final fun getPublishSubprojects (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsb13nju9doius8kxwhlptqirtrKt {
+	public static final fun getPublish (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsbmy583k9y2oirweo6ih2u7jf2Kt {
+	public static final fun getBuildEnvironment (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsbp4j8g31qsxo0ekjysvxih5jgKt {
+	public static final fun getJavaToolchains (Lorg/gradle/api/Project;)Lorg/gradle/jvm/toolchain/JavaToolchainService;
+	public static final fun javaToolchains (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsbr6csdgbi78dxx91v6i73dtxgKt {
+	public static final fun getJavaToolchains (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsbtc8iwv8u9b0f38ikfmodj8nsKt {
+	public static final fun getReporting (Lorg/gradle/api/Project;)Lorg/gradle/api/reporting/ReportingExtension;
+	public static final fun reporting (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsbv7g6m9lvlbwpguz01lzxkxggKt {
+	public static final fun getComponents (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsbyqv0rd7bbuxjncv5k9yklxgbKt {
+	public static final fun getDependentComponents (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsc7pk2waxt3uzxyp4clhgc0b89Kt {
+	public static final fun getModel (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorscchdiujech8u294vwhihsq7ghKt {
+	public static final fun getPublishing (Lorg/gradle/api/Project;)Lorg/gradle/api/publish/PublishingExtension;
+	public static final fun publishing (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public final class org/gradle/kotlin/dsl/Accessorscj8cnlwdt7k507876yfc4m1xzKt {
+	public static final fun getOutgoingVariants (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorscosmuqa5m4pz5v4rp16nnpsrnKt {
+	public static final fun getTest (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsd7e4odubtwwdqpjhh6pvdtm35Kt {
+	public static final fun getProperties (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsdbsxdiburo0fnqzew185uq319Kt {
+	public static final fun getKotlinDslAccessorsReport (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsdemns0nrfvv4tm1e985ahms6rKt {
+	public static final fun getRuntimeOnly (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsdhblu8rt4vbwuf4rib4cwj9luKt {
+	public static final fun getApi (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsdirr8g3rs0a9h4cvi2o23j1gyKt {
+	public static final fun getProcessTestResources (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorse19x8vdfbjcc5sva65yvzy3h5Kt {
+	public static final fun getSignatures (Lorg/gradle/api/NamedDomainObjectContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorse1rkywyln7kgzh4axk281mwcqKt {
+	public static final fun getSpotlessApply (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorse2li3ct2mq14jt8s33r9id7ymKt {
+	public static final fun getInstallArchives (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorseessl0al0otcsbyqqruvoncpdKt {
+	public static final fun ext (Lorg/gradle/api/reporting/ReportingExtension;Lorg/gradle/api/Action;)V
+	public static final fun getExt (Lorg/gradle/api/reporting/ReportingExtension;)Lorg/gradle/api/plugins/ExtraPropertiesExtension;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsem8w6wnof1lrw3ubqr6eh9gcjKt {
+	public static final fun getClasses (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsf2247vvkmo98qvrnampydesmuKt {
+	public static final fun getWrapper (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsf2jx22njgpl8k21k7scc1t0rwKt {
+	public static final fun getTest (Lorg/gradle/api/tasks/SourceSetContainer;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsfbf92xd7bth9xw3u4y6q8qcdKt {
+	public static final fun getCompileTestJava (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/Accessorsw34mwj3hroscfmyxar5atwjzKt {
+	public static final fun getJar (Lorg/gradle/api/tasks/TaskContainer;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public final class org/gradle/kotlin/dsl/AnnotationProcessorConfigurationAccessorsKt {
+	public static final fun annotationProcessor (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun annotationProcessor (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun annotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun annotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun annotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun annotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun annotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun annotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun annotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun annotationProcessor$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/ApiConfigurationAccessorsKt {
+	public static final fun api (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun api (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun api (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun api (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun api (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun api (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun api (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun api (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun api (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun api$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/ApiElementsConfigurationAccessorsKt {
+	public static final fun apiElements (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun apiElements (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun apiElements (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun apiElements (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun apiElements (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun apiElements (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun apiElements (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun apiElements (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun apiElements (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun apiElements$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/ArchivesConfigurationAccessorsKt {
+	public static final fun archives (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun archives (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun archives (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun archives (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun archives (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun archives (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun archives (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun archives (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun archives (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun archives$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/CompileClasspathConfigurationAccessorsKt {
+	public static final fun compileClasspath (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun compileClasspath (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun compileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun compileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun compileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun compileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun compileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun compileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun compileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun compileClasspath$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/CompileOnlyApiConfigurationAccessorsKt {
+	public static final fun compileOnlyApi (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun compileOnlyApi (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun compileOnlyApi (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun compileOnlyApi (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun compileOnlyApi (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun compileOnlyApi (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun compileOnlyApi (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun compileOnlyApi (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun compileOnlyApi (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun compileOnlyApi$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/CompileOnlyConfigurationAccessorsKt {
+	public static final fun compileOnly (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun compileOnly (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun compileOnly (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun compileOnly (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun compileOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun compileOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun compileOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun compileOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun compileOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun compileOnly$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/DefaultConfigurationAccessorsKt {
+	public static final fun default (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun default (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun default (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun default (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun default$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/ImplementationConfigurationAccessorsKt {
+	public static final fun implementation (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun implementation (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun implementation (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun implementation (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun implementation (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun implementation (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun implementation (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun implementation (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun implementation (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun implementation$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/RuntimeClasspathConfigurationAccessorsKt {
+	public static final fun runtimeClasspath (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun runtimeClasspath (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun runtimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun runtimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun runtimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun runtimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun runtimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun runtimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun runtimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun runtimeClasspath$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/RuntimeElementsConfigurationAccessorsKt {
+	public static final fun runtimeElements (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun runtimeElements (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun runtimeElements (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun runtimeElements (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun runtimeElements (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun runtimeElements (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun runtimeElements (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun runtimeElements (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun runtimeElements (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun runtimeElements$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/RuntimeOnlyConfigurationAccessorsKt {
+	public static final fun runtimeOnly (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun runtimeOnly (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun runtimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun runtimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun runtimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun runtimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun runtimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun runtimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun runtimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun runtimeOnly$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/SignaturesConfigurationAccessorsKt {
+	public static final fun signatures (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun signatures (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun signatures (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun signatures (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun signatures (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun signatures (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun signatures (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun signatures (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun signatures (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun signatures$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/TestAnnotationProcessorConfigurationAccessorsKt {
+	public static final fun testAnnotationProcessor (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun testAnnotationProcessor (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun testAnnotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun testAnnotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun testAnnotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun testAnnotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testAnnotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testAnnotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun testAnnotationProcessor (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun testAnnotationProcessor$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/TestCompileClasspathConfigurationAccessorsKt {
+	public static final fun testCompileClasspath (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun testCompileClasspath (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun testCompileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun testCompileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun testCompileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun testCompileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testCompileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testCompileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun testCompileClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun testCompileClasspath$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/TestCompileOnlyConfigurationAccessorsKt {
+	public static final fun testCompileOnly (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun testCompileOnly (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun testCompileOnly (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun testCompileOnly (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun testCompileOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun testCompileOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testCompileOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testCompileOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun testCompileOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun testCompileOnly$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/TestImplementationConfigurationAccessorsKt {
+	public static final fun testImplementation (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun testImplementation (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun testImplementation (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun testImplementation (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun testImplementation (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun testImplementation (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testImplementation (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testImplementation (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun testImplementation (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun testImplementation$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/TestRuntimeClasspathConfigurationAccessorsKt {
+	public static final fun testRuntimeClasspath (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun testRuntimeClasspath (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun testRuntimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun testRuntimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun testRuntimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun testRuntimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testRuntimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testRuntimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun testRuntimeClasspath (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun testRuntimeClasspath$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+
+public final class org/gradle/kotlin/dsl/TestRuntimeOnlyConfigurationAccessorsKt {
+	public static final fun testRuntimeOnly (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun testRuntimeOnly (Lorg/gradle/api/artifacts/dsl/ArtifactHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/PublishArtifact;
+	public static final fun testRuntimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun testRuntimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyConstraintHandler;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/DependencyConstraint;
+	public static final fun testRuntimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun testRuntimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testRuntimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+	public static final fun testRuntimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/artifacts/ModuleDependency;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/artifacts/ModuleDependency;
+	public static final fun testRuntimeOnly (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/Action;)V
+	public static synthetic fun testRuntimeOnly$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ExternalModuleDependency;
+}
+

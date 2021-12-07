@@ -10,7 +10,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "7.3"
+      "version": "7.3.1"
     }
   },
   "variants": [
@@ -48,9 +48,9 @@
         },
         {
           "group": "org.jetbrains.dokka",
-          "module": "dokka-gradle-plugin",
+          "module": "org.jetbrains.dokka.gradle.plugin",
           "version": {
-            "requires": "1.5.31",
+            "requires": "1.6.0",
             "rejects": [
               "_"
             ]
@@ -65,7 +65,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-common",
           "version": {
             "requires": "1.6.0",
             "rejects": [
@@ -77,7 +77,7 @@
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
-            "requires": "1.5.2",
+            "requires": "1.6.0-RC",
             "rejects": [
               "_"
             ]
@@ -88,11 +88,11 @@
         {
           "name": "toolkit-publisher-0.1.0-LOCAL.jar",
           "url": "toolkit-publisher-0.1.0-LOCAL.jar",
-          "size": 177202,
-          "sha512": "7769bad52684840873fd551f2589847e6cee21e3858c0524f0576a59ccaa13b7f2704e11dba63ba904616cb621e4ef5c78fd56a2a1eac570ada12608689733b7",
-          "sha256": "1afea7f15c172ff3e0bd0faed20c26bd5f04aa5562a666623e8a7a4a04cecced",
-          "sha1": "9f32fd5758627d014c41d1816d441dc0278de1ca",
-          "md5": "0cbe17a1b15fc2c5571ad2a84a6a6662"
+          "size": 180931,
+          "sha512": "c5ecde27fd440c868591c75f8f2f1bf3d7d8e8625b37017c0ff10bc403207ce75304e37309a3985715bd546b208a9ed3c204e46e27f3955a9803e8f6e8e39736",
+          "sha256": "b7ce846d59b5ebb1b73b7cca8966c18c32df817d3d70922088a9242370ce2f76",
+          "sha1": "c25537bdb916b860e17c3d14ca6529f4c187bf21",
+          "md5": "be59924e7aba286db90dccf8a650e88d"
         }
       ]
     },
@@ -140,9 +140,9 @@
         },
         {
           "group": "org.jetbrains.dokka",
-          "module": "dokka-gradle-plugin",
+          "module": "org.jetbrains.dokka.gradle.plugin",
           "version": {
-            "requires": "1.5.31",
+            "requires": "1.6.0",
             "rejects": [
               "_"
             ]
@@ -157,7 +157,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-common",
           "version": {
             "requires": "1.6.0",
             "rejects": [
@@ -169,7 +169,7 @@
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
-            "requires": "1.5.2",
+            "requires": "1.6.0-RC",
             "rejects": [
               "_"
             ]
@@ -180,11 +180,11 @@
         {
           "name": "toolkit-publisher-0.1.0-LOCAL.jar",
           "url": "toolkit-publisher-0.1.0-LOCAL.jar",
-          "size": 177202,
-          "sha512": "7769bad52684840873fd551f2589847e6cee21e3858c0524f0576a59ccaa13b7f2704e11dba63ba904616cb621e4ef5c78fd56a2a1eac570ada12608689733b7",
-          "sha256": "1afea7f15c172ff3e0bd0faed20c26bd5f04aa5562a666623e8a7a4a04cecced",
-          "sha1": "9f32fd5758627d014c41d1816d441dc0278de1ca",
-          "md5": "0cbe17a1b15fc2c5571ad2a84a6a6662"
+          "size": 180931,
+          "sha512": "c5ecde27fd440c868591c75f8f2f1bf3d7d8e8625b37017c0ff10bc403207ce75304e37309a3985715bd546b208a9ed3c204e46e27f3955a9803e8f6e8e39736",
+          "sha256": "b7ce846d59b5ebb1b73b7cca8966c18c32df817d3d70922088a9242370ce2f76",
+          "sha1": "c25537bdb916b860e17c3d14ca6529f4c187bf21",
+          "md5": "be59924e7aba286db90dccf8a650e88d"
         }
       ]
     }

@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-
+ *
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  *
@@ -26,7 +26,6 @@ import com.meowool.gradle.toolkit.LibraryDependency
 import com.meowool.gradle.toolkit.SearchDeclaration
 import com.meowool.gradle.toolkit.internal.client.DependencyRepositoryClient
 import com.meowool.sweekt.coroutines.flowOnIO
-import com.meowool.sweekt.datetime.minutes
 import com.meowool.sweekt.throwIf
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.flow.Flow

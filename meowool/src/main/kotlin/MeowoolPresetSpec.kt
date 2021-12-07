@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-
+ *
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  *
@@ -122,7 +122,18 @@ open class MeowoolPresetSpec internal constructor() {
    * @see enableMetalava
    * @see disableMetalava
    */
-  open var enabledMetalava: (Project) -> Boolean = { true }
+  open var enabledMetalava: (Project) -> Boolean = { false }
+
+  /**
+   * The project whether to use this specification of binary-compatibility-validator.
+   *
+   * If the [Project.getProjectDir] contains a file named `.skip-bcv`, the project will not enable
+   * binary-compatibility-validator plugin by 'Meowool-Spec' anyway.
+   *
+   * @see enableBinaryCompatibilityValidator
+   * @see disableBinaryCompatibilityValidator
+   */
+  open var enabledBinaryCompatibilityValidator: (Project) -> Boolean = { true }
 
   /**
    * The project whether to use this specification of publisher.
@@ -142,7 +153,7 @@ open class MeowoolPresetSpec internal constructor() {
     presetAndroid(),
     presetSpotless(),
     presetPublications(),
-    presetMetalava(),
+    presetBinaryCompatibilityValidator(),
   )
 
   /**
@@ -226,6 +237,27 @@ open class MeowoolPresetSpec internal constructor() {
    */
   fun disableMetalava(filterProject: (Project) -> Boolean = { true }) {
     enabledMetalava = { filterProject(it).not() }
+  }
+
+  /**
+   * Enables the [binary-compatibility-validator](https://github.com/Kotlin/binary-compatibility-validator) plugin.
+   *
+   * If the [Project.getProjectDir] contains a file named `.skip-metalava`, the project will not enable metalava
+   * plugin by 'Meowool-Spec' anyway.
+   *
+   * @param filterProject Projects whose predicate is `true` will enable the BCV plugin.
+   */
+  fun enableBinaryCompatibilityValidator(filterProject: (Project) -> Boolean = { true }) {
+    enabledBinaryCompatibilityValidator = filterProject
+  }
+
+  /**
+   * Disables the [binary-compatibility-validator](https://github.com/Kotlin/binary-compatibility-validator) plugin.
+   *
+   * @param filterProject Projects whose predicate is `true` will disable the BCV plugin.
+   */
+  fun disableBinaryCompatibilityValidator(filterProject: (Project) -> Boolean = { true }) {
+    enabledBinaryCompatibilityValidator = { filterProject(it).not() }
   }
 
   /**
@@ -389,6 +421,19 @@ open class MeowoolPresetSpec internal constructor() {
       // Output meta api before publish
       project.tasks.all {
         if (name == "metalavaGenerateSignature") {
+          afterEvaluate {
+            project.tasks.findByName("publish")?.dependsOn(this@all)
+          }
+        }
+      }
+    }
+  }
+
+  protected fun presetBinaryCompatibilityValidator(): GradleToolkitExtension.() -> Unit = {
+    allprojects(afterEvaluate = false) {
+      // Output binary api
+      project.tasks.all {
+        if (name == "apiDump") {
           afterEvaluate {
             project.tasks.findByName("publish")?.dependsOn(this@all)
           }

@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-
+ *
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  *
@@ -73,6 +73,17 @@ class MeowoolManualSpec internal constructor() : MeowoolPresetSpec() {
    * @see disableMetalava
    */
   override var enabledMetalava: (Project) -> Boolean = { false }
+
+  /**
+   * The project whether to use this specification of binary-compatibility-validator.
+   *
+   * If the [Project.getProjectDir] contains a file named `.skip-bcv`, the project will not enable
+   * binary-compatibility-validator plugin by 'Meowool-Spec' anyway.
+   *
+   * @see enableBinaryCompatibilityValidator
+   * @see disableBinaryCompatibilityValidator
+   */
+  override var enabledBinaryCompatibilityValidator: (Project) -> Boolean = { false }
 
   /**
    * The project whether to use this specification of publisher.

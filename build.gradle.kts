@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-
+ *
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  *
@@ -25,9 +25,9 @@ val internalMarkers = arrayOf(
   "de.fayard.refreshVersions.core.internal.InternalRefreshVersionsApi"
 )
 
-metalava {
-  hiddenAnnotations(*internalMarkers)
-  hiddenPackages(
+apiValidation {
+  nonPublicMarkers += internalMarkers
+  ignoredPackages += arrayOf(
     "com.meowool.gradle.toolkit.internal",
     "com.meowool.gradle.toolkit.android.internal",
     "com.meowool.gradle.toolkit.publisher.internal",
@@ -76,13 +76,13 @@ subdependencies {
   )
 }
 
-/** Root publish data declaration (all sub-projects extends from here) */
+/** Root publish data declaration (all subprojects extends from here) */
 publication {
   data {
     val baseVersion = "0.1.0"
     version = "$baseVersion-LOCAL"
     // Used to publish non-local versions of artifacts in CI environment
-    versionInCI = "$baseVersion-SNAPSHOT"
+    versionInCI = baseVersion // + "-SNAPSHOT"
 
     displayName = "Gradle Toolkit"
     groupId = "com.meowool.gradle"

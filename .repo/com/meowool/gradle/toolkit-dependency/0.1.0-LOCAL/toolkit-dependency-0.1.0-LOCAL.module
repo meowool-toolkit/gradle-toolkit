@@ -10,7 +10,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "7.3"
+      "version": "7.3.1"
     }
   },
   "variants": [
@@ -55,7 +55,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-common",
           "version": {
             "requires": "1.6.0",
             "rejects": [
@@ -67,7 +67,7 @@
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
-            "requires": "1.5.2",
+            "requires": "1.6.0-RC",
             "rejects": [
               "_"
             ]
@@ -89,10 +89,10 @@
           "name": "toolkit-dependency-0.1.0-LOCAL.jar",
           "url": "toolkit-dependency-0.1.0-LOCAL.jar",
           "size": 261,
-          "sha512": "99c23e6cfcf811db998f8110dc5a72458402acab265ed9a759d565bb42a3836a7594a03d046d238cd7644786e06db887e71fdc3ae9dc8463fc0b7483b2895a4e",
-          "sha256": "6a47839dfb0c00ff5cf9c4837838524e39d765853c2ef66042d9e2e6a2ee7b51",
-          "sha1": "cc9d3e4b3a0ca01cb27d961a32f2ff2324e31d63",
-          "md5": "1e5618a628a36541dda56d9cb9b3d97b"
+          "sha512": "041d146e672eb3e0c354d55fa79980d90a9a8c0e26d95a225aea919cd76634ec8978ec2249dd7508e725ce7ff18c27f487f144c09da62b325dbb362b8e1d7a4b",
+          "sha256": "686a5656c707eb4c10232a36a11d0271a5f3b14a16922c2828d8bab6a3cd56fa",
+          "sha1": "398356c3d88ec1099d01c2be63e12cd49682800a",
+          "md5": "f59f09c6c7b52065bbc3ba5eddd50470"
         }
       ]
     },
@@ -137,7 +137,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-common",
           "version": {
             "requires": "1.6.0",
             "rejects": [
@@ -149,7 +149,7 @@
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
-            "requires": "1.5.2",
+            "requires": "1.6.0-RC",
             "rejects": [
               "_"
             ]
@@ -171,10 +171,10 @@
           "name": "toolkit-dependency-0.1.0-LOCAL.jar",
           "url": "toolkit-dependency-0.1.0-LOCAL.jar",
           "size": 261,
-          "sha512": "99c23e6cfcf811db998f8110dc5a72458402acab265ed9a759d565bb42a3836a7594a03d046d238cd7644786e06db887e71fdc3ae9dc8463fc0b7483b2895a4e",
-          "sha256": "6a47839dfb0c00ff5cf9c4837838524e39d765853c2ef66042d9e2e6a2ee7b51",
-          "sha1": "cc9d3e4b3a0ca01cb27d961a32f2ff2324e31d63",
-          "md5": "1e5618a628a36541dda56d9cb9b3d97b"
+          "sha512": "041d146e672eb3e0c354d55fa79980d90a9a8c0e26d95a225aea919cd76634ec8978ec2249dd7508e725ce7ff18c27f487f144c09da62b325dbb362b8e1d7a4b",
+          "sha256": "686a5656c707eb4c10232a36a11d0271a5f3b14a16922c2828d8bab6a3cd56fa",
+          "sha1": "398356c3d88ec1099d01c2be63e12cd49682800a",
+          "md5": "f59f09c6c7b52065bbc3ba5eddd50470"
         }
       ]
     }

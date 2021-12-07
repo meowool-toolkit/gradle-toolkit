@@ -1,25 +1,35 @@
+/*
+ * Copyright (c) 2021. The Meowool Organization Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * In addition, if you modified the project, you must include the Meowool
+ * organization URL in your code file: https://github.com/meowool
+ *
+ * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
+ */
 import com.meowool.gradle.toolkit.internal.DefaultJson
 import com.meowool.gradle.toolkit.internal.flatMapConcurrently
-import com.tfowl.ktor.client.features.JsoupFeature
 import io.kotest.core.spec.style.StringSpec
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.okhttp.OkHttp
-import io.ktor.client.features.defaultRequest
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.get
-import io.ktor.client.request.header
-import io.ktor.http.userAgent
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.toList
-import okhttp3.logging.HttpLoggingInterceptor
-import kotlinx.serialization.Serializable
-
 import kotlinx.serialization.SerialName
-
+import kotlinx.serialization.Serializable
 
 /**
  * @author 凛 (https://github.com/RinOrz)

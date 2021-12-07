@@ -10,7 +10,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "7.3"
+      "version": "7.3.1"
     }
   },
   "variants": [
@@ -63,7 +63,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-common",
           "version": {
             "requires": "1.6.0",
             "rejects": [
@@ -75,7 +75,7 @@
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
-            "requires": "1.5.2",
+            "requires": "1.6.0-RC",
             "rejects": [
               "_"
             ]
@@ -96,11 +96,11 @@
         {
           "name": "toolkit-0.1.0-LOCAL.jar",
           "url": "toolkit-0.1.0-LOCAL.jar",
-          "size": 7628,
-          "sha512": "811080be53babe12d33585f9a7eac291acd076ac48176ca56fa44dc1e2955775a825adbac6af94b71d97593f83004d407489127bc4ec95a41016706ef8aeb21b",
-          "sha256": "e458464f8edd2e7c28b87c74d9338636912c87533bc8209e5542fb6e278d06c8",
-          "sha1": "82822b7703318ecf13ade0360e111c21471d3175",
-          "md5": "2699d50cbe8551dbcb8d32d17b4e79d5"
+          "size": 7637,
+          "sha512": "5cfe1e79d99a7df6307a3edde683a2bc5f7bc07a43616519c8bddc0f46affd6b84f579f4bef6c83ab74dd428056a32e23c62947d7537a9c737a979c00e52bc99",
+          "sha256": "d0b9b9a5d7c74ca856240ef7e502fb16333263ad3896be97e74e4775344da261",
+          "sha1": "bd23a417556aea38bc04b51138c74dc2d09df814",
+          "md5": "7fc0c42fe7fde35e4793f9d50abc9beb"
         }
       ]
     },
@@ -153,7 +153,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-common",
           "version": {
             "requires": "1.6.0",
             "rejects": [
@@ -165,7 +165,7 @@
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
-            "requires": "1.5.2",
+            "requires": "1.6.0-RC",
             "rejects": [
               "_"
             ]
@@ -186,11 +186,11 @@
         {
           "name": "toolkit-0.1.0-LOCAL.jar",
           "url": "toolkit-0.1.0-LOCAL.jar",
-          "size": 7628,
-          "sha512": "811080be53babe12d33585f9a7eac291acd076ac48176ca56fa44dc1e2955775a825adbac6af94b71d97593f83004d407489127bc4ec95a41016706ef8aeb21b",
-          "sha256": "e458464f8edd2e7c28b87c74d9338636912c87533bc8209e5542fb6e278d06c8",
-          "sha1": "82822b7703318ecf13ade0360e111c21471d3175",
-          "md5": "2699d50cbe8551dbcb8d32d17b4e79d5"
+          "size": 7637,
+          "sha512": "5cfe1e79d99a7df6307a3edde683a2bc5f7bc07a43616519c8bddc0f46affd6b84f579f4bef6c83ab74dd428056a32e23c62947d7537a9c737a979c00e52bc99",
+          "sha256": "d0b9b9a5d7c74ca856240ef7e502fb16333263ad3896be97e74e4775344da261",
+          "sha1": "bd23a417556aea38bc04b51138c74dc2d09df814",
+          "md5": "7fc0c42fe7fde35e4793f9d50abc9beb"
         }
       ]
     }

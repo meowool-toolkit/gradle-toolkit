@@ -10,7 +10,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "7.3"
+      "version": "7.3.1"
     }
   },
   "variants": [
@@ -42,7 +42,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-common",
           "version": {
             "requires": "1.6.0",
             "rejects": [
@@ -54,7 +54,7 @@
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
-            "requires": "1.5.2",
+            "requires": "1.6.0-RC",
             "rejects": [
               "_"
             ]
@@ -75,11 +75,11 @@
         {
           "name": "toolkit-dependency-prebuilt-0.1.0-LOCAL.jar",
           "url": "toolkit-dependency-prebuilt-0.1.0-LOCAL.jar",
-          "size": 129703,
-          "sha512": "086571110121e2a16d5cdb593d6647c90936ff5ec692bd286bdc13c29b6aba8a2d4de8cf5aca2225332b0a4c30bc65fb9fa44855bdbcd8ecff7e4bf85c0de0c9",
-          "sha256": "2b6632fdd0cfc87834f4c67fa71cd6e4ef6d9cb0e1f0d2d7c41959136f2c6d79",
-          "sha1": "8fc0850cc3f66e20ff806892a83382c2054a79f2",
-          "md5": "d5294d844f495f832af359df493f799b"
+          "size": 105570,
+          "sha512": "609c6bde7babc6d03f42e7284905500f404170ca3979e1d10ec149f9b6e722290e385a801aa76e942a04febd3f57ef3ed850b7ae0505e2e09cc5411013408ddc",
+          "sha256": "3c7dbe389ed069df3f26423d3e3bc54158131fa7268e53880ff5a2534f9b3d04",
+          "sha1": "e8d8bc371f569313107c3859b49745be1ddda4bb",
+          "md5": "a9a4de0ecdb3f77c14c4cdb50a9a7530"
         }
       ]
     },
@@ -99,7 +99,7 @@
           "group": "io.ktor",
           "module": "ktor-client-apache",
           "version": {
-            "requires": "1.6.5",
+            "requires": "1.6.6",
             "rejects": [
               "_"
             ]
@@ -109,7 +109,7 @@
           "group": "io.ktor",
           "module": "ktor-client-serialization",
           "version": {
-            "requires": "1.6.5",
+            "requires": "1.6.6",
             "rejects": [
               "_"
             ]
@@ -141,7 +141,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-common",
           "version": {
             "requires": "1.6.0",
             "rejects": [
@@ -153,7 +153,7 @@
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
-            "requires": "1.5.2",
+            "requires": "1.6.0-RC",
             "rejects": [
               "_"
             ]
@@ -174,11 +174,11 @@
         {
           "name": "toolkit-dependency-prebuilt-0.1.0-LOCAL.jar",
           "url": "toolkit-dependency-prebuilt-0.1.0-LOCAL.jar",
-          "size": 129703,
-          "sha512": "086571110121e2a16d5cdb593d6647c90936ff5ec692bd286bdc13c29b6aba8a2d4de8cf5aca2225332b0a4c30bc65fb9fa44855bdbcd8ecff7e4bf85c0de0c9",
-          "sha256": "2b6632fdd0cfc87834f4c67fa71cd6e4ef6d9cb0e1f0d2d7c41959136f2c6d79",
-          "sha1": "8fc0850cc3f66e20ff806892a83382c2054a79f2",
-          "md5": "d5294d844f495f832af359df493f799b"
+          "size": 105570,
+          "sha512": "609c6bde7babc6d03f42e7284905500f404170ca3979e1d10ec149f9b6e722290e385a801aa76e942a04febd3f57ef3ed850b7ae0505e2e09cc5411013408ddc",
+          "sha256": "3c7dbe389ed069df3f26423d3e3bc54158131fa7268e53880ff5a2534f9b3d04",
+          "sha1": "e8d8bc371f569313107c3859b49745be1ddda4bb",
+          "md5": "a9a4de0ecdb3f77c14c4cdb50a9a7530"
         }
       ]
     }

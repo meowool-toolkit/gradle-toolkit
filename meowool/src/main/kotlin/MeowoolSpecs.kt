@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-
+ *
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  *
@@ -20,14 +20,21 @@
  */
 @file:Suppress("MemberVisibilityCanBePrivate")
 
+import MavenLocalDestination.project
+import com.android.build.gradle.internal.crash.afterEvaluate
+import com.android.tools.r8.internal.it
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.meowool.gradle.toolkit.GradleToolkitExtension
 import com.meowool.gradle.toolkit.internal.MeowoolManualSpec
 import com.meowool.gradle.toolkit.internal.MeowoolPresetSpec
 import com.meowool.gradle.toolkit.publisher.PublisherPlugin
+import kotlinx.validation.ApiCompareCompareTask
+import kotlinx.validation.BinaryCompatibilityValidatorPlugin
+import kotlinx.validation.KotlinApiBuildTask
 import me.tylerbwong.gradle.metalava.plugin.MetalavaPlugin
 import org.gradle.api.Project
 import org.gradle.api.initialization.Settings
+import org.gradle.api.tasks.Sync
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.repositories
@@ -55,6 +62,8 @@ fun GradleToolkitExtension.useMeowoolManualSpec(configuration: MeowoolManualSpec
 private fun GradleToolkitExtension.useMeowoolSpecImpl(spec: MeowoolPresetSpec) {
   // Add a maven central repository to avoid the formatter dependency not found (ktlint, google-java-format)
   rootProject.buildscript.repositories { mavenCentral() }
+  if (spec.enabledBinaryCompatibilityValidator(rootProject))
+    rootProject.apply<BinaryCompatibilityValidatorPlugin>()
   allprojects(afterEvaluate = false) {
     spec.repositories.invoke(repositories, project)
 
@@ -64,6 +73,13 @@ private fun GradleToolkitExtension.useMeowoolSpecImpl(spec: MeowoolPresetSpec) {
       project.apply<MetalavaPlugin>()
     if (spec.enabledPublisher(project) && projectDir.resolve(".skip-publisher").exists().not())
       project.apply<PublisherPlugin>()
+    if (spec.enabledBinaryCompatibilityValidator(project).not() && projectDir.resolve(".skip-bcv").exists()) {
+      afterEvaluate {
+        tasks.removeIf { it is KotlinApiBuildTask }
+        tasks.removeIf { it is ApiCompareCompareTask }
+        tasks.removeIf { it is Sync && (it.name == "apiDump" || it.name.endsWith("ApiDump")) }
+      }
+    }
 
     afterEvaluate {
       project.optIn(spec.optIn)

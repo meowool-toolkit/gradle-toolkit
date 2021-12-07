@@ -1,0 +1,234 @@
+public class de/fayard/refreshVersions/FeatureFlagExtension {
+	public fun <init> ()V
+	public final fun disable (Lde/fayard/refreshVersions/core/FeatureFlag;)V
+	public final fun enable (Lde/fayard/refreshVersions/core/FeatureFlag;)V
+}
+
+public class de/fayard/refreshVersions/RefreshVersionsDependenciesMigrationTask : org/gradle/api/DefaultTask {
+	public fun <init> ()V
+	public final fun taskActionMigrate ()V
+}
+
+public class de/fayard/refreshVersions/RefreshVersionsExtension {
+	public fun <init> ()V
+	public final fun enableBuildSrcLibs ()V
+	public final fun extraArtifactVersionKeyRules (Ljava/io/File;)V
+	public final fun extraArtifactVersionKeyRules (Ljava/lang/String;)V
+	public final fun featureFlags (Lorg/gradle/api/Action;)V
+	public final fun getExtraArtifactVersionKeyRules ()Ljava/util/List;
+	public final fun getVersionsPropertiesFile ()Ljava/io/File;
+	public final fun rejectVersionIf (Lgroovy/lang/Closure;)V
+	public final fun rejectVersionIf (Lkotlin/jvm/functions/Function1;)V
+	public final fun setExtraArtifactVersionKeyRules (Ljava/util/List;)V
+	public final fun setVersionsPropertiesFile (Ljava/io/File;)V
+}
+
+public class de/fayard/refreshVersions/RefreshVersionsMigrateTask : org/gradle/api/DefaultTask {
+	public fun <init> ()V
+	public final fun migrateBuild ()V
+	public final fun refreshVersionsMissingEntries ()V
+}
+
+public final class de/fayard/refreshVersions/RefreshVersionsMigration {
+	public static final fun migrateIfNeeded (Lorg/gradle/api/initialization/Settings;Ljava/lang/String;)V
+}
+
+public class de/fayard/refreshVersions/RefreshVersionsPlugin : org/gradle/api/Plugin {
+	public static final field Companion Lde/fayard/refreshVersions/RefreshVersionsPlugin$Companion;
+	public fun <init> ()V
+	public fun apply (Ljava/lang/Object;)V
+	public static final fun getArtifactVersionKeyRules ()Ljava/util/List;
+}
+
+public final class de/fayard/refreshVersions/RefreshVersionsPlugin$Companion {
+	public final fun getArtifactVersionKeyRules ()Ljava/util/List;
+}
+
+public final class de/fayard/refreshVersions/RefreshVersionsSetup {
+	public static final fun bootstrap (Lorg/gradle/api/initialization/Settings;)V
+	public static final fun bootstrap (Lorg/gradle/api/initialization/Settings;Ljava/io/File;)V
+	public static synthetic fun bootstrap$default (Lorg/gradle/api/initialization/Settings;Ljava/io/File;ILjava/lang/Object;)V
+	public static final fun bootstrapForBuildSrc (Lorg/gradle/api/initialization/Settings;)V
+}
+
+public abstract class de/fayard/refreshVersions/core/AbstractDependencyGroup {
+	public static final field Companion Lde/fayard/refreshVersions/core/AbstractDependencyGroup$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ZLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getGroup ()Ljava/lang/String;
+	public final fun getUsePlatformConstraints ()Z
+	public final fun module (Ljava/lang/String;ZLjava/lang/Boolean;)Lde/fayard/refreshVersions/core/DependencyNotation;
+	public static synthetic fun module$default (Lde/fayard/refreshVersions/core/AbstractDependencyGroup;Ljava/lang/String;ZLjava/lang/Boolean;ILjava/lang/Object;)Lde/fayard/refreshVersions/core/DependencyNotation;
+	public final fun setUsePlatformConstraints (Z)V
+}
+
+public final class de/fayard/refreshVersions/core/AbstractDependencyGroup$Companion {
+	public final fun getALL_RULES ()Ljava/util/List;
+	public final fun getDisableBomCheck ()Z
+	public final fun setDisableBomCheck (Z)V
+}
+
+public abstract interface class de/fayard/refreshVersions/core/DependencyNotation : java/lang/CharSequence {
+	public static final field Companion Lde/fayard/refreshVersions/core/DependencyNotation$Companion;
+	public fun attachToGroup (Lde/fayard/refreshVersions/core/AbstractDependencyGroup;)V
+	public abstract fun getExternalImplementationGuard ()Ljava/lang/Void;
+	public abstract fun invoke (Ljava/lang/String;)Ljava/lang/String;
+	public abstract fun toString ()Ljava/lang/String;
+	public abstract fun withVersion (Ljava/lang/String;)Ljava/lang/String;
+	public abstract fun withVersionPlaceholder ()Ljava/lang/String;
+	public abstract fun withoutVersion ()Ljava/lang/String;
+}
+
+public final class de/fayard/refreshVersions/core/DependencyNotation$Companion {
+	public final fun invoke (Ljava/lang/String;Ljava/lang/String;ZLjava/lang/Boolean;)Lde/fayard/refreshVersions/core/DependencyNotation;
+	public static synthetic fun invoke$default (Lde/fayard/refreshVersions/core/DependencyNotation$Companion;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/Boolean;ILjava/lang/Object;)Lde/fayard/refreshVersions/core/DependencyNotation;
+}
+
+public final class de/fayard/refreshVersions/core/DependencySelection {
+	public final fun getCandidate ()Lde/fayard/refreshVersions/core/Version;
+	public final fun getCurrent ()Lde/fayard/refreshVersions/core/Version;
+	public final fun getModuleId ()Lde/fayard/refreshVersions/core/ModuleId;
+	public final fun getVersionKey ()Ljava/lang/String;
+}
+
+public abstract class de/fayard/refreshVersions/core/DependencyVersionsFetcher {
+	public static final field Companion Lde/fayard/refreshVersions/core/DependencyVersionsFetcher$Companion;
+	protected fun <init> (Lde/fayard/refreshVersions/core/ModuleId;Ljava/lang/Object;)V
+	public final fun equals (Ljava/lang/Object;)Z
+	public abstract fun getAvailableVersionsOrNull (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getModuleId ()Lde/fayard/refreshVersions/core/ModuleId;
+	public final fun getRepoKey ()Ljava/lang/Object;
+	public final fun hashCode ()I
+}
+
+public final class de/fayard/refreshVersions/core/DependencyVersionsFetcher$Companion {
+}
+
+public final class de/fayard/refreshVersions/core/DependencyVersionsFetcher$SuccessfulResult {
+	public fun <init> (JLjava/util/List;)V
+	public final fun component1 ()J
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (JLjava/util/List;)Lde/fayard/refreshVersions/core/DependencyVersionsFetcher$SuccessfulResult;
+	public static synthetic fun copy$default (Lde/fayard/refreshVersions/core/DependencyVersionsFetcher$SuccessfulResult;JLjava/util/List;ILjava/lang/Object;)Lde/fayard/refreshVersions/core/DependencyVersionsFetcher$SuccessfulResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAvailableVersions ()Ljava/util/List;
+	public final fun getLastUpdateTimestampMillis ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class de/fayard/refreshVersions/core/FeatureFlag : java/lang/Enum {
+	public static final field Companion Lde/fayard/refreshVersions/core/FeatureFlag$Companion;
+	public static final field GRADLE_UPDATES Lde/fayard/refreshVersions/core/FeatureFlag;
+	public static final field LIBS Lde/fayard/refreshVersions/core/FeatureFlag;
+	public static fun valueOf (Ljava/lang/String;)Lde/fayard/refreshVersions/core/FeatureFlag;
+	public static fun values ()[Lde/fayard/refreshVersions/core/FeatureFlag;
+}
+
+public final class de/fayard/refreshVersions/core/FeatureFlag$Companion {
+	public final fun getUserSettings ()Ljava/util/Map;
+}
+
+public class de/fayard/refreshVersions/core/MissingEntriesTask : org/gradle/api/DefaultTask {
+	public fun <init> ()V
+	public final fun refreshVersionsMissingEntries ()V
+}
+
+public final class de/fayard/refreshVersions/core/MissingEntriesTaskKt {
+}
+
+public final class de/fayard/refreshVersions/core/ModuleId {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lde/fayard/refreshVersions/core/ModuleId;
+	public static synthetic fun copy$default (Lde/fayard/refreshVersions/core/ModuleId;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lde/fayard/refreshVersions/core/ModuleId;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGroup ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public class de/fayard/refreshVersions/core/RefreshVersionsCleanupTask : org/gradle/api/DefaultTask {
+	public fun <init> ()V
+	public final fun cleanUpSettings ()V
+	public final fun cleanUpVersionsProperties ()V
+}
+
+public class de/fayard/refreshVersions/core/RefreshVersionsCorePlugin : org/gradle/api/Plugin {
+	public static final field Companion Lde/fayard/refreshVersions/core/RefreshVersionsCorePlugin$Companion;
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class de/fayard/refreshVersions/core/RefreshVersionsCoreSetup {
+	public static final fun bootstrap (Lorg/gradle/api/initialization/Settings;)V
+	public static final fun bootstrap (Lorg/gradle/api/initialization/Settings;Ljava/util/List;)V
+	public static final fun bootstrap (Lorg/gradle/api/initialization/Settings;Ljava/util/List;Ljava/io/File;)V
+	public static synthetic fun bootstrap$default (Lorg/gradle/api/initialization/Settings;Ljava/util/List;Ljava/io/File;ILjava/lang/Object;)V
+	public static final fun bootstrapForBuildSrc (Lorg/gradle/api/initialization/Settings;)V
+}
+
+public class de/fayard/refreshVersions/core/RefreshVersionsTask : org/gradle/api/DefaultTask {
+	public fun <init> ()V
+	public final fun getDisableFlag ()Lde/fayard/refreshVersions/core/FeatureFlag;
+	public final fun getEnableFlag ()Lde/fayard/refreshVersions/core/FeatureFlag;
+	public final fun setDisableFlag (Lde/fayard/refreshVersions/core/FeatureFlag;)V
+	public final fun setEnableFlag (Lde/fayard/refreshVersions/core/FeatureFlag;)V
+	public final fun taskActionRefreshVersions ()V
+}
+
+public final class de/fayard/refreshVersions/core/StabilityLevel : java/lang/Enum {
+	public static final field Alpha Lde/fayard/refreshVersions/core/StabilityLevel;
+	public static final field Beta Lde/fayard/refreshVersions/core/StabilityLevel;
+	public static final field Development Lde/fayard/refreshVersions/core/StabilityLevel;
+	public static final field EarlyAccessProgram Lde/fayard/refreshVersions/core/StabilityLevel;
+	public static final field Milestone Lde/fayard/refreshVersions/core/StabilityLevel;
+	public static final field Preview Lde/fayard/refreshVersions/core/StabilityLevel;
+	public static final field ReleaseCandidate Lde/fayard/refreshVersions/core/StabilityLevel;
+	public static final field Snapshot Lde/fayard/refreshVersions/core/StabilityLevel;
+	public static final field Stable Lde/fayard/refreshVersions/core/StabilityLevel;
+	public static final field Unknown Lde/fayard/refreshVersions/core/StabilityLevel;
+	public final fun isAtLeastAsStableAs (Lde/fayard/refreshVersions/core/StabilityLevel;)Z
+	public final fun isLessStableThan (Lde/fayard/refreshVersions/core/StabilityLevel;)Z
+	public final fun isMoreStableThan (Lde/fayard/refreshVersions/core/StabilityLevel;)Z
+	public static fun valueOf (Ljava/lang/String;)Lde/fayard/refreshVersions/core/StabilityLevel;
+	public static fun values ()[Lde/fayard/refreshVersions/core/StabilityLevel;
+}
+
+public final class de/fayard/refreshVersions/core/Version : java/lang/Comparable {
+	public static final field Companion Lde/fayard/refreshVersions/core/Version$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public fun compareTo (Lde/fayard/refreshVersions/core/Version;)I
+	public synthetic fun compareTo (Ljava/lang/Object;)I
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lde/fayard/refreshVersions/core/Version;
+	public static synthetic fun copy$default (Lde/fayard/refreshVersions/core/Version;Ljava/lang/String;ILjava/lang/Object;)Lde/fayard/refreshVersions/core/Version;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getStabilityLevel ()Lde/fayard/refreshVersions/core/StabilityLevel;
+	public final fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class de/fayard/refreshVersions/core/Version$Companion {
+}
+
+public final class de/fayard/refreshVersions/core/Versions {
+	public static final fun versionFor (Ljava/lang/CharSequence;)Ljava/lang/String;
+	public static final fun versionFor (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class de/fayard/refreshVersions/core/extensions/gradle/AuthenticationSupportedKt {
+	public static final fun getPasswordCredentials (Lorg/gradle/api/artifacts/repositories/AuthenticationSupported;)Lorg/gradle/api/artifacts/repositories/PasswordCredentials;
+}
+
+public final class de/fayard/refreshVersions/core/extensions/gradle/SettingsKt {
+	public static final fun isBuildSrc (Lorg/gradle/api/initialization/Settings;)Z
+}
+
+public final class org/gradle/kotlin/dsl/RefreshVersionsKt {
+	public static final fun refreshVersions (Lorg/gradle/api/initialization/Settings;Lkotlin/jvm/functions/Function1;)V
+}
+

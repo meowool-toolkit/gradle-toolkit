@@ -10,7 +10,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "7.3"
+      "version": "7.3.1"
     }
   },
   "variants": [
@@ -45,7 +45,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-common",
           "version": {
             "requires": "1.6.0",
             "rejects": [
@@ -57,7 +57,7 @@
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
-            "requires": "1.5.2",
+            "requires": "1.6.0-RC",
             "rejects": [
               "_"
             ]
@@ -78,11 +78,11 @@
         {
           "name": "toolkit-android-0.1.0-LOCAL.jar",
           "url": "toolkit-android-0.1.0-LOCAL.jar",
-          "size": 813046,
-          "sha512": "69948070133bf6a0bffa19d27c3dbb554c986333a9c3a4e4f87a517352916655048e06514d433f490e52afb92c5ad60bc0acec0d5c756e671d0408945bd4c2df",
-          "sha256": "59c3a3b101601fc7720c3ca292e27e06a8cbf5c2e1b80cbe5e03ee4701e4c518",
-          "sha1": "f201b09700b74b33784d5052b16d93d67073e810",
-          "md5": "d42298efff6d542c6af23574c4eedfdd"
+          "size": 788805,
+          "sha512": "9a6e31db2ec9e35c457249fac1ba501a60297c4dad4b8d188fce1ad720aed2d6cbd1dd2d2e605e454c964d03978bba684ca6df8688b423e01847290582a11986",
+          "sha256": "aa9d073f56152b4fbcf728aebf53962862a8045c9bbe299ea7a624a3d808fada",
+          "sha1": "46f440b268dfad8d599164dd450a73db9b702a13",
+          "md5": "9d6060801c537ec4de17760c69e91408"
         }
       ]
     },
@@ -117,7 +117,7 @@
         },
         {
           "group": "org.jetbrains.kotlin",
-          "module": "kotlin-stdlib",
+          "module": "kotlin-stdlib-common",
           "version": {
             "requires": "1.6.0",
             "rejects": [
@@ -129,7 +129,7 @@
           "group": "org.jetbrains.kotlinx",
           "module": "kotlinx-coroutines-core",
           "version": {
-            "requires": "1.5.2",
+            "requires": "1.6.0-RC",
             "rejects": [
               "_"
             ]
@@ -150,11 +150,11 @@
         {
           "name": "toolkit-android-0.1.0-LOCAL.jar",
           "url": "toolkit-android-0.1.0-LOCAL.jar",
-          "size": 813046,
-          "sha512": "69948070133bf6a0bffa19d27c3dbb554c986333a9c3a4e4f87a517352916655048e06514d433f490e52afb92c5ad60bc0acec0d5c756e671d0408945bd4c2df",
-          "sha256": "59c3a3b101601fc7720c3ca292e27e06a8cbf5c2e1b80cbe5e03ee4701e4c518",
-          "sha1": "f201b09700b74b33784d5052b16d93d67073e810",
-          "md5": "d42298efff6d542c6af23574c4eedfdd"
+          "size": 788805,
+          "sha512": "9a6e31db2ec9e35c457249fac1ba501a60297c4dad4b8d188fce1ad720aed2d6cbd1dd2d2e605e454c964d03978bba684ca6df8688b423e01847290582a11986",
+          "sha256": "aa9d073f56152b4fbcf728aebf53962862a8045c9bbe299ea7a624a3d808fada",
+          "sha1": "46f440b268dfad8d599164dd450a73db9b702a13",
+          "md5": "9d6060801c537ec4de17760c69e91408"
         }
       ]
     }
