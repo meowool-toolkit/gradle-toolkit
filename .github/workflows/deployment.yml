@@ -25,11 +25,7 @@ jobs:
           distributions-cache-enabled: true
           configuration-cache-enabled: true
           dependencies-cache-enabled: true
-          arguments: |
-            --stacktrace --scan \
-              spotlessCheck \
-              assemble \
-              apiCheck
+          arguments: --stacktrace --scan spotlessCheck assemble apiCheck
 
       - name: Clean project
         uses: gradle/gradle-build-action@v1
@@ -72,11 +68,7 @@ jobs:
         uses: gradle/gradle-build-action@v1
         with:
           # Publish all projects
-          arguments: |
-            --stacktrace \
-              publishPlugins \
-              publish \
-              closeAndReleaseSonatypeRepository
+          arguments: --stacktrace publishPlugins publish closeAndReleaseSonatypeRepository
 
   gradle-sync:
     needs: [publish-snapshot, publish-release]
