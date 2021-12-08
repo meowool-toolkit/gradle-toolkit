@@ -68,7 +68,7 @@ internal val Project.isAndroid get() = androidExtension != null
 /**
  * Represents the build listener for the root project.
  */
-internal var Project.buildListener: Boolean
+internal var Project.buildListened: Boolean
   set(value) = rootProject.extra.set(BUILD_LISTENER, value)
   get() = rootProject.extra.properties[BUILD_LISTENER] == true
 

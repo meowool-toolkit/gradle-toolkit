@@ -20,7 +20,7 @@
  */
 import com.meowool.gradle.toolkit.DependencyFormatter
 import io.kotest.core.spec.style.FreeSpec
-import io.kotest.core.spec.style.scopes.FreeSpecTerminalContext
+import io.kotest.core.spec.style.scopes.FreeSpecTerminalScope
 import io.kotest.matchers.shouldBe
 
 /**
@@ -28,9 +28,9 @@ import io.kotest.matchers.shouldBe
  */
 class DependencyFormatterTests : FreeSpec({
 
-  operator fun FreeSpecTerminalContext.invoke(formatter: DependencyFormatter) {
-    val raw = testCase.displayName.substringBefore(" -> ")
-    val expected = testCase.displayName.substringAfter(" -> ")
+  operator fun FreeSpecTerminalScope.invoke(formatter: DependencyFormatter) {
+    val raw = testCase.name.testName.substringBefore(" -> ")
+    val expected = testCase.name.testName.substringAfter(" -> ")
     formatter.toPath(raw) shouldBe expected
   }
 

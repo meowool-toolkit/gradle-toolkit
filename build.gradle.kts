@@ -82,7 +82,10 @@ publication {
     val baseVersion = "0.1.0"
     version = "$baseVersion-LOCAL"
     // Used to publish non-local versions of artifacts in CI environment
-    versionInCI = baseVersion // + "-SNAPSHOT"
+    versionInCI = baseVersion + when (System.getenv("release-publications").toBoolean()) {
+      true -> ""
+      false -> "-SNAPSHOT"
+    }
 
     displayName = "Gradle Toolkit"
     groupId = "com.meowool.gradle"

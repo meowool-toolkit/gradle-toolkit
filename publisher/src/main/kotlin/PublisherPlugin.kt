@@ -28,7 +28,7 @@ import addIfNotExists
 import com.gradle.publish.PluginBundleExtension
 import com.gradle.publish.PublishPlugin
 import com.meowool.gradle.toolkit.publisher.internal.androidExtension
-import com.meowool.gradle.toolkit.publisher.internal.buildListener
+import com.meowool.gradle.toolkit.publisher.internal.buildListened
 import com.meowool.gradle.toolkit.publisher.internal.configureAllVariants
 import com.meowool.gradle.toolkit.publisher.internal.createNexusStagingClient
 import com.meowool.gradle.toolkit.publisher.internal.createSourcesJar
@@ -38,14 +38,13 @@ import com.meowool.gradle.toolkit.publisher.internal.isMultiplatform
 import com.meowool.gradle.toolkit.publisher.internal.repositoriesToClose
 import com.meowool.gradle.toolkit.publisher.internal.stagingDescription
 import com.meowool.sweekt.castOrNull
+import com.meowool.sweekt.coroutines.flowOnIO
 import com.meowool.sweekt.isNotNull
 import groovy.util.Node
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.retry
 import kotlinx.coroutines.runBlocking
 import org.gradle.BuildAdapter
@@ -119,7 +118,6 @@ class PublisherPlugin : Plugin<Project> {
 
       // Sonatype
       if (extension.isLocalVersion.not()) {
-        initSonatypeBuild()
         extension.destinations.filterIsInstance<SonatypeDestination>().firstOrNull()?.let {
           taskInitializeSonatypeStaging(extension, it)
           taskCloseAndReleaseSonatypeRepository(it)
@@ -328,36 +326,6 @@ class PublisherPlugin : Plugin<Project> {
     }
   }
 
-  private fun Project.initSonatypeBuild() {
-    // Listening to build finished and to close repositories, only need to add to root project once
-    if (buildListener.not()) {
-      buildListener = true
-      rootProject.gradle.addBuildListener(object : BuildAdapter() {
-        override fun buildFinished(result: BuildResult) {
-          super.buildFinished(result)
-          runBlocking {
-            @Suppress("UNCHECKED_CAST")
-            repositoriesToClose.forEach { (baseUrl, repositoryIds) ->
-              val client = rootProject.createNexusStagingClient(baseUrl)
-              repositoryIds.asFlow().map {
-                val id = listOf(it)
-                println("Closing $it")
-                client.closeRepositories(id)
-                println("Releasing $it")
-                client.releaseRepositories(id, dropAfterRelease = true)
-              }.retry(retries = 5) {
-                // Retry after 1000 ms
-                delay(1000)
-                true
-              }.collect()
-            }
-            repositoriesToClose.clear()
-          }
-        }
-      })
-    }
-  }
-
   /**
    * Configures the task used to initialize the Sonatype staging repository.
    *
@@ -375,16 +343,16 @@ class PublisherPlugin : Plugin<Project> {
             val profile = profiles.firstOrNull { extension.data.groupId == it.name }
               ?: profiles.firstOrNull { extension.data.groupId.startsWith(it.name) }
               ?: profiles.firstOrNull()
-              ?: return@flow
+              ?: error("Did not find any staging profile, please go to ${target.baseUrl}/#stagingProfiles to view.")
 
             // Check staging repository if exists in nexus
             val existing = client.getRepositories().firstOrNull {
               it.description == description && it.transitioning.not() && it.type == "open"
             }
 
-            target.stagingId = when {
-              existing != null -> existing.repositoryId
-              else -> client.createRepository(profile.id, description)
+            target.stagingId = when (existing) {
+              null -> client.createRepository(profile.id, description)
+              else -> existing.repositoryId
             }
 
             // Redirects the repository url to specific staging repository (release)
@@ -395,7 +363,7 @@ class PublisherPlugin : Plugin<Project> {
             // Retry after 1000 ms
             delay(1000)
             true
-          }.collect()
+          }.flowOnIO().collect()
         }
 
         println("Publishing to ${repository.url}")
@@ -405,7 +373,7 @@ class PublisherPlugin : Plugin<Project> {
   /**
    * Configures the task used to close and release sonatype staging repository.
    */
-  private fun Project.taskCloseAndReleaseSonatypeRepository(target: SonatypeDestination) =
+  private fun Project.taskCloseAndReleaseSonatypeRepository(target: SonatypeDestination) {
     tasks.create("closeAndReleaseSonatypeRepository") {
       group = PublishingPlugin.PUBLISH_TASK_GROUP
       description = "Closes release version in the nexus repository."
@@ -424,7 +392,7 @@ class PublisherPlugin : Plugin<Project> {
               // Retry after 1000 ms
               delay(1000)
               true
-            }.first()
+            }.flowOnIO().first()
           }
           // Collect the repository ids to close
           repositoriesToClose
@@ -433,4 +401,37 @@ class PublisherPlugin : Plugin<Project> {
         }
       }
     }
+
+    // Listening to build finished and to close repositories, only need to add to root project once
+    if (buildListened.not()) {
+      buildListened = true
+      rootProject.gradle.addBuildListener(object : BuildAdapter() {
+        override fun buildFinished(result: BuildResult) {
+          super.buildFinished(result)
+          runBlocking {
+            @Suppress("UNCHECKED_CAST")
+            repositoriesToClose.forEach { (baseUrl, repositoryIds) ->
+              val client = rootProject.createNexusStagingClient(baseUrl)
+              val repositoryIdList = repositoryIds.toList()
+
+              flow {
+                client.closeRepositories(repositoryIdList)
+                println("Closing $repositoryIdList")
+
+                client.releaseRepositories(repositoryIdList, dropAfterRelease = true)
+                println("Releasing $repositoryIdList")
+
+                emit(Unit)
+              }.retry(retries = 5) {
+                // Retry after 1000 ms
+                delay(1000)
+                true
+              }.collect()
+            }
+            repositoriesToClose.clear()
+          }
+        }
+      })
+    }
+  }
 }

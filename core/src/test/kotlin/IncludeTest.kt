@@ -25,7 +25,7 @@ import java.io.File
  * @author 凛 (https://github.com/RinOrz)
  */
 class IncludeTest : GradleToolkitTest() {
-  private val includeDir = File(javaClass.getResource("include")!!.file)
+  private val includeDir = File(javaClass.getResource("include-tests")!!.file)
 
   init {
     settings._rootDir = includeDir
