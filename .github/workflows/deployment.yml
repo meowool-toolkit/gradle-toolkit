@@ -35,6 +35,7 @@ jobs:
   publish-snapshot:
     if: "!startsWith(github.event.head_commit.message, 'Release')"
     name: Publishing Snapshot
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -53,6 +54,7 @@ jobs:
   publish-release:
     if: "startsWith(github.event.head_commit.message, 'Release')"
     name: Publishing Release
+    needs: build
     runs-on: ubuntu-latest
     env:
       release-publications: true
@@ -71,6 +73,7 @@ jobs:
           arguments: --stacktrace publishPlugins publish closeAndReleaseSonatypeRepository
 
   gradle-sync:
+    name: Gradle Sync
     needs: [publish-snapshot, publish-release]
     runs-on: ubuntu-latest
     env:
