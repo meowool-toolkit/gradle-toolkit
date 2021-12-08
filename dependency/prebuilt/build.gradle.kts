@@ -83,7 +83,7 @@ tasks.create("syncDependencies").doLast {
         "de.fayard.refreshVersions:refreshVersions" to "RefreshVersions",
         "com.andkulikov:transitionseverywhere" to "TransitionsEverywhere",
         "com.github.donkingliang:ConsecutiveScroller" to "ConsecutiveScroller",
-        "dev.zacsweers.autoservice:auto-service-ksp" to "Google.Auto.Service.Ksp"
+        "dev.zacsweers.autoservice:auto-service-ksp" to "Google.Auto.Service.Ksp",
 
         "me.tylerbwong.gradle:metalava-gradle" to "Gradle.Metalava",
         "com.diffplug.spotless:spotless-plugin-gradle" to "Gradle.Spotless",
