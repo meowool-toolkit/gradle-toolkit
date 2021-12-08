@@ -34,7 +34,7 @@ jobs:
 
   publish-snapshot:
     if: "!startsWith(github.event.head_commit.message, 'Release')"
-    name: Publishing
+    name: Publishing Snapshot
     runs-on: ubuntu-latest
 
     steps:
@@ -52,7 +52,7 @@ jobs:
 
   publish-release:
     if: "startsWith(github.event.head_commit.message, 'Release')"
-    name: Publishing
+    name: Publishing Release
     runs-on: ubuntu-latest
     env:
       release-publications: true
