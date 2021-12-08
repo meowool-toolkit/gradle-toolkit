@@ -79,7 +79,7 @@ jobs:
               closeAndReleaseSonatypeRepository
 
   gradle-sync:
-    needs: publish
+    needs: [publish-snapshot, publish-release]
     runs-on: ubuntu-latest
     env:
       # Build test published artifacts
