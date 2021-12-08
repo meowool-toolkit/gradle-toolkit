@@ -59,7 +59,7 @@ subprojects {
 }
 
 subdependencies {
-  if (project.path.startsWith(Projects.Integration.Testing)) return@subdependencies
+  if (project.path.startsWith(":integration-testing")) return@subdependencies
   // All projects depend on the ':core'
   if (project.path != Projects.Core) {
     apiProject(Projects.Core)

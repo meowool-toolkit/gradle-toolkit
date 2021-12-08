@@ -8,7 +8,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     env:
-      use-non-local-version: true
+      USE_NON_LOCAL_VERSION: true
 
     steps:
       - uses: actions/checkout@v2

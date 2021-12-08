@@ -5,7 +5,7 @@ on: push
 env:
   ORG_GRADLE_PROJECT_mavenUsername: ${{ secrets.mavenUsername }}
   ORG_GRADLE_PROJECT_mavenPassword: ${{ secrets.mavenPassword }}
-  skip-integration-testing: true
+  SKIP_INTEGRATION_TESTING: true
 
 jobs:
   build:
@@ -70,7 +70,13 @@ jobs:
         uses: gradle/gradle-build-action@v1
         with:
           # Publish all projects
-          arguments: --stacktrace publishPlugins publish closeAndReleaseSonatypeRepository
+          arguments: | 
+            publishPlugins 
+            publish 
+            closeAndReleaseSonatypeRepository
+              --stacktrace
+              -Pgradle.publish.key=${{ secrets.GRADLE_PUBLISH_KEY }}
+              -Pgradle.publish.secret=${{ secrets.GRADLE_PUBLISH_SECRET }}
 
   gradle-sync:
     name: Gradle Sync
@@ -78,7 +84,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Build test published artifacts
-      use-non-local-version: true
+      USE_NON_LOCAL_VERSION: true
 
     steps:
       - uses: actions/checkout@v2
