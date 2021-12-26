@@ -26,6 +26,9 @@ import addFreeCompilerArgs
 import addIfNotExists
 import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl
 import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl.Companion.toolkitExtensionImpl
+import com.meowool.sweekt.runOrNull
+import injectDependenciesLogic
+import injectProjectLogic
 import kotlinJvmOptions
 import kotlinMultiplatformExtensionOrNull
 import kotlinOptions
@@ -102,6 +105,11 @@ class GradleToolkitCorePlugin : Plugin<Any> {
         } ?: extensions.findByType<SourceSetContainer>()?.apply {
           findByName("main")?.java?.srcDirs("src/main/kotlin")
           findByName("test")?.java?.srcDirs("src/test/kotlin")
+        }
+
+        runOrNull {
+          injectProjectLogic(ignoreUnregistered = true)
+          injectDependenciesLogic(ignoreUnregistered = true)
         }
       }
     }

@@ -136,8 +136,8 @@ interface GradleToolkitExtension {
    *   }
    * }
    *
-   * // Then other projects, inject with
-   * // `injectProjectLogic()`, `injectDependenciesLogic()`, `injectDependenciesLogic(key = 1)`
+   * // Then other projects, inject with `injectDependenciesLogic(key = 1)`
+   * // They will be injected automatically by default keys.
    * ```
    */
   fun registerLogic(registry: LogicRegistry.() -> Unit)

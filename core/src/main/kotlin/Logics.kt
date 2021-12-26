@@ -55,8 +55,8 @@ import org.gradle.kotlin.dsl.DependencyHandlerScope
  *   }
  * }
  *
- * // Then other projects, inject with
- * // `injectProjectLogic()`, `injectDependenciesLogic()`, `injectDependenciesLogic(key = 1)`
+ * // Then other projects, inject with `injectDependenciesLogic(key = 1)`
+ * // They will be injected automatically by default keys.
  * ```
  */
 fun Project.registerLogic(registry: LogicRegistry.() -> Unit) {
@@ -91,8 +91,8 @@ fun Project.registerLogic(registry: LogicRegistry.() -> Unit) {
  *   }
  * }
  *
- * // Then other projects, inject with
- * // `injectProjectLogic()`, `injectDependenciesLogic()`, `injectDependenciesLogic(key = 1)`
+ * // Then other projects, inject with `injectDependenciesLogic(key = 1)`
+ * // They will be injected automatically by default keys.
  * ```
  */
 fun Settings.registerLogic(registry: LogicRegistry.() -> Unit) {
@@ -107,8 +107,10 @@ fun Settings.registerLogic(registry: LogicRegistry.() -> Unit) {
  * @param key The key of the registered logic.
  * @see LogicRegistry.project
  */
-fun Project.injectProjectLogic(key: Any = DefaultProjectKey) {
-  val logic = logicRegistry.projectLogics[key] ?: notFoundKey(key)
+fun Project.injectProjectLogic(key: Any = DefaultProjectKey, ignoreUnregistered: Boolean = false) {
+  val logic = logicRegistry.projectLogics[key]
+  if (ignoreUnregistered && logic == null) return
+  logic ?: notFoundKey(key)
   logic(this)
 }
 
@@ -118,7 +120,9 @@ fun Project.injectProjectLogic(key: Any = DefaultProjectKey) {
  * @param key The key of the registered logic.
  * @see LogicRegistry.dependencies
  */
-fun Project.injectDependenciesLogic(key: Any = DefaultDependenciesKey) {
-  val logic = logicRegistry.dependenciesLogics[key] ?: notFoundKey(key)
+fun Project.injectDependenciesLogic(key: Any = DefaultDependenciesKey, ignoreUnregistered: Boolean = false) {
+  val logic = logicRegistry.dependenciesLogics[key]
+  if (ignoreUnregistered && logic == null) return
+  logic ?: notFoundKey(key)
   logic(DependencyHandlerToolkit(project, DependencyHandlerScope.of(dependencies)))
 }
