@@ -31,7 +31,8 @@ import org.gradle.kotlin.dsl.findByType
 /**
  * @author 凛 (https://github.com/RinOrz)
  */
-internal open class GradleToolkitExtensionImpl(override val rootProject: Project) : GradleToolkitExtension {
+@InternalGradleToolkitApi
+open class GradleToolkitExtensionImpl(override val rootProject: Project) : GradleToolkitExtension {
   val logicRegistry = LogicRegistry()
   override val allprojects: Set<Project>
     get() = rootProject.allprojects
@@ -56,7 +57,6 @@ internal open class GradleToolkitExtensionImpl(override val rootProject: Project
   override fun registerLogic(registry: LogicRegistry.() -> Unit) = logicRegistry.run(registry)
 
   companion object {
-    @InternalGradleToolkitApi
     val Project.toolkitExtension: GradleToolkitExtension
       get() = checkRootBootstrap()
 

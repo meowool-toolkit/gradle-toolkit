@@ -23,7 +23,9 @@ package com.meowool.gradle.toolkit.android.internal
 import androidTest
 import com.android.build.api.dsl.SigningConfig
 import com.android.build.gradle.BaseExtension
+import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl.Companion.toolkitExtension
 import findPropertyOrEnv
+import getGlobalProject
 import main
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
@@ -37,13 +39,13 @@ import java.io.File
  * @author 凛 (https://github.com/RinOrz)
  */
 internal fun BaseExtension.loadAndroidPresets() {
-  compileSdkVersion(30)
+  compileSdkVersion(31)
   defaultConfig {
-    targetSdkVersion(30)
-    minSdkVersion(21)
+    minSdk = 21
+    targetSdk = 31
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     consumerProguardFiles("consumer-rules.pro")
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
   sourceSets {
     main.java.srcDirs("src/main/kotlin")
@@ -51,8 +53,9 @@ internal fun BaseExtension.loadAndroidPresets() {
     androidTest.java.srcDirs("src/androidTest/kotlin")
   }
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    val defaultJvmTarget = getGlobalProject().toolkitExtension.defaultJvmTarget
+    sourceCompatibility = defaultJvmTarget
+    targetCompatibility = defaultJvmTarget
   }
 }
 
