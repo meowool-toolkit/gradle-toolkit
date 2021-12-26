@@ -110,20 +110,20 @@ fun BaseExtension.buildConfigField(type: String, name: String, value: String) {
 }
 
 internal fun BaseExtension.getGlobalProject(): Project {
-  val globalScope = javaClass.declaredFields
+  val globalScope = BaseExtension::class.java.declaredFields
     .firstOrNull { it.type == GlobalScope::class.java }
     ?.apply { isAccessible = true }?.get(this)
     .ifNull {
-      javaClass.declaredMethods
+      BaseExtension::class.java.declaredMethods
         .firstOrNull { it.returnType == GlobalScope::class.java }
         ?.apply { isAccessible = true }?.invoke(this)
     }.castOrNull<GlobalScope>() ?: error("Unable to get the 'GlobalScope' in 'BaseExtension'!")
 
-  val project = globalScope.javaClass.declaredFields
+  val project = GlobalScope::class.java.declaredFields
     .firstOrNull { it.type == Project::class.java }
     ?.apply { isAccessible = true }?.get(globalScope)
     .ifNull {
-      globalScope.javaClass.declaredMethods
+      GlobalScope::class.java.declaredMethods
         .firstOrNull { it.returnType == Project::class.java }
         ?.apply { isAccessible = true }?.invoke(globalScope)
     }.castOrNull<Project>() ?: error("Unable to get the 'Project' in 'GlobalScope'!")

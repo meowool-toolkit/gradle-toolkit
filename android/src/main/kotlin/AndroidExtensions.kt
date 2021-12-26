@@ -67,8 +67,8 @@ fun Project.androidApp(key: Any = DefaultAndroidKey, configuration: BaseAppModul
  * @see androidApp
  */
 fun Project.androidKotlinApp(key: Any = DefaultAndroidKey, configuration: BaseAppModuleExtension.() -> Unit = {}) {
-  applyKotlinAndroidIfNotExists()
   androidApp(key, configuration)
+  applyKotlinAndroidIfNotExists()
 }
 
 /**
@@ -103,6 +103,6 @@ fun Project.androidLib(key: Any = DefaultAndroidKey, configuration: LibraryExten
  *   to the key is not registered.
  */
 fun Project.androidKotlinLib(key: Any = DefaultAndroidKey, configuration: LibraryExtension.() -> Unit = {}) {
-  applyKotlinAndroidIfNotExists()
   androidLib(key, configuration)
+  applyKotlinAndroidIfNotExists()
 }
