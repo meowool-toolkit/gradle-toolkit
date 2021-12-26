@@ -283,10 +283,10 @@ public final class LanguageFeaturesKt {
 }
 
 public final class LogicsKt {
-	public static final fun injectDependenciesLogic (Lorg/gradle/api/Project;Ljava/lang/Object;)V
-	public static synthetic fun injectDependenciesLogic$default (Lorg/gradle/api/Project;Ljava/lang/Object;ILjava/lang/Object;)V
-	public static final fun injectProjectLogic (Lorg/gradle/api/Project;Ljava/lang/Object;)V
-	public static synthetic fun injectProjectLogic$default (Lorg/gradle/api/Project;Ljava/lang/Object;ILjava/lang/Object;)V
+	public static final fun injectDependenciesLogic (Lorg/gradle/api/Project;Ljava/lang/Object;Z)V
+	public static synthetic fun injectDependenciesLogic$default (Lorg/gradle/api/Project;Ljava/lang/Object;ZILjava/lang/Object;)V
+	public static final fun injectProjectLogic (Lorg/gradle/api/Project;Ljava/lang/Object;Z)V
+	public static synthetic fun injectProjectLogic$default (Lorg/gradle/api/Project;Ljava/lang/Object;ZILjava/lang/Object;)V
 	public static final fun registerLogic (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
 	public static final fun registerLogic (Lorg/gradle/api/initialization/Settings;Lkotlin/jvm/functions/Function1;)V
 }
