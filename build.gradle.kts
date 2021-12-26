@@ -79,7 +79,7 @@ subdependencies {
 /** Root publish data declaration (all subprojects extends from here) */
 publication {
   data {
-    val baseVersion = "0.1.0"
+    val baseVersion = "0.1.1"
     version = "$baseVersion-LOCAL"
     // Used to publish non-local versions of artifacts in CI environment
     versionInCI = baseVersion + when (System.getenv("release-publications").toBoolean()) {
