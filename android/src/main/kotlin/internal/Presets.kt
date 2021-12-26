@@ -27,7 +27,6 @@ import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl.Companion.
 import findPropertyOrEnv
 import getGlobalProject
 import main
-import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import test
 import java.io.File
