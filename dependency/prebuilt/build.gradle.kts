@@ -49,10 +49,12 @@ tasks.create("syncDependencies").doLast {
     concurrency(false)
     plugins {
       map(
-        "com.github.johnrengelman.shadow" to "Shadow",
         "com.diffplug.spotless" to "Spotless",
         "com.gradle.publish" to "Gradle.Publish",
         "com.gradle.build-scan" to "Gradle.BuildScan",
+        "com.github.johnrengelman.shadow" to "Shadow",
+        "com.github.gmazzo.buildconfig" to "BuildConfig",
+        "de.mannodermaus.android-junit5" to "Android.Junit5",
         "me.tylerbwong.gradle.metalava" to "Gradle.Metalava",
         "org.gradle.crypto.checksum" to "Gradle.Crypto.Checksum",
         "org.gradle.android.cache-fix" to "Gradle.AndroidCacheFix",
@@ -84,10 +86,15 @@ tasks.create("syncDependencies").doLast {
         "com.andkulikov:transitionseverywhere" to "TransitionsEverywhere",
         "com.github.donkingliang:ConsecutiveScroller" to "ConsecutiveScroller",
         "dev.zacsweers.autoservice:auto-service-ksp" to "Google.Auto.Service.Ksp",
+        "com.github.tschuchortdev:kotlin-compile-testing" to "KotlinCompileTesting",
 
         "me.tylerbwong.gradle:metalava-gradle" to "Gradle.Metalava",
         "com.diffplug.spotless:spotless-plugin-gradle" to "Gradle.Spotless",
         "com.gradle.publish:plugin-publish-plugin" to "Gradle.Publish.Plugin",
+      )
+      map(
+        "com.meowool.kami:kisscat",
+        "com.meowool.toolkit:sweekt",
       )
 
       searchGroups(
