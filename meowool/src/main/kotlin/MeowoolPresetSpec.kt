@@ -31,14 +31,15 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import com.meowool.gradle.toolkit.GradleToolkitExtension
 import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.DefaultCandidateAndroidKey
 import com.meowool.gradle.toolkit.publisher.PublicationExtension
+import javaWhenAvailable
 import jitpack
+import kotlinWhenAvailable
 import loadKeyProperties
 import mavenMirror
 import me.tylerbwong.gradle.metalava.extension.MetalavaExtension
 import meowoolHomeDir
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
-import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.maven
 import org.gradle.kotlin.dsl.sourceSets
@@ -191,7 +192,7 @@ open class MeowoolPresetSpec internal constructor() {
    */
   fun spotless(configuration: SpotlessExtension.(project: Project) -> Unit) {
     configurations += {
-      allprojects {
+      allprojects(afterEvaluate = false) {
         extensions.findByType<SpotlessExtension>()?.apply { configuration(project) }
       }
     }
@@ -353,28 +354,27 @@ open class MeowoolPresetSpec internal constructor() {
           licenseHeader?.let { licenseHeader(it, "(import |project.|rootProject.|pluginManagement|plugins|buildscript|tasks|apply|rootProject|android|@)") }
         }
 
-        afterEvaluate {
-          if (extensions.findByType<JavaPluginExtension>() != null) {
-            fun sources(suffix: String): List<File> = sourceSets.flatMap { set ->
-              set.allSource.sourceDirectories.asFileTree.filter { it.extension == suffix }
-            }
-            java {
-              target(sources("java"))
-              // apply a specific flavor of google-java-format
-              googleJavaFormat().aosp()
-              endWithNewline()
-              trimTrailingWhitespace()
-              licenseHeader?.let { licenseHeader(it, "(package |import |public |private )") }
-            }
-            kotlin {
-              target(sources("kt"))
-              ktlint().userData(ktlintData())
-              endWithNewline()
-              trimTrailingWhitespace()
-              licenseHeader?.let {
-                licenseHeader(it, "(package |import |class |fun |val |public |private |internal |@)")
-              }
-            }
+        fun sources(suffix: String): List<File> = sourceSets.flatMap { set ->
+          set.allSource.sourceDirectories.asFileTree.filter { it.extension == suffix }
+        }
+
+        javaWhenAvailable(project) {
+          target(sources("java"))
+          // apply a specific flavor of google-java-format
+          googleJavaFormat().aosp()
+          endWithNewline()
+          indentWithSpaces()
+          trimTrailingWhitespace()
+          licenseHeader?.let { licenseHeader(it, "(package |import |public |private )") }
+        }
+        kotlinWhenAvailable(project) {
+          target(sources("kt"))
+          ktlint().userData(ktlintData())
+          endWithNewline()
+          indentWithSpaces()
+          trimTrailingWhitespace()
+          licenseHeader?.let {
+            licenseHeader(it, "(package |import |class |fun |val |public |private |internal |@)")
           }
         }
       }
