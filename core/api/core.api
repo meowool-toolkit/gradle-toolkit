@@ -276,8 +276,8 @@ public final class KotlinSourceSetsKt {
 }
 
 public final class LanguageFeaturesKt {
-	public static final fun enableLanguageFeatures (Lorg/gradle/api/Project;Ljava/util/List;)Lkotlin/Unit;
-	public static final fun enableLanguageFeatures (Lorg/gradle/api/Project;[Ljava/lang/String;)Lkotlin/Unit;
+	public static final fun enableLanguageFeatures (Lorg/gradle/api/Project;Ljava/util/List;)V
+	public static final fun enableLanguageFeatures (Lorg/gradle/api/Project;[Ljava/lang/String;)V
 	public static final fun enableLanguageFeatures (Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;Ljava/util/List;)V
 	public static final fun enableLanguageFeatures (Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;[Ljava/lang/String;)V
 }
