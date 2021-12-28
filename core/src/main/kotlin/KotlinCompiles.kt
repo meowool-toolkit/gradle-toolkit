@@ -32,24 +32,26 @@ import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
  * @author 凛 (https://github.com/RinOrz)
  */
 fun Project.kotlinCompile(configuration: KotlinCompile<KotlinCommonOptions>.() -> Unit) {
-  kotlinMultiplatformExtensionOrNull?.targets?.all {
-    compilations.all {
-      compileKotlinTask.apply(configuration)
+  kotlinMultiplatformWhenAvailable {
+    targets.configureEach {
+      compilations.configureEach { compileKotlinTask.apply(configuration) }
     }
   }
-  tasks.withType<KotlinCompile<KotlinCommonOptions>>().all(configuration)
+  tasks.withType<KotlinCompile<KotlinCommonOptions>>().configureEach(configuration)
 }
 
 /**
  * Uses given [configuration] to configure kotlin jvm compile task of this project.
  */
 fun Project.kotlinJvmCompile(configuration: KotlinJvmCompile.() -> Unit) {
-  kotlinMultiplatformExtensionOrNull?.targets?.all {
-    if (this is KotlinJvmTarget) compilations.all {
-      compileKotlinTask.apply(configuration)
+  kotlinMultiplatformWhenAvailable {
+    targets.configureEach target@{
+      if (this@target is KotlinJvmTarget) compilations.configureEach {
+        compileKotlinTask.apply(configuration)
+      }
     }
   }
-  tasks.withType<KotlinJvmCompile>().all(configuration)
+  tasks.withType<KotlinJvmCompile>().configureEach(configuration)
 }
 
 /**

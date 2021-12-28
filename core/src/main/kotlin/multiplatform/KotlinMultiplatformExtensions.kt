@@ -29,8 +29,14 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
  * @author 凛 (https://github.com/RinOrz)
  */
 fun Project.kotlinMultiplatform(configuration: KotlinMultiplatformExtension.() -> Unit) {
-  project.plugins.applyIfNotExists("kotlin-multiplatform")
+  project.plugins.applyIfNotExists(kotlinMultiplatformPluginId)
   project.extensions.configure(configuration)
+}
+
+internal fun Project.kotlinMultiplatformWhenAvailable(configuration: KotlinMultiplatformExtension.() -> Unit) {
+  project.plugins.withId(kotlinMultiplatformPluginId) {
+    project.extensions.configure(configuration)
+  }
 }
 
 internal inline val Project.kotlinMultiplatformExtensionOrNull: KotlinMultiplatformExtension?
@@ -38,3 +44,5 @@ internal inline val Project.kotlinMultiplatformExtensionOrNull: KotlinMultiplatf
 
 internal inline val Project.kotlinMultiplatformExtension: KotlinMultiplatformExtension
   get() = kotlinMultiplatformExtensionOrNull ?: error("Please apply the `kotlin-multiplatform` plugin first.")
+
+internal const val kotlinMultiplatformPluginId = "kotlin-multiplatform"

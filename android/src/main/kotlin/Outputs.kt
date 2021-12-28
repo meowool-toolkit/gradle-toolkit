@@ -21,7 +21,6 @@
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.TestedExtension
-import com.android.build.gradle.internal.crash.afterEvaluate
 import java.io.File
 
 /**
@@ -33,11 +32,9 @@ import java.io.File
  * @author 凛 (https://github.com/RinOrz)
  */
 fun AppExtension.outputTo(targetDirectory: File, overwrite: Boolean = true) {
-  afterEvaluate {
-    applicationVariants {
-      outputs.configureEach {
-        outputFile.copyTo(targetDirectory.resolve(outputFile.name), overwrite)
-      }
+  applicationVariants {
+    outputs.all {
+      outputFile.copyTo(targetDirectory.resolve(outputFile.name), overwrite)
     }
   }
 }
@@ -49,11 +46,9 @@ fun AppExtension.outputTo(targetDirectory: File, overwrite: Boolean = true) {
  * @param overwrite overwrite existing files
  */
 fun LibraryExtension.outputTo(targetDirectory: File, overwrite: Boolean = true) {
-  afterEvaluate {
-    libraryVariants {
-      outputs.configureEach {
-        outputFile.copyTo(targetDirectory.resolve(outputFile.name), overwrite)
-      }
+  libraryVariants {
+    outputs.all {
+      outputFile.copyTo(targetDirectory.resolve(outputFile.name), overwrite)
     }
   }
 }
@@ -65,11 +60,9 @@ fun LibraryExtension.outputTo(targetDirectory: File, overwrite: Boolean = true) 
  * @param overwrite overwrite existing files
  */
 fun TestedExtension.outputTo(targetDirectory: File, overwrite: Boolean = true) {
-  afterEvaluate {
-    testVariants {
-      outputs.configureEach {
-        outputFile.copyTo(targetDirectory.resolve(outputFile.name), overwrite)
-      }
+  testVariants {
+    outputs.all {
+      outputFile.copyTo(targetDirectory.resolve(outputFile.name), overwrite)
     }
   }
 }

@@ -132,4 +132,14 @@ class MeowoolManualSpec internal constructor() : MeowoolPresetSpec() {
    * Use the preset of [MeowoolPresetSpec.presetPublications].
    */
   fun usePublicationsPreset() = configurations.add(presetPublications())
+
+  /**
+   * Use the preset of [MeowoolPresetSpec.presetMetalava].
+   */
+  fun useMetalavaPreset() = configurations.add(presetMetalava())
+
+  /**
+   * Use the preset of [MeowoolPresetSpec.presetBinaryCompatibilityValidator].
+   */
+  fun useBinaryCompatibilityValidator() = configurations.add(presetBinaryCompatibilityValidator())
 }

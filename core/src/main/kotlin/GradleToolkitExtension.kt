@@ -69,7 +69,7 @@ interface GradleToolkitExtension {
    * @see Project.allprojects
    */
   fun allprojects(
-    afterEvaluate: Boolean = true,
+    afterEvaluate: Boolean = false,
     filter: Project.() -> Boolean = { buildFile.exists() },
     action: Project.() -> Unit
   )
@@ -84,7 +84,7 @@ interface GradleToolkitExtension {
    * @see Project.subprojects
    */
   fun subprojects(
-    afterEvaluate: Boolean = true,
+    afterEvaluate: Boolean = false,
     filter: Project.() -> Boolean = { buildFile.exists() },
     action: Project.() -> Unit
   )

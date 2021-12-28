@@ -20,9 +20,6 @@
  */
 @file:Suppress("MemberVisibilityCanBePrivate")
 
-import MavenLocalDestination.project
-import com.android.build.gradle.internal.crash.afterEvaluate
-import com.android.tools.r8.internal.it
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.meowool.gradle.toolkit.GradleToolkitExtension
 import com.meowool.gradle.toolkit.internal.MeowoolManualSpec
@@ -62,10 +59,9 @@ fun GradleToolkitExtension.useMeowoolManualSpec(configuration: MeowoolManualSpec
 private fun GradleToolkitExtension.useMeowoolSpecImpl(spec: MeowoolPresetSpec) {
   // Add a maven central repository to avoid the formatter dependency not found (ktlint, google-java-format)
   rootProject.buildscript.repositories { mavenCentral() }
-  if (spec.enabledBinaryCompatibilityValidator(rootProject))
-    rootProject.apply<BinaryCompatibilityValidatorPlugin>()
-  allprojects(afterEvaluate = false) {
-    spec.repositories.invoke(repositories, project)
+  if (spec.enabledBinaryCompatibilityValidator(rootProject)) rootProject.apply<BinaryCompatibilityValidatorPlugin>()
+  allprojects {
+    spec.repositories(repositories, project)
 
     if (spec.enabledSpotless(project) && projectDir.resolve(".skip-spotless").exists().not())
       project.apply<SpotlessPlugin>()
@@ -75,16 +71,16 @@ private fun GradleToolkitExtension.useMeowoolSpecImpl(spec: MeowoolPresetSpec) {
       project.apply<PublisherPlugin>()
     if (spec.enabledBinaryCompatibilityValidator(project).not() && projectDir.resolve(".skip-bcv").exists()) {
       afterEvaluate {
-        tasks.removeIf { it is KotlinApiBuildTask }
-        tasks.removeIf { it is ApiCompareCompareTask }
-        tasks.removeIf { it is Sync && (it.name == "apiDump" || it.name.endsWith("ApiDump")) }
+        tasks.removeIf {
+          it is KotlinApiBuildTask ||
+            it is ApiCompareCompareTask ||
+            (it is Sync && (it.name == "apiDump" || it.name.endsWith("ApiDump")))
+        }
       }
     }
 
-    afterEvaluate {
-      project.optIn(spec.optIn)
-      project.addFreeCompilerArgs(spec.compilerArguments)
-    }
+    project.optIn(spec.optIn)
+    project.addFreeCompilerArgs(spec.compilerArguments)
   }
   spec.configurations.forEach { it() }
 }

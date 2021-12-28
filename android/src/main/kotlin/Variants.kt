@@ -28,15 +28,15 @@ import com.android.build.gradle.api.LibraryVariant
 import com.android.build.gradle.api.TestVariant
 
 fun AppExtension.applicationVariants(configuration: ApplicationVariant.() -> Unit) {
-  applicationVariants.configureEach(configuration)
+  applicationVariants.all(configuration)
 }
 
 fun LibraryExtension.libraryVariants(configuration: LibraryVariant.() -> Unit) {
-  libraryVariants.configureEach(configuration)
+  libraryVariants.all(configuration)
 }
 
 fun TestedExtension.testVariants(configuration: TestVariant.() -> Unit) {
-  testVariants.configureEach(configuration)
+  testVariants.all(configuration)
 }
 
 fun BaseExtension.variants(configuration: BaseVariant.() -> Unit) {

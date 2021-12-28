@@ -19,20 +19,20 @@
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
 import com.gradle.publish.PublishTask
-import com.meowool.sweekt.withType
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.plugins.MavenPublishPlugin.PUBLISH_LOCAL_LIFECYCLE_TASK_NAME
+import org.gradle.api.publish.plugins.PublishingPlugin
 import org.gradle.api.publish.plugins.PublishingPlugin.PUBLISH_LIFECYCLE_TASK_NAME
+import org.gradle.kotlin.dsl.withType
 
 /**
  * Disable all publishing tasks for this project.
  */
 fun Project.disablePublishTask() {
-  afterEvaluate {
-    tasks.findByName(PUBLISH_LIFECYCLE_TASK_NAME)?.enabled = false
-    tasks.findByName(PUBLISH_LOCAL_LIFECYCLE_TASK_NAME)?.enabled = false
+  plugins.withType<PublishingPlugin>().configureEach {
+    tasks.configureEach {
+      if (name == PUBLISH_LIFECYCLE_TASK_NAME || name == PUBLISH_LOCAL_LIFECYCLE_TASK_NAME) enabled = false
+    }
   }
-  tasks.withType<PublishTask> {
-    enabled = false
-  }
+  tasks.withType<PublishTask>().configureEach { enabled = false }
 }

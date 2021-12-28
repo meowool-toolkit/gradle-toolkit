@@ -30,7 +30,7 @@ import com.meowool.sweekt.runOrNull
 import injectDependenciesLogic
 import injectProjectLogic
 import kotlinJvmOptions
-import kotlinMultiplatformExtensionOrNull
+import kotlinMultiplatformWhenAvailable
 import kotlinOptions
 import optIn
 import org.gradle.api.Plugin
@@ -66,9 +66,15 @@ class GradleToolkitCorePlugin : Plugin<Any> {
     allprojects {
       val extension = toolkitExtensionImpl
 
-      extensions.findByType<JavaPluginExtension>()?.apply {
-        sourceCompatibility = extension.defaultJvmTarget
-        targetCompatibility = extension.defaultJvmTarget
+      plugins.configureEach {
+        extensions.findByType<SourceSetContainer>()?.apply {
+          findByName("main")?.java?.srcDir("src/main/kotlin")
+          findByName("test")?.java?.srcDir("src/test/kotlin")
+        }
+        extensions.findByType<JavaPluginExtension>()?.apply {
+          sourceCompatibility = extension.defaultJvmTarget
+          targetCompatibility = extension.defaultJvmTarget
+        }
       }
 
       tasks.withType<JavaCompile> {
@@ -78,34 +84,30 @@ class GradleToolkitCorePlugin : Plugin<Any> {
 
       setKotlinJvmTarget(extension)
 
+      optIn("kotlin.RequiresOptIn")
+
       // See: https://github.com/JetBrains/kotlin/blob/1.6.0/libraries/stdlib/jvm/src/kotlin/jvm/JvmDefault.kt#L37-L50
       kotlinOptions { addFreeCompilerArgs("-Xjvm-default=all") }
 
-      afterEvaluate {
-        optIn("kotlin.RequiresOptIn")
+      kotlinMultiplatformWhenAvailable {
+        // TODO Custom shared source sets until https://youtrack.jetbrains.com/issue/KT-42466 is completed
+        sourceSets.configureEach {
+          when (name) {
+            "jvmMain", "androidMain" -> kotlin.srcDirs("src/jvmShareMain/kotlin")
+            "jvmTest", "androidTest" -> kotlin.srcDirs("src/jvmShareTest/kotlin")
+          }
+        }
+        targets.configureEach {
+          if (this is KotlinAndroidTarget) {
+            // Overwrite can be avoided in this case
+            if (publishLibraryVariants.isNullOrEmpty()) publishAllLibraryVariants()
+          }
+        }
+      }
 
+      afterEvaluate {
         // TODO: Remove when https://github.com/gradle/gradle/issues/18935 fixed
         afterEvaluate { setKotlinJvmTarget(extension) }; setKotlinJvmTarget(extension)
-
-        kotlinMultiplatformExtensionOrNull?.apply {
-          // TODO Custom shared source sets until https://youtrack.jetbrains.com/issue/KT-42466 is completed
-          sourceSets.all {
-            when (name) {
-              "jvmMain", "androidMain" -> kotlin.srcDirs("src/jvmShareMain/kotlin")
-              "jvmTest", "androidTest" -> kotlin.srcDirs("src/jvmShareTest/kotlin")
-            }
-          }
-
-          targets.all {
-            if (this is KotlinAndroidTarget) {
-              // Overwrite can be avoided in this case
-              if (publishLibraryVariants.isNullOrEmpty()) publishAllLibraryVariants()
-            }
-          }
-        } ?: extensions.findByType<SourceSetContainer>()?.apply {
-          findByName("main")?.java?.srcDirs("src/main/kotlin")
-          findByName("test")?.java?.srcDirs("src/test/kotlin")
-        }
 
         runOrNull {
           injectProjectLogic(ignoreUnregistered = true)
@@ -121,8 +123,6 @@ class GradleToolkitCorePlugin : Plugin<Any> {
       targetCompatibility = extension.defaultJvmTarget.toString()
     }
 
-    kotlinJvmOptions {
-      jvmTarget = extension.defaultJvmTarget.toString()
-    }
+    kotlinJvmOptions { jvmTarget = extension.defaultJvmTarget.toString() }
   }
 }

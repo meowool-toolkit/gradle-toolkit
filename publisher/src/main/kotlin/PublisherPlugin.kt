@@ -37,7 +37,6 @@ import com.meowool.gradle.toolkit.publisher.internal.isCompatible
 import com.meowool.gradle.toolkit.publisher.internal.isMultiplatform
 import com.meowool.gradle.toolkit.publisher.internal.repositoriesToClose
 import com.meowool.gradle.toolkit.publisher.internal.stagingDescription
-import com.meowool.sweekt.castOrNull
 import com.meowool.sweekt.coroutines.flowOnIO
 import com.meowool.sweekt.isNotNull
 import groovy.util.Node
@@ -87,6 +86,7 @@ class PublisherPlugin : Plugin<Project> {
     apply<MavenPublishPlugin>()
 
     extensions.addIfNotExists("publication") { PublicationExtension(project) }
+
     afterEvaluate {
       val extension = extensions.getByType<PublicationExtension>()
       if (extension.enabled.not()) return@afterEvaluate
@@ -99,9 +99,7 @@ class PublisherPlugin : Plugin<Project> {
 
       apply<DokkaPlugin>()
 
-      if (extension.destinations.isEmpty()) {
-        extension.publishToSonatype()
-      }
+      if (extension.destinations.isEmpty()) extension.publishToSonatype()
 
       configureGradlePlugin(extension)
       publishing {
@@ -278,15 +276,17 @@ class PublisherPlugin : Plugin<Project> {
       if (isSnapshotVersion || isLocalVersion) return@afterEvaluate
 
       val dokkaJar by tasks.register<Jar>("dokkaJar") {
-        val dokkaTask = tasks.findByName(dokkaFormat!!.taskName).castOrNull()
-          ?: tasks.withType<DokkaTask>().first()
+        tasks.withType<DokkaTask>().configureEach dokkaTask@{
+          if (name == dokkaFormat!!.taskName) {
+            dependsOn(this@dokkaTask)
+            from(this@dokkaTask.outputDirectory)
+          }
+        }
 
-        dependsOn(dokkaTask)
-        from(dokkaTask.outputDirectory)
         archiveClassifier.set("javadoc")
       }
       // Configures dokka jar to all publications
-      publications.withType<MavenPublication> { artifact(dokkaJar) }
+      publications.withType<MavenPublication>().configureEach { artifact(dokkaJar) }
     }
   }
 
@@ -332,7 +332,7 @@ class PublisherPlugin : Plugin<Project> {
    * Because the Sonatype release version needs to specify the staging repository.
    */
   private fun Project.taskInitializeSonatypeStaging(extension: PublicationExtension, target: SonatypeDestination) =
-    tasks.withType<PublishToMavenRepository>().all {
+    tasks.withType<PublishToMavenRepository>().configureEach {
       doFirst {
         // Don't redirect the publishing of snapshot artifacts
         if (target.isSnapshot.not()) runBlocking {
@@ -380,9 +380,10 @@ class PublisherPlugin : Plugin<Project> {
       doLast {
         runBlocking {
           val client = project.createNexusStagingClient(target.baseUrl)
-          val repositoryIds = tasks.withType<PublishToMavenRepository>().mapNotNull {
-            flow {
-              val description = it.publication.stagingDescription
+
+          tasks.withType<PublishToMavenRepository>().configureEach {
+            val repositoryId = flow {
+              val description = publication.stagingDescription
               emit(
                 client.getRepositories()
                   .firstOrNull { it.description == description }
@@ -392,12 +393,15 @@ class PublisherPlugin : Plugin<Project> {
               // Retry after 1000 ms
               delay(1000)
               true
-            }.flowOnIO().first()
+            }.flowOnIO().let {
+              runBlocking { it.first() }
+            } ?: return@configureEach
+
+            // Collect the repository ids to close
+            repositoriesToClose
+              .getOrPut(target.baseUrl) { mutableSetOf() }
+              .add(repositoryId)
           }
-          // Collect the repository ids to close
-          repositoriesToClose
-            .getOrPut(target.baseUrl) { mutableSetOf() }
-            .addAll(repositoryIds)
         }
       }
     }

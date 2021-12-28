@@ -57,18 +57,14 @@ enum class DokkaFormat(val taskName: String) {
  * Configures all dokka task.
  */
 fun Project.dokka(configuration: DokkaTask.() -> Unit) {
-  afterEvaluate {
-    apply<DokkaPlugin>()
-    tasks.withType(configuration)
-  }
+  apply<DokkaPlugin>()
+  tasks.withType<DokkaTask>().configureEach(configuration)
 }
 
 /**
  * Configures the dokka task of given outputs [format].
  */
 fun Project.dokka(format: DokkaFormat = DokkaFormat.Html, configuration: DokkaTask.() -> Unit) {
-  afterEvaluate {
-    apply<DokkaPlugin>()
-    (tasks.findByName(format.taskName) as? DokkaTask)?.configuration()
-  }
+  apply<DokkaPlugin>()
+  (tasks.findByName(format.taskName) as? DokkaTask)?.configuration()
 }

@@ -38,7 +38,7 @@ fun Project.androidTarget(
   name: String = "android",
   configure: KotlinAndroidTarget.() -> Unit = {},
 ) {
-  project.extensions.findByName("android").castOrNull<BaseExtension>()?.sourceSets?.all {
+  project.extensions.findByName("android").castOrNull<BaseExtension>()?.sourceSets?.configureEach {
     if (manifest.srcFile.exists().not()) {
       project.file("src/android${getName().firstCharTitlecase()}/AndroidManifest.xml")
         .takeIf { it.exists() }

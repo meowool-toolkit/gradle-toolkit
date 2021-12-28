@@ -39,6 +39,7 @@ import mavenMirror
 import me.tylerbwong.gradle.metalava.extension.MetalavaExtension
 import meowoolHomeDir
 import org.gradle.api.Project
+import org.gradle.api.Task
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.maven
@@ -192,7 +193,7 @@ open class MeowoolPresetSpec internal constructor() {
    */
   fun spotless(configuration: SpotlessExtension.(project: Project) -> Unit) {
     configurations += {
-      allprojects(afterEvaluate = false) {
+      allprojects {
         extensions.findByType<SpotlessExtension>()?.apply { configuration(project) }
       }
     }
@@ -328,7 +329,7 @@ open class MeowoolPresetSpec internal constructor() {
   )
 
   protected fun presetSpotless(): GradleToolkitExtension.() -> Unit = {
-    allprojects(afterEvaluate = false) {
+    allprojects {
       extensions.findByType<SpotlessExtension>()?.apply {
         fun ktlintData() = mapOf(
           "disabled_rules" to "filename",
@@ -382,7 +383,7 @@ open class MeowoolPresetSpec internal constructor() {
   }
 
   protected fun presetPublications(): GradleToolkitExtension.() -> Unit = {
-    allprojects(afterEvaluate = false) {
+    allprojects {
       project.extensions.findByType<PublicationExtension>()?.apply {
         showIncompatibleWarnings = false
         data {
@@ -395,7 +396,7 @@ open class MeowoolPresetSpec internal constructor() {
         }
       }
 
-      project.tasks.withType<DokkaTask> {
+      project.tasks.withType<DokkaTask>().configureEach {
         dokkaSourceSets.configureEach {
           skipDeprecated.set(true)
           skipEmptyPackages.set(false)
@@ -403,41 +404,31 @@ open class MeowoolPresetSpec internal constructor() {
       }
 
       // Keep spotless before publish
-      project.tasks.withType<SpotlessApply> {
-        afterEvaluate {
-          project.tasks.findByName("publish")?.dependsOn(this@withType)
-        }
+      project.tasks.withType<SpotlessApply>().configureEach spotlessApply@{
+        withPublishTask { dependsOn(this@spotlessApply) }
       }
     }
   }
 
   protected fun presetMetalava(): GradleToolkitExtension.() -> Unit = {
-    allprojects(afterEvaluate = false) {
+    allprojects {
       project.extensions.findByType<MetalavaExtension>()?.apply {
         ignoreUnsupportedModules = true
         includeSignatureVersion = false
       }
 
       // Output meta api before publish
-      project.tasks.all {
-        if (name == "metalavaGenerateSignature") {
-          afterEvaluate {
-            project.tasks.findByName("publish")?.dependsOn(this@all)
-          }
-        }
+      project.tasks.configureEach mgs@{
+        if (name == "metalavaGenerateSignature") withPublishTask { dependsOn(this@mgs) }
       }
     }
   }
 
   protected fun presetBinaryCompatibilityValidator(): GradleToolkitExtension.() -> Unit = {
-    allprojects(afterEvaluate = false) {
+    allprojects {
       // Output binary api
-      project.tasks.all {
-        if (name == "apiDump") {
-          afterEvaluate {
-            project.tasks.findByName("publish")?.dependsOn(this@all)
-          }
-        }
+      project.tasks.configureEach apiDump@{
+        if (name == "apiDump") withPublishTask { dependsOn(this@apiDump) }
       }
     }
   }
@@ -466,5 +457,9 @@ open class MeowoolPresetSpec internal constructor() {
         }
       }
     }
+  }
+
+  private fun Project.withPublishTask(action: Task.() -> Unit) {
+    project.tasks.configureEach { if (name == "publish") action() }
   }
 }

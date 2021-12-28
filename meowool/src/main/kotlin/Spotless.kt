@@ -33,9 +33,7 @@ internal val SpotlessExtension.project: Project
   get() = SpotlessExtension::class.java.getDeclaredField("project").apply { isAccessible = true }.get(this).cast()
 
 internal fun SpotlessExtension.whenAvailable(project: Project, block: SpotlessExtension.() -> Unit) {
-  project.plugins.withType<JavaPlugin> {
-    block()
-  }
+  project.plugins.withType<JavaPlugin>().configureEach { block() }
 }
 
 /**
