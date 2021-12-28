@@ -43,3 +43,10 @@ public final class NdkObfuscator$Hikari : NdkObfuscator {
 	public synthetic fun <init> (ZZZZIIZZIZIIZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
+public final class SpotlessKt {
+	public static final fun javaWhenAvailable (Lcom/diffplug/gradle/spotless/SpotlessExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun javaWhenAvailable$default (Lcom/diffplug/gradle/spotless/SpotlessExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static final fun kotlinWhenAvailable (Lcom/diffplug/gradle/spotless/SpotlessExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun kotlinWhenAvailable$default (Lcom/diffplug/gradle/spotless/SpotlessExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
