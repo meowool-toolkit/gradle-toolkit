@@ -464,7 +464,8 @@ open class MeowoolPresetSpec internal constructor() {
     }
   }
 
-  private fun Project.withPublishTask(action: Task.() -> Unit) = afterEvaluate {
-    tasks.findByName("publish")?.action()
-  }
+  private fun Project.withPublishTask(action: Task.() -> Unit) =
+    tasks.findByName("publish")?.action() ?: afterEvaluate {
+      tasks.findByName("publish")?.action()
+    }
 }
