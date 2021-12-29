@@ -288,8 +288,8 @@ open class MeowoolPresetSpec internal constructor() {
   // ///////////////////////////////////////////////////////////////////////////////////
 
   protected fun presetRepositories(): RepositoryHandler.(Project) -> Unit = { project ->
-    project.rootDir.resolve(".repo").takeIf { it.exists() }?.let(::maven)
-    project.projectDir.resolve(".repo").takeIf { it.exists() }?.let(::maven)
+    project.rootDir.resolve(".repo").takeIf(File::exists)?.let(::maven)
+    project.projectDir.resolve(".repo").takeIf(File::exists)?.let(::maven)
     google()
     mavenCentral()
     sonatype()
@@ -352,7 +352,12 @@ open class MeowoolPresetSpec internal constructor() {
           ktlint().userData(ktlintData())
           endWithNewline()
           trimTrailingWhitespace()
-          licenseHeader?.let { licenseHeader(it, "(import |project.|rootProject.|pluginManagement|plugins|buildscript|tasks|apply|rootProject|android|@)") }
+          licenseHeader?.let {
+            licenseHeader(
+              it,
+              "(import |project.|rootProject.|pluginManagement|plugins|buildscript|tasks|apply|rootProject|android|@)"
+            )
+          }
         }
 
         fun sources(suffix: String): List<File> = sourceSets.flatMap { set ->
@@ -459,7 +464,7 @@ open class MeowoolPresetSpec internal constructor() {
     }
   }
 
-  private fun Project.withPublishTask(action: Task.() -> Unit) {
-    project.tasks.configureEach { if (name == "publish") action() }
+  private fun Project.withPublishTask(action: Task.() -> Unit) = afterEvaluate {
+    tasks.findByName("publish")?.action()
   }
 }
