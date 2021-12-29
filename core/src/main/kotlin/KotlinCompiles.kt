@@ -18,6 +18,7 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+import com.meowool.sweekt.runOrNull
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions
@@ -37,7 +38,9 @@ fun Project.kotlinCompile(configuration: KotlinCompile<KotlinCommonOptions>.() -
       compilations.configureEach { compileKotlinTask.apply(configuration) }
     }
   }
-  tasks.withType<KotlinCompile<KotlinCommonOptions>>().configureEach(configuration)
+  tasks.withType<KotlinCompile<*>>().configureEach {
+    runOrNull { configuration() }
+  }
 }
 
 /**
