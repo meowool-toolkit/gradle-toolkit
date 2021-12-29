@@ -139,7 +139,6 @@ internal fun <T : DependencyMapperExtension> T.prebuilt(
       val it = it
         .replace("org.jetbrains.kotlin", "kotlin")
         .replace("org.jetbrains.intellij", "intellij")
-        .replace("com.google.android", "google")
         .replace("org.chromium.net", "chromium")
         .replace("com.squareup", "square")
         .replace("io.arrow-kt", "arrow")
