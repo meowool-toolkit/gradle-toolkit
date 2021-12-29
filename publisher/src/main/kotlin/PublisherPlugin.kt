@@ -38,6 +38,7 @@ import com.meowool.gradle.toolkit.publisher.internal.isMultiplatform
 import com.meowool.gradle.toolkit.publisher.internal.repositoriesToClose
 import com.meowool.gradle.toolkit.publisher.internal.stagingDescription
 import com.meowool.sweekt.coroutines.flowOnIO
+import com.meowool.sweekt.ifNull
 import com.meowool.sweekt.isNotNull
 import getNamed
 import groovy.util.Node
@@ -47,6 +48,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.retry
 import kotlinx.coroutines.runBlocking
+import namedOrNull
 import org.gradle.BuildAdapter
 import org.gradle.BuildResult
 import org.gradle.api.Plugin
@@ -157,9 +159,9 @@ class PublisherPlugin : Plugin<Project> {
         }
       }
       else -> publications.create<MavenPublication>("maven") {
-        components.configureEach {
-          if (name == "kotlin" || name == "java") from(this)
-        }
+        components.namedOrNull("kotlin")
+          .ifNull { components.namedOrNull("java") }
+          ?.configure(::from)
       }
     }
   }
