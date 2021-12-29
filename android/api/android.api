@@ -109,14 +109,14 @@ public final class OutputsKt {
 }
 
 public final class SigningConfigContainerKt {
+	public static final fun debug (Lorg/gradle/api/NamedDomainObjectContainer;Lkotlin/jvm/functions/Function1;)Lcom/android/build/api/dsl/SigningConfig;
 	public static final fun debug (Lorg/gradle/api/NamedDomainObjectContainer;Lkotlin/jvm/functions/Function1;)Lcom/android/build/gradle/internal/dsl/SigningConfig;
-	public static final fun debug (Lorg/gradle/api/NamedDomainObjectContainer;Lkotlin/jvm/functions/Function1;)V
 	public static final fun getDebug (Lorg/gradle/api/NamedDomainObjectContainer;)Lcom/android/build/api/dsl/SigningConfig;
 	public static final fun getDebug (Lorg/gradle/api/NamedDomainObjectContainer;)Lcom/android/build/gradle/internal/dsl/SigningConfig;
 	public static final fun getRelease (Lorg/gradle/api/NamedDomainObjectContainer;)Lcom/android/build/api/dsl/SigningConfig;
 	public static final fun getRelease (Lorg/gradle/api/NamedDomainObjectContainer;)Lcom/android/build/gradle/internal/dsl/SigningConfig;
 	public static final fun release (Lorg/gradle/api/NamedDomainObjectContainer;Lkotlin/jvm/functions/Function1;)Lcom/android/build/gradle/internal/dsl/SigningConfig;
-	public static final fun release (Lorg/gradle/api/NamedDomainObjectContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun release (Lorg/gradle/api/NamedDomainObjectContainer;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 }
 
 public final class SigningsKt {

@@ -30,6 +30,15 @@ public final class ApiConfigurationAccessorsKt {
 	public static final fun apiProjects (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
 }
 
+public final class CollectionsKt {
+	public static final fun configureNamed (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/String;Lkotlin/reflect/KClass;Lorg/gradle/api/Action;)Lkotlin/Unit;
+	public static final fun configureNamed (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/String;Lorg/gradle/api/Action;)Lkotlin/Unit;
+	public static final fun getNamed (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/String;)Ljava/lang/Object;
+	public static final fun getNamed (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/String;Lorg/gradle/api/Action;)Ljava/lang/Object;
+	public static final fun getNamedOrNull (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/String;)Ljava/lang/Object;
+	public static final fun namedOrNull (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
 public final class CommonTarget {
 	public fun <init> (Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;)V
 	public final fun getExtension ()Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;
@@ -404,6 +413,7 @@ public final class SourceSetContainersKt {
 }
 
 public final class TasksKt {
+	public static final fun configureTask (Lorg/gradle/api/Project;Ljava/lang/String;Lorg/gradle/api/Action;)Lkotlin/Unit;
 	public static final fun findTask (Lorg/gradle/api/Project;Ljava/lang/String;)Lorg/gradle/api/Task;
 	public static final fun getInputFileSet (Lorg/gradle/api/Task;)Ljava/util/Set;
 	public static final fun getOutputFileSet (Lorg/gradle/api/Task;)Ljava/util/Set;
