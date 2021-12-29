@@ -55,15 +55,9 @@ fun KotlinCompile.addFreeCompilerArgs(args: Iterable<String>) = kotlinOptions {
 /**
  * [See](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
  */
-fun Project.addFreeCompilerArgs(vararg args: String) {
-  kotlinOptions { addFreeCompilerArgs(*args) }
-  kotlinJvmOptions { addFreeCompilerArgs(*args) }
-}
+fun Project.addFreeCompilerArgs(vararg args: String) = kotlinOptions { addFreeCompilerArgs(*args) }
 
 /**
  * [See](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
  */
-fun Project.addFreeCompilerArgs(args: Iterable<String>) {
-  kotlinOptions { addFreeCompilerArgs(args) }
-  kotlinJvmOptions { addFreeCompilerArgs(args) }
-}
+fun Project.addFreeCompilerArgs(args: Iterable<String>) = kotlinOptions { addFreeCompilerArgs(args) }
