@@ -109,10 +109,8 @@ class GradleToolkitCorePlugin : Plugin<Any> {
         // TODO: Remove when https://github.com/gradle/gradle/issues/18935 fixed
         afterEvaluate { setKotlinJvmTarget(extension) }; setKotlinJvmTarget(extension)
 
-        runOrNull {
-          injectProjectLogic(ignoreUnregistered = true)
-          injectDependenciesLogic(ignoreUnregistered = true)
-        }
+        runOrNull { injectProjectLogic(ignoreUnregistered = true) }
+        runOrNull { injectDependenciesLogic(ignoreUnregistered = true) }
       }
     }
   }

@@ -24,6 +24,7 @@ import com.meowool.gradle.toolkit.LogicRegistry.Companion.DefaultProjectKey
 import com.meowool.gradle.toolkit.LogicRegistry.Companion.logicRegistry
 import com.meowool.gradle.toolkit.LogicRegistry.Companion.notFoundKey
 import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl.Companion.toolkitExtension
+import com.meowool.sweekt.runOrNull
 import org.gradle.api.Project
 import org.gradle.api.initialization.Settings
 import org.gradle.kotlin.dsl.DependencyHandlerScope
@@ -62,6 +63,9 @@ import org.gradle.kotlin.dsl.DependencyHandlerScope
 fun Project.registerLogic(registry: LogicRegistry.() -> Unit) {
   require(this == rootProject) { "You can only register logic in the settings.gradle(.kts) or build.gradle(.kts) of root project." }
   toolkitExtension.registerLogic(registry)
+
+  runOrNull { injectProjectLogic(ignoreUnregistered = true) }
+  runOrNull { injectDependenciesLogic(ignoreUnregistered = true) }
 }
 
 /**
