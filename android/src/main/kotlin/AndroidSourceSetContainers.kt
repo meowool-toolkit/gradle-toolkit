@@ -36,14 +36,14 @@ import org.gradle.api.NamedDomainObjectContainer
  * }
  * ```
  */
-val NamedDomainObjectContainer<out AndroidSourceSet>.main: AndroidSourceSet get() = getByName("main")
-val NamedDomainObjectContainer<out AndroidSourceSet>.test: AndroidSourceSet get() = getByName("test")
+val NamedDomainObjectContainer<out AndroidSourceSet>.main: AndroidSourceSet get() = getNamed("main")
+val NamedDomainObjectContainer<out AndroidSourceSet>.test: AndroidSourceSet get() = getNamed("test")
 val NamedDomainObjectContainer<out AndroidSourceSet>.androidTest: AndroidSourceSet
-  get() = getByName("androidTest")
+  get() = getNamed("androidTest")
 
 fun <T : AndroidSourceSet> NamedDomainObjectContainer<T>.main(configuration: T.() -> Unit) {
   if (this.any { it.name == "main" }) {
-    this.getByName("main", configuration)
+    this.getNamed("main", configuration)
   } else {
     this.create("main", configuration)
   }
@@ -51,7 +51,7 @@ fun <T : AndroidSourceSet> NamedDomainObjectContainer<T>.main(configuration: T.(
 
 fun <T : AndroidSourceSet> NamedDomainObjectContainer<T>.test(configuration: T.() -> Unit) {
   if (this.any { it.name == "test" }) {
-    this.getByName("test", configuration)
+    this.getNamed("test", configuration)
   } else {
     this.create("test", configuration)
   }
@@ -59,7 +59,7 @@ fun <T : AndroidSourceSet> NamedDomainObjectContainer<T>.test(configuration: T.(
 
 fun <T : AndroidSourceSet> NamedDomainObjectContainer<T>.androidTest(configuration: T.() -> Unit) {
   if (this.any { it.name == "androidTest" }) {
-    this.getByName("androidTest", configuration)
+    this.getNamed("androidTest", configuration)
   } else {
     this.create("androidTest", configuration)
   }
@@ -67,28 +67,33 @@ fun <T : AndroidSourceSet> NamedDomainObjectContainer<T>.androidTest(configurati
 
 // // Legacy
 
-val NamedDomainObjectContainer<out com.android.build.gradle.api.AndroidSourceSet>.main: com.android.build.gradle.api.AndroidSourceSet get() = getByName("main")
-val NamedDomainObjectContainer<out com.android.build.gradle.api.AndroidSourceSet>.test: com.android.build.gradle.api.AndroidSourceSet get() = getByName("test")
+val NamedDomainObjectContainer<out com.android.build.gradle.api.AndroidSourceSet>.main: com.android.build.gradle.api.AndroidSourceSet
+  get() = getNamed("main")
+val NamedDomainObjectContainer<out com.android.build.gradle.api.AndroidSourceSet>.test: com.android.build.gradle.api.AndroidSourceSet
+  get() = getNamed("test")
 val NamedDomainObjectContainer<out com.android.build.gradle.api.AndroidSourceSet>.androidTest: com.android.build.gradle.api.AndroidSourceSet
-  get() = getByName("androidTest")
+  get() = getNamed("androidTest")
 
-fun <T : com.android.build.gradle.api.AndroidSourceSet> NamedDomainObjectContainer<T>.main(configuration: T.() -> Unit) =
-  if (this.any { it.name == "main" }) {
-    this.getByName("main", configuration)
-  } else {
-    this.create("main", configuration)
-  }
+fun <T : com.android.build.gradle.api.AndroidSourceSet> NamedDomainObjectContainer<T>.main(
+  configuration: T.() -> Unit
+): T = if (this.namedOrNull("main") != null) {
+  this.getNamed("main", configuration)
+} else {
+  this.create("main", configuration)
+}
 
-fun <T : com.android.build.gradle.api.AndroidSourceSet> NamedDomainObjectContainer<T>.test(configuration: T.() -> Unit) =
-  if (this.any { it.name == "test" }) {
-    this.getByName("test", configuration)
-  } else {
-    this.create("test", configuration)
-  }
+fun <T : com.android.build.gradle.api.AndroidSourceSet> NamedDomainObjectContainer<T>.test(
+  configuration: T.() -> Unit
+): T = if (this.namedOrNull("test") != null) {
+  this.getNamed("test", configuration)
+} else {
+  this.create("test", configuration)
+}
 
-fun <T : com.android.build.gradle.api.AndroidSourceSet> NamedDomainObjectContainer<T>.androidTest(configuration: T.() -> Unit) =
-  if (this.any { it.name == "androidTest" }) {
-    this.getByName("androidTest", configuration)
-  } else {
-    this.create("androidTest", configuration)
-  }
+fun <T : com.android.build.gradle.api.AndroidSourceSet> NamedDomainObjectContainer<T>.androidTest(
+  configuration: T.() -> Unit
+): T = if (this.namedOrNull("androidTest") != null) {
+  this.getNamed("androidTest", configuration)
+} else {
+  this.create("androidTest", configuration)
+}

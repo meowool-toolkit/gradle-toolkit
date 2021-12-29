@@ -18,6 +18,7 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
+import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.kotlin.dsl.register
@@ -29,14 +30,22 @@ val Task.inputFileSet: Set<File> get() = inputs.files.files
 val Task.outputFileSet: Set<File> get() = outputs.files.files
 
 /**
- * Find the task by [name].
+ * Finds the task by [name].
  *
  * @author 凛 (RinOrz)
  */
-fun Project.findTask(name: String): Task? = tasks.findByName(name)
+fun Project.findTask(name: String): Task? = tasks.getNamedOrNull(name)
 
 /**
- * Register tasks based on each pair of names and tasks.
+ * Configures the task by [name].
+ *
+ * @author 凛 (RinOrz)
+ */
+fun Project.configureTask(name: String, configurationAction: Action<in Task>) =
+  tasks.configureNamed(name, configurationAction)
+
+/**
+ * Registers tasks based on each pair of names and tasks.
  */
 fun Project.registerTasks(vararg tasksWithNames: Pair<String, KClass<out Task>>) =
   tasksWithNames.forEach {
@@ -44,20 +53,21 @@ fun Project.registerTasks(vararg tasksWithNames: Pair<String, KClass<out Task>>)
   }
 
 /**
- * Skip the corresponding task according to the given [taskNames].
+ * Skips the corresponding task according to the given [taskNames].
  */
 fun Project.skipTasks(vararg taskNames: String) = taskNames.forEach {
-  tasks.findByName(it)?.enabled = false
+  tasks.configureNamed(it) { enabled = false }
 }
 
 /**
- * Skip the corresponding task(s) according to the given [predicate].
+ * Skips the corresponding task(s) according to the given [predicate].
  */
-fun Project.skipTask(predicate: (Task) -> Boolean) =
-  tasks.filter(predicate).forEach { it.enabled = false }
+fun Project.skipTask(predicate: (Task) -> Boolean) {
+  tasks.configureEach { if (predicate(this)) enabled = false }
+}
 
 /**
- * Register multiple [tasks], and use their class name as the task name.
+ * Registers multiple [tasks], and use their class name as the task name.
  */
 fun Project.registerTasks(vararg tasks: KClass<out Task>) = tasks.forEach {
   this.tasks.register(it.java.simpleName, it)

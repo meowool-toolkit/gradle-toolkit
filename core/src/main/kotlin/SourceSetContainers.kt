@@ -34,7 +34,7 @@ import org.gradle.api.tasks.SourceSetContainer
  * }
  * ```
  */
-val SourceSetContainer.main: SourceSet get() = getByName("main")
-val SourceSetContainer.test: SourceSet get() = getByName("test")
+val SourceSetContainer.main: SourceSet get() = getNamed("main")
+val SourceSetContainer.test: SourceSet get() = getNamed("test")
 fun SourceSetContainer.main(block: SourceSet.() -> Unit) = main.apply(block)
 fun SourceSetContainer.test(block: SourceSet.() -> Unit) = test.apply(block)

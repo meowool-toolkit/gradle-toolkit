@@ -37,12 +37,12 @@ import org.gradle.api.NamedDomainObjectContainer
  * }
  * ```
  */
-val NamedDomainObjectContainer<out BuildType>.debug: BuildType get() = getByName("debug")
-val NamedDomainObjectContainer<out BuildType>.release: BuildType get() = getByName("release")
+val NamedDomainObjectContainer<out BuildType>.debug: BuildType get() = getNamed("debug")
+val NamedDomainObjectContainer<out BuildType>.release: BuildType get() = getNamed("release")
 
 fun <T : BuildType> NamedDomainObjectContainer<T>.debug(configuration: T.() -> Unit) {
   if (this.any { it.name == "debug" }) {
-    this.getByName("debug", configuration)
+    this.getNamed("debug", configuration)
   } else {
     this.create("debug", configuration)
   }
@@ -50,7 +50,7 @@ fun <T : BuildType> NamedDomainObjectContainer<T>.debug(configuration: T.() -> U
 
 fun <T : BuildType> NamedDomainObjectContainer<T>.release(configuration: T.() -> Unit) {
   if (this.any { it.name == "release" }) {
-    this.getByName("release", configuration)
+    this.getNamed("release", configuration)
   } else {
     this.create("release", configuration)
   }

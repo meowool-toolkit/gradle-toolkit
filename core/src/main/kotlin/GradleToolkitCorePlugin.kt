@@ -27,6 +27,7 @@ import addIfNotExists
 import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl
 import com.meowool.gradle.toolkit.internal.GradleToolkitExtensionImpl.Companion.toolkitExtensionImpl
 import com.meowool.sweekt.runOrNull
+import configureNamed
 import injectDependenciesLogic
 import injectProjectLogic
 import kotlinJvmOptions
@@ -68,8 +69,8 @@ class GradleToolkitCorePlugin : Plugin<Any> {
 
       plugins.configureEach {
         extensions.findByType<SourceSetContainer>()?.apply {
-          findByName("main")?.java?.srcDir("src/main/kotlin")
-          findByName("test")?.java?.srcDir("src/test/kotlin")
+          configureNamed("main") { java.srcDir("src/main/kotlin") }
+          configureNamed("test") { java.srcDir("src/test/kotlin") }
         }
         extensions.findByType<JavaPluginExtension>()?.apply {
           sourceCompatibility = extension.defaultJvmTarget
@@ -77,7 +78,7 @@ class GradleToolkitCorePlugin : Plugin<Any> {
         }
       }
 
-      tasks.withType<JavaCompile> {
+      tasks.withType<JavaCompile>().configureEach {
         sourceCompatibility = extension.defaultJvmTarget.toString()
         targetCompatibility = extension.defaultJvmTarget.toString()
       }
@@ -116,7 +117,7 @@ class GradleToolkitCorePlugin : Plugin<Any> {
   }
 
   private fun Project.setKotlinJvmTarget(extension: GradleToolkitExtension) {
-    tasks.withType<KotlinCompile> {
+    tasks.withType<KotlinCompile>().configureEach {
       sourceCompatibility = extension.defaultJvmTarget.toString()
       targetCompatibility = extension.defaultJvmTarget.toString()
     }

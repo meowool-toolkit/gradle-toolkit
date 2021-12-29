@@ -31,6 +31,7 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import com.meowool.gradle.toolkit.GradleToolkitExtension
 import com.meowool.gradle.toolkit.android.internal.AndroidLogicRegistry.DefaultCandidateAndroidKey
 import com.meowool.gradle.toolkit.publisher.PublicationExtension
+import getNamedOrNull
 import javaWhenAvailable
 import jitpack
 import kotlinWhenAvailable
@@ -51,6 +52,7 @@ import sonatype
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
+import kotlin.reflect.KClass
 
 /**
  * The preset specification configuration of 'Meowool-Organization'.
@@ -409,9 +411,7 @@ open class MeowoolPresetSpec internal constructor() {
       }
 
       // Keep spotless before publish
-      project.tasks.withType<SpotlessApply>().configureEach spotlessApply@{
-        withPublishTask { dependsOn(this@spotlessApply) }
-      }
+      setPublishTaskDependsOn(SpotlessApply::class)
     }
   }
 
@@ -423,18 +423,14 @@ open class MeowoolPresetSpec internal constructor() {
       }
 
       // Output meta api before publish
-      project.tasks.configureEach mgs@{
-        if (name == "metalavaGenerateSignature") withPublishTask { dependsOn(this@mgs) }
-      }
+      setPublishTaskDependsOn("metalavaGenerateSignature")
     }
   }
 
   protected fun presetBinaryCompatibilityValidator(): GradleToolkitExtension.() -> Unit = {
     allprojects {
       // Output binary api
-      project.tasks.configureEach apiDump@{
-        if (name == "apiDump") withPublishTask { dependsOn(this@apiDump) }
-      }
+      setPublishTaskDependsOn("apiDump")
     }
   }
 
@@ -464,8 +460,41 @@ open class MeowoolPresetSpec internal constructor() {
     }
   }
 
-  private fun Project.withPublishTask(action: Task.() -> Unit) =
-    tasks.findByName("publish")?.action() ?: afterEvaluate {
-      tasks.findByName("publish")?.action()
+  private fun Project.setPublishTaskDependsOn(baseName: String) {
+    var base: Task? = null
+    var publish: Task? = null
+    project.tasks.configureEach {
+      if (base == null) base = project.tasks.getNamedOrNull(baseName)
+      if (publish == null) publish = project.tasks.getNamedOrNull("publish")
+      when (name) {
+        baseName -> {
+          base = this
+          publish?.dependsOn(this)
+        }
+        "publish" -> {
+          publish = this
+          base?.let { this.dependsOn(it) }
+        }
+      }
     }
+  }
+
+  private fun Project.setPublishTaskDependsOn(baseType: KClass<out Task>) {
+    var base: Task? = null
+    var publish: Task? = null
+    project.tasks.configureEach {
+      if (base == null) base = project.tasks.withType(baseType).firstOrNull()
+      if (publish == null) publish = project.tasks.getNamedOrNull("publish")
+      when {
+        baseType.isInstance(this) -> {
+          base = this
+          publish?.dependsOn(this)
+        }
+        name == "publish" -> {
+          publish = this
+          base?.let { this.dependsOn(it) }
+        }
+      }
+    }
+  }
 }

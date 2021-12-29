@@ -58,8 +58,8 @@ fun BaseExtension.signing(configuration: SigningConfig.() -> Unit) {
     }
   }
   buildTypes {
-    debug { setSigningConfig(signingConfigs.getByName(config)) }
-    release { setSigningConfig(signingConfigs.getByName(config)) }
+    debug { setSigningConfig(signingConfigs.getNamed(config)) }
+    release { setSigningConfig(signingConfigs.getNamed(config)) }
   }
 }
 

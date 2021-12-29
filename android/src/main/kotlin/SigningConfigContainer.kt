@@ -40,43 +40,45 @@ import org.gradle.api.NamedDomainObjectContainer
  * ```
  */
 val NamedDomainObjectContainer<out SigningConfig>.debug: SigningConfig
-  get() = findByName("debug") ?: create("debug")
+  get() = getNamedOrNull("debug") ?: create("debug")
 val NamedDomainObjectContainer<out SigningConfig>.release: SigningConfig
-  get() = findByName("release") ?: create("release")
+  get() = getNamedOrNull("release") ?: create("release")
 
-fun <T : SigningConfig> NamedDomainObjectContainer<T>.debug(configuration: T.() -> Unit) {
-  if (this.any { it.name == "debug" }) {
-    this.getByName("debug", configuration)
-  } else {
-    this.create("debug", configuration)
-  }
+fun <T : SigningConfig> NamedDomainObjectContainer<T>.debug(
+  configuration: T.() -> Unit
+): T = if (this.namedOrNull("debug") != null) {
+  this.getNamed("debug", configuration)
+} else {
+  this.create("debug", configuration)
 }
 
-fun <T : SigningConfig> NamedDomainObjectContainer<T>.release(configuration: T.() -> Unit) {
-  if (this.any { it.name == "release" }) {
-    this.getByName("release", configuration)
-  } else {
-    this.create("release", configuration)
-  }
+fun <T : SigningConfig> NamedDomainObjectContainer<T>.release(
+  configuration: T.() -> Unit
+) = if (this.namedOrNull("release") != null) {
+  this.named("release", configuration)
+} else {
+  this.create("release", configuration)
 }
 
 // // Legacy
 
 val NamedDomainObjectContainer<out com.android.build.gradle.internal.dsl.SigningConfig>.debug: com.android.build.gradle.internal.dsl.SigningConfig
-  get() = findByName("debug") ?: create("debug")
+  get() = getNamedOrNull("debug") ?: create("debug")
 val NamedDomainObjectContainer<out com.android.build.gradle.internal.dsl.SigningConfig>.release: com.android.build.gradle.internal.dsl.SigningConfig
-  get() = findByName("release") ?: create("release")
+  get() = getNamedOrNull("release") ?: create("release")
 
-fun <T : com.android.build.gradle.internal.dsl.SigningConfig> NamedDomainObjectContainer<T>.debug(configuration: T.() -> Unit) =
-  if (this.any { it.name == "debug" }) {
-    this.getByName("debug", configuration)
-  } else {
-    this.create("debug", configuration)
-  }
+fun <T : com.android.build.gradle.internal.dsl.SigningConfig> NamedDomainObjectContainer<T>.debug(
+  configuration: T.() -> Unit
+): T = if (this.namedOrNull("debug") != null) {
+  this.getNamed("debug", configuration)
+} else {
+  this.create("debug", configuration)
+}
 
-fun <T : com.android.build.gradle.internal.dsl.SigningConfig> NamedDomainObjectContainer<T>.release(configuration: T.() -> Unit) =
-  if (this.any { it.name == "release" }) {
-    this.getByName("release", configuration)
-  } else {
-    this.create("release", configuration)
-  }
+fun <T : com.android.build.gradle.internal.dsl.SigningConfig> NamedDomainObjectContainer<T>.release(
+  configuration: T.() -> Unit
+): T = if (this.namedOrNull("release") != null) {
+  this.getNamed("release", configuration)
+} else {
+  this.create("release", configuration)
+}

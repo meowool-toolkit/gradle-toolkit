@@ -66,5 +66,5 @@ fun Project.dokka(configuration: DokkaTask.() -> Unit) {
  */
 fun Project.dokka(format: DokkaFormat = DokkaFormat.Html, configuration: DokkaTask.() -> Unit) {
   apply<DokkaPlugin>()
-  (tasks.findByName(format.taskName) as? DokkaTask)?.configuration()
+  tasks.configureNamed(format.taskName, DokkaTask::class, configuration)
 }

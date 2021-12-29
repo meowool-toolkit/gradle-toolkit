@@ -39,6 +39,7 @@ import com.meowool.gradle.toolkit.publisher.internal.repositoriesToClose
 import com.meowool.gradle.toolkit.publisher.internal.stagingDescription
 import com.meowool.sweekt.coroutines.flowOnIO
 import com.meowool.sweekt.isNotNull
+import getNamed
 import groovy.util.Node
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
@@ -156,7 +157,9 @@ class PublisherPlugin : Plugin<Project> {
         }
       }
       else -> publications.create<MavenPublication>("maven") {
-        components.findByName("kotlin")?.let(::from) ?: components.findByName("java")?.let(::from)
+        components.configureEach {
+          if (name == "kotlin" || name == "java") from(this)
+        }
       }
     }
   }
@@ -169,12 +172,12 @@ class PublisherPlugin : Plugin<Project> {
       val kotlinSourcesJar = tasks.findByName("kotlinSourcesJar")
       val sourcesJar = when {
         isAndroid -> createSourcesJar("androidSourcesJar") {
-          from(androidExtension!!.sourceSets.getByName("main").java.srcDirs)
+          from(androidExtension!!.sourceSets.getNamed("main").java.srcDirs)
         }
         // Hand it over to kotlin
         kotlinSourcesJar != null -> kotlinSourcesJar
         else -> createSourcesJar("javaSourcesJar") {
-          from(extensions.getByType<JavaPluginExtension>().sourceSets.getByName("main").allSource)
+          from(extensions.getByType<JavaPluginExtension>().sourceSets.getNamed("main").allSource)
         }
       }
       publications.withType<MavenPublication> { artifact(sourcesJar) }
