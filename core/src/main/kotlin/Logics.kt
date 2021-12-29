@@ -64,8 +64,12 @@ fun Project.registerLogic(registry: LogicRegistry.() -> Unit) {
   require(this == rootProject) { "You can only register logic in the settings.gradle(.kts) or build.gradle(.kts) of root project." }
   toolkitExtension.registerLogic(registry)
 
-  runOrNull { injectProjectLogic(ignoreUnregistered = true) }
-  runOrNull { injectDependenciesLogic(ignoreUnregistered = true) }
+  allprojects {
+    afterEvaluate {
+      runOrNull { injectProjectLogic(ignoreUnregistered = true) }
+      runOrNull { injectDependenciesLogic(ignoreUnregistered = true) }
+    }
+  }
 }
 
 /**
