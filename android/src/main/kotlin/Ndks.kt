@@ -28,7 +28,7 @@ import com.android.build.gradle.BaseExtension
  *
  * See [ABIs](https://developer.android.com/ndk/guides/abis#sa).
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 enum class NdkAbi(val abi: String) {
   Armeabi("armeabi"),

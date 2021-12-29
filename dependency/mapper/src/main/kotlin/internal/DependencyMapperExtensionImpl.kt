@@ -47,7 +47,7 @@ import java.util.concurrent.atomic.AtomicInteger
 import kotlin.time.measureTime
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @PublishedApi
 internal class DependencyMapperExtensionImpl(override val project: Project) : DependencyMapperExtension {

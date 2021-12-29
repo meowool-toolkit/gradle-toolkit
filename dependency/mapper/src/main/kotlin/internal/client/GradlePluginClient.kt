@@ -31,7 +31,7 @@ import org.jsoup.nodes.Document
 /**
  * A http client of [DependencyRepository.GradlePluginPortal].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal class GradlePluginClient(
   logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE,

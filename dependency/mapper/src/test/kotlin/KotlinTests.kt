@@ -28,7 +28,7 @@ import kotlinx.coroutines.flow.retry
 import kotlinx.coroutines.withTimeout
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class KotlinTests : StringSpec({
   "duration" {

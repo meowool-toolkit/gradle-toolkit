@@ -24,7 +24,7 @@ import com.android.build.gradle.BaseExtension
 /**
  * Enables the [Jetpack-Compose](https://developer.android.com/jetpack/compose/) for the current android project
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun BaseExtension.enableCompose(configuration: ComposeOptions.() -> Unit = {}) {
   buildFeatures.compose = true

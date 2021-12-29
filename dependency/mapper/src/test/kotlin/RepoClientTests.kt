@@ -46,7 +46,7 @@ import kotlinx.coroutines.flow.toList
 import org.jsoup.nodes.Document
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class RepoClientTests : FreeSpec({
   "from google maven repository" - {

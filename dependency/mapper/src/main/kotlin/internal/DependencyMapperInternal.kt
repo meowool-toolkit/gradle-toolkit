@@ -29,7 +29,7 @@ import java.util.concurrent.ConcurrentHashMap
 /**
  * Internal shared APIs.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @InternalGradleToolkitApi
 object DependencyMapperInternal {

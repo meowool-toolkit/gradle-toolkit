@@ -40,7 +40,7 @@ import java.time.Duration
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal abstract class BaseSearchDeclarationImpl<Result>(values: List<String>) : SearchDeclaration<Result> {
   val data: Data = Data(values)

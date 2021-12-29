@@ -26,7 +26,7 @@ import java.nio.file.Path
 /**
  * The repository destination to publish to.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 abstract class PublishingDestination {
 

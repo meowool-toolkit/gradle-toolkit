@@ -41,7 +41,7 @@ import org.gradle.kotlin.dsl.repositories
  *
  * Unlike the [useMeowoolManualSpec], all options in this specification has set automatically.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun GradleToolkitExtension.useMeowoolSpec(configuration: MeowoolPresetSpec.() -> Unit = {}) {
   useMeowoolSpecImpl(MeowoolPresetSpec().apply(configuration))

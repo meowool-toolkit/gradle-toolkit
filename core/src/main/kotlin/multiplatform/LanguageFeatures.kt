@@ -24,7 +24,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 /**
  * Enable all language features by given [names].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Project.enableLanguageFeatures(vararg names: String) = kotlinMultiplatformWhenAvailable {
   enableLanguageFeatures(*names)

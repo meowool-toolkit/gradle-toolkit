@@ -26,7 +26,7 @@ import java.io.File
 /**
  * Specific to signing [configuration] in debug mode.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun BaseExtension.debugSigning(configuration: SigningConfig.() -> Unit) {
   signingConfigs { debug(configuration) }

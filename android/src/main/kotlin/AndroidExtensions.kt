@@ -37,7 +37,7 @@ import org.gradle.kotlin.dsl.apply
  * @param key Automatically inject the registered logic by the key, do nothing if the logic corresponding
  *   to the key is not registered.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Project.androidApp(key: Any = DefaultAndroidKey, configuration: BaseAppModuleExtension.() -> Unit = {}) {
   when {

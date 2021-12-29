@@ -23,7 +23,7 @@ package com.meowool.gradle.toolkit.internal
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal class JarPool {
   val libraries = ConcurrentHashMap<String, Jar>()

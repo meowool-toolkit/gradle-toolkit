@@ -23,7 +23,7 @@ package com.meowool.gradle.toolkit.internal
 import kotlinx.coroutines.channels.ProducerScope
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class OperationScope(
   private val concurrentScope: ProducerScope<*>?,

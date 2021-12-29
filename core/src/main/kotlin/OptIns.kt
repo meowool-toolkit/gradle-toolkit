@@ -28,7 +28,7 @@ import org.gradle.api.Project
  *
  * For more details, see [Opt-in](https://kotlinlang.org/docs/opt-in-requirements.html)
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Project.optIn(vararg annotationNames: String) = optIn(annotationNames.toList())
 

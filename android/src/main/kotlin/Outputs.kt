@@ -29,7 +29,7 @@ import java.io.File
  * @param targetDirectory application files output directory
  * @param overwrite overwrite existing files
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun AppExtension.outputTo(targetDirectory: File, overwrite: Boolean = true) {
   applicationVariants {

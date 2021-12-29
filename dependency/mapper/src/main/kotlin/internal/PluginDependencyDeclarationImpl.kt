@@ -37,7 +37,7 @@ import kotlinx.serialization.Transient
 import org.gradle.api.Project
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal class PluginDependencyDeclarationImpl(rootClassName: String) : PluginDependencyDeclaration {
   val data = Data(rootClassName)

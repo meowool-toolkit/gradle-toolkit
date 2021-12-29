@@ -27,7 +27,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 /**
  * A scope of common target.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class CommonTarget(val extension: KotlinMultiplatformExtension)
 

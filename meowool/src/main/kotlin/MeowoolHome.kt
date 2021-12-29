@@ -28,7 +28,7 @@ private const val HomeUppercasePropertyKey = "MEOWOOL_HOME"
 /**
  * Returns the 'Meowool' home directory.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 val Project.meowoolHomeDir: File?
   get() = findPropertyOrEnv(HomePropertyKey)?.toString()

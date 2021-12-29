@@ -74,7 +74,7 @@ typealias FormatProcessor = (input: String) -> String
  *                         .......
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Serializable
 data class DependencyFormatter(

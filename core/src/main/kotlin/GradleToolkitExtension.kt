@@ -30,7 +30,7 @@ import org.gradle.kotlin.dsl.repositories
 /**
  * An extension of the gradle toolkit belonging to [rootProject].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 interface GradleToolkitExtension {
 

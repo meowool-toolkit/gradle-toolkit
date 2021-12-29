@@ -32,7 +32,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 /**
  * Enable and configure target of android target.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Project.androidTarget(
   name: String = "android",

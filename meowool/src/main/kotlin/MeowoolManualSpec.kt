@@ -29,7 +29,7 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
 /**
  * The manually set specification configuration of 'Meowool-Organization'.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class MeowoolManualSpec internal constructor() : MeowoolPresetSpec() {
 

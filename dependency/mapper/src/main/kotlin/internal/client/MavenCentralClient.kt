@@ -32,7 +32,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 /**
  * A http client of [DependencyRepository.MavenCentral].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal class MavenCentralClient(
   logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE

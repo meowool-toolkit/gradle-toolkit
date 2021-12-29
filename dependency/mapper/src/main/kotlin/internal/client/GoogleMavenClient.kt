@@ -35,7 +35,7 @@ import org.jsoup.nodes.Document
 /**
  * A http client of [DependencyRepository.Google].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal class GoogleMavenClient(
   logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE,

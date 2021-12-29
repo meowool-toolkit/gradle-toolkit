@@ -78,7 +78,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 /**
  * A plugin for publishing Gradle or Maven publications.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class PublisherPlugin : Plugin<Project> {
   override fun apply(target: Project) = with(target) {

@@ -31,7 +31,7 @@ val Task.outputFileSet: Set<File> get() = outputs.files.files
 /**
  * Find the task by [name].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Project.findTask(name: String): Task? = tasks.findByName(name)
 

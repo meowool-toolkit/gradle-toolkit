@@ -34,7 +34,7 @@ fun File.toPropertiesOrNull(): Properties? = when {
 /**
  * Find and return the properties of the `local.properties` file in the project.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Project.findLocalProperties(): Properties? =
   projectDir.resolve("local.properties").toPropertiesOrNull()

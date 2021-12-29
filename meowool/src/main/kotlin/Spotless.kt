@@ -39,7 +39,7 @@ internal fun SpotlessExtension.whenAvailable(project: Project, block: SpotlessEx
 /**
  * When the Kotlin plugin is available, make kotlin spotless with the given [closure].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun SpotlessExtension.kotlinWhenAvailable(project: Project = this.project, closure: Action<KotlinExtension>) {
   whenAvailable(project) { kotlin(closure) }
@@ -48,7 +48,7 @@ fun SpotlessExtension.kotlinWhenAvailable(project: Project = this.project, closu
 /**
  * When the Java plugin is available, make kotlin spotless with the given [closure].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun SpotlessExtension.javaWhenAvailable(project: Project = this.project, closure: Action<JavaExtension>) {
   whenAvailable(project) { java(closure) }

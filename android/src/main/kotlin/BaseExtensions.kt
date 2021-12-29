@@ -47,7 +47,7 @@ val BaseExtension.isLibrary: Boolean get() = this is LibraryExtension
 /**
  * Bridge to the [DefaultConfig.applicationId].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun BaseExtension.applicationId(applicationId: String) {
   defaultConfig.applicationId = applicationId

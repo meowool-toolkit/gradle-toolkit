@@ -30,7 +30,7 @@ import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 /**
  * Uses given [configuration] to configure kotlin common compile task of this project.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Project.kotlinCompile(configuration: KotlinCompile<KotlinCommonOptions>.() -> Unit) {
   kotlinMultiplatformWhenAvailable {

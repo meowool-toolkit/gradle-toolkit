@@ -60,7 +60,7 @@ import org.gradle.api.Project
  * }
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun LogicRegistry.android(
   key: Any = DefaultAndroidKey,

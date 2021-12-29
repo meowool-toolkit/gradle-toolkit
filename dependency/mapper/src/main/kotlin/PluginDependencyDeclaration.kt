@@ -25,7 +25,7 @@ import com.meowool.sweekt.iteration.toArray
 /**
  * Used to declare how to map plugin dependencies.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 interface PluginDependencyDeclaration {
 

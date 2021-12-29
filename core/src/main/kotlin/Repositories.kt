@@ -34,7 +34,7 @@ import org.gradle.kotlin.dsl.repositories
  * @see Project.allprojects
  * @see Project.repositories
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Project.allrepositories(configuration: RepositoryHandler.() -> Unit) = allprojects { repositories(configuration) }
 
@@ -118,7 +118,7 @@ fun RepositoryHandler.jitpack(action: MavenArtifactRepository.() -> Unit = {}) =
 /**
  * Mirrors of maven repositories
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 sealed class MavenMirrors(val url: String) {
 

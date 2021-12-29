@@ -31,7 +31,7 @@ import io.kotest.matchers.string.shouldStartWith
 import org.gradle.testfixtures.ProjectBuilder
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class CacheTests : StringSpec({
   val project = ProjectBuilder.builder().withProjectDir(tempdir()).build()

@@ -31,7 +31,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Serializable
 internal sealed class DependencyRepository {

@@ -35,7 +35,7 @@ import java.io.File
  * Here are used to load some common presets of android extension, of course you can overwrite
  * them at any time.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal fun BaseExtension.loadAndroidPresets() {
   compileSdkVersion(31)

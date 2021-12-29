@@ -31,7 +31,7 @@ import org.gradle.api.Project
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @InternalGradleToolkitApi
 object AndroidLogicRegistry {

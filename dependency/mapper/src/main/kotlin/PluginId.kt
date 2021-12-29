@@ -25,7 +25,7 @@ import kotlinx.serialization.Serializable
 /**
  * Represents a plugin dependency meta-information.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Serializable
 class PluginId internal constructor(private val id: CharSequence) : CharSequence by id {

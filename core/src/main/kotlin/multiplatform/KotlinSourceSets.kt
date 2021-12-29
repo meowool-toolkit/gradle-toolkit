@@ -23,7 +23,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 /**
  * Represents this [KotlinSourceSet] depends on the given [others] source sets.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun KotlinSourceSet.dependsOn(vararg others: KotlinSourceSet) {
   others.forEach(::dependsOn)

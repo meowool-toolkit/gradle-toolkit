@@ -25,7 +25,7 @@ import com.android.build.gradle.BaseExtension
 /**
  * Contains the C [flags] of each obfuscator library.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 sealed class NdkObfuscator(val flags: List<String>) {
 

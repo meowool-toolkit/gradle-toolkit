@@ -38,7 +38,7 @@ import org.gradle.vcs.SourceControl
 import java.io.File
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal class FakeSettings(private val gradle: Gradle) : Settings {
   override fun getPlugins(): PluginContainer {

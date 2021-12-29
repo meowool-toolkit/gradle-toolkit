@@ -44,7 +44,7 @@ import org.gradle.kotlin.dsl.gradleKotlinDsl
 /**
  * Toolkit the dependencies of [project].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class DependencyHandlerToolkit(
   val project: Project,
@@ -464,7 +464,7 @@ fun Project.subdependencies(configuration: DependencyHandlerToolkit.() -> Unit) 
  * "com.google:xyz:1.0" version "1.2"
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 infix fun CharSequence.version(ver: String?): String = split(":").toMutableList().apply {
   removeLast()

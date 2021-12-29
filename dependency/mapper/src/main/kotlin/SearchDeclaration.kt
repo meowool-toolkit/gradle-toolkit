@@ -25,7 +25,7 @@ import java.time.Duration
 /**
  * Used to declare how to search for remote dependencies.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 interface SearchDeclaration<Result> {
 

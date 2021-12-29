@@ -34,7 +34,7 @@ import org.gradle.kotlin.dsl.maybeCreate
 /**
  * A plugin that can map dependencies to classes or fields.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class DependencyMapperPlugin : Plugin<Any> {
   override fun apply(target: Any) {

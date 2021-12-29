@@ -49,7 +49,7 @@ import net.bytebuddy.dynamic.DynamicType
  * }
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal class Jar(private val rootClassName: String) {
   private val mutex = Mutex()

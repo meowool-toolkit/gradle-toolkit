@@ -31,7 +31,7 @@ import org.jetbrains.kotlin.gradle.targets.jvm.tasks.KotlinJvmTest
 /**
  * Enable and configure target of jvm target.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Project.jvmTarget(
   name: String = "jvm",

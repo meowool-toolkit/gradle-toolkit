@@ -37,7 +37,7 @@ import org.gradle.kotlin.dsl.apply
 import java.io.File
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal class FakeGradle(private val rootProject: Project) : Gradle {
   override fun getPlugins(): PluginContainer {

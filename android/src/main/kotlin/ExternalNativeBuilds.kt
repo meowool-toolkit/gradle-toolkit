@@ -35,7 +35,7 @@ import java.io.File
  *
  * @see ExternalNativeBuild.cmake
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Project.cmake(path: File? = findCMakeBuildScript(), configuration: Cmake.() -> Unit = {}) {
   requireAndroidPlugin()

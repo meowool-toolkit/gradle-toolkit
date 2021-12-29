@@ -47,7 +47,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 /**
  * Enhanced plugin core for gradle kotlin dsl.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class GradleToolkitCorePlugin : Plugin<Any> {
   override fun apply(target: Any) {

@@ -22,7 +22,7 @@ import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import java.io.File
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class IncludeTest : GradleToolkitTest() {
   private val includeDir = File(javaClass.getResource("include-tests")!!.file)

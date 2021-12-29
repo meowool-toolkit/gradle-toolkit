@@ -43,7 +43,7 @@ import org.gradle.api.Project
  * The prebuilt dependency JSON, this list is continuously updated through CI by default to ensure that the mapped
  * dependencies are all up to date.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal object PrebuiltList {
   private const val CacheFileName = "ci-dependencies.json"

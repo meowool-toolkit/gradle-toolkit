@@ -25,7 +25,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 /**
  * [See](https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/CommonCompilerArguments.kt)
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun KotlinCommonOptions.addFreeCompilerArgs(vararg args: String) {
   freeCompilerArgs = (freeCompilerArgs + args).distinct()

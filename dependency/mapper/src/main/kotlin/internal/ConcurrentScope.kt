@@ -32,7 +32,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal class ConcurrentScope<E>(
   producerScope: ProducerScope<E>,

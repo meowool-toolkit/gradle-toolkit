@@ -23,7 +23,7 @@ package com.meowool.gradle.toolkit.internal
 import com.meowool.sweekt.isEnglishNotPunctuation
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal object Validator {
   fun validDependency(notation: CharSequence): String {

@@ -30,7 +30,7 @@ import org.gradle.kotlin.dsl.apply
 /**
  * Enhanced plugin for gradle kotlin dsl.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class GradleToolkitPlugin : Plugin<Any> {
   override fun apply(target: Any) {

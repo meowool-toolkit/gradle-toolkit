@@ -47,7 +47,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 /**
  * Common repository client abstract class.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal abstract class DependencyRepositoryClient(
   internal val baseUrl: String,

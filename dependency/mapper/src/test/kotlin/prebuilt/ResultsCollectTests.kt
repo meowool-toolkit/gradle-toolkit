@@ -39,7 +39,7 @@ import kotlinx.coroutines.flow.map
 import org.gradle.testfixtures.ProjectBuilder
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class ResultsCollectTests : FreeSpec({
   "client" - {

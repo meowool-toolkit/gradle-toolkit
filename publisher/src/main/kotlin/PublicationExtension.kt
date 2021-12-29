@@ -38,7 +38,7 @@ import java.nio.file.Path
 /**
  * The extension for publishing publication.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class PublicationExtension(internal val project: Project) {
 

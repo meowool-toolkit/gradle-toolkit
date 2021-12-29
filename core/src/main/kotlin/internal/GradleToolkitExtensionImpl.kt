@@ -29,7 +29,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @InternalGradleToolkitApi
 open class GradleToolkitExtensionImpl(override val rootProject: Project) : GradleToolkitExtension {

@@ -35,7 +35,7 @@ import kotlinx.coroutines.flow.toList
 import org.gradle.testfixtures.ProjectBuilder
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class MappingTests : FreeSpec({
   val project = ProjectBuilder.builder()

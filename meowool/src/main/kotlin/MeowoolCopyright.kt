@@ -25,7 +25,7 @@ package com.meowool.gradle.toolkit.internal
 /**
  * Open source license of Meowool-Organization.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal fun defaultOpenSourceLicense(url: String) = """
   /*

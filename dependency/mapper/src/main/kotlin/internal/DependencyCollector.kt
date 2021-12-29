@@ -24,7 +24,7 @@ import com.meowool.gradle.toolkit.DependencyFormatter
 import org.gradle.api.Project
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal interface DependencyCollector {
   suspend fun ConcurrentScope<*>.collect(

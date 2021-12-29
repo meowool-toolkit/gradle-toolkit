@@ -35,7 +35,7 @@ import java.util.concurrent.ConcurrentHashMap
  *
  * Related references, [Dependency injection](https://en.wikipedia.org/wiki/Dependency_injection).
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class LogicRegistry {
   @InternalGradleToolkitApi

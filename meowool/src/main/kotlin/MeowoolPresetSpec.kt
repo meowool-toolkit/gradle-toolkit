@@ -55,7 +55,7 @@ import java.nio.file.Path
 /**
  * The preset specification configuration of 'Meowool-Organization'.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 open class MeowoolPresetSpec internal constructor() {
 

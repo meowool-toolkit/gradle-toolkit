@@ -29,7 +29,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 /**
  * Represents the output format of [Dokka](https://github.com/Kotlin/dokka#output-formats)
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 enum class DokkaFormat(val taskName: String) {
   /**

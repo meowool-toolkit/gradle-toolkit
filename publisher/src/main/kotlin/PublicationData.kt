@@ -46,7 +46,7 @@ import org.gradle.api.publish.maven.MavenPomLicense
  * [Gradle Plugin](https://docs.gradle.org/current/userguide/publishing_gradle_plugins.html)
  * [MavenPom API](https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPom.html)
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  * @see MavenPom for more details.
  */
 @PublicationData.Marker class PublicationData(private val project: Project) {

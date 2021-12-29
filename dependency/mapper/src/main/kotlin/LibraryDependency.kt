@@ -32,7 +32,7 @@ import kotlinx.serialization.Serializable
  * Dependency("foo.bar:gav")
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Serializable
 class LibraryDependency internal constructor(private val notation: CharSequence) : CharSequence by notation {

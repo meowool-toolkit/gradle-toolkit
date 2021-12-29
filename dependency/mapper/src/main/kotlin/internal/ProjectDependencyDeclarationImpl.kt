@@ -27,7 +27,7 @@ import kotlinx.serialization.Transient
 import org.gradle.api.Project
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 internal class ProjectDependencyDeclarationImpl(rootClassName: String, val project: Project) :
   ProjectDependencyDeclaration {

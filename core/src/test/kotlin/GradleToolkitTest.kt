@@ -22,7 +22,7 @@ import io.kotest.core.spec.style.StringSpec
 import org.gradle.testfixtures.ProjectBuilder
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 abstract class GradleToolkitTest : StringSpec() {
   internal val project = ProjectBuilder.builder().build()

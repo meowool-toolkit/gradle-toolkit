@@ -24,7 +24,7 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.string.shouldContain
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class ValidityTests : FreeSpec({
   "validate dependency" - {
