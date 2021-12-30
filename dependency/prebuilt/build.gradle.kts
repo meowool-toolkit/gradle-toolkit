@@ -95,6 +95,8 @@ tasks.create("syncDependencies").doLast {
       map(
         "com.meowool.kami:kisscat",
         "com.meowool.toolkit:sweekt",
+        "com.meowool.catnip:cloak",
+        "com.meowool.catnip:cloak-api",
       )
 
       searchGroups(
