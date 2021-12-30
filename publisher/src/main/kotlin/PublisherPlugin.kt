@@ -182,7 +182,7 @@ class PublisherPlugin : Plugin<Project> {
           from(extensions.getByType<JavaPluginExtension>().sourceSets.getNamed("main").allSource)
         }
       }
-      publications.withType<MavenPublication> { artifact(sourcesJar) }
+      publications.withType<MavenPublication>().configureEach { artifact(sourcesJar) }
     }
   }
 
@@ -194,7 +194,7 @@ class PublisherPlugin : Plugin<Project> {
       it.project = project
       it.isSnapshot = isSnapshotVersion
     }
-    publications.withType<MavenPublication> {
+    publications.withType<MavenPublication>().configureEach {
       project.group = data.groupId
       project.version = data.version
       project.description = data.description
