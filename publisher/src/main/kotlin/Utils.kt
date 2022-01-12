@@ -32,6 +32,7 @@ import net.mbonnin.vespene.lib.NexusStagingClient
 import org.gradle.api.Project
 import org.gradle.api.artifacts.repositories.AuthenticationSupported
 import org.gradle.api.artifacts.repositories.PasswordCredentials
+import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.jvm.tasks.Jar
@@ -112,6 +113,7 @@ internal fun Project.createNexusStagingClient(baseUrl: String): NexusStagingClie
 }
 
 internal fun Project.createSourcesJar(name: String, block: Jar.() -> Unit) = tasks.register<Jar>(name) {
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
   archiveClassifier.set("sources")
   block()
 }.get()
