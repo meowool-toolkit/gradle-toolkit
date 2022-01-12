@@ -146,8 +146,8 @@ class PublisherPlugin : Plugin<Project> {
           data.description?.let(::setDescription)
         }
       }
-      tasks.configureNamed("publishPluginJar", Jar::class) {
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+      tasks.withType<Jar>().configureEach {
+        if (name == "publishPluginJar") duplicatesStrategy = DuplicatesStrategy.EXCLUDE
       }
     }
   }
