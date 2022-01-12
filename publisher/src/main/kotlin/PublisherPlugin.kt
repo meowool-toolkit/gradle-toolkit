@@ -31,10 +31,10 @@ import com.meowool.gradle.toolkit.publisher.internal.androidExtension
 import com.meowool.gradle.toolkit.publisher.internal.buildListened
 import com.meowool.gradle.toolkit.publisher.internal.configureAllVariants
 import com.meowool.gradle.toolkit.publisher.internal.createNexusStagingClient
-import com.meowool.gradle.toolkit.publisher.internal.provideSourcesJar
 import com.meowool.gradle.toolkit.publisher.internal.isAndroid
 import com.meowool.gradle.toolkit.publisher.internal.isCompatible
 import com.meowool.gradle.toolkit.publisher.internal.isMultiplatform
+import com.meowool.gradle.toolkit.publisher.internal.provideSourcesJar
 import com.meowool.gradle.toolkit.publisher.internal.repositoriesToClose
 import com.meowool.gradle.toolkit.publisher.internal.stagingDescription
 import com.meowool.sweekt.coroutines.flowOnIO
