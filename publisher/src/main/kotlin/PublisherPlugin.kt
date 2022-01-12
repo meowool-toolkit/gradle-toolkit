@@ -40,6 +40,7 @@ import com.meowool.gradle.toolkit.publisher.internal.stagingDescription
 import com.meowool.sweekt.coroutines.flowOnIO
 import com.meowool.sweekt.ifNull
 import com.meowool.sweekt.isNotNull
+import configureNamed
 import getNamed
 import groovy.util.Node
 import kotlinx.coroutines.delay
@@ -55,6 +56,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.artifacts.repositories.PasswordCredentials
+import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
@@ -143,6 +145,9 @@ class PublisherPlugin : Plugin<Project> {
           displayName = data.displayName
           data.description?.let(::setDescription)
         }
+      }
+      tasks.configureNamed("publishPluginJar", Jar::class) {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
       }
     }
   }
