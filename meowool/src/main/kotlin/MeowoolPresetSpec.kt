@@ -363,7 +363,9 @@ open class MeowoolPresetSpec internal constructor() {
         }
 
         fun sources(suffix: String): List<File> = sourceSets.flatMap { set ->
-          set.allSource.sourceDirectories.asFileTree.filter { it.extension == suffix }
+          set.allSource.sourceDirectories.asFileTree.filter {
+            it.startsWith(project.buildDir).not() && it.extension == suffix
+          }
         }
 
         javaWhenAvailable(project) {
