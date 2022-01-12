@@ -112,11 +112,11 @@ internal fun Project.createNexusStagingClient(baseUrl: String): NexusStagingClie
   )
 }
 
-internal fun Project.createSourcesJar(name: String, block: Jar.() -> Unit) = tasks.register<Jar>(name) {
+internal fun Project.provideSourcesJar(name: String, block: Jar.() -> Unit) = tasks.register<Jar>(name) {
   duplicatesStrategy = DuplicatesStrategy.EXCLUDE
   archiveClassifier.set("sources")
   block()
-}.get()
+}
 
 internal fun BaseExtension.configureAllVariants(configuration: (BaseVariant) -> Unit) {
   (this as? AppExtension)?.applicationVariants?.configureEach(configuration)

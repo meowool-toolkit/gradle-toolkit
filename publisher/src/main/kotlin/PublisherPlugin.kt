@@ -31,7 +31,7 @@ import com.meowool.gradle.toolkit.publisher.internal.androidExtension
 import com.meowool.gradle.toolkit.publisher.internal.buildListened
 import com.meowool.gradle.toolkit.publisher.internal.configureAllVariants
 import com.meowool.gradle.toolkit.publisher.internal.createNexusStagingClient
-import com.meowool.gradle.toolkit.publisher.internal.createSourcesJar
+import com.meowool.gradle.toolkit.publisher.internal.provideSourcesJar
 import com.meowool.gradle.toolkit.publisher.internal.isAndroid
 import com.meowool.gradle.toolkit.publisher.internal.isCompatible
 import com.meowool.gradle.toolkit.publisher.internal.isMultiplatform
@@ -175,14 +175,14 @@ class PublisherPlugin : Plugin<Project> {
    */
   private fun PublishingExtension.publishSourcesJar(project: Project) = with(project) {
     afterEvaluate {
-      val kotlinSourcesJar = tasks.findByName("kotlinSourcesJar")
+      val kotlinSourcesJar = tasks.namedOrNull("kotlinSourcesJar")
       val sourcesJar = when {
-        isAndroid -> createSourcesJar("androidSourcesJar") {
+        isAndroid -> provideSourcesJar("androidSourcesJar") {
           from(androidExtension!!.sourceSets.getNamed("main").java.srcDirs)
         }
         // Hand it over to kotlin
         kotlinSourcesJar != null -> kotlinSourcesJar
-        else -> createSourcesJar("javaSourcesJar") {
+        else -> provideSourcesJar("javaSourcesJar") {
           from(extensions.getByType<JavaPluginExtension>().sourceSets.getNamed("main").allSource)
         }
       }

@@ -28,7 +28,7 @@ import MavenLocalDestination
 import PublishingDestination
 import SonatypeDestination
 import com.meowool.gradle.toolkit.publisher.internal.parentPublication
-import com.meowool.sweekt.hosting
+import com.meowool.sweekt.LazyInit
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.plugin.devel.PluginDeclaration
@@ -80,10 +80,9 @@ class PublicationExtension(internal val project: Project) {
    *
    * Note that this value will inherit the value set in the parent project.
    */
-  var destinations: MutableSet<PublishingDestination> by hosting {
-    mutableSetOf<PublishingDestination>().also {
-      project.parentPublication?.destinations?.apply(it::addAll)
-    }
+  @LazyInit
+  var destinations: MutableSet<PublishingDestination> = mutableSetOf<PublishingDestination>().also {
+    project.parentPublication?.destinations?.apply(it::addAll)
   }
 
   /**
@@ -93,10 +92,8 @@ class PublicationExtension(internal val project: Project) {
    *
    * @see isLocalVersion
    */
-  var localDestinations: MutableSet<PublishingDestination> by hosting {
-    mutableSetOf<PublishingDestination>(MavenLocalDestination).also {
-      project.parentPublication?.localDestinations?.apply(it::addAll)
-    }
+  var localDestinations: MutableSet<PublishingDestination> = mutableSetOf<PublishingDestination>(MavenLocalDestination).also {
+    project.parentPublication?.localDestinations?.apply(it::addAll)
   }
 
   /**
