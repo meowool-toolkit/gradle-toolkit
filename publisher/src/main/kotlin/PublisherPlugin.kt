@@ -40,7 +40,6 @@ import com.meowool.gradle.toolkit.publisher.internal.stagingDescription
 import com.meowool.sweekt.coroutines.flowOnIO
 import com.meowool.sweekt.ifNull
 import com.meowool.sweekt.isNotNull
-import configureNamed
 import getNamed
 import groovy.util.Node
 import kotlinx.coroutines.delay
