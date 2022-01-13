@@ -30,10 +30,10 @@ import java.nio.file.Path
  * Please note that for the directories you don’t want to import, you can add a file named `.skip-import`, which
  * will skip import.
  *
- * @param includeDir the directory of project included.
+ * @param includeDir The directory of project included.
  * @param excludeBuildDir Will not import all subdirectories in the 'build' name directory. But if you want to import
  *   some build directory, you can add a file named `.force-import` to overwrite this behavior.
- * @param excludeBy exclude files if the given condition is true.
+ * @param excludeBy Exclude files if the given condition is true.
  *
  * @see Settings.include
  */
@@ -44,6 +44,7 @@ fun Settings.importProjects(
 ) = includeDir.walkTopDown()
   .onEnter {
     if (it == includeDir) return@onEnter true
+    if (it.startsWith(rootDir.resolve("buildSrc"))) return@onEnter false
     if (it.resolve(".force-import").exists().not()) {
       if (excludeBuildDir && it.name == "build") return@onEnter false
     }
@@ -64,8 +65,8 @@ fun Settings.importProjects(
  * Please note that for the directories you don’t want to import, you can add a file named `.skip-import`, which
  * will skip import.
  *
- * @param includeDirPath the directory of project included.
- * @param excludeBy exclude files if the given condition is true.
+ * @param includeDirPath The directory of project included.
+ * @param excludeBy Exclude files if the given condition is true.
  *
  * @see Settings.include
  */
@@ -81,8 +82,8 @@ fun Settings.importProjects(
  * Please note that for the directories you don’t want to import, you can add a file named `.skip-import`, which
  * will skip import.
  *
- * @param includeDirPath the directory of project included.
- * @param excludeBy exclude files if the given condition is true.
+ * @param includeDirPath The directory of project included.
+ * @param excludeBy Exclude files if the given condition is true.
  *
  * @see Settings.include
  */
@@ -98,8 +99,8 @@ fun Settings.importProjects(
  * Please note that for the directories you don’t want to import, you can add a file named `.skip-import`, which
  * will skip import.
  *
- * @param includeDir the directory of project included.
- * @param excludeDirs the directories of project excluded.
+ * @param includeDir The directory of project included.
+ * @param excludeDirs The directories of project excluded.
  *
  * @see Settings.include
  */
@@ -117,8 +118,8 @@ fun Settings.importProjects(
  * Please note that for the directories you don’t want to import, you can add a file named `.skip-import`, which
  * will skip import.
  *
- * @param includeDirPath the directory of project included.
- * @param excludeDirPaths the directories of project excluded.
+ * @param includeDirPath The directory of project included.
+ * @param excludeDirPaths The directories of project excluded.
  *
  * @see Settings.include
  */
@@ -134,8 +135,8 @@ fun Settings.importProjects(
  * Please note that for the directories you don’t want to import, you can add a file named `.skip-import`, which
  * will skip import.
  *
- * @param includeDirPath the directory of project included.
- * @param excludeDirPaths the directories of project excluded.
+ * @param includeDirPath The directory of project included.
+ * @param excludeDirPaths The directories of project excluded.
  *
  * @see Settings.include
  */
