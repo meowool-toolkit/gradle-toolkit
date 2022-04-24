@@ -357,7 +357,7 @@ open class MeowoolPresetSpec internal constructor() {
           licenseHeader?.let {
             licenseHeader(
               it,
-              "(import |project.|rootProject.|pluginManagement|plugins|buildscript|tasks|apply|rootProject|android|@)"
+              "(import |@|$\w+.*)"
             )
           }
         }
@@ -445,10 +445,6 @@ open class MeowoolPresetSpec internal constructor() {
               meowoolHomeDir?.resolve(".key/key.properties")
                 ?.takeIf { it.exists() }
                 ?.let(::loadKeyProperties)
-                ?: project.logger.warn(
-                  "There is a key of signing common to open source projects in 'Meowool-Organization', " +
-                    "for normalization, it should be used."
-                )
             } else {
               meowoolHomeDir?.resolve(".key/key-internal.properties")
                 ?.takeIf { it.exists() }
