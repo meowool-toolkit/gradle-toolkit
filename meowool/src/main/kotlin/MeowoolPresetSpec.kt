@@ -87,7 +87,7 @@ open class MeowoolPresetSpec internal constructor() {
    * @see spotless
    */
   var licenseHeader: String? = null
-    get() = if (field == null && isOpenSourceProject) defaultOpenSourceLicense(licenseUrl!!) else null
+    get() = field ?: defaultOpenSourceLicense(licenseUrl!!).takeIf { isOpenSourceProject }
 
   /**
    * The license url of the license header, if it is `null`, license url will not be
@@ -96,7 +96,7 @@ open class MeowoolPresetSpec internal constructor() {
    * @see spotless
    */
   var licenseUrl: String? = null
-    get() = if (field == null) Apache2License else null
+    get() = field ?: Apache2License
 
   /**
    * Whether to currently developing an open source project belonging to 'Meowool Organization'.
