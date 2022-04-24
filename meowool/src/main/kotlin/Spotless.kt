@@ -26,14 +26,14 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import com.meowool.sweekt.cast
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaPlugin
+import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.kotlin.dsl.withType
 
 internal val SpotlessExtension.project: Project
   get() = SpotlessExtension::class.java.getDeclaredField("project").apply { isAccessible = true }.get(this).cast()
 
 internal fun SpotlessExtension.whenAvailable(project: Project, block: SpotlessExtension.() -> Unit) {
-  project.plugins.withType<JavaPlugin>().configureEach { block() }
+  project.plugins.withType<JavaBasePlugin>().configureEach { block() }
 }
 
 /**
