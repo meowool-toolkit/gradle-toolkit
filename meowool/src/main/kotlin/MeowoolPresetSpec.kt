@@ -357,7 +357,7 @@ open class MeowoolPresetSpec internal constructor() {
           licenseHeader?.let {
             licenseHeader(
               it,
-              "(import |@|$\w+.*)"
+              "(import |@|^\w+.*)"
             )
           }
         }
