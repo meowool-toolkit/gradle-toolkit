@@ -26,15 +26,12 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import com.meowool.sweekt.cast
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaBasePlugin
+import org.gradle.api.plugins.JavaPlugin
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
 
 internal val SpotlessExtension.project: Project
   get() = SpotlessExtension::class.java.getDeclaredField("project").apply { isAccessible = true }.get(this).cast()
-
-internal fun SpotlessExtension.whenAvailable(project: Project, block: SpotlessExtension.() -> Unit) {
-  project.plugins.withType<JavaBasePlugin>().configureEach { block() }
-}
 
 /**
  * When the Kotlin plugin is available, make kotlin spotless with the given [closure].
@@ -42,7 +39,7 @@ internal fun SpotlessExtension.whenAvailable(project: Project, block: SpotlessEx
  * @author 凛 (RinOrz)
  */
 fun SpotlessExtension.kotlinWhenAvailable(project: Project = this.project, closure: Action<KotlinExtension>) {
-  whenAvailable(project) { kotlin(closure) }
+  project.plugins.withType<KotlinBasePluginWrapper>().configureEach { kotlin(closure) }
 }
 
 /**
@@ -51,5 +48,5 @@ fun SpotlessExtension.kotlinWhenAvailable(project: Project = this.project, closu
  * @author 凛 (RinOrz)
  */
 fun SpotlessExtension.javaWhenAvailable(project: Project = this.project, closure: Action<JavaExtension>) {
-  whenAvailable(project) { java(closure) }
+  project.plugins.withType<JavaPlugin>().configureEach { java(closure) }
 }
