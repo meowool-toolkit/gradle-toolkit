@@ -34,8 +34,8 @@ import com.meowool.gradle.toolkit.publisher.PublicationExtension
 import getNamedOrNull
 import javaWhenAvailable
 import jitpack
-import kotlinWhenAvailable
 import kotlinMultiplatformExtensionOrNull
+import kotlinWhenAvailable
 import loadKeyProperties
 import mavenMirror
 import me.tylerbwong.gradle.metalava.extension.MetalavaExtension
