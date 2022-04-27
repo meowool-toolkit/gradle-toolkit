@@ -370,7 +370,7 @@ open class MeowoolPresetSpec internal constructor() {
         }.plus(
           extensions.findByType<KotlinMultiplatformExtension>()?.sourceSets?.flatMap {
             it.kotlin.sourceDirectories.asFileTree
-          }
+          }.orEmpty()
         ).toHashSet()
 
         javaWhenAvailable(project) {
