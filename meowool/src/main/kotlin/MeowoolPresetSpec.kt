@@ -34,7 +34,6 @@ import com.meowool.gradle.toolkit.publisher.PublicationExtension
 import getNamedOrNull
 import javaWhenAvailable
 import jitpack
-import kotlinMultiplatformExtensionOrNull
 import kotlinWhenAvailable
 import loadKeyProperties
 import mavenMirror
@@ -48,6 +47,7 @@ import org.gradle.kotlin.dsl.maven
 import org.gradle.kotlin.dsl.sourceSets
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import releaseSigning
 import sonatype
 import java.io.File
@@ -368,7 +368,7 @@ open class MeowoolPresetSpec internal constructor() {
             it.startsWith(project.buildDir).not() && it.extension == suffix
           }
         }.plus(
-          kotlinMultiplatformExtensionOrNull?.sourceSets?.flatMap {
+          extensions.findByType<KotlinMultiplatformExtension>()?.sourceSets?.flatMap {
             it.kotlin.sourceDirectories.asFileTree
           }
         ).toHashSet()
