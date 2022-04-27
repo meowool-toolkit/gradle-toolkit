@@ -35,6 +35,7 @@ import getNamedOrNull
 import javaWhenAvailable
 import jitpack
 import kotlinWhenAvailable
+import kotlinMultiplatformExtensionOrNull
 import loadKeyProperties
 import mavenMirror
 import me.tylerbwong.gradle.metalava.extension.MetalavaExtension
@@ -362,11 +363,15 @@ open class MeowoolPresetSpec internal constructor() {
           }
         }
 
-        fun sources(suffix: String): List<File> = sourceSets.flatMap { set ->
+        fun sources(suffix: String): Set<File> = sourceSets.flatMap { set ->
           set.allSource.sourceDirectories.asFileTree.filter {
             it.startsWith(project.buildDir).not() && it.extension == suffix
           }
-        }
+        }.plus(
+          kotlinMultiplatformExtensionOrNull?.sourceSets?.flatMap {
+            it.kotlin.sourceDirectories.asFileTree
+          }
+        ).toHashSet()
 
         javaWhenAvailable(project) {
           target(sources("java"))
