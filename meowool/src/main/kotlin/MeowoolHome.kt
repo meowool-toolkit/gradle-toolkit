@@ -36,7 +36,7 @@ val Project.meowoolHomeDir: File?
     ?.let(::File)
     ?.takeIf { it.exists() }
     .also {
-      // The logger decides whether to print or not
+      // TODO The logger decides whether to print or not
       // if (it == null) logger.warn(
       //   "You are currently developing a project belonging to the 'Meowool-Organization', in order " +
       //    "to normalize you should define `$HomePropertyKey` or `$HomeUppercasePropertyKey` in the system environment variables first."
