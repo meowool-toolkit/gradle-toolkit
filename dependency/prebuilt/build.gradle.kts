@@ -140,6 +140,7 @@ tasks.create("syncDependencies").doLast {
         "com.linkedin.dexmaker",
         "com.github.ajalt.clikt",
 
+        "org.kodein.di",
         "org.ow2.asm",
         "org.junit",
         "org.smali",
