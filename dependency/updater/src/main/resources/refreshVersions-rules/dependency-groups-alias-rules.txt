@@ -1,6 +1,3 @@
-io.insert-koin:koin-*
-          ^^^^
-
 io.ktor:*
    ^^^^
 
